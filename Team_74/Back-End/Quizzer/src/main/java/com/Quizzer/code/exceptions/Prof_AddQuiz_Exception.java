@@ -2,7 +2,8 @@ package com.Quizzer.code.exceptions;
 
 public class Prof_AddQuiz_Exception extends Exception {
 
-	private String errorMessage;
+	private static final long serialVersionUID = 1L;
+	private final String errorMessage;
 
 	public Prof_AddQuiz_Exception(String errorMessage) {
 		super();

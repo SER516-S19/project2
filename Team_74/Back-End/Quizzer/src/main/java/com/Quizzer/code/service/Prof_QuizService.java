@@ -38,7 +38,6 @@ public class Prof_QuizService {
 			int iLengthQuestions = listQuestion.size();
 			if (iLengthQuestions > 0) {
 				for (Question question : listQuestion) {
-
 					questionrepo.insert(question);
 				}
 			}
