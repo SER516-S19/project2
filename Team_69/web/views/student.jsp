@@ -9,6 +9,7 @@
 <body>
 <div>
 	<a>Add your code here.</a>
+	<a>Add student view</a>
 </div>
 </body>
 </html>
