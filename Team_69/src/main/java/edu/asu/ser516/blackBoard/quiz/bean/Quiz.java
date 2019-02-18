@@ -1,4 +1,4 @@
-package edu.asu.ser516.blackBoard.quiz.bean;
+package main.java.edu.asu.ser516.blackBoard.quiz.bean;
 
 import javax.persistence.*;
 import java.sql.Time;

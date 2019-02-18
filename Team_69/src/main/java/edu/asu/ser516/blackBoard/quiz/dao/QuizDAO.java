@@ -1,6 +1,6 @@
-package edu.asu.ser516.blackBoard.quiz.dao;
-import edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
-import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
+package main.java.edu.asu.ser516.blackBoard.quiz.dao;
+import main.java.edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
+import main.java.edu.asu.ser516.blackBoard.quiz.bean.Quiz;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
