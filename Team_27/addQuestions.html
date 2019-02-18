@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>
+            Quizlet - Add Questions
+        </title>
+        <style>
+            th, td {
+                padding: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form action="/abc" method="get">
+            Question: <br/><br/>
+            <textarea name="question" rows="5" cols="80">Enter your question here !</textarea> <br/>
+            <hr/>
+            <table>
+                <tr>
+                    <td>
+                        Option A:
+                    </td>
+                    <td>
+                        <input type="checkbox" name="isOptionACorrect" value="True"/> Correct Answer
+                    </td>
+                    <td>
+                        <input type="text" name="OptionA" value="Enter Option A"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Option B:
+                    </td>
+                    <td>
+                        <input type="checkbox" name="isOptionBCorrect" value="True"/> Correct Answer
+                    </td>
+                    <td>
+                        <input type="text" name="OptionB" value="Enter Option B"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Option C:
+                    </td>
+                    <td>
+                        <input type="checkbox" name="isOptionCCorrect" value="True"/> Correct Answer
+                    </td>
+                    <td>
+                        <input type="text" name="OptionC" value="Enter Option C"/>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        Option D:
+                    </td>
+                    <td>
+                        <input type="checkbox" name="isOptionDCorrect" value="True"/> Correct Answer
+                    </td>
+                    <td>
+                        <input type="text" name="OptionD" value="Enter Option D"/>
+                    </td>
+                </tr>
+            </table>
+            <hr/>
+            <input type="button" value="Add Another Question..." /> 
+            <input type="submit" value="Submit Question(s) To Quiz !" />
+        </form>
+    </body>
+</html>
