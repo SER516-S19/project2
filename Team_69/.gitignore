@@ -24,6 +24,7 @@
 hs_err_pid*
 
 # User-specific stuff
+.idea/
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -34,7 +35,8 @@ hs_err_pid*
 
 # IntelliJ
 out/
-
+target/
+classes/
 *.iml
 modules.xml
 .idea/misc.xml
