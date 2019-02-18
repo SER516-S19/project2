@@ -16,7 +16,8 @@
       <!-- Make sure you set your classpath! -->
       <classpath>
         <fileset dir="${tomcat.home}/lib" includes="servlet-api.jar"/>
-      	<fileset dir="${tomcat.home}/lib" includes="mongo-java-driver-3.9.1.jar"/>
+      	<fileset dir="${tomcat.home}/lib" includes="freemarker.jar"/>
+      	<fileset dir="${tomcat.home}/lib" includes="mssql-jdbc-7.2.1.jre8.jar"/>
         <pathelement path="${classes.dir}" />
       </classpath>
     </javac>
