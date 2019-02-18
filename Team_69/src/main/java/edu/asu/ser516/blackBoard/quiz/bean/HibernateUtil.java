@@ -1,11 +1,13 @@
-package edu.asu.ser516.blackBoard.quiz.bean;
+package main.java.edu.asu.ser516.blackBoard.quiz.bean;
 import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
-import edu.asu.ser516.blackBoard.quiz.bean.User;
+
+import main.java.edu.asu.ser516.blackBoard.quiz.bean.User;
+
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory;

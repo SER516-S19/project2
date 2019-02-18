@@ -1,4 +1,4 @@
-package edu.asu.ser516.blackBoard.quiz.controller;
+package main.java.edu.asu.ser516.blackBoard.quiz.controller;
 
 public class StatisticControllerServlet {
 }
