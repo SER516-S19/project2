@@ -5,7 +5,7 @@ Team is a s follows:
 Bharat Goel (Product Owner)
 
 Team 1:
-Sumanth Prajapati (Scrum Master)
+Sumanth Paranjape (Scrum Master)
 Sajith
 Manisha Miriyala
 Shashidhar Reddy
