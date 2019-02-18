@@ -1,15 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##Install node on Windows using below link
+## Install node on Windows using given link
 [https://nodejs.org/en/download/]
 
-##Install node on macOS using below command
+## Install node on macOS using below command
 brew install node
 
-##To install Homebrew on macOS just open Terminal and type 
+## To install Homebrew on macOS just open Terminal and type 
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)`
 
-##Install node on Ubuntu-Linux using:
+## Install node on Ubuntu-Linux using:
 `sudo apt-get update`
 `sudo apt-get install nodejs`
 `sudo apt-get install npm`
