@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Quizzer.code.dao.QuestionRepo;
+import com.Quizzer.code.dao.QuizRepo;
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.model.Question;
 import com.Quizzer.code.model.Quiz;
@@ -16,11 +17,16 @@ public class Prof_QuizService {
 	@Autowired
 	QuestionRepo questionrepo;
 
+	@Autowired
+	QuizRepo quizRepo;
+
 	public void addQuiz(Quiz quiz) throws Prof_AddQuiz_Exception {
 
 		if (quiz != null) {
 			List<Question> listQuestion = quiz.getQuestions();
 			addQuestions(listQuestion);
+			quizRepo.insert(quiz);
+
 		} else {
 			throw new Prof_AddQuiz_Exception("The quiz object is null");
 		}
