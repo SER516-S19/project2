@@ -1,30 +1,58 @@
 <html>
-    <head>
-        <title>
-            Quizlet - Add Questions
-        </title>
-        <style>
-            th, td {
-                padding: 5px;
-            }
-        </style>
-    </head>
 
-    <body>
-        <form action="/abc" method="get">
-            Question: <br/><br/>
-            <textarea name="question" rows="5" cols="80">Enter your question here !</textarea> <br/>
-            <hr/>
+<head>
+    <title>
+        Quizlet - Add Questions
+    </title>
+    <style>
+        th,
+        td {
+            padding: 5px;
+        }
+    </style>
+    <script type='text/javascript'>
+        function addAnotherQuestion() {
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("QuestionContainer");
+
+            var questionDiv = document.createElement("div");
+            questionDiv.innerHTML = "Question 1: <br /><br />" +
+                "<textarea name=\"question1\" rows=\"5\" cols=\"80\">Enter your question here !</textarea> <br /><hr />" +
+                "<table><tr><td>Option A:</td>" +
+                "<td><input type=\"checkbox\" name=\"isOptionACorrectForQues1\" value=\"True\" /> Correct Answer</td>" +
+                "<td><input type=\"text\" name=\"OptionAForQues1\" value=\"Enter Option A\" /></td></tr>" +
+                "<tr><td>Option B:</td>" +
+                "<td><input type=\"checkbox\" name=\"isOptionBCorrectForQues1\" value=\"True\" /> Correct Answer</td>" +
+                "<td><input type=\"text\" name=\"OptionBForQues1\" value=\"Enter Option B\" /></td></tr>" +
+                "<tr><td>Option C:</td>" +
+                "<td><input type=\"checkbox\" name=\"isOptionCCorrectForQues1\" value=\"True\" /> Correct Answer</td>" +
+                "<td><input type=\"text\" name=\"OptionCForQues1\" value=\"Enter Option C\" /></td></tr>" +
+                "<tr><td>Option D:</td>" +
+                "<td><input type=\"checkbox\" name=\"isOptionDCorrectForQues1\" value=\"True\" /> Correct Answer</td>" +
+                "<td><input type=\"text\" name=\"OptionDForQues1\" value=\"Enter Option D\" /></td></tr>" +
+                "</table><hr/>"
+
+            container.appendChild(questionDiv);
+        }
+    </script>
+</head>
+
+<body>
+    <form action="/abc" method="get">
+        <div id="QuestionContainer">
+            Question 1: <br /><br />
+            <textarea name="question1" rows="5" cols="80">Enter your question here !</textarea> <br />
+            <hr />
             <table>
                 <tr>
                     <td>
                         Option A:
                     </td>
                     <td>
-                        <input type="checkbox" name="isOptionACorrect" value="True"/> Correct Answer
+                        <input type="checkbox" name="isOptionACorrectForQues1" value="True" /> Correct Answer
                     </td>
                     <td>
-                        <input type="text" name="OptionA" value="Enter Option A"/>
+                        <input type="text" name="OptionAForQues1" value="Enter Option A" />
                     </td>
                 </tr>
 
@@ -33,10 +61,10 @@
                         Option B:
                     </td>
                     <td>
-                        <input type="checkbox" name="isOptionBCorrect" value="True"/> Correct Answer
+                        <input type="checkbox" name="isOptionBCorrectForQues1" value="True" /> Correct Answer
                     </td>
                     <td>
-                        <input type="text" name="OptionB" value="Enter Option B"/>
+                        <input type="text" name="OptionBForQues1" value="Enter Option B" />
                     </td>
                 </tr>
 
@@ -45,28 +73,30 @@
                         Option C:
                     </td>
                     <td>
-                        <input type="checkbox" name="isOptionCCorrect" value="True"/> Correct Answer
+                        <input type="checkbox" name="isOptionCCorrectForQues1" value="True" /> Correct Answer
                     </td>
                     <td>
-                        <input type="text" name="OptionC" value="Enter Option C"/>
+                        <input type="text" name="OptionCForQues1" value="Enter Option C" />
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td>
                         Option D:
                     </td>
                     <td>
-                        <input type="checkbox" name="isOptionDCorrect" value="True"/> Correct Answer
+                        <input type="checkbox" name="isOptionDCorrectForQues1" value="True" /> Correct Answer
                     </td>
                     <td>
-                        <input type="text" name="OptionD" value="Enter Option D"/>
+                        <input type="text" name="OptionDForQues1" value="Enter Option D" />
                     </td>
                 </tr>
             </table>
             <hr/>
-            <input type="button" value="Add Another Question..." /> 
-            <input type="submit" value="Submit Question(s) To Quiz !" />
-        </form>
-    </body>
+        </div>
+        <input type="button" value="Add Another Question..." onclick="addAnotherQuestion()"/>
+        <input type="submit" value="Submit Question(s) To Quiz !" />
+    </form>
+</body>
+
 </html>
