@@ -1,6 +1,4 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
-
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -12,7 +10,8 @@ public class LoginDAO {
 
     public void addUser(User student) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try  {
+            Session session = HibernateUtil.getSessionFactory().openSession();
             // start a transaction
             transaction = session.beginTransaction();
             // save the student object
