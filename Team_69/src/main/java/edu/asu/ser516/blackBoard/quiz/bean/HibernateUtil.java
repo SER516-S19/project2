@@ -18,9 +18,9 @@ public class HibernateUtil {
                 // Hibernate settings equivalent to hibernate.cfg.xml's properties
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/SER516_Quiz?useSSL=false");
-                settings.put(Environment.USER, "jinal");
-                settings.put(Environment.PASS, "<Enter Your password>");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/quizdb");
+                settings.put(Environment.USER, "user");
+                settings.put(Environment.PASS, "password");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
