@@ -1,4 +1,4 @@
-package main.java.edu.asu.ser516.blackBoard.quiz.controller;
+package edu.asu.ser516.blackBoard.quiz.controller;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import main.java.edu.asu.ser516.blackBoard.quiz.bean.User;
-import main.java.edu.asu.ser516.blackBoard.quiz.dao.LoginDAO;
+import edu.asu.ser516.blackBoard.quiz.bean.User;
+import edu.asu.ser516.blackBoard.quiz.dao.LoginDAO;
 
 public class LoginControllerServlet extends HttpServlet{
 
