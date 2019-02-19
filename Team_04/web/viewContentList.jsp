@@ -14,5 +14,60 @@
 <h1>
     View Quiz List
 </h1>
+<table>
+  <tr>
+    <th>Questions</th>
+    <th>Options</th>
+    <th>Score</th>
+  </tr>
+  <tr>
+    <td>Question #1</td>
+    <td>
+      <ol type = 'a'>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+        <li>Fourth</li>
+      </ol>
+    </td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Question #2</td>
+    <td>
+      <ol type = 'a'>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+        <li>Fourth</li>
+      </ol>
+    </td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>Question #3</td>
+    <td>
+      <ol type = 'a'>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+        <li>Fourth</li>
+      </ol>
+    </td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Question #4</td>
+    <td>
+      <ol type = 'a'>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+        <li>Fourth</li>
+      </ol>
+    </td>
+    <td>10</td>
+  </tr>
+</table>
 </body>
 </html>
