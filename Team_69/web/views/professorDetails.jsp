@@ -9,15 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="ProfessorController" method="post">
+<form action="../ProffessorController" method="post">
   <div class="form-group">
   <label for="FormQuizName">Enter Quiz Name:</label>
-  <textarea class="form-control" id="FormQuizName" rows="1"></textarea>
+  <textarea class="form-control" id="name" rows="1"></textarea>
    <br>
     
     <div class="form-group">
     <label for="FormQuizName">Enter Quiz Instructions:</label>
-    <textarea class="form-control" id="FormQuizName" rows="3"></textarea>
+    <textarea class="form-control" id="instructions" rows="3"></textarea>
     <br>
 
     
@@ -74,6 +74,7 @@
     
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
+  <input type="hidden" id="flag" name="flag" value="InsertProfDetails">
 </form>
 </body>
 </html>
