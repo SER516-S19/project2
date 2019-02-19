@@ -35,6 +35,36 @@
 		</select>
     </td>
   </tr>
+  <tr>
+    <td></td>
+    <td>
+    	<b> Options </b>
+    </td>
+  </tr>
+  
+  <tr>
+    <td></td>
+    <td>
+    	<input type="checkbox" name="shuffle" value="shuffle">Shuffle Answers<br>
+    </td>
+  </tr>
+  
+  <tr>
+    <td></td>
+    <td>
+    	<input type="checkbox" name="time_limit" value="time_limit">Time Limit
+		<input type="text" name="minutes" value=""> Minutes
+    </td>
+  </tr>
+  
+  
+  <tr>
+    <td></td>
+    <td>
+    	<input type="checkbox" name="attempts" value="attempts">Allow Multiple Attempts<br>
+    </td>
+  </tr>
+  
 </table>
     
   </div>
