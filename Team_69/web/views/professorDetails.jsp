@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form>
+<form action="ProfessorController" method="post">
   <div class="form-group">
   <label for="FormQuizName">Enter Quiz Name:</label>
   <textarea class="form-control" id="FormQuizName" rows="1"></textarea>
