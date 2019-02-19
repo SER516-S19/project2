@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS `project2`;
+CREATE DATABASE IF NOT EXISTS `project2_team27`;
 
-USE `project2`;
+USE `project2_team27`;
 
 CREATE TABLE `Quiz`
 (
@@ -13,7 +13,7 @@ CREATE TABLE `Quiz`
 	`time_limit` INT,
 	`isMultipleAttempt` BOOLEAN,
     PRIMARY KEY (quiz_id)
-) ;
+);
 
 CREATE TABLE `Questions`
 (
