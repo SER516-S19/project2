@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 public class LoadQuestionAnswerServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(false);
 		response.setContentType("text/html");
 		response.setStatus(response.SC_OK);
 
