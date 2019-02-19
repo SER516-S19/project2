@@ -11,8 +11,13 @@
 <body>
 <form>
   <div class="form-group">
-    <label for="FormQuizName">Enter Quiz Name:</label>
-    <textarea class="form-control" id="FormQuizName" rows="1"></textarea>
+  <label for="FormQuizName">Enter Quiz Name:</label>
+  <textarea class="form-control" id="FormQuizName" rows="1"></textarea>
+   <br>
+    
+    <div class="form-group">
+    <label for="FormQuizName">Enter Quiz Instructions:</label>
+    <textarea class="form-control" id="FormQuizName" rows="3"></textarea>
     <br>
 
     
