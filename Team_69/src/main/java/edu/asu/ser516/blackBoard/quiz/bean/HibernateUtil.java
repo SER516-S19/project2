@@ -18,16 +18,17 @@ public class HibernateUtil {
                 // Hibernate settings equivalent to hibernate.cfg.xml's properties
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/quizdb");
-                settings.put(Environment.USER, "user");
-                settings.put(Environment.PASS, "password");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/SER516_Quiz");
+                settings.put(Environment.USER, "jinal");
+                settings.put(Environment.PASS, "jinal");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 configuration.setProperties(settings);
 
                 configuration.addAnnotatedClass(User.class);
+                configuration.addAnnotatedClass(Quiz.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
