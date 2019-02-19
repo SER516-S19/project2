@@ -13,6 +13,30 @@
   <div class="form-group">
     <label for="FormQuizName">Enter Quiz Name:</label>
     <textarea class="form-control" id="FormQuizName" rows="1"></textarea>
+    <br>
+
+    
+<table border = "0">
+  <tr>
+    <td width="200px">Quiz Type : </td>
+    <td width="800px">
+    	<select name="quiz_type">
+		  <option value="G">Graded Quiz</option>
+		  <option value="U">Ungraded Quiz</option>
+		</select>
+    </td>
+  </tr>
+  <tr>
+    <td>Assignment Group : </td>
+    <td>
+    	<select name="assignment_group">
+		  <option value="G">Quizzes</option>
+		  <option value="U">Assignment</option>
+		</select>
+    </td>
+  </tr>
+</table>
+    
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
