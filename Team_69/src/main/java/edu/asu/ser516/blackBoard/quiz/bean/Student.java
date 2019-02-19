@@ -1,4 +1,4 @@
-package main.java.edu.asu.ser516.blackBoard.quiz.bean;
+package edu.asu.ser516.blackBoard.quiz.bean;
 
 public class Student {
 }
