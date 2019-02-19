@@ -2,6 +2,7 @@ package edu.asu.ser516.blackBoard.quiz.bean;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.Date;
 
 @Entity
 @Table(name = "Quiz")
@@ -15,21 +16,22 @@ public class Quiz {
     @Column(name = "Name" , nullable = false)
     private String quizName;
 
-    @Lob
-    @Column(name="Instructions",nullable = false)
+    @Column(name="Instructions")
     private String quizInstructions;
 
-    @Column(name ="Type", nullable = false)
+    @Column(name ="Type")
     private String quizType;
 
     @Temporal(TemporalType.TIME)
-    @Column(name = "Time_Limit",nullable = false)
-    private Time quizTimeLimit;
+    @Column(name = "Time_Limit")
+    private Date quizTimeLimit;
 
-    @Column(name="Shuffle_Answer",nullable = false)
+    @Column(name="Shuffle_Answer")
     private String shuffleAnswer;
+    
+    Quiz() {}
 
-    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, String shuffleAnswer) {
+    public Quiz(String quizName, String quizInstructions, String quizType, Date quizTimeLimit, String shuffleAnswer) {
         this.quizName = quizName;
         this.quizInstructions = quizInstructions;
         this.quizType = quizType;
@@ -70,15 +72,19 @@ public class Quiz {
         this.quizType = quizType;
     }
 
-    public Time getQuizTimeLimit() {
-        return quizTimeLimit;
-    }
+ 
 
-    public void setQuizTimeLimit(Time quizTimeLimit) {
-        this.quizTimeLimit = quizTimeLimit;
-    }
+    public Date getQuizTimeLimit() {
+		return quizTimeLimit;
+	}
 
-    public String getShuffleAnswer() {
+
+	public void setQuizTimeLimit(Date quizTimeLimit) {
+		this.quizTimeLimit = quizTimeLimit;
+	}
+
+
+	public String getShuffleAnswer() {
         return shuffleAnswer;
     }
 
