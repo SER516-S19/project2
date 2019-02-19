@@ -4,20 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Quizes Posted</title>
+<title>Quizzes Posted</title>
 </head>
 <body>
 <h3>Select a quiz to view its contents</h3>
 
-	<a href="#">QUIZ 1</a>
-	<a href="#">QUIZ 2</a>
-	<a href="#">QUIZ 3</a>
-	<a href="#">QUIZ 4</a>
-	<a href="#">QUIZ 5</a>
-	<a href="#">QUIZ 6</a>
-	<a href="#">QUIZ 7</a>
-	<a href="#">QUIZ 8</a>
-
+	<form action="../ProffesorController" method="get">
+		<input type="hidden" id="flag" name="flag" value="fetchQuizList">
+	    <input type="submit" value="Display Quiz List" />
+	</form>
+	
 
 </body>
 </html>
