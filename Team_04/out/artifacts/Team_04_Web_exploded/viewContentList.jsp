@@ -1,18 +1,18 @@
-<%@ page import="content.creator.ContentList" %><%--
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+         pageEncoding="US-ASCII"%>
+
+<%--
   Created by IntelliJ IDEA.
-  User: amankaushik
-  Date: 18/2/19
+  User: amankaushik,ArchanaMadhavan
+  Date: 20/2/19
   Time: 1:53 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
-<%
-
-    ContentList contents = (ContentList)request.getAttribute("question");
-%>
 <head>
-
     <title>view-list</title>
 </head>
 <body>
@@ -23,21 +23,15 @@
     <table border="1" cellpadding="5">
         <caption><h2>Quiz List</h2></caption>
         <tr>
-            <th>Question Number</th>
-            <th>Question type</th>
-            <th>Question Description</th>
-            <th>Answer Choices</th>
-            <th>Correct Answer</th>
+            <th>Quiz ID</th>
         </tr>
-
-            <tr>
-                <td><%=contents.getQuestion_id()%></td>
-                <td><%=contents.getQuestion_type()%></td>
-                <td><%=contents.getQuestion_description()%></td>
-                <td><%=contents.getAns_description()%>/></td>
-                <td><%=contents.isCorrect()%></td>
-            </tr>
-
+        <tr>
+            <td>
+                <c:forEach items="${ids}" var="quizId">
+                    Quiz <c:out value="${quizId}"></c:out><br>
+                </c:forEach>
+            </td>
+        </tr>
     </table>
 </div>
 </body>

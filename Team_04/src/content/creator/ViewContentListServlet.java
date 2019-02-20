@@ -7,27 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
-@WebServlet(name = "ViewContentListServlet")
+
+@WebServlet(name = "ViewContentListServlet", urlPatterns = {"/viewContentList"})
 public class ViewContentListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ContentList content=new ContentList();
-        content.setQuestion_id(1);
-        content.setQuestion_type("MAQ");
-        content.setQuestion_description("Which is not a step of requirement engineering ?");
-        content.setAns_description("Requirement Design");
-        content.setCorrect(true);
-
-        request.setAttribute("question",content);
-        RequestDispatcher view = request.getRequestDispatcher("viewContentList.jsp");
-        view.forward(request, response);
-
-    }
-
+}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        FetchQuizData quizData=new FetchQuizData();
+        List<Integer> quizId=quizData.getQuizList();
+        request.setAttribute("ids",quizId);
+        RequestDispatcher view = request.getRequestDispatcher("viewContentList.jsp");
+        view.forward(request, response);
     }
 }
