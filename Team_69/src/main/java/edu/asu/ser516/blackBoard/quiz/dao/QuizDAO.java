@@ -9,13 +9,15 @@ import org.hibernate.query.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class QuizDAO {
 
-   public void fetchAllQuizName(){
+   public List<String> fetchAllQuizName(){
        Transaction transaction = null;
+       List<String> quizNames = new ArrayList<String>();
        try  {
            Session session = HibernateUtil.getSessionFactory().openSession();
            transaction = session.beginTransaction();
@@ -24,8 +26,8 @@ public class QuizDAO {
            Root<Quiz> root = query.from(Quiz.class);
            query.select(root.<String>get("quizName"));
            Query<String> q=session.createQuery(query);
-           List<String> list=q.getResultList();
-           for (String name : list) {
+           quizNames=q.getResultList();
+           for (String name : quizNames) {
                System.out.println(name);
            }
            transaction.commit();
@@ -35,5 +37,6 @@ public class QuizDAO {
                transaction.rollback();
            }
        }
+       return quizNames;
    }
 }
