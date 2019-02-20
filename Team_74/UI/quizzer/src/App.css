@@ -14,7 +14,7 @@ html {
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #222222;
   padding: 20px;
   color: white;
   text-align: center;
@@ -32,6 +32,30 @@ html {
     transform: rotate(360deg);
   }
 }
+
+.Blank-Nav{
+  list-style: none;
+  display: flex;
+  background-color: black;
+  margin-bottom: 20px;
+}
+
+.logout-button{
+  position:fixed;
+  font-size: 15px;
+  padding: 7px 15px;;
+  right:10px;
+  top:5px;
+  border-radius: 2px;
+  background-color: #e7e7e7; color: black;
+  transition-duration: 0.4s;
+}
+
+.logout-button:hover{
+  background-color: #222222; /* Black */
+  color: white;
+}
+
 
 nav ul {
   list-style: none;

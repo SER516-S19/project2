@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './Login.css';
+import { Redirect } from 'react-router-dom';
 
-const Welcome = ({user, onSignOut})=> {
-  // This is a dumb "stateless" component
-  return (
-    <div>
-      Welcome <strong>{user.username}</strong>!
-      <a href="javascript:;" onClick={onSignOut}>Sign out</a>
-    </div>
-  )
-}
+// const Welcome = ({user, onSignOut})=> {
+//   // This is a dumb "stateless" component
+//   return (
+//     <div>
+//       Welcome <strong>{user.username}</strong>!
+//       <a href="javascript:;" onClick={onSignOut}>Sign out</a>
+//     </div>
+//   )
+// }
 
 class LoginForm extends React.Component {
   
@@ -17,17 +18,20 @@ class LoginForm extends React.Component {
  
   handleSignIn(e) {
     e.preventDefault()
-    let username = this.refs.username.value
-    let password = this.refs.password.value
-    this.props.onSignIn(username, password)
+    let username = this.refs.username.value;
+    let password = this.refs.password.value;
+    this.props.onSignIn(username, password);
+
   }
   
   render() {
     return (
-      <form onSubmit={this.handleSignIn.bind(this)}>
+      <form className="LoginForm" onSubmit={this.handleSignIn.bind(this)}>
+        <div className="Login-formheader">
         <h3>Sign in</h3>
-        <input type="text" ref="username" placeholder="enter your username" />
-        <input type="password" ref="password" placeholder="enter password" />
+        </div>
+        <input type="text" ref="username" required={true} placeholder="Enter your username" />
+        <input type="password" ref="password" required={true} placeholder="Enter password" />
         <input type="submit" value="Login" />
       </form>
     )
@@ -40,6 +44,7 @@ class Login extends React.Component {
   
   constructor(props) {
     super(props)
+    localStorage.clear();
     // the initial application state
     this.state = {
       user: null
@@ -50,18 +55,22 @@ class Login extends React.Component {
   signIn(username, password) {
     // This is where you would call Firebase, an API etc...
     // calling setState will re-render the entire app (efficiently!)
+
     this.setState({
       user: {
         username,
         password,
       }
     })
+
+    localStorage.setItem('username',username);
+    localStorage.setItem('password',password);
   }
   
-  signOut() {
-    // clear out user from state
-    this.setState({user: null})
-  }
+  // signOut() {
+  //   // clear out user from state
+  //   this.setState({user: null})
+  // }
   
   render() {
     // Here we pass relevant state to our child components
@@ -70,11 +79,8 @@ class Login extends React.Component {
     return (
       <div>
         { 
-          (this.state.user) ? 
-            <Welcome 
-             user={this.state.user} 
-             onSignOut={this.signOut.bind(this)} 
-            />
+          (this.state.user) ?
+              <Redirect to='/home' />
           :
             <LoginForm 
              onSignIn={this.signIn.bind(this)} 

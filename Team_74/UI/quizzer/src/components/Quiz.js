@@ -47,7 +47,7 @@ function Quiz(props) {
 Quiz.propTypes = {
     answer: PropTypes.string.isRequired,
     answerOptions: PropTypes.array.isRequired,
-    counter: PropTypes.number.isRequired,
+    counter: PropTypes.number,
     question: PropTypes.string.isRequired,
     questionId: PropTypes.number.isRequired,
     questionTotal: PropTypes.number.isRequired,
