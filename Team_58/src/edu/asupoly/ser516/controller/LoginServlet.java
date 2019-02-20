@@ -3,6 +3,7 @@ package edu.asupoly.ser516.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,12 +39,10 @@ public class LoginServlet extends HttpServlet  {
 	    System.out.println(data.get(0).getFirstname());
 	    System.out.println(isStudent);
 	    
-	    if(data!=null && !isStudent){
-	    	req.setAttribute("UserVO", udb);
-			/*
-			 * RequestDispatcher rd=req.getRequestDispatcher("professorHome");
-			 * rd.forward(req,res);
-			 */ 
+	    if(data!=null && isStudent){
+	    	req.setAttribute("UserVO", data.get(0));
+			RequestDispatcher rd=req.getRequestDispatcher("/professorHome");
+			rd.forward(req,res);
 	    }    
 	    else{  
 	        System.out.print("Sorry username or password error");  

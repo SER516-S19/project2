@@ -44,6 +44,7 @@
   	  <fileset dir="${resources.dir}" includes="**/*.txt,**/*.properties" excludes="**/*.html,**/*.jsp"/>
   	</copy>
   	<copy file="${resources.dir}/index.html" tofile="${build.home}/index.html"/>
+  	<copy file="${resources.dir}/professorHome.ftl" tofile="${build.home}/professorHome.ftl"/>
     <copy file="web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
   </target>
     
