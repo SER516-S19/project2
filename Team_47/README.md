@@ -11,10 +11,10 @@ Java Files to go in /src folder.
 
 Front End Dev:
 
-Meng-Ze Chen.
-Vincent Taso,
+Meng-Ze Chen,
+Yu-Ting Tsao,
 Jiayan Wang,
-Krishna Chandu Akula.
+Krishna Chandu Akula,
 Sairam Eadala,
 Bhavana vakkalagadda,
-Suraj Atmakuri
+Suraj Atmakuri.
