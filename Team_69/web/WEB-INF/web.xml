@@ -19,7 +19,7 @@
 
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
