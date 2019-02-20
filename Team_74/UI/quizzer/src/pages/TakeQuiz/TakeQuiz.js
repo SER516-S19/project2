@@ -3,6 +3,7 @@ import './TakeQuiz.css';
 import Result from '../../components/Result';
 import quizQuestions from '../../api/quizQuestions';
 import Quiz from '../../components/Quiz';
+import Timer from "react-compound-timer";
 
 class TakeQuiz extends Component {
 
@@ -133,6 +134,13 @@ class TakeQuiz extends Component {
             <div className="TakeQuiz">
                 <div className="TakeQuiz-header">
                     <h2>Demo Quiz</h2>
+                    <Timer>
+                        {/*<Timer.Days /> days*/}
+                        {/*<Timer.Hours /> hours*/}
+                        <Timer.Minutes /> minutes
+                        <Timer.Seconds /> seconds
+                        {/*<Timer.Milliseconds /> milliseconds*/}
+                    </Timer>
                 </div>
                 {this.state.result ? this.renderResult() : this.renderQuiz()}
             </div>
