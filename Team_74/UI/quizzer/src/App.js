@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 
 const Welcome = ({user, onSignOut})=> {
-  // This is a dumb "stateless" component
   return (
     <div>
       Welcome <strong>{user.username}</strong>!
