@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import edu.asu.ser516.blackBoard.quiz.bean.Proffessor;
-import edu.asu.ser516.blackBoard.quiz.dao.ProffessorDAO;
+import edu.asu.ser516.blackBoard.quiz.bean.Professor;
+import edu.asu.ser516.blackBoard.quiz.dao.ProfessorDAO;
 
 
-public class ProffesorControllerServlet extends HttpServlet{
+public class ProfesorControllerServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	@Override
@@ -25,7 +25,7 @@ public class ProffesorControllerServlet extends HttpServlet{
 		String flag = request.getParameter("flag");
 		if("fetchQuizList".equals(flag)){
 			System.out.println("Hi!....");
-			ProffessorDAO proffessorDAO = new ProffessorDAO();
+			ProfessorDAO proffessorDAO = new ProfessorDAO();
 			List quizList = proffessorDAO.getAllQuizzes();
 			request.setAttribute("quizList", quizList);
 			
@@ -52,7 +52,7 @@ public class ProffesorControllerServlet extends HttpServlet{
 	        String time_limit = request.getParameter("time_limit");
 	        String attempts = request.getParameter("attempts");
 
-			ProffessorDAO proffessorDAO = new ProffessorDAO();
+			ProfessorDAO proffessorDAO = new ProfessorDAO();
 			//System.out.println("Quiz : "+proffessorDAO.InsertProfDetails());
 		
             response.sendRedirect("professorDetail.jsp");

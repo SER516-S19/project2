@@ -12,9 +12,9 @@
     </servlet>
     
     <servlet>
-        <display-name>ProffesorController</display-name>
-        <servlet-name>ProffesorController</servlet-name>
-        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.ProffesorControllerServlet</servlet-class>
+        <display-name>ProfesorController</display-name>
+        <servlet-name>ProfesorController</servlet-name>
+        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.ProfesorControllerServlet</servlet-class>
     </servlet>
     <servlet>
         <display-name>StudentController</display-name>
@@ -28,8 +28,8 @@
     </servlet-mapping>
     
     <servlet-mapping>
-        <servlet-name>ProffesorController</servlet-name>
-        <url-pattern>/ProffesorController</url-pattern>
+        <servlet-name>ProfesorController</servlet-name>
+        <url-pattern>/ProfesorController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>StudentController</servlet-name>

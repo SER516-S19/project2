@@ -9,7 +9,7 @@
 <body>
 <h3>Select a quiz to view its contents</h3>
 
-	<form action="../ProffesorController" method="get">
+	<form action="../ProfesorController" method="get">
 		<input type="hidden" id="flag" name="flag" value="fetchQuizList">
 	    <input type="submit" value="Display Quiz List" />
 	</form>
