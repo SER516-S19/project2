@@ -28,7 +28,7 @@
         <tr>
             <td>
                 <c:forEach items="${ids}" var="quizId">
-                    Quiz <c:out value="${quizId}"></c:out><br>
+                    <a href="viewContentDetails.jsp?quizId=${quizId}">Quiz<c:out value="${quizId}"></c:out></a><br>
                 </c:forEach>
             </td>
         </tr>

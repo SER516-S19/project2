@@ -11,6 +11,6 @@
     <title>view-details</title>
 </head>
 <body>
-
+<h1>view quiz details</h1>
 </body>
 </html>
