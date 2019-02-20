@@ -113,6 +113,7 @@ class TakeQuiz extends Component {
 
     renderQuiz() {
         return (
+
             <Quiz
                 answer={this.state.answer}
                 answerOptions={this.state.answerOptions}
@@ -121,6 +122,7 @@ class TakeQuiz extends Component {
                 questionTotal={quizQuestions.length}
                 onAnswerSelected={this.handleAnswerSelected}
             />
+
         );
     }
 
@@ -134,10 +136,10 @@ class TakeQuiz extends Component {
             <div className="TakeQuiz">
                 <div className="TakeQuiz-header">
                     <h2>Demo Quiz</h2>
-                    <Timer>
+                    <Timer className="TakeQuiz-timer">
                         {/*<Timer.Days /> days*/}
                         {/*<Timer.Hours /> hours*/}
-                        <Timer.Minutes /> minutes
+                        <Timer.Minutes /> minutes <span></span> <span></span>
                         <Timer.Seconds /> seconds
                         {/*<Timer.Milliseconds /> milliseconds*/}
                     </Timer>
