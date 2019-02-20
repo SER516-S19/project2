@@ -17,7 +17,7 @@ import edu.asu.ser516.blackBoard.quiz.bean.User;
 
 import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
 
-public class ProffessorDAO {
+public class ProfessorDAO {
 	
 	public List getAllQuizzes(){
 		List lists = new ArrayList<>();
