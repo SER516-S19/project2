@@ -1,11 +1,10 @@
-package project3;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+//package project3;
+//import java.sql.DriverManager;
+//import java.sql.Connection;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import java.sql.Statement;
 import java.util.*;
-
 
 /**
  * @author Sai Vinay Ganagadharabhatla
@@ -14,16 +13,16 @@ import java.util.*;
 public class FetchQuizDetails {
 	private String ques, option_a, option_b, option_c, option_d;
 	private int score;
-	// private Connection connect() {
-    // String url = "url";
-    // Connection con = null;
-    // try {
-    // con = DriverManager.getConnection(url);
-    // } catch (SQLException e) {
-    // System.out.println(e.getMessage());
-    // }
-    // return con;
-    // }
+	//private Connection connect() {
+    		// String url = "url";
+    		// Connection con = null;
+    		// try {
+    		// con = DriverManager.getConnection(url);
+    		// } catch (SQLException e) {
+    		// System.out.println(e.getMessage());
+    		// }
+    		// return con;
+    	// }
 	
 	public List getQuizDetails(int id) {
 		
