@@ -8,10 +8,10 @@ html,jsp code in webcontent folder
 
 Front Dev:
 
-Meng-Ze Chen
-Vincent Taso
-Jiayan Wang
-Krishna Chandu Akula
-Sairam Eadala
-Bhavana vakkalagadda
+Meng-Ze Chen, 
+Vincent Taso,
+Jiayan Wang,
+Krishna Chandu Akula.
+Sairam Eadala,
+Bhavana vakkalagadda,
 Suraj Atmakuri
