@@ -25,7 +25,7 @@ public class LoginControllerServlet extends HttpServlet{
         QuizDAO quizDAO = new QuizDAO();
         List<String> quizNames = quizDAO.fetchAllQuizName();
         req.setAttribute("quizNames",quizNames);
-        getServletContext().getRequestDispatcher("views/StudentLanding.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/views/StudentLanding.jsp").forward(req, resp);
 
     }
 

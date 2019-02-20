@@ -16,6 +16,11 @@
         <servlet-name>ProffesorController</servlet-name>
         <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.ProffesorControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <display-name>StudentController</display-name>
+        <servlet-name>StudentController</servlet-name>
+        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.StudentControllerServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -25,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>ProffesorController</servlet-name>
         <url-pattern>/ProffesorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/student/</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

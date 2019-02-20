@@ -19,15 +19,16 @@
 %>
 <h2>Quiz</h2>
 <p>
-    You have following quizzes for the course!!
+    You have following quizzes for the course!! <br>
 </p>
+<form method="GET" >
 <div class="container">
     <table class="table table-bordered">
         <%
             for(String quiz : quizNames){
         %>
         <tr>
-            <td><%=quiz%> <a href="./index.jsp">Click here to start the quiz</a></td>
+            <td><%=quiz%> <a href="student/?id=<%=quiz%>">Click here to start the quiz</a></td>
         </tr>
 
         <%
@@ -35,5 +36,6 @@
         %>
     </table>
 </div>
+</form>
 </body>
 </html>
