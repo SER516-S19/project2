@@ -12,6 +12,7 @@ import TakeQuiz from './pages/TakeQuiz/TakeQuiz'
 const Routes = () => (
     <main>
     <Switch>
+        <Route exact path='/' component={Login}></Route>
         <Route exact path='/home' component={Home}></Route>
         <Route exact path='/login' component={Login}></Route>
         <Route exact path='/takeQuiz' component={TakeQuiz}></Route>

@@ -11,7 +11,7 @@ const Navigation = () => (
         <ul>
             <li><NavLink exact activeClassName="current" to='/takeQuiz'>TakeQuiz</NavLink></li>
             <li><NavLink exact activeClassName="current" to='/home'>Home</NavLink></li>
-            <li><NavLink exact activeClassName="current" to='/login'>Login</NavLink></li>
+            {/*<li><NavLink exact activeClassName="current" to='/login'>Login</NavLink></li>*/}
         </ul>
     </nav>
 );
