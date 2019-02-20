@@ -56,8 +56,23 @@
   </servlet>
  		
   <servlet-mapping>
-    <servlet-name>ProfessorHome</servlet-name>
-    <url-pattern>/professorHome</url-pattern>
+    <servlet-name>CreateQuiz</servlet-name>
+    <url-pattern>/createQuiz</url-pattern>
+  </servlet-mapping>
+
+	<servlet>
+    <servlet-name>CreateQuiz</servlet-name>
+    <servlet-class>edu.asupoly.ser422.controller.ProfessorHome</servlet-class>
+    <init-param>
+    	<param-name></param-name>
+    	<param-value></param-value>
+  	</init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 		
+  <servlet-mapping>
+    <servlet-name>CreateQuiz</servlet-name>
+    <url-pattern>/createQuiz</url-pattern>
   </servlet-mapping>
 
 <welcome-file-list>
