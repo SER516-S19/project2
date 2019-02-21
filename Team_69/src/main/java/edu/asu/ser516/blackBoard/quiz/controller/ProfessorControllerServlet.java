@@ -17,7 +17,7 @@ import edu.asu.ser516.blackBoard.quiz.bean.Professor;
 import edu.asu.ser516.blackBoard.quiz.dao.ProfessorDAO;
 
 
-public class ProfesorControllerServlet extends HttpServlet{
+public class ProfessorControllerServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	@Override
@@ -31,7 +31,6 @@ public class ProfesorControllerServlet extends HttpServlet{
 			
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			rd.forward(request, response);
-			
 			
 		}
 	}
@@ -55,7 +54,7 @@ public class ProfesorControllerServlet extends HttpServlet{
 			ProfessorDAO proffessorDAO = new ProfessorDAO();
 			//System.out.println("Quiz : "+proffessorDAO.InsertProfDetails());
 		
-            response.sendRedirect("professorDetail.jsp");
+            response.sendRedirect("views/professorDetails.jsp");
         }  
 
     }
