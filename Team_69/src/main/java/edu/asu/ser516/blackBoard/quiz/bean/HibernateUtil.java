@@ -21,7 +21,7 @@ public class HibernateUtil {
 
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/quizdb");
                 settings.put(Environment.USER, "root");
-                settings.put(Environment.PASS, "jahnvi27");
+                settings.put(Environment.PASS, "Janice@2810");
 
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
