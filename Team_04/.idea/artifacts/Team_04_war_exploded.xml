@@ -7,8 +7,8 @@
           <element id="module-output" name="Team_04" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="servlet-api" />
           <element id="library" level="project" name="sqlite-jdbc-3.23.1" />
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Team_04/web/Web" />
