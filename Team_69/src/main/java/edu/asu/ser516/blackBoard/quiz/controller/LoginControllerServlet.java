@@ -18,7 +18,6 @@ public class LoginControllerServlet extends HttpServlet{
 
     private static final long serialVersionUID = 1L;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -27,7 +26,6 @@ public class LoginControllerServlet extends HttpServlet{
         List<String> quizNames = quizDAO.fetchAllQuizName();
         req.setAttribute("quizNames",quizNames);
         getServletContext().getRequestDispatcher("/views/StudentLanding.jsp").forward(req, resp);
-
     }
 
     protected void doPost(HttpServletRequest request,
