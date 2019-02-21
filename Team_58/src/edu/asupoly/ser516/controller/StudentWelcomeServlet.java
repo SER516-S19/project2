@@ -1,5 +1,6 @@
 package edu.asupoly.ser516.controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,8 @@ public class StudentWelcomeServlet extends HttpServlet
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
     {
-        
+        RequestDispatcher dispatcher 
+              = req.getRequestDispatcher("studentWelcome.jsp");
     }
 }
 
