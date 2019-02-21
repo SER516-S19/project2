@@ -13,7 +13,5 @@
 		<input type="hidden" id="flag" name="flag" value="fetchQuizList">
 	    <input type="submit" value="Display Quiz List" />
 	</form>
-	
-
 </body>
 </html>
