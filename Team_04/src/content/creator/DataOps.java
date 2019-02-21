@@ -10,6 +10,11 @@ import java.sql.Statement;
 public class DataOps {
 
   private Connection getConnection() throws SQLException {
+    try {
+      Class.forName("org.sqlite.JDBC");
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
     String dbURL = "jdbc:sqlite:../quizDatabase.db";
     return DriverManager.getConnection(dbURL);
   }

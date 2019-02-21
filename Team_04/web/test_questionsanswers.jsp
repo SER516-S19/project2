@@ -28,13 +28,13 @@
 <div class="QuesAnsDiv">
 
 
-    <h1> Quastion Description?</h1>
+
 
     <%ArrayList<QuestionAnswers> ques =
             (ArrayList<QuestionAnswers>)request.getAttribute("data");
         for(QuestionAnswers q:ques){%>
 
-        <p><%=q.getQues_desc()%></p>
+        <h1><%=q.getQues_desc()%></h1>
         <p><%=q.getAns_desc()%></p>
 
     <%}%>

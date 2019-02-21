@@ -95,6 +95,9 @@ h1{
 <div class ="wrapper">
 <button class= "btn1" name = "action" value="professor">Professor</button>
 <button class= "btn2"name = "action" value="student">Student</button>
+    <form action ="./load" method="get">
+        <input type="submit" value="Start Quiz"/>
+    </form>
 </div>
 </form>
 </body>
