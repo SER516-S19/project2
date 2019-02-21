@@ -11,7 +11,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>LoadQuestionAnswerServlet</servlet-name>
-        <url-pattern>/load</url-pattern>
+        <url-pattern>/loadquestionanswerservlet</url-pattern>
     </servlet-mapping>
 
 
@@ -23,7 +23,6 @@
         <servlet-name>QuizInstructions</servlet-name>
         <url-pattern>/quizinstructions</url-pattern>
     </servlet-mapping>
-
     <!--<servlet>-->
         <!--<servlet-name>CreateContentServlet</servlet-name>-->
         <!--<servlet-class>content.creator.CreateContentServlet</servlet-class>-->
