@@ -26,7 +26,6 @@ public class Question {
     @Column(name = "Points")
     private int points;
 
-	
 
 	public Question(Quiz quiz, String question, int correctAnswerId, boolean isMultiple, int points) {
 		super();
@@ -68,8 +67,6 @@ public class Question {
 	public void setCorrectAnswerId(int correctAnswerId) {
 		this.correctAnswerId = correctAnswerId;
 	}
-
-	
 
 	public int getPoints() {
 		return points;
