@@ -105,7 +105,7 @@ public class CreateQuestionsServlet extends HttpServlet {
 
 			query.executeUpdate();
 
-			res.sendRedirect(req.getContextPath() + "/courseDashboard.ftl");
+			res.sendRedirect(req.getContextPath() + "/createQuestions.ftl");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

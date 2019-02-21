@@ -1,18 +1,10 @@
 <html>
 
 <head>
-<style> 
-form {
-	text-align: center;
-}
-input {
- 	text-align: center;
-}
-</style>
 </head>
 	<body>
 		<form action="createQuestions" method="POST">
-			<h1>Enter your questions and answers</h1><br><br>
+			<h1>Enter your questions and answers</h1><br>
 		  	Question:<br>
   			<input type="text" name="question">
   			<br><br>
@@ -31,11 +23,12 @@ input {
   			Total Points:<br>
   			<input type="text" name="totalPoints">
   			<br><br>
-  			<input type="radio" name="isMCQ">Multiple Answers
+  			<input type="radio" name="isMCQ" checked>Multiple Answers
   			<br><br>
   			<input type="radio" name="isMCQ">Single Answer
   			<br><br>
-  			<input type="submit" value="submit">
+  			<input type="submit" value="Add more Questions/ Submit">
+  			<input type="submit" formaction="courseDashboard.ftl" formmethod="POST" value="Go to dashboard">
 		</form>
 	</body>
 </html>
