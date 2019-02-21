@@ -4,6 +4,8 @@ import edu.asu.ser516.blackBoard.quiz.bean.*;
 import edu.asu.ser516.blackBoard.quiz.dao.QuestionDAO;
 import edu.asu.ser516.blackBoard.quiz.dao.QuizDAO;
 import edu.asu.ser516.blackBoard.quiz.dao.StatisticsDAO;
+import edu.asu.ser516.blackBoard.quiz.services.StudentServices;
+
 import java.io.IOException;
 import java.sql.Time;
 import java.util.List;
@@ -13,8 +15,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/** Controller class for student page
+ * 
+ * @author : Sourabh Siddharth
+ * @version : 1.0
+ * @since : 02/16/2019
+ * 
+ */
 public class StudentControllerServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final static String SUBMIT_ACTION = "submit";
 
 	@Override
@@ -42,6 +55,12 @@ public class StudentControllerServlet extends HttpServlet {
 		System.out.println(stats);
 		statisticsDAO.insertAnswer(answer);
 		statisticsDAO.insertStudentResponse(stats);
+		
+		
+		StudentServices service = new StudentServices();
+		String questionAnswerJSON = service.getQuestionDetails(quizId);
+		resp.getWriter().write(questionAnswerJSON);
+		
 
 	}
 
