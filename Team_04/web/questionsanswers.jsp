@@ -21,10 +21,10 @@
         margin-top:10%;
         margin-left: 30%;
     }
-    .navBtn
-    {
-        margin-left:50%;
-    }
+.navBtn
+{
+    margin-left:50%;
+}
 </style>
 <body>
 <div class="QuesAnsDiv">
@@ -37,28 +37,28 @@
         int count = 1;
         for(String key: ques.keySet()){
     %>
-    <h1><%= count++ %>.<%=key %></h1>
-    <%
-        for (QuestionAnswers answers : ques.get(key)) {
-            String buttonType = "";
-            if(answers.getQues_type().equals("SA"))
-            {
-                buttonType = "radio";
-            }
-            else
-            {
-                buttonType = "checkbox";
-            }
-    %>
-    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answers.getAns_desc() %></input></div>
-    <%}%>
+        <h1><%= count++ %>.<%=key %></h1>
+            <%
+                for (QuestionAnswers answers : ques.get(key)) {
+                    String buttonType = "";
+                    if(answers.getQues_type().equals("SA"))
+                    {
+                        buttonType = "radio";
+                    }
+                    else
+                    {
+                        buttonType = "checkbox";
+                    }
+            %>
+                    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answers.getAns_desc() %></input></div>
+            <%}%>
     <% }%>
 
 
 </div>
 <div class="navBtn">
-    <input type="button" text="previous" value="previous" class="prevBtn"/>
-    <input type="button" text="next" value="next" class="nextBtn"/>
+<input type="button" text="previous" value="previous" class="prevBtn"/>
+<input type="button" text="next" value="next" class="nextBtn"/>
 </div>
 
 </body>
