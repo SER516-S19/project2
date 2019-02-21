@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-import edu.asupoly.ser516.model.QuizVO;
+
 import edu.asupoly.ser516.model.QuestionsVO;
 /**
  * The following code will render the View Quiz Page
@@ -60,7 +60,7 @@ public class ViewQuizServlet extends HttpServlet{
 	   		   
 	   		   //Query strings to gets entire question info and only the isGraded boolean from Quiz table
 	   		   PreparedStatement query;
-	   		   query = connection.prepareStatement("select A.*, B.isGraded, B.quizTitle, B.ScheduledDate, B.quizInstruction " 
+	   		   query = connection.prepareStatement("select A.*, B.isGraded, B.quizTitle, B.quizScheduledDate, B.quizInstruction " 
 	   				+ "from [dbo].[Questions] A "
 	   				+ "join [dbo].[Quiz] B "
 	   				+ "on A.quizId = B.quizId"
@@ -74,10 +74,7 @@ public class ViewQuizServlet extends HttpServlet{
 			   Date scheduledDate = result.getDate("quizScheduledDate");
 			   boolean graded = result.getBoolean("isGraded");
 			   
-			   QuizVO test = new QuizVO(quizTitle, quizInstruction, quizScheduledDate, isGraded);
-			   
 	   		   while (result.next()) {
-	   			   
 	   			   //Questions DB results 
 	   			   int questionId = result.getInt("questionId");
 	   			   int points = result.getInt("totalPoints");

@@ -3,7 +3,7 @@
 		<title>${Session.Name}</title>
 	</head>
 	<body>
-		<h1>Status: <# if ${Session.Grade} ==0> 
+		<h1>Status: <# if ${Session.Grade} == 0> 
                         Ungraded
 
 					<# else>
