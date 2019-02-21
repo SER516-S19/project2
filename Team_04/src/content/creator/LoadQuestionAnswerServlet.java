@@ -35,7 +35,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 		request.setAttribute("data", qaObj.getResult());
 
 		RequestDispatcher rd =
-				request.getRequestDispatcher("test_questionsanswers.jsp");
+				request.getRequestDispatcher("questionsanswers.jsp");
 
 		rd.forward(request, response);
 
