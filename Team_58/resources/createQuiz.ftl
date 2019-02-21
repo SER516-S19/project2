@@ -28,11 +28,6 @@
 			  <input type="text" name="quizInstructions"
 			  <br>
 			  <br>
-			  Choose if graded
-			  <br>
-			  <input type="radio" name="isGraded" checked> graded<br>
-			  <input type="radio" name="isGraded"> not graded<br>
-			  <br>
 			  Choose if you want to shuffle
 			  <br>
 			  <input type="radio" name="isShuffled" checked> shuffle<br>
