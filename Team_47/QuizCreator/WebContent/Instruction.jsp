@@ -22,10 +22,11 @@
 	String instruction = "Testinstruction";
 	String type = "Type";
 	boolean mulAttemp = true;
+	String mulbutton = "button";
 %>
 <div id = "content">
 
-<input id = "title" type = "text" value="sssssssssss" disabled="disabled">
+<input id = "title" type = "text" value="Title" disabled="disabled">
 
 <div id ="instrcu_all">
 <p>Quiz Instruction</p>
@@ -36,6 +37,7 @@
 <input id = "multiAttemps" type="checkbox" checked = "<%=mulAttemp %>" onclick="return false;">
 Allow Multiple Attemps
 </label>
+<input id = "mulbtn" type="<%=mulbutton %>" value="retake" >
 
 </div>
 </body>
