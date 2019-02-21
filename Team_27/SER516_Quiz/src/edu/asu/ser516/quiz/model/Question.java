@@ -1,8 +1,7 @@
 package edu.asu.ser516.quiz.model;
 
+public class Question {
 
-public class Question{
-	
 	private String question;
 	private String optionA;
 	private String optionB;
@@ -12,9 +11,12 @@ public class Question{
 	private Boolean isOptionBCorrect;
 	private Boolean isOptionCCorrect;
 	private Boolean isOptionDCorrect;
-	
-	public Question(String question, String optionA, String optionB, String optionC, String optionD, Boolean isOptionACorrect, Boolean isOptionBCorrect,
-					Boolean isOptionCCorrect, Boolean isOptionDCorrect) {
+	private Integer points;
+	private Boolean isMultipleAnswer;
+
+	public Question(String question, String optionA, String optionB, String optionC, String optionD,
+			Boolean isOptionACorrect, Boolean isOptionBCorrect, Boolean isOptionCCorrect, Boolean isOptionDCorrect,
+			Integer points, Boolean isMultipleAnswer) {
 		super();
 		this.question = question;
 		this.optionA = optionA;
@@ -25,6 +27,8 @@ public class Question{
 		this.isOptionBCorrect = isOptionBCorrect;
 		this.isOptionCCorrect = isOptionCCorrect;
 		this.isOptionDCorrect = isOptionDCorrect;
+		this.points = points;
+		this.isMultipleAnswer = isMultipleAnswer;
 	}
 
 	public String getQuestion() {
@@ -94,7 +98,20 @@ public class Question{
 	public Boolean getIsOptionDCorrect() {
 		return isOptionDCorrect;
 	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
+	}
+
+	public Integer getPoints() {
+		return points;
+	}
+
+	public void setIsMultipleAnswer(Boolean isMultipleAnswer) {
+		this.isMultipleAnswer = isMultipleAnswer;
+	}
+
+	public Boolean getIsMultipleAnswer() {
+		return isMultipleAnswer;
+	}
 }
-
-
-

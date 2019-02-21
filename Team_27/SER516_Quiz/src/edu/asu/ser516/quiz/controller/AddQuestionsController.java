@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import edu.asu.ser516.quiz.model.Question;
 import edu.asu.ser516.quiz.dao.QuestionsDao;
 
@@ -49,8 +51,12 @@ public class AddQuestionsController extends HttpServlet {
 					tmp = request.getParameterValues("isOptionDCorrectForQues" + questionNumber);
 					Boolean isOptionDCorrect = (tmp == null) ? false : true;
 
+					Integer points = request.getParameterValues("PointsForQues" + questionNumber);
+					tmp = request.getParameterValues("isMultipleAnswerQues" + questionNumber);
+					Boolean isMultipleAnswer = (tmp == null) ? false : true;
+
 					Question questionModel = new Question(questionText, optionA, optionB, optionC, optionD, isOptionACorrect,
-							isOptionBCorrect, isOptionCCorrect, isOptionDCorrect);
+							isOptionBCorrect, isOptionCCorrect, isOptionDCorrect, points, isMultipleAnswer);
 
 					Boolean isAdded = QuestionsDao.insert(questionModel);
 
