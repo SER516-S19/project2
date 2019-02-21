@@ -67,6 +67,17 @@
     <servlet-name>ProfessorHomeServlet</servlet-name>
     <url-pattern>/professorHome</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>CourseDashboardServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.CourseDashboardServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 		
+  <servlet-mapping>
+    <servlet-name>CourseDashboardServlet</servlet-name>
+    <url-pattern>/courseDashboard</url-pattern>
+  </servlet-mapping>
 
 
 <welcome-file-list>
