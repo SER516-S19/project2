@@ -75,6 +75,8 @@ public class QuestionAnswerDAO {
                     QuestionAnswers ansObj = new QuestionAnswers();
                     String ans_desc = rans.getString("ans_desc");
                     ansObj.setAns_desc(ans_desc);
+                    boolean is_correct = rans.getBoolean("is_correct");
+                    ansObj.setIs_correct(is_correct);
                     answerDesList.add(ansObj);
 
                 } catch (SQLException e) {

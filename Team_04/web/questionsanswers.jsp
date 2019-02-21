@@ -32,14 +32,16 @@
 
 
 
-    <%--<%Map<String, List<QuestionAnswers>> ques =--%>
-            <%--(Map<String, List<QuestionAnswers>>)request.getAttribute("data");--%>
-        <%--for(QuestionAnswers q:ques){%>--%>
-
-        <%--<h1><%=q.getQues_desc()%></h1>--%>
-        <%--<p><%=q.getAns_desc()%></p>--%>
-
-    <%--<%}%>--%>
+    <%Map<String, List<QuestionAnswers>> ques =
+            (Map<String, List<QuestionAnswers>>)request.getAttribute("data");
+        for(String key: ques.keySet()){
+    %>
+        <h1><%= key %></h1>
+    <%
+        for (QuestionAnswers answers : ques.get(key)) {
+    %>
+    <p><%= answers.getAns_desc() %></p>
+    <%}%> <% }%>
 
 
 </div>
