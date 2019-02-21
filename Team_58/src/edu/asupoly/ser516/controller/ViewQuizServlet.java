@@ -20,6 +20,9 @@ import javax.servlet.http.HttpSession;
 
 
 import edu.asupoly.ser516.model.QuestionsVO;
+import org.json.simple.JSONObject;
+
+
 /**
  * The following code will render the View Quiz Page
  * 
@@ -40,7 +43,7 @@ public class ViewQuizServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException {
 		   //Get general information
 	       HttpSession sesh = req.getSession();
-	       List<QuestionVO> quizQuestions = new ArrayList<>();
+	       List<QuestionsVO> quizQuestions = new ArrayList<>();
 	       int quizId = Integer.parseInt(req.getParameter("Quiz"));
 	       try {
 	    	   //The information in the following items will be placed securely on a seperate file.
@@ -82,8 +85,15 @@ public class ViewQuizServlet extends HttpServlet{
 	   			   String answer = result.getString("actualAnswer");
 	   			   String choices = result.getString("totalChoices");
 	   			   
+	   			   //Parse Json String object to json Object
+	   			   JSONObject jo = new JSONObject(choices);
+	   			   String choice1 = jo.getString("IncorrectAnswer1");
+	   			   String choice2 = jo.getString("IncorrectAnswer2");
+	   			   String choice3 = jo.getString("IncorrectAnswer3");
+	   			   
+	   			   
 	   			   //Add to Quiz and Questions Objects
-	   			   QuestionVO quest = new QuestionVO(questionId, points, question, answer, choices);
+	   			   QuestionsVO quest = new QuestionsVO(questionId, points, question, answer, choice1, choice2, choice3);
 	   			   quizQuestions.add(quest);
 	   		   }
 	   		   sesh.setAttribute("Name", quizName);

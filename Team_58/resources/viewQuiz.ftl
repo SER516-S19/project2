@@ -3,11 +3,10 @@
 		<title>${Session.Name}</title>
 	</head>
 	<body>
-		<h1>Status: <# if ${Session.Grade} == 0> 
-                        Ungraded
-
-					<# else>
-						Graded
+		<h1>Status: <#if Session.Grade == 0> 
+                        <p>Ungraded </p>
+					<#else>
+						<p>Graded</p>
 					</#if>
 		</h1>
 		<h2> 
@@ -19,11 +18,13 @@
         <# list Session.QuizQuestions as questions>
             <tr>
                <td>${Session.QuizQuestions.getQuestion()}</td>
-			   <td>${Session.QuizQuestions.getAnswer()}</td>
-			   <td>${Session.QuizQuestions.getChoices()}</td>
-			   <td>${Session.QuizQuestions.getPoints()}</td>
+			   <td>${Session.QuizQuestions.getCorrectAnswer()}</td>
+			   <td>${Session.QuizQuestions.getIncorrectAnswer1()}</td>
+			   <td>${Session.QuizQuestions.getIncorrectAnswer2()}</td>
+			   <td>${Session.QuizQuestions.getIncorrectAnswer3()}</td>
+			   <td>${Session.QuizQuestions.getTotalPoints()}</td>
             </tr>
-        </#list>
+        </# list>
 	
 	</body>
 </html>

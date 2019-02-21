@@ -1,18 +1,20 @@
 package edu.asupoly.ser516.model;
 
 public class QuestionsVO {
+	private int qId;
 	private String question;
 	private String correctAnswer;
 	private String incorrectAnswer1;
 	private String incorrectAnswer2;
 	private String incorrectAnswer3;
-	private String totalPoints;
+	private int totalPoints;
+	
 
-	public String getTotalPoints() {
+	public int getTotalPoints() {
 		return totalPoints;
 	}
 
-	public void setTotalPoints(String totalPoints) {
+	public void setTotalPoints(int totalPoints) {
 		this.totalPoints = totalPoints;
 	}
 
@@ -65,5 +67,18 @@ public class QuestionsVO {
 		this.incorrectAnswer2 = incorrectAnswer2;
 		this.incorrectAnswer3 = incorrectAnswer3;
 	}
-
+	/**
+	 * 
+	 * 
+	 * 
+	 * */
+	public QuestionsVO(int id, int points, String quest, String ans, String wrongAns1, String wrongAns2, String wrongAns3){
+		qId = id;
+		totalPoints = points;
+		question = quest;
+		correctAnswer = ans;
+		incorrectAnswer1 = wrongAns1;
+		incorrectAnswer2 = wrongAns2;
+		incorrectAnswer3 = wrongAns3;
+	}
 }
