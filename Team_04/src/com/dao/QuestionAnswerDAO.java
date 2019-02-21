@@ -28,12 +28,9 @@ public class QuestionAnswerDAO {
         try {
             Class.forName("org.sqlite.JDBC");
 
+            //c = DriverManager.getConnection("jdbc:sqlite:C:/Users/14807/Documents/Project516/project2/Team_04/src/quizDatabase.db");
 
-            //c = DriverManager.getConnection("jdbc:sqlite:$PROJECT_DIR$/quizDatabase.db");
-
-            c = DriverManager.getConnection("jdbc:sqlite:C:/Users/14807/Documents/Project516/project2/Team_04/src/quizDatabase.db");
-
-            //c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
+            c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
 
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
