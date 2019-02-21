@@ -7,7 +7,6 @@
           <element id="module-output" name="Team_04" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$USER_HOME$/sqlite-jdbc-3.23.1.jar" />
           <element id="library" level="project" name="servlet-api" />
           <element id="library" level="project" name="sqlite-jdbc-3.23.1" />
         </element>

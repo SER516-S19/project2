@@ -42,7 +42,7 @@ public class QuizInstructions extends HttpServlet {
 
         pw.println("</style>");
         pw.println("<body>");
-        pw.println("<form action =\"./load\" method=\"post\">");
+        pw.println("<form action =\"./loadquestionanswerservlet\" method=\"post\">");
         pw.println("<p style=\"font-size:200%;\" align=\"center\"> Instructions For Quiz. </p>");
         pw.println("<div style=\"font-family:Sans-serif; font-size:100%; line-height: 1.6; padding: 3em;\">");
         pw.println("The following are the instructions realted to the quiz : <br>");

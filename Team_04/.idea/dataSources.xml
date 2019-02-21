@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="quizDatabase" uuid="4680ea7b-9b75-46a2-9ed4-88eca56c7b53">
+    <data-source source="LOCAL" name="quizDatabase" uuid="acce2c6f-c32d-4a57-920f-e83d9757303d">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Yuvan\Projects\SER-516\project2\Team_04\src\quizDatabase.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/resources/quizDatabase.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/sqlite-jdbc-3.25.1.jar</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/license.txt</url>
+        </library>
+      </libraries>
     </data-source>
-    <data-source source="LOCAL" name="QuizDB.db" uuid="cb00979d-4b10-4a42-b04d-b8fb984294ae">
+    <data-source source="LOCAL" name="quizDatabase.db" uuid="88a29d1b-c9da-461c-8b14-3380ed5b058a">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src\..\..\..\..\..\Quizapplication\QuizDB.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/resources/quizDatabase.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
