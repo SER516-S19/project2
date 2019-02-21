@@ -25,8 +25,6 @@ public class QuestionAnswerGenerator {
 		List<QuestionAnswer> questionAnswerList = new ArrayList<QuestionAnswer>();
 		for (Question question : questionList) {
 			question.getQuestionId();
-			// get answer
-
 			QuestionAnswer questionAnswer = new QuestionAnswer();
 			questionAnswer.setQuestionId(question.getQuestionId());
 			questionAnswer.setQuiz(question.getQuiz());
@@ -35,7 +33,6 @@ public class QuestionAnswerGenerator {
 			questionAnswer.setMultiple(question.isMultiple());
 			// questionAnswer.setAnswerList(question.);
 			questionAnswerList.add(questionAnswer);
-
 		}
 		return questionAnswerList;
 

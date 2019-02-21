@@ -16,6 +16,7 @@
 </head>
 <body>
 	<%
+	request.setAttribute("action","load");
     List<String> quizNames = (ArrayList<String>) request.getAttribute("quizNames");
 %>
 	<h2>Quiz</h2>
