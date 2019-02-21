@@ -1,6 +1,7 @@
 package edu.asu.ser516.blackBoard.quiz.controller;
 
 import edu.asu.ser516.blackBoard.quiz.bean.*;
+import edu.asu.ser516.blackBoard.quiz.dao.AnswerDAO;
 import edu.asu.ser516.blackBoard.quiz.dao.QuestionDAO;
 import edu.asu.ser516.blackBoard.quiz.dao.QuizDAO;
 import edu.asu.ser516.blackBoard.quiz.dao.StatisticsDAO;
@@ -41,7 +42,8 @@ public class StudentControllerServlet extends HttpServlet {
 		int quizId = quizDAO.fetchQuizId(quizName);
 		QuestionDAO questionDAO = new QuestionDAO();
 		List<Question> questions = questionDAO.getQuestionsByQuizId(1);
-
+		AnswerDAO answerDAO = new AnswerDAO();
+		List<Answer> answers = answerDAO.getAnswersByQuestionId(1);
 
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		//QuestionDAO questionDAO = new QuestionDAO();
