@@ -24,8 +24,8 @@ public class StudentControllerServlet extends HttpServlet {
 		QuestionDAO questionDAO = new QuestionDAO();
 		User user = new User("abc","student","abc.com","1234");
 		Time time = new Time(00,10,00);
-		Quiz quiz = new Quiz("Quiz3","read/write","graded",time,"Y");
-		Question question = new Question(quiz,"q1",1,'m',10);
+		Quiz quiz = new Quiz("Quiz3","read/write","graded",time,true,true);
+		Question question = new Question(quiz,"q1",1,true,10);
 		Answer answer = new Answer(question,"abc","a");
 		questionDAO.addQuestion(question);
 		stats = new ResponseStatistics(user,quiz,question,answer);
