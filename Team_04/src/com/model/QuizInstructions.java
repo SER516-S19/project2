@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 public class QuizInstructions extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        response.sendError(405, "HTTP GET METHOD CANNOT BE CALLED BY THE INSTRUCTIONS SERVLET...");
-    }
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
         PrintWriter pw = response.getWriter();
         pw.println("<html><head>");
         pw.println("<title>Quiz Information</title>");
@@ -23,7 +19,7 @@ public class QuizInstructions extends HttpServlet {
         pw.println("<p style=\"font-size:200%;\" align=\"center\"> INSTRUCTIONS FOR QUIZ. </p>");
         pw.println("<div style=\"font-family:Sans-serif;border:3px; font-size:100%; border-style:solid; border-color:black; padding: 3em;\">");
         pw.println("The following are the instructions realted to the quiz : <br>");
-		pw.print("<ul><li>");
+        pw.print("<ul><li>");
         pw.println("Work in teams of 5 or 7 <br></li>");
         pw.println("<li>Submit a reviewed version of your Quiz 2 here. <br></li>");
         pw.println("<li>Submission should be done by only one member in the team through Blackboard.<br></li>");
@@ -33,5 +29,10 @@ public class QuizInstructions extends HttpServlet {
         pw.println("</form>");
         pw.println("</body>");
         pw.println("</html>");
+
+    }
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        response.sendError(405, "HTTP POST METHOD CANNOT BE CALLED BY THE INSTRUCTIONS SERVLET...");
     }
 }
