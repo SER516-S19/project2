@@ -53,7 +53,7 @@ public class QuizInstructions extends HttpServlet {
         pw.println("<li>Add the team members names to the document in a separated page (only the names of these who collaborate).<br></li>");
         pw.println("<li>Due by Tuesday  February 12<br></li></ul></div><br><br><br>");
         pw.println("<p align=\"center\">");
-        pw.println("<input type = \"submit\" class = \"btn2\" name=\"submit\" value = \"START QUIZ\" >");
+        pw.println("<input type = \"submit\" class = \"btn2\" name=\"action\" value = \"START QUIZ\" >");
         pw.println("</p>");
         pw.println("</form>");
         pw.println("</body>");
