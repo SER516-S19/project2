@@ -94,6 +94,16 @@
     <url-pattern>/courseDashboard</url-pattern>
   </servlet-mapping>
 
+    <servlet>
+    <servlet-name>CreateQuestionsServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.CreateQuestionsServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 		
+  <servlet-mapping>
+    <servlet-name>CreateQuestionsServlet</servlet-name>
+    <url-pattern>/createQuestions</url-pattern>
+  </servlet-mapping>
 
 <welcome-file-list>
 <welcome-file>/index.html</welcome-file>
