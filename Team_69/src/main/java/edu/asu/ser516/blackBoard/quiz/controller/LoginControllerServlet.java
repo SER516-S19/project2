@@ -1,6 +1,7 @@
 package edu.asu.ser516.blackBoard.quiz.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,10 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.asu.ser516.blackBoard.quiz.bean.User;
 import edu.asu.ser516.blackBoard.quiz.dao.LoginDAO;
+import edu.asu.ser516.blackBoard.quiz.dao.QuizDAO;
 
 public class LoginControllerServlet extends HttpServlet{
 
     private static final long serialVersionUID = 1L;
+
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setStatus(200);
+        QuizDAO quizDAO = new QuizDAO();
+        List<String> quizNames = quizDAO.fetchAllQuizName();
+        req.setAttribute("quizNames",quizNames);
+        getServletContext().getRequestDispatcher("/views/StudentLanding.jsp").forward(req, resp);
+
+    }
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
