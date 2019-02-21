@@ -16,7 +16,8 @@
       <!-- Make sure you set your classpath! -->
       <classpath>
         <fileset dir="${tomcat.home}/lib" includes="servlet-api.jar"/>
-      	<fileset dir="${tomcat.home}/lib" includes="mongo-java-driver-3.9.1.jar"/>
+      	<fileset dir="${tomcat.home}/lib" includes="freemarker.jar"/>
+      	<fileset dir="${tomcat.home}/lib" includes="mssql-jdbc-7.2.1.jre8.jar"/>
         <pathelement path="${classes.dir}" />
       </classpath>
     </javac>
@@ -43,6 +44,8 @@
   	  <fileset dir="${resources.dir}" includes="**/*.txt,**/*.properties" excludes="**/*.html,**/*.jsp"/>
   	</copy>
   	<copy file="${resources.dir}/index.html" tofile="${build.home}/index.html"/>
+  	<copy file="${resources.dir}/professorHome.ftl" tofile="${build.home}/professorHome.ftl"/>
+  	<copy file="${resources.dir}/createQuiz.ftl" tofile="${build.home}/createQuiz.ftl"/>
     <copy file="web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
   </target>
     
