@@ -4,34 +4,42 @@ import com.model.QuestionAnswers;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class QuestionAnswerDAO {
+
     private ArrayList<QuestionAnswers> test_obj = new ArrayList<QuestionAnswers>();
 
-    public ArrayList<QuestionAnswers> getResult()
+    public Map<String, List<QuestionAnswers>> getResult()
     {
         Connection c = null;
         Statement stmt = null;
+        Statement stmt1 = null;
+        String ques_desc = "";
+        ResultSet rs = null;
+        ResultSet rans = null;
+        ArrayList<String> quesDescList = new ArrayList<String>();
+        Map<String, List<QuestionAnswers>> questionAnsMap= new HashMap<String, List<QuestionAnswers>>();
 
         try {
             Class.forName("org.sqlite.JDBC");
-
-            c = DriverManager.getConnection("jdbc:sqlite:$PROJECT_DIR$/quizDatabase.db");
-
-            //c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
+            c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        System.out.println("Opened database successfully");
-        ResultSet rs = null;
+
         try {
             stmt = c.createStatement();
+            stmt1 = c.createStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         try {
-            rs = stmt.executeQuery( "SELECT * FROM quiz_content" );
+            rs = stmt.executeQuery( "SELECT * FROM quiz_content group by ques_id" );
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,71 +47,45 @@ public class QuestionAnswerDAO {
         while (true) {
             try {
                 if (!rs.next()) break;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
 
-                String ques_desc = rs.getString("ques_desc");
-                String ans_desc = rs.getString("ans_desc");
-
-                QuestionAnswers tes = new QuestionAnswers();
-
-                tes.setQues_desc(ques_desc);
-                tes.setAns_desc(ans_desc);
-                test_obj.add(tes);
-
-
-
+                QuestionAnswers quesObj = new QuestionAnswers();
+                ques_desc = rs.getString("ques_desc");
+                quesDescList.add(ques_desc);
+                quesObj.setQues_desc(ques_desc);
+                test_obj.add(quesObj);
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
-            System.out.println("Sucess");
         }
 
-//        DataOps dtObj = new DataOps();
-//        String query = "Select * from quiz_content;";
-//
-//        try {
-//            ResultSet result = dtObj.getData(query);
-//        }
-//        catch (
-//                SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
+        for (int i=0;i<quesDescList.size(); i++)
+        {
+            try {
+                rans = stmt1.executeQuery("SELECT * FROM quiz_content where ques_desc = '"+ quesDescList.get(i) +"'");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            List<QuestionAnswers> answerDesList = new ArrayList<QuestionAnswers>();
 
+            while (true) {
+                try {
+                    if (!rans.next()) break;
 
+                    QuestionAnswers ansObj = new QuestionAnswers();
+                    String ans_desc = rans.getString("ans_desc");
+                    ansObj.setAns_desc(ans_desc);
+                    answerDesList.add(ansObj);
 
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
-//        QuestionAnswers tes = new QuestionAnswers();
-//        tes.setQues_id(1);
-//        tes.setQues_type("SA");
-//        tes.setQues_desc("What is SE");
-//
-//        tes.setAns_id(2);
-//        tes.setAns_desc("Software Engineering");
-//        tes.setIs_correct(true);
-//        tes.setMax_score(10);
-//
-//        test_obj.add(tes);
-//
-//        tes.setQues_id(1);
-//        tes.setQues_type("SA");
-//        tes.setQues_desc("What is SE");
-//
-//        tes.setAns_id(3);
-//        tes.setAns_desc("Software");
-//        tes.setIs_correct(false);
-//        tes.setMax_score(0);
-//
-//        test_obj.add(tes);
-//
+            }
+            questionAnsMap.put(quesDescList.get(i), answerDesList);
+        }
 
-
-       return test_obj;
-
+        //System.out.println(finalVal);
+       return questionAnsMap;
     }
 }
