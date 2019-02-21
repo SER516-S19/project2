@@ -14,6 +14,55 @@ public class QuizInstructions extends HttpServlet {
         pw.println("<html><head>");
         pw.println("<title>Quiz Information</title>");
         pw.println("</head>");
+		pw.println("<style>.btn2 {\r\n" + 
+        		"\r\n" + 
+        		"        display: inline-block;\r\n" + 
+        		"        white-space: nowrap;\r\n" + 
+        		"        flex-basis: auto;\r\n" + 
+        		"        width: auto;\r\n" + 
+        		"        font-size: .875rem;\r\n" + 
+        		"        background-color: black;\r\n" + 
+        		"        border: 2px;\r\n" + 
+        		"		 border-style:solid;\n"+
+        		"        cursor: pointer;\r\n" + 
+        		"        border-radius: 4px;\r\n" + 
+        		"        text-align: center;\r\n" + 
+        		"        font-family: CircularPro, \"Helvetica Neue\", Helvetica, \"Segoe UI\", Tahoma, Arial, sans-serif;\r\n" + 
+        		"        font-weight: 700;\r\n" + 
+        		"        line-height: 1.28571429;\r\n" + 
+        		"        letter-spacing: .8px;\r\n" + 
+        		"        text-transform: uppercase;\r\n" + 
+        		"        text-decoration: none;\r\n" + 
+        		"        padding: 19px 40px 20px;\r\n" + 
+        		"        transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);\r\n" + 
+        		"        color: white;\r\n" + 
+        		"\r\n" + 
+        		"    }\r\n" + 
+        		"");
+        .btn2 {
+            display: inline-block;
+            white-space: nowrap;
+            flex-basis: auto;
+            width: auto;
+            font-size: .875rem;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.28571429;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 19px 40px 20px;
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            color: #4a154b;
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+        pw.println("</style>");
         pw.println("<body>");
         pw.println("<form action =\"./login\" method=\"post\">");
         pw.println("<p style=\"font-size:200%;\" align=\"center\"> INSTRUCTIONS FOR QUIZ. </p>");
@@ -25,7 +74,9 @@ public class QuizInstructions extends HttpServlet {
         pw.println("<li>Submission should be done by only one member in the team through Blackboard.<br></li>");
         pw.println("<li>Add the team members names to the document in a separated page (only the names of these who collaborate).<br></li>");
         pw.println("<li>Due by Tuesday  February 12<br></li></ul></div><br><br><br>");
-        pw.println("<input type = \"submit\" name=\"submit\" value = \"START QUIZ\" align = \"center\">");
+        pw.println("<p align=\"center\">");
+        pw.println("<input type = \"submit\" class = \"btn2\" name=\"submit\" value = \"START QUIZ\" >");
+        pw.println("</p>");
         pw.println("</form>");
         pw.println("</body>");
         pw.println("</html>");
