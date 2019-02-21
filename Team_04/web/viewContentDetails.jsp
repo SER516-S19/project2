@@ -11,6 +11,5 @@
     <title>view-details</title>
 </head>
 <body>
-
-</body>
+  </body>
 </html>
