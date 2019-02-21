@@ -11,11 +11,11 @@ public class QuestionsDao {
 	}
 	
 	public static synchronized void insert(Question vo) throws Exception {
-		questionsDaoBean.insert(vo);
+		QuestionsDaoBean.insert(vo);
     }
 
-    public static synchronized Question findQuizByPrimaryKey(String pPrimaryKey) throws Exception {
+    /*public static synchronized Question findQuizByPrimaryKey(String pPrimaryKey) throws Exception {
     	return questionsDaoBean.findByPrimaryKey(pPrimaryKey);
-    }
+    }*/
 
 }
