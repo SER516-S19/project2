@@ -11,7 +11,7 @@ input {
 </style>
 </head>
 	<body>
-		<form>
+		<form action="createQuestions" method="POST">
 			<h1>Enter your questions and answers</h1><br><br>
 		  	Question:<br>
   			<input type="text" name="question">
@@ -31,11 +31,11 @@ input {
   			Total Points:<br>
   			<input type="text" name="totalPoints">
   			<br><br>
-  			<input type="radio" value="isMCQ">Multiple Answers
+  			<input type="radio" name="isMCQ">Multiple Answers
   			<br><br>
-  			<input type="radio" value="isMCQr">Single Answer
+  			<input type="radio" name="isMCQ">Single Answer
   			<br><br>
-  			<input type="submit" value="Submit">
+  			<input type="submit" value="submit">
 		</form>
 	</body>
 </html>
