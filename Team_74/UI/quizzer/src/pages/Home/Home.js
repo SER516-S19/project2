@@ -5,9 +5,6 @@ import ListGroupItem from "react-bootstrap/ListGroupItem";
 import ListGroup from "react-bootstrap/ListGroup";
 
 class Home extends Component {
-
-
-
     render() {
         return (
             <div className="Home">
@@ -17,12 +14,10 @@ class Home extends Component {
                     <br></br></center>
 
                 <ListGroup>
-
                     <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 1</NavLink></li></ListGroupItem>
                     <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 2</NavLink></li></ListGroupItem>
                     <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 3</NavLink></li></ListGroupItem>
                 </ListGroup>
-
             </div>
         );
     }
