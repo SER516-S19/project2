@@ -11,7 +11,7 @@
 	</style>
 	<body>
 	<h1> Create Quiz here </h1>
-		<form action="">
+		<form action="createQuiz" method = "POST">
 			  Enter Quiz title :<br>
 			  <input type="text" name="quizTitle">
 			  <br><br>
@@ -20,7 +20,9 @@
 			  <br><br>
 			  <br>
 			  Enter Quiz Date :<br>
-			  <input type="text" name="scheduledDate">
+			  <input type="text" name="date">
+			  <input type="text" name="month">
+			  <input type="text" name="year">
 			  <br><br>
 			  Enter Quiz Instructions :<br>
 			  <input type="text" name="quizInstructions"

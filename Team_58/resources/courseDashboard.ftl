@@ -9,7 +9,7 @@
          </select>
          <input type ="submit" value="ViewQuiz"/>
          </form>
-         <form action="createQuiz" method="POST">
+         <form action="createQuiz" method="GET">
          <input type ="submit" value="CreateQuiz"/>
          </form>
           <form>
