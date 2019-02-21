@@ -1,7 +1,14 @@
 package edu.asu.ser516.blackBoard.quiz.bean;
-
 import javax.persistence.*;
 import java.sql.Time;
+
+
+/**  Bean class for the Quiz table
+ *
+ * @author : Jahnvi Rai
+ * @version : 1.0
+ * @since : 02/17/2019
+ */
 
 @Entity
 @Table(name = "Quiz")
@@ -9,36 +16,63 @@ public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id", nullable = false)
+    @Column(name = "Quiz_Id", nullable = false)
     private int quizId;
 
     @Column(name = "Name" , nullable = false)
     private String quizName;
 
-    @Lob
-    @Column(name="Instructions",nullable = false)
+    @Column(name="Instructions")
     private String quizInstructions;
 
-    @Column(name ="Type", nullable = false)
+    @Column(name ="Type")
     private String quizType;
 
-    @Temporal(TemporalType.TIME)
-    @Column(name = "Time_Limit",nullable = false)
+    @Column(name = "Time_Limit")
     private Time quizTimeLimit;
 
-    @Column(name="Shuffle_Answer",nullable = false)
-    private String shuffleAnswer;
-
-    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, String shuffleAnswer) {
-        this.quizName = quizName;
-        this.quizInstructions = quizInstructions;
-        this.quizType = quizType;
-        this.quizTimeLimit = quizTimeLimit;
-        this.shuffleAnswer = shuffleAnswer;
-    }
+    @Column(name="Is_Shuffled")
+    private boolean isShuffled;
+    
+    @Column(name="Is_Published")
+    private boolean isPublished;
+    
+    Quiz() {}
 
 
-    public int getQuizId() {
+    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, boolean isShuffled,
+			boolean isPublished) {
+		super();
+		this.quizName = quizName;
+		this.quizInstructions = quizInstructions;
+		this.quizType = quizType;
+		this.quizTimeLimit = quizTimeLimit;
+		this.isShuffled = isShuffled;
+		this.isPublished = isPublished;
+	}
+
+
+	public boolean isShuffled() {
+		return isShuffled;
+	}
+
+
+	public void setShuffled(boolean isShuffled) {
+		this.isShuffled = isShuffled;
+	}
+
+
+	public boolean isPublished() {
+		return isPublished;
+	}
+
+
+	public void setPublished(boolean isPublished) {
+		this.isPublished = isPublished;
+	}
+
+
+	public int getQuizId() {
         return quizId;
     }
 
@@ -70,21 +104,17 @@ public class Quiz {
         this.quizType = quizType;
     }
 
+ 
+
     public Time getQuizTimeLimit() {
-        return quizTimeLimit;
-    }
+		return quizTimeLimit;
+	}
 
-    public void setQuizTimeLimit(Time quizTimeLimit) {
-        this.quizTimeLimit = quizTimeLimit;
-    }
 
-    public String getShuffleAnswer() {
-        return shuffleAnswer;
-    }
+	public void setQuizTimeLimit(Time quizTimeLimit) {
+		this.quizTimeLimit = quizTimeLimit;
+	}
 
-    public void setShuffleAnswer(String shuffleAnswer) {
-        this.shuffleAnswer = shuffleAnswer;
-    }
 
     @Override
     public String toString() {
@@ -94,7 +124,8 @@ public class Quiz {
                 ", quizInstructions='" + quizInstructions + '\'' +
                 ", quizType='" + quizType + '\'' +
                 ", quizTimeLimit=" + quizTimeLimit +
-                ", shuffleAnswer='" + shuffleAnswer + '\'' +
+                ", shuffleAnswer='" + isShuffled + '\'' +
+                ", Published='" + isPublished + '\'' +
                 '}';
     }
 }

@@ -1,22 +1,18 @@
 package edu.asu.ser516.blackBoard.quiz.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Question")
 public class Question {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
-    private int id;
+    @Column(name = "Question_id")
+    private int questionId;
 
-    @Column(name = "Quiz_Id")
-    private int quizId;
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "Quiz_Id")
+	private Quiz quiz;
 
     @Column(name = "Question")
     private String question;
@@ -24,35 +20,36 @@ public class Question {
     @Column(name = "Correct_Answer_id")
     private int correctAnswerId;
 
-    @Column(name = "Type")
-    private char type;
+    @Column(name = "Is_Multiple")
+    private boolean isMultiple;
     
     @Column(name = "Points")
     private int points;
 
-	public Question(int id, int quizId, String question, int correctAnswerId, char type, int points) {
-		this.id = id;
-		this.quizId = quizId;
+
+	public Question(Quiz quiz, String question, int correctAnswerId, boolean isMultiple, int points) {
+		super();
+		this.quiz = quiz;
 		this.question = question;
 		this.correctAnswerId = correctAnswerId;
-		this.type = type;
+		this.isMultiple = isMultiple;
 		this.points = points;
 	}
 
-	public int getId() {
-		return id;
+	public boolean isMultiple() {
+		return isMultiple;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setMultiple(boolean isMultiple) {
+		this.isMultiple = isMultiple;
 	}
 
-	public int getQuizId() {
-		return quizId;
+	public int getQuestionId() {
+		return questionId;
 	}
 
-	public void setQuizId(int quizId) {
-		this.quizId = quizId;
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 
 	public String getQuestion() {
@@ -71,14 +68,6 @@ public class Question {
 		this.correctAnswerId = correctAnswerId;
 	}
 
-	public char getType() {
-		return type;
-	}
-
-	public void setType(char type) {
-		this.type = type;
-	}
-
 	public int getPoints() {
 		return points;
 	}
@@ -87,5 +76,23 @@ public class Question {
 		this.points = points;
 	}
 
-    
+	public Quiz getQuiz() {
+		return quiz;
+	}
+
+	public void setQuiz(Quiz quiz) {
+		this.quiz = quiz;
+	}
+
+	@Override
+	public String toString() {
+		return "Question{" +
+				"questionId=" + questionId +
+				", quiz=" + quiz +
+				", question='" + question + '\'' +
+				", correctAnswerId=" + correctAnswerId +
+				", isMultiple=" + isMultiple +
+				", points=" + points +
+				'}';
+	}
 }

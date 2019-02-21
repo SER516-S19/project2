@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Registration Form</h1>
-<form action="Login" method="post">
+<form action="LoginController" method="post">
     <table cellpadding="3pt">
         <tr>
             <td>User Name :</td>
