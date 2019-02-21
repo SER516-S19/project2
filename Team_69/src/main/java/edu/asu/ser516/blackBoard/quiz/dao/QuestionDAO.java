@@ -59,25 +59,25 @@ public class QuestionDAO {
 		return quesList;
 	}
 
-	public int getPointsByQuestion(String ques) {
+	public int getPointByQuestion(String ques) {
 		Transaction transaction = null;
 		int points = -1;
-		Session session = null;
 		try  {
-		    session = HibernateUtil.getSessionFactory().openSession();
+			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Question question  = (Question)session.get(Question.class,ques);
-			points = question.getPoints();
-			session.save(ques);
-			transaction.commit();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
+			Root<Question> root = query.from(Question.class);
+			query.select(root.<Integer>get("points")).where(root.get("question").in(ques));
+			Query<Integer> q=session.createQuery(query);
+			points=q.getSingleResult();
+	        transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
 			return points;
-		}finally {
-			session.close();
 		}
 		return points;
 	}
