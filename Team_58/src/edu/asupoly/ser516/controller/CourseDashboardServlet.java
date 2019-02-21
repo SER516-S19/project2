@@ -1,4 +1,4 @@
- package edu.asupoly.ser516.controller;
+package edu.asupoly.ser516.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,18 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.asupoly.ser516.model.CourseVO;
+import edu.asupoly.ser516.model.QuizVO;
 import edu.asupoly.ser516.model.UserVO;
 
-/**
- * Class ProfessorHome Servlet is a controller 
- * that routes the user to Professor Home after login.
- * 
- * @author shivamverma
- * @version 1.1
- * @date 02/20/2019
- **/
-
-public class ProfessorHomeServlet extends HttpServlet {
+public class CourseDashboardServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
 		
@@ -34,11 +26,17 @@ public class ProfessorHomeServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws IOException {
 		
-		UserVO obj = (UserVO) req.getAttribute("UserVO");
-		HttpSession session = req.getSession();
-		session.setAttribute("profFirstName", obj.getFirstname());
 		
-		System.out.println("profName: "+session.getAttribute("profFirstName"));
+		HttpSession session = req.getSession();
+		HashMap<Integer, String> courseMap = (HashMap<Integer, String>) session.getAttribute("CourseHashMap");
+		
+		int courseId = Integer.parseInt(req.getParameter("Course"));
+		
+		String courseName = courseMap.get(courseId);
+		
+		session.setAttribute("courseName",courseName);
+		session.setAttribute("courseId", courseId);
+		
 		
 		try {
 			
@@ -56,38 +54,42 @@ public class ProfessorHomeServlet extends HttpServlet {
 		schema = connection.getSchema();
 		System.out.println("Successful connection - Schema: " + schema);
         
+		
+		
 		PreparedStatement query;
-		query = connection.prepareStatement("select * from [dbo].[Course] A"
-				+ " join [dbo].[UserCourseMApping] B"
-				+ " on A.courseId = B.courseId"
-				+ " where B.userId = ?");
-		query.setInt(1,obj.getUserId());  
+		query = connection.prepareStatement("select * from [dbo].[Quiz] where courseId = ?");
+		query.setInt(1,courseId);
+		
+		
 		      
 		ResultSet resultData = query.executeQuery();
 		
-		List<CourseVO> list = new ArrayList<>();
+		List<QuizVO> list = new ArrayList<>();
 	
 		while(resultData.next()) {
-			int courseId = resultData.getInt("courseId");
-			String courseName = resultData.getString("courseName"); 
-			String courseNumber = resultData.getString("courseNumber");
-			CourseVO course = new CourseVO(courseName, courseNumber, courseId);
-			list.add(course);
+			int quizId = resultData.getInt("quizId");
+			int assignedTime = resultData.getInt("assignedTime");
+			Boolean isGraded = resultData.getBoolean("isGraded");
+			String quizInstruction = resultData.getString("quizInstruction"); 
+			String quizScheduledDate = resultData.getString("quizScheduledDate");
+			Boolean isShuffled = resultData.getBoolean("isShuffled");
+			String quizTitle = resultData.getString("quizTitle");
+			QuizVO quiz = new QuizVO(quizId, isGraded, assignedTime, quizInstruction, quizScheduledDate, isShuffled, quizTitle);
+			list.add(quiz);
 		}
 		
-		HashMap<Integer,String> course = new HashMap<>();
+		HashMap<Integer, String> quiz = new HashMap<>();
 		for(int i=0;i<list.size();i++)
-			course.put(list.get(i).getCourseId(),list.get(i).getCourseName());
+			quiz.put(list.get(i).getQuizId(), list.get(i).getQuizTitle());
 		
-		session.setAttribute("CourseHashMap", course);
+		session.setAttribute("QuizHashMap", quiz);
 
-		System.out.println(req.getContextPath()+"/professorHome.ftl");
+		System.out.println(req.getContextPath()+"/courseDashboard.ftl");
 		
-		res.sendRedirect(req.getContextPath()+"/professorHome.ftl");  
+		res.sendRedirect(req.getContextPath()+"/courseDashboard.ftl");  
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 }
-	

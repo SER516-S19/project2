@@ -46,6 +46,8 @@
   	<copy file="${resources.dir}/index.html" tofile="${build.home}/index.html"/>
   	<copy file="${resources.dir}/professorHome.ftl" tofile="${build.home}/professorHome.ftl"/>
   	<copy file="${resources.dir}/createQuiz.ftl" tofile="${build.home}/createQuiz.ftl"/>
+  	<copy file="${resources.dir}/courseDashboard.ftl" tofile="${build.home}/courseDashboard.ftl"/>
+
     <copy file="web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
   </target>
     
