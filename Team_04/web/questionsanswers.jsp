@@ -34,14 +34,25 @@
 
     <%Map<String, List<QuestionAnswers>> ques =
             (Map<String, List<QuestionAnswers>>)request.getAttribute("data");
+        int count = 1;
         for(String key: ques.keySet()){
     %>
-        <h1><%= key %></h1>
-    <%
-        for (QuestionAnswers answers : ques.get(key)) {
-    %>
-    <p><%= answers.getAns_desc() %></p>
-    <%}%> <% }%>
+        <h1><%= count++ %>.<%=key %></h1>
+            <%
+                for (QuestionAnswers answers : ques.get(key)) {
+                    String buttonType = "";
+                    if(answers.getQues_type().equals("SA"))
+                    {
+                        buttonType = "radio";
+                    }
+                    else
+                    {
+                        buttonType = "checkbox";
+                    }
+            %>
+                    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answers.getAns_desc() %></input></div>
+            <%}%>
+    <% }%>
 
 
 </div>

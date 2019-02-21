@@ -74,9 +74,11 @@ public class QuestionAnswerDAO {
 
                     QuestionAnswers ansObj = new QuestionAnswers();
                     String ans_desc = rans.getString("ans_desc");
-                    ansObj.setAns_desc(ans_desc);
                     boolean is_correct = rans.getBoolean("is_correct");
+                    String ques_type = rans.getString("ques_type");
+                    ansObj.setAns_desc(ans_desc);
                     ansObj.setIs_correct(is_correct);
+                    ansObj.setQues_type(ques_type);
                     answerDesList.add(ansObj);
 
                 } catch (SQLException e) {
@@ -87,7 +89,6 @@ public class QuestionAnswerDAO {
             questionAnsMap.put(quesDescList.get(i), answerDesList);
         }
 
-        //System.out.println(finalVal);
        return questionAnsMap;
     }
 }
