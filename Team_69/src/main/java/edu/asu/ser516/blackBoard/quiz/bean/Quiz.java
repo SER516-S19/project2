@@ -1,8 +1,14 @@
 package edu.asu.ser516.blackBoard.quiz.bean;
-
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.Date;
+
+
+/**  Bean class for the Quiz table
+ *
+ * @author : Jahnvi Rai
+ * @version : 1.0
+ * @since : 02/17/2019
+ */
 
 @Entity
 @Table(name = "Quiz")
@@ -10,7 +16,7 @@ public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id", nullable = false)
+    @Column(name = "Quiz_Id", nullable = false)
     private int quizId;
 
     @Column(name = "Name" , nullable = false)
@@ -22,16 +28,15 @@ public class Quiz {
     @Column(name ="Type")
     private String quizType;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "Time_Limit")
-    private Date quizTimeLimit;
+    private Time quizTimeLimit;
 
     @Column(name="Shuffle_Answer")
     private String shuffleAnswer;
     
     Quiz() {}
 
-    public Quiz(String quizName, String quizInstructions, String quizType, Date quizTimeLimit, String shuffleAnswer) {
+    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, String shuffleAnswer) {
         this.quizName = quizName;
         this.quizInstructions = quizInstructions;
         this.quizType = quizType;
@@ -74,12 +79,12 @@ public class Quiz {
 
  
 
-    public Date getQuizTimeLimit() {
+    public Time getQuizTimeLimit() {
 		return quizTimeLimit;
 	}
 
 
-	public void setQuizTimeLimit(Date quizTimeLimit) {
+	public void setQuizTimeLimit(Time quizTimeLimit) {
 		this.quizTimeLimit = quizTimeLimit;
 	}
 
