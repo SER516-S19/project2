@@ -1,6 +1,8 @@
 <%@ page import="com.model.QuestionAnswers" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.model.QuestionAnswers" %><%--
+<%@ page import="com.model.QuestionAnswers" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %><%--
   Created by IntelliJ IDEA.
   User: yuvan
   Date: 2/20/2019
@@ -30,14 +32,14 @@
 
 
 
-    <%ArrayList<QuestionAnswers> ques =
-            (ArrayList<QuestionAnswers>)request.getAttribute("data");
-        for(QuestionAnswers q:ques){%>
+    <%--<%Map<String, List<QuestionAnswers>> ques =--%>
+            <%--(Map<String, List<QuestionAnswers>>)request.getAttribute("data");--%>
+        <%--for(QuestionAnswers q:ques){%>--%>
 
-        <h1><%=q.getQues_desc()%></h1>
-        <p><%=q.getAns_desc()%></p>
+        <%--<h1><%=q.getQues_desc()%></h1>--%>
+        <%--<p><%=q.getAns_desc()%></p>--%>
 
-    <%}%>
+    <%--<%}%>--%>
 
 
 </div>
