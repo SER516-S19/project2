@@ -62,10 +62,36 @@
     <servlet-class>edu.asupoly.ser516.controller.ProfessorHomeServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+
+	<servlet>
+    <servlet-name>CreateQuiz</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.CreateQuiz</servlet-class>
+    <init-param>
+    	<param-name></param-name>
+    	<param-value></param-value>
+  	</init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
  		
   <servlet-mapping>
-    <servlet-name>ProfessorHomeServlet</servlet-name>
+    <servlet-name>CreateQuiz</servlet-name>
+    <url-pattern>/createQuiz</url-pattern>
+  </servlet-mapping>
+  
+
+  <servlet-mapping>
+  <servlet-name>ProfessorHomeServlet</servlet-name>
     <url-pattern>/professorHome</url-pattern>
+	</servlet-mapping>
+   <servlet>
+    <servlet-name>CourseDashboardServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.CourseDashboardServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 		
+  <servlet-mapping>
+    <servlet-name>CourseDashboardServlet</servlet-name>
+    <url-pattern>/courseDashboard</url-pattern>
   </servlet-mapping>
 
 
