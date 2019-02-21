@@ -20,18 +20,28 @@ public class Question {
     @Column(name = "Correct_Answer_id")
     private int correctAnswerId;
 
-    @Column(name = "Type")
-    private char type;
+    @Column(name = "Is_Multiple")
+    private boolean isMultiple;
     
     @Column(name = "Points")
     private int points;
 
-	public Question(Quiz quiz, String question, int correctAnswerId, char type, int points) {
+
+	public Question(Quiz quiz, String question, int correctAnswerId, boolean isMultiple, int points) {
+		super();
 		this.quiz = quiz;
 		this.question = question;
 		this.correctAnswerId = correctAnswerId;
-		this.type = type;
+		this.isMultiple = isMultiple;
 		this.points = points;
+	}
+
+	public boolean isMultiple() {
+		return isMultiple;
+	}
+
+	public void setMultiple(boolean isMultiple) {
+		this.isMultiple = isMultiple;
 	}
 
 	public int getQuestionId() {
@@ -58,14 +68,6 @@ public class Question {
 		this.correctAnswerId = correctAnswerId;
 	}
 
-	public char getType() {
-		return type;
-	}
-
-	public void setType(char type) {
-		this.type = type;
-	}
-
 	public int getPoints() {
 		return points;
 	}
@@ -89,7 +91,7 @@ public class Question {
 				", quiz=" + quiz +
 				", question='" + question + '\'' +
 				", correctAnswerId=" + correctAnswerId +
-				", type=" + type +
+				", isMultiple=" + isMultiple +
 				", points=" + points +
 				'}';
 	}
