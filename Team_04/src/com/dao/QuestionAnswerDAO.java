@@ -14,6 +14,7 @@ public class QuestionAnswerDAO {
 
     public Map<String, List<QuestionAnswers>> getResult()
     {
+        QuestionAnswers tes = new QuestionAnswers();
         Connection c = null;
         Statement stmt = null;
         Statement stmt1 = null;
@@ -22,14 +23,25 @@ public class QuestionAnswerDAO {
         ResultSet rans = null;
         ArrayList<String> quesDescList = new ArrayList<String>();
         Map<String, List<QuestionAnswers>> questionAnsMap= new HashMap<String, List<QuestionAnswers>>();
+        List<QuestionAnswers> answerDesList = new ArrayList<QuestionAnswers>();
 
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
+
+
+            //c = DriverManager.getConnection("jdbc:sqlite:$PROJECT_DIR$/quizDatabase.db");
+
+            c = DriverManager.getConnection("jdbc:sqlite:C:/Users/14807/Documents/Project516/project2/Team_04/src/quizDatabase.db");
+
+            //c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
+
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
+
+
+
 
         try {
             stmt = c.createStatement();
@@ -39,7 +51,11 @@ public class QuestionAnswerDAO {
         }
 
         try {
+
+            rans = stmt.executeQuery( "SELECT * FROM quiz_content" );
+
             rs = stmt.executeQuery( "SELECT * FROM quiz_content group by ques_id" );
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,37 +73,37 @@ public class QuestionAnswerDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
 
-        for (int i=0;i<quesDescList.size(); i++)
-        {
-            try {
-                rans = stmt1.executeQuery("SELECT * FROM quiz_content where ques_desc = '"+ quesDescList.get(i) +"'");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            List<QuestionAnswers> answerDesList = new ArrayList<QuestionAnswers>();
 
-            while (true) {
+            for (int i = 0; i < quesDescList.size(); i++) {
                 try {
-                    if (!rans.next()) break;
-
-                    QuestionAnswers ansObj = new QuestionAnswers();
-                    String ans_desc = rans.getString("ans_desc");
-                    boolean is_correct = rans.getBoolean("is_correct");
-                    String ques_type = rans.getString("ques_type");
-                    ansObj.setAns_desc(ans_desc);
-                    ansObj.setIs_correct(is_correct);
-                    ansObj.setQues_type(ques_type);
-                    answerDesList.add(ansObj);
-
+                    rans = stmt1.executeQuery("SELECT * FROM quiz_content where ques_desc = '" + quesDescList.get(i) + "'");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
+                while (true) {
+                    try {
+                        if (!rans.next()) break;
+
+                        QuestionAnswers ansObj = new QuestionAnswers();
+                        String ans_desc = rans.getString("ans_desc");
+                        boolean is_correct = rans.getBoolean("is_correct");
+                        String ques_type = rans.getString("ques_type");
+                        ansObj.setAns_desc(ans_desc);
+                        ansObj.setIs_correct(is_correct);
+                        ansObj.setQues_type(ques_type);
+                        answerDesList.add(ansObj);
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                questionAnsMap.put(quesDescList.get(i), answerDesList);
             }
-            questionAnsMap.put(quesDescList.get(i), answerDesList);
         }
+
 
        return questionAnsMap;
     }
