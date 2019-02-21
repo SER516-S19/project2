@@ -83,6 +83,8 @@ function myFunction(elem)
   
   
 </table>
+ 
+ <a href="AddQuestions.jsp">Add Questions</a>
     
   </div>
  <input type="hidden" id="flag" name="flag" value="InsertProfDetails">
