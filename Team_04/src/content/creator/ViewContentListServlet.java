@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
+/*
+* @author Archana Madhavan
+ */
 
 @WebServlet(name = "ViewContentListServlet", urlPatterns = {"/viewContentList"})
 public class ViewContentListServlet extends HttpServlet {
@@ -18,7 +20,8 @@ public class ViewContentListServlet extends HttpServlet {
 }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FetchQuizData quizData=new FetchQuizData();
+
+        DataOps quizData=new DataOps();
         List<Integer> quizId=quizData.getQuizList();
         request.setAttribute("ids",quizId);
         RequestDispatcher view = request.getRequestDispatcher("viewContentList.jsp");
