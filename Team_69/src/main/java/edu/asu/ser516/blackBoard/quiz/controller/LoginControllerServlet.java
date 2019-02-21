@@ -23,8 +23,8 @@ public class LoginControllerServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setStatus(200);
-        QuestionDAO quizDAO = new QuestionDAO();
-        List<Question> quizNames = quizDAO.getQuestionsByQuizId(1);
+        QuizDAO quizDAO = new QuizDAO();
+        List<String> quizNames = quizDAO.fetchAllQuizName();
         req.setAttribute("quizNames",quizNames);
         getServletContext().getRequestDispatcher("/views/StudentLanding.jsp").forward(req, resp);
 
