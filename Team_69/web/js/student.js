@@ -160,7 +160,7 @@
 			  }		     
 		    }
 		  };
-		  xhttp.open("GET", "https://opentdb.com/api.php?amount=10", true);
+		  xhttp.open("GET", "student", true);
 		  xhttp.send();
 		}	  
 	})();
