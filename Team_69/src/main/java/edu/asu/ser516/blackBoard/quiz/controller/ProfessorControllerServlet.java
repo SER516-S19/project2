@@ -23,7 +23,7 @@ public class ProfessorControllerServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String flag = request.getParameter("flag");
-		if("fetchQuizList".equals(flag)){
+		if("fetchQuizList".equalsIgnoreCase(flag)){
 			System.out.println("Hi!....");
 			ProfessorDAO proffessorDAO = new ProfessorDAO();
 			List quizList = proffessorDAO.getAllQuizzes();
@@ -31,6 +31,12 @@ public class ProfessorControllerServlet extends HttpServlet{
 			
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			rd.forward(request, response);
+			
+		}else if("publishQuiz".equalsIgnoreCase(flag)) {
+			String id = request.getParameter("id");
+			int quizID = Integer.parseInt(id);
+			ProfessorDAO professorDAO = new ProfessorDAO();
+			professorDAO.publishQuiz(quizID);
 			
 		}
 	}

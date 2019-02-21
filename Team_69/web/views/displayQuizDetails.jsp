@@ -9,13 +9,20 @@
 </head>
 <body>
 
-<table>
+<table border="1">
 <tbody>
 <tr><th>ID</th><th>Name</th><th>Instructions</th></tr>
 	<c:forEach items="${requestScope.quizList}" var="quiz">
-		<tr><td><c:out value="${quiz.quizId}"></c:out></td>
+	<tr>
 		<td><c:out value="${quiz.quizName}"></c:out></td>
-		<td><c:out value="${quiz.quizInstructions}"></c:out></td></tr>
+		<td><c:out value="${quiz.quizInstructions}"></c:out></td>
+		<td>
+		<%String pathWebcontent=request.getContextPath();%>
+			<a href="<%=pathWebcontent %>/ProfessorController?flag=publishQuiz&id=${quiz.quizId}"> Publish Quiz</a>
+				
+		</td>
+		
+	</tr>
 	</c:forEach>
 </tbody>
 </table>
