@@ -10,7 +10,6 @@ class TakeQuiz extends Component {
     /**Constructor for the main TakeQuiz Class*/
     constructor(props) {
         super(props);
-
         this.state = {
             counter: 0,
             questionId: 1,
@@ -33,7 +32,6 @@ class TakeQuiz extends Component {
 
     componentWillMount() {
         const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));
-
         this.setState({
             question: quizQuestions[0].question,
             answerOptions: shuffledAnswerOptions[0]
@@ -44,8 +42,7 @@ class TakeQuiz extends Component {
      * shuffleArray would randomise the order of questions*/
     shuffleArray(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
+        
         while (0 !== currentIndex) {
 
             // Pick a remaining element...
@@ -57,7 +54,6 @@ class TakeQuiz extends Component {
             array[currentIndex] = array[randomIndex];
             array[randomIndex] = temporaryValue;
         }
-
         return array;
     };
 
@@ -87,7 +83,6 @@ class TakeQuiz extends Component {
         const answersCountKeys = Object.keys(answersCount);
         const answersCountValues = answersCountKeys.map((key) => answersCount[key]);
         const maxAnswerCount = Math.max.apply(null, answersCountValues);
-
         return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
     }
 
@@ -100,7 +95,7 @@ class TakeQuiz extends Component {
     }
 
     /**+
-     *handleAnswerSelected function is currently performing two tasks; setting the answer and then setting the next question*/
+     *handleAnswerSelected function performs two tasks: setting the answer and then setting the next question*/
 
     handleAnswerSelected(event) {
         this.setUserAnswer(event.currentTarget.value);
@@ -129,7 +124,6 @@ class TakeQuiz extends Component {
     renderResult() {
         return <Result quizResult={this.state.result} />;
     }
-
 
     render() {
         return (
