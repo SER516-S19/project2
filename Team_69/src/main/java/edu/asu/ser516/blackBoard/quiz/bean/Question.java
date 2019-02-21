@@ -14,16 +14,16 @@ public class Question {
 	@JoinColumn(name = "Quiz_Id")
 	private Quiz quiz;
 
-    @Column(name = "Question")
+    @Column(name = "Question",nullable = false)
     private String question;
 
-    @Column(name = "Correct_Answer_id")
+    @Column(name = "Correct_Answer_id",nullable = false)
     private int correctAnswerId;
 
-    @Column(name = "Type")
+    @Column(name = "Type",nullable = false)
     private char type;
     
-    @Column(name = "Points")
+    @Column(name = "Points",nullable = false)
     private int points;
 
 	public Question(Quiz quiz, String question, int correctAnswerId, char type, int points) {
