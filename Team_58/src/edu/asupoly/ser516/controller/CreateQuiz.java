@@ -18,6 +18,15 @@ import javax.servlet.http.HttpSession;
 
 import edu.asupoly.ser516.model.CourseVO;
 
+/**
+ * Class CreateQuiz Servlet is a controller 
+ * that routes the user to Create Quiz after Course Dashboard.
+ * 
+ * @author carnic
+ * @version 1.0
+ * @date 02/20/2019
+ **/
+
 public class CreateQuiz extends HttpServlet{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
