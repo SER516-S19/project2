@@ -53,4 +53,18 @@ public class DataOps {
   public QuizContentDAO getQuizContextDAO() {
     return new QuizContentDAO();
   }
+
+  public List<Integer> getQuizList() {
+
+    List<Integer> list = new ArrayList<Integer>();
+    try (ResultSet rs = executeGetQuery("SELECT DISTINCT quiz_id FROM quiz_content")) {
+      while (rs.next()) {
+        list.add(rs.getInt("quiz_id"));
+      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
+    return list;
+  }
+
 }
