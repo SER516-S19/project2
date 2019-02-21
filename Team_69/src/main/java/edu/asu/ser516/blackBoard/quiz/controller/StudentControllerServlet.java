@@ -15,6 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/** Controller class for student page
+ * 
+ * @author : Sourabh Siddharth
+ * @version : 1.0
+ * @since : 02/16/2019
+ * 
+ */
 public class StudentControllerServlet extends HttpServlet {
 
 	/**
