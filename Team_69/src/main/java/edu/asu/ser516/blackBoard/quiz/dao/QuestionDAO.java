@@ -1,15 +1,10 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.criteria.*;
-
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
 import edu.asu.ser516.blackBoard.quiz.bean.Question;
 import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
