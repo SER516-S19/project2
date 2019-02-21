@@ -27,6 +27,12 @@ public class Question {
     private int points;
 
 
+    
+    
+	public Question() {
+		super();
+	}
+
 	public Question(Quiz quiz, String question, int correctAnswerId, boolean isMultiple, int points) {
 		super();
 		this.quiz = quiz;

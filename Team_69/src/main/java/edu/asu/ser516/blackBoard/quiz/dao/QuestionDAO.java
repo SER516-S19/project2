@@ -66,4 +66,27 @@ public class QuestionDAO {
 		}
 		return points;
 	}
+	
+	
+	public void deleteQuestionByQuestionId(String quesId){
+		Transaction transaction = null;
+		Question quesList = null;
+		try  {
+			int qId = Integer.parseInt(quesId);
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			quesList = (Question) session.get(Question.class, qId);
+//			System.out.println(quesList.toString());
+			session.delete(quesList);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return ;
+		}
+		return ;
+	}
+	
 }
