@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import edu.asu.ser516.blackBoard.quiz.dao.ProfessorDAO;
+import edu.asu.ser516.blackBoard.quiz.dao.QuestionDAO;
 
 
 public class ProfessorControllerServlet extends HttpServlet{
@@ -32,7 +33,7 @@ public class ProfessorControllerServlet extends HttpServlet{
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
-        
+    	System.out.println("hi fetching question");
 
         String flag = request.getParameter("flag");
 		if("InsertProfDetails".equals(flag)){
@@ -49,7 +50,21 @@ public class ProfessorControllerServlet extends HttpServlet{
 			//System.out.println("Quiz : "+proffessorDAO.InsertProfDetails());
 		
             response.sendRedirect("views/professorDetails.jsp");
-        }  
+        }
+		System.out.println("hi fetching question");
+		
+		if("DeleteQuestion".equals(flag)){
+			System.out.println("hi fetching question inside");
+	        String quesId = request.getParameter("box1");
+	        
+	        System.out.println(quesId);
+	        
+			QuestionDAO questionDAO = new QuestionDAO();
+			//System.out.println("Quiz : "+proffessorDAO.InsertProfDetails());
+			
+			questionDAO.deleteQuestionByQuestionId(quesId);
+            response.sendRedirect("views/removeQuestionPage.jsp");
+        }
 
     }
 
