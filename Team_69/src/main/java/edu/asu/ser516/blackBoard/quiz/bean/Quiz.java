@@ -31,21 +31,48 @@ public class Quiz {
     @Column(name = "Time_Limit")
     private Time quizTimeLimit;
 
-    @Column(name="Shuffle_Answer")
-    private String shuffleAnswer;
+    @Column(name="Is_Shuffled")
+    private boolean isShuffled;
+    
+    @Column(name="Is_Published")
+    private boolean isPublished;
     
     Quiz() {}
 
-    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, String shuffleAnswer) {
-        this.quizName = quizName;
-        this.quizInstructions = quizInstructions;
-        this.quizType = quizType;
-        this.quizTimeLimit = quizTimeLimit;
-        this.shuffleAnswer = shuffleAnswer;
-    }
+
+    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, boolean isShuffled,
+			boolean isPublished) {
+		super();
+		this.quizName = quizName;
+		this.quizInstructions = quizInstructions;
+		this.quizType = quizType;
+		this.quizTimeLimit = quizTimeLimit;
+		this.isShuffled = isShuffled;
+		this.isPublished = isPublished;
+	}
 
 
-    public int getQuizId() {
+	public boolean isShuffled() {
+		return isShuffled;
+	}
+
+
+	public void setShuffled(boolean isShuffled) {
+		this.isShuffled = isShuffled;
+	}
+
+
+	public boolean isPublished() {
+		return isPublished;
+	}
+
+
+	public void setPublished(boolean isPublished) {
+		this.isPublished = isPublished;
+	}
+
+
+	public int getQuizId() {
         return quizId;
     }
 
@@ -89,14 +116,6 @@ public class Quiz {
 	}
 
 
-	public String getShuffleAnswer() {
-        return shuffleAnswer;
-    }
-
-    public void setShuffleAnswer(String shuffleAnswer) {
-        this.shuffleAnswer = shuffleAnswer;
-    }
-
     @Override
     public String toString() {
         return "Quiz{" +
@@ -105,7 +124,8 @@ public class Quiz {
                 ", quizInstructions='" + quizInstructions + '\'' +
                 ", quizType='" + quizType + '\'' +
                 ", quizTimeLimit=" + quizTimeLimit +
-                ", shuffleAnswer='" + shuffleAnswer + '\'' +
+                ", shuffleAnswer='" + isShuffled + '\'' +
+                ", Published='" + isPublished + '\'' +
                 '}';
     }
 }
