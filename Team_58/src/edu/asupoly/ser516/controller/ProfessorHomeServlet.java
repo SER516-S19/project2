@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.controller;
+ package edu.asupoly.ser516.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,15 @@ import javax.servlet.http.HttpSession;
 
 import edu.asupoly.ser516.model.CourseVO;
 import edu.asupoly.ser516.model.UserVO;
+
+/**
+ * Class ProfessorHome Servlet is a controller 
+ * that routes the user to Professor Home after login.
+ * 
+ * @author shivamverma
+ * @version 1.1
+ * @date 02/20/2019
+ **/
 
 public class ProfessorHomeServlet extends HttpServlet {
 	
@@ -65,11 +75,11 @@ public class ProfessorHomeServlet extends HttpServlet {
 			list.add(course);
 		}
 		
-		List<String> course = new ArrayList<>();
+		HashMap<Integer,String> course = new HashMap<>();
 		for(int i=0;i<list.size();i++)
-			course.add(list.get(i).getCourseName());
+			course.put(list.get(i).getCourseId(),list.get(i).getCourseName());
 		
-		session.setAttribute("ListCourse", course);
+		session.setAttribute("CourseHashMap", course);
 
 		System.out.println(req.getContextPath()+"/professorHome.ftl");
 		
