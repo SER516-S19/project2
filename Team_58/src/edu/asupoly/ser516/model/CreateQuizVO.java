@@ -86,4 +86,5 @@ public class CreateQuizVO {
 	public void setIsGraded(int isGraded) {
 		this.isGraded = isGraded;
 	}
+
 }
