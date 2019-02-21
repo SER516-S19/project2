@@ -14,6 +14,16 @@
         <url-pattern>/load</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>QuizInstructions</servlet-name>
+        <servlet-class>com.model.QuizInstructions</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuizInstructions</servlet-name>
+        <url-pattern>/quizinstructions</url-pattern>
+    </servlet-mapping>
+
     <!--<servlet>-->
         <!--<servlet-name>CreateContentServlet</servlet-name>-->
         <!--<servlet-class>content.creator.CreateContentServlet</servlet-class>-->
@@ -39,6 +49,8 @@
         <!--<url-pattern>/details</url-pattern>-->
     <!--</servlet-mapping>-->
     <welcome-file-list>
-        <welcome-file>selectUser.jsp</welcome-file>
+        <welcome-file>dashboard.jsp</welcome-file>
     </welcome-file-list>
+
+
 </web-app>
