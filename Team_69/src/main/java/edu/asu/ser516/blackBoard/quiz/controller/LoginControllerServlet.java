@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import edu.asu.ser516.blackBoard.quiz.bean.Question;
 import edu.asu.ser516.blackBoard.quiz.bean.User;
 import edu.asu.ser516.blackBoard.quiz.dao.LoginDAO;
+import edu.asu.ser516.blackBoard.quiz.dao.QuestionDAO;
 import edu.asu.ser516.blackBoard.quiz.dao.QuizDAO;
 
 public class LoginControllerServlet extends HttpServlet{
@@ -22,8 +23,8 @@ public class LoginControllerServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setStatus(200);
-        QuizDAO quizDAO = new QuizDAO();
-        List<String> quizNames = quizDAO.fetchAllQuizName();
+        QuestionDAO quizDAO = new QuestionDAO();
+        List<Question> quizNames = quizDAO.getQuestionsByQuizId(1);
         req.setAttribute("quizNames",quizNames);
         getServletContext().getRequestDispatcher("/views/StudentLanding.jsp").forward(req, resp);
 
