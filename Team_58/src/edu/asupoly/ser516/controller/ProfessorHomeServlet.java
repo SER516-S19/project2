@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.controller;
+ package edu.asupoly.ser516.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,6 +16,15 @@ import javax.servlet.http.HttpSession;
 
 import edu.asupoly.ser516.model.CourseVO;
 import edu.asupoly.ser516.model.UserVO;
+
+/**
+ * Class ProfessorHome Servlet is a controller 
+ * that routes the user to Professor Home after login.
+ * 
+ * @author shivamverma
+ * @version 1.1
+ * @date 02/20/2019
+ **/
 
 public class ProfessorHomeServlet extends HttpServlet {
 	
