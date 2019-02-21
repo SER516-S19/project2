@@ -28,13 +28,13 @@ public class QuestionDAO {
 			e.printStackTrace();
 		}
 	}
-	public List<Question> getQuestionsByQuizId(Quiz qz){
+	public List<Question> getQuestionsByQuizId(int quizId){
 		Transaction transaction = null;
 		List<Question> quesList = null;
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			quesList = (List<Question>) session.get(Question.class,qz.getQuizId());
+			quesList = (List<Question>) session.get(Question.class,quizId);
 			session.save(quesList);
 			transaction.commit();
 		} catch (Exception e) {
@@ -47,13 +47,13 @@ public class QuestionDAO {
 		return quesList;
 	}
 
-	public int getPointsByQuestion(Question ques) {
+	public int getPointsByQuestion(String ques) {
 		Transaction transaction = null;
 		int points = -1;
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Question question  = (Question)session.get(Question.class,ques.getQuestion());
+			Question question  = (Question)session.get(Question.class,ques);
 			points = question.getPoints();
 			session.save(ques);
 			transaction.commit();
