@@ -2,8 +2,6 @@
 /.classpath
 /.settings/
 /.project
-<<<<<<< HEAD
-/classes/
-=======
 /classes
->>>>>>> 8659c132d246638434f93db49abaaa4e6ab5e5b3
+/build.properties
+../.recommenders/
