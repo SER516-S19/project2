@@ -43,4 +43,5 @@ modules.xml
 *.ipr
 
 *web/.DS_Store
+.DS_Store
 /build/
