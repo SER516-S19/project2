@@ -1,7 +1,7 @@
 <html>
 	<body>
          <p> ${Session.courseName} </p>
-         <form action="DUMMYSERVLET" method="POST">
+         <form action="ViewQuizServlet" method="POST">
          <select name="Quiz">
          <#list Session.QuizHashMap as quizId, quizTitle>
           <option name=${quizId}> ${quizTitle}</option>

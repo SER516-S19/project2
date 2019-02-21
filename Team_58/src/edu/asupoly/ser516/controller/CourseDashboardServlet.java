@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,14 @@ import javax.servlet.http.HttpSession;
 import edu.asupoly.ser516.model.CourseVO;
 import edu.asupoly.ser516.model.QuizVO;
 import edu.asupoly.ser516.model.UserVO;
+/**
+ * Class CourseDashboardServlet is a controller 
+ * that routes the User to Course Dashboard Page from Professor Home Page.
+ * 
+ * @author narenkumarKonchada
+ * @version 1.1
+ * @date 02/20/2019
+ **/
 
 public class CourseDashboardServlet extends HttpServlet {
 	
@@ -28,7 +37,7 @@ public class CourseDashboardServlet extends HttpServlet {
 		
 		
 		HttpSession session = req.getSession();
-		HashMap<Integer, String> courseMap = (HashMap<Integer, String>) session.getAttribute("CourseHashMap");
+		HashMap<Integer, String> courseMap = (HashMap<Integer,String>)session.getAttribute("CourseHashMap");
 		
 		int courseId = Integer.parseInt(req.getParameter("Course"));
 		
@@ -55,13 +64,10 @@ public class CourseDashboardServlet extends HttpServlet {
 		System.out.println("Successful connection - Schema: " + schema);
         
 		
-		
 		PreparedStatement query;
 		query = connection.prepareStatement("select * from [dbo].[Quiz] where courseId = ?");
 		query.setInt(1,courseId);
 		
-		
-		      
 		ResultSet resultData = query.executeQuery();
 		
 		List<QuizVO> list = new ArrayList<>();
@@ -69,10 +75,10 @@ public class CourseDashboardServlet extends HttpServlet {
 		while(resultData.next()) {
 			int quizId = resultData.getInt("quizId");
 			int assignedTime = resultData.getInt("assignedTime");
-			Boolean isGraded = resultData.getBoolean("isGraded");
+			boolean isGraded = resultData.getBoolean("isGraded");
 			String quizInstruction = resultData.getString("quizInstruction"); 
-			String quizScheduledDate = resultData.getString("quizScheduledDate");
-			Boolean isShuffled = resultData.getBoolean("isShuffled");
+			Date quizScheduledDate = resultData.getDate("quizScheduledDate");
+			boolean isShuffled = resultData.getBoolean("isShuffled");
 			String quizTitle = resultData.getString("quizTitle");
 			QuizVO quiz = new QuizVO(quizId, isGraded, assignedTime, quizInstruction, quizScheduledDate, isShuffled, quizTitle);
 			list.add(quiz);
