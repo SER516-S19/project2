@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title> Quiz </title>
+</head>
+<body>
+<div>
+	<form action="/Quiz/createQuiz" method="POST" id = "quizDetails">
+				<h2>Quiz Details</h2>
+				<label for="title">Quiz Title: </label>
+				<input type="text" name="title">
+				<br>
+				<br>
+				<label for="instructions">Instructions: </label>
+				<br>
+				<br>
+				<textarea name="instructions" rows="10" cols="30" form="quizDetails" placeholder="Enter Quiz Details"></textarea>
+				<br>
+				<br>
+				<br>
+				<label for="assignmentGroup">Assignment Group: </label>
+				<input type="text" name="assignmentGroup" value="assignGroup">
+				<br>
+				<input type="checkbox" name="graded" value="true"> Graded
+  				<br>
+  				<br>
+  				<input type="checkbox" name="shuffled" value="true">Shuffle answers 
+  				<br>
+  				<br>
+  				<label for="timeLimit">Time Limit (in minutes): </label>
+  				<input type="text" name="timeLimit" value="30">
+  				<br>
+  				<br>
+  				<input type="checkbox" name="multipleAttempt" value="true">Multiple Attempts
+  				<br>
+  				<br> 
+  				<input type="submit" name="Action" value="Submit"/> 
+  				<input type="submit" name="Action" value="Cancel"/> 
+			</form>
+		</div>
+	</body>
+</html>
