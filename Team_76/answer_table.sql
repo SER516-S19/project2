@@ -1,8 +1,8 @@
 CREATE DATABASE ser516p2;
 
-show databases;
+SHOW DATABASES;
 
-use ser516p2;
+USE ser516p2;
 
 CREATE TABLE answer_table
 (studentID INTEGER PRIMARY KEY,
