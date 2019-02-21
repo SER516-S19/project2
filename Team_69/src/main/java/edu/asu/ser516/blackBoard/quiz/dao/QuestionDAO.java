@@ -3,10 +3,9 @@ package edu.asu.ser516.blackBoard.quiz.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -43,7 +42,8 @@ public class QuestionDAO {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Question> query = builder.createQuery(Question.class);
 			Root<Question> root = query.from(Question.class);
-			query.select(root).where(builder.equal(root.get(Integer.toString(Quiz.class.newInstance().getQuizId())),quizId));
+			Join<Question,Quiz> join = root.join("quiz");
+			query.select(root).where(builder.equal(join.get("quizId"),quizId));
 			Query<Question> q = session.createQuery(query);
 			quesList = q.getResultList();
 			for(Question qu: quesList)
