@@ -3,7 +3,8 @@ import javax.persistence.*;
 import java.sql.Time;
 
 
-/**  Bean class for the Quiz table
+/**
+ * This class represents the Quiz table
  *
  * @author : Jahnvi Rai
  * @version : 1.0

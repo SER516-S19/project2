@@ -1,7 +1,14 @@
 package edu.asu.ser516.blackBoard.quiz.bean;
 
-
 import javax.persistence.*;
+
+/**
+ * This class represents the Response Statistics table
+ *
+ * @author : Jahnvi Rai
+ * @version : 1.0
+ * @since : 02/18/2019
+ */
 
 @Entity
 @Table(name="Response_stats")
