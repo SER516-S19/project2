@@ -46,3 +46,14 @@ body {
     right: 0px;
     bottom: 0px;
 }
+
+#content #mulbtn {
+	width:80px;
+	height:30px;
+	position: absolute;
+	top: 430px;
+    left: 200px;
+    right: 0px;
+    bottom: 0px;
+	
+}
