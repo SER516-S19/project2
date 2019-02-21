@@ -1,5 +1,4 @@
 package edu.asu.ser516.blackBoard.quiz.bean;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
