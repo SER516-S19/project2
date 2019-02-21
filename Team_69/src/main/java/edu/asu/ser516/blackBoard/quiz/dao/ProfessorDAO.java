@@ -1,6 +1,4 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
-
-
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -27,11 +25,10 @@ public class ProfessorDAO {
 	            }
 	            e.printStackTrace();
 	        }
-		
 		return lists;
 	}
-	
-	 public static void publishQuiz(int quiz_id) {   
+
+	public static void publishQuiz(int quiz_id) {
 		 Transaction transaction = null;
 		 Session session = null;
 	        try {

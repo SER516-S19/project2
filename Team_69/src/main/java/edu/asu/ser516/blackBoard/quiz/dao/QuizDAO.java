@@ -1,4 +1,5 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
+
 import edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
 import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
 import org.hibernate.HibernateException;
@@ -10,7 +11,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class QuizDAO {
 
