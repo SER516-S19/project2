@@ -9,64 +9,74 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddQuestionsController extends HttpServlet{
+import edu.asu.ser516.quiz.model.Question;
+import edu.asu.ser516.quiz.dao.QuestionsDao;
+
+public class AddQuestionsController extends HttpServlet {
 
 	// Method to handle GET method request.
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-	    
-	    // Set response content type
-	    response.setContentType("text/html");
-	
-	    PrintWriter out = response.getWriter();
-	    String title = "Reading All Form Parameters";
-	    String docType =
-	       "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
-	
-	    out.println(docType +
-	       "<html>\n" +
-	       "<head><title>" + title + "</title></head>\n" +
-	       "<body bgcolor = \"#f0f0f0\">\n" +
-	       "<h1 align = \"center\">" + title + "</h1>\n" +
-	       "<table width = \"100%\" border = \"1\" align = \"center\">\n" +
-	       "<tr bgcolor = \"#949494\">\n" +
-	          "<th>Param Name</th>" +
-	          "<th>Param Value(s)</th>\n"+
-	       "</tr>\n"
-	    );
-	
-	    Enumeration paramNames = request.getParameterNames();
-	
-	    while(paramNames.hasMoreElements()) {
-	       String paramName = (String)paramNames.nextElement();
-	       out.print("<tr><td>" + paramName + "</td>\n<td>");
-	       String[] paramValues = request.getParameterValues(paramName);
-	
-	       // Read single valued data
-	       if (paramValues.length == 1) {
-	          String paramValue = paramValues[0];
-	          if (paramValue.length() == 0)
-	             out.println("<i>No Value</i>");
-	             else
-	             out.println(paramValue);
-	       } else {
-	          // Read multiple valued data
-	          out.println("<ul>");
-	
-	          for(int i = 0; i < paramValues.length; i++) {
-	             out.println("<li>" + paramValues[i]);
-	          }
-	          out.println("</ul>");
-	       }
-	    }
-	    out.println("</tr>\n</table>\n</body></html>");
-    }
- 
-	 // Method to handle POST method request.
-	 public void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	    
-	    doGet(request, response);
-	 }
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// set Content-Type and other response headers
+		res.setHeader("Cache-Control", "no-cache");
+		res.setContentType("text/html");
+
+		Enumeration paramNames = request.getParameterNames();
+
+		Boolean questionAddedSuccessfully = true;
+
+		try {
+			while (paramNames.hasMoreElements()) {
+				String paramName = (String) paramNames.nextElement();
+
+				if (paramName.substring(0, 8) == "question") {
+
+					String questionNumber = paramName.substring(8);
+
+					String questionText = request.getParameterValues("question" + questionNumber);
+
+					String optionA = request.getParameterValues("OptionAForQues" + questionNumber);
+					String optionB = request.getParameterValues("OptionBForQues" + questionNumber);
+					String optionC = request.getParameterValues("OptionCForQues" + questionNumber);
+					String optionD = request.getParameterValues("OptionDForQues" + questionNumber);
+
+					String tmp = request.getParameterValues("isOptionACorrectForQues" + questionNumber);
+					Boolean isOptionACorrect = (tmp == null) ? false : true;
+					tmp = request.getParameterValues("isOptionBCorrectForQues" + questionNumber);
+					Boolean isOptionBCorrect = (tmp == null) ? false : true;
+					tmp = request.getParameterValues("isOptionCCorrectForQues" + questionNumber);
+					Boolean isOptionCCorrect = (tmp == null) ? false : true;
+					tmp = request.getParameterValues("isOptionDCorrectForQues" + questionNumber);
+					Boolean isOptionDCorrect = (tmp == null) ? false : true;
+
+					Question questionModel = new Question(questionText, optionA, optionB, optionC, optionD, isOptionACorrect,
+							isOptionBCorrect, isOptionCCorrect, isOptionDCorrect);
+
+					Boolean isAdded = QuestionsDao.insert(questionModel);
+
+					if (isInserted)
+						req.getRequestDispatcher("Success.html").forward(req, res);
+					else {
+						questionAddedSuccessfully = false;
+						break;
+					}
+				}
+			}
+		}
+		catch (Exception exc) {
+			res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
+			exc.printStackTrace();
+		}
+
+		if (!questionAddedSuccessfully)
+			res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Qustion(s) can not be added !");
+			
+	}
+
+	// Method to handle POST method request.
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		doGet(request, response);
+	}
 
 }
