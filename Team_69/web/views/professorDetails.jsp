@@ -71,6 +71,8 @@
   </tr>
   
 </table>
+ 
+ <a href="AddQuestions.jsp">Add Questions</a>
     
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
