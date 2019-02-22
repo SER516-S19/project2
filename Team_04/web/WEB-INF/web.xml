@@ -5,7 +5,7 @@
          version="4.0">
     <servlet>
         <servlet-name>CreateContentServlet</servlet-name>
-        <servlet-class>content.creator.CreateContentServlet</servlet-class>
+        <servlet-class>content.creator.servlet.CreateContentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateContentServlet</servlet-name>
@@ -13,7 +13,7 @@
     </servlet-mapping>
     <!--<servlet>
         <servlet-name>ViewContentListServlet</servlet-name>
-        <servlet-class>content.creator.ViewContentListServlet</servlet-class>
+        <servlet-class>content.creator.servlet.ViewContentListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewContentListServlet</servlet-name>
@@ -21,7 +21,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ViewContentDetailsServlet</servlet-name>
-        <servlet-class>content.creator.ViewContentDetailsServlet</servlet-class>
+        <servlet-class>content.creator.servlet.ViewContentDetailsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewContentDetailsServlet</servlet-name>

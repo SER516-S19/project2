@@ -1,6 +1,6 @@
-package content.creator;
+package content.creator.dao;
 
-class QuizContentDAO {
+public class QuizContentDAO {
   private int quizId;
   private int quesId;
   private String quesType;
@@ -31,6 +31,9 @@ class QuizContentDAO {
   }
 
   public void setQuesType(String quesType) {
+    if (quesType == null) {
+      quesType = "MCQ";
+    }
     this.quesType = quesType;
   }
 
