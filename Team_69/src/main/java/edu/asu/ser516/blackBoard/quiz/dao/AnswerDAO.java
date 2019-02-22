@@ -32,7 +32,7 @@ public class AnswerDAO {
 			CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
 			Root<Answer> root = query.from(Answer.class);
 			Join<Answer,Question> join = root.join("question");
-			query.select(root).where(builder.equal(join.get("question"),questionId));
+			query.select(root).where(builder.equal(join.get("questionId"),questionId));
 			Query<Answer> q = session.createQuery(query);
 			answerDetails = q.getResultList();
 			transaction.commit();

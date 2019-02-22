@@ -14,6 +14,12 @@
 
 </head>
 <body>
+    <div id = "ridge">
+        <%
+            String quizName = (String) request.getAttribute("QuizName");
+        %>
+    <p><h3><%=quizName%></h3></p>
+    </div>
 	<div id='container'>
 		<div id='title'>
 			<h1>Quiz Instructions</h1>
