@@ -2,8 +2,10 @@ package com.asu.ser516.team47.database;
 
 /**
  * A business object for a student in the students table.
- * Created by paulhorton on 2/22/19.
- */
+ *
+ * @author  Paul Horton
+ * @version 1.0
+ * @since   2019-02-22 */
 public class Student {
     private String username;
     private String firstname;
