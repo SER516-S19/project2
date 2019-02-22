@@ -1,20 +1,13 @@
 package content.creator;
 
 import DBUtil.DataManager;
-import com.dao.QuestionAnswerDAO;
-import com.model.QuestionAnswers;
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,18 +28,33 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 		for (QuizContent question : questions) {
 			List<QuizContent> options = DataManager.getInstance().executeGetQuery(QuizContent.class, "SELECT * FROM quiz_content where ques_id="+question.getQues_id());
 			for (QuizContent answerOption: options) {
-				question.getAnswerOptions().add(new AnswerOption(answerOption.getAns_id(), answerOption.getAns_desc()));
+				question.getAnswerOptions().add(new AnswerOption(answerOption.getAns_id(), answerOption.getAns_desc(), answerOption.isIs_correct()));
 			}
 		}
 		this.questions = questions;
 	}
 
+
+private int score = 0;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	long userSelectedAns = new Long(request.getParameter("selectedOptionId"));
+	//long ansId = (long) request.getAttribute("ansId");
+	String ansDesc = (String)request.getAttribute("ansDesc");
+
+		QuizContent quiz = this.questions.get(currentQuestionIndex-1);
+		for(AnswerOption ans : quiz.getAnswerOptions())
+		{
+			if ( ans.getIsCorrect() && userSelectedAns == ans.getAns_id())
+			{
+				score++;
+			}
+		}
+
+	doGet(request, response);
 	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
 		if (this.questions.size() == 0) {
 			loadQuestions();
@@ -70,7 +78,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 
 			}
 		else {
-
+			System.out.println(currentQuestionIndex);
 		}
 
 

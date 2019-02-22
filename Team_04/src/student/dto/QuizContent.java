@@ -12,7 +12,7 @@ public class QuizContent {
   private String ques_desc;
   private long ans_id;
   private String ans_desc;
-  private String is_correct;
+  private boolean is_correct;
   private long max_score;
 
   public long getQuiz_id() {
@@ -69,11 +69,11 @@ public class QuizContent {
   }
 
 
-  public String getIs_correct() {
+  public boolean isIs_correct() {
     return is_correct;
   }
 
-  public void setIs_correct(String is_correct) {
+  public void setIs_correct(boolean is_correct) {
     this.is_correct = is_correct;
   }
 
