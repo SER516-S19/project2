@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import java.util.ArrayList;
+
 
 /** @author Hari Krishnan Puthiya Veetil, Aman Kaushik */
 public class DataOps {
@@ -53,4 +56,18 @@ public class DataOps {
   public QuizContentDAO getQuizContextDAO() {
     return new QuizContentDAO();
   }
+
+  public List<Integer> getQuizList() {
+
+    List<Integer> list = new ArrayList<Integer>();
+    try (ResultSet rs = executeGetQuery("SELECT DISTINCT quiz_id FROM quiz_content")) {
+      while (rs.next()) {
+        list.add(rs.getInt("quiz_id"));
+      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
+    return list;
+  }
+
 }
