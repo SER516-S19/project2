@@ -9,22 +9,16 @@ package edu.asupoly.ser516.model;
  */
 
 public class QuestionsVO {
-	private int quizId;
-
-	private String question;
-	private String correctAnswer;
-	private String incorrectAnswer1;
-	private String incorrectAnswer2;
-	private String incorrectAnswer3;
-	private String totalPoints;
-	private boolean isMCQ;
-
-	public boolean isMCQ() {
-		return isMCQ;
-	}
-
-	public void setMCQ(boolean isMCQ) {
-		this.isMCQ = isMCQ;
+	public QuestionsVO(int qId, String question, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
+			String incorrectAnswer3, int totalPoints) {
+		super();
+		this.qId = qId;
+		this.question = question;
+		this.correctAnswer = correctAnswer;
+		this.incorrectAnswer1 = incorrectAnswer1;
+		this.incorrectAnswer2 = incorrectAnswer2;
+		this.incorrectAnswer3 = incorrectAnswer3;
+		this.totalPoints = totalPoints;
 	}
 
 	public int getQuizId() {
@@ -35,12 +29,12 @@ public class QuestionsVO {
 		this.quizId = quizId;
 	}
 
-	public String getTotalPoints() {
-		return totalPoints;
+	public int getqId() {
+		return qId;
 	}
 
-	public void setTotalPoints(String totalPoints) {
-		this.totalPoints = totalPoints;
+	public void setqId(int qId) {
+		this.qId = qId;
 	}
 
 	public String getQuestion() {
@@ -83,8 +77,34 @@ public class QuestionsVO {
 		this.incorrectAnswer3 = incorrectAnswer3;
 	}
 
+	public int getTotalPoints() {
+		return totalPoints;
+	}
+
+	public void setTotalPoints(int totalPoints) {
+		this.totalPoints = totalPoints;
+	}
+
+	public boolean isMCQ() {
+		return isMCQ;
+	}
+
+	public void setMCQ(boolean isMCQ) {
+		this.isMCQ = isMCQ;
+	}
+
+	private int quizId;
+	private int qId;
+	private String question;
+	private String correctAnswer;
+	private String incorrectAnswer1;
+	private String incorrectAnswer2;
+	private String incorrectAnswer3;
+	private int totalPoints;
+	private boolean isMCQ;
+
 	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
-			String incorrectAnswer2, String incorrectAnswer3, String totalPoints, boolean isMCQ) {
+			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
 		super();
 		this.quizId = quizId;
 		this.question = question;
