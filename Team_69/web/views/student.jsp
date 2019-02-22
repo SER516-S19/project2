@@ -25,7 +25,7 @@
 		<div class='button' id='prev'>
 			<a href='#'>Prev</a>
 		</div>
-		<form id="submitForm" action="/student/" method="POST">
+		<form id="submitForm" action="" method="POST">
 			<button type="submit" class="btn-primary" name="action" value="submit" id="submit">Submit</button>
 		</form>
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import bean.Question;
 import bean.QuestionAnswer;
@@ -41,7 +42,9 @@ public class QuestionAnswerGenerator {
 	}
 
 	public String ObjectToJSON(List<QuestionAnswer> list) {
-		Gson gson = new Gson();
+		GsonBuilder gsonBuilder = new GsonBuilder();  
+		gsonBuilder.serializeNulls();  
+		Gson gson = gsonBuilder.create();
 		String result = gson.toJson(list);
 		return result;
 	}
