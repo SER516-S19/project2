@@ -5,3 +5,6 @@
 /classes
 /build.properties
 ../.recommenders/
+*web/.DS_Store
+.DS_Store
+build.properties

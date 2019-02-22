@@ -72,7 +72,6 @@ public class CreateQuestionsServlet extends HttpServlet {
 			System.out.println("question: " + correctAnswer);
 			System.out.println("question: " + incorrectAnswer1);
 
-			CreateQuizVO obj = (CreateQuizVO) req.getAttribute("CreateQuizVO");
 			HttpSession session = req.getSession();
 			int quizId = (int) session.getAttribute("quizId");
 
@@ -105,7 +104,7 @@ public class CreateQuestionsServlet extends HttpServlet {
 
 			query.executeUpdate();
 
-			res.sendRedirect(req.getContextPath() + "/courseDashboard.ftl");
+			res.sendRedirect(req.getContextPath() + "/createQuestions.ftl");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
