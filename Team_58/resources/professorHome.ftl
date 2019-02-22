@@ -11,16 +11,21 @@ Freemarker page to display Professor details
 	</head>
 	<body>
          <p class="fontColor">Welcome  ${Session.userVO.getFirstname()}</p>
+       <div class="boxRight">
          <p>${Session.userVO.getLastname()} </p>
          <p>${Session.userVO.getPhonenumber()} </p>
          <p>${Session.userVO.getEmail()} </p>
-          <p>${Session.userVO.getUserName()} </p>
+          <p>${Session.userVO.getUsername()} </p>
+          </div>
+          
+        <div class="shiftTop">
          <form action="courseDashboard" method="POST">
          <#list Session.CourseHashMap as courseId, courseName>
-         <input type="radio" name=${courseName} value=${courseId}> ${courseName}<br>
+         <input type="radio" name=Course value=${courseId}> ${courseName}<br>
          </#list>
-         <input type ="submit" value="Submit"/>
+         <input  class="button" type ="submit" value="Submit"/>
          </form>
+        </div>
 	</body>
 </html>
 
