@@ -127,6 +127,12 @@ Freemarker page : stylesheet
 	
 	.shiftTop {
 		margin-top: -20%;
+		margin-left: 4%;
+	}
+	
+	.marginBelow {
+		margin-bottom: 4%;
+		margin-left: -2%
 	}
 
 </style>
