@@ -8,15 +8,55 @@
     <servlet>
         <display-name>LoginController</display-name>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.LoginControllerServlet</servlet-class>
+        <servlet-class>controller.LoginServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <display-name>ProfessorController</display-name>
+        <servlet-name>ProfessorController</servlet-name>
+        <servlet-class>controller.ProfessorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>StudentController</display-name>
+        <servlet-name>StudentController</servlet-name>
+        <servlet-class>controller.StudentServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>ProfessorController</servlet-name>
+        <url-pattern>/ProfessorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/student/</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+		<servlet-name>success</servlet-name>
+		<jsp-file>/views/success.jsp</jsp-file>
+	</servlet>
+	<!--mapping -->
+	<servlet-mapping>
+		<servlet-name>success</servlet-name>
+		<url-pattern>/success</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>error</servlet-name>
+		<jsp-file>/views/error.jsp</jsp-file>
+	</servlet>
+	<!--mapping -->
+	<servlet-mapping>
+		<servlet-name>error</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>registerUser.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
