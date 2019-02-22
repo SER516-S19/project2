@@ -1,19 +1,24 @@
 <html>
 	<head>
 		<title>Quiz Details</title>
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 	</head>
 	<body>
-		<div>
-			<form>
-				<h2>Quiz Details</h2>
-				<label for="quiztitle">Quiz Title: </label>
-				<input type="text" name="quiztitle" placeholder="Untitled Quiz">
+		<div class="form_div">
+			<div id="quizheadbaner">
+				<h2 id = "quizhead">Quiz Details</h2>
+			</div>
+			<form id="quizdetailsform">
+				<label for="quiztitle" required>Quiz Title: </label>
+				<input id="quiztitle" type="text" name="quiztitle" placeholder="Untitled Quiz">
 				<br>
 				<br>
 				<label for="quizdetails">Quiz Details</label>
 				<br>
 				<br>
-				<textarea name="quizdetails" rows="10" cols="30" placeholder="Enter Quiz Details"></textarea>
+				<textarea name="quizdetails" rows="10" cols="50" placeholder="Enter Quiz Details"></textarea>
 				<br>
 				<br>
 				<br>
@@ -24,9 +29,20 @@
   				<input type="checkbox" name="isShuffle" value="true" selected>Shuffle answers
   				<br>
   				<br>
-  				<input type="checkbox" name="isTimeLimit" value="false">Time Limit
-  				<input type="text" name="quiztitle">Minutes
+  				<input type="checkbox" id="isTimeLimit" name="isTimeLimit" value="false" onclick="enableDisable(this.checked, 'minutecounter')">Time Limit
+  				<input type="number" id="minutecounter" name="quiztitle" disabled>Minutes
+  				<br>
+  				<br>
+  				<input id = "submitdesc" type="submit" name="Save Description" value="Save & Add Questions">
 			</form>
 		</div>
+
+		<script type="text/javascript">
+			function enableDisable(bEnable, textboxID) {
+				document.getElementById(textboxID).disabled = !bEnable;
+			}	
+		</script>
+
+
 	</body>
 </html>
