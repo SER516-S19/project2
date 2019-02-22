@@ -1,12 +1,14 @@
 <!-- 
-Freemarker page to display createQuestion page
-@authour Trupti / @author Aditya
-@version 1.2
+Freemarker page to display CreateQuestions Page 
+@authour Trupti Khatavkar / @author Aditya
+@version 1.3
 @date 02/22/2019
  -->
 
+
 <html>
 <head>
+<#include "stylesheet.css">
 </head>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
@@ -36,25 +38,27 @@ Freemarker page to display createQuestion page
     });
   </script>
 	<body>
+	
+	<h1 class="fontColor">Enter your questions and answers</h1>
+	<div class="box">
 		<form action="createQuestions" id="questionForm" method="POST">
-			<h1>Enter your questions and answers</h1><br>
 		  	Question:<br>
-  			<input type="text" name="question">
+  			<input class="bigInputLeft" type="text" name="question">
   			<br><br>
   			Correct Answer:<br>
-  			<input type="text" name="correctAnswer">
+  			<input class="mediumInput" type="text" name="correctAnswer">
   			<br><br>
   			Incorrect Answer 1:<br>
-  			<input type="text" name="incorrectAnswer1">
+  			<input class="mediumInput" type="text" name="incorrectAnswer1">
   			<br><br>
   			Incorrect Answer 2:<br>
-  			<input type="text" name="incorrectAnswer2">
+  			<input class="mediumInput" type="text" name="incorrectAnswer2">
   			<br><br>
   			Incorrect Answer 3:<br>
-  			<input type="text" name="incorrectAnswer3">
+  			<input class="mediumInput" type="text" name="incorrectAnswer3">
   			<br><br>
   			Total Points:<br>
-  			<input type="text" name="totalPoints">
+  			<input class="smallInput" type="text" name="totalPoints">
   			<br><br>
   			<input type="radio" name="isMCQ" checked>Multiple Answers
   			<br><br>
@@ -66,5 +70,6 @@ Freemarker page to display createQuestion page
 		<form action="createQuestions" id = "goToDashboard" method="POST">
 			<input type="submit" formaction="courseDashboard.ftl" formmethod="POST" value="Go to dashboard">
 		</form>
+		</div>
 	</body>
 </html>
