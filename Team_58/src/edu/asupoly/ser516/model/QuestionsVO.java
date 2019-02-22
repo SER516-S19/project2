@@ -65,7 +65,10 @@ public class QuestionsVO {
 		this.incorrectAnswer3 = incorrectAnswer3;
 	}
 	
-	
+	/**
+	 * Return question Id
+	 * @return qId id of question
+	 * */
 	public int getQuestionsId() {
 		return qId;
 	}
