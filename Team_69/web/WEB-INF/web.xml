@@ -8,18 +8,18 @@
     <servlet>
         <display-name>LoginController</display-name>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.LoginControllerServlet</servlet-class>
+        <servlet-class>controller.LoginServlet</servlet-class>
     </servlet>
     
     <servlet>
         <display-name>ProfessorController</display-name>
         <servlet-name>ProfessorController</servlet-name>
-        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.ProfessorControllerServlet</servlet-class>
+        <servlet-class>controller.ProfessorServlet</servlet-class>
     </servlet>
     <servlet>
         <display-name>StudentController</display-name>
         <servlet-name>StudentController</servlet-name>
-        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.StudentControllerServlet</servlet-class>
+        <servlet-class>controller.StudentServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
