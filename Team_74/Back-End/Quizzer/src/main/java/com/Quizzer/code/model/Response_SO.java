@@ -3,18 +3,18 @@ package com.Quizzer.code.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class Response implements Serializable {
+public class Response_SO implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	private String status;
 	private String errorMessage;
-	private List<?> listResponse;
-	public Response(String status, String errorMessage, List<?> response) {
+	private Object response;
+	public Response_SO(String status, String errorMessage, Object response) {
 		super();
 		this.status = status;
 		this.errorMessage = errorMessage;
-		this.listResponse = response;
+		this.response = response;
 	}
 	public String getStatus() {
 		return status;
@@ -28,11 +28,11 @@ public class Response implements Serializable {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	public List<?> getResponse() {
-		return listResponse;
+	public Object getResponse() {
+		return response;
 	}
 	public void setResponse(List<?> response) {
-		this.listResponse = response;
+		this.response = response;
 	}
 	
 	
