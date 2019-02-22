@@ -1,11 +1,10 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
-
+import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.criteria.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
 import edu.asu.ser516.blackBoard.quiz.bean.Question;
 import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
@@ -28,14 +27,22 @@ public class QuestionDAO {
 			e.printStackTrace();
 		}
 	}
-	public List<Question> getQuestionsByQuizId(Quiz qz){
+	public List<Question> getQuestionsByQuizId(int quizId){
 		Transaction transaction = null;
-		List<Question> quesList = null;
+		List<Question> quesList = new ArrayList<Question>();
+
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			quesList = (List<Question>) session.get(Question.class,qz.getQuizId());
-			session.save(quesList);
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Question> query = builder.createQuery(Question.class);
+			Root<Question> root = query.from(Question.class);
+			Join<Question,Quiz> join = root.join("quiz");
+			query.select(root).where(builder.equal(join.get("quizId"),quizId));
+			Query<Question> q = session.createQuery(query);
+			quesList = q.getResultList();
+			for(Question qu: quesList)
+				System.out.println(qu.toString());
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -47,16 +54,19 @@ public class QuestionDAO {
 		return quesList;
 	}
 
-	public int getPointsByQuestion(Question ques) {
+	public int getPointByQuestion(String ques) {
 		Transaction transaction = null;
 		int points = -1;
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Question question  = (Question)session.get(Question.class,ques.getQuestion());
-			points = question.getPoints();
-			session.save(ques);
-			transaction.commit();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
+			Root<Question> root = query.from(Question.class);
+			query.select(root.<Integer>get("points")).where(root.get("question").in(ques));
+			Query<Integer> q=session.createQuery(query);
+			points=q.getSingleResult();
+	        transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -66,4 +76,27 @@ public class QuestionDAO {
 		}
 		return points;
 	}
+	
+	
+	public void deleteQuestionByQuestionId(String quesId){
+		Transaction transaction = null;
+		Question quesList = null;
+		try  {
+			int qId = Integer.parseInt(quesId);
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			quesList = (Question) session.get(Question.class, qId);
+//			System.out.println(quesList.toString());
+			session.delete(quesList);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return ;
+		}
+		return ;
+	}
+	
 }
