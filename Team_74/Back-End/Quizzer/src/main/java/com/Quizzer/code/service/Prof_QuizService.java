@@ -11,8 +11,8 @@ import com.Quizzer.code.dao.QuestionRepo;
 import com.Quizzer.code.dao.QuizRepo;
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
-import com.Quizzer.code.model.Question;
-import com.Quizzer.code.model.Quiz;
+import com.Quizzer.code.model.db.Question;
+import com.Quizzer.code.model.db.Quiz;
 import com.mongodb.MongoWriteException;
 
 @Service
