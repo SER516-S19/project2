@@ -5,8 +5,18 @@
  */
 
 // Displays all questions with answers
-function displayQuiz() {
-	var questions = [{"questionId":3,"quiz":{"quizId":1,"quizName":"Quiz1","quizInstructions":"Read","quizType":"Graded","quizTimeLimit":"12:30:00 AM","isShuffled":true,"isPublished":false},"question":"Question3","correctAnswerId":0,"isMultiple":true,"points":10},{"questionId":4,"quiz":{"quizId":1,"quizName":"Quiz1","quizInstructions":"Read","quizType":"Graded","quizTimeLimit":"12:30:00 AM","isShuffled":true,"isPublished":false},"question":"Question4","correctAnswerId":0,"isMultiple":true,"points":10}];
+function displayQuiz(studentResponseObj) {
+	var questions = [];
+
+	for (var i = 0; i < studentResponseObj.length; i++) {
+		questions[i] = {
+			question : studentResponseObj[i].question,
+			//	    choices: studentResponseObj[i].answerList,
+			choices : [ 1, 2, 3, 4 ],
+			points : studentResponseObj[i].points
+		};
+	}
+
 	var questionCounter = 0; // Tracks question number
 	var selections = []; // Array containing user choices
 	var quiz = $('#quiz'); // Quiz div object
@@ -43,19 +53,6 @@ function displayQuiz() {
 		choose();
 		questionCounter--;
 		displayNext();
-	});
-
-	// Click handler for the 'Start Over' button
-	$('#start').on('click', function(e) {
-		e.preventDefault();
-
-		if (quiz.is(':animated')) {
-			return false;
-		}
-		questionCounter = 0;
-		selections = [];
-		displayNext();
-		$('#start').hide();
 	});
 
 	// Animates buttons on hover
@@ -105,18 +102,18 @@ function displayQuiz() {
 	function choose() {
 		selections[questionCounter] = +$('input[name="answer"]:checked').val();
 	}
-	
+
 	function autoSave() {
 		console.log("Saved!");
 
 		var questionContainers = $(".question");
 		for (var i = 0; i < questionContainers.length; i++) {
 			var questionID = questionContainers[i].id;
-			var ansElems = questionContainers[i]
-					.getElementsByTagName("input");
+			var ansElems = questionContainers[i].getElementsByTagName("input");
 			for (var j = 0; j < ansElems.length; j++) {
 				if (ansElems[j].checked) {
 					console.log(questionID + ": " + ansElems[j].value);
+					createResponseJSON();
 					//Save in session or temp Table?
 				}
 			}
@@ -145,34 +142,25 @@ function displayQuiz() {
 					$('#next').show();
 				}
 			} else {
-				var scoreElem = displayScore();
-				quiz.append(scoreElem).fadeIn();
 				$('#next').hide();
 				$('#prev').hide();
 				$('#start').show();
 			}
 		});
 	}
-	
-	function autoSave() {
-		console.log("Saved!");
 
-		var questionContainers = $(".question");
-		for (var i = 0; i < questionContainers.length; i++) {
-			var questionID = questionContainers[i].id;
-			var ansElems = questionContainers[i]
-					.getElementsByTagName("input");
-			for (var j = 0; j < ansElems.length; j++) {
-				if (ansElems[j].checked) {
-					console.log(questionID + ": " + ansElems[j].value);
-					//Save in session or temp Table?
-				}
+	function updateResponseJSON() {
+		for (var i = 0; i < studentResponseObj.length; i++) {
+			if (!isNaN(selections[i])) {
+				studentResponseObj[i].responseAnswer.push(selections[i]);
 			}
 		}
+		'<%=session.setAttribute("studentResponseJSON", studentResponseJSON)%>'
 	}
-	
-	function submitQuiz() {
-		autoSave();
-		//Send session data to controller
+
+	function autoSave() {
+		console.log("Saved!");
+		updateResponseJSON();
 	}
+
 }
