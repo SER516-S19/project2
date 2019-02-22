@@ -19,6 +19,7 @@ public class QuestionAnswer {
 	private boolean isMultiple;
 	private int points;
 	private List<Answer> answerList;
+	private List<Answer> responseAnswer;
 
 	public int getQuestionId() {
 		return questionId;
@@ -74,6 +75,14 @@ public class QuestionAnswer {
 
 	public void setAnswerList(List<Answer> answerList) {
 		this.answerList = answerList;
+	}
+
+	public List<Answer> getResponseAnswer() {
+		return responseAnswer;
+	}
+
+	public void setResponseAnswer(List<Answer> responseAnswer) {
+		this.responseAnswer = responseAnswer;
 	}
 
 }
