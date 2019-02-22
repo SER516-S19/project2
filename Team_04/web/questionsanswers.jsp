@@ -2,7 +2,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.model.QuestionAnswers" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %><%--
+<%@ page import="java.util.Map" %>
+<%@ page import="student.dto.QuizContent" %>
+<%@ page import="student.dto.AnswerOption" %><%--
   Created by IntelliJ IDEA.
   User: yuvan
   Date: 2/20/2019
@@ -29,30 +31,32 @@
 <body>
 <div class="QuesAnsDiv">
 
+    <%
+        QuizContent question = (QuizContent)request.getAttribute("data");
+        String buttonType = "";
+        if(question.getQues_type().equals("SA"))
+        {
+            buttonType = "radio";
+        }
+        else
+        {
+            buttonType = "checkbox";
+        }
 
-
-
-    <%Map<String, List<QuestionAnswers>> ques =
-            (Map<String, List<QuestionAnswers>>)request.getAttribute("data");
         int count = 1;
-        for(String key: ques.keySet()){
     %>
-        <h1><%= count++ %>.<%=key %></h1>
-            <%
-                for (QuestionAnswers answers : ques.get(key)) {
-                    String buttonType = "";
-                    if(answers.getQues_type().equals("SA"))
-                    {
-                        buttonType = "radio";
-                    }
-                    else
-                    {
-                        buttonType = "checkbox";
-                    }
-            %>
-                    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answers.getAns_desc() %></input></div>
-            <%}%>
-    <% }%>
+
+
+    <div><%=question.getQues_desc()%></div>
+    <%
+        for (AnswerOption answer : question.getAnswerOptions()){
+    %>
+    <%--<h1><%= count++ %></h1>--%>
+    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answer.getAns_desc() %></input></div>
+    <%}%>
+
+
+
 
 
 </div>
