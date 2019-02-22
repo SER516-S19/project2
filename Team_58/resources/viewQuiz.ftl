@@ -19,6 +19,9 @@
 		}
 	</style>
 	<body>
+		<form action="courseDashboard.ftl" method="POST">
+	        	<button type="submit">Return to Dashboard</button>
+        	</form>
 		<h1>
 		   TITLE: ${Session.quizInfo.getQuizTitle()}
 		</h1>
