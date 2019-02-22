@@ -25,8 +25,9 @@ import edu.asupoly.ser516.model.UserVO;
  * that routes the User to Course Dashboard Page from Professor Home Page.
  * 
  * @author narenkumarKonchada
- * @version 1.3
- * @date 02/20/2019
+ * @author shivamverma
+ * @version 1.4
+ * @date 02/22/2019
  **/
 
 public class CourseDashboardServlet extends HttpServlet {
@@ -50,10 +51,20 @@ public class CourseDashboardServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		HashMap<Integer, String> courseMap = (HashMap<Integer,String>) session.getAttribute("CourseHashMap");
-		int courseId = Integer.parseInt(request.getParameter("Course"));
-		String courseName = courseMap.get(courseId);
+		int courseId = 0;
+		if(request.getParameter("Course")!=null) {
+			courseId = Integer.parseInt(request.getParameter("Course"));
+			String courseName = courseMap.get(courseId);
+			session.setAttribute("courseName",courseName);
+			session.setAttribute("courseId", courseId);
+		}
+		else {
+			 courseId = (int) session.getAttribute("courseId");
+		}
+		
+/*		String courseName = courseMap.get(courseId);
 		session.setAttribute("courseName",courseName);
-		session.setAttribute("courseId", courseId);
+		session.setAttribute("courseId", courseId);*/
 		
 		try {
 			QuizDAOBean quizBean = new QuizDAOBean();
