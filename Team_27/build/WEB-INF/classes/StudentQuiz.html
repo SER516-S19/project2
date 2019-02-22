@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>QUIZ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 20px;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: white;
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th{
+  background-color: #F5F5F5;
+}
+</style>
+</head>
+<body>
+
+<h2>Quiz 1</h2>
+<p><div style="background-color: #F5DEB3 ; padding: 10px; border: 1px white;"><span>&#9888;</span>This is a preview of the published version of the quiz.
+</div></p>
+<p>Started: Jan 31 at 1:48pm</p>
+<h2>Quiz Instructions </h2>
+<hr width="99%">
+
+<!--
+<header>
+  <h2>Cities</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+      <li><a href="#">London</a></li>
+      <li><a href="#">Paris</a></li>
+      <li><a href="#">Tokyo</a></li>
+    </ul>
+  </nav>
+-->
+  
+  <table align="center">
+  <tr>
+    <th><div align="left">Question 1</div><div align="right">10pts</div></th>
+  </tr>
+  <tr>
+    <td>Which of the following are the correct answers?</td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="option1" value="option1"> First Option<br></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="option2" value="option2"> Second Option<br></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="option3" value="option3"> Third Option<br></td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="option4" value="option4"> Fourth Option<br></td>
+  </tr>
+  <tr>
+  <td><div align="right">
+  <input type="button" value="< Previous">
+  <input type="button" value="Next >">
+  </div></td>
+  </tr>
+</table>
+<hr width="99%">
+<!--</section>-->
+
+<footer>
+  <div align="right">
+    <label for="notSaved">Not Saved</label>
+     <input type="submit" value="Submit Quiz">
+</footer>
+<hr>
+</body>
+</html>
