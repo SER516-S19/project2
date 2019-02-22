@@ -76,7 +76,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select * where username = ?");
+            stmt = conn.prepareStatement("select * from students where username = ?");
             stmt.setString(1, username);
             rs = stmt.executeQuery();
             while (rs.next()) {

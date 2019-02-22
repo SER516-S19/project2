@@ -79,7 +79,7 @@ public class QuizDAOImpl implements QuizDAO {
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select * where course_fk = ?");
+            stmt = conn.prepareStatement("select * from quizzes where course_fk = ?");
             stmt.setInt(1, course_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -118,7 +118,7 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * where quiz_id = ?");
+            stmt = conn.prepareStatement("select * from quizzes where quiz_id = ?");
             stmt.setInt(1, quiz_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
