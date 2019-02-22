@@ -1,9 +1,18 @@
 package content.creator;
 
+import DBUtil.DataManager;
 import com.dao.QuestionAnswerDAO;
+import com.model.QuestionAnswers;
+import student.dto.AnswerOption;
+import student.dto.QuizContent;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,63 +26,53 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/servlet")
 public class LoadQuestionAnswerServlet extends HttpServlet {
 	String view = "";
+
+	private List<QuizContent> questions = new ArrayList<>();
+	private int currentQuestionIndex = 0;
+
+	private void loadQuestions() {
+		List<QuizContent> questions = DataManager.getInstance().executeGetQuery(QuizContent.class, "SELECT * FROM quiz_content group by ques_id");
+		for (QuizContent question : questions) {
+			List<QuizContent> options = DataManager.getInstance().executeGetQuery(QuizContent.class, "SELECT * FROM quiz_content where ques_id="+question.getQues_id());
+			for (QuizContent answerOption: options) {
+				question.getAnswerOptions().add(new AnswerOption(answerOption.getAns_id(), answerOption.getAns_desc()));
+			}
+		}
+		this.questions = questions;
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-			Connection conn = null;
-			try {
-				// db parameters
-				String url = "jdbc:sqlite:/Users/aj/Developer/SER-516/project2/Team_04/resources/quizDatabase.db";
-
-				// create a connection to the database
-				conn = DriverManager.getConnection(url);
-
-				System.out.println("Connection to SQLite has been established.");
-
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			} finally {
-					if (conn != null) {
-						try {
-							Statement s =conn.createStatement();
-							ResultSet rs = s.executeQuery("SELECT * FROM quiz_content");
-
-							while (rs.next()) {
-								System.out.println(rs.getString("ques_desc"));
-							}
-
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-
-			}
 	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+		if (this.questions.size() == 0) {
+			loadQuestions();
+		}
+
 		HttpSession session = request.getSession(true);
 		String action = request.getParameter("action");
 		if (action.isEmpty())
+		{
 			view="error.jsp";
-		QuestionAnswerDAO qaObj = new QuestionAnswerDAO();
-
-		if(action.equalsIgnoreCase("START QUIZ"))
+		}
+		else if(action.equalsIgnoreCase("NEXT") && currentQuestionIndex < questions.size())
 			{
-				request.setAttribute("data", qaObj.getResult());
+
+				request.setAttribute("data", questions.get(currentQuestionIndex));
+				currentQuestionIndex += 1;
 				view = "questionsanswers.jsp";
 				response.setContentType("text/html");
 				response.setStatus(response.SC_OK);
+				request.getRequestDispatcher(view).forward(request, response);
+
 			}
+		else {
 
+		}
 
-		request.getRequestDispatcher(view).forward(request, response);
 
 
 
