@@ -13,7 +13,7 @@ class Home extends Component {
                     <h5>Click on the Quiz to be completed</h5>
                     <br></br></center>
 
-                <ListGroup>
+                <ListGroup className="QuizList">
                     <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 1</NavLink></li></ListGroupItem>
                     <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 2</NavLink></li></ListGroupItem>
                     <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 3</NavLink></li></ListGroupItem>
