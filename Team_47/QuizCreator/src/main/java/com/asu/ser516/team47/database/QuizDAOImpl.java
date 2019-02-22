@@ -157,21 +157,20 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into quizzes (id, title, course_fk, instructions, shuffle," +
+            stmt = conn.prepareStatement("insert into quizzes (title, course_fk, instructions, shuffle," +
                     " timeLimit, dateOpen, dateClose, quizType, attempts," +
-                    " quizGroup, totalPoints) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setInt(1, quiz.getQuiz_id());
-            stmt.setString(2, quiz.getTitle());
-            stmt.setInt(3, quiz.getCourse_fk());
-            stmt.setString(4, quiz.getInstructions());
-            stmt.setBoolean(5, quiz.isShuffle());
-            stmt.setInt(6, quiz.getTime_limit());
-            stmt.setDate(7, new java.sql.Date(quiz.getDate_open().getTime()));
-            stmt.setDate(8, new java.sql.Date(quiz.getDate_close().getTime()));
-            stmt.setString(9, quiz.getQuiz_type());
-            stmt.setInt(10, quiz.getAttempts());
-            stmt.setString(11, quiz.getQuiz_group());
-            stmt.setDouble(12, quiz.getTotal_points());
+                    " quizGroup, totalPoints) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            stmt.setString(1, quiz.getTitle());
+            stmt.setInt(2, quiz.getCourse_fk());
+            stmt.setString(3, quiz.getInstructions());
+            stmt.setBoolean(4, quiz.isShuffle());
+            stmt.setInt(5, quiz.getTime_limit());
+            stmt.setDate(6, new java.sql.Date(quiz.getDate_open().getTime()));
+            stmt.setDate(7, new java.sql.Date(quiz.getDate_close().getTime()));
+            stmt.setString(8, quiz.getQuiz_type());
+            stmt.setInt(9, quiz.getAttempts());
+            stmt.setString(10, quiz.getQuiz_group());
+            stmt.setDouble(11, quiz.getTotal_points());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows > 0) {
                 return true;
