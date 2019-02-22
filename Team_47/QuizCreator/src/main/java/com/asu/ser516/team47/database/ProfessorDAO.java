@@ -4,8 +4,10 @@ import java.util.List;
 
 /**
  * An interface for a Professor Data Access Object
- * Created by paulhorton on 2/22/19.
- */
+ *
+ * @author  Paul Horton
+ * @version 1.0
+ * @since   2019-02-22 */
 public interface ProfessorDAO {
     /**
      * Gets all professors in the table
@@ -15,7 +17,7 @@ public interface ProfessorDAO {
 
     /**
      * Gets a professor based on it's username
-     * @param username the id of the student
+     * @param username the id of the professor
      * @return a professor with the username
      */
     Professor getProfessor(String username);

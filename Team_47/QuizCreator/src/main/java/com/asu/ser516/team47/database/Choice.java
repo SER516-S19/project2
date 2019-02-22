@@ -2,8 +2,10 @@ package com.asu.ser516.team47.database;
 
 /**
  * A business object for a choice in the choices table.
- * Created by paulhorton on 2/21/19.
- */
+ *
+ * @author  Paul Horton
+ * @version 1.0
+ * @since   2019-02-22 */
 public class Choice {
     private int choice_id;
     private int question_fk;
