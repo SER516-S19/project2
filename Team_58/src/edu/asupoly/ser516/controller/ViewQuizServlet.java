@@ -3,6 +3,7 @@ package edu.asupoly.ser516.controller;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import java.sql.Connection;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpSession;
 
 
 import edu.asupoly.ser516.model.QuestionsVO;
+import edu.asupoly.ser516.model.QuizVO;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -30,7 +33,7 @@ import org.json.simple.parser.JSONParser;
  * Servlet code
  * 
  * @author Aditya Samant
- * @version 1.0
+ * @version 1.1
  * */
 public class ViewQuizServlet extends HttpServlet{
 	// This servlet will not make any Get requests.
@@ -38,18 +41,27 @@ public class ViewQuizServlet extends HttpServlet{
 		
 	}
 	/**
-	 * Grabs quizId from courseDashboard 
+	 *Grabs quizId from courseDashboard 
 	 *@param req  Request made to server
 	 *@param res  Responses from server
 	 *
-	 * @throws IOException
-	 * @throws ServletException
+	 *@throws IOException
+	 *@throws ServletException
 	 * */
 	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException{
 		   //Get general information
 	       HttpSession session = req.getSession();
 	       List<QuestionsVO> quizQuestions = new ArrayList<>();
 	       int quizId = Integer.parseInt(req.getParameter("Quiz"));
+	       //Get today's date for comparison
+	       Calendar cal = Calendar.getInstance();
+	       cal.set(Calendar.HOUR_OF_DAY, 0);
+	       cal.set(Calendar.MINUTE, 0);
+	       cal.set(Calendar.SECOND,0);
+	       cal.set(Calendar.MILLISECOND,0);
+	       
+	       Date today = new Date(cal.getTime().getTime());
+	       boolean isAfter = false;
 	       
 	       //Initialize Quiz Information
 	       String quizName = "";
@@ -109,20 +121,28 @@ public class ViewQuizServlet extends HttpServlet{
 				   instruction = result.getString("quizInstruction");
 				   scheduledDate = result.getDate("quizScheduledDate");
 				   graded = result.getBoolean("isGraded"); 
-
 	   			    
 	   		   }
+	   		   
+	   		   if (scheduledDate.before(today)) {
+	   			   isAfter = true;
+	   		   }
+	   		   
+	   		   QuizVO quizInfo = new QuizVO(quizId, quizName);
+	   		   
+	   		   System.out.println("Is After: "+ isAfter);
 	   		   //Add Quiz info to Session attributes
-	   		   session.setAttribute("Name", quizName);
+	   		   session.setAttribute("Id", quizId);
 	   		   session.setAttribute("Grade", graded);
 	   		   session.setAttribute("Schedule", scheduledDate);
 	   		   session.setAttribute("Directions", instruction);
-	   		   
+	   		   session.setAttribute("isAfter", isAfter);
 	   		   session.setAttribute("QuizQuestions",quizQuestions);
+	   		   session.setAttribute("quizInfo", quizInfo);
 	   		
 	   		   res.sendRedirect(req.getContextPath()+"/viewQuiz.ftl");
 	       }catch(Exception e) {
 	    	   e.printStackTrace();
 	       }
-	}  
+	}
 }
