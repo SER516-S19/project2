@@ -30,7 +30,7 @@ public class StudentControllerServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private final static String SUBMIT_ACTION = "submit";
-	private static String studentPage = "student.jsp";
+	private static String studentPage = "/student.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -58,9 +58,9 @@ public class StudentControllerServlet extends HttpServlet {
 		System.out.println(stats);
 		statisticsDAO.insertAnswer(answer);
 		statisticsDAO.insertStudentResponse(stats);
-		String action = (String) req.getAttribute("action");
+		String action = (String) req.getSession().getAttribute("action");
 		if(action.equals("load")) {
-			req.getRequestDispatcher(studentPage).forward(req, resp);
+			req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
 		}
 		else if(action.equals("data")) {
 			StudentServices service = new StudentServices();
