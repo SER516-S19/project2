@@ -33,15 +33,21 @@
 	</div>
 	<script>
 		$(document).ready(function() {
+			$('#submit').hide();
 			studentResponseJSON = '<%=session.getAttribute("studentResponseJSON")%>';
 			var studentResponseObj = JSON.parse(studentResponseJSON);
 			displayQuiz(studentResponseObj);
-			var autoSaveInterval = setInterval(autoSave, 2000);
+			//var autoSaveInterval = setInterval(autoSave, 2000);
 		});
 		
 		$('#submitForm').submit(function(){
+			console.log("submit");
 			autoSave();
 		});
+		
+		//function updateSession(studentResponseJSON){
+			
+		//}
 	</script>
 </body>
 </html>
