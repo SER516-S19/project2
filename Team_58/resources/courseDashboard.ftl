@@ -5,7 +5,6 @@
 	
 	<body>
 		<h2 class="fontColor">Course Dashboard</h2>
-         
          <div class="box">
          <p class="smallFontColor"> ${Session.courseName} </p>
          

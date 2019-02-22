@@ -6,37 +6,33 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.asupoly.ser516.model.CourseVO;
-
 /**
- * Class CreateQuiz Servlet is a controller 
- * that routes the user to Create Quiz after Course Dashboard.
+ * Class CreateQuiz Servlet is a controller that routes the user to Create Quiz
+ * after Course Dashboard.
  * 
  * @author carnic
  * @version 1.0
  * @date 02/20/2019
  **/
 
-public class CreateQuiz extends HttpServlet{
-	
+public class CreateQuiz extends HttpServlet {
+
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.sendRedirect(request.getContextPath()+"/createQuiz.ftl"); 
+		response.sendRedirect(request.getContextPath() + "/createQuiz.ftl");
 	}
-	
-	protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-            	
-		
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		try {
         	String quizTitle = request.getParameter("quizTitle");
         	String quizInstructions = request.getParameter("quizInstructions");
@@ -94,10 +90,8 @@ public class CreateQuiz extends HttpServlet{
     		
     		request.getRequestDispatcher("/createQuestions").forward(request, response);
     		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	catch(Exception e) {
-		e.printStackTrace();
-	}
-            	
-            }
 }
