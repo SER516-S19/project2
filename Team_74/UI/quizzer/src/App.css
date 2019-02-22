@@ -14,8 +14,9 @@ html {
 }
 
 .App-header {
-  background-color: #222222;
+  background-color: #5b5b99;
   padding: 20px;
+  font-size: 22px;
   color: white;
   text-align: center;
 }
@@ -52,10 +53,9 @@ html {
 }
 
 .logout-button:hover{
-  background-color: #222222; /* Black */
+  background-color: #222222;
   color: white;
 }
-
 
 nav ul {
   list-style: none;
