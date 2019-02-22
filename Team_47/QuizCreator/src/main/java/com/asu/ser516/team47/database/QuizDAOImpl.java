@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * An Submission Database Abstraction
+ * An Quiz Database Abstraction
  *
  * @author  Trevor Forrey
  * @version 1.0
