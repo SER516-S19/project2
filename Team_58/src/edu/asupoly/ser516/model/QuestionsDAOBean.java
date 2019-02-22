@@ -64,7 +64,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		query.setString(2, questionsVO.getQuestion());
 		query.setString(3, questionsVO.getCorrectAnswer());
 		query.setString(4, incorrectAnswer);
-		query.setString(5, questionsVO.getTotalPoints());
+		query.setInt(5, questionsVO.getTotalPoints());
 		query.setBoolean(6, questionsVO.isMCQ());
 
 		query.executeUpdate();
