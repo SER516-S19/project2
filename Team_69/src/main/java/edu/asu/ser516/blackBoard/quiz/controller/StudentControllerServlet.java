@@ -41,34 +41,10 @@ public class StudentControllerServlet extends HttpServlet {
 		String quizName = queryParams.split("=")[1];
 		QuizDAO quizDAO = new QuizDAO();
 		int quizId = quizDAO.fetchQuizId(quizName);
-		QuestionDAO questionDAO = new QuestionDAO();
-		List<Question> questions = questionDAO.getQuestionsByQuizId(1);
-		AnswerDAO answerDAO = new AnswerDAO();
-		List<Answer> answers = answerDAO.getAnswersByQuestionId(1);
-
-		StatisticsDAO statisticsDAO = new StatisticsDAO();
-		//QuestionDAO questionDAO = new QuestionDAO();
-		User user = new User("abc","student","abc.com","1234");
-		Time time = new Time(00,10,00);
-		Quiz quiz = new Quiz("Quiz3","read/write","graded",time,true,false);
-		Question question = new Question(quiz,"q1",1,true,10);
-		Answer answer = new Answer(question,"abc","a");
-		questionDAO.addQuestion(question);
-		stats = new ResponseStatistics(user,quiz,question,answer);
-		System.out.println(stats);
-		statisticsDAO.insertAnswer(answer);
-		statisticsDAO.insertStudentResponse(stats);
-		String action = (String) req.getSession().getAttribute("action");
-		if(action.equals("load")) {
-			req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
-		}
-		else if(action.equals("data")) {
-			StudentServices service = new StudentServices();
-			String questionAnswerJSON = service.getQuestionDetails(quizId);
-			resp.getWriter().write(questionAnswerJSON);
-		}
-
-		req.setAttribute("QuizName",quizName);
+		StudentServices service = new StudentServices();
+		String questionAnswerJSON = service.getQuestionDetails(quizId);
+		req.setAttribute("jsonData", questionAnswerJSON);
+		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
 	}
 
 	protected void doPost(HttpServletRequest request,
