@@ -15,14 +15,16 @@
             // Container <div> where dynamic content will be placed
             var container = document.getElementById("QuestionContainer");
 
-            if( typeof addAnotherQuestion.counter == 'undefined' ) {
+            if (typeof addAnotherQuestion.counter == 'undefined') {
                 addAnotherQuestion.counter = 1;
             }
             addAnotherQuestion.counter++;
 
             var questionDiv = document.createElement("div");
             questionDiv.innerHTML = "Question " + addAnotherQuestion.counter + ": <br /><br />" +
-                "<textarea name=\"question" + addAnotherQuestion.counter + "\" rows=\"5\" cols=\"80\">Enter your question here !</textarea> <br /><hr />" +
+                "<textarea name=\"question" + addAnotherQuestion.counter + "\" rows=\"5\" cols=\"80\">Enter your question here !</textarea> <br />" +
+                "Points: <input type=\"number\" style=\"width:40px; text-align: center\" name=\"PointsForQues" + addAnotherQuestion.counter + "\" value=\"1\" />" +
+                "<input type=\"checkbox\" name=\"isMultipleAnswerQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Is Multiple Answer <hr />" +
                 "<table><tr><td>Option A:</td>" +
                 "<td><input type=\"checkbox\" name=\"isOptionACorrectForQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Correct Answer</td>" +
                 "<td><input type=\"text\" name=\"OptionAForQues" + addAnotherQuestion.counter + "\" value=\"Enter Option A\" /></td></tr>" +
@@ -47,6 +49,8 @@
         <div id="QuestionContainer">
             Question 1: <br /><br />
             <textarea name="question1" rows="5" cols="80">Enter your question here !</textarea> <br />
+            Points: <input type="number" style="width:40px; text-align: center" name="PointsForQues1" value="1" />
+            <input type="checkbox" name="isMultipleAnswerQues1" value="True" /> Is Multiple Answer
             <hr />
             <table>
                 <tr>
@@ -97,9 +101,9 @@
                     </td>
                 </tr>
             </table>
-            <hr/>
+            <hr />
         </div>
-        <input type="button" value="Add Another Question..." onclick="addAnotherQuestion()"/>
+        <input type="button" value="Add Another Question..." onclick="addAnotherQuestion()" />
         <input type="submit" value="Submit Question(s) To Quiz !" />
     </form>
 </body>
