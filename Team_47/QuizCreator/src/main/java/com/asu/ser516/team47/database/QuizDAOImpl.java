@@ -118,7 +118,7 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * where id = ?");
+            stmt = conn.prepareStatement("select * where quiz_id = ?");
             stmt.setInt(1, quiz_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -158,8 +158,8 @@ public class QuizDAOImpl implements QuizDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("insert into quizzes (title, course_fk, instructions, shuffle," +
-                    " timeLimit, dateOpen, dateClose, quizType, attempts," +
-                    " quizGroup, totalPoints) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                    " time_limit, date_open, date_close, quiz_type, attempts," +
+                    " quiz_group, total_points) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setString(1, quiz.getTitle());
             stmt.setInt(2, quiz.getCourse_fk());
             stmt.setString(3, quiz.getInstructions());
@@ -206,8 +206,8 @@ public class QuizDAOImpl implements QuizDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("update quizzes set title=?, course_fk=?, instructions=?," +
-                    "shuffle=?, timeLimit=?, dateOpen=?, dateClose=?, quizType=?, attempts=?," +
-                    " quizGroup=?, totalPoints=? where id=?");
+                    "shuffle=?, time_limit=?, date_open=?, date_close=?, quiz_type=?, attempts=?," +
+                    " quiz_group=?, total_points=? where quiz_id=?");
             stmt.setString(1, quiz.getTitle());
             stmt.setInt(2, quiz.getCourse_fk());
             stmt.setString(3, quiz.getInstructions());
@@ -255,7 +255,7 @@ public class QuizDAOImpl implements QuizDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
             conn.setAutoCommit(false);
 
-            stmt = conn.prepareStatement("delete from quizzes where id=?");
+            stmt = conn.prepareStatement("delete from quizzes where quiz_id=?");
             stmt.setInt(1, quiz.getQuiz_id());
             stmt.executeUpdate();
             // TODO (DELETE BEFORE SUBMISSION) May need to manually delete foreign keys in Questions
