@@ -78,7 +78,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select * from submissions where quiz_id = ?");
+            stmt = conn.prepareStatement("select * from submissions where quiz_fk = ?");
             stmt.setInt(1, quiz_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -154,7 +154,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from submissions where id = ?");
+            stmt = conn.prepareStatement("select * from submissions where submission_id = ?");
             stmt.setInt(1, submission_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -192,7 +192,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into submissions (quiz_id, enrolled_fk," +
+            stmt = conn.prepareStatement("insert into submissions (quiz_fk, enrolled_fk," +
                     " timeTaken, dateTaken, score, attempt) VALUES (?,?,?,?,?,?)");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
@@ -234,8 +234,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update submissions set quiz_id=?, enrolled_fk=?, timeTaken=?," +
-                    " dateTaken=?, score=?, attempt=? where id=?");
+            stmt = conn.prepareStatement("update submissions set quiz_fk=?, enrolled_fk=?, timeTaken=?," +
+                    " dateTaken=?, score=?, attempt=? where submission_id=?");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
             stmt.setInt(3, submission.getTime_taken());
@@ -278,7 +278,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
             conn.setAutoCommit(false);
 
-            stmt = conn.prepareStatement("delete from submissions where id=?");
+            stmt = conn.prepareStatement("delete from submissions where submission_id=?");
             stmt.setInt(1, submission.getSubmission_id());
             stmt.executeUpdate();
             // TODO (DELETE BEFORE SUBMISSION) May need to manually delete foreign keys in Answers
