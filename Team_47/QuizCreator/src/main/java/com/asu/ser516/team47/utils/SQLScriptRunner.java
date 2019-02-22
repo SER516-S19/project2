@@ -12,7 +12,8 @@ import java.util.Scanner;
 /**
  * Runs an sql script on schema.db given a path.
  *
- *
+ * @author David Lahtinen
+ * @version 1.0
  */
 public class SQLScriptRunner {
     private static final String url = "jdbc:sqlite:schema.db";
@@ -28,7 +29,5 @@ public class SQLScriptRunner {
             stmt.addBatch(sql);
             stmt.execute(sql);
         }
-
-        Statement teststmt = conn.createStatement();
     }
 }
