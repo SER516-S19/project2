@@ -18,7 +18,7 @@
     <form  method="POST" action="create">
     <br>
         Question text:<br>
-        <input type="text" name="questiontext"><br>
+        <input type="text" name="question_text"><br>
         Answer text A:<br>
         <input type="radio" name="choice" value = "1" checked = "true"> A
         <input type="text" name="1"><br>
@@ -37,12 +37,5 @@
         <input type="submit"  value="Add">
     </form>
     </body>
-    <style>
-        /*#bodycontent fieldset {*/
-            /*!*margin-right: 10px*!*/
-            /*text-align: right;*/
-        /*}*/
-
-    </style>
     </html>
 
