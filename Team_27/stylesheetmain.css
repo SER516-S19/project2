@@ -1,0 +1,62 @@
+
+* {
+  box-sizing: border-box;
+}
+#prev {
+    display:none;
+}
+
+#start {
+    display:none;
+    width: 90px;
+}
+
+#quiz {
+    text-indent: 10px;
+    display:none;
+}
+
+body {
+  font-family: Arial
+}
+
+.buttoncss {
+	padding-right: 10px;
+    position: relative;
+    float:right;
+    background-color: white;
+    color: black;
+    margin: 0 2px 0 2px;
+    border:1px solid;
+    border-radius:2px;
+    width: 60px;
+    padding-left:10px;
+    
+}
+
+/* Style the footer */
+footer {
+	text-align: center;
+	color: black;
+	background-color: white;
+	padding: 10px;
+}
+
+
+.buttoncss.active {
+    background-color: grey;
+    color: grey;
+}
+
+buttoncss {
+    position: relative;
+    float:right;
+}
+
+.buttoncss a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/* took help from w3schools.com for css part*/
