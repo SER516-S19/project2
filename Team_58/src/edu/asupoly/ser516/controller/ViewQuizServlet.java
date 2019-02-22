@@ -112,9 +112,6 @@ public class ViewQuizServlet extends HttpServlet{
 
 	   			    
 	   		   }
-	   		   
-			   System.out.println("QUIZ NAME "+ quizName);
-	   		   System.out.println("INSTRUCTION"+ instruction);
 	   		   //Add Quiz info to Session attributes
 	   		   session.setAttribute("Name", quizName);
 	   		   session.setAttribute("Grade", graded);
