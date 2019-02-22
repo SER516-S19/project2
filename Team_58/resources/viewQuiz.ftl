@@ -2,7 +2,7 @@
 	Renders viewQuiz page which displays questions of a particular quiz along with quiz information
 	An edit button is present next to each question that allows professor to edit ungraded quiz questions 
 	that have not passed the schedule date. 
-	version: 1.0
+	version: 1.1
   -->
 <html>
 	<style>
@@ -48,15 +48,18 @@
 			</tr>
 	        <#list Session.QuizQuestions as questions>
 	            <tr>
-	               <td>${questions.getQuestion()}</td>
-				   <td>${questions.getCorrectAnswer()}</td>
-				   <td>${questions.getIncorrectAnswer1()}</td>
-				   <td>${questions.getIncorrectAnswer2()}</td>
-				   <td>${questions.getIncorrectAnswer3()}</td>
-				   <td>${questions.getTotalPoints()}</td>
-				   <td><button onclick="">edit</button></td>
+	               <td contenteditable='true'>${questions.getQuestion()}</td>
+				   <td contenteditable='true'>${questions.getCorrectAnswer()}</td>
+				   <td contenteditable='true'>${questions.getIncorrectAnswer1()}</td>
+				   <td contenteditable='true'>${questions.getIncorrectAnswer2()}</td>
+				   <td contenteditable='true'>${questions.getIncorrectAnswer3()}</td>
+				   <td contenteditable='true'>${questions.getTotalPoints()}</td>
+				   <td><button onclick="myFunction()">edit</button></td>
 	            </tr>
 	        </#list>
         </table>
+        <script>
+        
+        </script>
 	</body>
 </html>
