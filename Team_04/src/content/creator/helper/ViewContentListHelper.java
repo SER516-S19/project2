@@ -8,6 +8,9 @@ import java.util.List;
 /** @author Hari Krishnan Puthiya Veetil */
 public final class ViewContentListHelper {
 
+    private ViewContentListHelper() {
+    }
+
     public static List<Integer> getQuizList() {
         String tableName = "quiz_content";
         String colName = "quiz_id";
