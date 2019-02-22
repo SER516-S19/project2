@@ -16,16 +16,17 @@
 </head>
 <body>
 	<%
+
     List<String> quizNames = (ArrayList<String>) request.getAttribute("quizNames");
 %>
 	<h2>Quiz</h2>
 	<p>
 		You have following quizzes for the course!! <br>
 	</p>
-	<form method="GET">
+	<form method="GET" >
 		<div class="container">
 			<table class="table table-bordered">
-				<%
+				<%session.setAttribute("action","load");
             for(String quiz : quizNames){
         %>
 				<tr>

@@ -27,7 +27,7 @@ function myFunction(elem)
 <form action="../ProfessorController" method="post">
   <div class="form-group">
   <label for="FormQuizName">Enter Quiz Name:</label>
-  <textarea class="form-control" id="name" rows="1" required></textarea>
+  <textarea class="form-control" id="name" name="name" rows="1" required></textarea>
    <br>
     
     <div class="form-group">
