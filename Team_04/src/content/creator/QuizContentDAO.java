@@ -1,30 +1,14 @@
 package content.creator;
 
-import java.util.Date;
-
 class QuizContentDAO {
-  private int studentId;
-  private int attemptId;
   private int quizId;
   private int quesId;
+  private String quesType;
+  private String quesDesc;
   private int ansId;
-  private int totalScore;
-
-  public int getStudentId() {
-    return studentId;
-  }
-
-  public void setStudentId(int studentId) {
-    this.studentId = studentId;
-  }
-
-  public int getAttemptId() {
-    return attemptId;
-  }
-
-  public void setAttemptId(int attemptId) {
-    this.attemptId = attemptId;
-  }
+  private String ansDesc;
+  private boolean isCorrect;
+  private int maxScore;
 
   public int getQuizId() {
     return quizId;
@@ -42,6 +26,22 @@ class QuizContentDAO {
     this.quesId = quesId;
   }
 
+  public String getQuesType() {
+    return quesType;
+  }
+
+  public void setQuesType(String quesType) {
+    this.quesType = quesType;
+  }
+
+  public String getQuesDesc() {
+    return quesDesc;
+  }
+
+  public void setQuesDesc(String quesDesc) {
+    this.quesDesc = quesDesc;
+  }
+
   public int getAnsId() {
     return ansId;
   }
@@ -50,39 +50,27 @@ class QuizContentDAO {
     this.ansId = ansId;
   }
 
-  public int getTotalScore() {
-    return totalScore;
+  public String getAnsDesc() {
+    return ansDesc;
   }
 
-  public void setTotalScore(int totalScore) {
-    this.totalScore = totalScore;
+  public void setAnsDesc(String ansDesc) {
+    this.ansDesc = ansDesc;
   }
 
-  public Date getAttemptedOn() {
-    return attemptedOn;
+  public boolean getCorrect() {
+    return isCorrect;
   }
 
-  public void setAttemptedOn(Date attemptedOn) {
-    this.attemptedOn = attemptedOn;
+  public void setCorrect(boolean correct) {
+    isCorrect = correct;
   }
 
-  public int getTimeTaken() {
-    return timeTaken;
+  public int getMaxScore() {
+    return maxScore;
   }
 
-  public void setTimeTaken(int timeTaken) {
-    this.timeTaken = timeTaken;
+  public void setMaxScore(int maxScore) {
+    this.maxScore = maxScore;
   }
-
-  public boolean isFinal() {
-    return isFinal;
-  }
-
-  public void setFinal(boolean aFinal) {
-    isFinal = aFinal;
-  }
-
-  private Date attemptedOn;
-  private int timeTaken;
-  private boolean isFinal;
 }

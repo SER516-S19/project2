@@ -36,21 +36,21 @@ public class DataOps {
     }
   }
 
-  public ResultSet getData(String query) throws RuntimeException, SQLException {
+  public static ResultSet getData(String query) throws RuntimeException, SQLException {
     validateQueryString(query);
     return executeGetQuery(query);
   }
 
-  public void saveData(String query) throws RuntimeException, SQLException {
+  public static void saveData(String query) throws RuntimeException, SQLException {
     validateQueryString(query);
     executeInsertQuery(query);
   }
 
-  public QuizResultsDAO getQuizResultsDAO() {
+  public static QuizResultsDAO getQuizResultsDAO() {
     return new QuizResultsDAO();
   }
 
-  public QuizContentDAO getQuizContextDAO() {
+  public static QuizContentDAO getQuizContentDAO() {
     return new QuizContentDAO();
   }
 }
