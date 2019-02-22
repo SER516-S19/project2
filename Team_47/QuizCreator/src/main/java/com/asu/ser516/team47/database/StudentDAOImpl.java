@@ -108,7 +108,6 @@ public class StudentDAOImpl implements StudentDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Student rval = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -148,15 +147,14 @@ public class StudentDAOImpl implements StudentDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Student rval = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update students set username=? firstname=? lastname=? where id=?");
-            stmt.setString(1, student.getUsername());
-            stmt.setString(2, student.getFirstname());
-            stmt.setString(3, student.getLastname());
+            stmt = conn.prepareStatement("update students set firstname=? lastname=? where username=?");
+            stmt.setString(1, student.getFirstname());
+            stmt.setString(2, student.getLastname());
+            stmt.setString(3, student.getUsername());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows > 0) {
                 return true;
@@ -187,7 +185,6 @@ public class StudentDAOImpl implements StudentDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Student rval = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
