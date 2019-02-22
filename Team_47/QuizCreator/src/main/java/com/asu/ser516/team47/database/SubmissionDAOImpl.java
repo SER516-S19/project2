@@ -3,17 +3,9 @@ package com.asu.ser516.team47.database;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.ArrayList;
-
-import java.util.List;
-import java.util.Properties;
 
 /**
  * An Submission Database Abstraction
@@ -23,11 +15,7 @@ import java.util.Properties;
  * @since   2/22/19
  */
 public class SubmissionDAOImpl implements SubmissionDAO {
-    // Hardcoded (will switch to loading through props in future)
-    //    private static Properties __dbProperties;
     private static String __jdbcUrl = "jdbc:sqlite:schema.db";
-    private static String __jdbcUser;
-    private static String __jdbcPasswd;
 
     /**
      * Gets all submissions in the table
@@ -288,7 +276,6 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             stmt = conn.prepareStatement("delete from submissions where submission_id=?");
             stmt.setInt(1, submission.getSubmission_id());
             stmt.executeUpdate();
-            // TODO (DELETE BEFORE SUBMISSION) May need to manually delete foreign keys in Answers
             conn.commit();
             return true;
         }
@@ -302,19 +289,6 @@ public class SubmissionDAOImpl implements SubmissionDAO {
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
-        }
-    }
-
-    static {
-        try {
-//            __dbProperties = new Properties();
-//            __dbProperties.load(SubmissionDAOImpl.class.getClassLoader().getResourceAsStream("database.properties"));
-//            __jdbcUrl    = __dbProperties.getProperty("jdbcUrl");
-//            __jdbcUser   = __dbProperties.getProperty("jdbcUser");
-//            __jdbcPasswd = __dbProperties.getProperty("jdbcPasswd");
-//            __jdbcDriver = __dbProperties.getProperty("jdbcDriver");
-        } catch (Throwable t) {
-            t.printStackTrace();
         }
     }
 }
