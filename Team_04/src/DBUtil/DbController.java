@@ -8,16 +8,19 @@ import java.sql.Statement;
 
 public class DbController {
 
+
+
+
     //region private members and methods
     private static DbController dbController;
 
-    private Connection getConnection() {
+    public Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection(DbHelper.getDbUrl());
-        } catch (Exception e) {
-            e.printStackTrace();
+                Class.forName("org.sqlite.JDBC");
+                connection = DriverManager.getConnection(DbHelper.getDbUrl());
+            } catch (Exception e) {
+                e.printStackTrace();
         }
         return connection;
     }
