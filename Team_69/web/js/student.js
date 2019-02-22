@@ -148,7 +148,7 @@ function updateResponseJSON() {
 		}
 	}
 	studentResponseJSON = JSON.stringify(studentResponseObj);
-//	updateSession(studentResponseJSON);
+	updateSession(studentResponseJSON);
 }
 
 function autoSave() {
