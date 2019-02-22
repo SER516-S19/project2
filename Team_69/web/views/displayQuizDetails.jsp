@@ -29,6 +29,10 @@
 		<td><c:out value="${quiz.quizName}"></c:out></td>
 		<td><c:out value="${quiz.quizInstructions}"></c:out></td>
 		<td>
+		<%String pathWebcontent1=request.getContextPath();%>
+			<a href="<%=pathWebcontent1 %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}">View Quiz</a>			
+		</td>
+		<td>
 		<%String pathWebcontent=request.getContextPath();%>
 			<a href="<%=pathWebcontent %>/ProfessorController?flag=publishQuiz&id=${quiz.quizId}"> Publish Quiz</a>
 				

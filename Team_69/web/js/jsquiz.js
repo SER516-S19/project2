@@ -117,6 +117,7 @@
   // Reads the user selection and pushes the value to an array
   function choose() {
     selections[questionCounter] = +$('input[name="answer"]:checked').val();
+    console.log(selections);
   }
   
   // Displays next requested element
