@@ -64,8 +64,8 @@
   </servlet>
 
 	<servlet>
-    <servlet-name>CreateQuiz</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.CreateQuiz</servlet-class>
+    <servlet-name>CreateQuizServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.CreateQuizServlet</servlet-class>
     <init-param>
     	<param-name></param-name>
     	<param-value></param-value>
@@ -74,7 +74,7 @@
   </servlet>
  		
   <servlet-mapping>
-    <servlet-name>CreateQuiz</servlet-name>
+    <servlet-name>CreateQuizServlet</servlet-name>
     <url-pattern>/createQuiz</url-pattern>
   </servlet-mapping>
   
@@ -105,12 +105,29 @@
     <url-pattern>/createQuestions</url-pattern>
   </servlet-mapping>
   
-   <servlet-mapping>
+  <servlet>
+    <servlet-name>ViewQuizServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.ViewQuizServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 		
+  <servlet-mapping>
+    <servlet-name>ViewQuizServlet</servlet-name>
+    <url-pattern>/viewQuiz</url-pattern>
+  </servlet-mapping>
+	
+  <servlet>
+    <servlet-name>GradeQuizServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.GradeQuizServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
     <servlet-name>GradeQuizServlet</servlet-name>
     <url-pattern>/gradeQuiz</url-pattern>
   </servlet-mapping>
 
 <welcome-file-list>
-<welcome-file>/index.html</welcome-file>
+<welcome-file>/login.jsp</welcome-file>
 </welcome-file-list>
 </web-app>
