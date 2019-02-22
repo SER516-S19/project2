@@ -6,6 +6,7 @@ import java.util.List;
  * An interface for an Answer Data Access Object
  *
  * @author  Paul Horton
+ * @author  Trevor Forrey
  * @version 1.0
  * @since   2/22/19
  */
@@ -45,16 +46,25 @@ public interface AnswerDAO {
     Answer getAnswer(int answer_id);
 
     /**
+     * Inserts an answer into the Answer Table
+     * @param answer the answer to insert
+     * @return a boolean noting success (true) or failure (false)
+     */
+    boolean insertAnswer(Answer answer);
+
+    /**
      * Updates a answer in the database based on the
      * values in a business object
      * @param answer a answer to update in the database
+     * @return a boolean noting success (true) or failure (false)
      */
-    void updateAnswer(Answer answer);
+    boolean updateAnswer(Answer answer);
 
     /**
      * Deletes a answer in the database based on the
      * values in a business object
      * @param answer a answer to delete in the database
+     * @return a boolean noting success (true) or failure (false)
      */
-    void deleteAnswer(Answer answer);
+    boolean deleteAnswer(Answer answer);
 }
