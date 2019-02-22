@@ -17,7 +17,7 @@
 	</style>
 	<body>
 		<h1>
-		   Title: ${Session.Name}
+		   Title: ${Session.quizInfo.getQuizTitle()}
 		</h1>
 		<h2>
 		
@@ -48,18 +48,23 @@
 			</tr>
 	        <#list Session.QuizQuestions as questions>
 	            <tr>
-	               <td contenteditable='true'>${questions.getQuestion()}</td>
-				   <td contenteditable='true'>${questions.getCorrectAnswer()}</td>
-				   <td contenteditable='true'>${questions.getIncorrectAnswer1()}</td>
-				   <td contenteditable='true'>${questions.getIncorrectAnswer2()}</td>
-				   <td contenteditable='true'>${questions.getIncorrectAnswer3()}</td>
-				   <td contenteditable='true'>${questions.getTotalPoints()}</td>
-				   <td><button onclick="myFunction()">edit</button></td>
+	               <td>${questions.getQuestion()}</td>
+				   <td>${questions.getCorrectAnswer()}</td>
+				   <td>${questions.getIncorrectAnswer1()}</td>
+				   <td>${questions.getIncorrectAnswer2()}</td>
+				   <td>${questions.getIncorrectAnswer3()}</td>
+				   <td>${questions.getTotalPoints()}</td>
+				   <#if Session.Grade == false>
+				   <td><button>edit</button></td>
+				   </#if>
 	            </tr>
 	        </#list>
         </table>
-        <script>
-        
-        </script>
+        <#if Session.Grade == false && Session.isAfter == true>
+        	<form action="gradeQuiz" method="POST">
+	        	<input type="hidden" value=${Session.quizInfo}/>
+	        	<button type="submit">Grade Quiz</button>
+        	</form>
+        </#if>
 	</body>
 </html>
