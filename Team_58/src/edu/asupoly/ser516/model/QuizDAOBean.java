@@ -13,8 +13,8 @@ import java.util.Properties;
 /**
  * Class QuizDAOBean is a class that comes after Professor Home Page 
  * 
- * @author narenkumarkonchada
- * @version 1.0
+ * @author narenkumarkonchada & carnic
+ * @version 1.1
  * @date 02/21/2019
  **/
 
@@ -26,6 +26,14 @@ public class QuizDAOBean implements QuizDAO{
 		dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("database.properties"));
 	}
 
+	/**
+	 * This method is to get the list of all Quizzes 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException, ServletException
+	 */
+	
 	@Override
 	public List<QuizVO> getQuizzesForCourse(int courseId) throws SQLException, ClassNotFoundException {
 		
@@ -56,5 +64,63 @@ public class QuizDAOBean implements QuizDAO{
 		
 		return list;
 	}
+
+	/**
+	 * This method is to create a quiz 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException, ServletException
+	 */
+	
+	@Override
+	public void creatingQuiz(CreateQuizVO createQuizVO) throws SQLException, ClassNotFoundException {
+		
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		query = connection.prepareStatement(dbProperties.getProperty("postCreateQuiz"));
+		query.setInt(1,createQuizVO.getCourseId());
+		query.setBoolean(2, false);
+		query.setInt(3, createQuizVO.getAssignedTime());
+		query.setString(4, createQuizVO.getQuizInstructions());
+		query.setString(5, createQuizVO.getQuizScheduledDate());
+		query.setBoolean(6, createQuizVO.getIsShuffled());
+		query.setString(7, createQuizVO.getQuizTitle());
+
+		query.executeUpdate();
+
+	}
+	
+	public int gettingQuizId (CreateQuizVO createQuizVO) throws  SQLException, ClassNotFoundException {
+		
+		Connection connection = null;
+		PreparedStatement query = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		query = connection.prepareStatement(dbProperties.getProperty("getQuizId"));
+		
+		query.setInt(1, createQuizVO.getCourseId());
+		query.setBoolean(2, createQuizVO.getIsGraded());
+		query.setInt(3, createQuizVO.getAssignedTime());
+		query.setString(4, createQuizVO.getQuizInstructions());
+		query.setString(5, createQuizVO.getQuizScheduledDate());
+		query.setBoolean(6, createQuizVO.getIsShuffled());
+		query.setString(7, createQuizVO.getQuizTitle());
+
+		ResultSet rs = query.executeQuery();
+		
+		int quizId = 0;
+		while (rs.next()) {
+			quizId = rs.getInt("quizId");
+		}
+		
+		return quizId;
+	}
+	
 	
 }
