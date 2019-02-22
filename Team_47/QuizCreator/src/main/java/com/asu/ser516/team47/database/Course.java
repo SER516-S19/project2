@@ -5,7 +5,8 @@ package com.asu.ser516.team47.database;
  *
  * @author  Paul Horton
  * @version 1.0
- * @since   2019-02-22 */
+ * @since   2019-02-22
+ */
 public class Course {
     private int course_id;
     private String professor_fk;

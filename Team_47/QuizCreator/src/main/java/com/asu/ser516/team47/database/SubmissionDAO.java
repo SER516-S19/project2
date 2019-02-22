@@ -6,6 +6,7 @@ import java.util.List;
  * An interface for a Submission Data Access Object
  *
  * @author  Paul Horton
+ * @author  Trevor Forrey
  * @version 1.0
  * @since   2/22/19
  */
@@ -38,16 +39,26 @@ public interface SubmissionDAO {
     Submission getSubmission(int submission_id);
 
     /**
+     * Inserts a submission in the database based on the
+     * values in a business object
+     * @param submission
+     * @return a boolean representing a successful/failed insert
+     */
+    boolean insertSubmission(Submission submission);
+
+    /**
      * Updates a submission in the database based on the
      * values in a business object
      * @param submission a submission to update in the database
+     * @return a boolean representing a successful/failed update
      */
-    void updateSubmission(Submission submission);
+    boolean updateSubmission(Submission submission);
 
     /**
      * Deletes a submission in the database based on the
      * values in a business object
      * @param submission a submission to delete in the database
+     * @return a boolean representing a successful/failed deletion
      */
-    void deleteSubmission(Submission submission);
+    boolean deleteSubmission(Submission submission);
 }

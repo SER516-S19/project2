@@ -6,6 +6,7 @@ import java.util.List;
  * An interface for a Quiz Data Access Object
  *
  * @author  Paul Horton
+ * @author  Trevor Forrey
  * @version 1.0
  * @since   2/22/19
  */
@@ -31,16 +32,26 @@ public interface QuizDAO {
     Quiz getQuiz(int quiz_id);
 
     /**
+     * Inserts a quiz in the database based on the
+     * values in a business object
+     * @param quiz
+     * @return a boolean representing a successful/failed insert
+     */
+    boolean insertQuiz(Quiz quiz);
+
+    /**
      * Updates a quiz in the database based on the
      * values in a business object
      * @param quiz a quiz to update in the database
+     * @return a boolean representing a successful/failed update
      */
-    void updateQuiz(Quiz quiz);
+    boolean updateQuiz(Quiz quiz);
 
     /**
      * Deletes a quiz in the database based on the
      * values in a business object
      * @param quiz a quiz to delete in the database
+     * @return a boolean representing a successful/failed deletion
      */
-    void deleteQuiz(Quiz quiz);
+    boolean deleteQuiz(Quiz quiz);
 }

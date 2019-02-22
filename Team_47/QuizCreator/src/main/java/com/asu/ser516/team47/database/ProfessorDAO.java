@@ -6,8 +6,10 @@ import java.util.List;
  * An interface for a Professor Data Access Object
  *
  * @author  Paul Horton
+ * @author  Trevor Forrey
  * @version 1.0
- * @since   2019-02-22 */
+ * @since   2019-02-22
+ */
 public interface ProfessorDAO {
     /**
      * Gets all professors in the table
@@ -23,16 +25,26 @@ public interface ProfessorDAO {
     Professor getProfessor(String username);
 
     /**
+     * Inserts a professor in the database based on the
+     * values in a business object
+     * @param professor
+     * @return a boolean representing a successful/failed insert
+     */
+    boolean insertProfessor(Professor professor);
+
+    /**
      * Updates a professor in the database based on the
      * values in a business object
      * @param professor a professor to update in the database
+     * @return a boolean representing a successful/failed update
      */
-    void updateProfessor(Professor professor);
+    boolean updateProfessor(Professor professor);
 
     /**
      * Deletes a professor in the database based on the
      * values in a business object.
      * @param professor
+     * @return a boolean representing a successful/failed deletion
      */
-    void deleteProfessor(Professor professor);
+    boolean deleteProfessor(Professor professor);
 }
