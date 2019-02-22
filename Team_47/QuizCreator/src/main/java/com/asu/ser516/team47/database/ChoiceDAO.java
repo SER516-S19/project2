@@ -35,7 +35,7 @@ public interface ChoiceDAO {
 
     /**
      * Deletes a choice in the database basec on the
-     * values in a business object. 
+     * values in a business object.
      * @param choice
      */
     public void deleteChoice(Choice choice);
