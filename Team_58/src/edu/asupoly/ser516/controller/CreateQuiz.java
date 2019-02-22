@@ -86,9 +86,24 @@ public class CreateQuiz extends HttpServlet {
     		
     		query.executeUpdate();
     		
-    		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
-    		
-    		request.getRequestDispatcher("/createQuestions").forward(request, response);
+    		PreparedStatement stmt = connection.prepareStatement("select quizId from dbo.Quiz "
+					+ "where courseId = ? and isGraded = ? " + "and assignedTime = ? and " + "quizInstruction = ? and "
+					+ "quizScheduledDate = ? and isShuffled = ? and " + "quizTitle = ?");
+			stmt.setInt(1, courseId);
+			stmt.setBoolean(2, false);
+			stmt.setInt(3, assignedTime);
+			stmt.setString(4, quizInstructions);
+			stmt.setString(5, quizScheduledDate);
+			stmt.setBoolean(6, isShuffled);
+			stmt.setString(7, quizTitle);
+
+			ResultSet rs = stmt.executeQuery();
+			int quizId = 0;
+			while (rs.next()) {
+				quizId = rs.getInt("quizId");
+			}
+			session.setAttribute("quizId", quizId);
+			response.sendRedirect(request.getContextPath() + "/createQuestions.ftl");
     		
 		} catch (Exception e) {
 			e.printStackTrace();
