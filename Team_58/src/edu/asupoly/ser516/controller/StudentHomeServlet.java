@@ -43,6 +43,7 @@ public class StudentHomeServlet extends HttpServlet
             String schema = connection.getSchema();
             System.out.println("Successful connection - Schema: " + schema);
 
+            /*
             PreparedStatement query;
             query = connection.prepareStatement("select * from [dbo].[Course] A " +
                                                 " join [dbo].[UserCourseMApping] B" +
@@ -50,18 +51,25 @@ public class StudentHomeServlet extends HttpServlet
             query.setInt(1, 8);//student.getUserId());
 
             ResultSet resultData = query.executeQuery();
+            */
             
             PreparedStatement query2;
             query2 = connection.prepareStatement("select * from [dbo].[UserDetails] " +
-                                                "where B.userId = ?");
+                                                " where userId = ?");
             query2.setInt(1, 8);
 
             ResultSet userData = query2.executeQuery();
             
-            System.out.println(userData);
+            String userName = "";
+            while(userData.next())
+                userName = userData.getString("firstname");
+            UserVO userVO = new UserVO(userName, "", 1, true, "", "", 8);
+            
+            //System.out.println(userData);
 
-            List<CourseVO> list = new ArrayList<>();
+            //List<CourseVO> list = new ArrayList<>();
 
+            /*
             while (resultData.next()) {
                     int courseId = resultData.getInt("courseId");
                     String courseName = resultData.getString("courseName");
@@ -75,8 +83,10 @@ public class StudentHomeServlet extends HttpServlet
                     course.put(list.get(i).getCourseId(), list.get(i).getCourseName());
 
             //session.setAttribute("CourseHashMap", course);
-
-            System.out.println(req.getContextPath() + "/studentHome.ftl");
+            */
+            HttpSession session = req.getSession();
+            session.setAttribute("UserVO", userVO);
+            
 
             res.sendRedirect(req.getContextPath() + "/studentHome.ftl");
 

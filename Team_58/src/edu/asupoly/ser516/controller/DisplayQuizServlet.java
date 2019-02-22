@@ -4,16 +4,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import edu.asupoly.ser516.model.QuizVO;
 import edu.asupoly.ser516.model.QuestionsVO;
+import java.sql.PreparedStatement;
+import javax.servlet.annotation.WebServlet;
 
+@WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
 public class DisplayQuizServlet extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
 
@@ -37,7 +36,7 @@ public class DisplayQuizServlet extends HttpServlet{
             String question = "";
             while(userData.next())
                 question = userData.getString("question");
-            QuestionsVO questionsVO = new QuestionsVO(question, "", "", "");
+            QuestionsVO questionsVO = new QuestionsVO(question, "", "", "", "");
 
             HttpSession session = req.getSession();
             session.setAttribute("QuestionsVO", questionsVO);
@@ -63,9 +62,7 @@ public class DisplayQuizServlet extends HttpServlet{
 
         } catch(Exception e){
 
-            try(PrintWriter out = response.getWriter()) {
-                out.print(e.getMessage());
-            }
+            e.printStackTrace();
         }
 
     }
