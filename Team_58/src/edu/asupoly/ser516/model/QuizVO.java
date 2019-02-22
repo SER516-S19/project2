@@ -71,4 +71,18 @@ public class QuizVO {
 		this.quizTitle = quizTitle;
 	}
 	
+	/**
+	 * The following constructor is created to use quiz information in viewQuiz page
+	 * @author Aditya Samant
+	 * @param name name of the quiz
+	 * @param instructions instructions for the quiz
+	 * @param date the date at which the quiz is scheduled to run
+	 * @param graded whether the quiz is graded
+	 * */
+	public QuizVO(String name, String instructions, Date date, boolean graded) {
+		quizTitle = name;
+		quizInstruction = instructions;
+		quizScheduledDate = date;
+		isGraded = graded;
+	}
 }
