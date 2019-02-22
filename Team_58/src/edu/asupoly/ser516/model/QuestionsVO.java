@@ -4,25 +4,37 @@ package edu.asupoly.ser516.model;
  * QuestionVO is the plain old java file for Question
  * 
  * @version 1.0
- * @author shivamverma
- * @date 02/12/2019
+ * @author trupti khatavkar
+ * @date 02/22/2019
  */
 
 public class QuestionsVO {
-	private int qId;
-	private String question;
-	private String correctAnswer;
-	private String incorrectAnswer1;
-	private String incorrectAnswer2;
-	private String incorrectAnswer3;
-	private int totalPoints;
-
-	public int getTotalPoints() {
-		return totalPoints;
+	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
+			String incorrectAnswer3, String question) {
+		super();
+		this.qId = qId;
+		this.question = question;
+		this.correctAnswer = correctAnswer;
+		this.incorrectAnswer1 = incorrectAnswer1;
+		this.incorrectAnswer2 = incorrectAnswer2;
+		this.incorrectAnswer3 = incorrectAnswer3;
+		this.totalPoints = totalPoints;
 	}
 
-	public void setTotalPoints(int totalPoints) {
-		this.totalPoints = totalPoints;
+	public int getQuizId() {
+		return quizId;
+	}
+
+	public void setQuizId(int quizId) {
+		this.quizId = quizId;
+	}
+
+	public int getqId() {
+		return qId;
+	}
+
+	public void setqId(int qId) {
+		this.qId = qId;
 	}
 
 	public String getQuestion() {
@@ -64,43 +76,44 @@ public class QuestionsVO {
 	public void setIncorrectAnswer3(String incorrectAnswer3) {
 		this.incorrectAnswer3 = incorrectAnswer3;
 	}
-	
-	
-	public int getQuestionsId() {
-		return qId;
+
+	public int getTotalPoints() {
+		return totalPoints;
 	}
-	public QuestionsVO(String question, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
-			String incorrectAnswer3) {
+
+	public void setTotalPoints(int totalPoints) {
+		this.totalPoints = totalPoints;
+	}
+
+	public boolean isMCQ() {
+		return isMCQ;
+	}
+
+	public void setMCQ(boolean isMCQ) {
+		this.isMCQ = isMCQ;
+	}
+
+	private int quizId;
+	private int qId;
+	private String question;
+	private String correctAnswer;
+	private String incorrectAnswer1;
+	private String incorrectAnswer2;
+	private String incorrectAnswer3;
+	private int totalPoints;
+	private boolean isMCQ;
+
+	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
+			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
 		super();
+		this.quizId = quizId;
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.incorrectAnswer1 = incorrectAnswer1;
 		this.incorrectAnswer2 = incorrectAnswer2;
 		this.incorrectAnswer3 = incorrectAnswer3;
-	}
-	/**
-	 * Constructor to use for viewQuiz page. The constructor creates a question object that
-	 * is displayed by the viewQuiz.ftl for displaying question information.
-	 * 
-	 * @author Aditya Samant
-	 * @param questionId                       for database mapping when editing
-	 * @param points                           number of points for question
-	 * @param quest                            Question statement
-	 * @param ans                              Answer
-	 * @param wrongAns1, wrongAns2, wrongAns2  the incorrect choices
-	 * 
-	 * @see package edu.asupoly.ser516.controller.ViewQuizServlet.java
-	 * @see resources.viewQuiz.ftl
-	 *  
-	 * */
-	public QuestionsVO(int id, int points, String quest, String ans, String wrongAns1, String wrongAns2, String wrongAns3){
-		qId = id;
-		totalPoints = points;
-		question = quest;
-		correctAnswer = ans;
-		incorrectAnswer1 = wrongAns1;
-		incorrectAnswer2 = wrongAns2;
-		incorrectAnswer3 = wrongAns3;
+		this.totalPoints = totalPoints;
+		this.isMCQ = isMCQ;
 	}
 
 }

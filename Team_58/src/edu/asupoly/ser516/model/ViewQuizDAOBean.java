@@ -66,6 +66,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		try {
 			
 			if(result.next()) {
+				
 				quizName = result.getString("quizTitle");
 				instruction = result.getString("quizInstruction");
 				scheduledDate = result.getDate("quizScheduledDate");
@@ -117,14 +118,14 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 			   
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
-	 			   JSONObject jo2 = (JSONObject) parser.parse(answer);
+	 			   //JSONObject jo2 = (JSONObject) parser.parse(answer);
 	 			   
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
-	 			   String ans = (String) jo2.get("CORRECT");
+	 			   //String ans = (String) jo2.get("CORRECT");
 	 			   
-	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, question, ans, choice1, choice2, choice3);
+	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, question, answer, choice1, choice2, choice3);
 	 			   list.add(quiz);
 			   }
 		}catch(ParseException e) {
