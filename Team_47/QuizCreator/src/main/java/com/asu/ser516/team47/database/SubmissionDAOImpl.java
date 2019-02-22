@@ -193,7 +193,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("insert into submissions (quiz_fk, enrolled_fk," +
-                    " timeTaken, dateTaken, score, attempt) VALUES (?,?,?,?,?,?)");
+                    " time_taken, date_taken, score, attempt) VALUES (?,?,?,?,?,?)");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
             stmt.setInt(3, submission.getTime_taken());
@@ -234,8 +234,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update submissions set quiz_fk=?, enrolled_fk=?, timeTaken=?," +
-                    " dateTaken=?, score=?, attempt=? where submission_id=?");
+            stmt = conn.prepareStatement("update submissions set quiz_fk=?, enrolled_fk=?, time_taken=?," +
+                    " date_taken=?, score=?, attempt=? where submission_id=?");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
             stmt.setInt(3, submission.getTime_taken());
