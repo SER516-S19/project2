@@ -19,6 +19,7 @@ public class DisplayQuizServlet extends HttpServlet{
 
         try {
 
+            int questionID = req.getParameter("questionId");
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             String hostName = "showtimefinder.database.windows.net";
@@ -31,34 +32,25 @@ public class DisplayQuizServlet extends HttpServlet{
             String schema = connection.getSchema();
             System.out.println("Successful connection - Schema: " + schema);
 
-            PreparedStatement query2 = connection.prepareStatement("select questionId, question, totalChoices from [dbo].[questions]" + " where questionId = 1");
+            PreparedStatement query2 = connection.prepareStatement("select questionId, question, totalChoices from [dbo].[questions]" + " where questionId = ?");
+            query2.setInt(1, questionID);
             ResultSet userData = query2.executeQuery();
-            String question = "";
-            while(userData.next())
-                question = userData.getString("question");
-            QuestionsVO questionsVO = new QuestionsVO(question, "", "", "", "");
+            QuestionsVO questionsVO();
+
+            while(userData.next()){
+                String question = userData.getString("question");
+                int totalPoints = userData.getInt("totalPoints");
+
+                questionsVO = new QuestionsVO(questionID, totalPoints, question, "CORRECT", "INCORRECT", "INCORRECT", "INCORRECT");
+            }
+
 
             HttpSession session = req.getSession();
             session.setAttribute("QuestionsVO", questionsVO);
 
             res.sendRedirect(req.getContextPath() + "/displayQuiz.ftl");
 
-           /* Statement conStatement = connection.createStatement("select qu.guizId,q.questionId, q.question, q.totalchoices from [dbo].[Questions] INNER JOIN [dbo].[Quiz] ON where q.questionId = qu.questionId");
-            ArrayList questionList = null;
-            ArrayList arrList = new ArrayList();
-            ResultSet resultData = conStatement.executeQuery();
 
-            while(resultData.next()){
-                questionList = new ArrayList();
-                questionList.add(resultData.getString("questionId"));
-                questionList.add(resultData.getString("question"));
-                questionList.add(resultData.getString("totalChoices"));
-
-                arrList.add(questionList);
-            }
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("resources/displayQuiz.ftl");
-            req.setAttribute("quesList", arrList);
-            requestDispatcher.forward(req, res); */
 
         } catch(Exception e){
 
