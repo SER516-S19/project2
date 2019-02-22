@@ -12,8 +12,8 @@ Freemarker page to display createquiz page
 	<body>
 	<p class="fontColor"> CREATE QUIZ HERE </p>
 		<div class="box">
-		<form action="createQuiz" method = "POST">
-			  Quiz Title 
+			<form action="createQuiz" method = "POST">
+			  <p class="fontUp">Quiz Title </p>
 			  <input class="mediumInput" type="text" name="quizTitle">
 			  <br><br>
 			  Quiz Duration 
@@ -24,7 +24,7 @@ Freemarker page to display createquiz page
 			  <input class="smallInput" type="date" name="quizScheduledDate">
 			  <br><br>
 			  <p class="fontUp">Quiz Instructions</p>
-			  <input class="bigInput" type="text" name="quizInstructions">
+			  <input class="bigInput" type="textarea" rows="4" cols="50" name="quizInstructions">
 			  <br>
 			  <br>
 			  Do you want to shuffle questions?
