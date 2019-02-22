@@ -1,7 +1,6 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
 import edu.asu.ser516.blackBoard.quiz.bean.User;
 
