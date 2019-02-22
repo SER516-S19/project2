@@ -66,6 +66,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		try {
 			
 			if(result.next()) {
+				
 				quizName = result.getString("quizTitle");
 				instruction = result.getString("quizInstruction");
 				scheduledDate = result.getDate("quizScheduledDate");

@@ -39,6 +39,7 @@ Freemarker page to display CreateQuestions Page
   			<br><br>
   			<input class="button" type="submit" value="Add more Questions/ Submit">
   			<input class="button" type="submit" formaction="courseDashboard.ftl" formmethod="POST" value="Go to dashboard">
+  		
 		</form>
 		</div>
 	</body>
