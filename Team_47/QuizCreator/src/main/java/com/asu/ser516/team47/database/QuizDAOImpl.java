@@ -3,31 +3,19 @@ package com.asu.ser516.team47.database;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.ArrayList;
 
-import java.util.List;
-import java.util.Properties;
-
 /**
- * An Submission Database Abstraction
+ * An Quiz Database Abstraction
  *
  * @author  Trevor Forrey
  * @version 1.0
  * @since   2/22/19
  */
 public class QuizDAOImpl implements QuizDAO {
-    // Hardcoded (will switch to loading through props in future)
-    //    private static Properties __dbProperties;
-    private static String __jdbcUrl = "jdbc:sqlite:src/main/java/com/asu/ser516/team47/main/schema.db";
-    private static String __jdbcUser;
-    private static String __jdbcPasswd;
+    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all quizzes in the table
@@ -79,7 +67,7 @@ public class QuizDAOImpl implements QuizDAO {
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select * where course_fk = ?");
+            stmt = conn.prepareStatement("select * from quizzes where course_fk = ?");
             stmt.setInt(1, course_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -118,7 +106,7 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * where quiz_id = ?");
+            stmt = conn.prepareStatement("select * from quizzes where quiz_id = ?");
             stmt.setInt(1, quiz_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -258,7 +246,6 @@ public class QuizDAOImpl implements QuizDAO {
             stmt = conn.prepareStatement("delete from quizzes where quiz_id=?");
             stmt.setInt(1, quiz.getQuiz_id());
             stmt.executeUpdate();
-            // TODO (DELETE BEFORE SUBMISSION) May need to manually delete foreign keys in Questions
             conn.commit();
             return true;
         }
@@ -272,19 +259,6 @@ public class QuizDAOImpl implements QuizDAO {
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
-        }
-    }
-
-    static {
-        try {
-//            __dbProperties = new Properties();
-//            __dbProperties.load(SubmissionDAOImpl.class.getClassLoader().getResourceAsStream("database.properties"));
-//            __jdbcUrl    = __dbProperties.getProperty("jdbcUrl");
-//            __jdbcUser   = __dbProperties.getProperty("jdbcUser");
-//            __jdbcPasswd = __dbProperties.getProperty("jdbcPasswd");
-//            __jdbcDriver = __dbProperties.getProperty("jdbcDriver");
-        } catch (Throwable t) {
-            t.printStackTrace();
         }
     }
 }

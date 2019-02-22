@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A Professor Database Abstraction
+ * A Choice Database Abstraction
  *
- * @author  Paul Horton
+ * @author paulhorton
  * @version 1.0
- * @since   2/22/19
+ * @since 2/22/19
  */
-public class ProfessorDAOImpl implements ProfessorDAO{
+public class ChoiceDAOImpl implements ChoiceDAO{
     // Hardcoded (will switch to loading through props in future)
     //    private static Properties __dbProperties;
     private static String __jdbcUrl = "jdbc:sqlite:schema.db";
@@ -22,23 +22,23 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     private static String __jdbcPasswd;
 
     /**
-     * Gets all professors in the table
+     * Gets all choices in the table
      *
-     * @return all professor in the table
+     * @return all choices in the table
      */
-    public List<Professor> getAllProfessors() {
+    public List<Choice> getAllChoices() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Professor> rval = new ArrayList<Professor>();
+        List<Choice> rval = new ArrayList<Choice>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from professors");
+            stmt = conn.prepareStatement("select * from choices");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Professor(rs.getString(1), rs.getString(2), rs.getString(3),
+                rval.add(new Choice(rs.getInt(1), rs.getInt(2), rs.getBoolean(3),
                         rs.getString(4)));
             }
         }
@@ -58,24 +58,62 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     }
 
     /**
-     * Gets a professor based on it's username
+     * Gets all choices linked to a question
      *
-     * @param username the id of the professor
-     * @return a professor with the username
+     * @param question_fk the question key
+     * @return all choices linked to the question
      */
-    public Professor getProfessor(String username) {
+    public List<Choice> getQuestionChoices(int question_fk) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Professor rval = null;
+        List<Choice> rval = new ArrayList<Choice>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from professors");
+            stmt = conn.prepareStatement("select * from choices where question_fk = ?");
+            stmt.setInt(1,question_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval = new Professor(rs.getString(1), rs.getString(2), rs.getString(3),
+                rval.add(new Choice(rs.getInt(1), rs.getInt(2), rs.getBoolean(3),
+                        rs.getString(4)));
+            }
+        }
+        catch (Exception se) {
+            se.printStackTrace();
+            return null;
+        }
+        finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (stmt != null) { stmt.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) { e.printStackTrace(); }
+        }
+
+        return rval;
+    }
+
+    /**
+     * Gets a choice based on it's id
+     *
+     * @param choice_id the id of the choice
+     * @return a choice with the id
+     */
+    public Choice getChoice(int choice_id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Choice rval = null;
+
+        try {
+            conn = DriverManager.getConnection(__jdbcUrl);
+            stmt = conn.prepareStatement("select * from choices where choice_id = ?");
+            stmt.setInt(1, choice_id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                rval = new Choice(rs.getInt(1), rs.getInt(2), rs.getBoolean(3),
                         rs.getString(4));
             }
         }
@@ -95,25 +133,23 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     }
 
     /**
-     * Inserts a professor in the database based on the
-     * values in a business object
+     * Inserts a choice into the database
      *
-     * @param professor
-     * @return a boolean representing a successful/failed insert
+     * @param choice a choice to insert in the database
+     * @return a boolean representing a successful insertion
      */
-    public boolean insertProfessor(Professor professor) {
+    public boolean insertChoice(Choice choice) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into professors (username, firstname, lastname, hashedpass)" +
-                    " VALUES (?,?,?,?)");
-            stmt.setString(1, professor.getUsername());
-            stmt.setString(2, professor.getFirstname());
-            stmt.setString(3, professor.getLastname());
-            stmt.setString(4, professor.getHashedpass());
+            stmt = conn.prepareStatement("insert into choices (quesiton_fk, correct, content)" +
+                    " VALUES (?,?,?)");
+            stmt.setInt(1, choice.getQuestion_fk());
+            stmt.setBoolean(2, choice.isCorrect());
+            stmt.setString(3,choice.getContent());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows > 0) {
                 return true;
@@ -134,24 +170,25 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     }
 
     /**
-     * Updates a professor in the database based on the
+     * Updates a choice in the database based on the
      * values in a business object
      *
-     * @param professor a professor to update in the database
-     * @return a boolean representing a successful/failed update
-     */    public boolean updateProfessor(Professor professor) {
+     * @param choice a choice to update in the database
+     * @return a boolean representing a successful update
+     */
+    public boolean updateChoice(Choice choice) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update professors set username=?, firstname=?, lastname=?," +
-                    " hashedpass=? where username=?");
-            stmt.setString(1, professor.getUsername());
-            stmt.setString(2, professor.getFirstname());
-            stmt.setString(3, professor.getLastname());
-            stmt.setString(4, professor.getHashedpass());
+            stmt = conn.prepareStatement("update choices set question_fk=?, correct=?, content=?," +
+                    " where choice_id=?");
+            stmt.setInt(1, choice.getQuestion_fk());
+            stmt.setBoolean(2, choice.isCorrect());
+            stmt.setString(3,choice.getContent());
+            stmt.setInt(4,choice.getChoice_id());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows > 0) {
                 return true;
@@ -172,12 +209,13 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     }
 
     /**
-     * Deletes a professor in the database based on the
+     * Deletes a choice in the database basec on the
      * values in a business object.
      *
-     * @param professor
-     * @return a boolean representing a successful/failed deletion
-     */    public boolean deleteProfessor(Professor professor) {
+     * @param choice
+     * @return a boolean representing a successful deletion
+     */
+    public boolean deleteChoice(Choice choice) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -185,8 +223,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
             conn = DriverManager.getConnection(__jdbcUrl);
             conn.setAutoCommit(false);
 
-            stmt = conn.prepareStatement("delete from professors where username=?");
-            stmt.setString(1, professor.getUsername());
+            stmt = conn.prepareStatement("delete from choices where choice_id=?");
+            stmt.setInt(1, choice.getChoice_id());
             stmt.executeUpdate();
             conn.commit();
             return true;
