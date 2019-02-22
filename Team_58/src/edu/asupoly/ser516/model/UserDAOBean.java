@@ -62,8 +62,8 @@ public class UserDAOBean implements UserDAO {
 				UserVO userVO = new UserVO(firstname, lastname, phonenumber, isStudent, email, username, userId);
 				list.add(userVO);
 			}
-		}catch(Exception e){
-			e.printStackTrace();
+		}catch(SQLException sexc){
+			sexc.printStackTrace();
 		}
 		finally {
 			resultData = null;
