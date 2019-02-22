@@ -41,6 +41,7 @@ public class StudentServices {
 
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		QuestionDAO questionDAO = new QuestionDAO();
+		ResponseStatistics stats;
 		//questionDAO.addQuestion(question);
 		//stats = new ResponseStatistics(user,quiz,question,answer);
 		//System.out.println(stats);
@@ -57,7 +58,7 @@ public class StudentServices {
 			
 			
 		}
-		return "success";
+		return "/success";
 		
 	}
 	

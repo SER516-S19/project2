@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/** Controller class for student page
+/**
+ * Controller class for student page
  * 
  * @author : Sourabh Siddharth
  * @version : 1.0
@@ -20,7 +21,6 @@ import javax.servlet.http.HttpSession;
  */
 public class StudentServlet extends HttpServlet {
 
-
 	/**
 	 * 
 	 */
@@ -28,9 +28,6 @@ public class StudentServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		resp.setStatus(200);
-		ResponseStatistics stats;
 		String queryParams = req.getQueryString();
 		String quizName = queryParams.split("=")[1];
 		QuizDAO quizDAO = new QuizDAO();
@@ -38,20 +35,32 @@ public class StudentServlet extends HttpServlet {
 		StudentServices service = new StudentServices();
 		String questionAnswerJSON = service.getQuestionDetails(quizId);
 		HttpSession session = req.getSession();
-		session.setAttribute("studentResponseJSON",questionAnswerJSON);
+		session.setAttribute("studentResponseJSON", questionAnswerJSON);
+		resp.setContentType("text/html");
+		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String var = "[{\"questionId\":3,\"quiz\":{\"quizId\":1,\"quizName\":\"Quiz1\",\"quizInstructions\":\"Read\",\"quizType\":\"Graded\",\"quizTimeLimit\":\"12:30:00 AM\",\"isShuffled\":true,\"isPublished\":false},\"question\":\"Question3\",\"correctAnswerId\":0,\"isMultiple\":true,\"points\":10}]";
-		String view = "error";
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String view = "/error";
 		HttpSession session = request.getSession();
 		String studentResponse = (String) session.getAttribute("studentResponseJSON");
 		System.out.print(studentResponse);
 		StudentServices service = new StudentServices();
-		view = service.feedAnswers(studentResponse);
-		request.getRequestDispatcher(view).forward(request, response);
+		try {
+			view = service.feedAnswers(studentResponse);
+			response.setContentType("text/html");
+			if ("/success".equals(view))
+				response.setStatus(HttpServletResponse.SC_CREATED);
+			else
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			request.getRequestDispatcher(view).forward(request, response);
+		} catch (Exception exception) {
+			response.setContentType("text/html");
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			request.getRequestDispatcher("/error").forward(request, response);
+		}
 	}
-	
+
 }
