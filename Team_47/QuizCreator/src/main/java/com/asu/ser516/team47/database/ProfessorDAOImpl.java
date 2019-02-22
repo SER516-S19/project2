@@ -23,6 +23,7 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 
     /**
      * Gets all professors in the table
+     *
      * @return all professor in the table
      */
     public List<Professor> getAllProfessors() {
@@ -58,6 +59,7 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 
     /**
      * Gets a professor based on it's username
+     *
      * @param username the id of the professor
      * @return a professor with the username
      */
@@ -95,6 +97,7 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     /**
      * Inserts a professor in the database based on the
      * values in a business object
+     *
      * @param professor
      * @return a boolean representing a successful/failed insert
      */
@@ -105,7 +108,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into professors (username, firstname, lastname, hashedpass) VALUES (?,?,?,?)");
+            stmt = conn.prepareStatement("insert into professors (username, firstname, lastname, hashedpass)" +
+                    " VALUES (?,?,?,?)");
             stmt.setString(1, professor.getUsername());
             stmt.setString(2, professor.getFirstname());
             stmt.setString(3, professor.getLastname());
@@ -132,6 +136,7 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     /**
      * Updates a professor in the database based on the
      * values in a business object
+     *
      * @param professor a professor to update in the database
      * @return a boolean representing a successful/failed update
      */    public boolean updateProfessor(Professor professor) {
@@ -169,6 +174,7 @@ public class ProfessorDAOImpl implements ProfessorDAO{
     /**
      * Deletes a professor in the database based on the
      * values in a business object.
+     *
      * @param professor
      * @return a boolean representing a successful/failed deletion
      */    public boolean deleteProfessor(Professor professor) {
