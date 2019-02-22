@@ -6,6 +6,7 @@ import java.util.List;
  * An interface for a Question Data Access Object
  *
  * @author  Paul Horton
+ * @author  Trevor Forrey
  * @version 1.0
  * @since   2/22/19
  */
@@ -31,16 +32,26 @@ public interface QuestionDAO {
     Question getQuestion(int question_id);
 
     /**
+     * Inserts a question in the database based on the
+     * values in a business object
+     * @param question
+     * @return a boolean representing a successful/failed insert
+     */
+    boolean insertQuestion(Question question);
+
+    /**
      * Updates a question in the database based on the
      * values in a business object
      * @param question a question to update in the database
+     * @return a boolean representing a successful/failed update
      */
-    void updateQuestion(Question question);
+    boolean updateQuestion(Question question);
 
     /**
      * Deletes a question in the database based on the
      * values in a business object
      * @param question a question to delete in the database
+     * @return a boolean representing a successful/failed deletion
      */
-    void deleteQuestion(Question question);
+    boolean deleteQuestion(Question question);
 }

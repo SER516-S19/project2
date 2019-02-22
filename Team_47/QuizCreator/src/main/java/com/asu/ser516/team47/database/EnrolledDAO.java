@@ -6,6 +6,7 @@ import java.util.List;
  * An interface for a Enrolled Data Access Object
  *
  * @author  Paul Horton
+ * @author  Trevor Forrey
  * @version 1.0
  * @since   2019-02-22
  */
@@ -38,16 +39,26 @@ public interface EnrolledDAO {
     Enrolled getEnrolled(int Enrolled_id);
 
     /**
+     * Inserts a Enrolled in the database based on the
+     * values in a business object
+     * @param enrolled
+     * @return a boolean representing a successful/failed insert
+     */
+    boolean insertEnrolled(Enrolled enrolled);
+
+    /**
      * Updates a Enrolled in the database based on the
      * values in a business object
      * @param enrolled
+     * @return a boolean representing a successful/failed update
      */
-    void updateEnrolled(Enrolled enrolled);
+    boolean updateEnrolled(Enrolled enrolled);
 
     /**
      * Deletes a Enrolled in the database based on the
      * values in a business object.
      * @param enrolled
+     * @return a boolean representing a successful/failed deletion
      */
-    void deleteEnrolled(Enrolled enrolled);
+    boolean deleteEnrolled(Enrolled enrolled);
 }
