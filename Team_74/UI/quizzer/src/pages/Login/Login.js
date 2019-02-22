@@ -32,7 +32,8 @@ class Login extends React.Component {
     localStorage.clear();
     // the initial application state
     this.state = {
-      user: null
+      user: null,
+      type: 0
     }
   }
   
@@ -47,8 +48,15 @@ class Login extends React.Component {
         password,
       }
     })
+
+    if (username.toString().localeCompare("Prof") === 0){
+      this.state.type = 1;
+    }else{
+      this.state.type = 0;
+    }
     localStorage.setItem('username',username);
     localStorage.setItem('password',password);
+    localStorage.setItem('type',this.state.type);
   }
   
   render() {
