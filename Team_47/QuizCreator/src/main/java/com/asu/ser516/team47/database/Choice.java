@@ -11,7 +11,6 @@ public class Choice {
     private String content;
 
     /**
-     * A constructor for a choice
      * @param choice_id the key of the choice
      * @param question_fk the key of the question the choice is for
      * @param correct if the choice is correct
@@ -23,66 +22,35 @@ public class Choice {
         this.correct = correct;
         this.content = content;
     }
-    /**
-     * Gets the choice_id
-     * @return the key value for a choice
-     */
+
     public int getChoice_id() {
         return choice_id;
     }
 
-    /**
-     * Sets a new key value for a choice
-     * @param choice_id
-     */
     public void setChoice_id(int choice_id) {
         this.choice_id = choice_id;
     }
 
-    /**
-     * Gets the key value of the linked question
-     * @return the key value of the linked quesiton
-     */
     public int getQuestion_fk() {
         return question_fk;
     }
 
-    /**
-     * Sets the key value for a linked quesiton
-     * @param question_fk
-     */
     public void setQuestion_fk(int question_fk) {
         this.question_fk = question_fk;
     }
 
-    /**
-     * Gets if the choice is marked as correct
-     * @return if the choice is correct
-     */
     public boolean isCorrect() {
         return correct;
     }
 
-    /**
-     * sets if the question is correct
-     * @param correct
-     */
     public void setCorrect(boolean correct) {
         this.correct = correct;
     }
 
-    /**
-     * gets the content of a choice
-     * @return
-     */
     public String getContent() {
         return content;
     }
 
-    /**
-     * Sets the content
-     * @param content
-     */
     public void setContent(String content) {
         this.content = content;
     }
