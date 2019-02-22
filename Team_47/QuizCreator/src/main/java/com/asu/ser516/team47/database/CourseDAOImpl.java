@@ -142,6 +142,7 @@ public class CourseDAOImpl implements CourseDAO {
     public boolean insertCourse(Course course) {
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -152,11 +153,17 @@ public class CourseDAOImpl implements CourseDAO {
             stmt.setString(2, course.getPrefix());
             stmt.setString(3, course.getSuffix());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
+            if (updatedRows <= 0) {
                 return false;
             }
+
+            // Update course id to SQLite generated id
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                course.setCourse_id(rs.getInt(1));
+            }
+            return true;
         }
         catch (Exception se) {
             se.printStackTrace();
