@@ -108,6 +108,26 @@ Freemarker page : stylesheet
 		padding: 3%;
 		border: 1px solid grey;
 		margin: auto;
+		padding: 10px;
+  		box-shadow: 2px 4px 18px 10px #ADADAD;
+	}
+	
+	.boxRight {
+		background-color: rgb(247, 246, 246  );
+		width: 20%;
+		height: 55%;
+		border: 1px solid grey;
+		padding: 3%;
+		border: 1px solid grey;
+		margin: auto;
+		position absolute;
+		margin-right: 5%;
+		padding: 10px;
+  		box-shadow: 2px 4px 18px 10px #ADADAD;
+	}
+	
+	.shiftTop {
+		margin-top: -20%;
 	}
 
 </style>

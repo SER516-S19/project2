@@ -28,7 +28,7 @@
   			<input type="radio" name="isMCQ">Single Answer
   			<br><br>
   			<input type="submit" value="Add more Questions/ Submit">
-  			<input type="submit" formaction="courseDashboard.ftl" formmethod="POST" value="Go to dashboard">
+  			<input type="submit" formaction="courseDashboard" formmethod="POST" value="Go to dashboard">
 		</form>
 	</body>
 </html>
