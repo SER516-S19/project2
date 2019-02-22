@@ -104,6 +104,17 @@
     <servlet-name>CreateQuestionsServlet</servlet-name>
     <url-pattern>/createQuestions</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ViewQuizServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.ViewQuizServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 		
+  <servlet-mapping>
+    <servlet-name>ViewQuizServlet</servlet-name>
+    <url-pattern>/viewQuiz</url-pattern>
+  </servlet-mapping>
 
 <welcome-file-list>
 <welcome-file>/login.jsp</welcome-file>
