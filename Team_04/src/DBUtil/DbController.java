@@ -104,5 +104,22 @@ public class DbController {
     }
     //endregion
 
+    public static void Test() {
+        DbController controller = DbController.getInstance();
+        ResultSet resultSet = controller.executeQuery("select * from quiz_content");
+
+        try {
+            if (resultSet != null) {
+                while(resultSet.next()) {
+                    System.out.println(resultSet.getString("ques_desc"));
+                }
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error in iterating result set");
+            e.printStackTrace();
+        }
+    }
+
 }
 
