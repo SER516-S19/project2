@@ -14,14 +14,11 @@ public final class ViewContentListHelper {
     public static List<Integer> getQuizList() {
         String tableName = "quiz_content";
         String colName = "quiz_id";
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<>();
         String queryString = getQueryString(tableName, colName);
-        try (ResultSet rs = DataOps.getData(queryString)) {
-            while (rs.next()) {
-                list.add(rs.getInt(colName));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        ResultSet rs = DataOps.getData(queryString);
+        while (rs.next()) {
+            list.add(rs.getInt(colName));
         }
         return list;
     }
