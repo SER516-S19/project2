@@ -42,9 +42,9 @@ public interface SubmissionDAO {
      * Inserts a submission in the database based on the
      * values in a business object
      * @param submission
-     * @return an int representing the generated id of the db row
+     * @return a boolean representing a successful insert
      */
-    int insertSubmission(Submission submission);
+    boolean insertSubmission(Submission submission);
 
     /**
      * Updates a submission in the database based on the
