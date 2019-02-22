@@ -41,7 +41,10 @@ public class ViewQuizServlet extends HttpServlet{
 		
 	}
 	/**
-	 *Grabs quizId from courseDashboard 
+	 *Grabs quizId from courseDashboard and renders viewQuiz page
+	 *
+	 *The viewQuiz page displays what the selected quiz name is, its scheduled date whether it is graded or not graded
+	 *and displays the question, the correct answer, the total points each question is worth and 
 	 *@param req  Request made to server
 	 *@param res  Responses from server
 	 *
@@ -49,10 +52,12 @@ public class ViewQuizServlet extends HttpServlet{
 	 *@throws ServletException
 	 * */
 	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException{
-		   //Get general information
+		   
 	       HttpSession session = req.getSession();
 	       List<QuestionsVO> quizQuestions = new ArrayList<>();
 	       int quizId = Integer.parseInt(req.getParameter("Quiz"));
+	       
+	       
 	       //Get today's date for comparison
 	       Calendar cal = Calendar.getInstance();
 	       cal.set(Calendar.HOUR_OF_DAY, 0);
@@ -68,6 +73,10 @@ public class ViewQuizServlet extends HttpServlet{
 	       String instruction = "";
 	       Date scheduledDate = new Date(0);
 	       boolean graded = true;
+	       
+	       //counter to addup and get total points for the quiz
+	       int total = 0;
+	       
 	       try {
 	    	   //The information in the following items will be placed securely on a seperate file.
 	    	   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -106,22 +115,26 @@ public class ViewQuizServlet extends HttpServlet{
 	   			   //Parse Json String objects to json Object
 	   			   JSONParser parser = new JSONParser();
 	   			   JSONObject jo = (JSONObject) parser.parse(choices);
+	   			   JSONObject jo2 = (JSONObject) parser.parse(answer);
+	   			   
 	   			   String choice1 = (String) jo.get("incorrectAnswer1");
 	   			   String choice2 = (String) jo.get("incorrectAnswer2");
 	   			   String choice3 = (String) jo.get("incorrectAnswer3");
-	   			   
-	   			   JSONObject jo2 = (JSONObject) parser.parse(answer);
 	   			   String ans = (String) jo2.get("CORRECT");
+	   			   
+	   			   total += points;
+	   			   
 	   			   //Add to Quiz and Questions Objects
 	   			   QuestionsVO quest = new QuestionsVO(questionId, points, question, ans, choice1, choice2, choice3);
 	   			   quizQuestions.add(quest);
 	   			   
 	   			   //QuizDB results
+	   			   if(result.getRow()==1) {
 		   		   quizName = result.getString("quizTitle");
 				   instruction = result.getString("quizInstruction");
 				   scheduledDate = result.getDate("quizScheduledDate");
 				   graded = result.getBoolean("isGraded"); 
-	   			    
+	   			   }
 	   		   }
 	   		   
 	   		   if (scheduledDate.before(today)) {
@@ -130,7 +143,6 @@ public class ViewQuizServlet extends HttpServlet{
 	   		   
 	   		   QuizVO quizInfo = new QuizVO(quizId, quizName);
 	   		   
-	   		   System.out.println("Is After: "+ isAfter);
 	   		   //Add Quiz info to Session attributes
 	   		   session.setAttribute("Id", quizId);
 	   		   session.setAttribute("Grade", graded);
@@ -139,6 +151,7 @@ public class ViewQuizServlet extends HttpServlet{
 	   		   session.setAttribute("isAfter", isAfter);
 	   		   session.setAttribute("QuizQuestions",quizQuestions);
 	   		   session.setAttribute("quizInfo", quizInfo);
+	   		   session.setAttribute("Total", total);
 	   		
 	   		   res.sendRedirect(req.getContextPath()+"/viewQuiz.ftl");
 	       }catch(Exception e) {

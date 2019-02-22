@@ -1,7 +1,10 @@
 <#-- Author: Aditya Samant
-	Renders viewQuiz page which displays questions of a particular quiz along with quiz information
-	An edit button is present next to each question that allows professor to edit ungraded quiz questions 
+	Renders viewQuiz page which displays question information such as question description, answer possible choices and points
+	 of a particular quiz along with quiz information such as quiz name, quiz status, scheduled date and total points
+	An edit button shows up next to each question that allows professor to edit ungraded quiz questions 
 	that have not passed the schedule date. 
+	Ungraded quizzes also show the grade quiz button that transfers professor to grade quiz page for grading.
+	 
 	version: 1.1
   -->
 <html>
@@ -17,21 +20,23 @@
 	</style>
 	<body>
 		<h1>
-		   Title: ${Session.quizInfo.getQuizTitle()}
+		   TITLE: ${Session.quizInfo.getQuizTitle()}
 		</h1>
-		<h2>
-		
-		Status: <#if Session.Grade == false> 
+		<h3>
+		   TOTAL POINTS: ${Session.Total}
+		</h3>
+		<h3>
+		STATUS: <#if Session.Grade == false> 
                         Ungraded
 					<#else>
 						Graded
 					</#if>
-		</h2>
+		</h3>
 		<h3> 
-			Scheduled Time: ${Session.Schedule}
+			SCHEDULED DATE: ${Session.Schedule}
 		</h3>
         <h4> 
-        	Instruction: ${Session.Directions}
+        	${Session.Directions}
         </h4>
 		<table>
 			<tr>
@@ -55,7 +60,7 @@
 				   <td>${questions.getIncorrectAnswer3()}</td>
 				   <td>${questions.getTotalPoints()}</td>
 				   <#if Session.Grade == false>
-				   <td><button>edit</button></td>
+				   		<td><button>edit</button></td>
 				   </#if>
 	            </tr>
 	        </#list>
