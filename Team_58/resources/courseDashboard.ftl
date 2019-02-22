@@ -1,10 +1,10 @@
 <html>
 	<body>
          <p> ${Session.courseName} </p>
-         <form action="ViewQuizServlet" method="POST">
+         <form action="viewQuiz" method="POST">
          <select name="Quiz">
          <#list Session.QuizHashMap as quizId, quizTitle>
-          <option name=${quizId}> ${quizTitle}</option>
+          <option value=${quizId}> ${quizTitle}</option>
            </#list>
          </select>
          <input type ="submit" value="ViewQuiz"/>

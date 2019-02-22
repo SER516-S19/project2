@@ -68,9 +68,19 @@ public class QuestionsVO {
 		this.incorrectAnswer3 = incorrectAnswer3;
 	}
 	/**
+	 * Constructor to use for viewQuiz page. The constructor creates a question object that
+	 * is displayed by the viewQuiz.ftl for displaying question information.
 	 * 
+	 * @author Aditya Samant
+	 * @param questionId                       for database mapping when editing
+	 * @param points                           number of points for question
+	 * @param quest                            Question statement
+	 * @param ans                              Answer
+	 * @param wrongAns1, wrongAns2, wrongAns2  the incorrect choices
 	 * 
-	 * 
+	 * @see package edu.asupoly.ser516.controller.ViewQuizServlet.java
+	 * @see resources.viewQuiz.ftl
+	 *  
 	 * */
 	public QuestionsVO(int id, int points, String quest, String ans, String wrongAns1, String wrongAns2, String wrongAns3){
 		qId = id;

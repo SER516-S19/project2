@@ -21,10 +21,13 @@ import javax.servlet.http.HttpSession;
 
 import edu.asupoly.ser516.model.QuestionsVO;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+
 
 
 /**
- * The following code will render the View Quiz Page
+ * Servlet code
  * 
  * @author Aditya Samant
  * @version 1.0
@@ -35,16 +38,24 @@ public class ViewQuizServlet extends HttpServlet{
 		
 	}
 	/**
-	 * 
+	 * Grabs quizId from courseDashboard 
+	 *@param req  Request made to server
+	 *@param res  Responses from server
 	 *
 	 * @throws IOException
 	 * @throws ServletException
 	 * */
-	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException{
 		   //Get general information
-	       HttpSession sesh = req.getSession();
+	       HttpSession session = req.getSession();
 	       List<QuestionsVO> quizQuestions = new ArrayList<>();
 	       int quizId = Integer.parseInt(req.getParameter("Quiz"));
+	       
+	       //Initialize Quiz Information
+	       String quizName = "";
+	       String instruction = "";
+	       Date scheduledDate = new Date(0);
+	       boolean graded = true;
 	       try {
 	    	   //The information in the following items will be placed securely on a seperate file.
 	    	   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -66,42 +77,52 @@ public class ViewQuizServlet extends HttpServlet{
 	   		   query = connection.prepareStatement("select A.*, B.isGraded, B.quizTitle, B.quizScheduledDate, B.quizInstruction " 
 	   				+ "from [dbo].[Questions] A "
 	   				+ "join [dbo].[Quiz] B "
-	   				+ "on A.quizId = B.quizId"
-	   		   		+ "where B.quizId = ?");
+	   				+ "on A.quizId = B.quizId "
+	   		   		+ "where A.quizId = ?");
 	   		   query.setInt(1, quizId);
 	   		   ResultSet result = query.executeQuery();
 	   		   
-	   		   //QuizDB results
-	   		   String quizName = result.getString("quizTitle");
-	   		   String instruction = result.getString("quizInstruction");
-			   Date scheduledDate = result.getDate("quizScheduledDate");
-			   boolean graded = result.getBoolean("isGraded");
-			   
 	   		   while (result.next()) {
 	   			   //Questions DB results 
 	   			   int questionId = result.getInt("questionId");
 	   			   int points = result.getInt("totalPoints");
 	   			   String question = result.getString("question");
-	   			   String answer = result.getString("actualAnswer");
-	   			   String choices = result.getString("totalChoices");
+	   			   //Values read as strings but actually JSON
+	   			   String answer = result.getString("actualAnswer"); 
+	   			   String choices = result.getString("totalChoices"); 
 	   			   
-	   			   //Parse Json String object to json Object
-	   			   JSONObject jo = new JSONObject(choices);
-	   			   String choice1 = jo.getString("IncorrectAnswer1");
-	   			   String choice2 = jo.getString("IncorrectAnswer2");
-	   			   String choice3 = jo.getString("IncorrectAnswer3");
+	   			   //Parse Json String objects to json Object
+	   			   JSONParser parser = new JSONParser();
+	   			   JSONObject jo = (JSONObject) parser.parse(choices);
+	   			   String choice1 = (String) jo.get("incorrectAnswer1");
+	   			   String choice2 = (String) jo.get("incorrectAnswer2");
+	   			   String choice3 = (String) jo.get("incorrectAnswer3");
 	   			   
-	   			   
+	   			   JSONObject jo2 = (JSONObject) parser.parse(answer);
+	   			   String ans = (String) jo2.get("CORRECT");
 	   			   //Add to Quiz and Questions Objects
-	   			   QuestionsVO quest = new QuestionsVO(questionId, points, question, answer, choice1, choice2, choice3);
+	   			   QuestionsVO quest = new QuestionsVO(questionId, points, question, ans, choice1, choice2, choice3);
 	   			   quizQuestions.add(quest);
+	   			   
+	   			   //QuizDB results
+		   		   quizName = result.getString("quizTitle");
+				   instruction = result.getString("quizInstruction");
+				   scheduledDate = result.getDate("quizScheduledDate");
+				   graded = result.getBoolean("isGraded"); 
+
+	   			    
 	   		   }
-	   		   sesh.setAttribute("Name", quizName);
-	   		   sesh.setAttribute("Grade", graded);
-	   		   sesh.setAttribute("Schedule", scheduledDate);
-	   		   sesh.setAttribute("Directions", instruction);
 	   		   
-	   		   sesh.setAttribute("QuizQuestions",quizQuestions);
+			   System.out.println("QUIZ NAME "+ quizName);
+	   		   System.out.println("INSTRUCTION"+ instruction);
+	   		   //Add Quiz info to Session attributes
+	   		   session.setAttribute("Name", quizName);
+	   		   session.setAttribute("Grade", graded);
+	   		   session.setAttribute("Schedule", scheduledDate);
+	   		   session.setAttribute("Directions", instruction);
+	   		   
+	   		   session.setAttribute("QuizQuestions",quizQuestions);
+	   		
 	   		   res.sendRedirect(req.getContextPath()+"/viewQuiz.ftl");
 	       }catch(Exception e) {
 	    	   e.printStackTrace();
