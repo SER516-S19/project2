@@ -7,8 +7,6 @@
 		<h2 class="fontColor">Course Dashboard</h2>
          <div class="box">
          <p class="smallFontColor"> ${Session.courseName} </p>
-         
-         
 	         <form action="DUMMYSERVLET" method="POST">
 	         <select class="options" name="Quiz">
 	         <#list Session.QuizHashMap as quizId, quizTitle>
@@ -21,7 +19,7 @@
 	         <input class="button" type ="submit" value="CreateQuiz"/>
 	         </form>
 	          <form>
-	         <input class="button" type ="submit" value="Statistics"/>
+	         <input class="buttonRight" type ="submit" value="Statistics"/>
 	         </form>
 	     </div>
 	</body>
