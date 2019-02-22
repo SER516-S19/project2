@@ -4,57 +4,8 @@
 <%@ page language="java" import="com.servlet.*"%>
 <!DOCTYPE html>
 <html>
-<style type = "text/css">
+<link rel="stylesheet" href="CSS/Instruction.css" type="text/css">
 
-body {
-	background:#FAFAD2;
-}
-
-#content {
-	margin: auto;
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    right: 50px;
-    bottom: 50px;
-    border-style: solid; 
-}
-
-#content #title {
-	margin: auto;
-	position: absolute;
-	top: -400px;
-    left: 0px;
-    right: 340px;
-    bottom: 0;
-}
-
-#content #instruc{
-	width:500px;
-	height:200px;
-}
-
-#content #instrcu_all{
-	position: absolute;
-	margin: auto;
-	top: 100px;
-    left: 200px;
-    right: 0;
-    bottom: 0;
-}
-
-#content #attemp
-{
-	position: absolute;
-	margin: auto;
-	top: 400px;
-    left: 200px;
-    right: 0px;
-    bottom: 0px;
-}
-
-
-</style>
 <head>
 <meta charset="UTF-8">
 <title>Instruction</title>
@@ -71,10 +22,11 @@ body {
 	String instruction = "Testinstruction";
 	String type = "Type";
 	boolean mulAttemp = true;
+	String mulbutton = "button";
 %>
 <div id = "content">
 
-<input id = "title" type = "text" value="sssssssssss" disabled="disabled">
+<input id = "title" type = "text" value="Title" disabled="disabled">
 
 <div id ="instrcu_all">
 <p>Quiz Instruction</p>
@@ -85,6 +37,7 @@ body {
 <input id = "multiAttemps" type="checkbox" checked = "<%=mulAttemp %>" onclick="return false;">
 Allow Multiple Attemps
 </label>
+<input id = "mulbtn" type="<%=mulbutton %>" value="retake" >
 
 </div>
 </body>
