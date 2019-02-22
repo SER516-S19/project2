@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.asupoly.ser516.model.CreateQuizVO;
+import edu.asupoly.ser516.model.QuizDAOBean;
+import edu.asupoly.ser516.model.QuizVO;
+
 /**
  * Class CreateQuiz Servlet is a controller that routes the user to Create Quiz
  * after Course Dashboard.
@@ -60,54 +64,27 @@ public class CreateQuizServlet extends HttpServlet {
     		HttpSession session = request.getSession();
     		int courseId = (int) session.getAttribute("courseId");
     		
-    		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-            String hostName = "showtimefinder.database.windows.net"; // update me
-            String dbName = "ser516_db"; // update me
-            String user = "scrum_mates@showtimefinder"; // update me
-            String password = "Azure@Cloud"; // update me
-            String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
-                + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-            Connection connection = null;
-    		connection = DriverManager.getConnection(url);
-    		String schema;
-    		schema = connection.getSchema();
-    		System.out.println("Successful connection - Schema: " + schema);
+    		/**
+    		 * running a query 
+    		 * to get insert quiz details in table
+    		 */
     		
-    		PreparedStatement query;
-    		query = connection.prepareStatement("insert into [dbo].[Quiz] (courseId, isGraded, assignedTime,"
-    				+ "quizInstruction, quizScheduledDate, isShuffled, quizTitle)"
-    				+ " values (?,?,?,?,?,?,?)");
-    		query.setInt(1,courseId);
-    		query.setBoolean(2, false);
-    		query.setInt(3, assignedTime);
-    		query.setString(4, quizInstructions);
-    		query.setString(5, quizScheduledDate);
-    		query.setBoolean(6, isShuffled);
-    		query.setString(7, quizTitle);
+    		CreateQuizVO createQuizVO = new CreateQuizVO(courseId, quizTitle, quizInstructions, quizScheduledDate, 0, isShuffled, assignedTime, false);
     		
-    		query.executeUpdate();
+    		QuizDAOBean obj = new QuizDAOBean();
+    		obj.creatingQuiz(createQuizVO);
     		
     		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
-    		
-    		request.getRequestDispatcher("/createQuestions.ftl").forward(request, response);
-    		PreparedStatement stmt = connection.prepareStatement("select quizId from dbo.Quiz "
-					+ "where courseId = ? and isGraded = ? " + "and assignedTime = ? and " + "quizInstruction = ? and "
-					+ "quizScheduledDate = ? and isShuffled = ? and " + "quizTitle = ?");
-			stmt.setInt(1, courseId);
-			stmt.setBoolean(2, false);
-			stmt.setInt(3, assignedTime);
-			stmt.setString(4, quizInstructions);
-			stmt.setString(5, quizScheduledDate);
-			stmt.setBoolean(6, isShuffled);
-			stmt.setString(7, quizTitle);
 
-			ResultSet rs = stmt.executeQuery();
-			int quizId = 0;
-			while (rs.next()) {
-				quizId = rs.getInt("quizId");
-			}
+    		/**
+    		 * running a query 
+    		 * to get the value of quizId in session
+    		 */
+    		
+    		int quizId = obj.gettingQuizId(createQuizVO);
+    		
 			session.setAttribute("quizId", quizId);
+			//request.getRequestDispatcher("/createQuestions.ftl").forward(request, response);
 			response.sendRedirect(request.getContextPath() + "/createQuestions.ftl");
     		
 		} catch (Exception e) {
