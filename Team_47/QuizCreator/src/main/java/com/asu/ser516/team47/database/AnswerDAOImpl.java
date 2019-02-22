@@ -214,6 +214,7 @@ public class AnswerDAOImpl implements AnswerDAO{
     public boolean insertAnswer(Answer answer) {
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -224,11 +225,17 @@ public class AnswerDAOImpl implements AnswerDAO{
             stmt.setInt(2, answer.getQuestion_fk());
             stmt.setInt(3, answer.getChoice_fk());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
+            if (updatedRows <= 0) {
                 return false;
             }
+
+            // Return SQLite generated id of inserted value
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                answer.setAnswer_id(rs.getInt(1));
+            }
+            return true;
         }
         catch (Exception se) {
             se.printStackTrace();

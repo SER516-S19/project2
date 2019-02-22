@@ -141,6 +141,7 @@ public class ChoiceDAOImpl implements ChoiceDAO{
     public boolean insertChoice(Choice choice) {
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -151,11 +152,17 @@ public class ChoiceDAOImpl implements ChoiceDAO{
             stmt.setBoolean(2, choice.isCorrect());
             stmt.setString(3,choice.getContent());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
+            if (updatedRows <= 0) {
                 return false;
             }
+
+            // Return SQLite generated id of inserted value
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                choice.setChoice_id(rs.getInt(1));
+            }
+            return true;
         }
         catch (Exception se) {
             se.printStackTrace();
