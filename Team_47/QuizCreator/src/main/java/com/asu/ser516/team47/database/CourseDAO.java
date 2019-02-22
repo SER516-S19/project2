@@ -13,12 +13,14 @@ import java.util.List;
 public interface CourseDAO {
     /**
      * Gets all the courses in the database
+     *
      * @return all courses
      */
     List<Course> getAllCourses();
 
     /**
      * Gets all courses a professor teaches
+     *
      * @param professor_fk the professor's username
      * @return all courses a professor teaches
      */
@@ -26,6 +28,7 @@ public interface CourseDAO {
 
     /**
      * Gets a course based on it's id
+     *
      * @param course_id a course id
      * @return the course business object
      */
@@ -34,6 +37,7 @@ public interface CourseDAO {
     /**
      * Inserts a course in the database based on the
      * values in a business object
+     *
      * @param course
      * @return a boolean representing a successful/failed insert
      */
@@ -42,6 +46,7 @@ public interface CourseDAO {
     /**
      * Updates a course in the database based on the
      * values in a business object
+     *
      * @param course
      * @return a boolean representing a successful/failed update
      */
@@ -50,6 +55,7 @@ public interface CourseDAO {
     /**
      * Deletes a course in the database based on the
      * values in a business object.
+     * 
      * @param course
      * @return a boolean representing a successful/failed deletion
      */
