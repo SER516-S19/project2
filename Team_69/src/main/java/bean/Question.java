@@ -35,6 +35,16 @@ public class Question {
 		this.isMultiple = isMultiple;
 		this.points = points;
 	}
+	
+	public Question(Quiz quiz,int questionId, String question, int correctAnswerId, boolean isMultiple, int points) {
+		super();
+		this.quiz = quiz;
+		this.question = question;
+		this.correctAnswerId = correctAnswerId;
+		this.isMultiple = isMultiple;
+		this.points = points;
+		this.questionId = questionId;
+	}
 
 	public Question() {
 	}
