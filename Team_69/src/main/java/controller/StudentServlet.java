@@ -46,10 +46,11 @@ public class StudentServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String var = "[{\"questionId\":3,\"quiz\":{\"quizId\":1,\"quizName\":\"Quiz1\",\"quizInstructions\":\"Read\",\"quizType\":\"Graded\",\"quizTimeLimit\":\"12:30:00 AM\",\"isShuffled\":true,\"isPublished\":false},\"question\":\"Question3\",\"correctAnswerId\":0,\"isMultiple\":true,\"points\":10}]";
 		String view = "error";
-		//HttpSession session = request.getSession();
-		//String studentResponse = (String) request.getParameter("studentResponseJSON");
+		HttpSession session = request.getSession();
+		String studentResponse = (String) session.getAttribute("studentResponseJSON");
+		System.out.print(studentResponse);
 		StudentServices service = new StudentServices();
-		view = service.feedAnswers(var);
+		view = service.feedAnswers(studentResponse);
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 	
