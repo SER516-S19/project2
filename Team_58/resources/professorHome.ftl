@@ -1,6 +1,13 @@
+<!-- 
+Freemarker page to display Professor details
+@authour Shivam Verma
+@version 1.0
+@date 02/20/2019
+ -->
+
 <html>
 	<body>
-         <p> ${Session.profFirstName} </p>
+         <p> ${Session.userVO.getFirstname()}</p>
          <form action="courseDashboard" method="POST">
          <select name="Course">
          <#list Session.CourseHashMap as courseId, courseName>

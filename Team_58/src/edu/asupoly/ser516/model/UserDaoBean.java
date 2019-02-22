@@ -1,39 +1,55 @@
 package edu.asupoly.ser516.model;
 
+import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
+
+/**
+ * Class ConnectionFactory to get connection object to establish database connection.
+ * Home after login.
+ * 
+ * @author shivamverma
+ * @version 1.1
+ * @date 02/21/2019
+ */
+
 
 public class UserDaoBean implements UserDao {
 
+	public static Properties dbProperties = new Properties();
+	
+	public UserDaoBean() {
+		try {
+			dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("database.properties"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Override
-	public List<UserVO> validateAndGet(String userName, String passWord) throws ClassNotFoundException {
+	public List<UserVO> validateAndGet(String userName, String passWord) throws ClassNotFoundException, SQLException, IOException {
+		
 		List<UserVO> list = new ArrayList<UserVO>();
-		// Connect to database
 		
-	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-        String hostName = "showtimefinder.database.windows.net"; // update me
-        String dbName = "ser516_db"; // update me
-        String user = "scrum_mates@showtimefinder"; // update me
-        String password = "Azure@Cloud"; // update me
-        String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
-            + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-        Connection connection = null;
-		
-		try{ 
-			connection = DriverManager.getConnection(url);
-            String schema = connection.getSchema();
-            System.out.println("Successful connection - Schema: " + schema);
-            
-			PreparedStatement query=connection.prepareStatement("select * from [dbo].[UserDetails] where username=? and password=?");  
+        Connection connection = ConnectionFactory.getConnection();
+        ResultSet resultData = null;
+        PreparedStatement query = null;
+        
+        System.out.println("validateAndGet"+ connection);
+        System.out.println(dbProperties.getProperty("getUserDetailQuery"));
+        
+		try{             
+			query=connection.prepareStatement(dbProperties.getProperty("getUserDetailQuery"));  
 			query.setString(1,userName);  
 			query.setString(2,passWord);  
-			      
-			ResultSet resultData = query.executeQuery();
+			 
+			resultData = query.executeQuery();
 		
 			while(resultData.next()) {
 				String firstname = resultData.getString("firstname");
@@ -43,11 +59,16 @@ public class UserDaoBean implements UserDao {
 				String email = resultData.getString("email");
 				String username = resultData.getString("username");
 				int userId = resultData.getInt("userId");
-				UserVO obj = new UserVO(firstname, lastname, phonenumber, isStudent, email, username, userId);
-				list.add(obj);
+				UserVO userVO = new UserVO(firstname, lastname, phonenumber, isStudent, email, username, userId);
+				list.add(userVO);
 			}
 		}catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();
+		}
+		finally {
+			resultData = null;
+			query = null;
+			connection = null;
 		}
 		return list;
 	}

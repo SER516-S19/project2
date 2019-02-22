@@ -1,6 +1,7 @@
 package edu.asupoly.ser516.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,37 +20,29 @@ public class LoginServlet extends HttpServlet  {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException {
-	          
+		
 	    String userName=req.getParameter("username");  
-	    String passWord=req.getParameter("userpass");  
-	    
-	    System.out.println(userName+" "+passWord);
+	    String passWord=req.getParameter("userpass");
 	    
 	    UserDaoBean udb = new UserDaoBean();
 	    
 	    List<UserVO> data = null;
-		try {
+		
+	    try {
 			data = udb.validateAndGet(userName, passWord);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-	    boolean isStudent = data.get(0).isStudent();
 	    
-	    System.out.println(data.get(0).getFirstname());
-	    System.out.println(isStudent);
-	    
-	    if(data!=null && isStudent){
+	    if(data.size()!=0 && !data.get(0).isStudent()){
 	    	req.setAttribute("UserVO", data.get(0));
 			RequestDispatcher rd=req.getRequestDispatcher("/professorHome");
 			rd.forward(req,res);
 	    }    
 	    else{  
-	        System.out.print("Sorry username or password error");  
-			/*
-			 * RequestDispatcher rd=req.getRequestDispatcher("index.html"); rd.include(req,
-			 * res);
-			 */  
+	    	/**
+	    	 *  Call Student Profile HomePage
+	    	 */
 	    }  
 	}
 }
