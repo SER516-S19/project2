@@ -33,6 +33,7 @@ public class CreateQuiz extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
+
 			String quizTitle = request.getParameter("quizTitle");
 			String quizInstructions = request.getParameter("quizInstructions");
 			/*
