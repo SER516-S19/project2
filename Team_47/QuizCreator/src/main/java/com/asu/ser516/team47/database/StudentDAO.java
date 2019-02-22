@@ -11,26 +11,26 @@ public interface StudentDAO {
      * Gets all students in the table
      * @return all student in the table
      */
-    public List<Student> getAllStudents();
+    List<Student> getAllStudents();
 
     /**
      * Gets a student based on it's username
      * @param username the id of the student
      * @return a student with the username
      */
-    public Student getStudent(String username);
+    Student getStudent(String username);
 
     /**
      * Updates a student in the database based on the
      * values in a business object
      * @param student a student to update in the database
      */
-    public void updateStudent(Student student);
+    void updateStudent(Student student);
 
     /**
      * Deletes a student in the database based on the
      * values in a business object.
      * @param student
      */
-    public void deleteStudent(Student student);
+    void deleteStudent(Student student);
 }

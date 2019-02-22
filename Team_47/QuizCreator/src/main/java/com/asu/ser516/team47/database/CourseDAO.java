@@ -11,33 +11,33 @@ public interface CourseDAO {
      * Gets all the courses in the database
      * @return all courses
      */
-    public List<Course> getAllCourses();
+    List<Course> getAllCourses();
 
     /**
      * Gets all courses a professor teaches
      * @param professor_fk the professor's username
      * @return all courses a professor teaches
      */
-    public List<Course> getProfessorsCourses(String professor_fk);
+    List<Course> getProfessorsCourses(String professor_fk);
 
     /**
      * Gets a course based on it's id
      * @param course_id a course id
-     * @return the course buisness object
+     * @return the course business object
      */
-    public Course getCourse(int course_id);
+    Course getCourse(int course_id);
 
     /**
      * Updates a course in the database based on the
      * values in a business object
      * @param course
      */
-    public void updateCourse(Course course);
+    void updateCourse(Course course);
 
     /**
      * Deletes a course in the database based on the
      * values in a business object.
      * @param course
      */
-    public void deleteCourse(Course course);
+    void deleteCourse(Course course);
 }
