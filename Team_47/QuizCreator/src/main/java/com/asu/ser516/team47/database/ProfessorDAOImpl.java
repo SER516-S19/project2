@@ -181,7 +181,6 @@ public class ProfessorDAOImpl implements ProfessorDAO{
             stmt = conn.prepareStatement("delete from professors where username=?");
             stmt.setString(1, professor.getUsername());
             stmt.executeUpdate();
-            // TODO (DELETE BEFORE SUBMISSION) May need to manually delete foreign keys in Answers
             conn.commit();
             return true;
         }
