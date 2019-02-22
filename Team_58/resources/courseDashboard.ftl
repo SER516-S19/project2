@@ -4,23 +4,29 @@ Freemarker page to display CourseDashboard
 @version 1.0
 @date 02/21/2019
  -->
-
 <html>
+	<head>
+		<#include "stylesheet.css">
+	</head>
+	
 	<body>
-         <p> ${Session.courseName} </p>
-         <form action="ViewQuizServlet" method="POST">
-         <select name="Quiz">
-         <#list Session.QuizHashMap as quizId, quizTitle>
-          <option value=${quizId}> ${quizTitle}</option>
-           </#list>
-         </select>
-         <input type ="submit" value="ViewQuiz"/>
-         </form>
-         <form action="createQuiz" method="GET">
-         <input type ="submit" value="CreateQuiz"/>
-         </form>
-          <form>
-         <input type ="submit" value="Statistics"/>
-         </form>
+		<h2 class="fontColor">Course Dashboard</h2>
+         <div class="box">
+         <p class="smallFontColor"> ${Session.courseName} </p>
+	         <form action="DUMMYSERVLET" method="POST">
+	         <select class="options" name="Quiz">
+	         <#list Session.QuizHashMap as quizId, quizTitle>
+	          <option value=${quizId}> ${quizTitle}</option>
+	           </#list>
+	         </select>
+	         <input class="button" type ="submit" value="ViewQuiz"/>
+	         </form>
+	         <form action="createQuiz" method="GET">
+	         <input class="button" type ="submit" value="CreateQuiz"/>
+	         </form>
+	          <form>
+	         <input class="buttonRight" type ="submit" value="Statistics"/>
+	         </form>
+	     </div>
 	</body>
 </html>
