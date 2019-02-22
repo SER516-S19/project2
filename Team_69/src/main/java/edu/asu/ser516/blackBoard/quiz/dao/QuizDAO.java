@@ -18,18 +18,18 @@ public class QuizDAO {
        Transaction transaction = null;
        List<String> quizNames = new ArrayList<String>();
        try  {
-//           Session session = HibernateUtil.getSessionFactory().openSession();
-//           transaction = session.beginTransaction();
-//           CriteriaBuilder builder = session.getCriteriaBuilder();
-//           CriteriaQuery<String> query = builder.createQuery(String.class);
-//           Root<Quiz> root = query.from(Quiz.class);
-//           query.select(root.<String>get("quizName"));
-//           Query<String> q=session.createQuery(query);
-//           quizNames=q.getResultList();
-//           for (String name : quizNames) {
-//               System.out.println(name);
-//           }
-//           transaction.commit();
+           Session session = HibernateUtil.getSessionFactory().openSession();
+           transaction = session.beginTransaction();
+           CriteriaBuilder builder = session.getCriteriaBuilder();
+           CriteriaQuery<String> query = builder.createQuery(String.class);
+           Root<Quiz> root = query.from(Quiz.class);
+           query.select(root.<String>get("quizName"));
+           Query<String> q=session.createQuery(query);
+           quizNames=q.getResultList();
+           for (String name : quizNames) {
+               System.out.println(name);
+           }
+           transaction.commit();
        } catch (HibernateException e) {
            e.printStackTrace();
            if (transaction != null) {

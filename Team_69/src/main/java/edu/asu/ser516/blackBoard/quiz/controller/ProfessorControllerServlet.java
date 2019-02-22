@@ -63,12 +63,13 @@ public class ProfessorControllerServlet extends HttpServlet{
 		
             response.sendRedirect("views/professorDetails.jsp");
             
-        }else if("addQuestion".equals(flag)) {
+        }else if("Save".equals(flag)) {
         	String question = request.getParameter("question");
         	String option1 = request.getParameter("option1");
         	String option2 = request.getParameter("option2");
         	String option3 = request.getParameter("option3");
         	String option4 = request.getParameter("option4");
+        	String[] correctanswers = (String[]) request.getParameterValues("options");
         	
         	Time t = new Time(343443);
         	Quiz quiz = new Quiz("Quiz1","Hello", "Graded",t, false, false );
@@ -77,15 +78,15 @@ public class ProfessorControllerServlet extends HttpServlet{
         	questionDAO.addQuestion(q);
         	System.out.println("Here I AM");
         	
+        	for(String s: correctanswers)
+        		System.out.println("CorrectAnswe ID is   - " + s);
+        	
         	String contextURL = request.getContextPath();
         	String addQuestionPageURL = "./ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
         	request.getRequestDispatcher("views/AddQuestions.jsp").forward(request, response);
         	return;
         }
-		
-		
-
     }
 
 }
