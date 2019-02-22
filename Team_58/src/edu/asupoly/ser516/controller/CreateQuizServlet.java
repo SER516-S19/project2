@@ -18,45 +18,47 @@ import javax.servlet.http.HttpSession;
  * after Course Dashboard.
  * 
  * @author carnic
- * @version 1.0
- * @date 02/20/2019
+ * @version 1.1
+ * @date 02/21/2019
  **/
 
-public class CreateQuiz extends HttpServlet {
+public class CreateQuizServlet extends HttpServlet {
 
+	/**
+	 * This method is to get CreateQuiz UI page 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException
+	 */
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.sendRedirect(request.getContextPath() + "/createQuiz.ftl");
+		
+		response.sendRedirect(request.getContextPath() + "/createQuiz.ftl");	
 	}
+	
+	/**
+	 * This method is to post CreateQuiz 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException, ServletException
+	 */
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
 		try {
         	String quizTitle = request.getParameter("quizTitle");
         	String quizInstructions = request.getParameter("quizInstructions");
-        	/*int year = Integer.parseInt(request.getParameter("year"));
-        	int month = Integer.parseInt(request.getParameter("month"));
-        	int day = Integer.parseInt(request.getParameter("date"));*/
         	String quizScheduledDate = request.getParameter("quizScheduledDate");
-        	
-        	@SuppressWarnings("deprecation")
-			//Date quizScheduledDate = new Date(year, month, day);
         	int assignedTime = Integer.parseInt(request.getParameter("assignedTime"));
         	boolean isShuffled = Boolean.valueOf(request.getParameter("isShuffled"));
-        	//int courseId = Integer.parseInt(request.getParameter("courseId"));
-        	
-        	System.out.println("Quiz Title : " + quizTitle);
-        	System.out.println("Quiz Instructions : " + quizInstructions);
-        	System.out.println("Quiz Duration : " + assignedTime);
-        	System.out.println("Shuffle questions? " + isShuffled);
-        	System.out.println("Scheduled Date " + quizScheduledDate);
-        	//System.out.println("Quiz Scheduled date " + scheduledDate);
         	
     		HttpSession session = request.getSession();
     		int courseId = (int) session.getAttribute("courseId");
-        	
     		
     		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
@@ -88,7 +90,7 @@ public class CreateQuiz extends HttpServlet {
     		
     		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
     		
-    		request.getRequestDispatcher("/createQuestions").forward(request, response);
+    		request.getRequestDispatcher("/createQuestions.ftl").forward(request, response);
     		
 		} catch (Exception e) {
 			e.printStackTrace();
