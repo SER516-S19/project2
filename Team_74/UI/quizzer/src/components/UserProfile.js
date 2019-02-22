@@ -1,4 +1,4 @@
-const Profile = (function() {
+const UserProfile = (function() {
     var full_name = "";
 
     var getName = function() {
@@ -17,4 +17,4 @@ const Profile = (function() {
 
 })();
 
-export default Profile;
+export default UserProfile;
