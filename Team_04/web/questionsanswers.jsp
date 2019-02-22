@@ -50,9 +50,13 @@
     <div><%=question.getQues_desc()%></div>
     <%
         for (AnswerOption answer : question.getAnswerOptions()){
+
+           request.setAttribute("ansId", answer.getAns_id());
+           request.setAttribute("ansDesc", answer.getAns_desc());
     %>
     <%--<h1><%= count++ %></h1>--%>
-    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answer.getAns_desc() %></input></div>
+    <form method ="post">
+    <div class="options"><input type=<%=buttonType%> class="optionTag" name="selectedOptionId" value="<%= answer.getAns_id() %>"><%= answer.getAns_desc() %></input></div>
     <%}%>
 
 
@@ -61,7 +65,7 @@
 
 </div>
 <div class="navBtn">
-    <form method ="get">
+
 <input type="button" text="previous" value="previous" class="prevBtn"/>
 <%--<input type="button" text="next" value="next" class="nextBtn"/>--%>
     <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn"/>
