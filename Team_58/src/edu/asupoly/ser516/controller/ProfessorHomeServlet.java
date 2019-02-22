@@ -3,6 +3,7 @@ package edu.asupoly.ser516.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,8 @@ import edu.asupoly.ser516.model.UserVO;
  **/
 
 public class ProfessorHomeServlet extends HttpServlet{
+	
+	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
@@ -33,19 +36,30 @@ public class ProfessorHomeServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		UserVO userVO = (UserVO) req.getAttribute("UserVO");
+		
 		HttpSession session = req.getSession();
+		
 		session.setAttribute("userVO", userVO);
 		
 		try {
 			CourseDAOBean courseBean = new CourseDAOBean();
+			if(courseBean.equals(null)) {
+				
+			}
+			
 			List<CourseVO> courseVO = courseBean.getCourseAssignedToProfessor(userVO);
+			if(courseVO.isEmpty()) {
+				session.setAttribute("displayMessage", "No Courses have been assigned to the professor");
+				log.info("No Courses have been assigned to the professor.");
+			}
+			
 			HashMap<Integer, String> course = new HashMap<>();
 			for (int i = 0; i < courseVO.size(); i++)
 				course.put(courseVO.get(i).getCourseId(), courseVO.get(i).getCourseName());
 			session.setAttribute("CourseHashMap", course);
 			res.sendRedirect(req.getContextPath() + "/professorHome.ftl");
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 		}
 	}
 }
