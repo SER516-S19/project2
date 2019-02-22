@@ -5,9 +5,9 @@ import java.util.List;
 /**
  * An interface for a Submission Data Access Object
  *
- * @author paulhorton
+ * @author  Paul Horton
  * @version 1.0
- * @since 2/22/19
+ * @since   2/22/19
  */
 public interface SubmissionDAO {
     /**
@@ -32,8 +32,8 @@ public interface SubmissionDAO {
 
     /**
      * Gets a submission based on it's submission_id
-     * @param submission_id the id of the subission_id
-     * @return a submession with the submission_id
+     * @param submission_id the id of the submission_id
+     * @return a submission with the submission_id
      */
     Submission getSubmission(int submission_id);
 
