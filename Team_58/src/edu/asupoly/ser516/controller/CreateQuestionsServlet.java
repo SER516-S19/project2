@@ -72,7 +72,6 @@ public class CreateQuestionsServlet extends HttpServlet {
 			System.out.println("question: " + correctAnswer);
 			System.out.println("question: " + incorrectAnswer1);
 
-			CreateQuizVO obj = (CreateQuizVO) req.getAttribute("CreateQuizVO");
 			HttpSession session = req.getSession();
 			int quizId = (int) session.getAttribute("quizId");
 

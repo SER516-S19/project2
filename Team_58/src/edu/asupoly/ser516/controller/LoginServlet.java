@@ -3,6 +3,7 @@ package edu.asupoly.ser516.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,7 +32,7 @@ public class LoginServlet extends HttpServlet  {
 	    try {
 			data = udb.validateAndGet(userName, passWord);
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 	    
 	    if(data.size()!=0 && !data.get(0).isStudent()){
