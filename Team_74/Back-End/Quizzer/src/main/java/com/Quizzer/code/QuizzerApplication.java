@@ -1,4 +1,4 @@
-package com.Quizzer.code.app;
+package com.Quizzer.code;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

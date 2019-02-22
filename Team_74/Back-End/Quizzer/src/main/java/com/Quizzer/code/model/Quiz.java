@@ -1,13 +1,16 @@
 package com.Quizzer.code.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Quiz")
-public class Quiz {
+public class Quiz implements Serializable{
 	
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
 	private String instruction;
@@ -15,7 +18,9 @@ public class Quiz {
 	private List<Question> questions;
 	private int time;
 	private int totalAttempts;
-	public Quiz(String id, String instruction, String name, List<Question> questions, int time, int totalAttempts) {
+	private int totalMarks;
+	
+	public Quiz(String id, String instruction, String name, List<Question> questions, int time, int totalAttempts, int totalMarks) {
 		super();
 		this.id = id;
 		this.instruction = instruction;
@@ -23,6 +28,10 @@ public class Quiz {
 		this.questions = questions;
 		this.time = time;
 		this.totalAttempts = totalAttempts;
+		this.totalMarks = totalMarks;
+	}
+	public Quiz() {
+		
 	}
 	public String getId() {
 		return id;
@@ -59,6 +68,12 @@ public class Quiz {
 	}
 	public void setTotalAttempts(int totalAttempts) {
 		this.totalAttempts = totalAttempts;
+	}
+	public int getTotalMarks() {
+		return totalMarks;
+	}
+	public void setTotalMarks(int totalMarks) {
+		this.totalMarks = totalMarks;
 	}
 	
 	
