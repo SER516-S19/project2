@@ -64,8 +64,8 @@
   </servlet>
 
 	<servlet>
-    <servlet-name>CreateQuiz</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.CreateQuiz</servlet-class>
+    <servlet-name>CreateQuizServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.CreateQuizServlet</servlet-class>
     <init-param>
     	<param-name></param-name>
     	<param-value></param-value>
@@ -74,7 +74,7 @@
   </servlet>
  		
   <servlet-mapping>
-    <servlet-name>CreateQuiz</servlet-name>
+    <servlet-name>CreateQuizServlet</servlet-name>
     <url-pattern>/createQuiz</url-pattern>
   </servlet-mapping>
   
