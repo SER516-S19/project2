@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet  {
 	    try {
 			data = udb.validateAndGet(userName, passWord);
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 	    
 	    if(data.size()!=0 && !data.get(0).isStudent()){
