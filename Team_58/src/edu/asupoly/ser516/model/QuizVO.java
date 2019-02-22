@@ -71,4 +71,16 @@ public class QuizVO {
 		this.quizTitle = quizTitle;
 	}
 	
+	/**
+	 * The following constructor is created to pass quiz information to make it easier 
+	 * to grade quiz and prevent an unecessary database call for quiz information.
+	 * @author Aditya Samant
+	 * @param quizId id of quiz
+	 * @param quizTitle name of quiz
+	 * */
+	public QuizVO(int id, String name) {
+		quizId = id;
+		quizTitle = name;
+	}
+	
 }

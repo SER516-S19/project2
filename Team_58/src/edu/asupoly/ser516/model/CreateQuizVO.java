@@ -1,21 +1,29 @@
 package edu.asupoly.ser516.model;
 
+/**
+ * CreateQuizVO is the plain old java class for CreateQuiz.
+ * 
+ * @version 1.1
+ * @author Carnic
+ * @date 02/21/2019
+ */
+
 public class CreateQuizVO {
 	private int courseId;
 	private String quizTitle;
-	private String quizInstructons;
+	private String quizInstructions;
 	private String quizScheduledDate;
 	private int quizId;
-	private int isShuffled;
+	private boolean isShuffled;
 	private int assignedTime;
-	private int isGraded;
+	private boolean isGraded;
 
-	public CreateQuizVO(int courseId, String quizTitle, String quizInstructons, String quizScheduledDate, int quizId,
-			int isShuffled, int assignedTime, int isGraded) {
+	public CreateQuizVO(int courseId, String quizTitle, String quizInstructions, String quizScheduledDate, int quizId,
+			boolean isShuffled, int assignedTime, boolean isGraded) {
 		super();
 		this.courseId = courseId;
 		this.quizTitle = quizTitle;
-		this.quizInstructons = quizInstructons;
+		this.quizInstructions = quizInstructions;
 		this.quizScheduledDate = quizScheduledDate;
 		this.quizId = quizId;
 		this.isShuffled = isShuffled;
@@ -39,12 +47,12 @@ public class CreateQuizVO {
 		this.quizTitle = quizTitle;
 	}
 
-	public String getQuizInstructons() {
-		return quizInstructons;
+	public String getQuizInstructions() {
+		return quizInstructions;
 	}
 
-	public void setQuizInstructons(String quizInstructons) {
-		this.quizInstructons = quizInstructons;
+	public void setQuizInstructions(String quizInstructions) {
+		this.quizInstructions = quizInstructions;
 	}
 
 	public String getQuizScheduledDate() {
@@ -63,11 +71,11 @@ public class CreateQuizVO {
 		this.quizId = quizId;
 	}
 
-	public int getIsShuffled() {
+	public boolean getIsShuffled() {
 		return isShuffled;
 	}
 
-	public void setIsShuffled(int isShuffled) {
+	public void setIsShuffled(boolean isShuffled) {
 		this.isShuffled = isShuffled;
 	}
 
@@ -79,11 +87,11 @@ public class CreateQuizVO {
 		this.assignedTime = assignedTime;
 	}
 
-	public int getIsGraded() {
+	public boolean getIsGraded() {
 		return isGraded;
 	}
 
-	public void setIsGraded(int isGraded) {
+	public void setIsGraded(boolean isGraded) {
 		this.isGraded = isGraded;
 	}
 

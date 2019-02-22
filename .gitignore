@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /.metadata/
 <<<<<<< HEAD
 /Team_58/nbproject/private/
@@ -7,3 +8,16 @@
 >>>>>>> Team_58_Professor
 /Project2/nbproject/private/
 /Team_58/Project2/nbproject/private/
+=======
+
+/bin/
+/.classpath
+/.settings/
+/.project
+../.recommenders/
+*web/.DS_Store
+.DS_Store
+build.properties
+
+
+>>>>>>> Team_58_Professor

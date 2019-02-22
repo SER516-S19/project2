@@ -1,39 +1,39 @@
-<html>
+<!-- 
+Freemarker page to display createquiz page
+@authour Carnic
+@version 1.0
+@date 02/21/2019
+ -->
 
-	<style type="text/css">
-		body{
-			background-color:#EEEEEE;
-			text-align: center;
-			font-size: 125%;
-			color: #3F4851;
-			font-family:Tahoma, Ubuntu, sans-serif;
-			}
-	</style>
+<html>
+	<head>
+		<#include "stylesheet.css">
+	</head>
 	<body>
-	<h1> Create Quiz here </h1>
-		<form action="createQuiz" method = "POST">
-			  Enter Quiz title :<br>
-			  <input type="text" name="quizTitle">
+	<p class="fontColor"> CREATE QUIZ HERE </p>
+		<div class="box">
+			<form action="createQuiz" method = "POST">
+			  <p class="fontUp">Quiz Title </p>
+			  <input class="mediumInput" type="text" name="quizTitle">
 			  <br><br>
-			  Enter Quiz Duration :<br>
-			  <input type="text" name="assignedTime">
+			  Quiz Duration 
+			  &nbsp&nbsp
+			  <input class="smallInput" type="text" name="assignedTime">
 			  <br><br>
-			  <br>
-			  Enter Quiz Date :<br>
-			  <input type="text" name="date">
-			  <input type="text" name="month">
-			  <input type="text" name="year">
+			  Quiz Date &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp
+			  <input class="smallInput" type="date" name="quizScheduledDate">
 			  <br><br>
-			  Enter Quiz Instructions :<br>
-			  <input type="text" name="quizInstructions"
+			  <p class="fontUp">Quiz Instructions</p>
+			  <input class="bigInput" type="textarea" rows="4" cols="50" name="quizInstructions">
 			  <br>
 			  <br>
-			  Choose if you want to shuffle
+			  Do you want to shuffle questions?
 			  <br>
 			  <input type="radio" name="isShuffled" checked> shuffle<br>
-			  <input type="radio" name="isShuffled"> dont shuffle<br>
-			  <br><br>
-			  <input type="submit" value="Submit">  
+			  <input type="radio" name="isShuffled"> don't shuffle<br>
+			  <br>
+			  <input class="button" type="submit" value="Submit"> 
 			</form> 
+		</div>
 	</body>
 </html>
