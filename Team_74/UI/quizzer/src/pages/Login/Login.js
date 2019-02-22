@@ -4,14 +4,12 @@ import { Redirect } from 'react-router-dom';
 
 class LoginForm extends React.Component {
   
-  // Using a class based component here because we're accessing DOM refs
- 
+  // Class based component to access DOM refs
   handleSignIn(e) {
     e.preventDefault()
     let username = this.refs.username.value;
     let password = this.refs.password.value;
     this.props.onSignIn(username, password);
-
   }
   
   render() {
@@ -26,12 +24,9 @@ class LoginForm extends React.Component {
       </form>
     )
   }
-
 }
 
-
-class Login extends React.Component {
-  
+class Login extends React.Component { 
   constructor(props) {
     super(props)
     localStorage.clear();
@@ -52,20 +47,14 @@ class Login extends React.Component {
         password,
       }
     })
-
     localStorage.setItem('username',username);
     localStorage.setItem('password',password);
   }
   
-  // signOut() {
-  //   // clear out user from state
-  //   this.setState({user: null})
-  // }
-  
   render() {
-    // Here we pass relevant state to our child components
-    // as props. Note that functions are passed using `bind` to
-    // make sure we keep our scope to App
+    
+    // Passing relevant state to child components as props.
+    // Functions are passed using `bind` to make sure we keep our scope to App
     return (
       <div>
         { 
@@ -77,10 +66,8 @@ class Login extends React.Component {
             />
         }
       </div>
-    )
-    
-  }
-  
+    )   
+  } 
 }
 
 export default Login;
