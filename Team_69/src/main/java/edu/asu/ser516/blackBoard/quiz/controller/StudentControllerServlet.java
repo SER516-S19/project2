@@ -25,12 +25,11 @@ import javax.servlet.http.HttpSession;
  */
 public class StudentControllerServlet extends HttpServlet {
 
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final static String SUBMIT_ACTION = "submit";
-	private static String studentPage = "/student.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,19 +48,13 @@ public class StudentControllerServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
-		String studentId = (String) session.getAttribute("user_id");
-		String action = request.getParameter("action");
-
-		//Servlet Action on quiz submission
-		if(action.equals(SUBMIT_ACTION)) {
-			try {
-				response.sendRedirect("Success.jsp");
-			} catch (Exception e) {
-
-				e.printStackTrace();
-			}
-		}
+		String var = "[{\"questionId\":3,\"quiz\":{\"quizId\":1,\"quizName\":\"Quiz1\",\"quizInstructions\":\"Read\",\"quizType\":\"Graded\",\"quizTimeLimit\":\"12:30:00 AM\",\"isShuffled\":true,\"isPublished\":false},\"question\":\"Question3\",\"correctAnswerId\":0,\"isMultiple\":true,\"points\":10}]";
+		String view = "error";
+		//HttpSession session = request.getSession();
+		//String studentResponse = (String) request.getParameter("studentResponseJSON");
+		StudentServices service = new StudentServices();
+		view = service.feedAnswers(var);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
+	
 }

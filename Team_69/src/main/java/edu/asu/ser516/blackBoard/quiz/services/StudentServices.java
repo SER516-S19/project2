@@ -1,7 +1,7 @@
 package edu.asu.ser516.blackBoard.quiz.services;
 
 import java.util.List;
-
+import com.google.gson.Gson;
 import edu.asu.ser516.blackBoard.quiz.bean.QuestionAnswer;
 
 /**
@@ -22,4 +22,17 @@ public class StudentServices {
 		jsonString = quizData.ObjectToJSON(quizList);
 		return jsonString;
 	}
+	
+	public String feedAnswers(String studentResponse) {
+		
+		QuestionAnswer[] jsonResponse =  StudentServices.convertStringtoJSON(studentResponse);
+		return "success";
+		
+	}
+	
+	public static QuestionAnswer[] convertStringtoJSON(String studentResponse) {
+		Gson gson = new Gson();
+		QuestionAnswer[] listOfAnswers = gson.fromJson(studentResponse, QuestionAnswer[].class);
+        return listOfAnswers;
+	} 
 }
