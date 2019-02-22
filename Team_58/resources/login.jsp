@@ -1,3 +1,10 @@
+<!-- 
+JSP page for user to login
+@authour Aditya Vikram
+@version 1.1
+@date 02/22/2019
+ -->
+
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -25,6 +32,8 @@ function validateForm() {
             <h1>Login Form</h1>
             <div>
             	<form name="myForm" action="login" onsubmit="return validateForm()" method="POST">  
+            		<div style="color: #FF0000;">${setMessage}</div>
+            		<div></div>
 					<input type="text" name="username" placeholder = "Username"/><br/><br/>  
 					<input type="password" name="userpass" placeholder = "Password"/><br/><br/> 
 					<input type="submit" value="login"/>  

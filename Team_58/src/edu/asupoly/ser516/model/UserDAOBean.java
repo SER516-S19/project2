@@ -11,20 +11,20 @@ import java.util.Properties;
 
 
 /**
- * Class ConnectionFactory to get connection object to establish database connection.
- * Home after login.
+ * This class implements UserDAO interface, establishes database connection 
+ * using ConnectionFactory and fetches user information.
  * 
- * @author shivamverma
+ * @author Aditya Vikram
  * @version 1.1
- * @date 02/21/2019
+ * @date 02/22/2019
  */
 
 
-public class UserDaoBean implements UserDao {
+public class UserDAOBean implements UserDAO {
 
 	public static Properties dbProperties = new Properties();
 	
-	public UserDaoBean() {
+	public UserDAOBean() {
 		try {
 			dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("database.properties"));
 		} catch (IOException e) {
@@ -33,7 +33,7 @@ public class UserDaoBean implements UserDao {
 		}
 	}
 	@Override
-	public List<UserVO> validateAndGet(String userName, String passWord) throws ClassNotFoundException, SQLException, IOException {
+	public List<UserVO> getUserInfo(String userName, String passWord) throws ClassNotFoundException, SQLException, IOException {
 		
 		List<UserVO> list = new ArrayList<UserVO>();
 		
@@ -72,4 +72,5 @@ public class UserDaoBean implements UserDao {
 		}
 		return list;
 	}
+
 }
