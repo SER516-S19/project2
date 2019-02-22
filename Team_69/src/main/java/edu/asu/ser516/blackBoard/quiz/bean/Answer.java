@@ -6,7 +6,9 @@ import javax.persistence.*;
 @Table(name = "Answer")
 public class Answer {
 
-    @Id
+  
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Answer_id",nullable = false)
     private int answerId;
@@ -22,6 +24,10 @@ public class Answer {
     private String correctAnswer;
 
 
+    public Answer() {
+
+  	}
+    
     public Answer(Question question, String answer, String correctAnswer) {
         this.question = question;
         this.answer = answer;

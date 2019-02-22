@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import edu.asu.ser516.blackBoard.quiz.bean.Answer;
 import edu.asu.ser516.blackBoard.quiz.bean.Question;
 import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
 import edu.asu.ser516.blackBoard.quiz.dao.ProfessorDAO;
@@ -28,7 +28,6 @@ public class ProfessorControllerServlet extends HttpServlet{
 			ProfessorDAO proffessorDAO = new ProfessorDAO();
 			List quizList = proffessorDAO.getAllQuizzes();
 			request.setAttribute("quizList", quizList);
-			
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			rd.forward(request, response);
 			
@@ -38,6 +37,14 @@ public class ProfessorControllerServlet extends HttpServlet{
 			ProfessorDAO professorDAO = new ProfessorDAO();
 			professorDAO.publishQuiz(quizID);
 			
+		}else if("viewQuiz".equalsIgnoreCase(flag)) {
+			String id = request.getParameter("id");
+			int quizId = Integer.parseInt(id);
+			QuestionDAO questionDAO = new QuestionDAO();
+			List<Answer> questionList = questionDAO.getQuestionsAndAnswers(quizId);
+			request.setAttribute("questionList", questionList);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionAnswer.jsp");
+			rd.forward(request, response);
 		}
 	}
 
