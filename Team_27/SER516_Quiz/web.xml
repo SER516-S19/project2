@@ -5,14 +5,33 @@
 <web-app>
   <display-name>Quiz</display-name>
   <description>SER516 Quiz</description>
+  
   <servlet>
     <servlet-name>QuizDetailsController</servlet-name>
     <servlet-class>edu.asu.ser516.quiz.controller.QuizDetailsController</servlet-class>
   </servlet>
-	
+
+<servlet>
+    <servlet-name>QuizIntroController</servlet-name>
+    <servlet-class>edu.asu.ser516.quiz.controller.QuizIntroController</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteQuizController</servlet-name>
+    <servlet-class>edu.asu.ser516.quiz.controller.DeleteQuizController</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>QuizDetailsController</servlet-name>
     <url-pattern>/createQuiz</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>QuizIntroController</servlet-name>
+    <url-pattern>/getQuiz</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>DeleteQuizController</servlet-name>
+    <url-pattern>/deleteQuiz</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

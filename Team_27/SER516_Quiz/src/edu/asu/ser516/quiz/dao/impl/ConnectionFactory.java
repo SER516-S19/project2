@@ -30,8 +30,8 @@ public class ConnectionFactory {
  // 	throws DataAccessException {
 
 	  String driverURL = dbProperties.getProperty("mysql_jdbcURL");
-	  String dbPass = dbProperties.getProperty("mysql_jdbcUser");
-	  String dbUser = dbProperties.getProperty("mysql_jdbcPwd");
+	  String dbUser = dbProperties.getProperty("mysql_jdbcUser");
+	  String dbPass = dbProperties.getProperty("mysql_jdbcPwd");
       try {
           return DriverManager.getConnection(driverURL, dbUser, dbPass);
       }

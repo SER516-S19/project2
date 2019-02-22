@@ -33,3 +33,4 @@ CREATE TABLE `questions`
      PRIMARY KEY (question_id),
      FOREIGN KEY (quiz_id) REFERENCES `quiz`(quiz_id) ON DELETE CASCADE
   );
+  
