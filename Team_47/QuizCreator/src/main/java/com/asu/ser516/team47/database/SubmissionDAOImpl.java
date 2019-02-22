@@ -193,7 +193,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
                 return false;
             }
 
-            // Return SQLite generated id of inserted value
+            // Update submission id to SQLite generated id
             stmt = conn.prepareStatement("SELECT last_insert_rowid()");
             rs = stmt.executeQuery();
             while (rs.next()) {

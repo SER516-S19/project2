@@ -160,11 +160,17 @@ public class QuizDAOImpl implements QuizDAO {
             stmt.setString(10, quiz.getQuiz_group());
             stmt.setDouble(11, quiz.getTotal_points());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
+            if (updatedRows <= 0) {
                 return false;
             }
+
+            // Update quiz id to SQLite generated id
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                quiz.setQuiz_id(rs.getInt(1));
+            }
+            return true;
         }
         catch (Exception se) {
             se.printStackTrace();
