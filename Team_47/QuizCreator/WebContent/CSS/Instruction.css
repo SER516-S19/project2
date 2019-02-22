@@ -14,13 +14,13 @@ body {
     border-style: solid; 
 }
 
-#content #title {
+#title {
 	margin: auto;
 	position: absolute;
-	top: -350px;
+	top: 0px;
     left: 0px;
-    right: 340px;
-    bottom: 0;
+    right: 680px;
+    bottom: 500px;
 }
 
 #content #instruc{
