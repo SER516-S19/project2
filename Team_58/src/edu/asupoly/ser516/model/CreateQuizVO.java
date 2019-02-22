@@ -1,5 +1,13 @@
 package edu.asupoly.ser516.model;
 
+/**
+ * CreateQuizVO is the plain old java class for CreateQuiz.
+ * 
+ * @version 1.0
+ * @author shivamverma
+ * @date 02/20/2019
+ */
+
 public class CreateQuizVO {
 	private int courseId;
 	private String quizTitle;

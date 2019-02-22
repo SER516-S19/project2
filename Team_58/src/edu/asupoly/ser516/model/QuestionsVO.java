@@ -1,5 +1,13 @@
 package edu.asupoly.ser516.model;
 
+/**
+ * QuestionVO is the plain old java file for Question
+ * 
+ * @version 1.0
+ * @author shivamverma
+ * @date 02/12/2019
+ */
+
 public class QuestionsVO {
 	private String question;
 	private String correctAnswer;
