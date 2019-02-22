@@ -1,22 +1,28 @@
-package content.creator;
+package content.creator.operations;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD:Team_04/src/content/creator/DataOps.java
 import java.util.List;
 import java.util.ArrayList;
+=======
+import org.sqlite.JDBC;
+>>>>>>> b73c6173b4486e6b6888daa728055ca1ebe1f350:Team_04/src/content/creator/operations/DataOps.java
 
 /** @author Hari Krishnan Puthiya Veetil, Aman Kaushik */
-public class DataOps {
+public final class DataOps {
+  private DataOps() {}
 
-  private Connection getConnection() throws SQLException {
-    String dbURL = "jdbc:sqlite:../quizDatabase.db";
+  private static Connection getConnection() throws SQLException {
+    DriverManager.registerDriver(new JDBC());
+    String dbURL = "jdbc:sqlite:../../quizDatabase.db";
     return DriverManager.getConnection(dbURL);
   }
 
-  private ResultSet executeGetQuery(String query) throws SQLException {
+  private static ResultSet executeGetQuery(String query) throws SQLException {
     try (Connection connection = getConnection()) {
       try (Statement statement = connection.createStatement()) {
         return statement.executeQuery(query);
@@ -24,13 +30,13 @@ public class DataOps {
     }
   }
 
-  private void validateQueryString(String query) throws RuntimeException {
+  private static void validateQueryString(String query) throws RuntimeException {
     if (query == null) {
       throw new java.lang.RuntimeException("Query cannot be empty/null");
     }
   }
 
-  private void executeInsertQuery(String query) throws SQLException {
+  private static void executeInsertQuery(String query) throws SQLException {
     try (Connection connection = getConnection()) {
       try (Statement statement = connection.createStatement()) {
         statement.executeUpdate(query);
@@ -38,15 +44,16 @@ public class DataOps {
     }
   }
 
-  public ResultSet getData(String query) throws RuntimeException, SQLException {
+  public static ResultSet getData(String query) throws RuntimeException, SQLException {
     validateQueryString(query);
     return executeGetQuery(query);
   }
 
-  public void saveData(String query) throws RuntimeException, SQLException {
+  public static void saveData(String query) throws RuntimeException, SQLException {
     validateQueryString(query);
     executeInsertQuery(query);
   }
+<<<<<<< HEAD:Team_04/src/content/creator/DataOps.java
 
   public QuizResultsDAO getQuizResultsDAO() {
     return new QuizResultsDAO();
@@ -69,4 +76,6 @@ public class DataOps {
     return list;
   }
 
+=======
+>>>>>>> b73c6173b4486e6b6888daa728055ca1ebe1f350:Team_04/src/content/creator/operations/DataOps.java
 }
