@@ -7,7 +7,6 @@ import java.util.List;
 
 /** @author Hari Krishnan Puthiya Veetil */
 public final class ViewContentListHelper {
-    private CreateContentHelper() {}
 
     public static List<Integer> getQuizList() {
         String tableName = "quiz_content";
