@@ -184,10 +184,11 @@ public class SubmissionDAOImpl implements SubmissionDAO {
      * @param submission
      * @return a boolean representing a successful/failed insert
      */
-    public boolean insertSubmission(Submission submission) {
+    public int insertSubmission(Submission submission) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        int rval = 0;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -201,15 +202,21 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             stmt.setDouble(5, submission.getScore());
             stmt.setInt(6, submission.getAttempt());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
+            if (updatedRows <= 0) {
+                return 0;
             }
+
+            // Return SQLite generated id of inserted value
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                rval = rs.getInt(1);
+            }
+            return rval;
         }
         catch (Exception se) {
             se.printStackTrace();
-            return false;
+            return 0;
         }
         finally {
             try {
