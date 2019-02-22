@@ -42,7 +42,8 @@ public class StudentControllerServlet extends HttpServlet {
 		int quizId = quizDAO.fetchQuizId(quizName);
 		StudentServices service = new StudentServices();
 		String questionAnswerJSON = service.getQuestionDetails(quizId);
-		req.setAttribute("jsonData", questionAnswerJSON);
+		HttpSession session = req.getSession();
+		session.setAttribute("studentResponseJSON",questionAnswerJSON);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
 	}
 

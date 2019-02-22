@@ -25,19 +25,22 @@
 		<div class='button' id='prev'>
 			<a href='#'>Prev</a>
 		</div>
-		<div class='button' id='start'>
-			<a href='#'>Start Over</a>
-		</div>
-		<!-- <button class='' id='next'>Next</a></button>
-    		<button class='' id='prev'>Prev</a></button>
-    		<button class='' id='start'> Start Over</a></button> -->
+		<form id="submitForm" action="/student/" method="POST">
+			<button type="submit" class="btn-primary" name="action" value="submit" id="submit">Submit</button>
+		</form>
+
+		</button>
 	</div>
 	<script>
 		$(document).ready(function() {
-			var jsonDataStr = '<%=request.getAttribute("jsonData")%>';
-			var jsonDataObj = JSON.parse(jsonDataStr);
-			displayQuiz(jsonDataObj);
+			studentResponseJSON = '<%=session.getAttribute("studentResponseJSON")%>';
+			var studentResponseObj = JSON.parse(studentResponseJSON);
+			displayQuiz(studentResponseObj);
 			var autoSaveInterval = setInterval(autoSave, 2000);
+		});
+		
+		$('#submitForm').submit(function(){
+			autoSave();
 		});
 	</script>
 </body>
