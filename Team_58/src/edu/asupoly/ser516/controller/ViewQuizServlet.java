@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
 import edu.asupoly.ser516.model.QuestionsVO;
 import edu.asupoly.ser516.model.QuizVO;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+//import org.json.simple.JSONObject;
+//import org.json.simple.parser.JSONParser;
 
 
 
@@ -104,6 +104,7 @@ public class ViewQuizServlet extends HttpServlet{
 	   			   String choices = result.getString("totalChoices"); 
 	   			   
 	   			   //Parse Json String objects to json Object
+                                   /*
 	   			   JSONParser parser = new JSONParser();
 	   			   JSONObject jo = (JSONObject) parser.parse(choices);
 	   			   String choice1 = (String) jo.get("incorrectAnswer1");
@@ -115,6 +116,7 @@ public class ViewQuizServlet extends HttpServlet{
 	   			   //Add to Quiz and Questions Objects
 	   			   QuestionsVO quest = new QuestionsVO(questionId, points, question, ans, choice1, choice2, choice3);
 	   			   quizQuestions.add(quest);
+                                           */
 	   			   
 	   			   //QuizDB results
 		   		   quizName = result.getString("quizTitle");
