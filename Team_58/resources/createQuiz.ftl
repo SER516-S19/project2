@@ -1,3 +1,10 @@
+<!-- 
+Freemarker page to display createquiz page
+@authour Carnic
+@version 1.0
+@date 02/21/2019
+ -->
+
 <html>
 	<head>
 		<#include "stylesheet.css">
