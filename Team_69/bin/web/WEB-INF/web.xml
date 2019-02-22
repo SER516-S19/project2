@@ -8,7 +8,7 @@
     <servlet>
         <display-name>LoginController</display-name>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>edu.asu.ser516.blackBoard.quiz.controller.LoginControllerServlet</servlet-class>
+        <servlet-class>controller.LoginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
