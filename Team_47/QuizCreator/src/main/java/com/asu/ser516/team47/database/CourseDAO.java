@@ -7,7 +7,8 @@ import java.util.List;
  *
  * @author  Paul Horton
  * @version 1.0
- * @since   2019-02-22 */
+ * @since   2019-02-22
+ */
 public interface CourseDAO {
     /**
      * Gets all the courses in the database
