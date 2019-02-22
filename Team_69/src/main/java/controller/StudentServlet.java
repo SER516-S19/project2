@@ -1,6 +1,5 @@
 package controller;
 
-import bean.ResponseStatistics;
 import dao.QuizDAO;
 import services.StudentServices;
 

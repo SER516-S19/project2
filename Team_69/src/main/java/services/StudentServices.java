@@ -1,6 +1,5 @@
 package services;
 
-import java.sql.Time;
 import java.util.List;
 import com.google.gson.Gson;
 
@@ -12,7 +11,6 @@ import bean.QuestionMapper;
 import bean.Quiz;
 import bean.ResponseStatistics;
 import bean.User;
-import dao.QuestionDAO;
 import dao.StatisticsDAO;
 
 /**
@@ -25,7 +23,7 @@ import dao.StatisticsDAO;
  */
 
 public class StudentServices {
-
+	
 	public String getQuestionDetails(int quizId) {
 		QuestionAnswerGenerator quizData = new QuestionAnswerGenerator();
 		String jsonString = null;
