@@ -1,3 +1,9 @@
+<!-- 
+Freemarker page to display CourseDashboard 
+@authour narenkumarKonchada
+@version 1.0
+@date 02/21/2019
+ -->
 <html>
 	<head>
 		<#include "stylesheet.css">
@@ -10,7 +16,7 @@
 	         <form action="DUMMYSERVLET" method="POST">
 	         <select class="options" name="Quiz">
 	         <#list Session.QuizHashMap as quizId, quizTitle>
-	          <option name=${quizId}> ${quizTitle}</option>
+	          <option value=${quizId}> ${quizTitle}</option>
 	           </#list>
 	         </select>
 	         <input class="button" type ="submit" value="ViewQuiz"/>
