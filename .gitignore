@@ -1,3 +1,11 @@
-/.metadata/
-/recommenders/
-build.properties
+
+/bin/
+/.classpath
+/.settings/
+/.project
+../.recommenders/
+*web/.DS_Store
+.DS_Store
+/build.properties
+
+
