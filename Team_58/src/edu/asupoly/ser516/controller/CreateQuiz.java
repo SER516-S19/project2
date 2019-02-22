@@ -40,14 +40,13 @@ public class CreateQuiz extends HttpServlet{
 		try {
         	String quizTitle = request.getParameter("quizTitle");
         	String quizInstructions = request.getParameter("quizInstructions");
-        	int year = Integer.parseInt(request.getParameter("year"));
+        	/*int year = Integer.parseInt(request.getParameter("year"));
         	int month = Integer.parseInt(request.getParameter("month"));
-        	int day = Integer.parseInt(request.getParameter("date"));
+        	int day = Integer.parseInt(request.getParameter("date"));*/
+        	String quizScheduledDate = request.getParameter("quizScheduledDate");
         	
         	@SuppressWarnings("deprecation")
-			Date quizScheduledDate = new Date(year, month, day);
-     
-            
+			//Date quizScheduledDate = new Date(year, month, day);
         	int assignedTime = Integer.parseInt(request.getParameter("assignedTime"));
         	boolean isShuffled = Boolean.valueOf(request.getParameter("isShuffled"));
         	//int courseId = Integer.parseInt(request.getParameter("courseId"));
@@ -56,6 +55,7 @@ public class CreateQuiz extends HttpServlet{
         	System.out.println("Quiz Instructions : " + quizInstructions);
         	System.out.println("Quiz Duration : " + assignedTime);
         	System.out.println("Shuffle questions? " + isShuffled);
+        	System.out.println("Scheduled Date " + quizScheduledDate);
         	//System.out.println("Quiz Scheduled date " + scheduledDate);
         	
     		HttpSession session = request.getSession();
@@ -84,7 +84,7 @@ public class CreateQuiz extends HttpServlet{
     		query.setBoolean(2, false);
     		query.setInt(3, assignedTime);
     		query.setString(4, quizInstructions);
-    		query.setDate(5, quizScheduledDate);
+    		query.setString(5, quizScheduledDate);
     		query.setBoolean(6, isShuffled);
     		query.setString(7, quizTitle);
     		
