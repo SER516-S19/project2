@@ -50,7 +50,7 @@
                         buttonType = "checkbox";
                     }
             %>
-                    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answers.getAns_desc() %></input></div>
+                    <div class="options"><input type=<%=buttonType%> name="selection" class="optionTag" data-val=""><%= answers.getAns_desc() %></input></div>
             <%}%>
     <% }%>
 
