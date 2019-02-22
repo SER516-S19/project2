@@ -1,20 +1,20 @@
-package com.Quizzer.code.model;
+package com.Quizzer.code.model.response;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class Response_SO implements Serializable {
+public class Response implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	private String status;
 	private String errorMessage;
-	private Object response;
-	public Response_SO(String status, String errorMessage, Object response) {
+	private List<?> listResponse;
+	public Response(String status, String errorMessage, List<?> response) {
 		super();
 		this.status = status;
 		this.errorMessage = errorMessage;
-		this.response = response;
+		this.listResponse = response;
 	}
 	public String getStatus() {
 		return status;
@@ -28,11 +28,11 @@ public class Response_SO implements Serializable {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	public Object getResponse() {
-		return response;
+	public List<?> getResponse() {
+		return listResponse;
 	}
 	public void setResponse(List<?> response) {
-		this.response = response;
+		this.listResponse = response;
 	}
 	
 	

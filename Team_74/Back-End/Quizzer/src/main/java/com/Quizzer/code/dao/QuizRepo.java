@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.Quizzer.code.model.Quiz;
+import com.Quizzer.code.model.db.Quiz;
 
 public interface QuizRepo extends MongoRepository<Quiz, String> {
 

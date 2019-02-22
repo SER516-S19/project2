@@ -1,4 +1,4 @@
-package com.Quizzer.code.model;
+package com.Quizzer.code.model.db;
 
 import java.io.Serializable;
 

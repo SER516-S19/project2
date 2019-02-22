@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
-import com.Quizzer.code.model.Quiz;
-import com.Quizzer.code.model.Response;
-import com.Quizzer.code.model.Response_SO;
+import com.Quizzer.code.model.db.Quiz;
+import com.Quizzer.code.model.response.Response;
+import com.Quizzer.code.model.response.Response_SO;
 import com.Quizzer.code.service.Prof_QuizService;
 
 @RestController
