@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class ProfessorDAOImpl implements ProfessorDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Professor rval = null;
+        List<Professor> rval = new ArrayList<Professor>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -36,8 +37,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
             stmt = conn.prepareStatement("select * from professors");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval = new Professor(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4));
+                rval.add(new Professor(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4)));
             }
         }
         catch (Exception se) {
