@@ -1,27 +1,28 @@
-<project name="Team_58" default="compile" basedir=".">
-  <property file="build.properties"/>
+	<project name="Team_58" default="compile" basedir=".">
+	  <property file="build.properties"/>
 
-  <!-- init target makes the directory structure. You may not
-       require this if you set your environment up by hand. -->
-  <target name="init">
-    <tstamp/>
-    <mkdir dir="${classes.dir}"/>
-  </target>
+	  <!-- init target makes the directory structure. You may not
+	       require this if you set your environment up by hand. -->
+	  <target name="init">
+	    <tstamp/>
+	    <mkdir dir="${classes.dir}"/>
+	  </target>
 
-  <!-- Compiles your java files and puts the classes in classes.dir -->
-  <target name="compile" depends="init">
-    <javac debug="true"
-      srcdir="${src.dir}"
-      destdir="${classes.dir}">
-      <!-- Make sure you set your classpath! -->
-      <classpath>
-        <fileset dir="${tomcat.home}/lib" includes="servlet-api.jar"/>
-      	<fileset dir="${tomcat.home}/lib" includes="freemarker.jar"/>
-      	<fileset dir="${tomcat.home}/lib" includes="mssql-jdbc-7.2.1.jre8.jar"/>
-        <pathelement path="${classes.dir}" />
-      </classpath>
-    </javac>
-  </target>
+	  <!-- Compiles your java files and puts the classes in classes.dir -->
+	  <target name="compile" depends="init">
+	    <javac debug="true"
+	      srcdir="${src.dir}"
+	      destdir="${classes.dir}">
+	      <!-- Make sure you set your classpath! -->
+	      <classpath>
+	        <fileset dir="${tomcat.home}/lib" includes="servlet-api.jar"/>
+	      	<fileset dir="${tomcat.home}/lib" includes="freemarker.jar"/>
+	      	<fileset dir="${tomcat.home}/lib" includes="mssql-jdbc-7.2.1.jre8.jar"/>
+	      	<fileset dir="${tomcat.home}/lib"  includes="json-simple-1.1.1.jar"/>
+	        <pathelement path="${classes.dir}" />
+	      </classpath>
+	    </javac>
+	  </target>
 
   <!-- The deploy target will be highly dependent on your deployed app.
        For example, if you are building a web-app, you should include
@@ -43,11 +44,13 @@
   	<copy todir="${build.home}/WEB-INF/classes">
   	  <fileset dir="${resources.dir}" includes="**/*.txt,**/*.properties" excludes="**/*.html,**/*.jsp"/>
   	</copy>
-  	<copy file="${resources.dir}/index.html" tofile="${build.home}/index.html"/>
+  	<copy file="${resources.dir}/login.jsp" tofile="${build.home}/login.jsp"/>
   	<copy file="${resources.dir}/professorHome.ftl" tofile="${build.home}/professorHome.ftl"/>
   	<copy file="${resources.dir}/createQuestions.ftl" tofile="${build.home}/createQuestions.ftl"/>
   	<copy file="${resources.dir}/createQuiz.ftl" tofile="${build.home}/createQuiz.ftl"/>
   	<copy file="${resources.dir}/courseDashboard.ftl" tofile="${build.home}/courseDashboard.ftl"/>
+  	<copy file="${resources.dir}/viewQuiz.ftl" tofile="${build.home}/viewQuiz.ftl"/>
+  	<copy file="${resources.dir}/style.css" tofile="${build.home}/style.css"/>
   	<copy file="${resources.dir}/stylesheet.css" tofile="${build.home}/stylesheet.css"/>
     <copy file="web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
   </target>
@@ -58,25 +61,26 @@
     </jar>
   </target>
 
-  <!-- submit creates a single jarfile that you will upload to the
-       Gradebook channel on the class portal. -->
-  <target name="submit" depends="dist">
-    <jar destfile="${submit.jar}" basedir="." includes="README.txt,build.properties,build.xml,web.xml,${src.dir}/**,${docs.dir}/**,${javadoc.dir}/**,${properties.dir}/**,${lib.dir}/**,${classes.dir}/**">
-     </jar>
-  </target>
 
-  <!-- Clean -->
-  <target name="clean">
-    <delete file="${dist.jar}"/>
-    <delete dir="${build.home}"/>
-    <delete dir="${classes.dir}"/>
-  </target>
+	  <!-- submit creates a single jarfile that you will upload to the
+	       Gradebook channel on the class portal. -->
+	  <target name="submit" depends="dist">
+	    <jar destfile="${submit.jar}" basedir="." includes="README.txt,build.properties,build.xml,web.xml,${src.dir}/**,${docs.dir}/**,${javadoc.dir}/**,${properties.dir}/**,${lib.dir}/**,${classes.dir}/**">
+	     </jar>
+	  </target>
 
-  <!-- Clean all -->
-  <target name="cleanall" depends="clean">
-    <delete file="${submit.jar}"/>
-  </target>
+	  <!-- Clean -->
+	  <target name="clean">
+	    <delete file="${dist.jar}"/>
+	    <delete dir="${build.home}"/>
+	    <delete dir="${classes.dir}"/>
+	  </target>
 
-</project>
-  
+	  <!-- Clean all -->
+	  <target name="cleanall" depends="clean">
+	    <delete file="${submit.jar}"/>
+	  </target>
+
+	</project>
+	    
 

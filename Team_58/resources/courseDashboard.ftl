@@ -13,7 +13,7 @@ Freemarker page to display CourseDashboard
 		<h2 class="fontColor">Course Dashboard</h2>
          <div class="box">
          <p class="smallFontColor"> ${Session.courseName} </p>
-	         <form action="DUMMYSERVLET" method="POST">
+	         <form action="viewQuiz" method="POST">
 	         <select class="options" name="Quiz">
 	         <#list Session.QuizHashMap as quizId, quizTitle>
 	          <option value=${quizId}> ${quizTitle}</option>
