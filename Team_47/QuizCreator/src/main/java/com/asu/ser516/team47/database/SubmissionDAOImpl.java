@@ -23,7 +23,7 @@ import java.util.Properties;
  * @since   2/22/19
  */
 public class SubmissionDAOImpl implements SubmissionDAO {
-    private static Properties __dbProperties;
+//    private static Properties __dbProperties;
     private static String __jdbcUrl;
     private static String __jdbcUser;
     private static String __jdbcPasswd;
@@ -312,12 +312,12 @@ public class SubmissionDAOImpl implements SubmissionDAO {
 
     static {
         try {
-            __dbProperties = new Properties();
-            __dbProperties.load(SubmissionDAOImpl.class.getClassLoader().getResourceAsStream("rdbm.properties"));
-            __jdbcUrl    = __dbProperties.getProperty("jdbcUrl");
-            __jdbcUser   = __dbProperties.getProperty("jdbcUser");
-            __jdbcPasswd = __dbProperties.getProperty("jdbcPasswd");
-            __jdbcDriver = __dbProperties.getProperty("jdbcDriver");
+//            __dbProperties = new Properties();
+//            __dbProperties.load(SubmissionDAOImpl.class.getClassLoader().getResourceAsStream("database.properties"));
+//            __jdbcUrl    = __dbProperties.getProperty("jdbcUrl");
+//            __jdbcUser   = __dbProperties.getProperty("jdbcUser");
+//            __jdbcPasswd = __dbProperties.getProperty("jdbcPasswd");
+//            __jdbcDriver = __dbProperties.getProperty("jdbcDriver");
         } catch (Throwable t) {
             t.printStackTrace();
         }
