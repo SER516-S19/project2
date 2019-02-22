@@ -188,21 +188,18 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        LocalDate currentDate = LocalDate.now(ZoneId.of("PNT"));
-        java.sql.Date submissionDate = java.sql.Date.valueOf(currentDate);
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into submissions (id, quiz_id, enrolled_fk," +
-                    " timeTaken, dateTaken, score, attempt) VALUES (?,?,?,?,?,?,?)");
-            stmt.setInt(1, 123456);
-            stmt.setInt(2, submission.getQuiz_fk());
-            stmt.setInt(3, submission.getEnrolled_fk());
-            stmt.setInt(4, submission.getTime_taken());
-            stmt.setDate(5, submissionDate);
-            stmt.setDouble(6, submission.getScore());
-            stmt.setInt(7, submission.getAttempt());
+            stmt = conn.prepareStatement("insert into submissions (quiz_id, enrolled_fk," +
+                    " timeTaken, dateTaken, score, attempt) VALUES (?,?,?,?,?,?)");
+            stmt.setInt(1, submission.getQuiz_fk());
+            stmt.setInt(2, submission.getEnrolled_fk());
+            stmt.setInt(3, submission.getTime_taken());
+            stmt.setDate(4, new java.sql.Date(submission.getDate_taken().getTime()));
+            stmt.setDouble(5, submission.getScore());
+            stmt.setInt(6, submission.getAttempt());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows > 0) {
                 return true;

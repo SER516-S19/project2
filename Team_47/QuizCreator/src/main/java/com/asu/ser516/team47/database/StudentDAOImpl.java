@@ -116,7 +116,7 @@ public class StudentDAOImpl implements StudentDAO {
             stmt.setString(1, student.getUsername());
             stmt.setString(2, student.getFirstname());
             stmt.setString(3, student.getLastname());
-            stmt.setString(4, "hashed password");
+            stmt.setString(4, student.getHashedpass());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows > 0) {
                 return true;
