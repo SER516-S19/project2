@@ -42,9 +42,7 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select id, title, course_fk, instructions, shuffle, " +
-                    "timeLimit, dateOpen, dateClose, quizType, attempts," +
-                    " quizGroup, totalPoints from quizzes");
+            stmt = conn.prepareStatement("select * from quizzes");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Quiz(rs.getInt(1), rs.getString(2), rs.getInt(3),
@@ -81,9 +79,7 @@ public class QuizDAOImpl implements QuizDAO {
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select id, title, course_fk, instructions, shuffle," +
-                    " timeLimit, dateOpen, dateClose, quizType, attempts," +
-                    " quizGroup, totalPoints from quizzes where course_fk = ?");
+            stmt = conn.prepareStatement("select * where course_fk = ?");
             stmt.setInt(1, course_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -122,9 +118,7 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select id, title, course_fk, instructions, shuffle," +
-                    " timeLimit, dateOpen, dateClose, quizType, attempts," +
-                    " quizGroup, totalPoints from quizzes where id = ?");
+            stmt = conn.prepareStatement("select * where id = ?");
             stmt.setInt(1, quiz_id);
             rs = stmt.executeQuery();
             while (rs.next()) {

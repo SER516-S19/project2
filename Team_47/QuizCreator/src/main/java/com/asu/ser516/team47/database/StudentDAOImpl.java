@@ -42,7 +42,7 @@ public class StudentDAOImpl implements StudentDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select username, firstname, lastname from students");
+            stmt = conn.prepareStatement("select * from students");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
@@ -76,7 +76,7 @@ public class StudentDAOImpl implements StudentDAO {
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select username, firstname, lastname, hashedpass from students where username = ?");
+            stmt = conn.prepareStatement("select * where username = ?");
             stmt.setString(1, username);
             rs = stmt.executeQuery();
             while (rs.next()) {
