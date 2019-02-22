@@ -17,7 +17,7 @@ import java.util.List;
 public class ProfessorDAOImpl implements ProfessorDAO{
     // Hardcoded (will switch to loading through props in future)
     //    private static Properties __dbProperties;
-    private static String __jdbcUrl = "jdbc:sqlite:src/main/java/com/asu/ser516/team47/main/schema.db";
+    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
     private static String __jdbcUser;
     private static String __jdbcPasswd;
 
