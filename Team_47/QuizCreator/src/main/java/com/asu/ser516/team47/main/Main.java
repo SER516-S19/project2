@@ -5,6 +5,7 @@ import java.sql.*;
 
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
+import com.asu.ser516.team47.utils.SQLScriptRunner;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
@@ -29,7 +30,7 @@ public class Main {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/main/java/com/asu/ser516/team47/main/schema.db";
+            String url = "jdbc:sqlite:schema.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
