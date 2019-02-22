@@ -41,4 +41,24 @@ public class ProfessorDAO {
 	}
 
 	
+	public void insertProfDetails(Quiz quiz) {
+        Transaction transaction = null;
+        try  {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save the student object
+            session.save(quiz);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+
+	
 }
