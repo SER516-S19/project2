@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/servlet")
 public class LoadQuestionAnswerServlet extends HttpServlet {
-	
+	String view = "";
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
@@ -59,18 +59,21 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-
-		response.setContentType("text/html");
-		response.setStatus(response.SC_OK);
-
+		String action = request.getParameter("action");
+		if (action.isEmpty())
+			view="error.jsp";
 		QuestionAnswerDAO qaObj = new QuestionAnswerDAO();
 
-		request.setAttribute("data", qaObj.getResult());
+		if(action.equalsIgnoreCase("START QUIZ"))
+			{
+				request.setAttribute("data", qaObj.getResult());
+				view = "questionsanswers.jsp";
+				response.setContentType("text/html");
+				response.setStatus(response.SC_OK);
+			}
 
-		RequestDispatcher rd =
-				request.getRequestDispatcher("questionsanswers.jsp");
 
-		rd.forward(request, response);
+		request.getRequestDispatcher(view).forward(request, response);
 
 
 

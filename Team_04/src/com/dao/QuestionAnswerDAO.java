@@ -23,14 +23,14 @@ public class QuestionAnswerDAO {
         ResultSet rans = null;
         ArrayList<String> quesDescList = new ArrayList<String>();
         Map<String, List<QuestionAnswers>> questionAnsMap= new HashMap<String, List<QuestionAnswers>>();
-        List<QuestionAnswers> answerDesList = new ArrayList<QuestionAnswers>();
+
 
         try {
             Class.forName("org.sqlite.JDBC");
 
             //c = DriverManager.getConnection("jdbc:sqlite:C:/Users/14807/Documents/Project516/project2/Team_04/src/quizDatabase.db");
 
-            c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
+            c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/resources/quizDatabase.db");
 
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -73,6 +73,9 @@ public class QuestionAnswerDAO {
 
 
             for (int i = 0; i < quesDescList.size(); i++) {
+
+                List<QuestionAnswers> answerDesList = new ArrayList<QuestionAnswers>();
+
                 try {
                     rans = stmt1.executeQuery("SELECT * FROM quiz_content where ques_desc = '" + quesDescList.get(i) + "'");
                 } catch (SQLException e) {
