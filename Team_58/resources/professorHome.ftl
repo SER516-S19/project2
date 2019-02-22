@@ -10,8 +10,7 @@ Freemarker page to display Professor details
 		<#include "stylesheet.css">
 	</head>
 	<body>
-         <p class="fontColor">Welcome ${Session.profFirstName} </p>
-         <p> ${Session.userVO.getFirstname()}</p>
+         <p class="fontColor">Welcome  ${Session.userVO.getFirstname()}</p>
          <form action="courseDashboard" method="POST">
          <select name="Course">
          <#list Session.CourseHashMap as courseId, courseName>

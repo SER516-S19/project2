@@ -17,9 +17,10 @@ Freemarker page to display createquiz page
 			  <input class="mediumInput" type="text" name="quizTitle">
 			  <br><br>
 			  Quiz Duration 
+			  &nbsp&nbsp
 			  <input class="smallInput" type="text" name="assignedTime">
 			  <br><br>
-			  Quiz Date 
+			  Quiz Date &nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp
 			  <input class="smallInput" type="date" name="quizScheduledDate">
 			  <br><br>
 			  <p class="fontUp">Quiz Instructions</p>
