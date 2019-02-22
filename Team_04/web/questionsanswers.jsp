@@ -57,8 +57,11 @@
 
 </div>
 <div class="navBtn">
+    <form method ="get">
 <input type="button" text="previous" value="previous" class="prevBtn"/>
-<input type="button" text="next" value="next" class="nextBtn"/>
+<%--<input type="button" text="next" value="next" class="nextBtn"/>--%>
+    <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn"/>
+    </form>
 </div>
 
 </body>
