@@ -42,7 +42,6 @@ public class Quiz {
 
     public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, boolean isShuffled,
 			boolean isPublished) {
-		super();
 		this.quizName = quizName;
 		this.quizInstructions = quizInstructions;
 		this.quizType = quizType;
