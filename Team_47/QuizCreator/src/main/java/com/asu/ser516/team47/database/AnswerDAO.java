@@ -13,12 +13,14 @@ import java.util.List;
 public interface AnswerDAO {
     /**
      * Gets all answers in the table
+     *
      * @return all answers in the table
      */
     List<Answer> getAllAnswers();
 
     /**
      * Gets all answers for a submission
+     *
      * @param submission_fk submission_id
      * @return all answers for a submission
      */
@@ -26,6 +28,7 @@ public interface AnswerDAO {
 
     /**
      * Gets all answered responses for a question
+     *
      * @param question_fk question_id
      * @return all answers for a question
      */
@@ -33,6 +36,7 @@ public interface AnswerDAO {
 
     /**
      * Gets all answered responses for a choice
+     *
      * @param choice_fk choice_fk
      * @return all answers for a choice
      */
@@ -40,6 +44,7 @@ public interface AnswerDAO {
 
     /**
      * Gets an answer based on it's answer_id
+     *
      * @param answer_id the id of the answer_id
      * @return a answer with the answer_id
      */
@@ -47,6 +52,7 @@ public interface AnswerDAO {
 
     /**
      * Inserts an answer into the Answer Table
+     *
      * @param answer the answer to insert
      * @return a boolean noting success (true) or failure (false)
      */
@@ -55,6 +61,7 @@ public interface AnswerDAO {
     /**
      * Updates a answer in the database based on the
      * values in a business object
+     *
      * @param answer a answer to update in the database
      * @return a boolean noting success (true) or failure (false)
      */
@@ -63,6 +70,7 @@ public interface AnswerDAO {
     /**
      * Deletes a answer in the database based on the
      * values in a business object
+     *
      * @param answer a answer to delete in the database
      * @return a boolean noting success (true) or failure (false)
      */

@@ -17,7 +17,7 @@ import java.util.List;
 public class CourseDAOImpl implements CourseDAO {
     // Hardcoded (will switch to loading through props in future)
     //    private static Properties __dbProperties;
-    private static String __jdbcUrl = "jdbc:sqlite:src/main/java/com/asu/ser516/team47/main/schema.db";
+    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
     private static String __jdbcUser;
     private static String __jdbcPasswd;
 
@@ -26,7 +26,6 @@ public class CourseDAOImpl implements CourseDAO {
      *
      * @return all courses
      */
-    @Override
     public List<Course> getAllCourses() {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -64,7 +63,6 @@ public class CourseDAOImpl implements CourseDAO {
      * @param professor_fk the professor's username
      * @return all courses a professor teaches
      */
-    @Override
     public List<Course> getProfessorsCourses(String professor_fk) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -102,7 +100,6 @@ public class CourseDAOImpl implements CourseDAO {
      * @param course_id a course id
      * @return the course business object
      */
-    @Override
     public Course getCourse(int course_id) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -142,7 +139,6 @@ public class CourseDAOImpl implements CourseDAO {
      * @param course
      * @return a boolean representing a successful/failed insert
      */
-    @Override
     public boolean insertCourse(Course course) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -181,7 +177,6 @@ public class CourseDAOImpl implements CourseDAO {
      * @param course
      * @return a boolean representing a successful/failed update
      */
-    @Override
     public boolean updateCourse(Course course) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -221,7 +216,6 @@ public class CourseDAOImpl implements CourseDAO {
      * @param course
      * @return a boolean representing a successful/failed deletion
      */
-    @Override
     public boolean deleteCourse(Course course) {
         Connection conn = null;
         PreparedStatement stmt = null;
