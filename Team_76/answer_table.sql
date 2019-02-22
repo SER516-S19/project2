@@ -9,7 +9,7 @@ CREATE TABLE answer_table
 quizID INTEGER,
 questionID INTEGER,
 answerGiven TEXT,
-marks TEXT
+marks INTEGER
 );
 
 DESCRIBE answer_table;
