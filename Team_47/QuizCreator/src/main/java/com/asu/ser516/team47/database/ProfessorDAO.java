@@ -15,7 +15,7 @@ public interface ProfessorDAO {
 
     /**
      * Gets a professor based on it's username
-     * @param username the id of the choice
+     * @param username the id of the student
      * @return a professor with the username
      */
     public Professor getProfessor(String username);
