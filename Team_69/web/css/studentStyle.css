@@ -73,3 +73,7 @@ ul {
 	display: none;
 	width: 90px;
 }
+
+#ridge {
+    border-style: ridge;
+}
