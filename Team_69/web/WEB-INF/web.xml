@@ -35,6 +35,26 @@
         <servlet-name>StudentController</servlet-name>
         <url-pattern>/student/</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+		<servlet-name>success</servlet-name>
+		<jsp-file>/views/success.jsp</jsp-file>
+	</servlet>
+	<!--mapping -->
+	<servlet-mapping>
+		<servlet-name>success</servlet-name>
+		<url-pattern>/success</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>error</servlet-name>
+		<jsp-file>/views/error.jsp</jsp-file>
+	</servlet>
+	<!--mapping -->
+	<servlet-mapping>
+		<servlet-name>error</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
