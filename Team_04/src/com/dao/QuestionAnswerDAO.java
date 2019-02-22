@@ -1,19 +1,21 @@
 package com.dao;
 
+import DBUtil.DbHelper;
 import com.model.QuestionAnswers;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Class.forName;
+import static java.sql.DriverManager.getConnection;
+
 public class QuestionAnswerDAO {
 
     private ArrayList<QuestionAnswers> test_obj = new ArrayList<QuestionAnswers>();
 
-    public Map<String, List<QuestionAnswers>> getResult()
-    {
+    public Map<String, List<QuestionAnswers>> getResult() throws ClassNotFoundException {
         QuestionAnswers tes = new QuestionAnswers();
         Connection c = null;
         Statement stmt = null;
@@ -25,20 +27,18 @@ public class QuestionAnswerDAO {
         Map<String, List<QuestionAnswers>> questionAnsMap= new HashMap<String, List<QuestionAnswers>>();
         List<QuestionAnswers> answerDesList = new ArrayList<QuestionAnswers>();
 
+
         try {
             Class.forName("org.sqlite.JDBC");
 
             //c = DriverManager.getConnection("jdbc:sqlite:C:/Users/14807/Documents/Project516/project2/Team_04/src/quizDatabase.db");
 
-            c = DriverManager.getConnection("jdbc:sqlite:C:/Yuvan/Projects/SER-516/project2/Team_04/src/quizDatabase.db");
+            c = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Sreya Narasimhan\\eclipse-workspace\\516_Proj2\\Team_04\\src\\quizDatabase.db");
 
         } catch ( Exception e ) {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-
-
-
 
         try {
             stmt = c.createStatement();

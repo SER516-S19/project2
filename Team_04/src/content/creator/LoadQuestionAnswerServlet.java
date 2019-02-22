@@ -1,5 +1,6 @@
 package content.creator;
 
+import DBUtil.DbController;
 import com.dao.QuestionAnswerDAO;
 
 import java.io.IOException;
@@ -19,41 +20,6 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-			Connection conn = null;
-			try {
-				// db parameters
-				String url = "jdbc:sqlite:/Users/aj/Developer/SER-516/project2/Team_04/resources/quizDatabase.db";
-
-				// create a connection to the database
-				conn = DriverManager.getConnection(url);
-
-				System.out.println("Connection to SQLite has been established.");
-
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			} finally {
-					if (conn != null) {
-						try {
-							Statement s =conn.createStatement();
-							ResultSet rs = s.executeQuery("SELECT * FROM quiz_content");
-
-							while (rs.next()) {
-								System.out.println(rs.getString("ques_desc"));
-							}
-
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-
-			}
 	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
