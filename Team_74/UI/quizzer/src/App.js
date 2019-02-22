@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Routes from './Routes';
-import Navigation from './Navigation'
+import Navigation from './components/Navigation'
 import { NavLink } from 'react-router-dom';
 
 class App extends Component {
