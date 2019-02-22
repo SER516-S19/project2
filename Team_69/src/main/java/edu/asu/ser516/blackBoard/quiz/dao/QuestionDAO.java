@@ -1,16 +1,14 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
-
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.criteria.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import edu.asu.ser516.blackBoard.quiz.bean.Answer;
 import edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
 import edu.asu.ser516.blackBoard.quiz.bean.Question;
 import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
@@ -43,7 +41,8 @@ public class QuestionDAO {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Question> query = builder.createQuery(Question.class);
 			Root<Question> root = query.from(Question.class);
-			query.select(root).where(builder.equal(root.get(Integer.toString(Quiz.class.newInstance().getQuizId())),quizId));
+			Join<Question,Quiz> join = root.join("quiz");
+			query.select(root).where(builder.equal(join.get("quizId"),quizId));
 			Query<Question> q = session.createQuery(query);
 			quesList = q.getResultList();
 			for(Question qu: quesList)
@@ -59,26 +58,79 @@ public class QuestionDAO {
 		return quesList;
 	}
 
-	public int getPointsByQuestion(String ques) {
+	public int getPointByQuestion(String ques) {
 		Transaction transaction = null;
 		int points = -1;
-		Session session = null;
 		try  {
-		    session = HibernateUtil.getSessionFactory().openSession();
+			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Question question  = (Question)session.get(Question.class,ques);
-			points = question.getPoints();
-			session.save(ques);
-			transaction.commit();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
+			Root<Question> root = query.from(Question.class);
+			query.select(root.<Integer>get("points")).where(root.get("question").in(ques));
+			Query<Integer> q=session.createQuery(query);
+			points=q.getSingleResult();
+	        transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
 			return points;
-		}finally {
-			session.close();
 		}
 		return points;
 	}
+	
+	
+	public void deleteQuestionByQuestionId(String quesId){
+		Transaction transaction = null;
+		Question quesList = null;
+		try  {
+			int qId = Integer.parseInt(quesId);
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			quesList = (Question) session.get(Question.class, qId);
+//			System.out.println(quesList.toString());
+			session.delete(quesList);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return ;
+		}
+		return ;
+	}
+	public List<Answer> getQuestionsAndAnswers(int quizId) {
+		// TODO Auto-generated method stub
+	
+		Transaction transaction = null;
+	       List<Answer> quesList = new ArrayList<Answer>();
+	       try  {
+	           Session session = HibernateUtil.getSessionFactory().openSession();
+	           transaction = session.beginTransaction();
+	           CriteriaBuilder builder = session.getCriteriaBuilder();
+	           CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
+	           Root<Answer> root = query.from(Answer.class);
+	           Join<Answer,Question> join = root.join("question");
+	           query.select(root).where(root.get("quiz").in(quizId));
+	           Query<Answer> q=session.createQuery(query);
+	           quesList= q.getResultList();
+	           for (Answer name : quesList) {
+	               System.out.println(name);
+	           }
+	           transaction.commit();
+	       } catch (HibernateException e) {
+	           e.printStackTrace();
+	           if (transaction != null) {
+	               transaction.rollback();
+	           }
+	       }
+	       return quesList;
+
+		
+		
+	}
+	
 }

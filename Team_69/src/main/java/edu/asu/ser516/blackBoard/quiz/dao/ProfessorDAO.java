@@ -1,6 +1,4 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
-
-
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -27,11 +25,10 @@ public class ProfessorDAO {
 	            }
 	            e.printStackTrace();
 	        }
-		
 		return lists;
 	}
-	
-	 public static void publishQuiz(int quiz_id) {   
+
+	public static void publishQuiz(int quiz_id) {
 		 Transaction transaction = null;
 		 Session session = null;
 	        try {
@@ -60,6 +57,26 @@ public class ProfessorDAO {
 	            }
 	        }
 	    }
+
+	
+	public void insertProfDetails(Quiz quiz) {
+        Transaction transaction = null;
+        try  {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save the student object
+            session.save(quiz);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
 
 	
 }

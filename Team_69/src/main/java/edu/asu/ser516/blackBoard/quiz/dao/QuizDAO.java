@@ -1,4 +1,5 @@
 package edu.asu.ser516.blackBoard.quiz.dao;
+
 import edu.asu.ser516.blackBoard.quiz.bean.HibernateUtil;
 import edu.asu.ser516.blackBoard.quiz.bean.Quiz;
 import org.hibernate.HibernateException;
@@ -11,6 +12,13 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is helper for performing database operation on the Quiz table
+ *
+ * @author : Jahnvi Rai
+ * @version : 1.0
+ * @since : 02/17/2019
+ */
 
 public class QuizDAO {
 
@@ -60,6 +68,5 @@ public class QuizDAO {
        }
        return quizId;
    }
-
 
 }
