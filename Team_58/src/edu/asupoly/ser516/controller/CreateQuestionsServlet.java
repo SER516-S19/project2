@@ -12,23 +12,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.asupoly.ser516.model.CreateQuizVO;
-
 /**
  * Class CreateQuestionServlet Servlet is a controller that routes the user to
  * Create Questions after Create Quiz.
  * 
  * @author trupti
- * @version 1.0
- * @date 02/20/2019
+ * @version 1.1
+ * @date 02/21/2019
  **/
 public class CreateQuestionsServlet extends HttpServlet {
 
+	// This servlet will not make any Get requests.
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse res) {
 
 	}
 
+	/**
+	 * This method is to create UI for create questions page
+	 * 
+	 * @param req Request made to server
+	 * @param res Responses from server
+	 * @throws IOException
+	 */
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
@@ -39,7 +45,7 @@ public class CreateQuestionsServlet extends HttpServlet {
 			String incorrectAnswer1 = req.getParameter("incorrectAnswer1");
 			String incorrectAnswer2 = req.getParameter("incorrectAnswer2");
 			String incorrectAnswer3 = req.getParameter("incorrectAnswer3");
-			int totalPoints = Integer.parseInt(req.getParameter("totalPoints"));
+			String totalPoints = req.getParameter("totalPoints");
 			Boolean isMCQ = Boolean.valueOf(req.getParameter("isMCQ"));
 
 			Map<String, String> totalChoices = new HashMap<>();
@@ -72,7 +78,6 @@ public class CreateQuestionsServlet extends HttpServlet {
 			System.out.println("question: " + correctAnswer);
 			System.out.println("question: " + incorrectAnswer1);
 
-			CreateQuizVO obj = (CreateQuizVO) req.getAttribute("CreateQuizVO");
 			HttpSession session = req.getSession();
 			int quizId = (int) session.getAttribute("quizId");
 
@@ -100,7 +105,7 @@ public class CreateQuestionsServlet extends HttpServlet {
 			query.setString(2, question);
 			query.setString(3, correctAnswer);
 			query.setString(4, incorrectAnswer);
-			query.setInt(5, totalPoints);
+			query.setString(5, totalPoints);
 			query.setBoolean(6, isMCQ);
 
 			query.executeUpdate();
