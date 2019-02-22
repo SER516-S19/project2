@@ -23,7 +23,7 @@
 	        	<button type="submit">Return to Dashboard</button>
         	</form>
 		<h1>
-		   TITLE: ${Session.quizInfo.getQuizTitle()}
+		   TITLE: ${Session.Name}
 		</h1>
 		<h3>
 		   TOTAL POINTS: ${Session.Total}
@@ -41,7 +41,7 @@
         <h4> 
         	${Session.Directions}
         </h4>
-		<table>
+		<table id ="table">
 			<tr>
 				<th>Question</th>
 				<th>Answer</th>
@@ -56,21 +56,31 @@
 			</tr>
 	        <#list Session.QuizQuestions as questions>
 	            <tr>
-	               <td>${questions.getQuestion()}</td>
-				   <td>${questions.getCorrectAnswer()}</td>
-				   <td>${questions.getIncorrectAnswer1()}</td>
-				   <td>${questions.getIncorrectAnswer2()}</td>
-				   <td>${questions.getIncorrectAnswer3()}</td>
-				   <td>${questions.getTotalPoints()}</td>
+	               <td contenteditable="false">${questions.getQuestion()}</td>
+				   <td contenteditable="false">${questions.getCorrectAnswer()}</td>
+				   <td contenteditable="false">${questions.getIncorrectAnswer1()}</td>
+				   <td contenteditable="false">${questions.getIncorrectAnswer2()}</td>
+				   <td contenteditable="false">${questions.getIncorrectAnswer3()}</td>
+				   <td contenteditable="false">${questions.getTotalPoints()}</td>
 				   <#if Session.Grade == false>
-				   		<td><button>edit</button></td>
+				   		<td><button id=	qid? onclick="editRow(this.id); value= ">edit</button></td>
 				   </#if>
 	            </tr>
 	        </#list>
         </table>
+        <script>
+       		function editRow(){
+       			var table = document.getElementById("table");
+       			var button = document.getElementsByClassName("editButton");
+       			
+       			
+       			
+       		}
+        </script>
         <#if Session.Grade == false && Session.isAfter == true>
         	<form action="gradeQuiz" method="POST">
-	        	<input type="hidden" value=${Session.quizInfo}/>
+	        	<input type="hidden" value=${Session.Name}/>
+	        	<input type="hidden" value=${Session.Id}/>
 	        	<button type="submit">Grade Quiz</button>
         	</form>
         </#if>

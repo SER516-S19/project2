@@ -72,15 +72,17 @@ public class QuizVO {
 	}
 	
 	/**
-	 * The following constructor is created to pass quiz information to make it easier 
-	 * to grade quiz and prevent an unecessary database call for quiz information.
+	 * The following constructor is created to use quiz information in viewQuiz page
 	 * @author Aditya Samant
-	 * @param quizId id of quiz
-	 * @param quizTitle name of quiz
+	 * @param name name of the quiz
+	 * @param instructions instructions for the quiz
+	 * @param date the date at which the quiz is scheduled to run
+	 * @param graded whether the quiz is graded
 	 * */
-	public QuizVO(int id, String name) {
-		quizId = id;
+	public QuizVO(String name, String instructions, Date date, boolean graded) {
 		quizTitle = name;
+		quizInstruction = instructions;
+		quizScheduledDate = date;
+		isGraded = graded;
 	}
-	
 }
