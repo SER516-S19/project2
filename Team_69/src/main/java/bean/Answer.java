@@ -33,6 +33,13 @@ public class Answer {
         this.answer = answer;
         this.correctAnswer = correctAnswer;
     }
+    
+    public Answer(Question question, int answerId, String answer, String correctAnswer) {
+        this.question = question;
+        this.answer = answer;
+        this.correctAnswer = correctAnswer;
+        this.answerId = answerId;
+    }
 
     public int getAnswerId() {
         return answerId;

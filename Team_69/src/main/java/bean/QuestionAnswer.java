@@ -1,5 +1,6 @@
 package bean;
 
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -12,77 +13,77 @@ import java.util.List;
  */
 
 public class QuestionAnswer {
-	private int questionId;
-	private Quiz quiz;
-	private String question;
-	private int correctAnswerId;
-	private boolean isMultiple;
-	private int points;
-	private List<Answer> answerList;
-	private List<Answer> responseAnswer;
-
-	public int getQuestionId() {
-		return questionId;
+	private int quizId;
+	private String quizName;
+    private String quizInstructions;
+    private String quizType;
+	private Time quizTimeLimit;
+    private boolean isShuffled;
+    private boolean isPublished;
+    
+    private List<QuestionMapper> question;
+    public String getQuizName() {
+		return quizName;
 	}
 
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
+	public void setQuizName(String quizName) {
+		this.quizName = quizName;
 	}
 
-	public Quiz getQuiz() {
-		return quiz;
+	public String getQuizInstructions() {
+		return quizInstructions;
 	}
 
-	public void setQuiz(Quiz quiz) {
-		this.quiz = quiz;
+	public void setQuizInstructions(String quizInstructions) {
+		this.quizInstructions = quizInstructions;
 	}
 
-	public String getQuestion() {
+	public String getQuizType() {
+		return quizType;
+	}
+
+	public void setQuizType(String quizType) {
+		this.quizType = quizType;
+	}
+
+	public Time getQuizTimeLimit() {
+		return quizTimeLimit;
+	}
+
+	public void setQuizTimeLimit(Time quizTimeLimit) {
+		this.quizTimeLimit = quizTimeLimit;
+	}
+
+	public boolean isShuffled() {
+		return isShuffled;
+	}
+
+	public void setShuffled(boolean isShuffled) {
+		this.isShuffled = isShuffled;
+	}
+
+	public boolean isPublished() {
+		return isPublished;
+	}
+
+	public void setPublished(boolean isPublished) {
+		this.isPublished = isPublished;
+	}
+
+	public List<QuestionMapper> getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(String question) {
+	public void setQuestion(List<QuestionMapper> question) {
 		this.question = question;
 	}
 
-	public int getCorrectAnswerId() {
-		return correctAnswerId;
+	public int getQuizId() {
+		return quizId;
 	}
 
-	public void setCorrectAnswerId(int correctAnswerId) {
-		this.correctAnswerId = correctAnswerId;
-	}
-
-	public boolean isMultiple() {
-		return isMultiple;
-	}
-
-	public void setMultiple(boolean isMultiple) {
-		this.isMultiple = isMultiple;
-	}
-
-	public int getPoints() {
-		return points;
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
-	}
-
-	public List<Answer> getAnswerList() {
-		return answerList;
-	}
-
-	public void setAnswerList(List<Answer> answerList) {
-		this.answerList = answerList;
-	}
-
-	public List<Answer> getResponseAnswer() {
-		return responseAnswer;
-	}
-
-	public void setResponseAnswer(List<Answer> responseAnswer) {
-		this.responseAnswer = responseAnswer;
+	public void setQuizId(int quizId) {
+		this.quizId = quizId;
 	}
 
 }

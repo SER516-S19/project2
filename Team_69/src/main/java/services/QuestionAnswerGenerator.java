@@ -6,8 +6,12 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import bean.Answer;
+import bean.AnswerMapper;
 import bean.Question;
 import bean.QuestionAnswer;
+import bean.QuestionMapper;
+import bean.Quiz;
 import dao.AnswerDAO;
 import dao.QuestionDAO;
 
@@ -21,31 +25,52 @@ import dao.QuestionDAO;
  */
 
 public class QuestionAnswerGenerator {
-	public List<QuestionAnswer> generator(int quizId) {
+	public QuestionAnswer generator(int quizId) {
 		QuestionDAO questionDao = new QuestionDAO();
 		AnswerDAO answerDao = new AnswerDAO();
+
+		QuestionAnswer questionAnswers = new QuestionAnswer();
 		List<Question> questionList = questionDao.getQuestionsByQuizId(quizId);
-		List<QuestionAnswer> questionAnswerList = new ArrayList<QuestionAnswer>();
-		for (Question question : questionList) {
-			int questionId = question.getQuestionId();
-			QuestionAnswer questionAnswer = new QuestionAnswer();
-			questionAnswer.setQuestionId(question.getQuestionId());
-			questionAnswer.setQuiz(question.getQuiz());
-			questionAnswer.setQuestion(question.getQuestion());
-			questionAnswer.setPoints(question.getPoints());
-			questionAnswer.setMultiple(question.isMultiple());
-			questionAnswer.setAnswerList(answerDao.getAnswersByQuestionId(questionId));
-			questionAnswerList.add(questionAnswer);
+		if(questionList!= null) {
+			Quiz quiz = questionList.get(0).getQuiz();
+			questionAnswers.setQuizId(quiz.getQuizId());
+			questionAnswers.setQuizName(quiz.getQuizName());
+			questionAnswers.setQuizInstructions(quiz.getQuizInstructions());
+			questionAnswers.setPublished(quiz.isPublished());
+			questionAnswers.setShuffled(quiz.isShuffled());
+			questionAnswers.setQuizType(quiz.getQuizType());
+			questionAnswers.setQuizTimeLimit(quiz.getQuizTimeLimit());
 		}
-		return questionAnswerList;
+		List<QuestionMapper> questionMapperList = new ArrayList<QuestionMapper>();
+		for (Question question : questionList) {
+			QuestionMapper mapper = new QuestionMapper();
+			mapper.setMultiple(question.isMultiple());
+			mapper.setPoints(question.getPoints());
+			mapper.setQuestion(question.getQuestion());
+			mapper.setQuestionId(question.getQuestionId());
+			List<AnswerMapper> answerMapperList = new ArrayList<AnswerMapper>();
+			List<Answer> answersList = answerDao.getAnswersByQuestionId(question.getQuestionId());
+			for(Answer ans : answersList) {
+				AnswerMapper answerMapper = new AnswerMapper();
+				answerMapper.setAnswer(ans.getAnswer());
+				answerMapper.setAnswerId(ans.getAnswerId());
+				answerMapper.setCorrectAnswer(ans.getCorrectAnswer());
+				answerMapperList.add(answerMapper);
+			}
+			mapper.setAvailableAnswers(answerMapperList);
+			questionMapperList.add(mapper);
+		}
+		questionAnswers.setQuestion(questionMapperList);;
+		return questionAnswers;
+		
 
 	}
 
-	public String ObjectToJSON(List<QuestionAnswer> list) {
+	public String ObjectToJSON(QuestionAnswer quizList) {
 		GsonBuilder gsonBuilder = new GsonBuilder();  
 		gsonBuilder.serializeNulls();  
 		Gson gson = gsonBuilder.create();
-		String result = gson.toJson(list);
+		String result = gson.toJson(quizList);
 		return result;
 	}
 }

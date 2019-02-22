@@ -50,6 +50,17 @@ public class Quiz {
 		this.isShuffled = isShuffled;
 		this.isPublished = isPublished;
 	}
+    
+    public Quiz(int quizId, String quizName, String quizInstructions, String quizType, Time quizTimeLimit, boolean isShuffled,
+			boolean isPublished) {
+		this.quizName = quizName;
+		this.quizInstructions = quizInstructions;
+		this.quizType = quizType;
+		this.quizTimeLimit = quizTimeLimit;
+		this.isShuffled = isShuffled;
+		this.isPublished = isPublished;
+		this.quizId = quizId;
+	}
 
 
 	public boolean isShuffled() {
