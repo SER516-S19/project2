@@ -134,7 +134,6 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean updateStudent(Student student) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -156,7 +155,6 @@ public class StudentDAOImpl implements StudentDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
@@ -172,7 +170,6 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean deleteStudent(Student student) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -190,7 +187,6 @@ public class StudentDAOImpl implements StudentDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }

@@ -223,7 +223,6 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     public boolean updateSubmission(Submission submission) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -250,7 +249,6 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
@@ -266,7 +264,6 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     public boolean deleteSubmission(Submission submission) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -284,7 +281,6 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }

@@ -1,42 +1,41 @@
 package com.asu.ser516.team47.database;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * An Quiz Database Abstraction
+ * A Question Database Abstraction
  *
- * @author  Trevor Forrey
+ * @author  Paul Horton
  * @version 1.0
- * @since   2/22/19
+ * @since  2/22/19
  */
-public class QuizDAOImpl implements QuizDAO {
+public class QuestionDAOImpl implements QuestionDAO{
     private static String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
-     * Gets all quizzes in the table
-     * @return all quizzes in the table
+     * Gets all questions in the table
+     *
+     * @return all questions in the table
      */
-    public List<Quiz> getAllQuizzes() {
+    public List<Question> getAllQuestions() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Quiz> rval = new ArrayList<Quiz>();
+        List<Question> rval = new ArrayList<Question>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from quizzes");
+            stmt = conn.prepareStatement("select * from questions");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Quiz(rs.getInt(1), rs.getString(2), rs.getInt(3),
-                        rs.getString(4), rs.getBoolean(5), rs.getInt(6),
-                        rs.getDate(7), rs.getDate(8), rs.getString(9),
-                        rs.getInt(10), rs.getString(11), rs.getDouble(12)));
+                rval.add(new Question(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getFloat(4), rs.getString(5)));
             }
         }
         catch (Exception se) {
@@ -55,26 +54,26 @@ public class QuizDAOImpl implements QuizDAO {
     }
 
     /**
-     * Gets all quizzes for a course
-     * @param course_fk course_id
-     * @return all quizzes for a course
+     * Gets all questions for a quiz
+     *
+     * @param quiz_fk quiz_id
+     * @return all questions for a quiz
      */
-    public List<Quiz> getCourseQuizzes(int course_fk) {
+    public List<Question> getQuizQuestions(int quiz_fk) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Quiz> rval = new ArrayList<Quiz>();
+        List<Question> rval = new ArrayList<Question>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select * from quizzes where course_fk = ?");
-            stmt.setInt(1, course_fk);
+
+            stmt = conn.prepareStatement("select * from questions where quiz_fk = ?");
+            stmt.setInt(1,quiz_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Quiz(rs.getInt(1), rs.getString(2), rs.getInt(3),
-                        rs.getString(4), rs.getBoolean(5), rs.getInt(6),
-                        rs.getDate(7), rs.getDate(8), rs.getString(9),
-                        rs.getInt(10), rs.getString(11), rs.getDouble(12)));
+                rval.add(new Question(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getFloat(4), rs.getString(5)));
             }
         }
         catch (Exception se) {
@@ -93,27 +92,26 @@ public class QuizDAOImpl implements QuizDAO {
     }
 
     /**
-     * Gets a quiz based on it's quiz_id
-     * @param quiz_id the id of the quiz
-     * @return a quiz with the quiz_id
+     * Gets a question based on it's question_id
+     *
+     * @param question_id the id of the question_id
+     * @return a question with the question_id
      */
-    public Quiz getQuiz(int quiz_id) {
+    public Question getQuestion(int question_id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Quiz rval = null;
+        Question rval = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from quizzes where quiz_id = ?");
-            stmt.setInt(1, quiz_id);
+            stmt = conn.prepareStatement("select * from questions where question_id = ?");
+            stmt.setInt(1, question_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval = new Quiz(rs.getInt(1), rs.getString(2), rs.getInt(3),
-                        rs.getString(4), rs.getBoolean(5), rs.getInt(6),
-                        rs.getDate(7), rs.getDate(8), rs.getString(9),
-                        rs.getInt(10), rs.getString(11), rs.getDouble(12));
+                rval = new Question(rs.getInt(1), rs.getInt(2), rs.getString(3),
+                        rs.getFloat(4), rs.getString(5));
             }
         }
         catch (Exception se) {
@@ -132,12 +130,13 @@ public class QuizDAOImpl implements QuizDAO {
     }
 
     /**
-     * Inserts a quiz in the database based on the
+     * Inserts a question in the database based on the
      * values in a business object
-     * @param quiz
+     *
+     * @param question
      * @return a boolean representing a successful/failed insert
      */
-    public boolean insertQuiz(Quiz quiz) {
+    public boolean insertQuestion(Question question) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -145,30 +144,22 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into quizzes (title, course_fk, instructions, shuffle," +
-                    " time_limit, date_open, date_close, quiz_type, attempts," +
-                    " quiz_group, total_points) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1, quiz.getTitle());
-            stmt.setInt(2, quiz.getCourse_fk());
-            stmt.setString(3, quiz.getInstructions());
-            stmt.setBoolean(4, quiz.isShuffle());
-            stmt.setInt(5, quiz.getTime_limit());
-            stmt.setDate(6, new java.sql.Date(quiz.getDate_open().getTime()));
-            stmt.setDate(7, new java.sql.Date(quiz.getDate_close().getTime()));
-            stmt.setString(8, quiz.getQuiz_type());
-            stmt.setInt(9, quiz.getAttempts());
-            stmt.setString(10, quiz.getQuiz_group());
-            stmt.setDouble(11, quiz.getTotal_points());
+            stmt = conn.prepareStatement("insert into questions (quiz_fk, quesType, points, content)" +
+                    "VALUES (?,?,?,?)");
+            stmt.setInt(1, question.getQuiz_fk());
+            stmt.setString(2, question.getQuesType());
+            stmt.setFloat(3, question.getPoints());
+            stmt.setString(4, question.getContent());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows <= 0) {
                 return false;
             }
 
-            // Update quiz id to SQLite generated id
+            // Update question id to SQLite generated id
             stmt = conn.prepareStatement("SELECT last_insert_rowid()");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                quiz.setQuiz_id(rs.getInt(1));
+                question.setQuestion_id(rs.getInt(1));
             }
             return true;
         }
@@ -186,33 +177,26 @@ public class QuizDAOImpl implements QuizDAO {
     }
 
     /**
-     * Updates a quiz in the database based on the
+     * Updates a question in the database based on the
      * values in a business object
-     * @param quiz a quiz to update in the database
+     *
+     * @param question a question to update in the database
      * @return a boolean representing a successful/failed update
      */
-    public boolean updateQuiz(Quiz quiz) {
+    public boolean updateQuestion(Question question) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update quizzes set title=?, course_fk=?, instructions=?," +
-                    "shuffle=?, time_limit=?, date_open=?, date_close=?, quiz_type=?, attempts=?," +
-                    " quiz_group=?, total_points=? where quiz_id=?");
-            stmt.setString(1, quiz.getTitle());
-            stmt.setInt(2, quiz.getCourse_fk());
-            stmt.setString(3, quiz.getInstructions());
-            stmt.setBoolean(4, quiz.isShuffle());
-            stmt.setInt(5, quiz.getTime_limit());
-            stmt.setDate(6, new java.sql.Date(quiz.getDate_open().getTime()));
-            stmt.setDate(7, new java.sql.Date(quiz.getDate_close().getTime()));
-            stmt.setString(8, quiz.getQuiz_type());
-            stmt.setInt(9, quiz.getAttempts());
-            stmt.setString(10, quiz.getQuiz_group());
-            stmt.setDouble(11, quiz.getTotal_points());
-            stmt.setInt(12, quiz.getQuiz_id());
+            stmt = conn.prepareStatement("update questions set quiz_fk=?, quesType=?, points=?, content=?" +
+                    " where question_id=?");
+            stmt.setInt(1, question.getQuiz_fk());
+            stmt.setString(2, question.getQuesType());
+            stmt.setFloat(3, question.getPoints());
+            stmt.setString(4, question.getContent());
+            stmt.setInt(5,question.getQuestion_id());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows > 0) {
                 return true;
@@ -233,12 +217,13 @@ public class QuizDAOImpl implements QuizDAO {
     }
 
     /**
-     * Deletes a quiz in the database based on the
+     * Deletes a question in the database based on the
      * values in a business object
-     * @param quiz a quiz to delete in the database
+     *
+     * @param question a question to delete in the database
      * @return a boolean representing a successful/failed deletion
      */
-    public boolean deleteQuiz(Quiz quiz) {
+    public boolean deleteQuestion(Question question) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -246,8 +231,8 @@ public class QuizDAOImpl implements QuizDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
             conn.setAutoCommit(false);
 
-            stmt = conn.prepareStatement("delete from quizzes where quiz_id=?");
-            stmt.setInt(1, quiz.getQuiz_id());
+            stmt = conn.prepareStatement("delete from questions where question_id=?");
+            stmt.setInt(1, question.getQuestion_id());
             stmt.executeUpdate();
             conn.commit();
             return true;
