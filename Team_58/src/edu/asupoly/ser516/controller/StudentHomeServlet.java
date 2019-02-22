@@ -1,8 +1,8 @@
 package edu.asupoly.ser516.controller;
 
 import edu.asupoly.ser516.model.CourseVO;
+import edu.asupoly.ser516.model.QuizVO;
 import edu.asupoly.ser516.model.UserVO;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,9 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,16 +39,7 @@ public class StudentHomeServlet extends HttpServlet
 
             String schema = connection.getSchema();
             System.out.println("Successful connection - Schema: " + schema);
-
-            /*
-            PreparedStatement query;
-            query = connection.prepareStatement("select * from [dbo].[Course] A " +
-                                                " join [dbo].[UserCourseMApping] B" +
-                                                " on A.courseId = B.courseId" + " where B.userId = ?");
-            query.setInt(1, 8);//student.getUserId());
-
-            ResultSet resultData = query.executeQuery();
-            */
+            
             
             PreparedStatement query2;
             query2 = connection.prepareStatement("select * from [dbo].[UserDetails] " +
@@ -65,11 +53,16 @@ public class StudentHomeServlet extends HttpServlet
                 userName = userData.getString("firstname");
             UserVO userVO = new UserVO(userName, "", 1, true, "", "", 8);
             
-            //System.out.println(userData);
+            PreparedStatement query;
+            query = connection.prepareStatement("select * from [dbo].[Course] A " +
+                                                " join [dbo].[UserCourseMApping] B" +
+                                                " on A.courseId = B.courseId" + " where B.userId = ?");
+            query.setInt(1, userVO.getUserId());
 
-            //List<CourseVO> list = new ArrayList<>();
+            ResultSet resultData = query.executeQuery();
 
-            /*
+            List<CourseVO> list = new ArrayList<>();
+
             while (resultData.next()) {
                     int courseId = resultData.getInt("courseId");
                     String courseName = resultData.getString("courseName");
@@ -77,15 +70,39 @@ public class StudentHomeServlet extends HttpServlet
                     CourseVO course = new CourseVO(courseName, courseNumber, courseId);
                     list.add(course);
             }
+            
+            PreparedStatement query3;
+            query3 = connection.prepareStatement("select * from [dbo].[Course] A " +
+                                                " join [dbo].[UserCourseMApping] B" +
+                                                " on A.courseId = B.courseId" + 
+                                                " join [dbo].[Quiz] C on B.courseId = C.courseId" +
+                                                " where B.userId = ?");
+            query3.setInt(1, userVO.getUserId());
 
+            ResultSet resultData3 = query3.executeQuery();
+
+            List<QuizVO> quizList = new ArrayList<>();
+
+            System.out.println(resultData3);
+            while (resultData3.next()) {
+                    int quizId = resultData3.getInt("quizId");
+                    String quizTitle = resultData3.getString("quizTitle");
+                    QuizVO quiz = new QuizVO(quizId, quizTitle);
+                    quizList.add(quiz);
+            }
+
+            HashMap<Integer, String> quizzes = new HashMap<>();
+            for (QuizVO list1 : quizList)
+                quizzes.put(list1.getQuizId(), list1.getQuizTitle());
+            
             HashMap<Integer, String> course = new HashMap<>();
-            for (int i = 0; i < list.size(); i++)
-                    course.put(list.get(i).getCourseId(), list.get(i).getCourseName());
+            for (CourseVO list1 : list)
+                course.put(list1.getCourseId(), list1.getCourseName());
 
-            //session.setAttribute("CourseHashMap", course);
-            */
             HttpSession session = req.getSession();
             session.setAttribute("UserVO", userVO);
+            session.setAttribute("CourseHashMap", course);
+            session.setAttribute("QuizHashMap", quizzes);
             
 
             res.sendRedirect(req.getContextPath() + "/studentHome.ftl");
