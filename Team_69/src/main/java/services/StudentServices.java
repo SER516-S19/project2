@@ -34,10 +34,17 @@ public class StudentServices {
 		return jsonString;
 	}
 
+	/**
+	 * A method to store the students response in database and return the view as
+	 * success if the response has been recorded.
+	 * 
+	 * @param studentResponse
+	 * @return view
+	 */
 	public String feedAnswers(String studentResponse) {
 
 		QuestionAnswer jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
-		User user = new User("abc", "student", "abc.com", "1234");
+		User user = new User(5,"abc", "student", "abc.com", "1234");
 		int quizId = jsonResponse.getQuizId();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		ResponseStatistics stats;
@@ -55,7 +62,6 @@ public class StudentServices {
 					Answer answer = new Answer(question, ansMapper.getAnswerId(), ansMapper.getAnswer(),
 							ansMapper.getCorrectAnswer());
 					stats = new ResponseStatistics(user, quiz, question, answer);
-					statisticsDAO.insertAnswer(answer);
 					statisticsDAO.insertStudentResponse(stats);
 				}
 			}
