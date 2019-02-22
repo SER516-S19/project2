@@ -63,7 +63,7 @@
 				   <td contenteditable="false">${questions.getIncorrectAnswer3()}</td>
 				   <td contenteditable="false">${questions.getTotalPoints()}</td>
 				   <#if Session.Grade == false>
-				   		<td><button class="editButton" onclick="editRow()">edit</button></td>
+				   		<td><button id=	qid? onclick="editRow(this.id); value= ">edit</button></td>
 				   </#if>
 	            </tr>
 	        </#list>
