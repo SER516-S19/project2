@@ -67,6 +67,8 @@ public class StudentControllerServlet extends HttpServlet {
 			String questionAnswerJSON = service.getQuestionDetails(quizId);
 			resp.getWriter().write(questionAnswerJSON);
 		}
+
+		req.setAttribute("QuizName",quizName);
 	}
 
 	protected void doPost(HttpServletRequest request,
