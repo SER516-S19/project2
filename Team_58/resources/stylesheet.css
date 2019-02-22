@@ -42,6 +42,11 @@ Freemarker page : stylesheet
 		margin-left: 5%;
 		 
 	}
+	.error {
+  		color: #F00;
+  		background-color: #FFF;
+  		font-size: 50%;
+	}
 	
 	.mediumInput {
 		width : 80%;

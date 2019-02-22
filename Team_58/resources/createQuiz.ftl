@@ -1,7 +1,7 @@
 <!-- 
 Freemarker page to display createquiz page
-@authour Carnic
-@version 1.0
+@authour Carnic / @author Aditya
+@version 1.1
 @date 02/21/2019
  -->
 
@@ -9,10 +9,34 @@ Freemarker page to display createquiz page
 	<head>
 		<#include "stylesheet.css">
 	</head>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $("#quizForm").validate({
+        messages: {
+
+            quizTitle: "Please add quiz title",
+            assignedTime: {required: "Please input quiz length", number:"Please enter a number"},
+            quizScheduledDate: "Please enter the quiz schedule date",
+            quizInstructions: "Please add quiz instructions"
+           
+ 
+        },
+        rules: {
+          quizTitle: "required",
+          assignedTime: {required:true, number: true,},
+          quizScheduledDate: "required",
+          quizInstructions: "required",
+
+        },
+      });
+    });
+  </script>
 	<body>
 	<p class="fontColor"> CREATE QUIZ HERE </p>
 		<div class="box">
-			<form action="createQuiz" method = "POST">
+			<form action="createQuiz" id="quizForm" method = "POST">
 			  <p class="fontUp">Quiz Title </p>
 			  <input class="mediumInput" type="text" name="quizTitle">
 			  <br><br>
