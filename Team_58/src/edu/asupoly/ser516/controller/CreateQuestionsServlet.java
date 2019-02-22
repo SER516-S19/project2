@@ -43,7 +43,7 @@ public class CreateQuestionsServlet extends HttpServlet {
 			String incorrectAnswer1 = req.getParameter("incorrectAnswer1");
 			String incorrectAnswer2 = req.getParameter("incorrectAnswer2");
 			String incorrectAnswer3 = req.getParameter("incorrectAnswer3");
-			String totalPoints = req.getParameter("totalPoints");
+			int totalPoints = Integer.parseInt(req.getParameter("totalPoints"));
 			Boolean isMCQ = Boolean.valueOf(req.getParameter("isMCQ"));
 
 			HttpSession session = req.getSession();
