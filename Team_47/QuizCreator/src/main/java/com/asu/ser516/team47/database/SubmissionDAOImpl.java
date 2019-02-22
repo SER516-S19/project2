@@ -23,20 +23,11 @@ import java.util.Properties;
  * @since   2/22/19
  */
 public class SubmissionDAOImpl implements SubmissionDAO {
-//    private static Properties __dbProperties;
-    private static String __jdbcUrl;
+    // Hardcoded (will switch to loading through props in future)
+    //    private static Properties __dbProperties;
+    private static String __jdbcUrl = "jdbc:sqlite:src/main/java/com/asu/ser516/team47/main/schema.db";
     private static String __jdbcUser;
     private static String __jdbcPasswd;
-    private static String __jdbcDriver;
-
-    private Connection getConnection() throws Exception {
-        try {
-            Class.forName(__jdbcDriver);
-            return DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-        } catch (Exception exc) {
-            throw exc;
-        }
-    }
 
     /**
      * Gets all submissions in the table
@@ -49,7 +40,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         List<Submission> rval = new ArrayList<Submission>();
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions");
             rs = stmt.executeQuery();
@@ -86,7 +77,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         List<Submission> rval = new ArrayList<Submission>();
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
             stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions where quiz_id = ?");
             stmt.setInt(1, quiz_fk);
             rs = stmt.executeQuery();
@@ -123,7 +114,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         List<Submission> rval = new ArrayList<Submission>();
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions where enrolled_fk = ?");
             stmt.setInt(1, enrolled_fk);
@@ -161,7 +152,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Submission rval = null;
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions where id = ?");
             stmt.setInt(1, submission_id);
@@ -202,7 +193,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         java.sql.Date submissionDate = java.sql.Date.valueOf(currentDate);
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("insert into submissions (id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt) VALUES (?,?,?,?,?,?,?)");
             stmt.setInt(1, 123456);
@@ -245,7 +236,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Submission rval = null;
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("update submissions set id=?, quiz_id=?, enrolled_fk=?, timeTaken=?, dateTaken=?, score=?, attempt=?) where id=?");
             stmt.setInt(1, 123456);
@@ -288,7 +279,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Submission rval = null;
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
             conn.setAutoCommit(false);
 
             stmt = conn.prepareStatement("delete from submissions where id=?");
