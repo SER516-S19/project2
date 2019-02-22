@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.asupoly.ser516.model.GradeQuizVO;
+import edu.asupoly.ser516.model.QuizVO;
 
 /**
  * Class GradeQuizServlet is a controller 
@@ -44,8 +45,11 @@ public class GradeQuizServlet extends HttpServlet{
 
 		HttpSession session = request.getSession();
 
-		int quizId = Integer.parseInt(session.getAttribute("quizId").toString());
+		QuizVO quizVO = (QuizVO) session.getAttribute("quizInfo");
 		
+		System.out.println(quizVO.getQuizTitle());
+		int quizId = quizVO.getQuizId();
+		String quizName = quizVO.getQuizTitle();
 
 		try {
 
@@ -73,7 +77,9 @@ public class GradeQuizServlet extends HttpServlet{
 					"Where SR.quizId = ?");
 			query.setInt(1,quizId);
 
-			ResultSet resultData = query.executeQuery();
+			query.executeUpdate();
+			
+			query = null;
 			
 			query = connection.prepareStatement("Select sum(score) as score, firstname,lastname, C.[quizTitle] \r\n" + 
 					"from StudentResponse A\r\n" + 
@@ -85,7 +91,7 @@ public class GradeQuizServlet extends HttpServlet{
 					"group by firstname,lastname, [quizTitle]");
 			query.setInt(1,quizId);
 			
-			resultData = query.executeQuery();
+			ResultSet resultData = query.executeQuery();
 			
 
 			List<GradeQuizVO> list = new ArrayList<>();
@@ -94,14 +100,13 @@ public class GradeQuizServlet extends HttpServlet{
 				int score = resultData.getInt("score");
 				String firstName = resultData.getString("firstname");
 				String lastName = resultData.getString("lastname"); 
-				String quizName = resultData.getString("quizName");
 				GradeQuizVO gradeQuiz = new GradeQuizVO(score,firstName,lastName,quizName);
 				list.add(gradeQuiz);
 			}
 
 			
 			session.setAttribute("gradeQuiz", list);
-			session.setAttribute("quizName", "quiz");
+			session.setAttribute("quizName", quizName);
 
 			response.sendRedirect(request.getContextPath()+"/gradeQuiz.ftl");  
 		}

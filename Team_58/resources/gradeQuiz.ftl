@@ -22,7 +22,7 @@
 				<th>Student</th>
 				<th>Score</th>
 			</tr>
-	        <#list Session.studentResponse as studentResponse>
+	        <#list Session.gradeQuiz as gradeQuiz>
 	            <tr>
 	               <td contenteditable='true'>${gradeQuiz.getFirstName()}</td>
 				   <td contenteditable='true'>${gradeQuiz.getScore()}</td>
