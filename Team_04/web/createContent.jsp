@@ -15,22 +15,27 @@
     <h1>
         Create Quiz
     </h1>
-    <form>
+    <form  method="POST" action="create">
     <br>
         Question text:<br>
-        <input type="text" name="questiontext"><br>
-        Answer text 1:<br>
-        <input type="text" name="anstext1"><br>
-        Answer text 2:<br>
-        <input type="text" name="anstext2"><br>
-        Answer text 3:<br>
-        <input type="text" name="anstext3"><br>
-        Answer text 4:<br>
-        <input type="text" name="anstext4"><br>
+        <input type="text" name="question_text"><br>
+        Answer text A:<br>
+        <input type="radio" name="choice" value = "1" checked = "true"> A
+        <input type="text" name="1"><br>
+        Answer text B:<br>
+        <input type="radio" name="choice" value = "2"> B
+        <input type="text" name="2"><br>
+        Answer text C:<br>
+        <input type="radio" name="choice" value = "3"> C
+        <input type="text" name="3"><br>
+        Answer text D:<br>
+        <input type="radio" name="choice" value = "4"> D
+        <input type="text" name="4"><br>
         Score:<br>
         <input type="text" name="score"><br>
-         <br>
-        <input type="submit" value="Add">
+        <br>
+        <input type="submit"  value="Add">
     </form>
     </body>
     </html>
+
