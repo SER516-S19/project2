@@ -75,5 +75,6 @@ ul {
 }
 
 #ridge {
-    border-style: ridge;
+	padding: 5px ;
+	border-style: none;
 }
