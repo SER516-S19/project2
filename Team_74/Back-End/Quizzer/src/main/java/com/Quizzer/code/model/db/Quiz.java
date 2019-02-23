@@ -6,6 +6,11 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * This class is the model class for Quiz item.
+ * @author Kumar Prabhu Kalyan
+ *
+ */
 @Document(collection = "Quiz")
 public class Quiz implements Serializable{
 	

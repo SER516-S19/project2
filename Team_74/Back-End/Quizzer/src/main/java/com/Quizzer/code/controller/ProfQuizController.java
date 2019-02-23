@@ -12,55 +12,84 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
 import com.Quizzer.code.model.db.Quiz;
-import com.Quizzer.code.model.response.Response;
-import com.Quizzer.code.model.response.Response_SO;
+import com.Quizzer.code.model.response.ResponseListVO;
+import com.Quizzer.code.model.response.ResponseVO;
 import com.Quizzer.code.service.Prof_QuizService;
 
+/**
+ * This class is the controller that handles requests for : 1.Adding the quiz.
+ * 2.Get list of quizzes. 3.Get a quiz based of id.
+ * 
+ * @author Kumar Prabhu Kalyan and Kirti Jha
+ *
+ */
 @RestController
-public class Prof_QuizController {
+public class ProfQuizController {
 
 	@Autowired
 	Prof_QuizService quizService;
+<<<<<<< Updated upstream:Team_74/Back-End/Quizzer/src/main/java/com/Quizzer/code/controller/Prof_QuizController.java
 	
+=======
+
+	/**
+	 * This method handles the add quiz request.
+	 * 
+	 * @param quiz
+	 * @return
+	 */
+>>>>>>> Stashed changes:Team_74/Back-End/Quizzer/src/main/java/com/Quizzer/code/controller/ProfQuizController.java
 	@RequestMapping(method = RequestMethod.POST, value = "/prof")
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 
 		try {
 			quizService.addQuiz(quiz);
-			return new ResponseEntity<>(new Response(HttpStatus.ACCEPTED.toString(), null, null), HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, null), HttpStatus.ACCEPTED);
 
 		} catch (Prof_AddQuiz_Exception e) {
-			return new ResponseEntity<>(new Response(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null),
+			return new ResponseEntity<>(new ResponseListVO(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null),
 					HttpStatus.ACCEPTED);
 		}
 	}
 
+	/**
+	 * This method returns a response with all the quizzes for the professor.
+	 * 
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/prof/quiz")
 	public ResponseEntity<?> getQuiz() {
 
 		try {
 
-			return new ResponseEntity<>(new Response(HttpStatus.ACCEPTED.toString(), null, quizService.getQuiz()),
+			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, quizService.getQuiz()),
 					HttpStatus.ACCEPTED);
 
 		} catch (Prof_GetQuiz_Exception e) {
 			return new ResponseEntity<>(
-					new Response(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getErrorMessage(), null),
+					new ResponseListVO(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getErrorMessage(), null),
 					HttpStatus.ACCEPTED);
 		}
 	}
-	
+
+	/**
+	 * This method returns a response with one quiz data according to the id.
+	 * 
+	 * @param quizId
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/prof/quiz/{quizId}")
 	public ResponseEntity<?> getQuiz(@PathVariable String quizId) {
 
 		try {
-            
-			return new ResponseEntity<>(new Response_SO(HttpStatus.ACCEPTED.toString(), null,quizService.getQuiz(quizId)),
+
+			return new ResponseEntity<>(
+					new ResponseVO(HttpStatus.ACCEPTED.toString(), null, quizService.getQuiz(quizId)),
 					HttpStatus.ACCEPTED);
 
 		} catch (Prof_GetQuiz_Exception e) {
 			return new ResponseEntity<>(
-					new Response_SO(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getErrorMessage(), null),
+					new ResponseVO(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getErrorMessage(), null),
 					HttpStatus.ACCEPTED);
 		}
 	}

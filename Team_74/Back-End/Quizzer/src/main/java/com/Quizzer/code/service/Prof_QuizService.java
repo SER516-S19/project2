@@ -15,11 +15,22 @@ import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
 import com.Quizzer.code.model.db.Question;
 import com.Quizzer.code.model.db.Quiz;
+<<<<<<< Updated upstream
 import com.Quizzer.code.model.db.User;
 import com.Quizzer.code.model.response.Response;
 import com.Quizzer.code.model.response.Response_getQuizlist;
+=======
+import com.Quizzer.code.model.response.ResponseListVO;
+import com.Quizzer.code.model.response.ResponseQuizListVO;
+>>>>>>> Stashed changes
 import com.mongodb.MongoWriteException;
 
+/**
+ * This is the service layer for add quiz, get quizzes.
+ * 
+ * @author Kumar Prabhu Kalyan and Kirti Jha
+ *
+ */
 @Service
 public class Prof_QuizService {
 
@@ -32,6 +43,12 @@ public class Prof_QuizService {
 	@Autowired
 	Student_QuizRepo student_quizrepo; 
 
+	/**
+	 * This method adds the quiz to the database and sends a appropriate response.
+	 * 
+	 * @param quiz
+	 * @throws Prof_AddQuiz_Exception
+	 */
 	public void addQuiz(Quiz quiz) throws Prof_AddQuiz_Exception {
 
 		if (quiz != null) {
@@ -84,29 +101,42 @@ public class Prof_QuizService {
 		return totalMarks;
 	}
 
-	public List<Response_getQuizlist> getQuiz() throws Prof_GetQuiz_Exception {
+	/**
+	 * This method returns the list of quizzes for the professor.
+	 * 
+	 * @return
+	 * @throws Prof_GetQuiz_Exception
+	 */
+	public List<ResponseQuizListVO> getQuiz() throws Prof_GetQuiz_Exception {
 		try {
-			
-			List<Response_getQuizlist> response_list = new ArrayList<Response_getQuizlist>();
-			for(Quiz quiz : quizRepo.findAll()) {
-				response_list.add(new Response_getQuizlist(quiz.getId(),quiz.getName()));
+
+			List<ResponseQuizListVO> response_list = new ArrayList<ResponseQuizListVO>();
+			for (Quiz quiz : quizRepo.findAll()) {
+				response_list.add(new ResponseQuizListVO(quiz.getId(), quiz.getName()));
 			}
 
 			return response_list;
-			
+
 		} catch (Exception e) {
 			throw new Prof_GetQuiz_Exception(e.getMessage());
 		}
 	}
 
+	/**
+	 * This method returns the quiz data according to the input Id.
+	 * 
+	 * @param quizId
+	 * @return
+	 * @throws Prof_GetQuiz_Exception
+	 */
 	public Quiz getQuiz(String quizId) throws Prof_GetQuiz_Exception {
 		if (quizId != null && !StringUtils.isEmpty(quizId)) {
-		    Optional<Quiz> quiz= quizRepo.findById(quizId);
-		    if(quiz!=null)
-		    	return quiz.get();
-		    else
-		    	return null;
-			
+			Optional<Quiz> quiz = quizRepo.findById(quizId);
+			if (quiz != null)
+				return quiz.get();
+			else
+				return null;
+
 		}
 		return null;
 	}

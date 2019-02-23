@@ -9,8 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * This class is the model for User data.
- * 
- * @author kumar
+ * @author Kumar Prabhu Kalyan
  *
  */
 @Document(collection = "UserDetails")
