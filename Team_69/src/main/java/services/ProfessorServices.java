@@ -110,6 +110,7 @@ public class ProfessorServices {
 		Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
 		
 		sess.setAttribute("quiz", quiz);
+		professorDAO.insertProfDetails(quiz);
 	}
 
 	public List<Question> getAllQuestionFromQuizID(int quizid){

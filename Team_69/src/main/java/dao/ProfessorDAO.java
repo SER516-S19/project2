@@ -95,6 +95,32 @@ public class ProfessorDAO {
             e.printStackTrace();
         }
     }
+	
+	public Quiz getQuizFromID(int quizID) {
+
+		 Quiz quizObj = null;
+		 Transaction transaction = null;
+	        try  {
+	            Session session = HibernateUtil.getSessionFactory().openSession();
+	            // start a transaction
+	            transaction = session.beginTransaction();
+	            
+	            quizObj = (Quiz) session.get(Quiz.class, quizID);
+	            
+	           
+	            // commit transaction
+	            transaction.commit();
+	        } catch (Exception e) {
+	            if (transaction != null) {
+	                transaction.rollback();
+	            }
+	            e.printStackTrace();
+	        }
+		return quizObj;
+	
+		
+	}
+	
 
 	public List<Answer> getAllAnswersFromQuestionID(int questionID) {
 		List<Answer> lists = new ArrayList<>();
