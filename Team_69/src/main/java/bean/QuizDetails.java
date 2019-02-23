@@ -1,6 +1,5 @@
 package bean;
 
-import java.sql.Time;
 import java.util.List;
 
 /**
@@ -12,7 +11,7 @@ import java.util.List;
  * @since: 02/20/2019
  */
 
-public class QuestionAnswer {
+public class QuizDetails {
 	private int quizId;
 	private String quizName;
     private String quizInstructions;
@@ -21,7 +20,7 @@ public class QuestionAnswer {
     private boolean isShuffled;
     private boolean isPublished;
     
-    private List<QuestionMapper> question;
+    private List<QuestionDetails> question;
     public String getQuizName() {
 		return quizName;
 	}
@@ -70,11 +69,11 @@ public class QuestionAnswer {
 		this.isPublished = isPublished;
 	}
 
-	public List<QuestionMapper> getQuestion() {
+	public List<QuestionDetails> getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(List<QuestionMapper> question) {
+	public void setQuestion(List<QuestionDetails> question) {
 		this.question = question;
 	}
 

@@ -5,12 +5,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
+import bean.Question;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
-import bean.Question;
+
 
 /**
  * This is a helper for implementing DAO pattern
@@ -47,7 +48,7 @@ public class AnswerDAO {
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
 			Root<Answer> root = query.from(Answer.class);
-			Join<Answer,Question> join = root.join("question");
+			Join<Answer, Question> join = root.join("question");
 			query.select(root).where(builder.equal(join.get("questionId"),questionId));
 			Query<Answer> q = session.createQuery(query);
 			answerDetails = q.getResultList();

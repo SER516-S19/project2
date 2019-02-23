@@ -8,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Question;
-import bean.User;
-import dao.LoginDAO;
-import dao.QuizDAO;
 import services.StudentServices;
 
 public class LoginServlet extends HttpServlet{
