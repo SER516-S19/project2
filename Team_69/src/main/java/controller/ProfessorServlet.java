@@ -99,7 +99,7 @@ public class ProfessorServlet extends HttpServlet{
 			questionDAO.deleteQuestionByQuestionId(quesId);
             response.sendRedirect("views/removeQuestionPage.jsp");
             
-        }else if("Add Next Question".equals(flag)) {
+        }else if("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
         	String question = request.getParameter("question");
         	String questionOption1 = request.getParameter("option1");
         	String questionOption2 = request.getParameter("option2");
@@ -116,7 +116,16 @@ public class ProfessorServlet extends HttpServlet{
 			
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
-        	request.getRequestDispatcher("views/AddQuestions.jsp").forward(request, response);
+        	
+        	if("Add Next Question".equals(flag)) {
+        		response.sendRedirect("views/AddQuestions.jsp");
+        		return;
+        	}else if("Save and Exit".equals(flag)) {
+        		response.sendRedirect("views/QuizList.jsp");
+            	return;
+        	}
+        }else if("Verify Questions".equals(flag)) {
+        	response.sendRedirect("views/displayQuestionAnswer.jsp");
         	return;
         }
     }
