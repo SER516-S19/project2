@@ -5,7 +5,6 @@ body {
 }
 
 #content {
-	margin: auto;
     position: absolute;
     top: 50px;
     left: 50px;
@@ -14,13 +13,12 @@ body {
     border-style: solid; 
 }
 
-#title {
-	margin: auto;
+#content #title {
 	position: absolute;
-	top: 0px;
-    left: 0px;
-    right: 680px;
-    bottom: 500px;
+	top:80px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
 }
 
 #content #instruc{
@@ -30,7 +28,6 @@ body {
 
 #content #instrcu_all{
 	position: absolute;
-	margin: auto;
 	top: 100px;
     left: 200px;
     right: 0;
@@ -40,7 +37,6 @@ body {
 #content #attemp
 {
 	position: absolute;
-	margin: auto;
 	top: 400px;
     left: 200px;
     right: 0px;
@@ -55,5 +51,14 @@ body {
     left: 200px;
     right: 0px;
     bottom: 0px;
-	
+}
+
+#beginbtn {
+	width:80px;
+	height:30px;
+	position: absolute;
+	top: 430px;
+    left: 500px;
+    right: 0px;
+    bottom: 0px;
 }
