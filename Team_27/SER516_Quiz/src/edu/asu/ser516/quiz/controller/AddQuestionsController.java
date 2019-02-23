@@ -21,7 +21,7 @@ public class AddQuestionsController extends HttpServlet {
 		response.setContentType("text/html");
 
 		Enumeration paramNames = request.getParameterNames();
-
+		//CREATE USER root@localhost IDENTIFIED WITH mysql_native_password BY Allen@123;
 		try {
 			while (paramNames.hasMoreElements()) {
 				String paramName = (String) paramNames.nextElement();

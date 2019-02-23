@@ -46,7 +46,7 @@ public class QuizActionController extends HttpServlet {
 	    
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Ser516");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Allen@123");
 		Statement stmt = con.createStatement();
 		
 		//Delete actions here
@@ -91,7 +91,7 @@ public class QuizActionController extends HttpServlet {
 	private void goToQuizes(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException {
 		String param1=(String)request.getParameter("selectedQuiz");
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Ser516");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Allen@123");
 		String sql = "SELECT title, instructions, assignment_group, isshuffled, isgraded, time_limit, ismultipleattempt FROM quiz WHERE title=?";
 		PreparedStatement ps = ((java.sql.Connection) con).prepareStatement(sql);
 		 ps.setString(1, param1);
@@ -119,7 +119,7 @@ public class QuizActionController extends HttpServlet {
 	// function to update the quizzes from the database
 	private void redirectToShowQuizes(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Ser516");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Allen@123");
 		PreparedStatement ps = ((java.sql.Connection) con).prepareStatement("SELECT quiz_id, title FROM quiz");
 		ResultSet rs= ps.executeQuery();	
 		HttpSession session = request.getSession();

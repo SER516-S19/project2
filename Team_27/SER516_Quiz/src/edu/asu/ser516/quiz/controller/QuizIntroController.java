@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.sql.Array;
 import java.sql.Connection;
 
@@ -19,40 +20,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import edu.asu.ser516.quiz.dao.impl.ConnectionFactory;
+
 
 /**
  * Servlet implementation class QuizIntroController
  */
 public class QuizIntroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static Properties dbProperties = new Properties();
+	static {
+		try {
+			dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("rdbm.properties"));
+			Class.forName(dbProperties.getProperty("mysql_jdbcDriver"));
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+	}
 
 	/**
 	 * @return 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//System.out.print("here");
 		
-		response.getWriter();
+		String sql = dbProperties.getProperty("SELECT_QUIZ");
+		Connection conn = ConnectionFactory.getConnection();
+		if (conn == null ) {
+			System.out.println("Connection is not set");
+		}
+		PreparedStatement preparedStatement = null;
+		
 		try {
-			PrintWriter out = response.getWriter();
-			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27?useSSL=false","root","Ser516");  
-			PreparedStatement ps = ((java.sql.Connection) con).prepareStatement("SELECT quiz_id, title FROM quiz");
-			ResultSet rs= ps.executeQuery();	
+			System.out.println("SQL:: " + sql);
+			preparedStatement = conn.prepareStatement(sql);
+			ResultSet rs = preparedStatement.executeQuery();
 			HttpSession session = request.getSession();
-			//ArrayList listid = new ArrayList();
 			ArrayList rowValues = new ArrayList();
-			Object[] objects;
 			while (rs.next()) {
 				 rowValues.add(rs.getString("title"));
 			}   
-			//objects = rowValues.toArray(); 
-			//for (Object obj : objects) 
-				//out.println(obj + " "); 
-		    
 			session.setAttribute("rowValues", rowValues);
 			
 			response.sendRedirect("showQuizes.jsp");
@@ -61,7 +69,6 @@ public class QuizIntroController extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
-		
 	}
 
 }
