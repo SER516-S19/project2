@@ -1,13 +1,19 @@
+<!-- 
+Freemarker page to display the Student Homepage
+@authour Joshua Drumm
+@version 1.3
+@date 02/22/2019
+ -->
 <html>
     <head>
         <#include "stylesheet.css">
     </head>
     <body>
-        <p>Welcome ${Session.UserVO.getFirstname()}!</p>
+        <p>Welcome ${Session.userVO.getFirstname()}!</p>
         <form action="courseDashboard" method="POST">
             <select name="Course">
-                <#list Session.CourseHashMap as id, name>
-                    <option value=${id}> ${name}</option>
+                <#list Session.CourseHashMap as courseId, courseName>
+                    <option value=${courseId}> ${courseName}</option>
                 </#list>
             </select>
             <input disabled type = "submit" value="Submit"/>
@@ -15,8 +21,8 @@
         
         <form action="quizInstructions" method="POST">
             <select name="QuizId">
-                <#list Session.QuizHashMap as id, name>
-                    <option value=${id}> ${name}</option>
+                <#list Session.QuizHashMap as quizId, quizName>
+                    <option value=${quizId}> ${quizName}</option>
                 </#list>
             </select>
             <input type = "submit" value="Submit"/>
