@@ -52,7 +52,7 @@ public class QuizDetailsController extends HttpServlet {
     	
     	//perform processing and aggregate response payload
     	try {
-    		if(action.equals("Submit")) {
+    		if(action.equals("Add Questions")) {
     			if(Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9]*", title) && Pattern.matches("[0-9][0-9]*", time)) {
     				
     				if(shuffled != null && shuffled.equals("true"))
@@ -71,6 +71,34 @@ public class QuizDetailsController extends HttpServlet {
     				else {
     					quizModel = new QuizModel(title, instructions,assignmentGroup, isShuffled, isGraded, timeLimit, isMultipleAttempt);
     					quizDetailsDao.insert(quizModel);
+    					req.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
+    					req.getRequestDispatcher("Success.html").forward(req, res);
+    				}
+    		
+    			}
+    			else {
+    				res.sendError(HttpServletResponse.SC_BAD_REQUEST,"Wrong Parameters Sent!");
+    			}
+    		}
+    		else if(action.equals("Update Questions")) {
+    			if(Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9]*", title) && Pattern.matches("[0-9][0-9]*", time)) {
+    				
+    				if(shuffled != null && shuffled.equals("true"))
+    					isShuffled = true;
+    				if(graded != null && graded.equals("true"))
+    					isGraded = true;
+    				if(time != null)
+    					timeLimit = Integer.valueOf(time);
+    				if(multipleAttempt != null && multipleAttempt.equals("true"))
+    					isMultipleAttempt = true;
+    				
+    				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(title);
+    				
+    				if(quizModel == null)
+    					res.sendError(HttpServletResponse.SC_BAD_REQUEST,"This Quiz doesn't Exist!");
+    				else {
+    					quizModel = new QuizModel(title, instructions,assignmentGroup, isShuffled, isGraded, timeLimit, isMultipleAttempt);
+    					quizDetailsDao.update(quizModel);
     					req.getRequestDispatcher("Success.html").forward(req, res);
     				}
     		
