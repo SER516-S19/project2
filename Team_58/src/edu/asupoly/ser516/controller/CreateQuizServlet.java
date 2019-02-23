@@ -75,7 +75,7 @@ public class CreateQuizServlet extends HttpServlet {
     		CreateQuizVO createQuizVO = new CreateQuizVO(courseId, quizTitle, quizInstructions, quizScheduledDate, 0, isShuffled, assignedTime, false);
     		
     		QuizDAOBean obj = new QuizDAOBean();
-    		obj.creatingQuiz(createQuizVO);
+    		obj.insertingQuizDetails(createQuizVO);
     		
     		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
 

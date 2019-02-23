@@ -21,13 +21,10 @@ Freemarker page to display Professor details
         <div class="shiftTop">
          <form action="courseDashboard" method="POST">
          <#list Session.CourseHashMap as courseId, courseName>
-         <input type="radio" name=Course value=${courseId}> ${courseName}<br>
+         <input type="radio" checked="checked" name=Course value=${courseId}> ${courseName}<br>
          </#list>
          <input  class="button" type ="submit" value="Submit"/>
          </form>
         </div>
 	</body>
 </html>
-
-
-  
