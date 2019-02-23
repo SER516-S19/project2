@@ -1,7 +1,9 @@
 <!-- 
 Freemarker page to display Professor details
 @authour Shivam Verma
-@version 1.0
+@authour NarenkumarKonchada 
+@authour Carnic
+@version 1.2
 @date 02/20/2019
  -->
 
@@ -10,24 +12,30 @@ Freemarker page to display Professor details
 		<#include "stylesheet.css">
 	</head>
 	<body>
-         <p class="fontColor">Welcome  ${Session.userVO.getFirstname()}</p>
-       <div class="boxRight">
-         <p>${Session.userVO.getLastname()} </p>
-         <p>${Session.userVO.getPhonenumber()} </p>
-         <p>${Session.userVO.getEmail()} </p>
-          <p>${Session.userVO.getUsername()} </p>
-          </div>
-          <#if Session.isCoursesAssigned==true>
-        <div class="shiftTop">
-         <form action="courseDashboard" method="POST">
-         <#list Session.CourseHashMap as courseId, courseName>
-         <input class="marginBelow" type="radio" name=Course value=${courseId}> ${courseName}<br>
-         </#list>
-         <input  class="button" type ="submit" value="Submit"/>
-         </form>
+         <p class="fontColor" style="text-transform: uppercase;">Welcome  ${Session.userVO.getFirstname()}</p>
+         <div class="boxOuter">
+       		<div class="boxRight" style="padding-bottom: 75%">
+       	 		<h2 style="text-align: center">Details</h2>
+        		 <p>Name: <span><b>${Session.userVO.getFirstname()}</b></span> <span><b>${Session.userVO.getLastname()}</b></span></p>
+        		 <p>Contact: <b>${Session.userVO.getPhonenumber()}</b> </p>
+         		 <p>E-mail: <b>${Session.userVO.getEmail()} </b></p>
+          		 <p>UserName: <b>${Session.userVO.getUsername()} </b></p>
+          	</div>
+          	<div>
+          	<#if Session.isCoursesAssigned==true>
+        		<div class="shiftTop">
+        			<h2>Courses</h2>
+         			<form action="courseDashboard" method="POST">
+         				<#list Session.CourseHashMap as courseId, courseName>
+         					<input checked="checked" class="marginBelow" type="radio" name=Course value=${courseId}> ${courseName}<br>
+         				</#list>
+         				<input class="button" type ="submit" value="Proceed"/>
+        			</form>
+        		</div>
+        	<#else>
+        		<p class="shiftTop">${Session.displayMessage}</p>
+        	</#if>
+        	</div>
         </div>
-        <#else>
-        <p class="shiftTop">${Session.displayMessage}</p>
-        </#if>
 	</body>
 </html>
