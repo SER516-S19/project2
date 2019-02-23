@@ -1,46 +1,72 @@
-@charset "UTF-8";
-
 body {
 	background:#FAFAD2;
 }
 
-#content {
+.content {
     position: fixed;
     margin: 10px;
     border-style: solid; 
-    width:95%;
+    width:97%;
 	height:95%;
+	overflow:hidden;
 }
 
-#content #title {
-	position: fixed;
-	margin:40px 0px 0px 200px;
+#title {
+	float:left;
+	position: absolute;
+	margin-left:40%;
+	margin-right:auto;
+	margin-top:40px;
+	margin-bottom:200px;
+	overflow:hidden;
 }
 
-#content #instruc{
+
+.instruction_area{
+	float:left;
+	position: absolute;
+	margin-left:40%;
+	margin-right:auto;
+	margin-top:80px;
+	margin-bottom:200px;
+	overflow:hidden;
+}
+
+#instruction{
 	width:500px;
 	height:200px;
+	overflow:hidden;
 }
 
-#content #instrcu_all{
-	position: fixed;
-	margin:80px 0px 0px 200px;
+
+.bottom {
+	position: absolute;
+	border:1px;
+	border-top-style:solid;
+	border-color:#ff0000;
+	margin-right:auto;
+	margin-left:39%;
+	margin-top:360px;
+	margin-bottom:50px;
+	overflow:hidden;
+	width:540px;
+	height:150px;
 }
 
-#content #attemp
+#attemp
 {
 	position: fixed;
-	margin: 360px 0px 0px 200px;
+	margin: 10px 0px 0px 150px;
 }
 
-#content #mulbtn {
+#mulbtn {
 	position: fixed;
 	padding:8px;
-	margin: 400px 0px 0px 200px;
+	margin: 40px 0px 0px 10px;
 }
 
 #beginbtn {
 	position: fixed;
 	padding:8px;
-	margin: 400px 0px 0px 400px;
+	margin: 40px 0px 0px 450px;
 }
