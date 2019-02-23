@@ -9,6 +9,14 @@ import quiz.dao.ConnectionFactory;
 import quiz.exceptions.DataAccessException;
 import quiz.model.professor.Question;
 
+/**
+ * This Dao will store all the parameters of Questions in the database
+ * 
+ * @author Sarthak Tiwari, Bijayalaxmi Panda
+ * @version (1.0)
+ */
+
+
 public class QuestionsDao {
 
 	private static Properties dbProperties = new Properties();
