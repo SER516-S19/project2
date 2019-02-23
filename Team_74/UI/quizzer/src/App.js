@@ -3,10 +3,6 @@ import './App.css';
 import Routes from './Routes';
 import Navigation from './components/Navigation'
 import { NavLink } from 'react-router-dom';
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-} from 'reactstrap';
 
 class App extends Component {
     render() {
