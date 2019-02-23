@@ -47,67 +47,30 @@ public class ProfessorServlet extends HttpServlet{
 		}else if("viewQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
 			int quizId = Integer.parseInt(id);
-			QuestionDAO questionDAO = new QuestionDAO();
-			List<Answer> questionList = questionDAO.getQuestionsAndAnswers(quizId);
-			request.setAttribute("questionList", questionList);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionAnswer.jsp");
-			rd.forward(request, response);
+			String quizName = request.getParameter("quizName");
+			
+			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
+			
+			List queAnsData =professorServices.getAllAnswersFromQueList(questions);
+
+			request.setAttribute("quizName", quizName);
+			request.setAttribute("queAnsData", queAnsData);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
+			rd.forward(request, response);	
+		
 		}
 	}
-
+	
+	
+	 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
         String flag = request.getParameter("flag");
 		if("InsertProfDetails".equals(flag)){
-			HttpSession sess = request.getSession(true);
-			String quizName = request.getParameter("name");
-	        String quizInstructions = request.getParameter("instructions");
-	        String quizType = request.getParameter("quiz_type");
-	        sess.setAttribute("quizType", quizType);
-	        String isTimeLimitSet = request.getParameter("time_limit");
-	        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
-	        String quizTimeLimit = "00:00:00";
-	        boolean isShuffled = false;
-	        boolean isPublished = false;
-	        System.out.println(quizTimeLimit);
-	        //String assignmentGroup = request.getParameter("assignment_group");
-	        
-	        if(isTimeLimitSet!=null)
-	        {
-	        	String hours = request.getParameter("hours");
-	        	String minutes = request.getParameter("minutes");
-	        	
-	        	System.out.println(hours);
-	        	System.out.println(minutes);
-	        	
-	        	if(hours.length() == 0)
-	        		hours = "0";
-	        	
-	        	if(minutes.length() == 0)
-	        		minutes = "0";
-	        	
-	        	if (hours.length() == 1)
-	        			hours = "0" + hours;
-	        	if (minutes.length() == 1)
-	        		minutes = "0" + minutes;
-        	
-	        	quizTimeLimit = hours+":"+minutes+":00";
-	        }
-
-	        
-	        if(request.getParameter("shuffle")!=null)
-	        {
-	        	isShuffled = true;
-	        }
-	        	        
-			ProfessorDAO professorDAO = new ProfessorDAO();
-			Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
 			
-			sess.setAttribute("quiz", quiz);
-		
-			professorDAO.insertProfDetails(quiz);
-            response.sendRedirect("views/professorDetails.jsp");
+			ProfessorServices professorServices = new ProfessorServices();
+			professorServices.insertProfDetails(request);
+			response.sendRedirect("views/professorDetails.jsp");
 		}
 		else if("DeleteQuestion".equals(flag)){
 			System.out.println("hi fetching question inside");
@@ -120,7 +83,7 @@ public class ProfessorServlet extends HttpServlet{
 			questionDAO.deleteQuestionByQuestionId(quesId);
             response.sendRedirect("views/removeQuestionPage.jsp");
             
-        }else if("Add Next Question".equals(flag)) {
+        }else if("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
         	String question = request.getParameter("question");
         	String questionOption1 = request.getParameter("option1");
         	String questionOption2 = request.getParameter("option2");
@@ -137,7 +100,15 @@ public class ProfessorServlet extends HttpServlet{
 			
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
-        	request.getRequestDispatcher("views/addQuestions.jsp").forward(request, response);
+        	if("Add Next Question".equals(flag)) {
+        		response.sendRedirect("views/AddQuestions.jsp");
+        		return;
+        	}else if("Save and Exit".equals(flag)) {
+        		response.sendRedirect("views/QuizList.jsp");
+            	return;
+        	}
+        }else if("Verify Questions".equals(flag)) {
+        	response.sendRedirect("views/displayQuestionAnswer.jsp");
         	return;
         }
     }

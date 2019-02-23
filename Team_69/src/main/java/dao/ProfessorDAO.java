@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import bean.Answer;
 import bean.HibernateUtil;
 import bean.Question;
 import bean.Quiz;
@@ -28,6 +29,28 @@ public class ProfessorDAO {
 		return lists;
 	}
 
+	public List<Question> getAllQuestionFromQuizID(int quizID){
+		List<Question> lists = new ArrayList<>();
+		 Transaction transaction = null;
+	        try  {
+	            Session session = HibernateUtil.getSessionFactory().openSession();
+	            // start a transaction
+	            transaction = session.beginTransaction();
+	            
+	            Query query = session.createQuery("from  " + Question.class.getName() + " que where que.quiz.quizId = "+quizID);
+	            
+	            lists = query.list();
+	            // commit transaction
+	            transaction.commit();
+	        } catch (Exception e) {
+	            if (transaction != null) {
+	                transaction.rollback();
+	            }
+	            e.printStackTrace();
+	        }
+		return lists;
+	}
+	
 	public void publishQuiz(int quiz_id) {
 		 Transaction transaction = null;
 		 Session session = null;
@@ -72,6 +95,28 @@ public class ProfessorDAO {
             e.printStackTrace();
         }
     }
+
+	public List<Answer> getAllAnswersFromQuestionID(int questionID) {
+		List<Answer> lists = new ArrayList<>();
+		 Transaction transaction = null;
+	        try  {
+	            Session session = HibernateUtil.getSessionFactory().openSession();
+	            // start a transaction
+	            transaction = session.beginTransaction();
+	            
+	            Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.questionId = "+questionID);
+	            
+	            lists = query.list();
+	            // commit transaction
+	            transaction.commit();
+	        } catch (Exception e) {
+	            if (transaction != null) {
+	                transaction.rollback();
+	            }
+	            e.printStackTrace();
+	        }
+		return lists;
+	}
 
 
 	
