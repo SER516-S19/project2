@@ -8,33 +8,37 @@ import dao.AnswerDAO;
 import dao.ProfessorDAO;
 import dao.QuestionDAO;
 import java.util.List;
-import java.util.TimeZone;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * This is the service class for manipulating data models.
+ *
+ * @version 1.0
+ * @since 02-16-2019
+ * @authors Aneesh, Gangadhar,  Viraj
+ */
 public class ProfessorServices {
 	
 	private static String name = "option";
 	private ProfessorDAO professorDAO = new ProfessorDAO();
-	
 
+	/**
+	 * The method creates the question model and sends it to the DAO for processing
+	 */
 	public void storeQuestion(Quiz quiz, String question, String option1, String option2, String option3,
-			String option4, String[] correctanswers, String points) {
-		
+			String option4, String[] correctanswers, String points) {	
 		boolean isMutiple = false;
 		boolean isCorrectAnswer = false;
 		String[] optionArray = {option1, option2, option3, option4};
 		Answer answer;
 		AnswerDAO answerDAO = new AnswerDAO();
-		
+	
 		if(correctanswers.length > 1)
 			isMutiple = true;
-		
 		Question quest = new Question(quiz, question,isMutiple, Integer.parseInt(points));
 		QuestionDAO questionDAO = new QuestionDAO();
 		questionDAO.addQuestion(quest);
-		
 		for(int i=1; i<=optionArray.length; i++) {
 			if(optionArray[i - 1] != null) {
 			isCorrectAnswer = checkAnswerExist(i,correctanswers);
@@ -45,16 +49,17 @@ public class ProfessorServices {
 	}
 	
 	public List<Quiz> getAllQuizzes(){
-		List<Quiz> lists = (List<Quiz>) professorDAO.getAllQuizzes();
-		return lists;
+		return (List<Quiz>) professorDAO.getAllQuizzes();
 	}
 	
 	public void publishQuiz(int quiz_id) {
 		professorDAO.publishQuiz(quiz_id);
 	}
 	
+	/**
+	 * Check if correct answer exist.
+	 */
 	private boolean checkAnswerExist(int i, String[] correctanswers) {
-		
 		if(correctanswers ==  null)
 			return false;
 		
@@ -65,6 +70,9 @@ public class ProfessorServices {
 		return false;
 	}
 
+	/**
+	 * Insert quiz details and validate the input.
+	 */
 	public void insertProfDetails(HttpServletRequest request) {
 		HttpSession sess = request.getSession(true);
 		String quizName = request.getParameter("name");
@@ -72,59 +80,45 @@ public class ProfessorServices {
         String quizType = request.getParameter("quiz_type");
         sess.setAttribute("quizType", quizType);
         String isTimeLimitSet = request.getParameter("time_limit");
-        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         String quizTimeLimit = "00:00:00";
         boolean isShuffled = false;
         boolean isPublished = false;
-        //String assignmentGroup = request.getParameter("assignment_group");
-        
+
         if(isTimeLimitSet!=null)
         {
         	String hours = request.getParameter("hours");
         	String minutes = request.getParameter("minutes");
         	
-        	System.out.println(hours);
-        	System.out.println(minutes);
-        	
         	if(hours.length() == 0)
-        		hours = "0";
-        	
+        		hours = "0";        	
         	if(minutes.length() == 0)
         		minutes = "0";
-        	
         	if (hours.length() == 1)
         			hours = "0" + hours;
         	if (minutes.length() == 1)
         		minutes = "0" + minutes;
-    	
         	quizTimeLimit = hours+":"+minutes+":00";
         }
 
-        
         if(request.getParameter("shuffle")!=null)
-        {
         	isShuffled = true;
-        }
-        	        
 		ProfessorDAO professorDAO = new ProfessorDAO();
 		Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
-		
 		sess.setAttribute("quiz", quiz);
+		professorDAO.insertProfDetails(quiz);
 	}
 
 	public List<Question> getAllQuestionFromQuizID(int quizid){
-		
 		List<Question> questions =  professorDAO.getAllQuestionFromQuizID(quizid);
-		return questions;
-		
+		return questions;	
 	}
 	
-	
+	/**
+	 * Returns a new list having question details and corresponding options
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List getAllAnswersFromQueList(List<Question> questions) {
-		
-		List questionData = new ArrayList<>();	
-		
+		List questionData = new ArrayList<>();			
 		for(Question question : questions) {
 			int queID = question.getQuestionId();
 			List questionInfo = new ArrayList<>();
@@ -135,16 +129,6 @@ public class ProfessorServices {
 			questionInfo.add(question.getQuestionId());
 			questionData.add(questionInfo);
 		}
-		
-		
 		return questionData;	
-		
 	}
-
-
-        
-
-
 }
-	
-
