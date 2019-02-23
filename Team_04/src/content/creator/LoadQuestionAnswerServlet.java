@@ -38,21 +38,27 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
     int attemptId = (int) (System.currentTimeMillis() & 0xfffffff);
     int studentId = (int) (System.currentTimeMillis() & 0xfffffff);
 
+    /**
+     * Function to insert the ques response to DB
+     */
     private void executeInsertQuery() {
 
         for (String selectedOption : currentQuestion.getSelectedAnswers()) {
-            String updateQuery = "INSERT INTO ques_response(quesId,quizId,ansId,attemptId,studentId,totalScore, attemptedOn, timeTaken, isFinal) VALUES(?,?,?,?,?,?,?,?,?)";
-            int numOfRowsAffected = DataManager.getInstance().executeUpdateQuery(updateQuery,
+            String updateQuery = "INSERT INTO ques_response(quesId," +
+                    "quizId,ansId,attemptId,studentId,totalScore, attemptedOn," +
+                    " timeTaken, isFinal) VALUES(?,?,?,?,?,?,?,?,?)";
+            int numOfRowsAffected = DataManager.getInstance().
+                    executeUpdateQuery(updateQuery,
                     currentQuestion.getQuesId(),
                     currentQuestion.getQuizId(),
-                    selectedOption
-                    , attemptId, studentId, currentQuestion.getScore(), dates, time, true);
+                    selectedOption, attemptId, studentId,
+                    currentQuestion.getScore(), dates, time, true);
         }
 
     }
 
     /**
-     * Function to load the quiz details
+     * Function to load the quiz details from DB
      */
     private void loadQuestionsAnswers() {
 
@@ -61,7 +67,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 
         for (QuizContent question : questions) {
             List<QuizContent> options = DataManager.getInstance().executeGetQuery(QuizContent.class,
-                    "SELECT * FROM quiz_content where quizId='1' and quesId=" + question.getQuesId());
+            "SELECT * FROM quiz_content where quizId='1' and quesId=" + question.getQuesId());
             for (QuizContent answerOption : options) {
                 question.getAnswerOptions().add(new AnswerOption(answerOption.getAnsId(),
                         answerOption.getAnsDesc(), answerOption.getIsCorrect()));
@@ -70,8 +76,13 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         this.questions = questions;
     }
 
-    private void executeSubmitEntry() {
-        String submitQuizQuery = "insert into quiz_result(quizId, attemptId, studentId, finalScore) values (?,?,?,?)";
+    /**
+     * Function to submit the quiz results to DB
+     */
+    private void executeSubmitEntry()
+    {
+        String submitQuizQuery = "insert into quiz_result(quizId, attemptId," +
+                " studentId, finalScore) values (?,?,?,?)";
         DataManager.getInstance().executeUpdateQuery(submitQuizQuery,
                 currentQuestion.getQuizId(), attemptId, studentId, totalScore);
     }
@@ -84,18 +95,21 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex <= questions.size()) {
             switch (currentQuestion.getQuesType()) {
                 case "SA":
                     String[] radioSelection = {request.getParameter("selectedOptionId")};
                     currentQuestion.setSelectedAnswers(Arrays.asList(radioSelection));
-                    totalScore += computeScore(currentQuestionIndex - 1, currentQuestion.getSelectedAnswers());
+                    totalScore += computeScore(currentQuestionIndex - 1,
+                            currentQuestion.getSelectedAnswers());
                     break;
                 case "MA":
                     String[] checkBoxSelection = request.getParameterValues("selectedOptionId");
                     currentQuestion.setSelectedAnswers(Arrays.asList(checkBoxSelection));
-                    totalScore += computeScore(currentQuestionIndex - 1, currentQuestion.getSelectedAnswers());
+                    totalScore += computeScore(currentQuestionIndex - 1,
+                            currentQuestion.getSelectedAnswers());
                     break;
                 case "TA":
                     break;
@@ -114,21 +128,28 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
      * @param selectedOptions      list of selected options
      * @return
      */
-    private int computeScore(int currentQuestionIndex, List<String> selectedOptions) {
+    private int computeScore(int currentQuestionIndex, List<String> selectedOptions)
+    {
         int actualCorrectAnsCount = 0, totalCorrectAnsCount = 0;
         int result;
         QuizContent currentQuestion = questions.get(currentQuestionIndex);
-        for (AnswerOption answerOption : currentQuestion.getAnswerOptions()) {
-            if (answerOption.getIsCorrect()) {
+        for (AnswerOption answerOption : currentQuestion.getAnswerOptions())
+        {
+            if (answerOption.getIsCorrect())
+            {
                 totalCorrectAnsCount += 1;
-                if (selectedOptions.contains(Long.toString(answerOption.getAnsId()))) {
+                if (selectedOptions.contains(Long.toString(answerOption.getAnsId())))
+                {
                     actualCorrectAnsCount += 1;
                 }
             }
         }
-        if (totalCorrectAnsCount != 0) {
+        if (totalCorrectAnsCount != 0)
+        {
             result = (int) ((actualCorrectAnsCount / totalCorrectAnsCount) * currentQuestion.getMaxScore());
-        } else {
+        }
+        else
+        {
             result = 0;
         }
         currentQuestion.setScore(result);
@@ -143,23 +164,25 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if (this.questions.size() == 0) {
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response) throws ServletException, IOException
+    {
+        if (this.questions.size() == 0)
+        {
             loadQuestionsAnswers();
         }
-
         HttpSession session = request.getSession(true);
         questionNumber++;
         session.setAttribute("count", questionNumber);
         String action = request.getParameter("action");
-
-        if (action.isEmpty()) {
+        if (action.isEmpty())
+        {
             view = "ErrorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
         } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
-                && currentQuestionIndex < questions.size()) {
+                && currentQuestionIndex < questions.size())
+        {
             currentQuestion = questions.get(currentQuestionIndex);
             request.setAttribute("data", currentQuestion);
             currentQuestionIndex += 1;
@@ -167,11 +190,14 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             view = "questionsanswers.jsp";
             response.setStatus(response.SC_OK);
 
-        } else if (action.equalsIgnoreCase("submit")) {
+        } else if (action.equalsIgnoreCase("submit"))
+        {
             request.setAttribute("totalScore", totalScore);
             view = "ThankYou.jsp";
             response.setStatus(response.SC_OK);
-        } else {
+        }
+        else
+        {
             view = "ErrorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
