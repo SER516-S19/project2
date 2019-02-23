@@ -4,11 +4,15 @@ import bean.Answer;
 import bean.Question;
 import bean.Quiz;
 import dao.AnswerDAO;
+import dao.ProfessorDAO;
 import dao.QuestionDAO;
+import java.util.List;
 
 public class ProfessorServices {
 	
 	private static String name = "option";
+	private ProfessorDAO professorDAO = new ProfessorDAO();
+	
 
 	public void storeQuestion(Quiz quiz, String question, String option1, String option2, String option3,
 			String option4, String[] correctanswers, String points) {
@@ -35,6 +39,15 @@ public class ProfessorServices {
 		}
 	}
 	
+	public List<Quiz> getAllQuizzes(){
+		List<Quiz> lists = (List<Quiz>) professorDAO.getAllQuizzes();
+		return lists;
+	}
+	
+	public void publishQuiz(int quiz_id) {
+		professorDAO.publishQuiz(quiz_id);
+	}
+	
 	private boolean checkAnswerExist(int i, String[] correctanswers) {
 		
 		if(correctanswers ==  null)
@@ -46,5 +59,4 @@ public class ProfessorServices {
 		
 		return false;
 	}
-	
 }
