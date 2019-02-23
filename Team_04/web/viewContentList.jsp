@@ -38,7 +38,7 @@
     <th>Score</th>
   </tr>
   <tr>
-    <td>Question #1</td>
+    <td><a href="./viewContentDetails.jsp"> Question #1 </a></td>
     <td>
       <ol type = 'a'>
         <li>First</li>
@@ -50,7 +50,7 @@
     <td>10</td>
   </tr>
   <tr>
-    <td>Question #2</td>
+    <td><a href="./viewContentDetails.jsp"> Question #2 </a></td>
     <td>
       <ol type = 'a'>
         <li>First</li>
@@ -62,7 +62,7 @@
     <td>5</td>
   </tr>
   <tr>
-    <td>Question #3</td>
+    <td><a href="./viewContentDetails.jsp"> Question #3 </a></td>
     <td>
       <ol type = 'a'>
         <li>First</li>
@@ -74,7 +74,7 @@
     <td>15</td>
   </tr>
   <tr>
-    <td>Question #4</td>
+    <td><a href="./viewContentDetails.jsp"> Question #4 </a></td>
     <td>
       <ol type = 'a'>
         <li>First</li>
