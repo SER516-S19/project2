@@ -18,7 +18,7 @@
 	    <input type="submit" value="Display Quiz List" class="btn btn-primary" />
 	</form>
 	
-	<a href="professorDetails.jsp">Create New Quiz </a>
+	<a href="quizDetails.jsp">Create New Quiz </a>
 
 
 </body>

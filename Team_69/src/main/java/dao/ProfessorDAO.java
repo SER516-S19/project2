@@ -96,7 +96,7 @@ public class ProfessorDAO {
 	 *
 	 * @param quiz the quiz
 	 */
-	public void insertProfDetails(Quiz quiz) {
+	public void insertQuizDetails(Quiz quiz) {
         Transaction transaction = null;
         try  {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -106,7 +106,7 @@ public class ProfessorDAO {
         } catch (Exception sqlException) {
             if (transaction != null) 
                 transaction.rollback();
-            logger.log(Level.SEVERE, "insertProfDetails - exception in connecting to database", sqlException);
+            logger.log(Level.SEVERE, "insertQuizDetails - exception in connecting to database", sqlException);
         }
     }
 	
