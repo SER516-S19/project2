@@ -3,13 +3,13 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.*;
+import bean.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
-import bean.Question;
 import bean.Quiz;
 
 public class QuestionDAO {
@@ -86,7 +86,7 @@ public class QuestionDAO {
 	           CriteriaBuilder builder = session.getCriteriaBuilder();
 	           CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
 	           Root<Answer> root = query.from(Answer.class);
-	           Join<Answer,Question> join = root.join("question");
+	           Join<Answer, Question> join = root.join("question");
 	           query.select(root).where(root.get("quiz").in(quizId));
 	           Query<Answer> q=session.createQuery(query);
 	           quesList= q.getResultList();
