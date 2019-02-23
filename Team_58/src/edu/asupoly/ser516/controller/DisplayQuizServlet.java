@@ -18,8 +18,7 @@ public class DisplayQuizServlet extends HttpServlet{
 
 
         try {
-
-            int questionID = req.getParameter("questionId");
+            int questionID = Integer.parseInt(req.getParameter("questionId"));
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             String hostName = "showtimefinder.database.windows.net";
@@ -35,7 +34,7 @@ public class DisplayQuizServlet extends HttpServlet{
             PreparedStatement query2 = connection.prepareStatement("select questionId, question, totalChoices from [dbo].[questions]" + " where questionId = ?");
             query2.setInt(1, questionID);
             ResultSet userData = query2.executeQuery();
-            QuestionsVO questionsVO();
+            QuestionsVO questionsVO = null;
 
             while(userData.next()){
                 String question = userData.getString("question");
