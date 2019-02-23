@@ -16,8 +16,8 @@
     <servlet-class>edu.asu.ser516.quiz.controller.QuizIntroController</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>DeleteQuizController</servlet-name>
-    <servlet-class>edu.asu.ser516.quiz.controller.DeleteQuizController</servlet-class>
+    <servlet-name>QuizActionController</servlet-name>
+    <servlet-class>edu.asu.ser516.quiz.controller.QuizActionController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>QuizDetailsController</servlet-name>
@@ -30,8 +30,8 @@
   </servlet-mapping>
   
   <servlet-mapping>
-    <servlet-name>DeleteQuizController</servlet-name>
-    <url-pattern>/deleteQuiz</url-pattern>
+    <servlet-name>QuizActionController</servlet-name>
+    <url-pattern>/QuizAction</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
