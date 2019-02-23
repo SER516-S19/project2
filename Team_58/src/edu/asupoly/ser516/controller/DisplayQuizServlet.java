@@ -20,11 +20,8 @@ public class DisplayQuizServlet extends HttpServlet{
 
 
         try {
-
-
-
             int questionID = req.getParameter("questionId");
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //
 
             String hostName = "showtimefinder.database.windows.net";
             String dbName = "ser516_db";
@@ -50,11 +47,9 @@ public class DisplayQuizServlet extends HttpServlet{
 
                 JSONParser parser = new JSONParser();
                 JSONObject jo = (JSONObject) parser.parse(choices);
-                //JSONObject jo2 = (JSONObject) parser.parse(answer);
-
-                String choice1 = (String) jo.get("incorrectAnswer1");
-                String choice2 = (String) jo.get("incorrectAnswer2");
-                String choice3 = (String) jo.get("incorrectAnswer3");
+                String choice1 = (String) jo.getParameter("incorrectAnswer1");
+                String choice2 = (String) jo.getParameter("incorrectAnswer2");
+                String choice3 = (String) jo.getParameter("incorrectAnswer3");
 
                 questionsVO = new QuestionsVO(questionID, totalPoints, question, answer, choice1, choice2, choice3);
             }
