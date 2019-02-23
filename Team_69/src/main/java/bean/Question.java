@@ -16,9 +16,9 @@ public class Question {
 
     @Column(name = "Question")
     private String question;
-
-    @Column(name = "Correct_Answer_id")
-    private int correctAnswerId;
+//
+//    @Column(name = "Correct_Answer_id")
+//    private int correctAnswerId;
 
     @Column(name = "Is_Multiple")
     private boolean isMultiple;
@@ -31,7 +31,7 @@ public class Question {
 		super();
 		this.quiz = quiz;
 		this.question = question;
-		this.correctAnswerId = correctAnswerId;
+//		this.correctAnswerId = correctAnswerId;
 		this.isMultiple = isMultiple;
 		this.points = points;
 	}
@@ -40,7 +40,7 @@ public class Question {
 		super();
 		this.quiz = quiz;
 		this.question = question;
-		this.correctAnswerId = correctAnswerId;
+//		this.correctAnswerId = correctAnswerId;
 		this.isMultiple = isMultiple;
 		this.points = points;
 		this.questionId = questionId;
@@ -73,13 +73,13 @@ public class Question {
 		this.question = question;
 	}
 
-	public int getCorrectAnswerId() {
-		return correctAnswerId;
-	}
-
-	public void setCorrectAnswerId(int correctAnswerId) {
-		this.correctAnswerId = correctAnswerId;
-	}
+//	public int getCorrectAnswerId() {
+//		return correctAnswerId;
+//	}
+//
+//	public void setCorrectAnswerId(int correctAnswerId) {
+//		this.correctAnswerId = correctAnswerId;
+//	}
 
 	public int getPoints() {
 		return points;
@@ -103,7 +103,7 @@ public class Question {
 				"questionId=" + questionId +
 				", quiz=" + quiz +
 				", question='" + question + '\'' +
-				", correctAnswerId=" + correctAnswerId +
+//				", correctAnswerId=" + correctAnswerId +
 				", isMultiple=" + isMultiple +
 				", points=" + points +
 				'}';
