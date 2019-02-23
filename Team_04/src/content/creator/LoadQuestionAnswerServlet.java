@@ -173,7 +173,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         session.setAttribute("count", questionNumber);
         String action = request.getParameter("action");
         if (action.isEmpty()) {
-            view = "ErrorHandler.jsp";
+            view = "errorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
         } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
@@ -190,7 +190,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             view = "ThankYou.jsp";
             response.setStatus(response.SC_OK);
         } else {
-            view = "ErrorHandler.jsp";
+            view = "errorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
         }
