@@ -1,5 +1,13 @@
 package edu.asupoly.ser516.model;
 
+/**
+ *CourseVO is a model class for a Course
+ *
+ * @author NarenkumarKonchada
+ * @version 1.0
+ * @date 02/22/2019
+ */
+
 public class CourseVO {
 	private String courseName;
 	private String courseNumber;
