@@ -27,7 +27,7 @@ public interface ProfessorDAO {
     /**
      * Inserts a professor in the database based on the
      * values in a business object
-     * @param professor
+     * @param professor professor to insert
      * @return a boolean representing a successful/failed insert
      */
     boolean insertProfessor(Professor professor);
@@ -43,7 +43,7 @@ public interface ProfessorDAO {
     /**
      * Deletes a professor in the database based on the
      * values in a business object.
-     * @param professor
+     * @param professor professor to delete
      * @return a boolean representing a successful/failed deletion
      */
     boolean deleteProfessor(Professor professor);

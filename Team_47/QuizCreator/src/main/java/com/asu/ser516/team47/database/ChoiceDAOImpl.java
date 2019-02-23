@@ -15,11 +15,7 @@ import java.util.List;
  * @since 2/22/19
  */
 public class ChoiceDAOImpl implements ChoiceDAO{
-    // Hardcoded (will switch to loading through props in future)
-    //    private static Properties __dbProperties;
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
-    private static String __jdbcUser;
-    private static String __jdbcPasswd;
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all choices in the table
@@ -30,7 +26,7 @@ public class ChoiceDAOImpl implements ChoiceDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Choice> rval = new ArrayList<Choice>();
+        List<Choice> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -67,7 +63,7 @@ public class ChoiceDAOImpl implements ChoiceDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Choice> rval = new ArrayList<Choice>();
+        List<Choice> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -141,21 +137,28 @@ public class ChoiceDAOImpl implements ChoiceDAO{
     public boolean insertChoice(Choice choice) {
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into choices (quesiton_fk, correct, content)" +
+            stmt = conn.prepareStatement("insert into choices (question_fk, correct, content)" +
                     " VALUES (?,?,?)");
             stmt.setInt(1, choice.getQuestion_fk());
             stmt.setBoolean(2, choice.isCorrect());
             stmt.setString(3,choice.getContent());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
+            if (updatedRows <= 0) {
                 return false;
             }
+
+            // Return SQLite generated id of inserted value
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                choice.setChoice_id(rs.getInt(1));
+            }
+            return true;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -190,11 +193,7 @@ public class ChoiceDAOImpl implements ChoiceDAO{
             stmt.setString(3,choice.getContent());
             stmt.setInt(4,choice.getChoice_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -209,10 +208,10 @@ public class ChoiceDAOImpl implements ChoiceDAO{
     }
 
     /**
-     * Deletes a choice in the database basec on the
+     * Deletes a choice in the database based on the
      * values in a business object.
      *
-     * @param choice
+     * @param choice choice to delete
      * @return a boolean representing a successful deletion
      */
     public boolean deleteChoice(Choice choice) {

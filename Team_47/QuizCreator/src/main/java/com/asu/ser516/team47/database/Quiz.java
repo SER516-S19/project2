@@ -28,7 +28,7 @@ public class Quiz {
      * @param title title for the quiz
      * @param course_fk foreign key for the quiz's course
      * @param instructions instructions for the quiz
-     * @param shuffle if quesitons are shuffled
+     * @param shuffle if questions are shuffled
      * @param time_limit time limit for quiz
      * @param date_open date to open quiz
      * @param date_close date to close quiz
