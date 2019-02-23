@@ -7,10 +7,10 @@
         <p>
             <b>${Session.QuestionsVO.getQuestion()}</b>
             <i>${Session.QuestionsVO.getTotalPoints()}</i>
-            <input type="radio" value="${Session.QuestionsVO.getCorrectAnswer()}">
-            <input type="radio" value="${Session.QuestionsVO.getIncorrectAnswer1()}">
-            <input type="radio" value="${Session.QuestionsVO.getIncorrectAnswer2()}">
-            <input type="radio" value="${Session.QuestionsVO.getIncorrectAnswer3()}">
+            <input type="radio" name= "questionId" value="${Session.QuestionsVO.getCorrectAnswer()}">
+            <input type="radio" name= "questionId" value="${Session.QuestionsVO.getIncorrectAnswer1()}">
+            <input type="radio" name= "questionId" value="${Session.QuestionsVO.getIncorrectAnswer2()}">
+            <input type="radio" name= "questionId" value="${Session.QuestionsVO.getIncorrectAnswer3()}">
         </p>
 </form>
 </body>
