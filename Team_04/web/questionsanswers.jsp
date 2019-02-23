@@ -62,6 +62,8 @@
 
 </style>
 <body>
+
+<div class="entireDiv">
 <div class="QuesAnsDiv">
 
     <%
@@ -109,9 +111,8 @@
 <div class="navBtn">
     <input type="submit" text="submit" value="submit" formaction="./loadquestionanswerservlet" name="action" class="prevBtn" <%=submitBtn%>/>
     <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn" <%=nextBtn%>/>
-
-<%--<input type="button" text="next" value="next" class="nextBtn"/>--%>
     </form>
+</div>
 </div>
 
 </body>

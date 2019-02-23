@@ -57,11 +57,11 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
     private void loadQuestionsAnswers() {
 
         List<QuizContent> questions = DataManager.getInstance().executeGetQuery(QuizContent.class,
-                "SELECT * FROM quiz_content group by quesId");
+                "SELECT * FROM quiz_content where quizId='1' group by quesId");
 
         for (QuizContent question : questions) {
             List<QuizContent> options = DataManager.getInstance().executeGetQuery(QuizContent.class,
-                    "SELECT * FROM quiz_content where quesId=" + question.getQuesId());
+                    "SELECT * FROM quiz_content where quizId='1' and quesId=" + question.getQuesId());
             for (QuizContent answerOption : options) {
                 question.getAnswerOptions().add(new AnswerOption(answerOption.getAnsId(),
                         answerOption.getAnsDesc(), answerOption.getIsCorrect()));
