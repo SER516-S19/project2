@@ -50,13 +50,8 @@
 	<br>
 	<br>
 	
-<%
-String quizType = (String) session.getAttribute("quizType");
-if(("G").equals(quizType)){
-	out.write("Enter points : ");
-	out.write("<input type=\"number\" name=\"points\" required>");
-}
-%>
+	Enter points : 
+	<input type="number" name="points" required>
 	<br>
 	<br>
 	<input type="submit" name="flag" value="Add Next Question"/>

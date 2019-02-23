@@ -23,6 +23,7 @@ import services.ProfessorServices;
  */
 public class ProfessorServlet extends HttpServlet {
 
+	ProfessorServices professorServices = new ProfessorServices();
 	/**
 	 * This method will handle the get requests. Each request will have a flag that
 	 * determines the service
@@ -34,7 +35,6 @@ public class ProfessorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
-		ProfessorServices professorServices = new ProfessorServices();
 		if ("fetchQuizList".equalsIgnoreCase(flag)) {
 			List<Quiz> quizList = professorServices.getAllQuizzes();
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
@@ -83,10 +83,12 @@ public class ProfessorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
-		ProfessorServices professorServices = new ProfessorServices();
 		if ("InsertQuizDetails".equals(flag)) {
 			professorServices.insertQuizDetails(request);
-			response.sendRedirect("views/quizDetails.jsp");
+			List<Quiz> quizList = professorServices.getAllQuizzes();
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
+			request.setAttribute("quizList", quizList);
+			rd.forward(request, response);
 		} 
 		else if ("DeleteQuestion".equals(flag)) {
 			String quesId = request.getParameter("box1");
@@ -103,7 +105,6 @@ public class ProfessorServlet extends HttpServlet {
 			String points = request.getParameter("points");
 			String[] correctanswers = request.getParameterValues("options");
 			HttpSession session = request.getSession(true);
-			professorServices = new ProfessorServices();
 			professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
 					questionOption2, questionOption3, questionOption4, correctanswers, points);
 			
