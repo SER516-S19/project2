@@ -19,7 +19,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Servlet to load the questions and answers
+ * The {@code LoadQuestionAnswerServlet} class represents a web servlet.
+ * It includes methods to load questions from the database,insert answers,
+ * submit answers to the database.
+ *
+ * @author Ankita Shivanand Bhandari
  */
 @WebServlet("/servlet")
 public class LoadQuestionAnswerServlet extends HttpServlet {
@@ -49,10 +53,10 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
                     " timeTaken, isFinal) VALUES(?,?,?,?,?,?,?,?,?)";
             int numOfRowsAffected = DataManager.getInstance().
                     executeUpdateQuery(updateQuery,
-                    currentQuestion.getQuesId(),
-                    currentQuestion.getQuizId(),
-                    selectedOption, attemptId, studentId,
-                    currentQuestion.getScore(), dates, time, true);
+                            currentQuestion.getQuesId(),
+                            currentQuestion.getQuizId(),
+                            selectedOption, attemptId, studentId,
+                            currentQuestion.getScore(), dates, time, true);
         }
 
     }
@@ -67,7 +71,8 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 
         for (QuizContent question : questions) {
             List<QuizContent> options = DataManager.getInstance().executeGetQuery(QuizContent.class,
-            "SELECT * FROM quiz_content where quizId='1' and quesId=" + question.getQuesId());
+                    "SELECT * FROM quiz_content where quizId='1' and quesId=" +
+                            question.getQuesId());
             for (QuizContent answerOption : options) {
                 question.getAnswerOptions().add(new AnswerOption(answerOption.getAnsId(),
                         answerOption.getAnsDesc(), answerOption.getIsCorrect()));
@@ -79,8 +84,8 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
     /**
      * Function to submit the quiz results to DB
      */
-    private void executeSubmitEntry()
-    {
+    private void executeSubmitEntry() {
+
         String submitQuizQuery = "insert into quiz_result(quizId, attemptId," +
                 " studentId, finalScore) values (?,?,?,?)";
         DataManager.getInstance().executeUpdateQuery(submitQuizQuery,
@@ -128,28 +133,22 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
      * @param selectedOptions      list of selected options
      * @return
      */
-    private int computeScore(int currentQuestionIndex, List<String> selectedOptions)
-    {
+    private int computeScore(int currentQuestionIndex, List<String> selectedOptions) {
         int actualCorrectAnsCount = 0, totalCorrectAnsCount = 0;
         int result;
         QuizContent currentQuestion = questions.get(currentQuestionIndex);
-        for (AnswerOption answerOption : currentQuestion.getAnswerOptions())
-        {
-            if (answerOption.getIsCorrect())
-            {
+        for (AnswerOption answerOption : currentQuestion.getAnswerOptions()) {
+            if (answerOption.getIsCorrect()) {
                 totalCorrectAnsCount += 1;
-                if (selectedOptions.contains(Long.toString(answerOption.getAnsId())))
-                {
+                if (selectedOptions.contains(Long.toString(answerOption.getAnsId()))) {
                     actualCorrectAnsCount += 1;
                 }
             }
         }
-        if (totalCorrectAnsCount != 0)
-        {
-            result = (int) ((actualCorrectAnsCount / totalCorrectAnsCount) * currentQuestion.getMaxScore());
-        }
-        else
-        {
+        if (totalCorrectAnsCount != 0) {
+            result = (int) ((actualCorrectAnsCount / totalCorrectAnsCount) *
+                    currentQuestion.getMaxScore());
+        } else {
             result = 0;
         }
         currentQuestion.setScore(result);
@@ -165,24 +164,20 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
      * @throws IOException
      */
     protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws ServletException, IOException
-    {
-        if (this.questions.size() == 0)
-        {
+                         HttpServletResponse response) throws ServletException, IOException {
+        if (this.questions.size() == 0) {
             loadQuestionsAnswers();
         }
         HttpSession session = request.getSession(true);
         questionNumber++;
         session.setAttribute("count", questionNumber);
         String action = request.getParameter("action");
-        if (action.isEmpty())
-        {
-            view = "ErrorHandler.jsp";
+        if (action.isEmpty()) {
+            view = "errorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
         } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
-                && currentQuestionIndex < questions.size())
-        {
+                && currentQuestionIndex < questions.size()) {
             currentQuestion = questions.get(currentQuestionIndex);
             request.setAttribute("data", currentQuestion);
             currentQuestionIndex += 1;
@@ -190,15 +185,12 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             view = "questionsanswers.jsp";
             response.setStatus(response.SC_OK);
 
-        } else if (action.equalsIgnoreCase("submit"))
-        {
+        } else if (action.equalsIgnoreCase("submit")) {
             request.setAttribute("totalScore", totalScore);
             view = "ThankYou.jsp";
             response.setStatus(response.SC_OK);
-        }
-        else
-        {
-            view = "ErrorHandler.jsp";
+        } else {
+            view = "errorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
         }

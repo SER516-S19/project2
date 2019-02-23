@@ -1,6 +1,8 @@
 package student.dto;
 
-
+/**
+ * This Class represents the model for Question_Response table
+ */
 public class QuizResults {
 
   private long student_id;
@@ -22,7 +24,6 @@ public class QuizResults {
     this.student_id = student_id;
   }
 
-
   public long getAttemptId() {
     return attempt_id;
   }
@@ -30,7 +31,6 @@ public class QuizResults {
   public void setAttemptId(long attempt_id) {
     this.attempt_id = attempt_id;
   }
-
 
   public long getQuizId() {
     return quiz_id;
@@ -40,7 +40,6 @@ public class QuizResults {
     this.quiz_id = quiz_id;
   }
 
-
   public long getQuesId() {
     return ques_id;
   }
@@ -48,7 +47,6 @@ public class QuizResults {
   public void setQuesId(long ques_id) {
     this.ques_id = ques_id;
   }
-
 
   public long getAnsId() {
     return ans_id;
@@ -58,7 +56,6 @@ public class QuizResults {
     this.ans_id = ans_id;
   }
 
-
   public long getTotalscore() {
     return total_score;
   }
@@ -66,7 +63,6 @@ public class QuizResults {
   public void setTotalscore(long total_score) {
     this.total_score = total_score;
   }
-
 
   public String getAttemptedOn() {
     return attempted_on;
@@ -76,7 +72,6 @@ public class QuizResults {
     this.attempted_on = attempted_on;
   }
 
-
   public String getTimetaken() {
     return time_taken;
   }
@@ -85,11 +80,9 @@ public class QuizResults {
     this.time_taken = time_taken;
   }
 
-
   public String getIsfinal() {
     return is_final;
   }
-
   public void setIsfinal(String is_final) {
     this.is_final = is_final;
   }
