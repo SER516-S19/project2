@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import edu.asupoly.ser516.model.QuizVO;
+
 //import edu.asupoly.ser516.model.QuestionsVO;
 import java.sql.PreparedStatement;
 
@@ -39,7 +42,7 @@ public class DisplayQuizInstructionsServlet extends HttpServlet{
             String quizInstruction = "";
             while(userData.next())
             	quizInstruction = userData.getString("quizInstruction");
-            QuizVO quizVO = new QuizVO(quizInstruction, "", "", "", "", "", "" );
+            QuizVO quizVO = null;//new QuizVO(quizInstruction, "", "", "", "", "", "" );
 
             HttpSession session = req.getSession();
             session.setAttribute("QuizVO", quizVO);
