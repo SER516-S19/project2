@@ -23,10 +23,43 @@
         margin-top:10%;
         margin-left: 30%;
     }
-.navBtn
-{
-    margin-left:50%;
-}
+    .navBtn
+    {
+        margin-left: 62%;
+    }
+
+    .prevBtn, .nextBtn
+    {
+        display: inline-block;
+        white-space: nowrap;
+        flex-basis: auto;
+        width: auto;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: center;
+        font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+        font-weight: 400;
+        line-height: 1.28571429;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+        padding: 10px 30px 10px;
+        transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+
+    }
+    .quesStyle
+    {
+        font-size: 200%;
+        margin-bottom: 40px;
+
+    }
+    .options:hover
+    {
+        background-color: lightgray;
+        cursor: pointer;
+
+    }
+
 </style>
 <body>
 <div class="QuesAnsDiv">
@@ -46,22 +79,23 @@
         int count = 1;
     %>
 
-
-    <div><%=question.getQues_desc()%></div>
+    <b> QUESTION <%= count++ %> :</b>
+    <hr>
+    <div class="quesStyle"><%=question.getQues_desc()%></div>
     <%
         for (AnswerOption answer : question.getAnswerOptions()){
+
+           request.setAttribute("ansId", answer.getAns_id());
+           request.setAttribute("ansDesc", answer.getAns_desc());
     %>
-    <%--<h1><%= count++ %></h1>--%>
-    <div class="options"><input type=<%=buttonType%> class="optionTag" data-val=""><%= answer.getAns_desc() %></input></div>
+
+    <form method ="post">
+    <div class="options"><input type=<%=buttonType%> class="optionTag" name="selectedOptionId" value="<%= answer.getAns_id() %>"><%= answer.getAns_desc() %></input></div>
     <%}%>
-
-
-
-
 
 </div>
 <div class="navBtn">
-    <form method ="get">
+
 <input type="button" text="previous" value="previous" class="prevBtn"/>
 <%--<input type="button" text="next" value="next" class="nextBtn"/>--%>
     <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn"/>
