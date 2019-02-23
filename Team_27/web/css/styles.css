@@ -1,6 +1,6 @@
 body {
 	background-color: #f7f7f7;
-    font-family: 'Roboto', sans-serif;
+	font-family:'Josefin Sans', sans-serif;
     margin-top: 30px;
 }
 
@@ -14,6 +14,7 @@ body {
 
 #quizhead {
 	font-size: 1.5 em;
+	font-family:'Josefin Sans', sans-serif;
 }
 
 #quiztitle {
@@ -22,12 +23,13 @@ body {
 	margin: 10px;
 	height: 24px;
 	border: 2px solid black;
+	font-family:'Josefin Sans', sans-serif;
 }
 
 #quizheadbaner {
 	background-color: green;
 	color: white;
-	padding: 20px;
+	padding: 10px;
 	text-align: center;
 }
 
@@ -44,11 +46,8 @@ body {
 }
 
 #submitdesc{
-	width: 240px;
-	height: 48px;
-	text-align: center;
 	background-color: green;
-	color: white;
-	font-size: 1.2rem;
-	margin: 20px;
+	font-size: 1.5rem;
+	margin: 10px;
+	font-family:'Josefin Sans', sans-serif;
 }
