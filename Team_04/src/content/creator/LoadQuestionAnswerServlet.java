@@ -7,7 +7,7 @@ import student.dto.QuizContent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,22 +36,31 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 
 
 private int score = 0;
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	long userSelectedAns = new Long(request.getParameter("selectedOptionId"));
-	//long ansId = (long) request.getAttribute("ansId");
-	String ansDesc = (String)request.getAttribute("ansDesc");
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		QuizContent quiz = this.questions.get(currentQuestionIndex-1);
-		for(AnswerOption ans : quiz.getAnswerOptions())
+		if(quiz.getQues_type().equals("SA"))
 		{
-			if ( ans.getIsCorrect() && userSelectedAns == ans.getAns_id())
+			long userSelectedAns = new Long(request.getParameter("selectedOptionId"));
+			String ansDesc = (String)request.getAttribute("ansDesc");
+			for(AnswerOption ans : quiz.getAnswerOptions())
 			{
-				score++;
+				if ( ans.getIsCorrect() && userSelectedAns == ans.getAns_id())
+				{
+					score = score +(int) quiz.getMax_score();
+					System.out.println(score);
+				}
 			}
 		}
+		else
+		{
+			String[] names = request.getParameterValues("selectedOptionId");
+			List list = Arrays.asList(names);
+			System.out.println(list);
 
-	doGet(request, response);
+			request.setAttribute("names", list);
+		}
+		doGet(request, response);
 	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
