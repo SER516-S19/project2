@@ -1,6 +1,8 @@
 package services;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import bean.*;
@@ -106,6 +108,12 @@ public class StudentServices {
 		}
 		return quizIds;
 	}
-
+	
+	public String getCurrentDateTime() {
+		String pattern = "MMM dd HH:mm";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String dateTime = simpleDateFormat.format(new Date());
+		return dateTime; 
+	}
 
 }
