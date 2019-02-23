@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.model;
+package model;
 
 import java.sql.SQLException;
 
@@ -6,7 +6,7 @@ import java.sql.SQLException;
  * Interface QuestionsDAO with the following method: a. get questions under this
  * quiz
  * 
- * @author trupti
+ * @author trupti khatavkar
  * @version 1.0
  * @date 02/22/2019
  * 

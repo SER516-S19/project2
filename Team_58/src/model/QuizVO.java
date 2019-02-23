@@ -1,6 +1,14 @@
-package edu.asupoly.ser516.model;
+package model;
 
 import java.util.Date;
+
+/**
+ *QuizVO is a model class for a Quiz
+ *
+ * @author NarenkumarKonchada
+ * @version 1.0
+ * @date 02/22/2019
+ */
 
 public class QuizVO {
 	

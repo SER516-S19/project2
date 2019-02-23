@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.controller;
+package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.asupoly.ser516.model.CourseDAOBean;
-import edu.asupoly.ser516.model.CourseVO;
-import edu.asupoly.ser516.model.UserVO;
+import model.CourseDAOBean;
+import model.CourseVO;
+import model.UserVO;
 
 /**
  * Class ProfessorHome Servlet is a controller that routes the user to Professor
@@ -32,6 +32,14 @@ public class ProfessorHomeServlet extends HttpServlet{
 		
 	}
 
+	/**
+	 * This method is to find the courses assigned to Professor 
+	 * and display them in his homepage. 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException
+	 */	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		

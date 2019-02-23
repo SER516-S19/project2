@@ -1,18 +1,51 @@
-package edu.asupoly.ser516.model;
+package model;
 
 /**
- * QuestionVO is the plain old java file for Question
+ * QuestionVO is the plain old java file for CreateQuestions and ViewQiz pages
  * 
- * @version 1.0
- * @author trupti khatavkar
+ * @version 1.1
+ * @author trupti khatavkar / @author aditya samant
  * @date 02/22/2019
  */
 
 public class QuestionsVO {
+
+	private int quizId;
+	private int questionId;
+	private String question;
+	private String correctAnswer;
+	private String incorrectAnswer1;
+	private String incorrectAnswer2;
+	private String incorrectAnswer3;
+	private int totalPoints;
+	private boolean isMCQ;
+
+	/**
+	 * Constructor for setting values while creating questions
+	 * 
+	 * @date 02/22/2019
+	 */
+	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
+			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
+		super();
+		this.quizId = quizId;
+		this.question = question;
+		this.correctAnswer = correctAnswer;
+		this.incorrectAnswer1 = incorrectAnswer1;
+		this.incorrectAnswer2 = incorrectAnswer2;
+		this.incorrectAnswer3 = incorrectAnswer3;
+		this.totalPoints = totalPoints;
+		this.isMCQ = isMCQ;
+	}
+
+	/**
+	 * Constructor for retrieving values while displaying questions
+	 * 
+	 * @date 02/22/2019
+	 */
 	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
 			String incorrectAnswer3, String question) {
-		super();
-		this.qId = qId;
+		this.questionId = questionId;
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.incorrectAnswer1 = incorrectAnswer1;
@@ -30,11 +63,11 @@ public class QuestionsVO {
 	}
 
 	public int getqId() {
-		return qId;
+		return questionId;
 	}
 
-	public void setqId(int qId) {
-		this.qId = qId;
+	public void setqId(int questionId) {
+		this.questionId = questionId;
 	}
 
 	public String getQuestion() {
@@ -90,29 +123,6 @@ public class QuestionsVO {
 	}
 
 	public void setMCQ(boolean isMCQ) {
-		this.isMCQ = isMCQ;
-	}
-
-	private int quizId;
-	private int qId;
-	private String question;
-	private String correctAnswer;
-	private String incorrectAnswer1;
-	private String incorrectAnswer2;
-	private String incorrectAnswer3;
-	private int totalPoints;
-	private boolean isMCQ;
-
-	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
-			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
-		super();
-		this.quizId = quizId;
-		this.question = question;
-		this.correctAnswer = correctAnswer;
-		this.incorrectAnswer1 = incorrectAnswer1;
-		this.incorrectAnswer2 = incorrectAnswer2;
-		this.incorrectAnswer3 = incorrectAnswer3;
-		this.totalPoints = totalPoints;
 		this.isMCQ = isMCQ;
 	}
 

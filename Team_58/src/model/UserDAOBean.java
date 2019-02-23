@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.model;
+package model;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -32,6 +32,18 @@ public class UserDAOBean implements UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Makes a connection to the database via ConnectionFactory to gain information about quiz
+	 * and returns a custom quiz object to be used by ViewQuizServlet.java
+	 * 
+	 * @param userName
+	 * @param passWord
+	 * @throws SQLException in case of database error
+	 * @throws ClassNotFoundException in case referencing class does not exist
+	 * @throws IOException
+	 * @return list UserVO list which returns user data
+	 * */
 	@Override
 	public List<UserVO> getUserInfo(String userName, String passWord) throws ClassNotFoundException, SQLException, IOException {
 		

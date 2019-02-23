@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.controller;
+package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.asupoly.ser516.model.QuestionsVO;
-import edu.asupoly.ser516.model.QuizVO;
-import edu.asupoly.ser516.model.ViewQuizDAOBean;
+import model.QuestionsVO;
+import model.QuizVO;
+import model.ViewQuizDAOBean;
 
 
 /**
