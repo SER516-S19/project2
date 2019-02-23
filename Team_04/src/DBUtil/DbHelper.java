@@ -3,23 +3,18 @@ package DBUtil;
 import java.util.Properties;
 
 /**
- * Helper Class to fetch the DB properties
+ * {@code DbHelper} class to fetch the database properties
  */
 public class DbHelper {
 
+    //region private members
     private static String DB_URL;
+    //endregion
 
+    //region static block
     /**
-     * @return the DB URL
-     */
-    public static String getDbUrl() {
-        return DB_URL;
-    }
-
-
-    /**
-     * This class is going to look for a file named DBDetails.properties in the classpath
-     * to get its initial settings
+     * Reads the file with name {@literal DBDetails.properties} and loads
+     * the url string for {@code JDBC} connection
      */
     static {
         try {
@@ -30,4 +25,14 @@ public class DbHelper {
             t.printStackTrace();
         }
     }
+    //endregion
+
+    //region Description
+    /**
+     * @return the local database url string
+     */
+    public static String getDbUrl() {
+        return DB_URL;
+    }
+    //endregion
 }
