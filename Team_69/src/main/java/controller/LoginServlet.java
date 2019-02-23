@@ -12,6 +12,7 @@ import bean.Question;
 import bean.User;
 import dao.LoginDAO;
 import dao.QuizDAO;
+import services.StudentServices;
 
 public class LoginServlet extends HttpServlet{
 
@@ -21,9 +22,13 @@ public class LoginServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         resp.setStatus(200);
-        QuizDAO quizDAO = new QuizDAO();
-        List<String> quizNames = quizDAO.fetchAllQuizName();
+        StudentServices studentServices = new StudentServices();
+        List<String> quizNames =studentServices.fetchAllQuizNames();
+        List<Integer> quizIds = studentServices.fetchAllQuizIds(quizNames);
+        List<String> quizStatus = studentServices.fetchQuizStatus(quizNames);
         req.setAttribute("quizNames",quizNames);
+        req.setAttribute("quizStatus",quizStatus);
+        req.setAttribute("quizIds",quizIds);
         getServletContext().getRequestDispatcher("/views/StudentLanding.jsp").forward(req, resp);
     }
 
