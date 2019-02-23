@@ -1,11 +1,11 @@
 package quiz.controller.professor;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +22,7 @@ import quiz.dao.ConnectionFactory;
  */
 public class QuizIntroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private static Properties dbProperties = new Properties();
 	static {
 		try {
@@ -34,31 +34,32 @@ public class QuizIntroController extends HttpServlet {
 	}
 
 	/**
-	 * @return 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @return
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String sql = dbProperties.getProperty("SELECT_QUIZ");
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
 			preparedStatement = conn.prepareStatement(sql);
 			ResultSet rs = preparedStatement.executeQuery();
 			HttpSession session = request.getSession();
 			ArrayList<String> rowValues = new ArrayList<String>();
 			while (rs.next()) {
-				 rowValues.add(rs.getString("title"));
-			}   
+				rowValues.add(rs.getString("title"));
+			}
 			session.setAttribute("rowValues", rowValues);
-			
+
 			response.sendRedirect("showQuizes.jsp");
-			
-		}catch(Exception e) 
-		{
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

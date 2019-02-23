@@ -32,7 +32,7 @@ public class QuestionsDao {
 		try {
 			/* Populating the prepared statement with data from the value object */
 			preparedStatement = conn.prepareStatement(sql.toString());
-			
+
 			preparedStatement.setString(1, questionEntry.getQuizId() + "");
 			preparedStatement.setString(2, questionEntry.getQuestion());
 			preparedStatement.setString(3, questionEntry.getOptionA());
@@ -54,7 +54,8 @@ public class QuestionsDao {
 			try {
 				conn.rollback();
 			} catch (SQLException e2) {
-				throw new DataAccessException("Error rolling back during recovery, nested exception has original error", exc);
+				throw new DataAccessException("Error rolling back during recovery, nested exception has original error",
+						exc);
 			}
 			throw exc;
 		} finally {

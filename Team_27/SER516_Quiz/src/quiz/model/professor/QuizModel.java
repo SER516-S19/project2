@@ -1,8 +1,7 @@
 package quiz.model.professor;
 
+public class QuizModel {
 
-public class QuizModel{
-	
 	private String title;
 	private String instructions;
 	private String assignmentGroup;
@@ -10,7 +9,7 @@ public class QuizModel{
 	private Boolean isGraded;
 	private Integer timeLimit;
 	private Boolean isMultipleAttempt;
-	
+
 	public QuizModel(String title, String instructions, String assignmentGroup, Boolean isShuffled, Boolean isGraded,
 			Integer timeLimit, Boolean isMultipleAttempt) {
 		super();
@@ -22,7 +21,7 @@ public class QuizModel{
 		this.timeLimit = timeLimit;
 		this.isMultipleAttempt = isMultipleAttempt;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "QuizDetails [title=" + title + ", instructions=" + instructions + ", assignmentGroup=" + assignmentGroup
@@ -86,8 +85,4 @@ public class QuizModel{
 		this.isMultipleAttempt = isMultipleAttempt;
 	}
 
-    
 }
-
-
-

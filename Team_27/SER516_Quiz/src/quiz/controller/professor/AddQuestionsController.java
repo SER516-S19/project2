@@ -23,18 +23,18 @@ public class AddQuestionsController extends HttpServlet {
 		response.setContentType("text/html");
 
 		Enumeration paramNames = request.getParameterNames();
-		
+
 		try {
 			String quizId = request.getSession().getAttribute("quizId").toString();
-			
+
 			while (paramNames.hasMoreElements()) {
 				String paramName = (String) paramNames.nextElement();
-				
+
 				if (paramName.substring(0, 8).equals("question")) {
 					String questionNumber = paramName.substring(8);
-					
+
 					String questionText = request.getParameter("question" + questionNumber);
-					
+
 					String optionA = request.getParameter("OptionAForQues" + questionNumber);
 					String optionB = request.getParameter("OptionBForQues" + questionNumber);
 					String optionC = request.getParameter("OptionCForQues" + questionNumber);
@@ -52,19 +52,19 @@ public class AddQuestionsController extends HttpServlet {
 					String points = request.getParameter("PointsForQues" + questionNumber);
 					tmp = request.getParameter("isMultipleAnswerQues" + questionNumber);
 					Boolean isMultipleAnswer = (tmp == null) ? false : true;
-					
-					Question questionModel = new Question(quizId, questionText, optionA, optionB, optionC, optionD, isOptionACorrect,
-							isOptionBCorrect, isOptionCCorrect, isOptionDCorrect, points, isMultipleAnswer);
+
+					Question questionModel = new Question(quizId, questionText, optionA, optionB, optionC, optionD,
+							isOptionACorrect, isOptionBCorrect, isOptionCCorrect, isOptionDCorrect, points,
+							isMultipleAnswer);
 					QuestionsDao.insert(questionModel);
 
 				}
 			}
 			request.getRequestDispatcher("Success.html").forward(request, response);
-		}
-		catch (Exception exc) {
+		} catch (Exception exc) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
 			exc.printStackTrace();
-		}	
+		}
 	}
 
 	// Method to handle POST method request.
