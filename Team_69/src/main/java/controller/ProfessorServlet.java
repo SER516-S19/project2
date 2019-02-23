@@ -63,7 +63,21 @@ public class ProfessorServlet extends HttpServlet {
 			request.setAttribute("quizName", quizName);
 			request.setAttribute("queAnsData", queAnsData);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
-			rd.forward(request, response);
+			rd.forward(request, response);	
+		
+		}else if("addQueInQuiz".equalsIgnoreCase(flag)) {
+			
+			String quizID = request.getParameter("id");
+			int quizId = Integer.parseInt(quizID);
+			
+			ProfessorDAO professorDAO = new ProfessorDAO();
+			Quiz quiz = professorDAO.getQuizFromID(quizId);
+			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("quiz", quiz);
+			
+			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
+
 		}
 	}
 
@@ -82,14 +96,12 @@ public class ProfessorServlet extends HttpServlet {
 			professorServices.insertProfDetails(request);
 			response.sendRedirect("views/professorDetails.jsp");
 		} 
-		
 		else if ("DeleteQuestion".equals(flag)) {
 			String quesId = request.getParameter("box1");
 			QuestionDAO questionDAO = new QuestionDAO();
 			questionDAO.deleteQuestionByQuestionId(quesId);
 			response.sendRedirect("views/removeQuestionPage.jsp");
 		} 
-		
 		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
 			String question = request.getParameter("question");
 			String questionOption1 = request.getParameter("option1");
@@ -99,25 +111,25 @@ public class ProfessorServlet extends HttpServlet {
 			String points = request.getParameter("points");
 			String[] correctanswers = (String[]) request.getParameterValues("options");
 
-			HttpSession sess = request.getSession(true);
-			Quiz quiz = (Quiz) sess.getAttribute("quiz");
+			HttpSession session = request.getSession(true);
 
+    
 			professorServices = new ProfessorServices();
-			professorServices.storeQuestion(quiz, question, questionOption1, questionOption2, questionOption3,
-					questionOption4, correctanswers, points);
-
-			String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
-			request.setAttribute("profnavigate", addQuestionPageURL);
-			if ("Add Next Question".equals(flag)) {
-				response.sendRedirect("views/AddQuestions.jsp");
-				return;
-			} else if ("Save and Exit".equals(flag)) {
-				response.sendRedirect("views/QuizList.jsp");
-				return;
-			}
-		} else if ("Verify Questions".equals(flag)) {
-			response.sendRedirect("views/displayQuestionAnswer.jsp");
-			return;
-		}
-	}
+			professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
+					questionOption2, questionOption3, questionOption4, correctanswers, points);
+			
+        	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
+        	request.setAttribute("profnavigate", addQuestionPageURL); 
+        	if("Add Next Question".equals(flag)) {
+        		response.sendRedirect("views/addQuestions.jsp");
+        		return;
+        	}else if("Save and Exit".equals(flag)) {
+        		response.sendRedirect("views/professorLanding.jsp");
+            	return;
+        	}
+		}else if("Verify Questions".equals(flag)) {
+        	response.sendRedirect("views/displayQuestionAnswer.jsp");
+        	return;
+        }
+    }
 }
