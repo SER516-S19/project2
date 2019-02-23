@@ -52,7 +52,6 @@ public class StatisticsDAO {
             count = q.getSingleResult();
             transaction.commit();
             session.close();
-//
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
