@@ -75,7 +75,7 @@ public class StudentServices {
 
 	public List<String> fetchAllQuizNames(){
 		QuizDAO quizDAO = new QuizDAO();
-		return quizDAO.fetchAllQuizName();
+		return quizDAO.fetchAllQuizNames();
 	}
 
 	public int fetchQuizId(String quizName){

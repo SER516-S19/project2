@@ -42,6 +42,8 @@ modules.xml
 .idea/misc.xml
 *.ipr
 
+*.bin
+
 *web/.DS_Store
 .DS_Store
 /build/

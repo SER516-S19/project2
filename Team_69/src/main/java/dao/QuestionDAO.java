@@ -15,6 +15,7 @@ import bean.Quiz;
 public class QuestionDAO {
 
 	public void addQuestion(Question question) {
+
 		Transaction transaction = null;
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -30,6 +31,7 @@ public class QuestionDAO {
 	}
 
 	public List<Question> getQuestionsByQuizId(int quizId){
+
 		Transaction transaction = null;
 		List<Question> quesList = new ArrayList<Question>();
 
@@ -55,7 +57,10 @@ public class QuestionDAO {
 		}
 		return quesList;
 	}
-
+	
+	/**
+	 * This method will delete questions from the quiz.
+	 */
 	public void deleteQuestionByQuestionId(String quesId){
 		Transaction transaction = null;
 		Question quesList = null;
@@ -75,9 +80,11 @@ public class QuestionDAO {
 		}
 		return ;
 	}
+		
+	/**
+	 * Joins the question and answer table in Database.
+	 */
 	public List<Answer> getQuestionsAndAnswers(int quizId) {
-		// TODO Auto-generated method stub
-	
 		Transaction transaction = null;
 	       List<Answer> quesList = new ArrayList<Answer>();
 	       try  {
@@ -90,9 +97,6 @@ public class QuestionDAO {
 	           query.select(root).where(root.get("quiz").in(quizId));
 	           Query<Answer> q=session.createQuery(query);
 	           quesList= q.getResultList();
-	           for (Answer name : quesList) {
-	               System.out.println(name);
-	           }
 	           transaction.commit();
 	       } catch (HibernateException e) {
 	           e.printStackTrace();
