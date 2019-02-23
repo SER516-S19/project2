@@ -122,5 +122,36 @@ public class QuizDAOBean implements QuizDAO{
 		return quizId;
 	}
 	
+	@Override
+	public List<QuizVO> getQuizzesForStudent(UserVO student) throws SQLException, ClassNotFoundException {
+		
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		query = connection.prepareStatement(dbProperties.getProperty("getQuizzesForStudent"));
+		query.setInt(1, student.getUserId());
+
+		resultData = query.executeQuery();
+		
+		List<QuizVO> list = new ArrayList<>();
+		
+		while(resultData.next()) {
+			int quizId = resultData.getInt("quizId");
+			int assignedTime = resultData.getInt("assignedTime");
+			boolean isGraded = resultData.getBoolean("isGraded");
+			String quizInstruction = resultData.getString("quizInstruction"); 
+			Date quizScheduledDate = resultData.getDate("quizScheduledDate");
+			boolean isShuffled = resultData.getBoolean("isShuffled");
+			String quizTitle = resultData.getString("quizTitle");
+			QuizVO quiz = new QuizVO(quizId, isGraded, assignedTime, quizInstruction, quizScheduledDate, isShuffled, quizTitle);
+			list.add(quiz);
+		}
+		
+		return list;
+	}
+	
 	
 }

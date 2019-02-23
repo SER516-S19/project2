@@ -28,7 +28,7 @@ public class CourseDAOBean implements CourseDAO{
 	}
 	
 	@Override
-	public List<CourseVO> getCourseAssignedToProfessor(UserVO userVO) throws SQLException, ClassNotFoundException {
+	public List<CourseVO> getCourseAssignedTo(UserVO userVO) throws SQLException, ClassNotFoundException {
 		
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -36,7 +36,7 @@ public class CourseDAOBean implements CourseDAO{
 		
 		connection = ConnectionFactory.getConnection();
 		
-		query = connection.prepareStatement(dbProperties.getProperty("getCourseAssignedToProfessorQuery"));
+		query = connection.prepareStatement(dbProperties.getProperty("getCourseAssignedToQuery"));
 		query.setInt(1, userVO.getUserId());
 
 		resultData = query.executeQuery();
@@ -52,5 +52,5 @@ public class CourseDAOBean implements CourseDAO{
 		}
 		
 		return list;
-	}   
+	}
 }
