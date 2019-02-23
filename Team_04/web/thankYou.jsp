@@ -3,7 +3,7 @@
   User: appy
   Date: 2019-02-22
   Time: 21:04
-  To change this template use File | Settings | File Templates.
+  Description: Displays the score for student at the end
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -28,7 +28,6 @@
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-
     }
 
     body {
@@ -42,20 +41,19 @@
         padding-left: 20px;
         font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
     }
+
     h2 {
         text-align: center;
         color: white;
         font-size: 40px;
         padding-left: 20px;
         font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-
     }
 </style>
 <body>
 
 <%
     int totalScore = (int)request.getAttribute("totalScore");
-
 %>
 
 <form class="panel" method="get">

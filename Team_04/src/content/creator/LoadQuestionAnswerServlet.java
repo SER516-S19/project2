@@ -182,12 +182,12 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             request.setAttribute("data", currentQuestion);
             currentQuestionIndex += 1;
             request.setAttribute("enableSubmitButton", currentQuestionIndex == questions.size());
-            view = "questionsanswers.jsp";
+            view = "questionsAnswers.jsp";
             response.setStatus(response.SC_OK);
 
         } else if (action.equalsIgnoreCase("submit")) {
             request.setAttribute("totalScore", totalScore);
-            view = "ThankYou.jsp";
+            view = "thankYou.jsp";
             response.setStatus(response.SC_OK);
         } else {
             view = "errorHandler.jsp";
