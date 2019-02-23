@@ -15,5 +15,7 @@ import java.util.List;
 
 public interface CourseDAO {
 
+
 	public List<CourseVO> getCourseAssignedToProfessor(UserVO userVO) throws SQLException, ClassNotFoundException;
+
 }

@@ -8,72 +8,76 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import jdk.nashorn.internal.parser.JSONParser;
+import model.ConnectionFactory;
+import model.QuestionsVO;
 import model.QuestionsVO;
 
 import java.sql.PreparedStatement;
 import javax.servlet.annotation.WebServlet;
-import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 
+/*
+ *  @Author: Jainish Soni
+ *  @Version: 1.0
+ *  @Date: 02/22/2019
+ */
 @WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
-public class DisplayQuizServlet extends HttpServlet{
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
+/*
+ * DisplayQuizServlet class is created to display the question of a quiz to the
+ * student.
+ */
+public class DisplayQuizServlet extends HttpServlet {
+	/*
+	 * This method will establish the connection with the database and will fetch
+	 * every detail to display the quiz for a student.
+	 */
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		try {
+			int questionID = Integer.parseInt(req.getParameter("questionId"));
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
+			String hostName = "showtimefinder.database.windows.net";
+			String dbName = "ser516_db";
+			String user = "scrum_mates@showtimefinder";
+			String password = "Azure@Cloud";
+			String url = String.format(
+					"jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
+							+ "hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+					hostName, dbName, user, password);
+			Connection connection = DriverManager.getConnection(url);
+			String schema = connection.getSchema();
+			System.out.println("Successful connection - Schema: " + schema);
 
-        try {
-            int questionID = Integer.parseInt(req.getParameter("questionId"));
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			PreparedStatement query2 = connection
+					.prepareStatement("select * from [dbo].[questions] where questionId = ?");
+			query2.setInt(1, questionID);
+			ResultSet userData = query2.executeQuery();
+			QuestionsVO questionsVO = null;
 
-            String hostName = "showtimefinder.database.windows.net";
-            String dbName = "ser516_db";
-            String user = "scrum_mates@showtimefinder";
-            String password = "Azure@Cloud";
-            String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
-                    + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-            Connection connection = DriverManager.getConnection(url);
-            String schema = connection.getSchema();
-            System.out.println("Successful connection - Schema: " + schema);
+			while (userData.next()) {
+				int questionId = userData.getInt("questionId");
+				int quizId = userData.getInt("quizId");
+				int totalPoints = userData.getInt("totalPoints");
+				String question = userData.getString("question");
+				String answer = userData.getString("actualAnswer");
+				String choices = userData.getString("totalChoices");
 
-            PreparedStatement query2 = connection.prepareStatement("select questionId, question, actualAnswer, totalChoices from [dbo].[questions]" + " where questionId = ?");
-            query2.setInt(1, questionID);
-            ResultSet userData = query2.executeQuery();
-            QuestionsVO questionsVO = null;
+				JSONParser parser = new JSONParser();
+				JSONObject jo = (JSONObject) parser.parse(choices);
 
-            while(userData.next()){
-                int questionId = userData.getInt("questionId");
-                int totalPoints = userData.getInt("totalPoints");
-                String question = userData.getString("question");
-                String answer = userData.getString("actualAnswer");
-                int choices = userData.getInt("totalChoices");
+				String choice1 = (String) jo.get("incorrectAnswer1");
+				String choice2 = (String) jo.get("incorrectAnswer2");
+				String choice3 = (String) jo.get("incorrectAnswer3");
 
-                JSONParser parser = new JSONParser(answer, null, false);
-                JSONObject jo = null;//(JSONObject) parser.parse(choices);
-                //JSONObject jo2 = (JSONObject) parser.parse(answer);
+				questionsVO = new QuestionsVO(questionId, totalPoints, answer, choice1, choice2, choice3, question);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-                String choice1 = (String) jo.get("incorrectAnswer1");
-                String choice2 = (String) jo.get("incorrectAnswer2");
-                String choice3 = (String) jo.get("incorrectAnswer3");
+	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 
-                questionsVO = new QuestionsVO(questionID, totalPoints, question, answer, choice1, choice2, choice3);
-            }
-
-
-            HttpSession session = req.getSession();
-            session.setAttribute("QuestionsVO", questionsVO);
-
-            res.sendRedirect(req.getContextPath() + "/displayQuiz.ftl");
-
-
-
-        } catch(Exception e){
-
-            e.printStackTrace();
-        }
-
-    }
-    public void doPost(HttpServletRequest req, HttpServletResponse res) {
-
-    }
+	}
 }
