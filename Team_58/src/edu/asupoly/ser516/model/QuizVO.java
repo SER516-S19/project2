@@ -85,4 +85,10 @@ public class QuizVO {
 		quizScheduledDate = date;
 		isGraded = graded;
 	}
+	
+	public QuizVO(int quizId, String quizTitle)
+	{
+		this.quizId = quizId;
+		this.quizTitle = quizTitle;
+	}
 }
