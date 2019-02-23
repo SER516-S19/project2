@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.model;
+package model;
 /**
  * Class StudentResponseVO is Java Model for Student Response
  * @author akashkadam

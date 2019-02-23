@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.model;
+package model;
 
 /**
  * CreateQuizVO is the plain old java class for CreateQuiz.

@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.model;
+package model;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -45,7 +45,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 * */
 	@Override
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException {
-		//return object
+		
 	    QuizVO quiz = null;
 				
 		Connection connection = null;
@@ -58,7 +58,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		query.setInt(1, quizId);
 		result = query.executeQuery();
 		
-		//Initialize Quiz Information
+		
 	    String quizName = "";
 	    String instruction = "";
 	    Date scheduledDate = new Date(0);
@@ -67,7 +67,6 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		try {
 			
 			if(result.next()) {
-				
 				quizName = result.getString("quizTitle");
 				instruction = result.getString("quizInstruction");
 				scheduledDate = result.getDate("quizScheduledDate");
@@ -113,12 +112,13 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 			   int points = result.getInt("totalPoints");
 	 			   String question = result.getString("question");
 	 			   
-	 			   //Values read as strings but actually JSON
+	 			   
 	 			   String answer = result.getString("actualAnswer"); 
 	 			   String choices = result.getString("totalChoices"); 
 	 			   
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
+
 	 			   
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");

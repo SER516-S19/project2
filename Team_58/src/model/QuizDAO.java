@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.model;
+package model;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface QuizDAO {
 	public List<QuizVO> getQuizzesForCourse(int courseId) throws SQLException, ClassNotFoundException;
-	public void creatingQuiz (CreateQuizVO createQuizVO) throws  SQLException, ClassNotFoundException;
+	public void insertingQuizDetails (CreateQuizVO createQuizVO) throws  SQLException, ClassNotFoundException;
 	public int gettingQuizId (CreateQuizVO createQuizVO) throws  SQLException, ClassNotFoundException;
 }
