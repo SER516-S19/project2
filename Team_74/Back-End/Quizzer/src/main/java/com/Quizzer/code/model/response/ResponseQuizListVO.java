@@ -1,5 +1,5 @@
 /*
- * Comment
+ * This class contains stores and returns Quiz Ids and Names
  * */
 
 package com.Quizzer.code.model.response;
