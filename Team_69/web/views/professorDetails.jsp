@@ -11,7 +11,7 @@
 <body>
 <script type="text/javascript" src="../js/fetchProffesorData.js"></script>
     <script type="text/javascript">
-    myFunction(elem)
+    validateTimeCheckbox(elem)
     </script>
 
 <form action="../ProfessorController" method="post">
@@ -57,7 +57,7 @@
   <tr>
     <td></td>
     <td>
-    	<input type="checkbox" name="time_limit" value="time_limit" onchange="myFunction(this);">Time Limit
+    	<input type="checkbox" name="time_limit" value="time_limit" onchange="validateTimeCheckbox(this);">Time Limit
 		<input type="number" id ="hours" name="hours" value="" min="0" readonly> Hours
 		<input type="number" id ="minutes" name="minutes" value="" min="0" max="60" readonly> Minutes
     </td>

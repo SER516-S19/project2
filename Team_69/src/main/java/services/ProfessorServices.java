@@ -1,8 +1,6 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import bean.Answer;
 import bean.Question;
 import bean.Quiz;

@@ -60,7 +60,9 @@ public class ProfessorServlet extends HttpServlet{
 		
 		}
 	}
-
+	
+	
+	 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         String flag = request.getParameter("flag");
