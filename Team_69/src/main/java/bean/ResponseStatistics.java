@@ -45,7 +45,6 @@ public class ResponseStatistics {
     public ResponseStatistics() {
     }
 
-
     public int getId() {
         return id;
     }

@@ -14,15 +14,13 @@ import bean.Question;
 import bean.Quiz;
 
 public class QuestionDAO {
+
 	public void addQuestion(Question ques) {
 		Transaction transaction = null;
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			// start a transaction
 			transaction = session.beginTransaction();
-			// save the student object
 			session.save(ques);
-			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -90,7 +88,6 @@ public class QuestionDAO {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			quesList = (Question) session.get(Question.class, qId);
-//			System.out.println(quesList.toString());
 			session.delete(quesList);
 			transaction.commit();
 		} catch (Exception e) {

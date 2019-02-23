@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.sql.Time;
 import java.util.List;
+import java.util.TimeZone;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -64,18 +66,37 @@ public class ProfessorServlet extends HttpServlet{
 	        String quizType = request.getParameter("quiz_type");
 	        sess.setAttribute("quizType", quizType);
 	        String isTimeLimitSet = request.getParameter("time_limit");
-	       // Time quizTimeLimit = new Time(0);
-			String quizTimeLimit="";
+	        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
+	        String quizTimeLimit = "00:00:00";
 	        boolean isShuffled = false;
 	        boolean isPublished = false;
-	        String assignmentGroup = request.getParameter("assignment_group");
+	        System.out.println(quizTimeLimit);
+	        //String assignmentGroup = request.getParameter("assignment_group");
 	        
-//	        if(isTimeLimitSet!="null")
-//	        {
-//	        	quizTimeLimit = new Time(10);
-//	        }
+	        if(isTimeLimitSet!=null)
+	        {
+	        	String hours = request.getParameter("hours");
+	        	String minutes = request.getParameter("minutes");
+	        	
+	        	System.out.println(hours);
+	        	System.out.println(minutes);
+	        	
+	        	if(hours.length() == 0)
+	        		hours = "0";
+	        	
+	        	if(minutes.length() == 0)
+	        		minutes = "0";
+	        	
+	        	if (hours.length() == 1)
+	        			hours = "0" + hours;
+	        	if (minutes.length() == 1)
+	        		minutes = "0" + minutes;
+        	
+	        	quizTimeLimit = hours+":"+minutes+":00";
+	        }
+
 	        
-	        if(request.getParameter("shuffle")!="null")
+	        if(request.getParameter("shuffle")!=null)
 	        {
 	        	isShuffled = true;
 	        }
@@ -116,7 +137,6 @@ public class ProfessorServlet extends HttpServlet{
 			
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
-        	
         	if("Add Next Question".equals(flag)) {
         		response.sendRedirect("views/AddQuestions.jsp");
         		return;
