@@ -1,11 +1,11 @@
-<#-- Author: Aditya Samant
+<#-- Author: Aditya Samant/Akash Kadam
 	Renders viewQuiz page which displays question information such as question description, answer possible choices and points
 	 of a particular quiz along with quiz information such as quiz name, quiz status, scheduled date and total points
 	An edit button shows up next to each question that allows professor to edit ungraded quiz questions 
 	that have not passed the schedule date. 
 	Ungraded quizzes also show the grade quiz button that transfers professor to grade quiz page for grading.
 	 
-	version: 1.1
+	version: 1.2
   -->
 <html>
 	<style>
@@ -23,7 +23,7 @@
 	        	<button type="submit">Return to Dashboard</button>
         	</form>
 		<h1>
-		   TITLE: ${Session.Name}
+		   TITLE: ${Session.quizName}
 		</h1>
 		<h3>
 		   TOTAL POINTS: ${Session.Total}
@@ -79,8 +79,8 @@
         </script>
         <#if Session.Grade == false && Session.isAfter == true>
         	<form action="gradeQuiz" method="POST">
-	        	<input type="hidden" value=${Session.Name}/>
-	        	<input type="hidden" value=${Session.Id}/>
+	        	<input type="hidden" value=${Session.quizName}/>
+	        	<input type="hidden" value=${Session.quizId}/>
 	        	<button type="submit">Grade Quiz</button>
         	</form>
         </#if>
