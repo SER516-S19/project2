@@ -4,6 +4,9 @@ import dao.QuizDAO;
 import services.StudentServices;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +38,7 @@ public class StudentServlet extends HttpServlet {
 		String questionAnswerJSON = service.getQuestionDetails(quizId);
 		HttpSession session = req.getSession();
 		session.setAttribute("studentResponseJSON", questionAnswerJSON);
+		session.setAttribute("startTime",getCurrentDateTime());
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
@@ -61,6 +65,13 @@ public class StudentServlet extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			request.getRequestDispatcher("/error").forward(request, response);
 		}
+	}
+	
+	protected String getCurrentDateTime() {
+		String pattern = "MMM dd HH:mm";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String dateTime = simpleDateFormat.format(new Date());
+		return dateTime; 
 	}
 
 }
