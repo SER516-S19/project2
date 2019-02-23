@@ -6,6 +6,7 @@ import com.Quizzer.code.model.db.User;
 
 /**
  * This repository implements the mongo repository for User table.
+ * 
  * @author Kumar Prabhu Kalyan
  *
  */

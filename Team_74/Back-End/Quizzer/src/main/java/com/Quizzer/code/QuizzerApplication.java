@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * This class is the application class.
+ * 
  * @author Kumar Prabhu Kalyan
  *
  */

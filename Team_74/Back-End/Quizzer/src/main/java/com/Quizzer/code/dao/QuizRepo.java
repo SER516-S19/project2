@@ -9,6 +9,7 @@ import com.Quizzer.code.model.db.Quiz;
 
 /**
  * This repository implements the mongo repository for Quiz table.
+ * 
  * @author Kumar Prabhu Kalyan
  *
  */

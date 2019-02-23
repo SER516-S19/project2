@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * This class is the model for User data.
+ * 
  * @author Kumar Prabhu Kalyan
  *
  */
@@ -26,8 +27,9 @@ public class User implements Serializable {
 	private String userEmailId;
 
 	public User() {
-		
+
 	}
+
 	public User(String id, String firstName, String lastName, String role, String userName, SecretKey userPassword,
 			String userEmailId) {
 		super();

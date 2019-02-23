@@ -25,10 +25,10 @@ public class StudentQuiz implements Serializable {
 	public StudentQuiz(User studentId, ArrayList<Quiz> quizlist, HashMap<Quiz, Integer> attemptedQuiz) {
 		super();
 		this.studentId = studentId;
-		this.quizlist =  new ArrayList<Quiz>();
+		this.quizlist = new ArrayList<Quiz>();
 		this.attemptedQuiz = new HashMap<Quiz, Integer>();
 	}
-		
+
 	public User getStudentId() {
 		return studentId;
 	}
@@ -54,6 +54,6 @@ public class StudentQuiz implements Serializable {
 	}
 
 	public StudentQuiz() {
-		
+
 	}
 }
