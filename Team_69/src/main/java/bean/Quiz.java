@@ -1,7 +1,6 @@
 package bean;
-import javax.persistence.*;
-import java.sql.Time;
 
+import javax.persistence.*;
 
 /**
  * This class represents the Quiz table
@@ -67,23 +66,17 @@ public class Quiz {
 		return isShuffled;
 	}
 
-
 	public void setShuffled(boolean isShuffled) {
 		this.isShuffled = isShuffled;
 	}
-
-
-	
 
 	public boolean getIsPublished() {
 		return isPublished;
 	}
 
-
 	public void setIsPublished(boolean isPublished) {
 		this.isPublished = isPublished;
 	}
-
 
 	public int getQuizId() {
         return quizId;
@@ -117,17 +110,13 @@ public class Quiz {
         this.quizType = quizType;
     }
 
- 
-
     public String getQuizTimeLimit() {
 		return quizTimeLimit;
 	}
 
-
 	public void setQuizTimeLimit(String quizTimeLimit) {
 		this.quizTimeLimit = quizTimeLimit;
 	}
-
 
     @Override
     public String toString() {
