@@ -16,6 +16,7 @@ import edu.asupoly.ser516.model.QuestionsVO;
 import edu.asupoly.ser516.model.QuizVO;
 import edu.asupoly.ser516.model.ViewQuizDAOBean;
 
+
 /**
  * Servlet code takes quizId from courseDashboard.ftl  and renders a page displaying
  * information about the quiz and it's questions.
@@ -95,6 +96,7 @@ public class ViewQuizServlet extends HttpServlet {
 		   		   session.setAttribute("Total", total);
 	       
 		   		   res.sendRedirect(req.getContextPath()+"/viewQuiz.ftl");
+
 	       }catch(Exception e) {
 	    	   	   e.printStackTrace();
 	       }

@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+/.metadata/
+<<<<<<< HEAD
+/Team_58/nbproject/private/
+/Team_58/build/
+=======
+/recommenders/
+>>>>>>> Team_58_Professor
+/Project2/nbproject/private/
+/Team_58/Project2/nbproject/private/
+=======
 
 /bin/
 /.classpath
@@ -9,3 +20,5 @@
 build.properties
 
 
+>>>>>>> Team_58_Professor
+/Team_58/dist/

@@ -33,4 +33,4 @@ Freemarker page to display Professor details
 </html>
 
 
-  
+ 
