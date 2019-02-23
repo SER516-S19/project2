@@ -75,7 +75,6 @@
 	<servlet>
     <servlet-name>CreateQuizServlet</servlet-name>
     <servlet-class>controller.CreateQuizServlet</servlet-class>
-
     <init-param>
     	<param-name></param-name>
     	<param-value></param-value>
@@ -145,8 +144,8 @@
         <servlet-name>DisplayQuizServlet</servlet-name>
         <url-pattern>/DisplayQuizServlet</url-pattern>
     </servlet-mapping>
-    
-  <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
-  </welcome-file-list>
+
+<welcome-file-list>
+<welcome-file>/login.jsp</welcome-file>
+</welcome-file-list>
 </web-app>

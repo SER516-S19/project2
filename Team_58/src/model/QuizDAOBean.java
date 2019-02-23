@@ -186,4 +186,5 @@ public class QuizDAOBean implements QuizDAO{
 		
 		return list;
 	}
+
 }

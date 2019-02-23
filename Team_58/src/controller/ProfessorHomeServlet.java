@@ -56,7 +56,8 @@ public class ProfessorHomeServlet extends HttpServlet{
 				
 			}
 			
-			List<CourseVO> courseVO = courseBean.getCourseAssignedTo(userVO);
+			List<CourseVO> courseVO = courseBean.getCourseAssignedToProfessor(userVO);
+      
 			if(courseVO.isEmpty()) {
 				session.setAttribute("displayMessage", "No Courses have been assigned to the professor");
 				log.info("No Courses have been assigned to the professor.");
