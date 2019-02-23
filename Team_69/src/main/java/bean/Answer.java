@@ -6,8 +6,6 @@ import javax.persistence.*;
 @Table(name = "Answer")
 public class Answer {
 
-  
-
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Answer_id",nullable = false)

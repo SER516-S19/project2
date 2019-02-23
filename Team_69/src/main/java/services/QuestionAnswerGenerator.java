@@ -25,6 +25,7 @@ import dao.QuestionDAO;
  */
 
 public class QuestionAnswerGenerator {
+
 	public QuestionAnswer generator(int quizId) {
 		QuestionDAO questionDao = new QuestionDAO();
 		AnswerDAO answerDao = new AnswerDAO();
@@ -63,8 +64,6 @@ public class QuestionAnswerGenerator {
 		}
 		questionAnswers.setQuestion(questionMapperList);;
 		return questionAnswers;
-		
-
 	}
 
 	public String ObjectToJSON(QuestionAnswer quizList) {
