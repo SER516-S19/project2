@@ -25,11 +25,20 @@ public class ProfessorServices {
 	/**
 	 * The method creates the question model and sends it to the DAO for processing
 	 */
-	public void storeQuestion(Quiz quiz, String question, String option1, String option2, String option3,
-			String option4, String[] correctanswers, String points) {	
+	public void storeQuestion(HttpServletRequest request) {
+		String question = request.getParameter("question");
+		String questionOption1 = request.getParameter("option1");
+		String questionOption2 = request.getParameter("option2");
+		String questionOption3 = request.getParameter("option3");
+		String questionOption4 = request.getParameter("option4");
+		String points = request.getParameter("points");
+		String[] correctanswers = request.getParameterValues("options");
+		HttpSession session = request.getSession(true);
+		Quiz quiz = (Quiz)session.getAttribute("quiz");
+		
 		boolean isMutiple = false;
 		boolean isCorrectAnswer = false;
-		String[] optionArray = {option1, option2, option3, option4};
+		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
 		Answer answer;
 		AnswerDAO answerDAO = new AnswerDAO();
 	
@@ -46,6 +55,7 @@ public class ProfessorServices {
 			}
 		}
 	}
+	
 	
 	public List<Quiz> getAllQuizzes(){
 		return professorDAO.getAllQuizzes();
@@ -126,4 +136,5 @@ public class ProfessorServices {
 		}
 		return questionData;	
 	}
+
 }
