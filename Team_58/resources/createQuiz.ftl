@@ -1,8 +1,8 @@
 <!-- 
 Freemarker page to display createquiz page
 @authour Carnic / @author Aditya
-@version 1.1
-@date 02/21/2019
+@version 1.2
+@date 02/22/2019
  -->
 
 <html>
@@ -20,19 +20,21 @@ Freemarker page to display createquiz page
             assignedTime: {required: "Please input quiz length", number:"Please enter a number"},
             quizScheduledDate: "Please enter the quiz schedule date",
             quizInstructions: "Please add quiz instructions"
-           
- 
         },
         rules: {
           quizTitle: "required",
           assignedTime: {required:true, number: true,},
           quizScheduledDate: "required",
           quizInstructions: "required",
-
         },
       });
     });
   </script>
+  
+	<form action="courseDashboard.ftl" method="POST">
+		<button type="submit"> <- Course Dashboard</button>
+	</form>
+	
 	<body>
 	<p class="fontColor"> CREATE QUIZ </p>
 		<div class="box">

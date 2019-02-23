@@ -23,7 +23,7 @@
 	</style>
 	<body>
 		<form action="courseDashboard.ftl" method="POST">
-	        	<button type="submit">Return to Dashboard</button>
+	        	<button type="submit"> <- Course Dashboard</button>
         	</form>
 		<h1 class="fontColor">
 		   TITLE: ${Session.quizName}
@@ -85,7 +85,7 @@
         	<form action="gradeQuiz" method="POST">
 	        	<input type="hidden" value=${Session.quizName}/>
 	        	<input type="hidden" value=${Session.quizId}/>
-	        	<button type="submit">Grade Quiz</button>
+	        	<button class="button" type="submit">Grade Quiz</button>
         	</form>
         </#if>
 	</body>
