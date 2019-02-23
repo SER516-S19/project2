@@ -49,13 +49,4 @@ public class Answer {
 	  public void setCorrectAnswer(boolean correctAnswer) {
 	        this.correctAns = correctAns;
 	  }
-	  @Override
-	  public String toString() {
-	        return "Answer{" +
-	                "ansno=" + ansno +
-	                ", question=" + qs +
-	                ", answer='" + ans + '\'' +
-	                ", correctAnswer='" + correctAns + '\'' +
-	                '}';
-	  }
 }
