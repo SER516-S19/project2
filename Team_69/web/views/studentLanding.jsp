@@ -28,13 +28,13 @@
 				<%session.setAttribute("action","load");
 				if(quizNames.size()==0){ %>
                 <p align="center">
-                    No quizzes are created by the professor!!
+				<h3> No quizzes are created by the professor!! </h3>
                 </p>
                 <%
                 } else {  %>
 
                 <p align="center">
-                    You have following quizzes for the course!! <br>
+				<h3> You have following quizzes for the course!! <br> </h3>
                 </p>
 				<%
             for( int i =0;i<quizNames.size();i++){

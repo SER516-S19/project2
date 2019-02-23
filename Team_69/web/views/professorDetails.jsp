@@ -63,7 +63,7 @@
     </td>
   </tr> 
 </table>
-<a href="AddQuestions.jsp">Add Questions</a>
+<a href="addQuestions.jsp">Add Questions</a>
   </div>
   <input type="hidden" id="flag" name="flag" value="InsertProfDetails">
   <button type="submit" class="btn btn-primary" onclick="javascript:checkBoxStatus(myCheckBox)">Submit</button>
