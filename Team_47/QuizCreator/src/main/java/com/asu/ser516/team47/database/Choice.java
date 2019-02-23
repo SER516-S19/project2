@@ -19,7 +19,7 @@ public class Choice {
      * @param correct if the choice is correct
      * @param content the content of the choice
      */
-    Choice(int choice_id, int question_fk, boolean correct, String content) {
+    public Choice(int choice_id, int question_fk, boolean correct, String content) {
         this.choice_id = choice_id;
         this.question_fk = question_fk;
         this.correct = correct;
