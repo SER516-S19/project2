@@ -13,7 +13,7 @@
       table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
-        width: 100%;
+        width: 40%;
       }
       
       td, th {
@@ -32,59 +32,12 @@
     View Quiz List
 </h1>
 <table>
-  <tr>
-    <th>Questions</th>
-    <th>Options</th>
-    <th>Score</th>
-  </tr>
-  <tr>
-    <td><a href="./viewContentDetails.jsp"> Question #1 </a></td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>10</td>
-  </tr>
-  <tr>
-    <td><a href="./viewContentDetails.jsp"> Question #2 </a></td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>5</td>
-  </tr>
-  <tr>
-    <td><a href="./viewContentDetails.jsp"> Question #3 </a></td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>15</td>
-  </tr>
-  <tr>
-    <td><a href="./viewContentDetails.jsp"> Question #4 </a></td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>10</td>
-  </tr>
+  <tr><th>Quizzes</th></tr>
+  <tr><th><a href="./viewContentDetails.jsp">Quiz #1</a></th></tr>
+  <tr><th><a href="./viewContentDetails.jsp">Quiz #2</a></th></tr>
+  <tr><th><a href="./viewContentDetails.jsp">Quiz #3</a></th></tr>
+  <tr><th><a href="./viewContentDetails.jsp">Quiz #4</a></th></tr>
+  <tr><th><a href="./viewContentDetails.jsp">Quiz #5</a></th></tr>
 </table>
 </body>
 </html>
