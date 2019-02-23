@@ -5,7 +5,6 @@ Freemarker page to display CreateQuestions Page
 @date 02/22/2019
  -->
 
-
 <html>
 <head>
 <#include "stylesheet.css">
@@ -16,15 +15,12 @@ Freemarker page to display CreateQuestions Page
     $(document).ready(function() {
       $("#questionForm").validate({
         messages: {
-
             question: "Please add Question",
             correctAnswer: "Please add the correct answer",
             incorrectAnswer1: "Please add the incorrect answer 1",
             incorrectAnswer2: "Please add the incorrect answer 2",
             incorrectAnswer3: "Please add the incorrect answer 3",
             totalPoints: {required: "Please add question points", number:"Please enter a number"}
-           
- 
         },
         rules: {
           question: "required",
@@ -64,11 +60,11 @@ Freemarker page to display CreateQuestions Page
   			<br><br>
   			<input type="radio" name="isMCQ">Single Answer
   			<br><br>
-  			<input type="submit" value="Add more Questions/ Submit">
+  			<input class="button" type="submit" value="Add more Questions/ Submit">
 		</form>
 		
 		<form action="createQuestions" id = "goToDashboard" method="POST">
-			<input type="submit" formaction="courseDashboard.ftl" formmethod="POST" value="Go to dashboard">
+			<input class="button" type="submit" formaction="courseDashboard.ftl" formmethod="POST" value="Go to dashboard">
 		</form>
 		</div>
 	</body>
