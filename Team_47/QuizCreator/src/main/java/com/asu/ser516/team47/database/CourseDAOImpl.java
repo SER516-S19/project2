@@ -15,11 +15,7 @@ import java.util.List;
  * @since   2/22/19
  */
 public class CourseDAOImpl implements CourseDAO {
-    // Hardcoded (will switch to loading through props in future)
-    //    private static Properties __dbProperties;
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
-    private static String __jdbcUser;
-    private static String __jdbcPasswd;
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all the courses in the database
@@ -30,7 +26,7 @@ public class CourseDAOImpl implements CourseDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Course> rval = new ArrayList<Course>();
+        List<Course> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -67,7 +63,7 @@ public class CourseDAOImpl implements CourseDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Course> rval = new ArrayList<Course>();
+        List<Course> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -136,13 +132,13 @@ public class CourseDAOImpl implements CourseDAO {
      * Inserts a course in the database based on the
      * values in a business object
      *
-     * @param course
+     * @param course course to insert
      * @return a boolean representing a successful/failed insert
      */
     public boolean insertCourse(Course course) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
+        ResultSet rs;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -181,7 +177,7 @@ public class CourseDAOImpl implements CourseDAO {
      * Updates a course in the database based on the
      * values in a business object
      *
-     * @param course
+     * @param course course to update
      * @return a boolean representing a successful/failed update
      */
     public boolean updateCourse(Course course) {
@@ -198,11 +194,7 @@ public class CourseDAOImpl implements CourseDAO {
             stmt.setString(3, course.getSuffix());
             stmt.setInt(4,course.getCourse_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -220,7 +212,7 @@ public class CourseDAOImpl implements CourseDAO {
      * Deletes a course in the database based on the
      * values in a business object.
      *
-     * @param course
+     * @param course course to delete
      * @return a boolean representing a successful/failed deletion
      */
     public boolean deleteCourse(Course course) {

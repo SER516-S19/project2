@@ -15,7 +15,7 @@ import java.util.List;
  * @since  2/22/19
  */
 public class QuestionDAOImpl implements QuestionDAO{
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all questions in the table
@@ -26,7 +26,7 @@ public class QuestionDAOImpl implements QuestionDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Question> rval = new ArrayList<Question>();
+        List<Question> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -63,7 +63,7 @@ public class QuestionDAOImpl implements QuestionDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Question> rval = new ArrayList<Question>();
+        List<Question> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -133,7 +133,7 @@ public class QuestionDAOImpl implements QuestionDAO{
      * Inserts a question in the database based on the
      * values in a business object
      *
-     * @param question
+     * @param question question to insert
      * @return a boolean representing a successful/failed insert
      */
     public boolean insertQuestion(Question question) {
@@ -198,11 +198,7 @@ public class QuestionDAOImpl implements QuestionDAO{
             stmt.setString(4, question.getContent());
             stmt.setInt(5,question.getQuestion_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();

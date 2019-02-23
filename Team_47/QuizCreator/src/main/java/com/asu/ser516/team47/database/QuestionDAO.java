@@ -38,7 +38,7 @@ public interface QuestionDAO {
      * Inserts a question in the database based on the
      * values in a business object
      *
-     * @param question
+     * @param question question to insert
      * @return a boolean representing a successful/failed insert
      */
     boolean insertQuestion(Question question);

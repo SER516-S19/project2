@@ -38,7 +38,7 @@ public interface CourseDAO {
      * Inserts a course in the database based on the
      * values in a business object
      *
-     * @param course
+     * @param course to insert
      * @return a boolean representing a successful/failed insert
      */
     boolean insertCourse(Course course);
@@ -47,7 +47,7 @@ public interface CourseDAO {
      * Updates a course in the database based on the
      * values in a business object
      *
-     * @param course
+     * @param course course to update
      * @return a boolean representing a successful/failed update
      */
     boolean updateCourse(Course course);
@@ -56,7 +56,7 @@ public interface CourseDAO {
      * Deletes a course in the database based on the
      * values in a business object.
      * 
-     * @param course
+     * @param course course to delete
      * @return a boolean representing a successful/failed deletion
      */
     boolean deleteCourse(Course course);
