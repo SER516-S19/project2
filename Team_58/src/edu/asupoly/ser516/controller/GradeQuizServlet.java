@@ -23,7 +23,7 @@ import edu.asupoly.ser516.model.QuizVO;
  * that routes the Professor to Grade Dashboard Page from Professor Home Page.
  * 
  * @author akashkadam
- * @version 1.2
+ * @version 1.3
  **/
 public class GradeQuizServlet extends HttpServlet{
 
@@ -45,11 +45,10 @@ public class GradeQuizServlet extends HttpServlet{
 
 		HttpSession session = request.getSession();
 
-		QuizVO quizVO = (QuizVO) session.getAttribute("quizInfo");
+		//QuizVO quizVO = (QuizVO) session.getAttribute("quizInfo");
 		
-		System.out.println(quizVO.getQuizTitle());
-		int quizId = quizVO.getQuizId();
-		String quizName = quizVO.getQuizTitle();
+		int quizId = Integer.parseInt(session.getAttribute("quizId").toString());
+		String quizName = session.getAttribute("quizName").toString();
 
 		try {
 
@@ -74,6 +73,7 @@ public class GradeQuizServlet extends HttpServlet{
 					"FROM [dbo].[StudentResponse] SR\r\n" + 
 					"JOIN [dbo].[Questions] Q\r\n" + 
 					"ON SR.questionId = Q.questionId\r\n" + 
+					"AND SR.answerSelected = Q.actualAnswer\r\n" +
 					"Where SR.quizId = ?");
 			query.setInt(1,quizId);
 

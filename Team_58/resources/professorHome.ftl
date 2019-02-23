@@ -17,14 +17,17 @@ Freemarker page to display Professor details
          <p>${Session.userVO.getEmail()} </p>
           <p>${Session.userVO.getUsername()} </p>
           </div>
-          
+          <#if Session.isCoursesAssigned==true>
         <div class="shiftTop">
          <form action="courseDashboard" method="POST">
          <#list Session.CourseHashMap as courseId, courseName>
-         <input type="radio" checked="checked" name=Course value=${courseId}> ${courseName}<br>
+         <input class="marginBelow" type="radio" name=Course value=${courseId}> ${courseName}<br>
          </#list>
          <input  class="button" type ="submit" value="Submit"/>
          </form>
         </div>
+        <#else>
+        <p class="shiftTop">${Session.displayMessage}</p>
+        </#if>
 	</body>
 </html>
