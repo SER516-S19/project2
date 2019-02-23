@@ -35,7 +35,7 @@ function displayQuiz(jsonResponse) {
 	// Click handler for the 'next' button
 	$('#next').on('click', function(e) {
 		e.preventDefault();
-
+		autoSave();
 		// Suspend click listener during fade animation
 		if (quiz.is(':animated')) {
 			return false;
@@ -54,7 +54,8 @@ function displayQuiz(jsonResponse) {
 	// Click handler for the 'prev' button
 	$('#prev').on('click', function(e) {
 		e.preventDefault();
-
+		
+		autoSave();
 		if (quiz.is(':animated')) {
 			return false;
 		}
@@ -135,7 +136,7 @@ function displayNext() {
 		} else {
 			$('#next').hide();
 			$('#prev').show();
-			$('#submit').show();
+			$('#submitBtn').show();
 		}
 	});
 }
@@ -143,12 +144,12 @@ function displayNext() {
 function updateResponseJSON() {
 	for (var i = 0; i < studentResponseObj.question.length; i++) {
 		if (!(isNaN(selections[i]))) {
-			studentResponseObj.question[i].responseAnswer = [];
+			studentResponseObj.question[i].responseAnswer.length = 0;
 			studentResponseObj.question[i].responseAnswer.push(studentResponseObj.question[i].availableAnswers[selections[i]]);
 		}
 	}
 	studentResponseJSON = JSON.stringify(studentResponseObj);
-	updateSession(studentResponseJSON);
+	document.getElementById("finish").value = studentResponseJSON;
 }
 
 function autoSave() {

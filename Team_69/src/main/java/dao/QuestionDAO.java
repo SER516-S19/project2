@@ -1,26 +1,25 @@
 package dao;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.*;
-
+import bean.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import bean.Answer;
 import bean.HibernateUtil;
-import bean.Question;
 import bean.Quiz;
 
 public class QuestionDAO {
 
-	public void addQuestion(Question ques) {
+	public void addQuestion(Question question) {
 		Transaction transaction = null;
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			session.save(ques);
+			session.save(question);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -29,6 +28,7 @@ public class QuestionDAO {
 			e.printStackTrace();
 		}
 	}
+
 	public List<Question> getQuestionsByQuizId(int quizId){
 		Transaction transaction = null;
 		List<Question> quesList = new ArrayList<Question>();
@@ -56,30 +56,6 @@ public class QuestionDAO {
 		return quesList;
 	}
 
-	public int getPointByQuestion(String ques) {
-		Transaction transaction = null;
-		int points = -1;
-		try  {
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			transaction = session.beginTransaction();
-			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
-			Root<Question> root = query.from(Question.class);
-			query.select(root.<Integer>get("points")).where(root.get("question").in(ques));
-			Query<Integer> q=session.createQuery(query);
-			points=q.getSingleResult();
-	        transaction.commit();
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-			return points;
-		}
-		return points;
-	}
-	
-	
 	public void deleteQuestionByQuestionId(String quesId){
 		Transaction transaction = null;
 		Question quesList = null;
@@ -110,7 +86,7 @@ public class QuestionDAO {
 	           CriteriaBuilder builder = session.getCriteriaBuilder();
 	           CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
 	           Root<Answer> root = query.from(Answer.class);
-	           Join<Answer,Question> join = root.join("question");
+	           Join<Answer, Question> join = root.join("question");
 	           query.select(root).where(root.get("quiz").in(quizId));
 	           Query<Answer> q=session.createQuery(query);
 	           quesList= q.getResultList();
@@ -125,9 +101,6 @@ public class QuestionDAO {
 	           }
 	       }
 	       return quesList;
-
-		
-		
 	}
 	
 }
