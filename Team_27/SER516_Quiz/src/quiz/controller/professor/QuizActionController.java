@@ -24,8 +24,7 @@ public class QuizActionController extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {
 	// if you forget this your getServletContext() will get a NPE! 
-	super.init(config);
-	
+    	super.init(config);
 		quizDetailsDao = new QuizDetailsDao();
     }
 	

@@ -10,8 +10,7 @@
     <servlet-name>QuizDetailsController</servlet-name>
     <servlet-class>quiz.controller.professor.QuizDetailsController</servlet-class>
   </servlet>
-
-<servlet>
+  <servlet>
     <servlet-name>QuizIntroController</servlet-name>
     <servlet-class>quiz.controller.professor.QuizIntroController</servlet-class>
   </servlet>
@@ -19,9 +18,18 @@
     <servlet-name>QuizActionController</servlet-name>
     <servlet-class>quiz.controller.professor.QuizActionController</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddQuestionsController</servlet-name>
+    <servlet-class>quiz.controller.professor.AddQuestionsController</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>QuizDetailsController</servlet-name>
     <url-pattern>/createQuiz</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddQuestionsController</servlet-name>
+    <url-pattern>/submitQuiz</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>

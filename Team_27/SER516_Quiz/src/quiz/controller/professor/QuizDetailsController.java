@@ -18,9 +18,8 @@ public class QuizDetailsController extends HttpServlet {
     private static QuizDetailsDao quizDetailsDao = null;
 
     public void init(ServletConfig config) throws ServletException {
-	// if you forget this your getServletContext() will get a NPE! 
-	super.init(config);
-	
+    	// if you forget this your getServletContext() will get a NPE! 
+    	super.init(config);
 		quizDetailsDao = new QuizDetailsDao();
     }
 
@@ -72,7 +71,10 @@ public class QuizDetailsController extends HttpServlet {
     					quizModel = new QuizModel(title, instructions,assignmentGroup, isShuffled, isGraded, timeLimit, isMultipleAttempt);
     					quizDetailsDao.insert(quizModel);
     					req.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
-    					req.getRequestDispatcher("Success.html").forward(req, res);
+    					// Get the QUIZ-id
+    					String quizId = quizDetailsDao.getQuizId(title);
+    					req.getSession().setAttribute("quizId", quizId);
+    					req.getRequestDispatcher("addQuestions.html").forward(req, res);
     				}
     		
     			}

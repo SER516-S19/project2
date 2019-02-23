@@ -33,8 +33,7 @@ public class ConnectionFactory {
 	  String dbUser = dbProperties.getProperty("mysql_jdbcUser");
 	  String dbPass = dbProperties.getProperty("mysql_jdbcPwd");
       try {
-          System.out.println("driverURL: " + driverURL + " , " + dbUser + " , " + dbPass);
-    	  return DriverManager.getConnection(driverURL, dbUser, dbPass);
+          return DriverManager.getConnection(driverURL, dbUser, dbPass);
       }
       catch(SQLException s) {
     	  s.printStackTrace();
