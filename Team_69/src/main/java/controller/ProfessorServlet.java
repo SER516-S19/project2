@@ -137,7 +137,7 @@ public class ProfessorServlet extends HttpServlet{
 			
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
-        	request.getRequestDispatcher("views/AddQuestions.jsp").forward(request, response);
+        	request.getRequestDispatcher("views/addQuestions.jsp").forward(request, response);
         	return;
         }
     }

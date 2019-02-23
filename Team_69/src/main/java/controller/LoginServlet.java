@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet{
         request.setAttribute("quizNames",quizNames);
         request.setAttribute("quizStatus",quizStatus);
         request.setAttribute("quizIds",quizIds);
-        getServletContext().getRequestDispatcher("/views/StudentLanding.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/views/studentLanding.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request,
