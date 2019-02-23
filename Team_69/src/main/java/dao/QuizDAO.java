@@ -22,7 +22,7 @@ import java.util.List;
 
 public class QuizDAO {
 
-   public List<String> fetchAllQuizName(){
+   public List<String> fetchAllQuizNames(){
        Transaction transaction = null;
        Session session = null;
        List<String> quizNames = new ArrayList<String>();

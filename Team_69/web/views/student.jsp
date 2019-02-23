@@ -17,13 +17,23 @@
 </head>
 <body>
 	<div id='container'>
-		<div id='title'>
-			<h1>Quiz Instructions</h1>
-			<p>
-				Started at
-				<%=dateTime%></p>
-		</div>
-		<br />
+	<div id = "ridge">
+		<%
+			String quizName = (String) session.getAttribute("quizName");
+		%>
+		<h3><%=quizName%></h3>
+	</div>
+	<div>
+		<p>Started at <%=dateTime %></p>
+	</div>
+	<div>
+		<%
+			String quizInstructions = (String) session.getAttribute("quizInstructions");
+		%>
+		<p align = "left"><%=quizInstructions%></p>
+	</div>
+
+	<br />
 		<div id='quiz'></div>
 		<div class='button' id='next'>
 			<a href='#'>Next</a>

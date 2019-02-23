@@ -40,6 +40,9 @@ public class StudentServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
+		session.getAttribute("quizName");
+		session.getAttribute("quizInstructions");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
