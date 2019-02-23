@@ -6,12 +6,12 @@ package com.Quizzer.code.model.response;
 
 import java.io.Serializable;
 
-public class Response_getQuizlist implements Serializable {
+public class ResponseQuizListVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String quizId;
 	private String quizName;
-	public Response_getQuizlist(String quizId, String quizName) {
+	public ResponseQuizListVO(String quizId, String quizName) {
 		this.quizName = quizName;
 		this.quizId = quizId;
 	}

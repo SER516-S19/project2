@@ -2,15 +2,19 @@ package com.Quizzer.code.model.response;
 
 import java.io.Serializable;
 import java.util.List;
-
-public class Response_SO implements Serializable {
+/**
+ * This class is a response model for single object responses.
+ * @author Kumar Prabhu Kalyan
+ *
+ */
+public class ResponseVO implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	private String status;
 	private String errorMessage;
 	private Object response;
-	public Response_SO(String status, String errorMessage, Object response) {
+	public ResponseVO(String status, String errorMessage, Object response) {
 		super();
 		this.status = status;
 		this.errorMessage = errorMessage;

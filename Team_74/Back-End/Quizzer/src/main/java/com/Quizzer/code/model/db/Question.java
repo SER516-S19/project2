@@ -1,3 +1,4 @@
+
 package com.Quizzer.code.model.db;
 
 import java.io.Serializable;
@@ -6,6 +7,11 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * This class is the model class for Question item.
+ * @author Kumar Prabhu Kalyan
+ *
+ */
 @Document(collection = "Question")
 public class Question implements Serializable {
 
