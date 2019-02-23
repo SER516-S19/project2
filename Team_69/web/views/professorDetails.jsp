@@ -10,17 +10,18 @@
 </head>
 <body>
 
-
 <script language="JavaScript">
 function myFunction(elem)
 {
     if (elem.checked)
     {
     	document.getElementById('minutes').readOnly = false;
+    	document.getElementById('hours').readOnly = false;
     }
     else
     {
     	document.getElementById('minutes').readOnly = true;
+    	document.getElementById('hours').readOnly = false;
     }
 }
 </script>
@@ -28,12 +29,13 @@ function myFunction(elem)
 <form action="../ProfessorController" method="post">
   <div class="form-group">
   <label for="FormQuizName">Enter Quiz Name:</label>
-  <textarea class="form-control" id="name" rows="1" required></textarea>
+  <textarea class="form-control" id="name" name="name" rows="1" required></textarea>
    <br>
     
     <div class="form-group">
     <label for="FormQuizName">Enter Quiz Instructions:</label>
-    <textarea class="form-control" id="instructions" rows="3" required></textarea>
+    <textarea class="form-control" name="instructions" id="instructions" rows="3"></textarea>
+
     <br>
 
     
@@ -75,7 +77,8 @@ function myFunction(elem)
     <td>
     	<input type="checkbox" name="time_limit" value="time_limit" onchange="myFunction(this);">Time Limit
 		
-		<input type="number" id ="minutes" name="minutes" value="" readonly> Minutes
+		<input type="number" id ="hours" name="hours" value="" min="0" readonly> Hours
+		<input type="number" id ="minutes" name="minutes" value="" min="0" max="60" readonly> Minutes
     </td>
   </tr>
   
