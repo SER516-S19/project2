@@ -1,5 +1,12 @@
 package edu.asupoly.ser516.model;
 
+/**
+ * Class UserVO is Java Model for User Details
+ * 
+ * @author Aditya Vikram
+ * @version 1.1
+ * @date 02/22/2019
+ */
 public class UserVO {
 	
 	public String getFirstname() {
