@@ -17,17 +17,19 @@ import bean.Question;
 import bean.Quiz;
 import dao.ProfessorDAO;
 import dao.QuestionDAO;
+import services.ProfessorServices;
 
 public class ProfessorServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
+	
+	private ProfessorServices professorServices = new ProfessorServices();
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String flag = request.getParameter("flag");
 		if("fetchQuizList".equalsIgnoreCase(flag)){
-			System.out.println("Hi!....");
-			ProfessorDAO proffessorDAO = new ProfessorDAO();
-			List quizList = proffessorDAO.getAllQuizzes();
+			List<Quiz> quizList = professorServices.getAllQuizzes();
 			request.setAttribute("quizList", quizList);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			rd.forward(request, response);
@@ -35,8 +37,12 @@ public class ProfessorServlet extends HttpServlet{
 		}else if("publishQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
 			int quizID = Integer.parseInt(id);
-			ProfessorDAO professorDAO = new ProfessorDAO();
-			professorDAO.publishQuiz(quizID);
+			professorServices.publishQuiz(quizID);
+			List<Quiz> quizList = professorServices.getAllQuizzes();
+			// Display updated quiz list after publish
+			request.setAttribute("quizList", quizList);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
+			rd.forward(request, response);			
 			
 		}else if("viewQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
@@ -54,9 +60,11 @@ public class ProfessorServlet extends HttpServlet{
 
         String flag = request.getParameter("flag");
 		if("InsertProfDetails".equals(flag)){
+			HttpSession sess = request.getSession(true);
 			String quizName = request.getParameter("name");
 	        String quizInstructions = request.getParameter("instructions");
 	        String quizType = request.getParameter("quiz_type");
+	        sess.setAttribute("quizType", quizType);
 	        String isTimeLimitSet = request.getParameter("time_limit");
 	        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
 	        String quizTimeLimit = "00:00:00";
@@ -86,17 +94,16 @@ public class ProfessorServlet extends HttpServlet{
         	
 	        	quizTimeLimit = hours+":"+minutes+":00";
 	        }
+
 	        
 	        if(request.getParameter("shuffle")!=null)
 	        {
 	        	isShuffled = true;
 	        }
 	        	        
-	        
 			ProfessorDAO professorDAO = new ProfessorDAO();
 			Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
 			
-			HttpSession sess = request.getSession(true);
 			sess.setAttribute("quiz", quiz);
 		
 			professorDAO.insertProfDetails(quiz);
@@ -109,32 +116,26 @@ public class ProfessorServlet extends HttpServlet{
 	        System.out.println(quesId);
 	        
 			QuestionDAO questionDAO = new QuestionDAO();
-			//System.out.println("Quiz : "+proffessorDAO.InsertProfDetails());
 			
 			questionDAO.deleteQuestionByQuestionId(quesId);
             response.sendRedirect("views/removeQuestionPage.jsp");
             
-        }else if("Save".equals(flag)) {
+        }else if("Add Next Question".equals(flag)) {
         	String question = request.getParameter("question");
-        	String option1 = request.getParameter("option1");
-        	String option2 = request.getParameter("option2");
-        	String option3 = request.getParameter("option3");
-        	String option4 = request.getParameter("option4");
-        	String[] correctanswers = (String[]) request.getParameterValues("options"); //correct answers
-        	
+        	String questionOption1 = request.getParameter("option1");
+        	String questionOption2 = request.getParameter("option2");
+        	String questionOption3 = request.getParameter("option3");
+        	String questionOption4 = request.getParameter("option4");
+        	String points = request.getParameter("points");
+        	String[] correctanswers = (String[]) request.getParameterValues("options");
+     
         	HttpSession sess = request.getSession(true);
 			Quiz quiz = (Quiz) sess.getAttribute("quiz");
-        	
-        	Question q = new Question(quiz, question, 2, false, 25 );
-        	
-        	QuestionDAO questionDAO = new QuestionDAO();
-        	questionDAO.addQuestion(q);
-        	
-        	for(String s: correctanswers)
-        		System.out.println("CorrectAnswe ID is   - " + s);
-        	
-        	String contextURL = request.getContextPath();
-        	String addQuestionPageURL = "./ProfessorController";
+    
+			professorServices = new ProfessorServices();
+			professorServices.storeQuestion(quiz, question, questionOption1, questionOption2, questionOption3, questionOption4, correctanswers, points);
+			
+        	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
         	request.getRequestDispatcher("views/AddQuestions.jsp").forward(request, response);
         	return;

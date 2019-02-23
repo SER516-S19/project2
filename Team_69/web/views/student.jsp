@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%String dateTime = (String)session.getAttribute("startTime"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,7 @@
 	<div id='container'>
 		<div id='title'>
 			<h1>Quiz Instructions</h1>
+			<p>Started at <%=dateTime %></p>
 		</div>
 		<br />
 		<div id='quiz'></div>
@@ -48,6 +50,7 @@
 
 		function updateSession(studentResponseJSON) {
 			document.getElementById("temp").value = studentResponseJSON;
+			'<%=session.setAttribute("studentResponseJSON", studentResponseJSON)%>'
 		}
 	</script>
 </body>
