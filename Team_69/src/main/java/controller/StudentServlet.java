@@ -36,7 +36,7 @@ public class StudentServlet extends HttpServlet {
 		String questionAnswerJSON = service.getQuestionDetails(Integer.parseInt(quizId));
 		HttpSession session = req.getSession();
 		session.setAttribute("studentResponseJSON", questionAnswerJSON);
-		session.setAttribute("startTime",getCurrentDateTime());
+		session.setAttribute("startTime", service.getCurrentDateTime());
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
@@ -45,10 +45,7 @@ public class StudentServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String view = "/error";
-		HttpSession session = request.getSession();
-		//String studentResponse = (String) session.getAttribute("studentResponseJSON");
-		String studentResponse = "{\"quizId\":1,\"quizName\":\"Quiz1\",\"quizInstructions\":\"Read\",\"quizType\":\"Graded\",\"quizTimeLimit\":\"12:30:00 AM\",\"isShuffled\":true,\"isPublished\":false,\"question\":[{\"questionId\":3,\"question\":\"Question3\",\"correctAnswerId\":0,\"isMultiple\":true,\"responseAnswer\":[{\"answerId\":19,\"answer\":\"some answer\",\"correctAnswer\":\"correct answer\"},{\"answerId\":16,\"answer\":\"some answer\",\"correctAnswer\":\"correct answer\"}],\"availableAnswers\":[{\"answerId\":19,\"answer\":\"some answer\",\"correctAnswer\":\"correct answer\"},{\"answerId\":16,\"answer\":\"some answer\",\"correctAnswer\":\"correct answer\"},{\"answerId\":169,\"answer\":\"some answer\",\"correctAnswer\":\"correct answer\"},{\"answerId\":9869,\"answer\":\"some answer\",\"correctAnswer\":\"correct answer\"}],\"points\":10},{\"questionId\":4,\"question\":\"Question4\",\"correctAnswerId\":0,\"isMultiple\":true,\"responseAnswer\":null,\"availableAnswers\":[],\"points\":10}]}";
-		System.out.print(studentResponse);
+		String studentResponse = request.getParameter("data");
 		StudentServices service = new StudentServices();
 		try {
 			view = service.feedAnswers(studentResponse);
@@ -63,13 +60,6 @@ public class StudentServlet extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			request.getRequestDispatcher("/error").forward(request, response);
 		}
-	}
-	
-	protected String getCurrentDateTime() {
-		String pattern = "MMM dd HH:mm";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		String dateTime = simpleDateFormat.format(new Date());
-		return dateTime; 
 	}
 
 }

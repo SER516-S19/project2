@@ -7,7 +7,6 @@ import java.util.List;
  * This class is the response model.
  * 
  * @author Kumar Prabhu Kalyan
- *
  */
 public class ResponseListVO implements Serializable {
 
