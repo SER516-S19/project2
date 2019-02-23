@@ -27,7 +27,6 @@ import javax.servlet.annotation.WebServlet;
  * @date 02/22/2019
  **/
 
-
 @WebServlet(name = "DisplayQuizInstruction", urlPatterns = "/DisplayQuizInstruction")
 public class DisplayQuizInstructionsServlet extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{

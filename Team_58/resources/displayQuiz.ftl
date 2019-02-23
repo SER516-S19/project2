@@ -3,51 +3,32 @@
     <title>QUIZ</title>
 </head>
 <body>
-<<<<<<< HEAD
-    <h1 align="center" style="text-decoration-color: black">QUIZ</h2>
+    <h1 align="center" style="text-decoration-color: black">QUIZ</h1>
     
-        <table style="width: auto" align="center" border="3">
 	        <form action="DisplayQuizServlet" method="GET">
-	            <tr>
-	                <h3>
+	            
+	                <h3 align="center">
 	                    Question: ${Session.QuestionsVO.getQuestion()}
 	                </h3>
-	                <h3>
+	                <h5 align="center">
 	                    Total Points: <i>${Session.QuestionsVO.getTotalPoints()}</i>
-	                </h3>
+	                </h5>
 	
-	            </tr>
-	            <tr>
-	                <td>
+	            
+	            
+	                <h3 align="center">
 	                    <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getCorrectAnswer()}
+	                </h3>
+	                <h3 align="center">
 	                    <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getIncorrectAnswer1()}
-	                </td>
-	            </tr>
-	            <tr>
-	                <td>
+	                </h3>
+	            	<h3 align="center">
 	                    <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getIncorrectAnswer2()}
-	                    <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getIncorrectAnswer3()}
-	                </td>
-	            </tr>
+	                </h3>
+	                <h3 align="center">
+	                     <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getIncorrectAnswer3()}
+	                </h3>
+	            
 	        </form>
-        </table>
-
-
-
-
-        
-   
-=======
-<form action="DisplayQuizServlet" method="GET">
-        <p>
-            <b>${Session.QuestionsVO.getQuestion()}</b>
-            <i>${Session.QuestionsVO.getTotalPoints()}</i>
-            <input type="radio" value="${Session.QuestionsVO.getCorrectAnswer()}">
-            <input type="radio" value="${Session.QuestionsVO.getIncorrectAnswer1()}">
-            <input type="radio" value="${Session.QuestionsVO.getIncorrectAnswer2()}">
-            <input type="radio" value="${Session.QuestionsVO.getIncorrectAnswer3()}">
-        </p>
-</form>
->>>>>>> parent of c430198... added names to radiobuttons for better user control
 </body>
 </html>
