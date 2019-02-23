@@ -9,6 +9,17 @@
 <html>
 <head>
     <title>Error</title>
+    <style>
+        body{
+            background: #4a154b;
+        }
+        .errMsg
+        {
+            text-align: center;
+            color:white;
+            margin-top:5%;
+        }
+    </style>
 </head>
 <body>
 <%
@@ -17,6 +28,6 @@
         errorMessage = "BAD REQUEST ...RETRY AGAIN.!";
     }
 %>
-<h2><%=errorMessage%></h2>
+<h1 class="errMsg"><%=errorMessage%></h1>
 </body>
 </html>

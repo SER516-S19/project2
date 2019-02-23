@@ -163,6 +163,12 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             view = "ThankYou.jsp";
             response.setStatus(response.SC_OK);
         }
+        else
+        {
+            view = "ErrorHandler.jsp";
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            request.setAttribute("errorResponse", response.getStatus());
+        }
         response.setContentType("text/html");
         request.getRequestDispatcher(view).forward(request, response);
     }
