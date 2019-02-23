@@ -17,7 +17,7 @@ public class QuestionAnswer {
 	private String quizName;
     private String quizInstructions;
     private String quizType;
-	private Time quizTimeLimit;
+	private String quizTimeLimit;
     private boolean isShuffled;
     private boolean isPublished;
     
@@ -46,11 +46,11 @@ public class QuestionAnswer {
 		this.quizType = quizType;
 	}
 
-	public Time getQuizTimeLimit() {
+	public String getQuizTimeLimit() {
 		return quizTimeLimit;
 	}
 
-	public void setQuizTimeLimit(Time quizTimeLimit) {
+	public void setQuizTimeLimit(String quizTimeLimit) {
 		this.quizTimeLimit = quizTimeLimit;
 	}
 

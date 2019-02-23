@@ -1,5 +1,6 @@
 <%@ page import="java.util.List"%>
-<%@ page import="java.util.ArrayList"%><%--
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %><%--
   Created by IntelliJ IDEA.
   User: jahnvi
   Date: 2/19/19
@@ -16,26 +17,36 @@
 </head>
 <body>
 	<%
-
     List<String> quizNames = (ArrayList<String>) request.getAttribute("quizNames");
+    List<String> quizStatus = (ArrayList<String>) request.getAttribute("quizStatus");
+    List<Integer> quizIds = (ArrayList<Integer>) request.getAttribute("quizIds");
 %>
 	<h2>Quiz</h2>
-	<p>
-		You have following quizzes for the course!! <br>
-	</p>
 	<form method="GET" >
 		<div class="container">
 			<table class="table table-bordered">
 				<%session.setAttribute("action","load");
-            for(String quiz : quizNames){
+				if(quizNames.size()==0){ %>
+                <p align="center">
+                    No quizzes are created by the professor!!
+                </p>
+                <%
+                } else {  %>
+
+                <p align="center">
+                    You have following quizzes for the course!! <br>
+                </p>
+				<%
+            for( int i =0;i<quizNames.size();i++){
         %>
 				<tr>
-					<td><%=quiz%> <a href="student/?id=<%=quiz%>">Click here
+					<td><%=quizNames.get(i)%> <a href="student/?id=<%=quizIds.get(i)%>">Click here
 							to start the quiz</a></td>
+                    <td><%=quizStatus.get(i)%></td>
 				</tr>
 
 				<%
-            }
+            }}
         %>
 			</table>
 		</div>

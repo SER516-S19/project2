@@ -1,23 +1,22 @@
 <html>
-<head><title>View Students Grade</title></head>
+<head>
+<title>View Students Grade</title>
+</head>
 <body>
 
-<h1>My Grades</h1>
+	<h1>My Grades</h1>
 
-<br/><br/>
+	<br />
+	<br /> StudentId:
+	<%=request.getParameterValues("StudentId")%>
 
-StudentId: 
-<%= request.getParameterValues("StudentId") %>
+	<br />
+	<br /> QuizId:
+	<%=request.getParameterValues("QuizID")%>
 
-<br/><br/>
-
-QuizId:
-<%=request.getParameterValues("QuizId") %>
-
-<br/><br/>
-
-Grade:
-<%=request.getParameterValues("Grade") %>
+	<br />
+	<br /> Grade:
+	<%=request.getParameterValues("Grade")%>
 
 </body>
 
