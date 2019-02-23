@@ -1,9 +1,4 @@
-<!--
-   Lab 1 solution build.xml file for SER422 Fall 2009.
-   Copyright 2008 Kevin A. Gary
--->
-
-<project name="Lab 2" default="compile" basedir=".">
+<project name="SER516" default="compile" basedir=".">
   <property file="build.properties"/>
 
   <!-- init target makes the directory structure. You may not
