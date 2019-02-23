@@ -1,5 +1,14 @@
 package quiz.model.professor;
 
+/**
+ * A Java class used for modelling Quiz table in MySQL
+ * Database into JDBC
+ * 
+ * @author (Shefali Anand)
+ * @version (1.0)
+ * @createDate (19 Feb 2019)
+ */
+
 public class QuizModel {
 
 	private String title;
@@ -10,6 +19,7 @@ public class QuizModel {
 	private Integer timeLimit;
 	private Boolean isMultipleAttempt;
 
+	/* A contructor that sets all the member variables */
 	public QuizModel(String title, String instructions, String assignmentGroup, Boolean isShuffled, Boolean isGraded,
 			Integer timeLimit, Boolean isMultipleAttempt) {
 		super();
@@ -22,6 +32,7 @@ public class QuizModel {
 		this.isMultipleAttempt = isMultipleAttempt;
 	}
 
+	/* A function that would print the model with its members */
 	@Override
 	public String toString() {
 		return "QuizDetails [title=" + title + ", instructions=" + instructions + ", assignmentGroup=" + assignmentGroup

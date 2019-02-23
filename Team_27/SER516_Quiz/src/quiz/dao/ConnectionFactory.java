@@ -8,8 +8,14 @@ import java.util.Properties;
 /**
  * This factory returns connections based on which source is responsible for a
  * given object (table).
+ * 
+ * @author (Shefali Anand)
+ * @version (1.0)
+ * @createDate (19 Feb 2019)
  */
+
 public class ConnectionFactory {
+	
 	// This holds properties
 	private static Properties dbProperties = new Properties();
 
@@ -23,9 +29,8 @@ public class ConnectionFactory {
 		}
 	}
 
-	// We can and should replace with a Connection pool
+	/* This method is used for connection to MySQL database */
 	public static final Connection getConnection() {
-		// throws DataAccessException {
 
 		String driverURL = dbProperties.getProperty("mysql_jdbcURL");
 		String dbUser = dbProperties.getProperty("mysql_jdbcUser");

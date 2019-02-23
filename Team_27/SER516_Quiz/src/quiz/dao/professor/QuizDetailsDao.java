@@ -12,8 +12,17 @@ import quiz.exceptions.DataAccessException;
 import quiz.exceptions.NoDataFoundException;
 import quiz.model.professor.QuizModel;
 
+/**
+ * A Java class used for Data Access, connecting database to servlets
+ * using JDBC
+ * 
+ * @author (Shefali Anand)
+ * @version (1.0)
+ * @createDate (19 Feb 2019)
+ */
 public class QuizDetailsDao {
 
+	// This holds properties
 	private static Properties dbProperties = new Properties();
 	static {
 		try {
@@ -25,9 +34,9 @@ public class QuizDetailsDao {
 		}
 	}
 
+	/* Gets a list of Quizzes created by professor */
 	@SuppressWarnings("unchecked")
 	public static ArrayList getAll() throws DataAccessException, NoDataFoundException {
-		// TODO Auto-generated method stub
 		@SuppressWarnings("rawtypes")
 		ArrayList rowValues = new ArrayList();
 
@@ -38,21 +47,14 @@ public class QuizDetailsDao {
 
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
-
-			// preparedStatement.setFloat(1,new BigInteger(pPrimaryKey));
 			rs = preparedStatement.executeQuery();
-
-			/*
-			 * Populating a the value object with the data retrieved from the resultset.
-			 *
-			 */
 			while (rs.next()) {
 				rowValues.add(rs.getString("title"));
 			}
 
 			return rowValues;
 		} catch (SQLException e) {
-			/* Aborting the transaction */
+			// Aborting the transaction
 			e.printStackTrace();
 			return rowValues;
 		} finally {
@@ -68,8 +70,8 @@ public class QuizDetailsDao {
 		}
 	}
 
+	/* Gets a specific Quiz created by professor, according to the Quiz-title */
 	public static QuizModel findByPrimaryKey(String pPrimaryKey) throws DataAccessException, NoDataFoundException {
-		// TODO Auto-generated method stub
 		Connection conn = ConnectionFactory.getConnection();
 		ResultSet rs = null;
 
@@ -80,14 +82,9 @@ public class QuizDetailsDao {
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
-			// preparedStatement.setFloat(1,new BigInteger(pPrimaryKey));
 			preparedStatement.setString(1, pPrimaryKey);
 			rs = preparedStatement.executeQuery();
 
-			/*
-			 * Populating a the value object with the data retrieved from the resultset.
-			 *
-			 */
 			if (rs.next()) {
 				pentry = new QuizModel(rs.getString("title"), rs.getString("instructions"),
 						rs.getString("assignment_group"), rs.getBoolean("isshuffled"), rs.getBoolean("isgraded"),
@@ -98,7 +95,7 @@ public class QuizDetailsDao {
 
 			return pentry;
 		} catch (SQLException e) {
-			/* Aborting the transaction */
+			// Aborting the transaction
 			e.printStackTrace();
 			return null;
 		} finally {
@@ -114,9 +111,9 @@ public class QuizDetailsDao {
 		}
 	}
 
+	/* Insert the quiz which was created by professor into the database */
 	public static void insert(QuizModel pValueObject) throws DataAccessException {
-		// TODO Auto-generated method stub
-
+		
 		String sql = dbProperties.getProperty("INSERT_QUIZ");
 
 		QuizModel pentry = (QuizModel) pValueObject;
@@ -125,7 +122,7 @@ public class QuizDetailsDao {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			/* Populating the prepared statement with data from the value object */
+			// Populating the prepared statement with data from the value object
 			preparedStatement = conn.prepareStatement(sql.toString());
 
 			preparedStatement.setString(1, pentry.getTitle());
@@ -138,7 +135,7 @@ public class QuizDetailsDao {
 
 			preparedStatement.execute();
 		} catch (SQLException e) {
-			/* Aborting the transaction */
+			// Aborting the transaction
 			e.printStackTrace();
 			DataAccessException exc = new DataAccessException("Error in insert()", e);
 			try {
@@ -161,8 +158,8 @@ public class QuizDetailsDao {
 
 	}
 
+	/* Update the quiz according to the quiz features modified by the professor  */
 	public void update(QuizModel pValueObject) throws DataAccessException {
-		// TODO Auto-generated method stub
 		String sql = dbProperties.getProperty("UPDATE_QUIZ");
 
 		QuizModel pentry = (QuizModel) pValueObject;
@@ -170,7 +167,7 @@ public class QuizDetailsDao {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			/* Populating the prepared statement's parameters */
+			// Populating the prepared statement's parameters
 			preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.setString(7, pentry.getTitle());
 			preparedStatement.setString(1, pentry.getInstructions());
@@ -191,7 +188,7 @@ public class QuizDetailsDao {
 
 			}
 		} catch (SQLException e) {
-			/* Aborting the transaction */
+			// Aborting the transaction
 			DataAccessException exc = new DataAccessException("Error in update()", e);
 			try {
 				conn.rollback();
@@ -213,8 +210,9 @@ public class QuizDetailsDao {
 
 	}
 
+	/* Delete the entire quiz, specified by the professor */
 	public boolean delete(QuizModel pValueObject) throws DataAccessException {
-		// TODO Auto-generated method stub
+	
 		String sql = dbProperties.getProperty("DELETE_QUIZ");
 
 		QuizModel pentry = (QuizModel) pValueObject;
@@ -224,21 +222,20 @@ public class QuizDetailsDao {
 
 		try {
 
-			/* Deleting the record from the table */
+			// Deleting the record from the table
 			preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.setString(1, pentry.getTitle());
 			preparedStatement.executeUpdate();
 
 			return true;
 		} catch (SQLException e) {
-			/* Aborting the transaction */
+			// Aborting the transaction
 			e.printStackTrace();
 			try {
 				conn.rollback();
 			} catch (SQLException e2) {
 				e2.printStackTrace();
 			}
-			// throw exc;
 			return false;
 		} finally {
 			try {
@@ -253,6 +250,7 @@ public class QuizDetailsDao {
 		}
 	}
 
+	/* Gets QuizId of the specified quiz so that that quizId can be used in adding questions */
 	public String getQuizId(String quizTitle) {
 		String sql = dbProperties.getProperty("SELECT_QUIZID");
 		Connection conn = ConnectionFactory.getConnection();
@@ -260,7 +258,6 @@ public class QuizDetailsDao {
 		String quizId = "";
 		try {
 
-			/* Deleting the record from the table */
 			preparedStatement = conn.prepareStatement(sql);
 			preparedStatement.setString(1, quizTitle);
 			ResultSet rs = preparedStatement.executeQuery();
@@ -269,7 +266,7 @@ public class QuizDetailsDao {
 			}
 
 		} catch (SQLException e) {
-			/* Aborting the transaction */
+			// Aborting the transaction
 			e.printStackTrace();
 			try {
 				conn.rollback();
