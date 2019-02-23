@@ -9,7 +9,7 @@ pageEncoding="UTF-8"%>
 Quiz editor
 </title>
 <link rel="stylesheet" href="CSS/quizcreator.css" type="text/css"/>
-<script src="quizcreator.js"></script>
+<script src="js/quizcreator.js"></script>
 </head>
 <body>
 <div id='top'>
