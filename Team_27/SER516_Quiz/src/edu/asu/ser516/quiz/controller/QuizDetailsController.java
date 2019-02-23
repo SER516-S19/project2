@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.asu.ser516.quiz.dao.QuizDetailsDao;
-import edu.asu.ser516.quiz.model.QuizDetails;
+import edu.asu.ser516.quiz.dao.impl.QuizDetailsDao;
+import edu.asu.ser516.quiz.model.QuizModel;
 
 @SuppressWarnings("serial")
 public class QuizDetailsController extends HttpServlet {
@@ -25,7 +25,8 @@ public class QuizDetailsController extends HttpServlet {
     }
 
     
-    public void doPost(HttpServletRequest req, HttpServletResponse res) 
+    @SuppressWarnings("static-access")
+	public void doPost(HttpServletRequest req, HttpServletResponse res) 
 	throws ServletException, IOException	{
     	
     	//set Content-Type and other response headers
@@ -63,14 +64,15 @@ public class QuizDetailsController extends HttpServlet {
     				if(multipleAttempt != null && multipleAttempt.equals("true"))
     					isMultipleAttempt = true;
     				
-    				QuizDetails quizModel = new QuizDetails(title, instructions,assignmentGroup, isShuffled, isGraded, timeLimit, isMultipleAttempt);
+    				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(title);
     				
-    				Boolean isInserted = quizDetailsDao.addEntry(title, quizModel);
-    				
-    				if(isInserted)
-    					req.getRequestDispatcher("Success.html").forward(req, res);
-    				else
+    				if(quizModel != null)
     					res.sendError(HttpServletResponse.SC_BAD_REQUEST,"This Quiz already Exists!");
+    				else {
+    					quizModel = new QuizModel(title, instructions,assignmentGroup, isShuffled, isGraded, timeLimit, isMultipleAttempt);
+    					quizDetailsDao.insert(quizModel);
+    					req.getRequestDispatcher("Success.html").forward(req, res);
+    				}
     		
     			}
     			else {

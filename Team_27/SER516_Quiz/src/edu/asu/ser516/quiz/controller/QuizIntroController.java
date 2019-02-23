@@ -39,7 +39,7 @@ public class QuizIntroController extends HttpServlet {
 		try {
 			PrintWriter out = response.getWriter();
 			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27?useSSL=false","root","Ser516");  
+			Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27?useSSL=false","root","root");  
 			PreparedStatement ps = ((java.sql.Connection) con).prepareStatement("SELECT quiz_id, title FROM quiz");
 			ResultSet rs= ps.executeQuery();	
 			HttpSession session = request.getSession();

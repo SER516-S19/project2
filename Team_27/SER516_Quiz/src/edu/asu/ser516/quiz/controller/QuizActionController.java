@@ -1,4 +1,5 @@
 package edu.asu.ser516.quiz.controller;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -9,22 +10,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.asu.ser516.quiz.dao.QuizDetailsDao;
-import edu.asu.ser516.quiz.model.QuizDetails;
+import edu.asu.ser516.quiz.dao.impl.QuizDetailsDao;
+import edu.asu.ser516.quiz.model.QuizModel;
 
 /**
  * Servlet implementation class Main
  */
-@WebServlet("/DeleteQuizController")
+
 public class QuizActionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,14 +38,14 @@ public class QuizActionController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter out=response.getWriter();
 	    response.getWriter().append("Served at: ").append(request.getContextPath());
 	    
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Ser516");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","root");
 		Statement stmt = con.createStatement();
 		
 		//Delete actions here
@@ -91,7 +90,7 @@ public class QuizActionController extends HttpServlet {
 	private void goToQuizes(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException {
 		String param1=(String)request.getParameter("selectedQuiz");
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Ser516");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","root");
 		String sql = "SELECT title, instructions, assignment_group, isshuffled, isgraded, time_limit, ismultipleattempt FROM quiz WHERE title=?";
 		PreparedStatement ps = ((java.sql.Connection) con).prepareStatement(sql);
 		 ps.setString(1, param1);
@@ -99,9 +98,9 @@ public class QuizActionController extends HttpServlet {
 		
 	    while(rs.next())
 	    { 
-	    QuizDetails quizModel;
+	    QuizModel quizModel;
 		try {
-			quizModel = QuizDetailsDao.findQuizByPrimaryKey(rs.getString(1));
+			quizModel = QuizDetailsDao.findByPrimaryKey(rs.getString(1));
 			request.setAttribute("model", quizModel);
 			//response.sendRedirect("ViewQuiz.jsp");
 			request.getRequestDispatcher("ViewQuiz.jsp").forward(request, response);
@@ -119,7 +118,7 @@ public class QuizActionController extends HttpServlet {
 	// function to update the quizzes from the database
 	private void redirectToShowQuizes(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException {
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","Ser516");
+		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27","root","root");
 		PreparedStatement ps = ((java.sql.Connection) con).prepareStatement("SELECT quiz_id, title FROM quiz");
 		ResultSet rs= ps.executeQuery();	
 		HttpSession session = request.getSession();

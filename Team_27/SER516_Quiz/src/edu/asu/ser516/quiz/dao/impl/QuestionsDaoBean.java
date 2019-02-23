@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.asu.ser516.quiz.exceptions.DataAccessException;
 import edu.asu.ser516.quiz.model.Question;
 
 public class QuestionsDaoBean {
