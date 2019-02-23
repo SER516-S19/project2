@@ -2,9 +2,7 @@ package quiz.controller.professor;
 
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.regex.Pattern;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

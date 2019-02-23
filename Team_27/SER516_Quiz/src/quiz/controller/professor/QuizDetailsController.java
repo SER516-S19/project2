@@ -12,17 +12,27 @@ import javax.servlet.http.HttpServletResponse;
 import quiz.dao.professor.QuizDetailsDao;
 import quiz.model.professor.QuizModel;
 
+/**
+ * A servlet which creates a new quiz and edits old quiz for professor.
+ * 
+ * @author (Shefali Anand)
+ * @version (1.0)
+ * @createDate (19 Feb 2019)
+ */
+
 @SuppressWarnings("serial")
 public class QuizDetailsController extends HttpServlet {
 
 	private static QuizDetailsDao quizDetailsDao = null;
 
 	public void init(ServletConfig config) throws ServletException {
-		// if you forget this your getServletContext() will get a NPE!
+
 		super.init(config);
 		quizDetailsDao = new QuizDetailsDao();
 	}
 
+	/* This method create the quiz details and directs to Adding Question page
+	 * It also edits the quiz details and directs to Editing Questions for this quiz*/
 	@SuppressWarnings("static-access")
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -70,7 +80,7 @@ public class QuizDetailsController extends HttpServlet {
 								isMultipleAttempt);
 						quizDetailsDao.insert(quizModel);
 						req.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
-						// Get the QUIZ-id
+						
 						String quizId = quizDetailsDao.getQuizId(title);
 						req.getSession().setAttribute("quizId", quizId);
 						req.getRequestDispatcher("addQuestions.html").forward(req, res);
@@ -115,6 +125,7 @@ public class QuizDetailsController extends HttpServlet {
 
 	}
 
+	/* This method will return an error as this servlet should be accessed in POST method */
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		res.setHeader("Cache-Control", "no-cache");
 		res.setContentType("text/html");
