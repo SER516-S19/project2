@@ -61,7 +61,9 @@ if(("G").equals(quizType)){
 	<br>
 	<input type="submit" name="flag" value="Add Next Question"/>
 	<input type="submit" name="flag" value="Save and Exit"/>
-	<input type="submit" name="flag" value="Verify Questions"/>
+	<%String pathWebcontent=request.getContextPath();%>
+	<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>
+	
 	
 </form>
 </body>
