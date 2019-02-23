@@ -42,7 +42,7 @@ public class ProfessorServices {
 		Answer answer;
 		AnswerDAO answerDAO = new AnswerDAO();
 	
-		if(correctanswers.length > 1)
+		if(correctanswers!=null && correctanswers.length > 1)
 			isMutiple = true;
 		Question quest = new Question(quiz, question,isMutiple, Integer.parseInt(points));
 		QuestionDAO questionDAO = new QuestionDAO();
@@ -55,7 +55,6 @@ public class ProfessorServices {
 			}
 		}
 	}
-	
 	
 	public List<Quiz> getAllQuizzes(){
 		return professorDAO.getAllQuizzes();
