@@ -5,9 +5,7 @@ import java.util.List;
 
 /**
  * This class is a response model for single object responses.
- * 
  * @author Kumar Prabhu Kalyan
- *
  */
 public class ResponseVO implements Serializable {
 
