@@ -35,7 +35,6 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 * @throws IOException, ServletException
 	 *
 	 */
-
 	@Override
 	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException {
 
