@@ -151,3 +151,9 @@ body {
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
 }
+
+@import url("https://taniarascia.github.io/primitive/css/main.css");
+
+.icon {
+  margin-right: 0.5em;
+}
