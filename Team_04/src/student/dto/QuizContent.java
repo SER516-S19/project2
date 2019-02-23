@@ -6,84 +6,85 @@ import java.util.List;
 
 public class QuizContent {
 
-  private long quiz_id;
-  private long ques_id;
-  private String ques_type;
-  private String ques_desc;
-  private long ans_id;
-  private String ans_desc;
-  private boolean is_correct;
-  private long max_score;
+  private long quizId;
+  private long quesId;
+  private String quesType;
+  private String quesDesc;
+  private long ansId;
+  private String ansDesc;
+  private boolean isCorrect;
+  private long maxScore;
+
 
   public long getQuizId() {
-    return quiz_id;
+    return quizId;
   }
 
-  public void setQuizId(long quiz_id) {
-    this.quiz_id = quiz_id;
+  public void setQuizId(long quizId) {
+    this.quizId = quizId;
   }
 
 
   public long getQuesId() {
-    return ques_id;
+    return quesId;
   }
 
-  public void setQuesId(long ques_id) {
-    this.ques_id = ques_id;
+  public void setQuesId(long quesId) {
+    this.quesId = quesId;
   }
 
 
   public String getQuesType() {
-    return ques_type;
+    return quesType;
   }
 
-  public void setQuesType(String ques_type) {
-    this.ques_type = ques_type;
+  public void setQuesType(String quesType) {
+    this.quesType = quesType;
   }
 
 
   public String getQuesDesc() {
-    return ques_desc;
+    return quesDesc;
   }
 
-  public void setQuesDesc(String ques_desc) {
-    this.ques_desc = ques_desc;
+  public void setQuesDesc(String quesDesc) {
+    this.quesDesc = quesDesc;
   }
 
 
   public long getAnsId() {
-    return ans_id;
+    return ansId;
   }
 
-  public void setAnsId(long ans_id) {
-    this.ans_id = ans_id;
+  public void setAnsId(long ansId) {
+    this.ansId = ansId;
   }
 
 
   public String getAnsDesc() {
-    return ans_desc;
+    return ansDesc;
   }
 
-  public void setAnsDesc(String ans_desc) {
-    this.ans_desc = ans_desc;
+  public void setAnsDesc(String ansDesc) {
+    this.ansDesc = ansDesc;
   }
 
 
-  public boolean isIsCorrect() {
-    return is_correct;
+  public boolean getIsCorrect() {
+    return isCorrect;
   }
 
-  public void setIsCorrect(boolean is_correct) {
-    this.is_correct = is_correct;
+  public void setIsCorrect(boolean isCorrect) {
+    this.isCorrect = isCorrect;
   }
 
 
   public long getMaxScore() {
-    return max_score;
+    return maxScore;
   }
 
-  public void setMaxScore(long max_score) {
-    this.max_score = max_score;
+  public void setMaxScore(long maxScore) {
+    this.maxScore = maxScore;
   }
 
   private List<AnswerOption> answerOptions = new ArrayList<>();
@@ -95,4 +96,5 @@ public class QuizContent {
   public void setAnswerOptions(List<AnswerOption> answerOptions) {
     this.answerOptions = answerOptions;
   }
+
 }
