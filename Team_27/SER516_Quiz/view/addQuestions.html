@@ -27,22 +27,23 @@
 
             var questionDiv = document.createElement("div");
             questionDiv.innerHTML = "Question " + addAnotherQuestion.counter + ": <br /><br />" +
-                "<textarea name=\"question" + addAnotherQuestion.counter + "\" rows=\"5\" cols=\"80\">Enter your question here !</textarea> <br />" +
+                "<textarea name=\"question" + addAnotherQuestion.counter + "\" rows=\"5\" cols=\"80\" placeholder=\"Enter your question here ! \"></textarea> <br />" +
                 "Points: <input type=\"number\" style=\"width:40px; text-align: center\" name=\"PointsForQues" + addAnotherQuestion.counter + "\" value=\"1\" />" +
                 "<input type=\"checkbox\" name=\"isMultipleAnswerQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Is Multiple Answer <hr />" +
+                "<div class=\"tablestyle\">" +
                 "<table><tr><td>Option A:</td>" +
                 "<td><input type=\"checkbox\" name=\"isOptionACorrectForQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Correct Answer</td>" +
-                "<td><input type=\"text\" name=\"OptionAForQues" + addAnotherQuestion.counter + "\" value=\"Enter Option A\" /></td></tr>" +
+                "<td><input type=\"text\" name=\"OptionAForQues" + addAnotherQuestion.counter + "\" placeholder=\"Enter Option A\" /></td></tr>" +
                 "<tr><td>Option B:</td>" +
                 "<td><input type=\"checkbox\" name=\"isOptionBCorrectForQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Correct Answer</td>" +
-                "<td><input type=\"text\" name=\"OptionBForQues" + addAnotherQuestion.counter + "\" value=\"Enter Option B\" /></td></tr>" +
+                "<td><input type=\"text\" name=\"OptionBForQues" + addAnotherQuestion.counter + "\" placeholder=\"Enter Option B\" /></td></tr>" +
                 "<tr><td>Option C:</td>" +
                 "<td><input type=\"checkbox\" name=\"isOptionCCorrectForQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Correct Answer</td>" +
-                "<td><input type=\"text\" name=\"OptionCForQues" + addAnotherQuestion.counter + "\" value=\"Enter Option C\" /></td></tr>" +
+                "<td><input type=\"text\" name=\"OptionCForQues" + addAnotherQuestion.counter + "\" placeholder=\"Enter Option C\" /></td></tr>" +
                 "<tr><td>Option D:</td>" +
                 "<td><input type=\"checkbox\" name=\"isOptionDCorrectForQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Correct Answer</td>" +
-                "<td><input type=\"text\" name=\"OptionDForQues" + addAnotherQuestion.counter + "\" value=\"Enter Option D\" /></td></tr>" +
-                "</table><hr/>"
+                "<td><input type=\"text\" name=\"OptionDForQues" + addAnotherQuestion.counter + "\" placeholder=\"Enter Option D\" /></td></tr>" +
+                "</table></div><hr/>"
 
             container.appendChild(questionDiv);
         }
@@ -60,7 +61,7 @@
     <form action="/Quiz/submitQuiz" method="POST" id="quizQuestionsDetailsForm" >
         <div id="QuestionContainer">
             Question 1: <br /><br />
-            <textarea name="question1" rows="5" cols="80">Enter your question here !</textarea> <br />
+            <textarea name="question1" rows="5" cols="80" placeholder="Enter your question here !"></textarea> <br />
             Points: <input type="number" style="width:40px; text-align: center" name="PointsForQues1" value="1" />
             <input type="checkbox" name="isMultipleAnswerQues1" value="True" /> Is Multiple Answer
             <hr />
@@ -74,7 +75,7 @@
                         <input type="checkbox" name="isOptionACorrectForQues1" value="True" /> Correct Answer &nbsp;
                     </td>
                     <td>
-                        <input type="text" name="OptionAForQues1" value="Enter Option A" />
+                        <input type="text" name="OptionAForQues1" placeholder="Enter Option A" />
                     </td>
                 </tr>
 
@@ -86,7 +87,7 @@
                         <input type="checkbox" name="isOptionBCorrectForQues1" value="True" /> Correct Answer
                     </td>
                     <td>
-                        <input type="text" name="OptionBForQues1" value="Enter Option B" />
+                        <input type="text" name="OptionBForQues1" placeholder="Enter Option B"/>
                     </td>
                 </tr>
 
@@ -98,7 +99,7 @@
                         <input type="checkbox" name="isOptionCCorrectForQues1" value="True" /> Correct Answer
                     </td>
                     <td>
-                        <input type="text" name="OptionCForQues1" value="Enter Option C" />
+                        <input type="text" name="OptionCForQues1" placeholder="Enter Option C"/>
                     </td>
                 </tr>
 
@@ -110,7 +111,7 @@
                         <input type="checkbox" name="isOptionDCorrectForQues1" value="True" /> Correct Answer
                     </td>
                     <td>
-                        <input type="text" name="OptionDForQues1" value="Enter Option D" />
+                        <input type="text" name="OptionDForQues1" placeholder="Enter Option D"/>
                     </td>
                 </tr>
             </table>
