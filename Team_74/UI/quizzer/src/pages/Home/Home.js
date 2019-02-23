@@ -29,7 +29,7 @@ class Home extends Component {
             isCreatingQuiz: this.state.isCreatingQuiz ? false: true
         })
     }
-    
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
