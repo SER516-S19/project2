@@ -15,6 +15,7 @@ import bean.Quiz;
 public class QuestionDAO {
 
 	public void addQuestion(Question question) {
+
 		Transaction transaction = null;
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -30,6 +31,7 @@ public class QuestionDAO {
 	}
 
 	public List<Question> getQuestionsByQuizId(int quizId){
+
 		Transaction transaction = null;
 		List<Question> quesList = new ArrayList<Question>();
 
