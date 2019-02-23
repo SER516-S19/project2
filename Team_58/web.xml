@@ -127,6 +127,16 @@
     <url-pattern>/gradeQuiz</url-pattern>
   </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DisplayQuizServlet</servlet-name>
+        <servlet-class>edu.asupoly.ser516.controller.DisplayQuizServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DisplayQuizServlet</servlet-name>
+        <url-pattern>/DisplayQuizServlet</url-pattern>
+    </servlet-mapping>
+
 <welcome-file-list>
 <welcome-file>/login.jsp</welcome-file>
 </welcome-file-list>
