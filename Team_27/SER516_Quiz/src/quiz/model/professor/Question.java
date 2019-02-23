@@ -1,5 +1,12 @@
 package quiz.model.professor;
 
+/**
+ * Question Model to store all the parameters given by the user
+ * 
+ * @author Sarthak Tiwari, Bijayalaxmi Panda
+ * @version (1.0)
+ */
+
 public class Question {
 
 	private Integer quizId;
@@ -15,9 +22,10 @@ public class Question {
 	private Integer points;
 	private Boolean isMultipleAnswer;
 
-	public Question(String quizId, String question, String optionA, String optionB, String optionC, String optionD,
-			Boolean isOptionACorrect, Boolean isOptionBCorrect, Boolean isOptionCCorrect, Boolean isOptionDCorrect,
-			String points, Boolean isMultipleAnswer) {
+	public Question(String quizId, String question, String optionA, 
+			String optionB, String optionC, String optionD, Boolean isOptionACorrect, 
+			Boolean isOptionBCorrect, Boolean isOptionCCorrect, 
+			Boolean isOptionDCorrect, String points, Boolean isMultipleAnswer) {
 		super();
 		this.quizId = Integer.parseInt(quizId);
 		this.question = question;
@@ -32,7 +40,7 @@ public class Question {
 		this.points = Integer.parseInt(points);
 		this.isMultipleAnswer = isMultipleAnswer;
 	}
-	
+
 	public void setQuizId(Integer quizId) {
 		this.quizId = quizId;
 	}
@@ -41,7 +49,7 @@ public class Question {
 		return quizId;
 	}
 
-	
+
 	public String getQuestion() {
 		return question;
 	}

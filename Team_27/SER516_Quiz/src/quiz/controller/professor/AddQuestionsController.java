@@ -2,7 +2,10 @@ package quiz.controller.professor;
 
 import java.io.IOException;
 import java.util.Enumeration;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 40afd5c691a68f0be5082d455e87f52e165822af
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,12 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import quiz.dao.professor.QuestionsDao;
 import quiz.model.professor.Question;
 
+/**
+ * Controller to add questions along with the specific parameters.
+ * This controller will take input from user and prepare the question
+ * model.
+ * 
+ * @author Sarthak Tiwari, Bijayalaxmi Panda
+ * @version (1.0)
+ */
+
 @SuppressWarnings("serial")
 public class AddQuestionsController extends HttpServlet {
 
-	// Method to handle GET method request.
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// set Content-Type and other response headers
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		response.setHeader("Cache-Control", "no-cache");
 		response.setContentType("text/html");
 
@@ -50,7 +61,8 @@ public class AddQuestionsController extends HttpServlet {
 					String points = request.getParameter("PointsForQues" + questionNumber);
 					tmp = request.getParameter("isMultipleAnswerQues" + questionNumber);
 					Boolean isMultipleAnswer = (tmp == null) ? false : true;
-
+					
+					// Create Question model to insert the questions in the database
 					Question questionModel = new Question(quizId, questionText, optionA, optionB, optionC, optionD,
 							isOptionACorrect, isOptionBCorrect, isOptionCCorrect, isOptionDCorrect, points,
 							isMultipleAnswer);
@@ -65,7 +77,6 @@ public class AddQuestionsController extends HttpServlet {
 		}
 	}
 
-	// Method to handle POST method request.
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
