@@ -9,14 +9,16 @@ import java.sql.Statement;
 
 public class DbController {
 
-
-
-
-    //region private members and methods
     private static DbController dbController;
 
+    /**
+     *
+     * @return returns the Database connection
+     */
     public Connection getConnection() {
+
         Connection connection = null;
+
         try {
                 Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection(DbHelper.getDbUrl());
@@ -26,9 +28,16 @@ public class DbController {
         return connection;
     }
 
+    /**
+     *
+     * @param query executes the query passed
+     * @return result of the query
+     */
     private ResultSet executeGetQuery(String query) {
+
         ResultSet resultSet = null;
         Connection connection = null;
+
         try {
             connection = getConnection();
             if (connection != null) {
@@ -48,6 +57,11 @@ public class DbController {
         return resultSet;
     }
 
+    /**
+     *
+     * @param query Validating thr query
+     * @return
+     */
     private boolean isValidQueryString(String query) {
         return ! (query == null || query.length() == 0);
     }
