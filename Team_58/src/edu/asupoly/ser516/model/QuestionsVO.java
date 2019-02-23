@@ -23,10 +23,8 @@ public class QuestionsVO {
 	/**
 	 * Constructor for setting values while creating questions
 	 * 
-	 * @param
 	 * @date 02/22/2019
 	 */
-	// Constructor for setting values while creating questions
 	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
 			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
 		super();
@@ -40,10 +38,13 @@ public class QuestionsVO {
 		this.isMCQ = isMCQ;
 	}
 
-	// Constructor for retrieving values while displaying questions
+	/**
+	 * Constructor for retrieving values while displaying questions
+	 * 
+	 * @date 02/22/2019
+	 */
 	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
 			String incorrectAnswer3, String question) {
-		super();
 		this.questionId = questionId;
 		this.question = question;
 		this.correctAnswer = correctAnswer;
@@ -65,8 +66,8 @@ public class QuestionsVO {
 		return questionId;
 	}
 
-	public void setqId(int qId) {
-		this.questionId = qId;
+	public void setqId(int questionId) {
+		this.questionId = questionId;
 	}
 
 	public String getQuestion() {
