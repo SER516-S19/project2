@@ -4,16 +4,15 @@ import DBUtil.DataManager;
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet("/servlet")
@@ -35,15 +34,25 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long userSelectedAns = 0;
+		String selectedOptId =request.getParameter("selectedOptionId");
+		if(selectedOptId == null || selectedOptId.isEmpty())
+		{
+			userSelectedAns = -1;
+		}
+		else
+		{
 
-	long userSelectedAns = new Long(request.getParameter("selectedOptionId"));
+			userSelectedAns = new Long(selectedOptId);
+		}
+
 	//long ansId = (long) request.getAttribute("ansId");
-	String ansDesc = (String)request.getAttribute("ansDesc");
+	    String ansDesc = (String)request.getAttribute("ansDesc");
 
 		QuizContent quiz = this.questions.get(currentQuestionIndex-1);
 		for(AnswerOption ans : quiz.getAnswerOptions())
 		{
-			if ( ans.getIsCorrect() && userSelectedAns == ans.getAns_id())
+			if ( ans.getIsCorrect() && userSelectedAns != -1 && userSelectedAns == ans.getAns_id())
 			{
 				score++;
 			}
@@ -79,10 +88,6 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 		else {
 			System.out.println(currentQuestionIndex);
 		}
-
-
-
-
 	}
 
 }
