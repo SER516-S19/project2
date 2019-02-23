@@ -36,7 +36,6 @@ public class DataManager {
         }
         return result;
     }
-
     /**
      *
      * @param query UPDATE Person SET height=? WHERE name=?
@@ -54,7 +53,6 @@ public class DataManager {
         }
         finally {
             try {
-                connection.commit();
                 DbUtils.close(connection);
             }
             catch (Exception e) {
