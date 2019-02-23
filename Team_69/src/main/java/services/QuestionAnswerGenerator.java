@@ -25,6 +25,7 @@ import dao.QuestionDAO;
  */
 
 public class QuestionAnswerGenerator {
+
 	public QuestionAnswer generator(int quizId) {
 		QuestionDAO questionDao = new QuestionDAO();
 		AnswerDAO answerDao = new AnswerDAO();
@@ -36,7 +37,7 @@ public class QuestionAnswerGenerator {
 			questionAnswers.setQuizId(quiz.getQuizId());
 			questionAnswers.setQuizName(quiz.getQuizName());
 			questionAnswers.setQuizInstructions(quiz.getQuizInstructions());
-			questionAnswers.setPublished(quiz.isPublished());
+			questionAnswers.setPublished(quiz.getIsPublished());
 			questionAnswers.setShuffled(quiz.isShuffled());
 			questionAnswers.setQuizType(quiz.getQuizType());
 			questionAnswers.setQuizTimeLimit(quiz.getQuizTimeLimit());
@@ -63,8 +64,6 @@ public class QuestionAnswerGenerator {
 		}
 		questionAnswers.setQuestion(questionMapperList);;
 		return questionAnswers;
-		
-
 	}
 
 	public String ObjectToJSON(QuestionAnswer quizList) {

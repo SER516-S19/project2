@@ -55,7 +55,7 @@ public class StudentServices {
 		for (QuestionMapper questionMapper : questions) {
 			int questionId = questionMapper.getQuestionId();
 			Question question = new Question(quiz, questionId, questionMapper.getQuestion(),
-					questionMapper.getCorrectAnswerId(), questionMapper.isMultiple(), questionMapper.getPoints());
+					questionMapper.isMultiple(), questionMapper.getPoints());
 			List<AnswerMapper> answers = questionMapper.getResponseAnswer();
 			if (answers != null) {
 				for (AnswerMapper ansMapper : answers) {

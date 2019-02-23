@@ -9,34 +9,21 @@
 <title>Page for obtaining Professor Details</title>
 </head>
 <body>
-
-<script language="JavaScript">
-function myFunction(elem)
-{
-    if (elem.checked)
-    {
-    	document.getElementById('minutes').readOnly = false;
-    	document.getElementById('hours').readOnly = false;
-    }
-    else
-    {
-    	document.getElementById('minutes').readOnly = true;
-    	document.getElementById('hours').readOnly = false;
-    }
-}
-</script>
+<script type="text/javascript" src="../js/fetchProffesorData.js"></script>
+    <script type="text/javascript">
+    myFunction(elem)
+    </script>
 
 <form action="../ProfessorController" method="post">
   <div class="form-group">
   <label for="FormQuizName">Enter Quiz Name:</label>
   <textarea class="form-control" id="name" name="name" rows="1" required></textarea>
-   <br>
-    
-    <div class="form-group">
+  <br>
+  
+  <div class="form-group">
     <label for="FormQuizName">Enter Quiz Instructions:</label>
     <textarea class="form-control" name="instructions" id="instructions" rows="3"></textarea>
-
-    <br>
+   <br>
 
     
 <table border = "0">
@@ -60,40 +47,27 @@ function myFunction(elem)
   </tr>
   <tr>
     <td></td>
-    <td>
-    	<b> Options </b>
-    </td>
+    <td> <b> Options </b></td>
   </tr>
   
   <tr>
     <td></td>
-    <td>
-    	<input type="checkbox" name="shuffle" value="shuffle">Shuffle Answers<br>
-    </td>
-  </tr>
-  
+    <td> <input type="checkbox" name="shuffle" value="shuffle">Shuffle Answers<br> </td>
+  </tr> 
   <tr>
     <td></td>
     <td>
     	<input type="checkbox" name="time_limit" value="time_limit" onchange="myFunction(this);">Time Limit
-		
 		<input type="number" id ="hours" name="hours" value="" min="0" readonly> Hours
 		<input type="number" id ="minutes" name="minutes" value="" min="0" max="60" readonly> Minutes
     </td>
-  </tr>
-  
-  
-  
-  
+  </tr> 
 </table>
- 
- <a href="AddQuestions.jsp">Add Questions</a>
-    
+<a href="addQuestions.jsp">Add Questions</a>
   </div>
- <input type="hidden" id="flag" name="flag" value="InsertProfDetails">
+  <input type="hidden" id="flag" name="flag" value="InsertProfDetails">
   <button type="submit" class="btn btn-primary" onclick="javascript:checkBoxStatus(myCheckBox)">Submit</button>
   
 </form>
-
 </body>
 </html>

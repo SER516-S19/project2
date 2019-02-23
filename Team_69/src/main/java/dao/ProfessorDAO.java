@@ -17,11 +17,8 @@ public class ProfessorDAO {
 		 Transaction transaction = null;
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
-	            // start a transaction
 	            transaction = session.beginTransaction();
-	            // save the student object
 	            lists = session.createQuery("from Quiz").list();
-	            // commit transaction
 	            transaction.commit();
 	        } catch (Exception e) {
 	            if (transaction != null) {
@@ -88,11 +85,8 @@ public class ProfessorDAO {
         Transaction transaction = null;
         try  {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save the student object
             session.save(quiz);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
