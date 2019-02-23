@@ -10,8 +10,19 @@ import bean.HibernateUtil;
 import bean.Question;
 import bean.Quiz;
 
+// TODO: Auto-generated Javadoc
+/**
+ * This is the DAO class for performing CRUD operations.
+ *
+ * @version 1.0
+ * @since 02-16-2019
+ * @authors  Aneesh, Gangadhar, Janice, Jinal, Viraj
+ */
 public class ProfessorDAO {
 	
+	/**
+	 * Gets the list of quizzes from the database.
+	 */
 	public List<Quiz> getAllQuizzes(){
 		List<Quiz> lists = new ArrayList<>();
 		 Transaction transaction = null;
@@ -29,18 +40,17 @@ public class ProfessorDAO {
 		return lists;
 	}
 
+	/**
+	 * The method is used to retrieve all question from quiz ID.
+	 */
 	public List<Question> getAllQuestionFromQuizID(int quizID){
 		List<Question> lists = new ArrayList<>();
 		 Transaction transaction = null;
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
-	            // start a transaction
 	            transaction = session.beginTransaction();
-	            
 	            Query query = session.createQuery("from  " + Question.class.getName() + " que where que.quiz.quizId = "+quizID);
-	            
 	            lists = query.list();
-	            // commit transaction
 	            transaction.commit();
 	        } catch (Exception e) {
 	            if (transaction != null) {
@@ -51,25 +61,22 @@ public class ProfessorDAO {
 		return lists;
 	}
 	
+	/**
+	 * The method set the publish flag in the database
+	 *
+	 * @param quiz_id the quiz id
+	 */
 	public void publishQuiz(int quiz_id) {
 		 Transaction transaction = null;
 		 Session session = null;
 	        try {
 	        	session = HibernateUtil.getSessionFactory().openSession();
-	            // start a transaction
 	            transaction = session.beginTransaction();
-	 
-	            // Creating Transaction Entity
 	            Quiz quizObj = (Quiz) session.get(Quiz.class, quiz_id);
 	            quizObj.setIsPublished(true);
-	            
-	            // Committing The Transactions To The Database
 	            transaction.commit();
-	
-	            System.out.println("Quiz published successfully");
 	        } catch(Exception sqlException) {
 	            if(null != transaction) {
-	                System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
 	                transaction.rollback();
 	            }
 	            sqlException.printStackTrace();
@@ -79,8 +86,12 @@ public class ProfessorDAO {
 	            }
 	        }
 	    }
-
 	
+	/**
+	 * The method is used to add the quiz details into the database
+	 *
+	 * @param quiz the quiz
+	 */
 	public void insertProfDetails(Quiz quiz) {
         Transaction transaction = null;
         try  {
@@ -89,35 +100,30 @@ public class ProfessorDAO {
             session.save(quiz);
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null) 
                 transaction.rollback();
-            }
             e.printStackTrace();
         }
     }
 
+	/**
+	 * Gets all answers for each question.
+	 *
+	 */
 	public List<Answer> getAllAnswersFromQuestionID(int questionID) {
 		List<Answer> lists = new ArrayList<>();
 		 Transaction transaction = null;
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
-	            // start a transaction
-	            transaction = session.beginTransaction();
-	            
-	            Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.questionId = "+questionID);
-	            
+	            transaction = session.beginTransaction();	            
+	            Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.questionId = "+questionID);	            
 	            lists = query.list();
-	            // commit transaction
 	            transaction.commit();
 	        } catch (Exception e) {
-	            if (transaction != null) {
+	            if (transaction != null)
 	                transaction.rollback();
-	            }
 	            e.printStackTrace();
 	        }
 		return lists;
 	}
-
-
-	
 }

@@ -24,14 +24,10 @@ import services.ProfessorServices;
  *
  * @version 1.0
  * @since 02-16-2019
- * @authors Aneesh, Gangadhar, Janice, Jinal, Viraj
+ * @authors  Gangadhar, Janice, Jinal
  */
 public class ProfessorServlet extends HttpServlet {
-
-	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
-	/** The professor services. */
 	private ProfessorServices professorServices = new ProfessorServices();
 
 	/**
@@ -85,12 +81,16 @@ public class ProfessorServlet extends HttpServlet {
 			ProfessorServices professorServices = new ProfessorServices();
 			professorServices.insertProfDetails(request);
 			response.sendRedirect("views/professorDetails.jsp");
-		} else if ("DeleteQuestion".equals(flag)) {
+		} 
+		
+		else if ("DeleteQuestion".equals(flag)) {
 			String quesId = request.getParameter("box1");
 			QuestionDAO questionDAO = new QuestionDAO();
 			questionDAO.deleteQuestionByQuestionId(quesId);
 			response.sendRedirect("views/removeQuestionPage.jsp");
-		} else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
+		} 
+		
+		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
 			String question = request.getParameter("question");
 			String questionOption1 = request.getParameter("option1");
 			String questionOption2 = request.getParameter("option2");
