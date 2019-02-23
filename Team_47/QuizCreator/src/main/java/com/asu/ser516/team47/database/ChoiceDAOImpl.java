@@ -146,7 +146,7 @@ public class ChoiceDAOImpl implements ChoiceDAO{
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into choices (quesiton_fk, correct, content)" +
+            stmt = conn.prepareStatement("insert into choices (question_fk, correct, content)" +
                     " VALUES (?,?,?)");
             stmt.setInt(1, choice.getQuestion_fk());
             stmt.setBoolean(2, choice.isCorrect());
