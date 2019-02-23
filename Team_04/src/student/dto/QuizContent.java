@@ -3,7 +3,11 @@ package student.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This Class act as model for quiz_content table
+ */
 public class QuizContent {
+
     private long quizId;
     private long quesId;
     private String quesType;
@@ -12,6 +16,9 @@ public class QuizContent {
     private String ansDesc;
     private boolean isCorrect;
     private long maxScore;
+    private int score;
+    private List<AnswerOption> answerOptions = new ArrayList<>();
+    private List<String> selectedAnswers = new ArrayList<>();
 
 
     public long getQuizId() {
@@ -22,7 +29,6 @@ public class QuizContent {
         this.quizId = quizId;
     }
 
-
     public long getQuesId() {
         return quesId;
     }
@@ -30,7 +36,6 @@ public class QuizContent {
     public void setQuesId(long quesId) {
         this.quesId = quesId;
     }
-
 
     public String getQuesType() {
         return quesType;
@@ -40,7 +45,6 @@ public class QuizContent {
         this.quesType = quesType;
     }
 
-
     public String getQuesDesc() {
         return quesDesc;
     }
@@ -48,7 +52,6 @@ public class QuizContent {
     public void setQuesDesc(String quesDesc) {
         this.quesDesc = quesDesc;
     }
-
 
     public long getAnsId() {
         return ansId;
@@ -58,7 +61,6 @@ public class QuizContent {
         this.ansId = ansId;
     }
 
-
     public String getAnsDesc() {
         return ansDesc;
     }
@@ -66,7 +68,6 @@ public class QuizContent {
     public void setAnsDesc(String ansDesc) {
         this.ansDesc = ansDesc;
     }
-
 
     public boolean getIsCorrect() {
         return isCorrect;
@@ -76,7 +77,6 @@ public class QuizContent {
         this.isCorrect = isCorrect;
     }
 
-
     public long getMaxScore() {
         return maxScore;
     }
@@ -84,8 +84,6 @@ public class QuizContent {
     public void setMaxScore(long maxScore) {
         this.maxScore = maxScore;
     }
-
-    private List<AnswerOption> answerOptions = new ArrayList<>();
 
     public List<AnswerOption> getAnswerOptions() {
         return answerOptions;
@@ -95,8 +93,6 @@ public class QuizContent {
         this.answerOptions = answerOptions;
     }
 
-    private int score;
-
     public int getScore() {
         return score;
     }
@@ -104,8 +100,6 @@ public class QuizContent {
     public void setScore(int score) {
         this.score = score;
     }
-
-    private List<String> selectedAnswers = new ArrayList<>();
 
     public List<String> getSelectedAnswers() {
         return selectedAnswers;
