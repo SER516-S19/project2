@@ -32,6 +32,14 @@ public class ProfessorHomeServlet extends HttpServlet{
 		
 	}
 
+	/**
+	 * This method is to find the courses assigned to Professor 
+	 * and display them in his homepage. 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException
+	 */	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		

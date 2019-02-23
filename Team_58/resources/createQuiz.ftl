@@ -34,7 +34,7 @@ Freemarker page to display createquiz page
     });
   </script>
 	<body>
-	<p class="fontColor"> CREATE QUIZ HERE </p>
+	<p class="fontColor"> CREATE QUIZ </p>
 		<div class="box">
 			<form action="createQuiz" id="quizForm" method = "POST">
 			  <p class="fontUp">Quiz Title </p>
