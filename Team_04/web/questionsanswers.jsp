@@ -30,6 +30,7 @@
 
     .prevBtn, .nextBtn
     {
+        margin-bottom: 25%;
         display: inline-block;
         white-space: nowrap;
         flex-basis: auto;
@@ -49,8 +50,8 @@
     }
     .quesStyle
     {
-        font-size: 200%;
-        margin-bottom: 40px;
+        font-size: 175%;
+        margin-bottom: 55px;
 
     }
     .options:hover
@@ -59,7 +60,16 @@
         cursor: pointer;
 
     }
+    .options
+    {
+        margin-bottom: 5px;
+    }
+    .entireDiv
+    {
+      margin: 70px 50px 70px 70px;
+        border-style: ridge;
 
+    }
 </style>
 <body>
 
@@ -93,7 +103,7 @@
 
     %>
 
-    <b> QUESTION <%=count%> :</b>
+    <h2> QUESTION <%=count%> :</h2>
     <hr>
     <div class="quesStyle"><%=question.getQuesDesc()%></div>
     <%
