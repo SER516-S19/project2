@@ -1,8 +1,8 @@
 <!-- 
 Freemarker page : stylesheet
 @authour Carnic
-@version 1.0
-@date 02/21/2019
+@version 1.2
+@date 02/22/2019
  -->
 
 <style type="text/css">
@@ -42,6 +42,13 @@ Freemarker page : stylesheet
 		margin-left: 5%;
 		 
 	}
+		.smallInputLeft {
+		width : 20%;
+		height: 5%;
+		padding: 0.5%;
+		margin-left: 0%;
+		 
+	}
 	.error {
   		color: #F00;
   		background-color: #FFF;
@@ -59,6 +66,15 @@ Freemarker page : stylesheet
 		height: 20%;
 		margin-left: 30%;
 		margin-top: -8%;
+		font-size: 100%;
+		padding: 12px 20px;
+	}
+	
+	.bigInputLeft {
+		width : 60%;
+		height: 20%;
+		margin-left: 0%;
+		margin-top: 0%;
 		font-size: 100%;
 		padding: 12px 20px;
 	}
@@ -90,6 +106,22 @@ Freemarker page : stylesheet
 		cursor: pointer;
 	}
 	
+	.buttonLarge {
+		margin-top: 7%;
+		background-color: #696969;
+		border: 1px solid grey;
+		color: white;
+		font-family: Verdana, Geneva, sans-serif;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		width: 97%;
+	}
+	
 	.buttonRight {
 		background-color: #696969;
 		border: 1px solid grey;
@@ -116,28 +148,45 @@ Freemarker page : stylesheet
   		box-shadow: 2px 4px 18px 10px #ADADAD;
 	}
 	
+	.boxOuter {
+		background-color: rgb(247, 246, 246  );
+		width: 45%;
+		height: 78%;
+		border: 1px solid grey;
+		padding: 3%;
+		border: 1px solid grey;
+		margin: auto;
+		padding: 10px;
+  		box-shadow: 2px 4px 18px 10px #ADADAD;
+	}
+	
 	.boxRight {
 		background-color: rgb(247, 246, 246  );
-		width: 20%;
-		height: 55%;
+		width: 45%;
+		height: 0%;
 		border: 1px solid grey;
 		padding: 3%;
 		border: 1px solid grey;
 		margin: auto;
 		position absolute;
 		margin-right: 5%;
+		margin-top: 2%; 
 		padding: 10px;
   		box-shadow: 2px 4px 18px 10px #ADADAD;
 	}
 	
 	.shiftTop {
-		margin-top: -20%;
+		margin-top: -70%;
 		margin-left: 4%;
 	}
 	
 	.marginBelow {
 		margin-bottom: 4%;
-		margin-left: -2%
+		margin-left: -2%;
+		
 	}
-
+	
+	.quizButton {
+	   margin-left: 40%;
+	}
 </style>

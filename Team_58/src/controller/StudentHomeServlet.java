@@ -1,8 +1,5 @@
-package edu.asupoly.ser516.controller;
+package controller;
 
-import edu.asupoly.ser516.model.CourseVO;
-import edu.asupoly.ser516.model.QuizVO;
-import edu.asupoly.ser516.model.UserVO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import model.CourseVO;
+import model.QuizVO;
+import model.UserVO;
 
 @WebServlet(name = "StudentHome", urlPatterns = "/StudentHome")
 public class StudentHomeServlet extends HttpServlet
