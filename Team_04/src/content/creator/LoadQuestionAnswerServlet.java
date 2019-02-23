@@ -22,6 +22,7 @@ import java.util.List;
 @WebServlet("/servlet")
 public class LoadQuestionAnswerServlet extends HttpServlet {
 
+    QuizContent currentQuestion = null;
     String view = "";
     private int score = 0;
     private List<QuizContent> questions = new ArrayList<>();
@@ -59,7 +60,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex < questions.size()) {
-            switch (questions.get(currentQuestionIndex - 1).getQuesType()) {
+            switch (currentQuestion.getQuesType()) {
                 case "SA":
                     String[] radioSelection = {request.getParameter("selectedOptionId")};
                     totalScore += computeScore(currentQuestionIndex - 1, Arrays.asList(radioSelection));
@@ -98,6 +99,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         } else {
             result = 0;
         }
+        currentQuestion.setScore(result);
         return result;
     }
 
@@ -125,7 +127,8 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             request.setAttribute("errorResponse", response.getStatus());
         } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
                 && currentQuestionIndex < questions.size()) {
-            request.setAttribute("data", questions.get(currentQuestionIndex));
+            currentQuestion = questions.get(currentQuestionIndex);
+            request.setAttribute("data", currentQuestion);
             currentQuestionIndex += 1;
             request.setAttribute("enableSubmitButton", currentQuestionIndex == questions.size());
             view = "questionsanswers.jsp";
