@@ -16,9 +16,6 @@ import edu.asupoly.ser516.model.QuestionsVO;
 import edu.asupoly.ser516.model.QuizVO;
 import edu.asupoly.ser516.model.ViewQuizDAOBean;
 
-
-
-
 /**
  * Servlet code takes quizId from courseDashboard.ftl  and renders a page displaying
  * information about the quiz and it's questions.
@@ -28,19 +25,23 @@ import edu.asupoly.ser516.model.ViewQuizDAOBean;
  * @see resources/courseDashboard.ftl
  * @see edu.asupoly.ser516.model/ViewQuizDAOBean.java
  * @see resources/viewQuiz.ftl
- * */
-public class ViewQuizServlet extends HttpServlet{
+ */
+public class ViewQuizServlet extends HttpServlet {
 	// This servlet will not make any Get requests.
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
-		
+
 	}
+
 	/**
-	 *Grabs quizId from courseDashboard and renders viewQuiz page
+	 * Grabs quizId from courseDashboard and renders viewQuiz page
 	 *
-	 *The viewQuiz page displays what the selected quiz name is, its scheduled date whether it is graded or not graded
-	 *and displays the question, the correct answer, the total points each question is worth and 
-	 *@param req  Request made to server
-	 *@param res  Responses from server
+	 * The viewQuiz page displays what the selected quiz name is, its scheduled date
+	 * whether it is graded or not graded and displays the question, the correct
+	 * answer, the total points each question is worth and
+	 * 
+	 * @param req Request made to server
+	 * @param res Responses from server
 	 *
 	 *@throws IOException
 	 *@throws ServletException
