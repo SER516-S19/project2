@@ -48,6 +48,7 @@ public class QuestionAnswerGenerator {
 			mapper.setPoints(question.getPoints());
 			mapper.setQuestion(question.getQuestion());
 			mapper.setQuestionId(question.getQuestionId());
+			mapper.setResponseAnswer(new ArrayList<AnswerMapper>());
 			List<AnswerMapper> answerMapperList = new ArrayList<AnswerMapper>();
 			List<Answer> answersList = answerDao.getAnswersByQuestionId(question.getQuestionId());
 			for(Answer ans : answersList) {
