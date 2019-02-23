@@ -71,43 +71,43 @@ VALUES 	(1, "Spiders", 0);
 INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(2, "Antarctica", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(2, "The Sonoran Desert", false);
+VALUES 	(2, "The Sonoran Desert", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(2, "Greenland", true);
+VALUES 	(2, "Greenland", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(2, "Finland", true);
+VALUES 	(2, "Finland", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(2, "Venus", false);
+VALUES 	(2, "Venus", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(3, "True", false);
+VALUES 	(3, "True", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(3, "False", true);
+VALUES 	(3, "False", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(4, "True", true);
+VALUES 	(4, "True", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(4, "False", false);
+VALUES 	(4, "False", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(5, "True", true);
+VALUES 	(5, "True", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(5, "False", false);
+VALUES 	(5, "False", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(6, "Wine", true);
+VALUES 	(6, "Wine", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(6, "A Ceramic Tile", false);
+VALUES 	(6, "A Ceramic Tile", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(6, "Water", true);
+VALUES 	(6, "Water", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(6, "A 5-star review of a cornfield on Yelp", false);
+VALUES 	(6, "A 5-star review of a cornfield on Yelp", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(7, "Beats me.", false);
+VALUES 	(7, "Beats me.", 0);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(7, "It needs to be tested.", true);
+VALUES 	(7, "It needs to be tested.", 1);
 INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(7, "It is necessary to test this.", 1);
 INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(8, "I want to know what happens", 1);
 INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(9, "Happy", true);
+VALUES 	(9, "Happy", 1);
 INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(9, "Sad", 1);
 INSERT INTO Choices (question_fk, content, correct)
