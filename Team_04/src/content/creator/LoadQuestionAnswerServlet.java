@@ -1,8 +1,7 @@
 package content.creator;
 
 import DBUtil.DataManager;
-import com.sun.tools.javac.comp.Todo;
-import com.sun.xml.internal.bind.v2.TODO;
+
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
 
@@ -119,8 +118,12 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             response.setContentType("text/html");
             response.setStatus(response.SC_OK);
             request.getRequestDispatcher(view).forward(request, response);
-        } else {
-            //TODO "Handle submit button"
+        } else if(action.equalsIgnoreCase("submit")){
+            request.setAttribute("totalScore", totalScore);
+            view = "ThankYou.jsp";
+            response.setContentType("text/html");
+            response.setStatus(response.SC_OK);
+            request.getRequestDispatcher(view).forward(request, response);
         }
     }
 }

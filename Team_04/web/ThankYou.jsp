@@ -52,9 +52,15 @@
     }
 </style>
 <body>
+
+<%
+    int totalScore = (int)request.getAttribute("totalScore");
+
+%>
+
 <form class="panel" method="get">
     <h1>Thank you for taking the Quiz!</h1>
-    <h2>Your total Score is </h2>
+    <h2>Your total Score is <%=totalScore%></h2>
 </form>
 </body>
 </html>
