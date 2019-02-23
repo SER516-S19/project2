@@ -10,7 +10,7 @@
                     <option value=${id}> ${name}</option>
                 </#list>
             </select>
-            <input disabled type ="submit" value="Submit"/>
+            <input disabled type = "submit" value="Submit"/>
         </form>
         
         <form action="quizInstructions" method="POST">
@@ -19,7 +19,7 @@
                     <option value=${id}> ${name}</option>
                 </#list>
             </select>
-            <input type ="submit" value="Submit"/>
+            <input type = "submit" value="Submit"/>
         </form>
     </body>
 </html>
