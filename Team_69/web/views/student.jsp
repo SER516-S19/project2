@@ -26,28 +26,30 @@
 			<a href='#'>Prev</a>
 		</div>
 		<form id="submitForm" action="" method="POST">
-			<button type="submit" class="btn-primary" name="action" value="submit" id="submit">Submit</button>
+			<button type="submit" class="btn-primary" name="action"
+				value="submit" id="submit">Submit</button>
 		</form>
-
+		<input id="temp" type="hidden" value=""/>
 		</button>
 	</div>
 	<script>
 		$(document).ready(function() {
 			$('#submit').hide();
 			studentResponseJSON = '<%=session.getAttribute("studentResponseJSON")%>';
-			var studentResponseObj = JSON.parse(studentResponseJSON);
-			displayQuiz(studentResponseObj);
-			//var autoSaveInterval = setInterval(autoSave, 2000);
-		});
-		
-		$('#submitForm').submit(function(){
-			console.log("submit");
+							var studentResponseObj = JSON
+									.parse(studentResponseJSON);
+							displayQuiz(studentResponseObj);
+							var autoSaveInterval = setInterval(autoSave, 2000);
+						});
+
+		$('#submitForm').submit(function() {
 			autoSave();
 		});
-		
-		//function updateSession(studentResponseJSON){
-			
-		//}
+
+		function updateSession(studentResponseJSON) {
+			document.getElementById("temp").value = studentResponseJSON;
+			'<%=session.setAttribute("studentResponseJSON", studentResponseJSON)%>'
+		}
 	</script>
 </body>
 </html>
