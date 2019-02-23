@@ -10,16 +10,21 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <div id='top'>
-<p><a href="loginpage.jsp" class='button' align:"right">logout</a></p>
+<p><a href="index.html" class='button' align:"right">logout</a></p>
 </div>
 <div id='mid'>
 <p>To create a new quiz click the below button<br></p>
-<a href='quiz_creator.jsp' class='button'>create a new quiz!</a>
+<a href='quizcreator.jsp' class='button'>create a new quiz!</a>
 </div>
 <div id='mid1'>
-<p>previously created Quizzes<p>
+<p>Previously created Quizzes<p>
 <ul>
-<a href='quiz_summary.jsp'> <li> quiz1<li> </a>
+ <li>
+ <a href='prof_resultpage.jsp'>quiz1</a>
+ </li>  
+ <li>
+ quiz2
+ </li>  
 </ul>
 </div>
 </body>

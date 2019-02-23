@@ -7,7 +7,7 @@
 
 <label>Total questions : </label> <br>
 <label class="noOfTotal">
-5
+7
 </label>
 <br>
 
@@ -24,8 +24,9 @@
 <br>
 <br>
 
-<form action="resultpage.html">
-<input type="submit" value="submit">
+<form action="resultpage.jsp">
+<input id = "beginbtn" type="submit" value="Submit" onclick='location.href=("resultpage.jsp")'>
+
 </form>
 
 </body>

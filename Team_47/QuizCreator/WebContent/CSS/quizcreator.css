@@ -20,10 +20,14 @@ body{background_color:"#ebebe0"}
   }
   #mid{
 position:absolute;
-  width:650px;
+  width:2050px;
   height:1000px;
-  background:yellow;
-  left:400px;
+  background:#cae8ca;
+  left:0px;
+      margin :0 1000px 0 -300px; /*left-right-top-bottom-depend on ur choice*/
+  
   top:70px;
 text-align:center;
+
 }
+    
