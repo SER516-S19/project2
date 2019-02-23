@@ -21,20 +21,19 @@ public class Answer {
     private String answer;
 
     @Column(name = "Correct_Answer")
-    private String correctAnswer;
-
+    private boolean correctAnswer;
 
     public Answer() {
 
   	}
     
-    public Answer(Question question, String answer, String correctAnswer) {
+    public Answer(Question question, String answer, boolean correctAnswer) {
         this.question = question;
         this.answer = answer;
         this.correctAnswer = correctAnswer;
     }
     
-    public Answer(Question question, int answerId, String answer, String correctAnswer) {
+    public Answer(Question question, int answerId, String answer, boolean correctAnswer) {
         this.question = question;
         this.answer = answer;
         this.correctAnswer = correctAnswer;
@@ -65,11 +64,11 @@ public class Answer {
         this.answer = answer;
     }
 
-    public String getCorrectAnswer() {
+    public boolean getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
+    public void setCorrectAnswer(boolean correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
