@@ -1,3 +1,11 @@
+<%--
+      Created by IntelliJ IDEA.
+      User: appy
+      Modified By: pradeep
+      Date: 17/2/19
+      Time: 5:16 PM
+      Description: Dashboard for Professor and Student.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -5,7 +13,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Select USER</title>
-    <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
 </head>
 <style>
     .panel {
@@ -22,7 +29,6 @@
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-
     }
 
     .wrapper {
@@ -30,7 +36,6 @@
         justify-content: center;
         display: flex;
         padding-bottom: 30px;
-
     }
 
     body {
@@ -38,7 +43,6 @@
     }
 
     .btn1 {
-
         display: inline-block;
         white-space: nowrap;
         flex-basis: auto;
@@ -58,7 +62,6 @@
         padding: 19px 40px 20px;
         transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
         color: #4a154b;
-
     }
 
     .btn2 {
