@@ -14,7 +14,7 @@ import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
 import com.Quizzer.code.model.db.Quiz;
 import com.Quizzer.code.model.response.ResponseListVO;
 import com.Quizzer.code.model.response.ResponseVO;
-import com.Quizzer.code.service.Prof_QuizService;
+import com.Quizzer.code.service.ProfQuizService;
 
 /**
  * This class is the controller that handles requests for : 1.Adding the quiz.
@@ -27,10 +27,8 @@ import com.Quizzer.code.service.Prof_QuizService;
 public class ProfQuizController {
 
 	@Autowired
-	Prof_QuizService quizService;
-<<<<<<< Updated upstream:Team_74/Back-End/Quizzer/src/main/java/com/Quizzer/code/controller/Prof_QuizController.java
-	
-=======
+	ProfQuizService quizService;
+
 
 	/**
 	 * This method handles the add quiz request.
@@ -38,7 +36,7 @@ public class ProfQuizController {
 	 * @param quiz
 	 * @return
 	 */
->>>>>>> Stashed changes:Team_74/Back-End/Quizzer/src/main/java/com/Quizzer/code/controller/ProfQuizController.java
+
 	@RequestMapping(method = RequestMethod.POST, value = "/prof")
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 

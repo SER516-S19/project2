@@ -10,19 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.Quizzer.code.dao.QuestionRepo;
 import com.Quizzer.code.dao.QuizRepo;
-import com.Quizzer.code.dao.Student_QuizRepo;
+import com.Quizzer.code.dao.StudentQuizRepo;
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
 import com.Quizzer.code.model.db.Question;
 import com.Quizzer.code.model.db.Quiz;
-<<<<<<< Updated upstream
-import com.Quizzer.code.model.db.User;
-import com.Quizzer.code.model.response.Response;
-import com.Quizzer.code.model.response.Response_getQuizlist;
-=======
-import com.Quizzer.code.model.response.ResponseListVO;
 import com.Quizzer.code.model.response.ResponseQuizListVO;
->>>>>>> Stashed changes
 import com.mongodb.MongoWriteException;
 
 /**
@@ -32,16 +25,16 @@ import com.mongodb.MongoWriteException;
  *
  */
 @Service
-public class Prof_QuizService {
+public class ProfQuizService {
 
 	@Autowired
 	QuestionRepo questionrepo;
 
 	@Autowired
 	QuizRepo quizRepo;
-	
+
 	@Autowired
-	Student_QuizRepo student_quizrepo; 
+	StudentQuizRepo student_quizrepo;
 
 	/**
 	 * This method adds the quiz to the database and sends a appropriate response.
@@ -140,5 +133,5 @@ public class Prof_QuizService {
 		}
 		return null;
 	}
-	
+
 }

@@ -8,13 +8,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * This class is the model for User data.
+ * This class is the model for Student quiz data.
  * 
- * @author Kirti
+ * @author Kirti Jha
  *
  */
-@Document(collection = "UserDetails")
-public class Student_Quiz implements Serializable {
+@Document(collection = "StudentQuiz")
+public class StudentQuiz implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -22,7 +22,7 @@ public class Student_Quiz implements Serializable {
 	private ArrayList<Quiz> quizlist;
 	private HashMap<Quiz, Integer> attemptedQuiz;
 
-	public Student_Quiz(User studentId, ArrayList<Quiz> quizlist, HashMap<Quiz, Integer> attemptedQuiz) {
+	public StudentQuiz(User studentId, ArrayList<Quiz> quizlist, HashMap<Quiz, Integer> attemptedQuiz) {
 		super();
 		this.studentId = studentId;
 		this.quizlist =  new ArrayList<Quiz>();
@@ -53,7 +53,7 @@ public class Student_Quiz implements Serializable {
 		this.attemptedQuiz = attemptedQuiz;
 	}
 
-	public Student_Quiz() {
+	public StudentQuiz() {
 		
 	}
 }
