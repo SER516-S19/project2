@@ -46,26 +46,12 @@ public class DisplayQuizServlet extends HttpServlet{
                 String answer = userData.getString("actualAnswer");
                 String choices = userData.getString("totalChoices");
 
-<<<<<<< HEAD
                 JSONParser parser = new JSONParser();
                 JSONObject jo = (JSONObject) parser.parse(choices);
-=======
-<<<<<<< HEAD
-                JSONParser parser = new JSONParser();
-                JSONObject jo = (JSONObject) parser.parse(choices);
-                String choice1 = (String) jo.getParameter("incorrectAnswer1");
-                String choice2 = (String) jo.getParameter("incorrectAnswer2");
-                String choice3 = (String) jo.getParameter("incorrectAnswer3");
-=======
-                JSONParser parser = new JSONParser(answer, null, false);
-                JSONObject jo = null;//(JSONObject) parser.parse(choices);
-                //JSONObject jo2 = (JSONObject) parser.parse(answer);
->>>>>>> 1ec52bccf345f7c2c92a97f351e15877c4e03af8
 
                 String choice1 = (String) jo.get("incorrectAnswer1");
                 String choice2 = (String) jo.get("incorrectAnswer2");
                 String choice3 = (String) jo.get("incorrectAnswer3");
->>>>>>> 29c082f6aac0c7791593243146c43ad70a03d181
 
                 questionsVO = new QuestionsVO(questionID, totalPoints, question, answer, choice1, choice2, choice3);
             }
