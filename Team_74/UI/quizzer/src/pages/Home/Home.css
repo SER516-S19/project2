@@ -6,3 +6,11 @@
   height: 340px
 }
 
+.Prof-Button{
+
+  position:fixed;
+  font-size: 15px;
+  padding: 7px 15px;
+  right: 18px;
+
+}

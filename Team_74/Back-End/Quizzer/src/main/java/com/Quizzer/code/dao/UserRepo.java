@@ -2,7 +2,7 @@ package com.Quizzer.code.dao;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.Quizzer.code.model.User;
+import com.Quizzer.code.model.db.User;
 
 public interface UserRepo extends MongoRepository<User, String> {
 
