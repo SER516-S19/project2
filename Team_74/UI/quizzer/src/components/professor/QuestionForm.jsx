@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Question from "../../models/Question";
 import ListController from "../../controllers/ListController";
 import styled from "styled-components";
 import { FaCheck, FaPlus, FaTrash, FaAngleUp, FaAngleDown } from 'react-icons/fa';
+import './Questions.css';
 
 export default function QuestionForm({ question, setQuestion }) {
   function handleChangeText(e) {

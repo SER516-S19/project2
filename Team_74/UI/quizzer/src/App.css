@@ -81,6 +81,9 @@ h1 {
   margin-bottom: 20px;
 }
 
+h2{
+  -webkit-text-fill-color: white;
+}
 p {
   margin-bottom: 15px;
 }

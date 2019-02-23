@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import QuestionForm from "./QuestionForm";
 import styled from "styled-components";
 import { FaSave, FaPen, FaTrashAlt, FaAngleDown, FaAngleUp } from 'react-icons/fa';
+import './Questions.css';
 
 export default function QuizQuestion({
   question,
