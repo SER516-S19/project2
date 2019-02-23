@@ -25,7 +25,7 @@
 		
 		<th scope="col">Quiz Details</th>
 		<th scope="col">Published Quizzes</th>
-		
+		<th scope="col">Add Questions in quiz</th>
 		</tr>
 	<c:forEach items="${requestScope.quizList}" var="quiz">
 
@@ -51,6 +51,8 @@
 						
 			
 		</td>
+		
+		<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
 		
 	</tr>
 	</c:forEach>
