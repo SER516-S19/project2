@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
-import edu.asu.ser516.quiz.model.QuizDetails;
+import edu.asu.ser516.quiz.exceptions.DataAccessException;
+import edu.asu.ser516.quiz.exceptions.NoDataFoundException;
+import edu.asu.ser516.quiz.model.QuizModel;
 
-public class QuizDetailsDaoBean{
+public class QuizDetailsDao{
 	
 	private static Properties dbProperties = new Properties();
 	static {
@@ -23,14 +23,14 @@ public class QuizDetailsDaoBean{
 		}
 	    }
 
-	public QuizDetails findByPrimaryKey(String pPrimaryKey) throws DataAccessException, NoDataFoundException {
+	public static QuizModel findByPrimaryKey(String pPrimaryKey) throws DataAccessException, NoDataFoundException {
 		// TODO Auto-generated method stub
 		Connection conn = ConnectionFactory.getConnection();
 	    ResultSet  rs   = null;
 
 	    String sql = dbProperties.getProperty("SELECTByPrimaryKey_QUIZ");
 
-	    QuizDetails pentry = null;
+	    QuizModel pentry = null;
 
 	    try{
 	      PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -45,7 +45,7 @@ public class QuizDetailsDaoBean{
 	       *
 	       */
 	      if (rs.next()){
-	        pentry = new QuizDetails(rs.getString("title"),rs.getString("instructions"),rs.getString("assignment_group"),
+	        pentry = new QuizModel(rs.getString("title"),rs.getString("instructions"),rs.getString("assignment_group"),
 	        		rs.getBoolean("isshuffled"),rs.getBoolean("isgraded"), rs.getInt("time_limit"),rs.getBoolean("ismultipleattempt"));
 	      }
 	      else{
@@ -71,12 +71,12 @@ public class QuizDetailsDaoBean{
 	    }
 	}
 
-	public static void insert(QuizDetails pValueObject) throws DataAccessException {
+	public static void insert(QuizModel pValueObject) throws DataAccessException {
 		// TODO Auto-generated method stub
 		
 		 String  sql = dbProperties.getProperty("INSERT_QUIZ");
 
-		    QuizDetails pentry = (QuizDetails) pValueObject;
+		    QuizModel pentry = (QuizModel) pValueObject;
 		    Connection conn = ConnectionFactory.getConnection();
 
 		    PreparedStatement preparedStatement = null;
@@ -121,11 +121,11 @@ public class QuizDetailsDaoBean{
 		
 	}
 
-	public void update(QuizDetails pValueObject) throws DataAccessException {
+	public void update(QuizModel pValueObject) throws DataAccessException {
 		// TODO Auto-generated method stub
 	    String sql = dbProperties.getProperty("UPDATE_QUIZ");
 
-	    QuizDetails pentry = (QuizDetails) pValueObject;
+	    QuizModel pentry = (QuizModel) pValueObject;
 	    Connection conn = ConnectionFactory.getConnection();
 	    PreparedStatement preparedStatement = null;
 
@@ -177,11 +177,11 @@ public class QuizDetailsDaoBean{
 		
 	}
 
-	public boolean delete(QuizDetails pValueObject) throws DataAccessException {
+	public boolean delete(QuizModel pValueObject) throws DataAccessException {
 		// TODO Auto-generated method stub
 		String sql = dbProperties.getProperty("DELETE_QUIZ");
 
-	    QuizDetails pentry = (QuizDetails) pValueObject;
+	    QuizModel pentry = (QuizModel) pValueObject;
 
 	    Connection conn = ConnectionFactory.getConnection();
 	    PreparedStatement preparedStatement = null;

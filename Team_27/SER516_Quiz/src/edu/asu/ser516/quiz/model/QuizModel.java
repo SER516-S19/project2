@@ -1,7 +1,7 @@
 package edu.asu.ser516.quiz.model;
 
 
-public class QuizDetails{
+public class QuizModel{
 	
 	private String title;
 	private String instructions;
@@ -11,7 +11,7 @@ public class QuizDetails{
 	private Integer timeLimit;
 	private Boolean isMultipleAttempt;
 	
-	public QuizDetails(String title, String instructions, String assignmentGroup, Boolean isShuffled, Boolean isGraded,
+	public QuizModel(String title, String instructions, String assignmentGroup, Boolean isShuffled, Boolean isGraded,
 			Integer timeLimit, Boolean isMultipleAttempt) {
 		super();
 		this.title = title;

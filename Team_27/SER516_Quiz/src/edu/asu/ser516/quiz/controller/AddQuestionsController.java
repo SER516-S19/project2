@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import edu.asu.ser516.quiz.model.Question;
 import edu.asu.ser516.quiz.dao.QuestionsDao;
 
 public class AddQuestionsController extends HttpServlet {
-
+/*
 	// Method to handle GET method request.
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -35,12 +33,12 @@ public class AddQuestionsController extends HttpServlet {
 
 					String questionNumber = paramName.substring(8);
 
-					String questionText = request.getParameterValues("question" + questionNumber);
+					String[] questionText = request.getParameterValues("question" + questionNumber);
 
-					String optionA = request.getParameterValues("OptionAForQues" + questionNumber);
-					String optionB = request.getParameterValues("OptionBForQues" + questionNumber);
-					String optionC = request.getParameterValues("OptionCForQues" + questionNumber);
-					String optionD = request.getParameterValues("OptionDForQues" + questionNumber);
+					String[] optionA = request.getParameterValues("OptionAForQues" + questionNumber);
+					String[] optionB = request.getParameterValues("OptionBForQues" + questionNumber);
+					String[] optionC = request.getParameterValues("OptionCForQues" + questionNumber);
+					String[] optionD = request.getParameterValues("OptionDForQues" + questionNumber);
 
 					String tmp = request.getParameterValues("isOptionACorrectForQues" + questionNumber);
 					Boolean isOptionACorrect = (tmp == null) ? false : true;
@@ -84,5 +82,5 @@ public class AddQuestionsController extends HttpServlet {
 
 		doGet(request, response);
 	}
-
+*/
 }
