@@ -37,7 +37,7 @@
 		
 		<td>
 		<%String pathWebcontent=request.getContextPath();%>
-			<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}">View Quiz</a>			
+			<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>			
 		</td>
 		<td>
 			<c:choose>
