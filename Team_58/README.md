@@ -20,19 +20,19 @@ Username: vikadi
 Password : 1234
 
 Team Professor:
-Aditya Vikram
-Shivam Verma
-Naren Konchada
-Aditya Samant (Scrum Master)
-Akash Kadam
-Trupti Khatvkar
-Carnic
+- Aditya Vikram
+- Shivam Verma
+- Naren Konchada
+- Aditya Samant (Scrum Master)
+- Akash Kadam
+- Trupti Khatvkar
+- Carnic
 
 Team Student:
-Joshua Drumm (Scrum Master)
-Muhammad Sami
-Prashansa (Product Owner)
-Subhradeep Biswas
-Dhruv Patel
-Vaibhav Bhasin
-Jainish Soni
+- Joshua Drumm (Scrum Master)
+- Muhammad Sami
+- Prashansa (Product Owner)
+- Subhradeep Biswas
+- Dhruv Patel
+- Vaibhav Bhasin
+- Jainish Soni
