@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,12 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import model.QuizDAOBean;
 import model.CourseDAOBean;
 import model.CourseVO;
 import model.QuizVO;
 import model.UserVO;
-
 /**
  * StudentHome is a servlet controlling the home page for students
  * 
