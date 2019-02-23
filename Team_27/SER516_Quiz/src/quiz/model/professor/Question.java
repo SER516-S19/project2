@@ -16,7 +16,7 @@ public class Question {
 
 	public Question(String question, String optionA, String optionB, String optionC, String optionD,
 			Boolean isOptionACorrect, Boolean isOptionBCorrect, Boolean isOptionCCorrect, Boolean isOptionDCorrect,
-			Integer points, Boolean isMultipleAnswer) {
+			String points, Boolean isMultipleAnswer) {
 		super();
 		this.question = question;
 		this.optionA = optionA;
@@ -27,7 +27,7 @@ public class Question {
 		this.isOptionBCorrect = isOptionBCorrect;
 		this.isOptionCCorrect = isOptionCCorrect;
 		this.isOptionDCorrect = isOptionDCorrect;
-		this.points = points;
+		this.points = Integer.parseInt(points);
 		this.isMultipleAnswer = isMultipleAnswer;
 	}
 
