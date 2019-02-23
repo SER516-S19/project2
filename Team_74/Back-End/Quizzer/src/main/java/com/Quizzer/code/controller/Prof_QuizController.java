@@ -21,7 +21,7 @@ public class Prof_QuizController {
 
 	@Autowired
 	Prof_QuizService quizService;
-
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/prof")
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 
