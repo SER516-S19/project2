@@ -52,7 +52,9 @@ public class ProfessorServlet extends HttpServlet{
 			rd.forward(request, response);
 		}
 	}
-
+	
+	
+	 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 

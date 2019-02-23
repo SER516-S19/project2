@@ -1,8 +1,5 @@
 package services;
-
-
 import java.util.List;
-
 import bean.Quiz;
 import dao.ProfessorDAO;
 
