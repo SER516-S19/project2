@@ -58,7 +58,7 @@ public class StudentHomeServlet extends HttpServlet {
 				if (courseBean.equals(null) || quizBean.equals(null))
 					log.info("Database Connection Error");
 
-				List<CourseVO> courseList = courseBean.getCourseAssignedTo(userVO);
+				List<CourseVO> courseList = courseBean.getCourseAssignedToProfessor(userVO);
 				List<QuizVO> quizList = quizBean.getQuizzesForStudent(userVO);
 				if (courseList.isEmpty()) {
 					session.setAttribute("displayMessage", "No Courses have been assigned to the professor");

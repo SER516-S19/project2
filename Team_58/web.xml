@@ -41,18 +41,7 @@
 		<url-pattern>*.ftl</url-pattern>
 	</servlet-mapping>
 	
-  <servlet>
-  	<servlet-name>Submit Quiz=</servlet-name> 
-  	<servlet-class>test.basic</servlet-class>
-  </servlet>
-  <servlet-mapping>  
-   <servlet-name>Submit Quiz=</servlet-name> 
-   <url-pattern>/quiz</url-pattern>
-    </servlet-mapping>
-   <servlet>
-    <servlet-name>CreateQuiz</servlet-name>
-    <servlet-class>test.basic</servlet-class>
-    </servlet>
+  
   
   
     <servlet>
@@ -66,7 +55,7 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
-      <servlet>
+   <servlet>
     <servlet-name>ProfessorHomeServlet</servlet-name>
     <servlet-class>controller.ProfessorHomeServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
@@ -83,7 +72,7 @@
   </servlet>
  		
   <servlet-mapping>
-    <servlet-name>CreateQuiz</servlet-name>
+    <servlet-name>CreateQuizServlet</servlet-name>
     <url-pattern>/createQuiz</url-pattern>
   </servlet-mapping> 
 
@@ -146,6 +135,6 @@
     </servlet-mapping>
 
 <welcome-file-list>
-<welcome-file>/login.jsp</welcome-file>
+<welcome-file>login.jsp</welcome-file>
 </welcome-file-list>
 </web-app>

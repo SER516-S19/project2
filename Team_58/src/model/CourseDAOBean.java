@@ -37,7 +37,7 @@ public class CourseDAOBean implements CourseDAO{
 		ResultSet resultData = null;
 		
 		connection = ConnectionFactory.getConnection();
-		query = connection.prepareStatement(dbProperties.getProperty("getCourseAssignedToProfessorQuery"));
+		query = connection.prepareStatement(dbProperties.getProperty("getCourseAssignedToQuery"));
 		query.setInt(1, userVO.getUserId());
 
 		resultData = query.executeQuery();
