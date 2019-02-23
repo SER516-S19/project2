@@ -1,7 +1,8 @@
-package test;
+package edu.asupoly.ser516.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,17 @@ import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuizInstruction")
+/**
+ * Class DisplayQuizInstructions Servlet is a controller that display Instructions
+ * Home after login.
+ * 
+ * @author Prashansa
+ * @version 1.2
+ * @date 02/22/2019
+ **/
+
+
+@WebServlet(name = "DisplayQuizInstruction", urlPatterns = "/DisplayQuizInstruction")
 public class DisplayQuizInstructionsServlet extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
         try {
@@ -42,12 +53,12 @@ public class DisplayQuizInstructionsServlet extends HttpServlet{
             String quizInstruction = "";
             while(userData.next())
             	quizInstruction = userData.getString("quizInstruction");
-            QuizVO quizVO = null;//new QuizVO(quizInstruction, "", "", "", "", "", "" );
+            QuizVO quizVO = new QuizVO("", quizInstruction, new Date(0, 0, 0), false );
 
             HttpSession session = req.getSession();
             session.setAttribute("QuizVO", quizVO);
             
-            System.out.println("Successful connection - Schema: endddd");
+            System.out.println("Successful connection - Schema:");
 
             res.sendRedirect(req.getContextPath() + "/displayQuizInstructions.ftl");
 
