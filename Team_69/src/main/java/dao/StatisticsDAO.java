@@ -21,10 +21,10 @@ import javax.persistence.criteria.Root;
 public class StatisticsDAO {
 
     public void insertStudentResponse(ResponseStatistics responseStatistics){
-
         Transaction transaction = null;
+        Session session = null;
         try  {
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.save(responseStatistics);
             transaction.commit();
@@ -34,14 +34,18 @@ public class StatisticsDAO {
             }
             e.printStackTrace();
         }
+        finally {
+            session.close();
+        }
 
     }
 
     public long checkQuizStatus(int quizId){
         Transaction transaction = null;
+        Session session = null;
         Long count= 0L;
         try  {
-            Session session = HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Long> query = builder.createQuery(Long.class);
@@ -57,7 +61,9 @@ public class StatisticsDAO {
                 transaction.rollback();
             }
             e.printStackTrace();
-
+        }
+        finally {
+            session.close();
         }
         return count;
     }
