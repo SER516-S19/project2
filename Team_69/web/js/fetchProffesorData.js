@@ -1,4 +1,10 @@
-function myFunction(elem)
+/**
+ * @author - janiceabraham
+ * @version - 1.0
+ * @since - 02/22/2019
+ */
+
+function validateTimeCheckbox(elem)
 {
     if (elem.checked)
     {
