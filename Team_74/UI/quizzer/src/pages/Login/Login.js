@@ -49,14 +49,10 @@ class Login extends React.Component {
       }
     })
 
-    if (username.toString().localeCompare("prof") === 0){
-      this.setState({
-        type: 1
-      })
+    if (username.toString().localeCompare("Prof") === 0){
+      this.state.type = 1;
     }else{
-      this.setState({
-        type: 0
-      })
+      this.state.type = 0;
     }
     localStorage.setItem('username',username);
     localStorage.setItem('password',password);
