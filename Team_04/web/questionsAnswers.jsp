@@ -9,7 +9,7 @@
   User: yuvan
   Date: 2/20/2019
   Time: 11:03 AM
-  To change this template use File | Settings | File Templates.
+  Description: View for displaying questions and answers
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -23,10 +23,12 @@
         margin-top:10%;
         margin-left: 30%;
     }
+
     .navBtn
     {
         margin-left: 62%;
     }
+
     .prevBtn, .nextBtn
     {
         margin-bottom: 25%;
@@ -46,20 +48,24 @@
         padding: 10px 30px 10px;
         transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
     }
+
     .quesStyle
     {
         font-size: 175%;
         margin-bottom: 55px;
     }
+
     .options:hover
     {
         background-color: lightgray;
         cursor: pointer;
     }
+
     .options
     {
         margin-bottom: 5px;
     }
+
     .entireDiv
     {
         margin: 70px 50px 70px 70px;
@@ -70,7 +76,6 @@
 
 <div class="entireDiv">
     <div class="QuesAnsDiv">
-
         <%
             QuizContent question = (QuizContent)request.getAttribute("data");
             boolean enableSubmitButton = (boolean)request.getAttribute("enableSubmitButton");

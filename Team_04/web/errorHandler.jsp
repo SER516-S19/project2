@@ -3,7 +3,7 @@
   User: ankita
   Date: 2/23/2019
   Time: 12:29 AM
-  To change this template use File | Settings | File Templates.
+  View for errors
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -13,6 +13,7 @@
         body{
             background: #4a154b;
         }
+
         .errMsg
         {
             text-align: center;
