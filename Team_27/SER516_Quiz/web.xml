@@ -8,16 +8,16 @@
   
   <servlet>
     <servlet-name>QuizDetailsController</servlet-name>
-    <servlet-class>edu.asu.ser516.quiz.controller.QuizDetailsController</servlet-class>
+    <servlet-class>quiz.controller.professor.QuizDetailsController</servlet-class>
   </servlet>
 
 <servlet>
     <servlet-name>QuizIntroController</servlet-name>
-    <servlet-class>edu.asu.ser516.quiz.controller.QuizIntroController</servlet-class>
+    <servlet-class>quiz.controller.professor.QuizIntroController</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>QuizActionController</servlet-name>
-    <servlet-class>edu.asu.ser516.quiz.controller.QuizActionController</servlet-class>
+    <servlet-class>quiz.controller.professor.QuizActionController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>QuizDetailsController</servlet-name>
