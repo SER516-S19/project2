@@ -13,12 +13,14 @@ import java.util.List;
 public interface EnrolledDAO {
     /**
      * Gets all the enrollments in the database
+     *
      * @return all enrollments
      */
     List<Enrolled> getAllEnrollment();
 
     /**
      * Gets all enrollments for a course
+     *
      * @param course_fk the course's id
      * @return all enrollments in a course
      */
@@ -26,6 +28,7 @@ public interface EnrolledDAO {
 
     /**
      * Gets all enrollments for a student
+     *
      * @param student_fk the student's username
      * @return all enrollments in a student
      */
@@ -33,15 +36,17 @@ public interface EnrolledDAO {
 
     /**
      * Gets a enrollment based on id
-     * @param Enrolled_id a Enrolled id
+     *
+     * @param enrolled_id a Enrolled id
      * @return the Enrolled business object
      */
-    Enrolled getEnrolled(int Enrolled_id);
+    Enrolled getEnrolled(int enrolled_id);
 
     /**
      * Inserts a Enrolled in the database based on the
      * values in a business object
-     * @param enrolled
+     *
+     * @param enrolled enrollment to insert
      * @return a boolean representing a successful/failed insert
      */
     boolean insertEnrolled(Enrolled enrolled);
@@ -49,7 +54,8 @@ public interface EnrolledDAO {
     /**
      * Updates a Enrolled in the database based on the
      * values in a business object
-     * @param enrolled
+     *
+     * @param enrolled enrollment to update
      * @return a boolean representing a successful/failed update
      */
     boolean updateEnrolled(Enrolled enrolled);
@@ -57,7 +63,8 @@ public interface EnrolledDAO {
     /**
      * Deletes a Enrolled in the database based on the
      * values in a business object.
-     * @param enrolled
+     *
+     * @param enrolled enrollment to delete
      * @return a boolean representing a successful/failed deletion
      */
     boolean deleteEnrolled(Enrolled enrolled);

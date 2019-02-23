@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @since   2/22/19
  */
 public class StudentDAOImpl implements StudentDAO {
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all students in the table
@@ -25,7 +25,7 @@ public class StudentDAOImpl implements StudentDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Student> rval = new ArrayList<Student>();
+        List<Student> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -89,13 +89,12 @@ public class StudentDAOImpl implements StudentDAO {
     /**
      * Inserts a student in the database based on the
      * values in a business object
-     * @param student
+     * @param student student to insert
      * @return a boolean representing a successful/failed insert
      */
     public boolean insertStudent(Student student) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -106,11 +105,7 @@ public class StudentDAOImpl implements StudentDAO {
             stmt.setString(3, student.getLastname());
             stmt.setString(4, student.getHashedpass());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -118,7 +113,6 @@ public class StudentDAOImpl implements StudentDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
@@ -134,7 +128,6 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean updateStudent(Student student) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -144,11 +137,7 @@ public class StudentDAOImpl implements StudentDAO {
             stmt.setString(2, student.getLastname());
             stmt.setString(3, student.getUsername());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -156,7 +145,6 @@ public class StudentDAOImpl implements StudentDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
@@ -166,13 +154,12 @@ public class StudentDAOImpl implements StudentDAO {
     /**
      * Deletes a student in the database based on the
      * values in a business object.
-     * @param student
+     * @param student student to delete
      * @return a boolean representing a successful/failed deletion
      */
     public boolean deleteStudent(Student student) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -190,7 +177,6 @@ public class StudentDAOImpl implements StudentDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }

@@ -15,11 +15,8 @@ import java.util.List;
  * @since   2/22/19
  */
 public class AnswerDAOImpl implements AnswerDAO{
-    // Hardcoded (will switch to loading through props in future)
-    //    private static Properties __dbProperties;
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
-    private static String __jdbcUser;
-    private static String __jdbcPasswd;
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
+
 
     /**
      * Gets all answers in the table
@@ -30,7 +27,7 @@ public class AnswerDAOImpl implements AnswerDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Answer> rval = new ArrayList<Answer>();
+        List<Answer> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -67,7 +64,7 @@ public class AnswerDAOImpl implements AnswerDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Answer> rval = new ArrayList<Answer>();
+        List<Answer> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -104,7 +101,7 @@ public class AnswerDAOImpl implements AnswerDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Answer> rval = new ArrayList<Answer>();
+        List<Answer> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -141,7 +138,7 @@ public class AnswerDAOImpl implements AnswerDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Answer> rval = new ArrayList<Answer>();
+        List<Answer> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -214,6 +211,7 @@ public class AnswerDAOImpl implements AnswerDAO{
     public boolean insertAnswer(Answer answer) {
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -224,11 +222,17 @@ public class AnswerDAOImpl implements AnswerDAO{
             stmt.setInt(2, answer.getQuestion_fk());
             stmt.setInt(3, answer.getChoice_fk());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
+            if (updatedRows <= 0) {
                 return false;
             }
+
+            // Return SQLite generated id of inserted value
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                answer.setAnswer_id(rs.getInt(1));
+            }
+            return true;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -263,11 +267,7 @@ public class AnswerDAOImpl implements AnswerDAO{
             stmt.setInt(3, answer.getChoice_fk());
             stmt.setInt(4,answer.getAnswer_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();

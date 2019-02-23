@@ -34,7 +34,7 @@ public interface QuizDAO {
     /**
      * Inserts a quiz in the database based on the
      * values in a business object
-     * @param quiz
+     * @param quiz quiz to insert
      * @return a boolean representing a successful/failed insert
      */
     boolean insertQuiz(Quiz quiz);

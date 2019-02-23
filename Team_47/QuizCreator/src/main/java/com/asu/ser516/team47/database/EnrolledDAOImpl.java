@@ -1,41 +1,40 @@
 package com.asu.ser516.team47.database;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * An Submission Database Abstraction
+ * An Enrolled Database Abstraction
  *
- * @author  Trevor Forrey
+ * @author paulhorton
  * @version 1.0
- * @since   2/22/19
+ * @since 2/22/19
  */
-public class SubmissionDAOImpl implements SubmissionDAO {
+public class EnrolledDAOImpl implements EnrolledDAO{
     private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
-     * Gets all submissions in the table
-     * @return all submissions in the table
+     * Gets all the enrollments in the database
+     *
+     * @return all enrollments
      */
-    public List<Submission> getAllSubmissions() {
+    public List<Enrolled> getAllEnrollment() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<>();
+        List<Enrolled> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from submissions");
+            stmt = conn.prepareStatement("select * from enrolled");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getInt(4), rs.getDate(5), rs.getFloat(6),
-                        rs.getInt(7)));
+                rval.add(new Enrolled(rs.getInt(1), rs.getInt(2), rs.getString(3)));
             }
         }
         catch (Exception se) {
@@ -54,25 +53,25 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     }
 
     /**
-     * Gets all submissions for a quiz
-     * @param quiz_fk quiz_id
-     * @return all submissions for a quiz
+     * Gets all enrollments for a course
+     *
+     * @param course_fk the course's id
+     * @return all enrollments in a course
      */
-    public List<Submission> getQuizSubmissions(int quiz_fk) {
+    public List<Enrolled> getCourseEnrollment(int course_fk) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<>();
+        List<Enrolled> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
-            stmt = conn.prepareStatement("select * from submissions where quiz_fk = ?");
-            stmt.setInt(1, quiz_fk);
+
+            stmt = conn.prepareStatement("select * from enrolled where course_fk = ?");
+            stmt.setInt(1,course_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getInt(4), rs.getDate(5), rs.getFloat(6),
-                        rs.getInt(7)));
+                rval.add(new Enrolled(rs.getInt(1), rs.getInt(2), rs.getString(3)));
             }
         }
         catch (Exception se) {
@@ -91,26 +90,25 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     }
 
     /**
-     * Gets all submissions for an enrollment
-     * @param enrolled_fk enrolled_id
-     * @return all submissions for an enrollment
+     * Gets all enrollments for a student
+     *
+     * @param student_fk the student's username
+     * @return all enrollments in a student
      */
-    public List<Submission> getEnrolledSubmissions(int enrolled_fk) {
+    public List<Enrolled> getStudentEnrollment(String student_fk) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<>();
+        List<Enrolled> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from submissions where enrolled_fk = ?");
-            stmt.setInt(1, enrolled_fk);
+            stmt = conn.prepareStatement("select * from enrolled where student_fk = ?");
+            stmt.setString(1,student_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getInt(4), rs.getDate(5), rs.getFloat(6),
-                        rs.getInt(7)));
+                rval.add(new Enrolled(rs.getInt(1), rs.getInt(2), rs.getString(3)));
             }
         }
         catch (Exception se) {
@@ -129,26 +127,25 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     }
 
     /**
-     * Gets a submission based on it's submission_id
-     * @param submission_id the id of the submission_id
-     * @return a submission with the submission_id
+     * Gets a enrollment based on id
+     *
+     * @param enrolled_id a Enrolled id
+     * @return the Enrolled business object
      */
-    public Submission getSubmission(int submission_id) {
+    public Enrolled getEnrolled(int enrolled_id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Submission rval = null;
+        Enrolled rval = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from submissions where submission_id = ?");
-            stmt.setInt(1, submission_id);
+            stmt = conn.prepareStatement("select * from enrolled where enrolled_id = ?");
+            stmt.setInt(1,enrolled_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval = new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getInt(4), rs.getDate(5), rs.getFloat(6),
-                        rs.getInt(7));
+                rval = new Enrolled(rs.getInt(1), rs.getInt(2), rs.getString(3));
             }
         }
         catch (Exception se) {
@@ -166,13 +163,15 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         return rval;
     }
 
-    /**
-     * Inserts a submission in the database based on the
-     * values in a business object
-     * @param submission submission to delete
-     * @return a boolean representing a successful/failed insert
-     */
-    public boolean insertSubmission(Submission submission) {
+
+        /**
+         * Inserts a Enrolled in the database based on the
+         * values in a business object
+         *
+         * @param enrolled enrollment to insert
+         * @return a boolean representing a successful/failed insert
+         */
+    public boolean insertEnrolled(Enrolled enrolled) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -180,24 +179,19 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into submissions (quiz_fk, enrolled_fk," +
-                    " time_taken, date_taken, score, attempt) VALUES (?,?,?,?,?,?)");
-            stmt.setInt(1, submission.getQuiz_fk());
-            stmt.setInt(2, submission.getEnrolled_fk());
-            stmt.setInt(3, submission.getTime_taken());
-            stmt.setDate(4, new java.sql.Date(submission.getDate_taken().getTime()));
-            stmt.setDouble(5, submission.getScore());
-            stmt.setInt(6, submission.getAttempt());
+            stmt = conn.prepareStatement("insert into enrolled (course_fk, student_fk) VALUES (?,?)");
+            stmt.setInt(1, enrolled.getCourse_fk());
+            stmt.setString(2, enrolled.getStudent_fk());
             int updatedRows = stmt.executeUpdate();
             if (updatedRows <= 0) {
                 return false;
             }
 
-            // Update submission id to SQLite generated id
+            // Return SQLite generated id of inserted value
             stmt = conn.prepareStatement("SELECT last_insert_rowid()");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                submission.setSubmission_id(rs.getInt(1));
+                enrolled.setEnrolled_id(rs.getInt(1));
             }
             return true;
         }
@@ -215,27 +209,23 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     }
 
     /**
-     * Updates a submission in the database based on the
+     * Updates a Enrolled in the database based on the
      * values in a business object
-     * @param submission a submission to update in the database
+     *
+     * @param enrolled enrollment to update
      * @return a boolean representing a successful/failed update
      */
-    public boolean updateSubmission(Submission submission) {
+    public boolean updateEnrolled(Enrolled enrolled) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update submissions set quiz_fk=?, enrolled_fk=?, time_taken=?," +
-                    " date_taken=?, score=?, attempt=? where submission_id=?");
-            stmt.setInt(1, submission.getQuiz_fk());
-            stmt.setInt(2, submission.getEnrolled_fk());
-            stmt.setInt(3, submission.getTime_taken());
-            stmt.setDate(4, new java.sql.Date(submission.getDate_taken().getTime()));
-            stmt.setDouble(5, submission.getScore());
-            stmt.setInt(6, submission.getAttempt());
-            stmt.setInt(7, submission.getSubmission_id());
+            stmt = conn.prepareStatement("update enrolled set course_fk=?, student_fk=? where enrolled_id = ?");
+            stmt.setInt(1, enrolled.getCourse_fk());
+            stmt.setString(2, enrolled.getStudent_fk());
+            stmt.setInt(3, enrolled.getEnrolled_id());
             int updatedRows = stmt.executeUpdate();
             return updatedRows > 0;
         }
@@ -252,12 +242,13 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     }
 
     /**
-     * Deletes a submission in the database based on the
-     * values in a business object
-     * @param submission a submission to delete in the database
+     * Deletes a Enrolled in the database based on the
+     * values in a business object.
+     *
+     * @param enrolled enrollment to delete
      * @return a boolean representing a successful/failed deletion
      */
-    public boolean deleteSubmission(Submission submission) {
+    public boolean deleteEnrolled(Enrolled enrolled) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -265,8 +256,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
             conn.setAutoCommit(false);
 
-            stmt = conn.prepareStatement("delete from submissions where submission_id=?");
-            stmt.setInt(1, submission.getSubmission_id());
+            stmt = conn.prepareStatement("delete from enrolled where enrolled_id=?");
+            stmt.setInt(1, enrolled.getEnrolled_id());
             stmt.executeUpdate();
             conn.commit();
             return true;
