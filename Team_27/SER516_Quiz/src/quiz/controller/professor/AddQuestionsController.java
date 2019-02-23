@@ -2,10 +2,7 @@ package quiz.controller.professor;
 
 import java.io.IOException;
 import java.util.Enumeration;
-<<<<<<< HEAD
 
-=======
->>>>>>> 40afd5c691a68f0be5082d455e87f52e165822af
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
