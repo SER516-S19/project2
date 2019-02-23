@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%String dateTime = (String)session.getAttribute("startTime"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +14,7 @@
 </head>
 <body>
 	<div id='container'>
+	<%String dateTime = (String)session.getAttribute("startTime"); %>
 		<div id='title'>
 			<h1>Quiz Instructions</h1>
 			<p>Started at <%=dateTime %></p>
