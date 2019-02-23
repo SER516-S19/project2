@@ -1,38 +1,38 @@
 package student.dto;
 
 public class AnswerOption {
-    private String ans_desc;
-    private long ans_id;
-    private boolean is_correct;
-    public AnswerOption(long ans_id, String ans_desc, boolean is_correct) {
-        this.ans_desc = ans_desc;
-        this.ans_id = ans_id;
-        this.is_correct = is_correct;
+    private String ansDesc;
+    private long ansId;
+    private boolean isCorrect;
+    public AnswerOption(long ansId, String ansDesc, boolean isCorrect) {
+        this.ansDesc = ansDesc;
+        this.ansId = ansId;
+        this.isCorrect = isCorrect;
     }
 
 
     public boolean getIsCorrect() {
-        return this.is_correct;
+        return this.isCorrect;
     }
 
-    public void setIs_correct(boolean is_correct) {
-        this.is_correct = is_correct;
+    public void setIsCorrect(boolean isCorrect) {
+        this.isCorrect = isCorrect;
     }
 
-    public long getAns_id() {
-        return ans_id;
+    public long getAnsId() {
+        return ansId;
     }
 
-    public void setAns_id(long ans_id) {
-        this.ans_id = ans_id;
+    public void setAnsId(long ans_id) {
+        this.ansId = ansId;
     }
 
-    public String getAns_desc() {
-        return ans_desc;
+    public String getAnsDesc() {
+        return ansDesc;
     }
 
-    public void setAns_desc(String ans_desc) {
-        this.ans_desc = ans_desc;
+    public void setAnsDesc(String ansDesc) {
+        this.ansDesc = ansDesc;
     }
 }
 

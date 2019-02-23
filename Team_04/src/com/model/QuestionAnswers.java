@@ -19,7 +19,7 @@ public class QuestionAnswers {
 		this.ques_id = ques_id;
 	}
 
-	public String getQues_type() {
+	public String getQuesType() {
 		return ques_type;
 	}
 
@@ -27,7 +27,7 @@ public class QuestionAnswers {
 		this.ques_type = ques_type;
 	}
 
-	public String getQues_desc() {
+	public String getQuesDesc() {
 		return ques_desc;
 	}
 

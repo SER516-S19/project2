@@ -67,7 +67,7 @@
     <%
         QuizContent question = (QuizContent)request.getAttribute("data");
         String buttonType = "";
-        if(question.getQues_type().equals("SA"))
+        if(question.getQuesType().equals("SA"))
         {
             buttonType = "radio";
         }
@@ -81,16 +81,16 @@
 
     <b> QUESTION <%= count++ %> :</b>
     <hr>
-    <div class="quesStyle"><%=question.getQues_desc()%></div>
+    <div class="quesStyle"><%=question.getQuesDesc()%></div>
     <%
         for (AnswerOption answer : question.getAnswerOptions()){
 
-           request.setAttribute("ansId", answer.getAns_id());
-           request.setAttribute("ansDesc", answer.getAns_desc());
+           request.setAttribute("ansId", answer.getAnsDesc());
+           request.setAttribute("ansDesc", answer.getAnsDesc());
     %>
 
     <form method ="post">
-    <div class="options"><input type=<%=buttonType%> class="optionTag" name="selectedOptionId" value="<%= answer.getAns_id() %>"><%= answer.getAns_desc() %></input></div>
+    <div class="options"><input type=<%=buttonType%> class="optionTag" name="selectedOptionId" value="<%= answer.getAnsId() %>"><%= answer.getAnsDesc() %></input></div>
     <%}%>
 
 </div>

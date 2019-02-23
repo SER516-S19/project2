@@ -33,14 +33,14 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 	private void loadQuestionsAnswers() {
 
 		List<QuizContent> questions = DataManager.getInstance().executeGetQuery(QuizContent.class,
-				"SELECT * FROM quiz_content group by ques_id");
+				"SELECT * FROM quiz_content group by quesId");
 
 		for (QuizContent question : questions) {
 			List<QuizContent> options = DataManager.getInstance().executeGetQuery(QuizContent.class,
-					"SELECT * FROM quiz_content where ques_id=" + question.getQues_id());
+					"SELECT * FROM quiz_content where quesId=" + question.getQuesId());
 			for (QuizContent answerOption : options) {
-				question.getAnswerOptions().add(new AnswerOption(answerOption.getAns_id(),
-						answerOption.getAns_desc(), answerOption.isIs_correct()));
+				question.getAnswerOptions().add(new AnswerOption(answerOption.getAnsId(),
+						answerOption.getAnsDesc(), answerOption.getIsCorrect()));
 			}
 		}
 		this.questions = questions;
@@ -70,7 +70,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 
 		QuizContent quiz = this.questions.get(currentQuestionIndex - 1);
 		for (AnswerOption ans : quiz.getAnswerOptions()) {
-			if (ans.getIsCorrect() && userSelectedAns != -1 && userSelectedAns == ans.getAns_id()) {
+			if (ans.getIsCorrect() && userSelectedAns != -1 && userSelectedAns == ans.getAnsId()) {
 				score++;
 			}
 		}
