@@ -27,11 +27,11 @@ public class ProfessorServices {
 	 */
 	public void storeQuestion(HttpServletRequest request) {
 		String question = request.getParameter("question");
-		String questionOption1 = request.getParameter("option1");
-		String questionOption2 = request.getParameter("option2");
-		String questionOption3 = request.getParameter("option3");
-		String questionOption4 = request.getParameter("option4");
-		String points = request.getParameter("points");
+		String questionOption1 = request.getParameter("option1").trim();
+		String questionOption2 = request.getParameter("option2").trim();
+		String questionOption3 = request.getParameter("option3").trim();
+		String questionOption4 = request.getParameter("option4").trim();
+		String points = request.getParameter("points").trim();
 		String[] correctanswers = request.getParameterValues("options");
 		HttpSession session = request.getSession(true);
 		Quiz quiz = (Quiz)session.getAttribute("quiz");
