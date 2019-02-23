@@ -14,7 +14,7 @@ public class Question implements Serializable {
 	@Id
 	private String id;
 	private String questionText;
-	private List<String> answers;
+	private List<String> options;
 	private String quizId;
 	private String correctAnswer;
 	private String type;
@@ -24,12 +24,12 @@ public class Question implements Serializable {
 	public Question() {
 		
 	}
-	public Question(String id, String questionText, List<String> answers, String quizId, String correctAnswer,
+	public Question(String id, String questionText, List<String> options, String quizId, String correctAnswer,
 			String type, int totalCorrectAttempts, int marks) {
 		super();
 		this.id = id;
 		this.questionText = questionText;
-		this.answers = answers;
+		this.options = options;
 		this.quizId = quizId;
 		this.correctAnswer = correctAnswer;
 		this.type = type;
@@ -53,12 +53,12 @@ public class Question implements Serializable {
 		this.questionText = questionText;
 	}
 
-	public List<String> getAnswers() {
-		return answers;
+	public List<String> getOptions() {
+		return options;
 	}
 
-	public void setAnswers(List<String> answers) {
-		this.answers = answers;
+	public void setAnswers(List<String> options) {
+		this.options = options;
 	}
 
 	public String getQuizId() {
