@@ -22,9 +22,10 @@ public class Question {
 	private Integer points;
 	private Boolean isMultipleAnswer;
 
-	public Question(String quizId, String question, String optionA, String optionB, String optionC, String optionD,
-			Boolean isOptionACorrect, Boolean isOptionBCorrect, Boolean isOptionCCorrect, Boolean isOptionDCorrect,
-			String points, Boolean isMultipleAnswer) {
+	public Question(String quizId, String question, String optionA, 
+			String optionB, String optionC, String optionD, Boolean isOptionACorrect, 
+			Boolean isOptionBCorrect, Boolean isOptionCCorrect, 
+			Boolean isOptionDCorrect, String points, Boolean isMultipleAnswer) {
 		super();
 		this.quizId = Integer.parseInt(quizId);
 		this.question = question;
