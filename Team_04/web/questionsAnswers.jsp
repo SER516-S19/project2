@@ -27,7 +27,6 @@
     {
         margin-left: 62%;
     }
-
     .prevBtn, .nextBtn
     {
         margin-bottom: 25%;
@@ -46,19 +45,16 @@
         text-transform: uppercase;
         padding: 10px 30px 10px;
         transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-
     }
     .quesStyle
     {
         font-size: 175%;
         margin-bottom: 55px;
-
     }
     .options:hover
     {
         background-color: lightgray;
         cursor: pointer;
-
     }
     .options
     {
@@ -66,64 +62,61 @@
     }
     .entireDiv
     {
-      margin: 70px 50px 70px 70px;
+        margin: 70px 50px 70px 70px;
         border-style: ridge;
-
     }
 </style>
 <body>
 
 <div class="entireDiv">
-<div class="QuesAnsDiv">
+    <div class="QuesAnsDiv">
 
-    <%
-        QuizContent question = (QuizContent)request.getAttribute("data");
-        boolean enableSubmitButton = (boolean)request.getAttribute("enableSubmitButton");
-        String buttonType = "";
-        if(question.getQuesType().equals("SA"))
-        {
-            buttonType = "radio";
-        }
-        else
-        {
-            buttonType = "checkbox";
-        }
+        <%
+            QuizContent question = (QuizContent)request.getAttribute("data");
+            boolean enableSubmitButton = (boolean)request.getAttribute("enableSubmitButton");
+            String submitBtn = "";
+            String nextBtn = "";
+            String buttonType = "";
+            int count = (int)session.getAttribute("count");
 
-        String submitBtn = "";
-        String nextBtn = "";
-        if(!enableSubmitButton)
-        {
-            submitBtn = "disabled";
-        }
-        else
-        {
-            nextBtn ="disabled";
-        }
-        int count = (int)session.getAttribute("count");
+            if(question.getQuesType().equals("SA"))
+            {
+                buttonType = "radio";
+            }
+            else
+            {
+                buttonType = "checkbox";
+            }
 
-    %>
+            if(!enableSubmitButton)
+            {
+                submitBtn = "disabled";
+            }
+            else
+            {
+                nextBtn ="disabled";
+            }
+        %>
 
-    <h2> QUESTION <%=count%> :</h2>
-    <hr>
-    <div class="quesStyle"><%=question.getQuesDesc()%></div>
-    <%
-        for (AnswerOption answer : question.getAnswerOptions()){
+        <h2> QUESTION <%=count%> :</h2>
+        <hr>
+        <div class="quesStyle"><%=question.getQuesDesc()%></div>
+        <%
+            for (AnswerOption answer : question.getAnswerOptions()){
 
-           request.setAttribute("ansId", answer.getAnsDesc());
-           request.setAttribute("ansDesc", answer.getAnsDesc());
-    %>
+               request.setAttribute("ansId", answer.getAnsDesc());
+               request.setAttribute("ansDesc", answer.getAnsDesc());
+        %>
+        <form method ="post">
+        <div class="options"><input type=<%=buttonType%> class="optionTag" name="selectedOptionId" value="<%= answer.getAnsId() %>"><%= answer.getAnsDesc() %></input></div>
+        <%}%>
 
-    <form method ="post">
-    <div class="options"><input type=<%=buttonType%> class="optionTag" name="selectedOptionId" value="<%= answer.getAnsId() %>"><%= answer.getAnsDesc() %></input></div>
-    <%}%>
-
+    </div>
+    <div class="navBtn">
+        <input type="submit" text="submit" value="submit" formaction="./loadquestionanswerservlet" name="action" class="prevBtn" <%=submitBtn%>/>
+        <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn" <%=nextBtn%>/>
+        </form>
+    </div>
 </div>
-<div class="navBtn">
-    <input type="submit" text="submit" value="submit" formaction="./loadquestionanswerservlet" name="action" class="prevBtn" <%=submitBtn%>/>
-    <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn" <%=nextBtn%>/>
-    </form>
-</div>
-</div>
-
 </body>
 </html>
