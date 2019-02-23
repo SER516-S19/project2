@@ -34,13 +34,14 @@ public class DisplayQuizServlet extends HttpServlet{
             String schema = connection.getSchema();
             System.out.println("Successful connection - Schema: " + schema);
 
-            PreparedStatement query2 = connection.prepareStatement("select questionId, question, actualAnswer, totalChoices from [dbo].[questions]" + " where questionId = ?");
+            PreparedStatement query2 = connection.prepareStatement("select * from [dbo].[questions] where questionId = ?");
             query2.setInt(1, questionID);
             ResultSet userData = query2.executeQuery();
             QuestionsVO questionsVO = null;
 
             while(userData.next()){
                 int questionId = userData.getInt("questionId");
+                int quizId = userData.getInt("quizId");
                 int totalPoints = userData.getInt("totalPoints");
                 String question = userData.getString("question");
                 String answer = userData.getString("actualAnswer");
@@ -53,9 +54,8 @@ public class DisplayQuizServlet extends HttpServlet{
                 String choice2 = (String) jo.get("incorrectAnswer2");
                 String choice3 = (String) jo.get("incorrectAnswer3");
 
-                questionsVO = new QuestionsVO(questionID, totalPoints, question, answer, choice1, choice2, choice3);
+                questionsVO = new QuestionsVO(questionId, totalPoints, answer, choice1, choice2, choice3, question);
             }
-
 
             HttpSession session = req.getSession();
             session.setAttribute("QuestionsVO", questionsVO);

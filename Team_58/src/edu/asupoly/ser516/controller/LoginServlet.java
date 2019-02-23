@@ -63,9 +63,9 @@ public class LoginServlet extends HttpServlet  {
 	    }
 	    
 	    else{  
-	    	/**
-	    	 *  Call Student Profile HomePage
-	    	 */
+	    	req.setAttribute("UserVO", userData.get(0));
+			RequestDispatcher rd=req.getRequestDispatcher("/StudentHome");
+			rd.forward(req,res);
 	    }  
 	}
 }
