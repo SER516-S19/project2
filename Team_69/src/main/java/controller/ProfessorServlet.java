@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.sql.Time;
 import java.util.List;
+import java.util.TimeZone;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,19 +58,36 @@ public class ProfessorServlet extends HttpServlet{
 	        String quizInstructions = request.getParameter("instructions");
 	        String quizType = request.getParameter("quiz_type");
 	        String isTimeLimitSet = request.getParameter("time_limit");
-	        Time quizTimeLimit = new Time(0);
+	        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
+	        String quizTimeLimit = "00:00:00";
 	        boolean isShuffled = false;
 	        boolean isPublished = false;
-	        String assignmentGroup = request.getParameter("assignment_group");
+	        System.out.println(quizTimeLimit);
+	        //String assignmentGroup = request.getParameter("assignment_group");
 	        
-	        if(isTimeLimitSet!="null")
+	        if(isTimeLimitSet!=null)
 	        {
-	        	Integer quizTimeHour = Integer.parseInt(request.getParameter("hours"));
-	        	Integer quizTimeMinutes =Integer.parseInt(request.getParameter("minutes"));
-	        	quizTimeLimit = new Time(quizTimeHour * 60 * 60000 + quizTimeMinutes * 60000);
+	        	String hours = request.getParameter("hours");
+	        	String minutes = request.getParameter("minutes");
+	        	
+	        	System.out.println(hours);
+	        	System.out.println(minutes);
+	        	
+	        	if(hours.length() == 0)
+	        		hours = "0";
+	        	
+	        	if(minutes.length() == 0)
+	        		minutes = "0";
+	        	
+	        	if (hours.length() == 1)
+	        			hours = "0" + hours;
+	        	if (minutes.length() == 1)
+	        		minutes = "0" + minutes;
+        	
+	        	quizTimeLimit = hours+":"+minutes+":00";
 	        }
 	        
-	        if(request.getParameter("shuffle")!="null")
+	        if(request.getParameter("shuffle")!=null)
 	        {
 	        	isShuffled = true;
 	        }
