@@ -34,6 +34,13 @@ public class LoginServlet extends HttpServlet  {
 		res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 	}
 
+	/**
+	 * This method is to validate the user and get his details. 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException
+	 */	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException {
 		

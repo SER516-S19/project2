@@ -16,7 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import edu.asupoly.ser516.model.GradeQuizVO;
+import edu.asupoly.ser516.model.GradeQuizVODAOBean;
 import edu.asupoly.ser516.model.QuizVO;
+import edu.asupoly.ser516.model.StudentResponseDAO;
+import edu.asupoly.ser516.model.StudentResponseDAOBean;
 
 /**
  * Class GradeQuizServlet is a controller 
@@ -44,68 +47,20 @@ public class GradeQuizServlet extends HttpServlet{
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-
-		//QuizVO quizVO = (QuizVO) session.getAttribute("quizInfo");
 		
 		int quizId = Integer.parseInt(session.getAttribute("quizId").toString());
 		String quizName = session.getAttribute("quizName").toString();
 
 		try {
-
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-			String hostName = "showtimefinder.database.windows.net"; // update me
-			String dbName = "ser516_db"; // update me
-			String user = "scrum_mates@showtimefinder"; // update me
-			String password = "Azure@Cloud"; // update me
-			String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
-					+ "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-			Connection connection = null;
-			connection = DriverManager.getConnection(url);
-			String schema;
-			schema = connection.getSchema();
-			System.out.println("Successful connection - Schema: " + schema);
-
-
-			PreparedStatement query;
-			query = connection.prepareStatement("UPDATE SR\r\n" + 
-					"SET SR.[score] = Q.[totalPoints]\r\n" + 
-					"FROM [dbo].[StudentResponse] SR\r\n" + 
-					"JOIN [dbo].[Questions] Q\r\n" + 
-					"ON SR.questionId = Q.questionId\r\n" + 
-					"AND SR.answerSelected = Q.actualAnswer\r\n" +
-					"Where SR.quizId = ?");
-			query.setInt(1,quizId);
-
-			query.executeUpdate();
+			StudentResponseDAOBean studentResponseDAOBean = new StudentResponseDAOBean();
+		
+			studentResponseDAOBean.updateStudentResponse(quizId);
 			
-			query = null;
+			GradeQuizVODAOBean quizVODAOBean = new GradeQuizVODAOBean();
 			
-			query = connection.prepareStatement("Select sum(score) as score, firstname,lastname, C.[quizTitle] \r\n" + 
-					"from StudentResponse A\r\n" + 
-					"JOIN UserDetails B\r\n" + 
-					"on A.userId = B.userId\r\n" + 
-					"JOIN Quiz C\r\n" + 
-					"on C.quizId = A.quizId\r\n" + 
-					"where A.quizId = ?\r\n" + 
-					"group by firstname,lastname, [quizTitle]");
-			query.setInt(1,quizId);
+			List<GradeQuizVO> gradedQuizList = quizVODAOBean.getgradeQuiz(quizId, quizName);
 			
-			ResultSet resultData = query.executeQuery();
-			
-
-			List<GradeQuizVO> list = new ArrayList<>();
-
-			while(resultData.next()) {
-				int score = resultData.getInt("score");
-				String firstName = resultData.getString("firstname");
-				String lastName = resultData.getString("lastname"); 
-				GradeQuizVO gradeQuiz = new GradeQuizVO(score,firstName,lastName,quizName);
-				list.add(gradeQuiz);
-			}
-
-			
-			session.setAttribute("gradeQuiz", list);
+			session.setAttribute("gradeQuiz", gradedQuizList);
 			session.setAttribute("quizName", quizName);
 
 			response.sendRedirect(request.getContextPath()+"/gradeQuiz.ftl");  
