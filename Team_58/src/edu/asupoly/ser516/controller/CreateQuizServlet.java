@@ -49,7 +49,6 @@ public class CreateQuizServlet extends HttpServlet {
 	 *
 	 * @throws IOException, ServletException
 	 */
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -64,27 +63,17 @@ public class CreateQuizServlet extends HttpServlet {
     		HttpSession session = request.getSession();
     		int courseId = (int) session.getAttribute("courseId");
     		
-    		/**
-    		 * running a query 
-    		 * to get insert quiz details in table
-    		 */
-    		
+
     		CreateQuizVO createQuizVO = new CreateQuizVO(courseId, quizTitle, quizInstructions, quizScheduledDate, 0, isShuffled, assignedTime, false);
     		
     		QuizDAOBean obj = new QuizDAOBean();
     		obj.creatingQuiz(createQuizVO);
     		
     		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
-
-    		/**
-    		 * running a query 
-    		 * to get the value of quizId in session
-    		 */
     		
     		int quizId = obj.gettingQuizId(createQuizVO);
     		
 			session.setAttribute("quizId", quizId);
-			//request.getRequestDispatcher("/createQuestions.ftl").forward(request, response);
 			response.sendRedirect(request.getContextPath() + "/createQuestions.ftl");
     		
 		} catch (Exception e) {
