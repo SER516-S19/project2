@@ -13,6 +13,7 @@
 	if(temp){
 		mulbutton = "button";
 	}
+	String title = "title";
 %>
 <head>
 <meta charset="UTF-8">
@@ -25,7 +26,7 @@
 
 <div id ="instrcu_all">
 <p>Quiz Instruction</p>
-<input id = "instruc"type = "text" value="<%=QuizList.getQuizName() %>" disabled="disabled">
+<input id = "instruc"type = "text" value="<%=title %>" disabled="disabled">
 </div>
 
 <label id="attemp">
