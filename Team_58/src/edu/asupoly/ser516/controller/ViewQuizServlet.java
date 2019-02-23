@@ -1,13 +1,10 @@
 package edu.asupoly.ser516.controller;
 
 import java.io.IOException;
-
-
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,36 +12,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import edu.asupoly.ser516.model.QuestionsVO;
 import edu.asupoly.ser516.model.QuizVO;
 import edu.asupoly.ser516.model.ViewQuizDAOBean;
-
-
-
 
 /**
  * Servlet code takes quizId from courseDashboard.ftl  and renders a page displaying
  * information about the quiz and it's questions.
  * Database connections and retrievals are all conducted via the DAO interface.
- * @author Aditya Samant
- * @version 1.1
+ * @author Aditya Samant / @author akashkadam
+ * @version 1.2
  * @see resources/courseDashboard.ftl
  * @see edu.asupoly.ser516.model/ViewQuizDAOBean.java
  * @see resources/viewQuiz.ftl
- * */
-public class ViewQuizServlet extends HttpServlet{
+ */
+public class ViewQuizServlet extends HttpServlet {
 	// This servlet will not make any Get requests.
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
-		
+
 	}
+
 	/**
-	 *Grabs quizId from courseDashboard and renders viewQuiz page
+	 * Grabs quizId from courseDashboard and renders viewQuiz page
 	 *
-	 *The viewQuiz page displays what the selected quiz name is, its scheduled date whether it is graded or not graded
-	 *and displays the question, the correct answer, the total points each question is worth and 
-	 *@param req  Request made to server
-	 *@param res  Responses from server
+	 * The viewQuiz page displays what the selected quiz name is, its scheduled date
+	 * whether it is graded or not graded and displays the question, the correct
+	 * answer, the total points each question is worth and
+	 * 
+	 * @param req Request made to server
+	 * @param res Responses from server
 	 *
 	 *@throws IOException
 	 *@throws ServletException
@@ -88,13 +85,13 @@ public class ViewQuizServlet extends HttpServlet{
 	    	   	  // QuizVO quizInfo = new QuizVO(quizId, quizName);
 		   		   
 		   		   //Add Quiz info to Session attributes
-		   		   session.setAttribute("Id", quizId);
+		   		   session.setAttribute("quizId", quizId);
 		   		   session.setAttribute("Grade",quiz.isGraded());
 		   		   session.setAttribute("Schedule", quiz.getQuizScheduledDate());
 		   		   session.setAttribute("Directions", quiz.getQuizInstruction());
 		   		   session.setAttribute("isAfter", isAfter);
 		   		   session.setAttribute("QuizQuestions",quizQuestions);
-		   		   session.setAttribute("Name", quiz.getQuizTitle());
+		   		   session.setAttribute("quizName", quiz.getQuizTitle());
 		   		   session.setAttribute("Total", total);
 	       
 		   		   res.sendRedirect(req.getContextPath()+"/viewQuiz.ftl");
