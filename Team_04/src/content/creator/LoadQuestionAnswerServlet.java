@@ -4,10 +4,6 @@ import DBUtil.DataManager;
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
