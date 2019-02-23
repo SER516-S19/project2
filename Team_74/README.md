@@ -9,4 +9,4 @@ Front End React
 ## Navigate to http://localhost:8081/ on a browser to view running application
 
 ### To Login as Professor please use username as "Prof" and any password
-### To Login as Student any username and password woulld work
+### To Login as Student any username and password would work
