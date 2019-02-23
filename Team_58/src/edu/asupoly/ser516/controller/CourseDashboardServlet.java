@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +26,14 @@ import edu.asupoly.ser516.model.UserVO;
  * that routes the User to Course Dashboard Page from Professor Home Page.
  * 
  * @author narenkumarKonchada
- * @version 1.3
- * @date 02/20/2019
+ * @author shivamverma
+ * @version 1.4
+ * @date 02/22/2019
  **/
 
 public class CourseDashboardServlet extends HttpServlet {
+	
+	private static Logger log = Logger.getLogger(CourseDashboardServlet.class.getName());
 	
 	// This servlet will not make any Get requests.
 	@Override
@@ -50,14 +54,27 @@ public class CourseDashboardServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		HashMap<Integer, String> courseMap = (HashMap<Integer,String>) session.getAttribute("CourseHashMap");
-		int courseId = Integer.parseInt(request.getParameter("Course"));
-		String courseName = courseMap.get(courseId);
+		int courseId = 0;
+		if(request.getParameter("Course")!=null) {
+			courseId = Integer.parseInt(request.getParameter("Course"));
+			String courseName = courseMap.get(courseId);
+			session.setAttribute("courseName",courseName);
+			session.setAttribute("courseId", courseId);
+		}
+		else {
+			 courseId = (int) session.getAttribute("courseId");
+		}
+		
+/*		String courseName = courseMap.get(courseId);
 		session.setAttribute("courseName",courseName);
-		session.setAttribute("courseId", courseId);
+		session.setAttribute("courseId", courseId);*/
 		
 		try {
 			QuizDAOBean quizBean = new QuizDAOBean();
 			List<QuizVO> quizList = quizBean.getQuizzesForCourse(courseId);
+			if(quizList.isEmpty()) {
+				log.info("No Quizzes exist for this course.");
+			}
 			HashMap<Integer, String> quiz = new HashMap<>();
 			for(int i=0;i<quizList.size();i++)
 				quiz.put(quizList.get(i).getQuizId(), quizList.get(i).getQuizTitle());
@@ -65,7 +82,7 @@ public class CourseDashboardServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/courseDashboard.ftl");  
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 		}
 	}
 }
