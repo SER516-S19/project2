@@ -31,11 +31,11 @@ public class StudentServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String queryParams = req.getQueryString();
-		String quizName = queryParams.split("=")[1];
+		String quizId = queryParams.split("=")[1];
 		QuizDAO quizDAO = new QuizDAO();
-		int quizId = quizDAO.fetchQuizId(quizName);
+		//int quizId = quizDAO.fetchQuizId(quizName);
 		StudentServices service = new StudentServices();
-		String questionAnswerJSON = service.getQuestionDetails(quizId);
+		String questionAnswerJSON = service.getQuestionDetails(Integer.parseInt(quizId));
 		HttpSession session = req.getSession();
 		session.setAttribute("studentResponseJSON", questionAnswerJSON);
 		session.setAttribute("startTime",getCurrentDateTime());
