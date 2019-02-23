@@ -21,8 +21,8 @@ import org.json.simple.parser.ParseException;
  * 
  *  @see edu.asupoly.ser516.controller/ViewQuizServlet.java
  *  @see resources/viewQuiz.ftl
- * 	@author Aditya Samant
- * 	@version 1.0
+ * 	@author Aditya Samant / @author akashkadam
+ * 	@version 1.1
  * 	@date 02/22/2019
  */
 public class ViewQuizDAOBean implements ViewQuizDAO {
@@ -118,14 +118,13 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 			   
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
-	 			   JSONObject jo2 = (JSONObject) parser.parse(answer);
 	 			   
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
-	 			   String ans = (String) jo2.get("CORRECT");
+
 	 			   
-	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, question, ans, choice1, choice2, choice3);
+	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, question, answer, choice1, choice2, choice3);
 	 			   list.add(quiz);
 			   }
 		}catch(ParseException e) {
