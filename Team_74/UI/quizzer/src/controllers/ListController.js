@@ -33,12 +33,12 @@ export default class ListController {
     let questions = this.array;
     console.log(questions);
 
-    axios.post(`https://localhost:8080/quiz`,
-      { questions })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+    // axios.post(`https://localhost:8080/quiz`,
+    //   { questions })
+    //   .then(res => {
+    //     console.log(res);
+    //     console.log(res.data);
+    //   })
   }
 
 
