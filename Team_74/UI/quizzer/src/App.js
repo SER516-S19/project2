@@ -12,7 +12,7 @@ class App extends Component {
                     (localStorage.getItem('username')) ?
                         <div className="App">
                             <div className="App-header">
-                                <h2>Demo Canvas</h2>
+                                <h1>Demo Canvas</h1>
                             </div>
                             <Navigation />
                             <Routes />
@@ -22,7 +22,7 @@ class App extends Component {
                         :
                         <div className="App">
                             <div className="App-header">
-                                <h2>Demo Canvas</h2>
+                                <h1>Demo Canvas</h1>
                             </div>
                             <div className="Blank-Nav"/>
                             <Routes />
