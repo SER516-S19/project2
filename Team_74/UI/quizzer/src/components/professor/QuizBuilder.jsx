@@ -5,6 +5,7 @@ import { useInputValue } from "../../hooks";
 import Question from "../../models/Question";
 import ListController from "../../controllers/ListController";
 import { FaPlus, FaSave } from 'react-icons/fa';
+import './Questions.css';
 
 export default function QuizBuilder() {
   const [title, handleChangeTitle] = useInputValue("Enter Quiz Title Here");

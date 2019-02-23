@@ -37,16 +37,26 @@ class Home extends Component {
                     {
                         (this.state.isProfessorType)?
                             <div>
-                                <button type="submit" className="Prof-Button" value="Submit">Professor</button>
+                                {
+                                (this.state.isCreatingQuiz)?
+                                <button type="submit" className="Prof-Button" value="Submit">Back</button>
+                                : 
+                                <button type="submit" className="Prof-Button" value="Submit">Create Quiz</button>
+                            }
                             <center>
                             <h3>Professor Portal</h3>
-                            <h5>Select Quiz to be edited</h5>
+                            {
+                                (this.state.isCreatingQuiz)?
+                                <h5>Create Quiz for your students</h5>
+                                : 
+                                <h5>Welcome to your home page</h5>
+                            }
                             <br></br></center>
                             {
                                 (this.state.isCreatingQuiz)?
                                 <QuizInstruction/>
                                 : 
-                                <label>Welcome !!</label>
+                                <label></label>
                             }
                             
                             </div>

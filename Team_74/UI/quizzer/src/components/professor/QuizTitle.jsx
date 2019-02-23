@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaPen, FaSave } from 'react-icons/fa';
+import './Questions.css';
 
 export default function QuizTitle({ title, handleChangeTitle }) {
   const [editing, setEditing] = useState(false);
