@@ -16,6 +16,7 @@ public class DbHelper {
         return DB_URL;
     }
 
+
     /**
      * This class is going to look for a file named DBDetails.properties in the classpath
      * to get its initial settings
@@ -27,7 +28,6 @@ public class DbHelper {
             DB_URL = dbProperties.getProperty("jdbcUrl");
         } catch (Throwable t) {
             t.printStackTrace();
-        } finally {
         }
     }
 }
