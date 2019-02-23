@@ -8,6 +8,9 @@
 	version: 1.2
   -->
 <html>
+	<head>
+	<#include "stylesheet.css">
+	</head>
 	<style>
 		table, th, td {
 		  border: 1px solid black;
@@ -22,9 +25,10 @@
 		<form action="courseDashboard.ftl" method="POST">
 	        	<button type="submit">Return to Dashboard</button>
         	</form>
-		<h1>
+		<h1 class="fontColor">
 		   TITLE: ${Session.quizName}
 		</h1>
+	<div class="box">
 		<h3>
 		   TOTAL POINTS: ${Session.Total}
 		</h3>
@@ -73,7 +77,7 @@
        			var table = document.getElementById("table");
        			var button = document.getElementsByClassName("editButton");
        			
-       			
+       			</div>
        			
        		}
         </script>
