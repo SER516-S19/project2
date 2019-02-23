@@ -3,13 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import bean.HibernateUtil;
+import bean.Question;
 import bean.Quiz;
 
 public class ProfessorDAO {
 	
-	public List getAllQuizzes(){
-		List lists = new ArrayList<>();
+	public List<Quiz> getAllQuizzes(){
+		List<Quiz> lists = new ArrayList<>();
 		 Transaction transaction = null;
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
@@ -28,7 +31,7 @@ public class ProfessorDAO {
 		return lists;
 	}
 
-	public static void publishQuiz(int quiz_id) {
+	public void publishQuiz(int quiz_id) {
 		 Transaction transaction = null;
 		 Session session = null;
 	        try {
@@ -38,17 +41,16 @@ public class ProfessorDAO {
 	 
 	            // Creating Transaction Entity
 	            Quiz quizObj = (Quiz) session.get(Quiz.class, quiz_id);
-	            quizObj.setPublished(true);
+	            quizObj.setIsPublished(true);
 	            
 	            // Committing The Transactions To The Database
-	            session.getTransaction().commit();
-	 
-	            
+	            transaction.commit();
+	
 	            System.out.println("Quiz published successfully");
 	        } catch(Exception sqlException) {
-	            if(null != session.getTransaction()) {
+	            if(null != transaction) {
 	                System.out.println("\n.......Transaction Is Being Rolled Back.......\n");
-	                session.getTransaction().rollback();
+	                transaction.rollback();
 	            }
 	            sqlException.printStackTrace();
 	        } finally {
