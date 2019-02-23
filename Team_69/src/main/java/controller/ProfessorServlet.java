@@ -1,18 +1,13 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.List;
-import java.util.TimeZone;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import bean.Answer;
 import bean.Question;
 import bean.Quiz;
 import dao.ProfessorDAO;
@@ -27,8 +22,6 @@ import services.ProfessorServices;
  * @authors  Gangadhar, Janice, Jinal
  */
 public class ProfessorServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private ProfessorServices professorServices = new ProfessorServices();
 
 	/**
 	 * This method will handle the get requests. Each request will have a flag that
@@ -41,12 +34,14 @@ public class ProfessorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
+		ProfessorServices professorServices = new ProfessorServices();
 		if ("fetchQuizList".equalsIgnoreCase(flag)) {
 			List<Quiz> quizList = professorServices.getAllQuizzes();
-			request.setAttribute("quizList", quizList);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
+			request.setAttribute("quizList", quizList);
 			rd.forward(request, response);
-		} else if ("publishQuiz".equalsIgnoreCase(flag)) {
+		} 
+		else if ("publishQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
 			int quizID = Integer.parseInt(id);
 			professorServices.publishQuiz(quizID);
@@ -54,30 +49,26 @@ public class ProfessorServlet extends HttpServlet {
 			request.setAttribute("quizList", quizList);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			rd.forward(request, response);
-		} else if ("viewQuiz".equalsIgnoreCase(flag)) {
+		} 
+		else if ("viewQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
-			int quizId = Integer.parseInt(id);
 			String quizName = request.getParameter("quizName");
+			int quizId = Integer.parseInt(id);
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
 			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
 			request.setAttribute("quizName", quizName);
 			request.setAttribute("queAnsData", queAnsData);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
 			rd.forward(request, response);	
-		
-		}else if("addQueInQuiz".equalsIgnoreCase(flag)) {
-			
+		}
+		else if("addQueInQuiz".equalsIgnoreCase(flag)) {
 			String quizID = request.getParameter("id");
 			int quizId = Integer.parseInt(quizID);
-			
 			ProfessorDAO professorDAO = new ProfessorDAO();
 			Quiz quiz = professorDAO.getQuizFromID(quizId);
-			
 			HttpSession session = request.getSession(true);
 			session.setAttribute("quiz", quiz);
-			
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
-
 		}
 	}
 
@@ -88,11 +79,12 @@ public class ProfessorServlet extends HttpServlet {
 	 * @param request  request object from the jsp page
 	 * @param response response to be sent to the jsp page
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
+		ProfessorServices professorServices = new ProfessorServices();
 		if ("InsertProfDetails".equals(flag)) {
-			ProfessorServices professorServices = new ProfessorServices();
 			professorServices.insertProfDetails(request);
 			response.sendRedirect("views/professorDetails.jsp");
 		} 
@@ -109,11 +101,8 @@ public class ProfessorServlet extends HttpServlet {
 			String questionOption3 = request.getParameter("option3");
 			String questionOption4 = request.getParameter("option4");
 			String points = request.getParameter("points");
-			String[] correctanswers = (String[]) request.getParameterValues("options");
-
+			String[] correctanswers = request.getParameterValues("options");
 			HttpSession session = request.getSession(true);
-
-    
 			professorServices = new ProfessorServices();
 			professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
 					questionOption2, questionOption3, questionOption4, correctanswers, points);
@@ -122,14 +111,11 @@ public class ProfessorServlet extends HttpServlet {
         	request.setAttribute("profnavigate", addQuestionPageURL); 
         	if("Add Next Question".equals(flag)) {
         		response.sendRedirect("views/addQuestions.jsp");
-        		return;
         	}else if("Save and Exit".equals(flag)) {
         		response.sendRedirect("views/professorLanding.jsp");
-            	return;
         	}
 		}else if("Verify Questions".equals(flag)) {
         	response.sendRedirect("views/displayQuestionAnswer.jsp");
-        	return;
         }
     }
 }

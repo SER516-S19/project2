@@ -49,11 +49,11 @@ public class ProfessorServices {
 	}
 	
 	public List<Quiz> getAllQuizzes(){
-		return (List<Quiz>) professorDAO.getAllQuizzes();
+		return professorDAO.getAllQuizzes();
 	}
 	
-	public void publishQuiz(int quiz_id) {
-		professorDAO.publishQuiz(quiz_id);
+	public void publishQuiz(int quizId) {
+		professorDAO.publishQuiz(quizId);
 	}
 	
 	/**
@@ -62,11 +62,9 @@ public class ProfessorServices {
 	private boolean checkAnswerExist(int i, String[] correctanswers) {
 		if(correctanswers ==  null)
 			return false;
-		
 		for(String s: correctanswers)
 			if((name+i).equals(s))
 				return true;
-		
 		return false;
 	}
 
