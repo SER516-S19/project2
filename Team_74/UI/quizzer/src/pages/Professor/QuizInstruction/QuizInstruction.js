@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import './QuizInstruction.css';
 import { Container, Row, Col, Label, Button } from 'reactstrap';
 
@@ -59,7 +58,7 @@ class QuizInstruction extends Component {
             </Row>
             <Row >
               <Col className="rightAlign">
-                <label > Choose quiz type:</label>
+                <Label > Choose quiz type:</Label>
               </Col>
               <Col className="leftAlign" xs>
                 <select  name = "quizType" value={this.state.quizType} onChange={this.handleChange}>
