@@ -6,21 +6,58 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+	<script src="js/getQuizList.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+	
 
-<table>
-<tbody>
-<tr><th>ID</th><th>Name</th><th>Instructions</th></tr>
+
+
+<table class="table table-hover">
+	<tbody>
+	<tr>
+		
+		<th scope="col">Name</th>
+		
+		<th scope="col">Quiz Details</th>
+		<th scope="col">Published Quizzes</th>
+		<th scope="col">Add Questions in quiz</th>
+		</tr>
 	<c:forEach items="${requestScope.quizList}" var="quiz">
-		<tr><td><c:out value="${quiz.quizId}"></c:out></td>
+
+	<tr>
+
+		<tr scope="row">
+
 		<td><c:out value="${quiz.quizName}"></c:out></td>
-		<td><c:out value="${quiz.quizInstructions}"></c:out></td></tr>
+		
+		<td>
+		<%String pathWebcontent=request.getContextPath();%>
+			<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>			
+		</td>
+		<td>
+			<c:choose>
+			   <c:when test="${quiz.isPublished}">
+			     <p style="color:green">Published</p>
+			   </c:when>
+			   <c:otherwise>
+			     <a href="<%=pathWebcontent %>/ProfessorController?flag=publishQuiz&id=${quiz.quizId}"> Publish Quiz</a>	
+			   </c:otherwise>
+			</c:choose>
+						
+			
+		</td>
+		
+		<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
+		
+	</tr>
 	</c:forEach>
 </tbody>
 </table>
-		
+	
 </body>
-
-
 </html>

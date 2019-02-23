@@ -6,26 +6,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script type=”text/javascript” src=”bootstrap/js/bootstrap.min.js”></script>
-<title>Insert title here</title>
+<title>Page for obtaining Professor Details</title>
 </head>
 <body>
+<script type="text/javascript" src="../js/fetchProffesorData.js"></script>
+    <script type="text/javascript">
+    validateTimeCheckbox(elem)
+    </script>
+
 <form action="../ProfessorController" method="post">
   <div class="form-group">
   <label for="FormQuizName">Enter Quiz Name:</label>
-  <textarea class="form-control" id="name" rows="1"></textarea>
-   <br>
-    
-    <div class="form-group">
+  <textarea class="form-control" id="name" name="name" rows="1" required></textarea>
+  <br>
+  
+  <div class="form-group">
     <label for="FormQuizName">Enter Quiz Instructions:</label>
-    <textarea class="form-control" id="instructions" rows="3"></textarea>
-    <br>
+    <textarea class="form-control" name="instructions" id="instructions" rows="3"></textarea>
+   <br>
 
     
 <table border = "0">
   <tr>
     <td width="200px">Quiz Type : </td>
     <td width="800px">
-    	<select name="quiz_type">
+    	<select name="quiz_type" required>
 		  <option value="G">Graded Quiz</option>
 		  <option value="U">Ungraded Quiz</option>
 		</select>
@@ -34,7 +39,7 @@
   <tr>
     <td>Assignment Group : </td>
     <td>
-    	<select name="assignment_group">
+    	<select name="assignment_group" required>
 		  <option value="G">Quizzes</option>
 		  <option value="U">Assignment</option>
 		</select>
@@ -42,39 +47,27 @@
   </tr>
   <tr>
     <td></td>
-    <td>
-    	<b> Options </b>
-    </td>
+    <td> <b> Options </b></td>
   </tr>
   
   <tr>
     <td></td>
-    <td>
-    	<input type="checkbox" name="shuffle" value="shuffle">Shuffle Answers<br>
-    </td>
-  </tr>
-  
+    <td> <input type="checkbox" name="shuffle" value="shuffle">Shuffle Answers<br> </td>
+  </tr> 
   <tr>
     <td></td>
     <td>
-    	<input type="checkbox" name="time_limit" value="time_limit">Time Limit
-		<input type="text" name="minutes" value=""> Minutes
+    	<input type="checkbox" name="time_limit" value="time_limit" onchange="validateTimeCheckbox(this);">Time Limit
+		<input type="number" id ="hours" name="hours" value="" min="0" readonly> Hours
+		<input type="number" id ="minutes" name="minutes" value="" min="0" max="60" readonly> Minutes
     </td>
-  </tr>
-  
-  
-  <tr>
-    <td></td>
-    <td>
-    	<input type="checkbox" name="attempts" value="attempts">Allow Multiple Attempts<br>
-    </td>
-  </tr>
-  
+  </tr> 
 </table>
-    
+<a href="addQuestions.jsp">Add Questions</a>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
   <input type="hidden" id="flag" name="flag" value="InsertProfDetails">
+  <button type="submit" class="btn btn-primary" onclick="javascript:checkBoxStatus(myCheckBox)">Submit</button>
+  
 </form>
 </body>
 </html>
