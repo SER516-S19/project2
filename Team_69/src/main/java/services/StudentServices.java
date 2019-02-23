@@ -52,8 +52,7 @@ public class StudentServices {
 				jsonResponse.isPublished());
 		for (QuestionMapper questionMapper : questions) {
 			int questionId = questionMapper.getQuestionId();
-			Question question = new Question(quiz, questionId, questionMapper.getQuestion(),
-					questionMapper.getCorrectAnswerId(), questionMapper.isMultiple(), questionMapper.getPoints());
+			Question question = new Question(quiz, questionId, questionMapper.getQuestion(), questionMapper.isMultiple(), questionMapper.getPoints());
 			List<AnswerMapper> answers = questionMapper.getResponseAnswer();
 			if (answers != null) {
 				for (AnswerMapper ansMapper : answers) {
