@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
 <p>Previously created Quizzes<p>
 <ul>
  <li>
- <a href='prof_resultpage.jsp'>quiz1</a>
+ <a href='allquiz.jsp'>quiz1</a>
  </li>  
  <li>
  quiz2

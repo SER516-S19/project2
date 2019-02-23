@@ -10,7 +10,7 @@
 <h1 align="center">Forum Analysis</h1>
 <br> <br>
 <ol>
-  <h2 align="center">No. of posts posted with different categories</h2><br>
+  <h2 align="center">Student id vs Marks Graph</h2><br>
 
   <div id="area2">
   <!-- <h2>Line Graph</h2> -->
@@ -18,8 +18,8 @@
   <canvas id="chart2" width="600" height="400"></canvas>
   
   <script>
-    var studentID = [ 2, 5, 3, 3];
-    var scores = [5, 3, 3, 1];
+    var studentID = [ 1, 2, 3, 4,5];
+    var scores = [50, 30, 25, 10,80];
   
      // bar chart data
      var barData = {
@@ -51,7 +51,7 @@
      var mychart = document.getElementById("chart2").getContext("2d");
   
      steps = 10
-     max = 80
+     max = 100
      // draw bar chart
      var LineChartDemo = new Chart(mychart).Line(barData, {
           scaleOverride: true,
