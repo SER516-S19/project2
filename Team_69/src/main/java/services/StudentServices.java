@@ -1,17 +1,13 @@
 package services;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import bean.*;
 import com.google.gson.Gson;
 
-import bean.Answer;
-import bean.AnswerMapper;
-import bean.Question;
-import bean.QuestionAnswer;
-import bean.QuestionMapper;
-import bean.Quiz;
-import bean.ResponseStatistics;
-import bean.User;
 import dao.QuizDAO;
 import dao.StatisticsDAO;
 
@@ -27,9 +23,9 @@ import dao.StatisticsDAO;
 public class StudentServices {
 	
 	public String getQuestionDetails(int quizId) {
-		QuestionAnswerGenerator quizData = new QuestionAnswerGenerator();
+		QuizUtility quizData = new QuizUtility();
 		String jsonString = null;
-		QuestionAnswer quizList = quizData.generator(quizId);
+		QuizDetails quizList = quizData.generator(quizId);
 		jsonString = quizData.ObjectToJSON(quizList);
 		return jsonString;
 	}
@@ -43,22 +39,22 @@ public class StudentServices {
 	 */
 	public String feedAnswers(String studentResponse) {
 
-		QuestionAnswer jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
+		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		User user = new User(5,"abc", "student", "abc.com", "1234");
 		int quizId = jsonResponse.getQuizId();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		ResponseStatistics stats;
-		List<QuestionMapper> questions = jsonResponse.getQuestion();
+		List<QuestionDetails> questions = jsonResponse.getQuestion();
 		Quiz quiz = new Quiz(quizId, jsonResponse.getQuizName(), jsonResponse.getQuizInstructions(),
 				jsonResponse.getQuizType(), jsonResponse.getQuizTimeLimit(), jsonResponse.isShuffled(),
 				jsonResponse.isPublished());
-		for (QuestionMapper questionMapper : questions) {
+		for (QuestionDetails questionMapper : questions) {
 			int questionId = questionMapper.getQuestionId();
 			Question question = new Question(quiz, questionId, questionMapper.getQuestion(),
 					questionMapper.isMultiple(), questionMapper.getPoints());
-			List<AnswerMapper> answers = questionMapper.getResponseAnswer();
+			List<AnswerDetails> answers = questionMapper.getResponseAnswer();
 			if (answers != null) {
-				for (AnswerMapper ansMapper : answers) {
+				for (AnswerDetails ansMapper : answers) {
 					Answer answer = new Answer(question, ansMapper.getAnswerId(), ansMapper.getAnswer(),
 							ansMapper.getCorrectAnswer());
 					stats = new ResponseStatistics(user, quiz, question, answer);
@@ -71,9 +67,9 @@ public class StudentServices {
 
 	}
 
-	public static QuestionAnswer convertStringtoJSON(String studentResponse) {
+	public static QuizDetails convertStringtoJSON(String studentResponse) {
 		Gson gson = new Gson();
-		QuestionAnswer quizList = gson.fromJson(studentResponse, QuestionAnswer.class);
+		QuizDetails quizList = gson.fromJson(studentResponse, QuizDetails.class);
 		return quizList;
 	}
 
@@ -112,6 +108,12 @@ public class StudentServices {
 		}
 		return quizIds;
 	}
-
+	
+	public String getCurrentDateTime() {
+		String pattern = "MMM dd HH:mm";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String dateTime = simpleDateFormat.format(new Date());
+		return dateTime; 
+	}
 
 }
