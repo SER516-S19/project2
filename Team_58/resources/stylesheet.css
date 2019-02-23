@@ -78,11 +78,6 @@ Freemarker page : stylesheet
 		font-size: 100%;
 		padding: 12px 20px;
 	}
-		margin-left: 20%;
-		margin-top: -4%;
-		font-size: 100%;
-		padding: 12px 20px;
-	}
 	
 	.options {
 		width: 60%;
@@ -109,6 +104,22 @@ Freemarker page : stylesheet
 		font-size: 16px;
 		margin: 4px 2px;
 		cursor: pointer;
+	}
+	
+	.buttonLarge {
+		margin-top: 7%;
+		background-color: #696969;
+		border: 1px solid grey;
+		color: white;
+		font-family: Verdana, Geneva, sans-serif;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		width: 97%;
 	}
 	
 	.buttonRight {
