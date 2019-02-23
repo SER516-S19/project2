@@ -97,16 +97,12 @@ public class ProfessorServlet extends HttpServlet {
 			response.sendRedirect("views/removeQuestionPage.jsp");
 		} 
 		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
-			String question = request.getParameter("question");
-			String questionOption1 = request.getParameter("option1");
-			String questionOption2 = request.getParameter("option2");
-			String questionOption3 = request.getParameter("option3");
-			String questionOption4 = request.getParameter("option4");
-			String points = request.getParameter("points");
-			String[] correctanswers = request.getParameterValues("options");
-			HttpSession session = request.getSession(true);
-			professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
-					questionOption2, questionOption3, questionOption4, correctanswers, points);
+			
+			//professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
+			//		questionOption2, questionOption3, questionOption4, correctanswers, points);
+			
+			professorServices.storeQuestion(request);
+			
 			
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
