@@ -38,8 +38,8 @@
 				<tr>
 					<td>Assignment Group :</td>
 					<td><select name="assignment_group" required>
-						<option value="G">Quizzes</option>
-						<option value="U">Assignment</option>
+						<option value="Q">Quizzes</option>
+						<option value="A">Assignment</option>
 					</select></td>
 				</tr>
 				<tr>
