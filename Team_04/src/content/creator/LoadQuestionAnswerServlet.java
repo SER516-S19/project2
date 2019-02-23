@@ -56,8 +56,8 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 		QuizContent quiz = this.questions.get(currentQuestionIndex-1);
 		if(quiz.getQues_type().equals("SA"))
 		{
-			long userSelectedAns = new Long(request.getParameter("selectedOptionId"));
-			String ansDesc = (String)request.getAttribute("ansDesc");
+			userSelectedAns = new Long(request.getParameter("selectedOptionId"));
+			ansDesc = (String)request.getAttribute("ansDesc");
 			for(AnswerOption ans : quiz.getAnswerOptions())
 			if ( ans.getIsCorrect() && userSelectedAns != -1 && userSelectedAns == ans.getAns_id())
 			{
