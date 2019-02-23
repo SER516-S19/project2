@@ -25,5 +25,6 @@
     <orderEntry type="library" name="sqlite-jdbc-3.23.1" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="commons-dbutils-1.7" level="project" />
+    <orderEntry type="library" name="javax.servlet" level="project" />
   </component>
 </module>
