@@ -106,4 +106,14 @@ public class QuizContent {
   public void setScore(int score) {
     this.score = score;
   }
+
+  private List<String> selectedAnswers = new ArrayList<>();
+
+    public List<String> getSelectedAnswers() {
+        return selectedAnswers;
+    }
+
+    public void setSelectedAnswers(List<String> selectedAnswers) {
+        this.selectedAnswers = selectedAnswers;
+    }
 }

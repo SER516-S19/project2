@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +31,25 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
     private int currentQuestionIndex = 0;
     private int totalScore = 0;
     private int questionNumber = 0;
+    SimpleDateFormat dateformat=new SimpleDateFormat("MMM-dd-yyyy");
+    String dates=dateformat.format(new Date());
+    SimpleDateFormat timeformat=new SimpleDateFormat("HH:mm:ss");
+    String time=timeformat.format(new Date());
+    int attemptId = (int) (System.currentTimeMillis() & 0xfffffff);
+    int studentId = (int) (System.currentTimeMillis() & 0xfffffff);
+
+    private void executeQuery () {
+
+        for (String selectedOption : currentQuestion.getSelectedAnswers()) {
+            String updateQuery = "INSERT INTO ques_response(quesId,quizId,ansId,attemptId,studentId,totalScore, attemptedOn, timeTaken, isFinal) VALUES(?,?,?,?,?,?,?,?,?)";
+            int numOfRowsAffected = DataManager.getInstance().executeUpdateQuery(updateQuery,
+                    currentQuestion.getQuesId(),
+                    currentQuestion.getQuizId(),
+                    selectedOption
+                    , attemptId,studentId,currentQuestion.getScore(),dates,time, true);
+        }
+
+    }
 
     /**
      * Function to load the quiz details
@@ -59,20 +80,23 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
      * @throws IOException
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex < questions.size()) {
+        if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex <= questions.size()) {
             switch (currentQuestion.getQuesType()) {
                 case "SA":
                     String[] radioSelection = {request.getParameter("selectedOptionId")};
-                    totalScore += computeScore(currentQuestionIndex - 1, Arrays.asList(radioSelection));
+                    currentQuestion.setSelectedAnswers(Arrays.asList(radioSelection));
+                    totalScore += computeScore(currentQuestionIndex - 1, currentQuestion.getSelectedAnswers());
                     break;
                 case "MA":
                     String[] checkBoxSelection = request.getParameterValues("selectedOptionId");
-                    totalScore += computeScore(currentQuestionIndex - 1, Arrays.asList(checkBoxSelection));
+                    currentQuestion.setSelectedAnswers(Arrays.asList(checkBoxSelection));
+                    totalScore += computeScore(currentQuestionIndex - 1, currentQuestion.getSelectedAnswers());
                     break;
                 case "TA":
                     break;
             }
         }
+        executeQuery();
         doGet(request, response);
     }
 
