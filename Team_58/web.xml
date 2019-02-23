@@ -115,6 +115,17 @@
     <servlet-name>ViewQuizServlet</servlet-name>
     <url-pattern>/viewQuiz</url-pattern>
   </servlet-mapping>
+	
+  <servlet>
+    <servlet-name>GradeQuizServlet</servlet-name>
+    <servlet-class>edu.asupoly.ser516.controller.GradeQuizServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>GradeQuizServlet</servlet-name>
+    <url-pattern>/gradeQuiz</url-pattern>
+  </servlet-mapping>
 
     <servlet>
         <servlet-name>DisplayQuizServlet</servlet-name>

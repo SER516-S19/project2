@@ -42,6 +42,11 @@ Freemarker page : stylesheet
 		margin-left: 5%;
 		 
 	}
+	.error {
+  		color: #F00;
+  		background-color: #FFF;
+  		font-size: 50%;
+	}
 	
 	.mediumInput {
 		width : 80%;
@@ -107,6 +112,32 @@ Freemarker page : stylesheet
 		padding: 3%;
 		border: 1px solid grey;
 		margin: auto;
+		padding: 10px;
+  		box-shadow: 2px 4px 18px 10px #ADADAD;
+	}
+	
+	.boxRight {
+		background-color: rgb(247, 246, 246  );
+		width: 20%;
+		height: 55%;
+		border: 1px solid grey;
+		padding: 3%;
+		border: 1px solid grey;
+		margin: auto;
+		position absolute;
+		margin-right: 5%;
+		padding: 10px;
+  		box-shadow: 2px 4px 18px 10px #ADADAD;
+	}
+	
+	.shiftTop {
+		margin-top: -20%;
+		margin-left: 4%;
+	}
+	
+	.marginBelow {
+		margin-bottom: 4%;
+		margin-left: -2%
 	}
 
 </style>
