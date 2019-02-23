@@ -2,6 +2,7 @@ package quiz.model.professor;
 
 public class Question {
 
+	private Integer quizId;
 	private String question;
 	private String optionA;
 	private String optionB;
@@ -14,10 +15,11 @@ public class Question {
 	private Integer points;
 	private Boolean isMultipleAnswer;
 
-	public Question(String question, String optionA, String optionB, String optionC, String optionD,
+	public Question(String quizId, String question, String optionA, String optionB, String optionC, String optionD,
 			Boolean isOptionACorrect, Boolean isOptionBCorrect, Boolean isOptionCCorrect, Boolean isOptionDCorrect,
 			String points, Boolean isMultipleAnswer) {
 		super();
+		this.quizId = Integer.parseInt(quizId);
 		this.question = question;
 		this.optionA = optionA;
 		this.optionB = optionB;
@@ -30,7 +32,16 @@ public class Question {
 		this.points = Integer.parseInt(points);
 		this.isMultipleAnswer = isMultipleAnswer;
 	}
+	
+	public void setQuizId(Integer quizId) {
+		this.quizId = quizId;
+	}
 
+	public Integer getQuizId() {
+		return quizId;
+	}
+
+	
 	public String getQuestion() {
 		return question;
 	}

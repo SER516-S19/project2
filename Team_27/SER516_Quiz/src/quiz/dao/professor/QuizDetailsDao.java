@@ -266,5 +266,50 @@ public class QuizDetailsDao{
 	      
 	    }
 	}
+	
+	public String getQuizId(String quizTitle) {
+		String sql = dbProperties.getProperty("SELECT_QUIZID");
+		Connection conn = ConnectionFactory.getConnection();
+	    PreparedStatement preparedStatement = null;
+	    String quizId = "";
+	    try{
+	      
+	      /*Deleting the record from the  table*/
+	      preparedStatement = conn.prepareStatement(sql);
+	      preparedStatement.setString(1,quizTitle);
+	      ResultSet rs = preparedStatement.executeQuery();
+	      while (rs.next()) {
+	    	  quizId = rs.getString("quiz_id");
+	      }
+	      
+	      
+	    }
+	    catch(SQLException e){
+	      /*Aborting the transaction*/
+	        e.printStackTrace();
+	      try {
+	          conn.rollback();
+	      }
+	      catch (SQLException e2) {
+	    	  e2.printStackTrace();
+	      }
+	     
+	    }
+	    finally{
+	      try{
+	          if (preparedStatement != null) preparedStatement.close();
+	          if (conn!=null)       conn.close();
+	      }
+	      catch(SQLException e){
+	          System.out.println("Unable to close resultset, database connection " +
+	                             "or statement in delete()");
+	      }
+	      
+	    }
+		
+		
+		
+		return quizId;
+	}
 
 }
