@@ -50,7 +50,7 @@
 
 		function updateSession(studentResponseJSON) {
 			document.getElementById("temp").value = studentResponseJSON;
-			'<%=session.setAttribute("studentResponseJSON", studentResponseJSON)%>'
+			
 		}
 	</script>
 </body>

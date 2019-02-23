@@ -7,6 +7,10 @@ import dao.AnswerDAO;
 import dao.ProfessorDAO;
 import dao.QuestionDAO;
 import java.util.List;
+import java.util.TimeZone;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class ProfessorServices {
 	
@@ -58,5 +62,55 @@ public class ProfessorServices {
 				return true;
 		
 		return false;
+	}
+
+	public void insertProfDetails(HttpServletRequest request) {
+		HttpSession sess = request.getSession(true);
+		String quizName = request.getParameter("name");
+        String quizInstructions = request.getParameter("instructions");
+        String quizType = request.getParameter("quiz_type");
+        sess.setAttribute("quizType", quizType);
+        String isTimeLimitSet = request.getParameter("time_limit");
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
+        String quizTimeLimit = "00:00:00";
+        boolean isShuffled = false;
+        boolean isPublished = false;
+        //String assignmentGroup = request.getParameter("assignment_group");
+        
+        if(isTimeLimitSet!=null)
+        {
+        	String hours = request.getParameter("hours");
+        	String minutes = request.getParameter("minutes");
+        	
+        	System.out.println(hours);
+        	System.out.println(minutes);
+        	
+        	if(hours.length() == 0)
+        		hours = "0";
+        	
+        	if(minutes.length() == 0)
+        		minutes = "0";
+        	
+        	if (hours.length() == 1)
+        			hours = "0" + hours;
+        	if (minutes.length() == 1)
+        		minutes = "0" + minutes;
+    	
+        	quizTimeLimit = hours+":"+minutes+":00";
+        }
+
+        
+        if(request.getParameter("shuffle")!=null)
+        {
+        	isShuffled = true;
+        }
+        	        
+		ProfessorDAO professorDAO = new ProfessorDAO();
+		Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
+		
+		sess.setAttribute("quiz", quiz);
+	
+		professorDAO.insertProfDetails(quiz);
+        
 	}
 }
