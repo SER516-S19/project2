@@ -71,7 +71,7 @@ public class StudentServices {
 
 	}
 
-	private static QuestionAnswer convertStringtoJSON(String studentResponse) {
+	public static QuestionAnswer convertStringtoJSON(String studentResponse) {
 		Gson gson = new Gson();
 		QuestionAnswer quizList = gson.fromJson(studentResponse, QuestionAnswer.class);
 		return quizList;
@@ -100,6 +100,7 @@ public class StudentServices {
 				status.add("Unanswered");
 			}
 		}
+
 		return status;
 	}
 
