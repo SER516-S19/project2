@@ -30,8 +30,8 @@ import com.asu.ser516.team47.database.*;
 public class SubmissionServlet extends HttpServlet {
 
     private int submissionID = 0;
-    private int htmlCode = 204;
-    private String htmlMessage;
+    private int httpCode = 204;
+    private String httpErrorMessage;
     private Quiz quiz;
     private Enrolled enrollment;
 
@@ -46,6 +46,7 @@ public class SubmissionServlet extends HttpServlet {
 
     /**
      * The endpoint for a quiz submission
+     * requires the presence of quiz_id, enroll_id, timeTaken, and attempt fields in the form. all integers.
      *
      * @param request
      * @param response
@@ -55,8 +56,8 @@ public class SubmissionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        htmlCode = 204;
-        htmlMessage = "";
+        httpCode = 204;
+        httpErrorMessage = "";
 
         //Mandatory fields to create a submission entry
         Integer quizId = null;
@@ -66,8 +67,12 @@ public class SubmissionServlet extends HttpServlet {
 
         List<Integer> choiceIds = new ArrayList<>();
 
-        //Validate that all necessary fields are present and build ChoiceIds
         Enumeration paramNames = request.getParameterNames();
+        if (paramNames == null){
+            response.sendError(400, "no parameters");
+            return;
+        }
+        //Validate that all necessary fields are present and build ChoiceIds
         while (paramNames.hasMoreElements()) {
             try{
                 String paramName = (String) paramNames.nextElement();
@@ -75,43 +80,54 @@ public class SubmissionServlet extends HttpServlet {
                     quizId = validateInteger(request.getParameter("quiz_id"), response);
                     quiz = new QuizDAOImpl().getQuiz(quizId);
                     if (quiz == null){
-                        response.sendError(500);
+                        httpCode = 500;
+                        break;
                     }
                 } else if (paramName.equals("enroll_id")) {
                     enrollId = validateInteger(request.getParameter("enroll_id"), response);
                     enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
                     if (enrollment == null){
-                        htmlCode = 500;
+                        httpCode = 500;
                         break;
                     }
                 } else if (paramName.equals("attempt")) {
                     attempt = validateInteger(request.getParameter("attempt"), response);
+                    if (attempt <= 0){
+                        httpCode = 400;
+                        break;
+                    }
                 } else if (paramName.equals("timeTaken")) {
                     timeTaken = validateInteger(request.getParameter("timeTaken"), response);
-                } else if (paramName.length() >= "choice_fk".length()) {
+                    if (timeTaken <= 0) {
+                        httpCode = 400;
+                        break;
+                    }
+                } else if (paramName.length() >= "choice_fk".length() &&
+                        paramName.substring(0, "choice_fk".length()).equals("choice_fk")) {
                     int choiceId = validateInteger(request.getParameter(paramName), response);
                     Choice choice = new ChoiceDAOImpl().getChoice(choiceId);
-                    if (choice != null) {
-                        htmlCode = 500;
+                    if (choice == null) {
+                        httpCode = 500;
                         break;
                     } else {
                         choiceIds.add(choiceId);
                     }
                 }
             } catch (NullPointerException npe){
-                //If this line executes, an error code has already been sent from validateInteger().
+                httpCode = 400;
                 return;
             }
         }
 
-        if (htmlCode != 204 || quizId == null || enrollId == null || timeTaken == null
+        if (httpCode != 204 || quizId == null || enrollId == null || timeTaken == null
                 || attempt == null) {
-            if (htmlCode == 500) {
-                htmlMessage = "Server Error";
+            if (httpCode == 500) {
+                httpErrorMessage = "Server Error";
             }
-            response.sendError(htmlCode, htmlMessage);
+            response.sendError(httpCode, httpErrorMessage);
             return;
         }
+
         if (!sendSubmission(quizId, enrollId, timeTaken, 0, attempt)){
             response.sendError(500);
             return;
@@ -120,8 +136,7 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(500);
             return;
         }
-
-        response.setStatus(htmlCode);
+        response.setStatus(httpCode);
 
         //TODO: call autograder, update score on Submission.
     }
@@ -191,10 +206,10 @@ public class SubmissionServlet extends HttpServlet {
 
         try {
             conn = DriverManager.getConnection(url);
-            stmt = conn.prepareStatement("select ques_fk from choices where choice_id = ?");
+            stmt = conn.prepareStatement("select question_fk from choices where choice_id = ?");
             stmt.setInt(1, choiceID);
             rs = stmt.executeQuery();
-            result = rs.getInt("ques_fk");
+            result = rs.getInt("question_fk");
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -222,9 +237,11 @@ public class SubmissionServlet extends HttpServlet {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException nfe) {
-            response.sendError(400, "Invalid form data");
+            httpCode = 400;
+            httpErrorMessage = "Invalid form data";
         } catch (NullPointerException npe) {
-            response.sendError(400, "Missing form data");
+            httpCode = 400;
+            httpErrorMessage = "Missing form data";
         }
         return null;
     }
