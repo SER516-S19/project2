@@ -1,7 +1,14 @@
 package bean;
 
 import javax.persistence.*;
-
+/**
+ * This class represents the Question table
+ *  
+ * @author jinalpatel
+ * @since 02/16/2019
+ * @version 1.0.0
+ *
+ */
 @Entity
 @Table(name = "Question")
 public class Question {
