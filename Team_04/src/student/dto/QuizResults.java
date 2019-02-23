@@ -9,8 +9,8 @@ public class QuizResults {
   private long ques_id;
   private long ans_id;
   private long total_score;
-  private java.sql.Date attempted_on;
-  private long time_taken;
+  private String attempted_on;
+  private String time_taken;
   private String is_final;
 
 
@@ -32,65 +32,65 @@ public class QuizResults {
   }
 
 
-  public long getQuiz_id() {
+  public long getQuizId() {
     return quiz_id;
   }
 
-  public void setQuiz_id(long quiz_id) {
+  public void setQuizId(long quiz_id) {
     this.quiz_id = quiz_id;
   }
 
 
-  public long getQues_id() {
+  public long getQuesId() {
     return ques_id;
   }
 
-  public void setQues_id(long ques_id) {
+  public void setQuesId(long ques_id) {
     this.ques_id = ques_id;
   }
 
 
-  public long getAns_id() {
+  public long getAnsId() {
     return ans_id;
   }
 
-  public void setAns_id(long ans_id) {
+  public void setAnsId(long ans_id) {
     this.ans_id = ans_id;
   }
 
 
-  public long getTotal_score() {
+  public long getTotalscore() {
     return total_score;
   }
 
-  public void setTotal_score(long total_score) {
+  public void setTotalscore(long total_score) {
     this.total_score = total_score;
   }
 
 
-  public java.sql.Date getAttempted_on() {
+  public String getAttemptedOn() {
     return attempted_on;
   }
 
-  public void setAttempted_on(java.sql.Date attempted_on) {
+  public void setAttemptedOn(String attempted_on) {
     this.attempted_on = attempted_on;
   }
 
 
-  public long getTime_taken() {
+  public String getTimetaken() {
     return time_taken;
   }
 
-  public void setTime_taken(long time_taken) {
+  public void setTimetaken(String time_taken) {
     this.time_taken = time_taken;
   }
 
 
-  public String getIs_final() {
+  public String getIsfinal() {
     return is_final;
   }
 
-  public void setIs_final(String is_final) {
+  public void setIsfinal(String is_final) {
     this.is_final = is_final;
   }
 
