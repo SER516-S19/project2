@@ -111,7 +111,7 @@ public class ProfessorServlet extends HttpServlet{
         	HttpSession sess = request.getSession(true);
 			Quiz quiz = (Quiz) sess.getAttribute("quiz");
         	
-        	Question q = new Question(quiz, question, 2, false, 25 );
+        	Question q = new Question(quiz, question, false, 25 );
         	
         	QuestionDAO questionDAO = new QuestionDAO();
         	questionDAO.addQuestion(q);
