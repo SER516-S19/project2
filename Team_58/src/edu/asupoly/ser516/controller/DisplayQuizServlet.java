@@ -40,25 +40,24 @@ public class DisplayQuizServlet extends HttpServlet{
             QuestionsVO questionsVO = null;
 
             while(userData.next()){
-                int questionId = userData.getInt("questionId");
-                int totalPoints = userData.getInt("totalPoints");
-                String question = userData.getString("question");
-                String answer = userData.getString("actualAnswer");
-                String choices = userData.getString("totalChoices");
+                //int questionId = userData.getInt("questionId");
+                //int totalPoints = userData.getInt("totalPoints");
+                //String question = userData.getString("question");
+                //String answer = userData.getString("actualAnswer");
+                //String choices = userData.getString("totalChoices");
 
-                JSONParser parser = new JSONParser();
-                JSONObject jo = (JSONObject) parser.parse(choices);
+                //JSONParser parser = new JSONParser();
+                //JSONObject jo = (JSONObject) parser.parse(choices);
 
-                String choice1 = (String) jo.get("incorrectAnswer1");
-                String choice2 = (String) jo.get("incorrectAnswer2");
-                String choice3 = (String) jo.get("incorrectAnswer3");
+                //String choice1 = (String) jo.get("incorrectAnswer1");
+                //String choice2 = (String) jo.get("incorrectAnswer2");
+                //String choice3 = (String) jo.get("incorrectAnswer3");
 
-                questionsVO = new QuestionsVO(questionID, totalPoints, question, answer, choice1, choice2, choice3);
+                //questionsVO = new QuestionsVO(questionID, totalPoints, question, answer, choice1, choice2, choice3);
             }
 
-
-            HttpSession session = req.getSession();
-            session.setAttribute("QuestionsVO", questionsVO);
+            //HttpSession session = req.getSession();
+            //session.setAttribute("QuestionsVO", questionsVO);
 
             res.sendRedirect(req.getContextPath() + "/displayQuiz.ftl");
 
