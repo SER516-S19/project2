@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.model;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

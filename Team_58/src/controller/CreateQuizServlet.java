@@ -1,4 +1,4 @@
-package edu.asupoly.ser516.controller;
+package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.asupoly.ser516.model.CreateQuizVO;
-import edu.asupoly.ser516.model.QuizDAOBean;
-import edu.asupoly.ser516.model.QuizVO;
+import model.CreateQuizVO;
+import model.QuizDAOBean;
+import model.QuizVO;
 
 /**
  * Class CreateQuiz Servlet is a controller that routes the user to Create Quiz
@@ -28,6 +29,8 @@ import edu.asupoly.ser516.model.QuizVO;
 
 public class CreateQuizServlet extends HttpServlet {
 
+	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
+	
 	/**
 	 * This method is to get CreateQuiz UI page 
 	 *@param request  Request made to server
@@ -49,7 +52,6 @@ public class CreateQuizServlet extends HttpServlet {
 	 *
 	 * @throws IOException, ServletException
 	 */
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -64,31 +66,21 @@ public class CreateQuizServlet extends HttpServlet {
     		HttpSession session = request.getSession();
     		int courseId = (int) session.getAttribute("courseId");
     		
-    		/**
-    		 * running a query 
-    		 * to get insert quiz details in table
-    		 */
-    		
+
     		CreateQuizVO createQuizVO = new CreateQuizVO(courseId, quizTitle, quizInstructions, quizScheduledDate, 0, isShuffled, assignedTime, false);
     		
     		QuizDAOBean obj = new QuizDAOBean();
-    		obj.creatingQuiz(createQuizVO);
+    		obj.insertingQuizDetails(createQuizVO);
     		
     		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
-
-    		/**
-    		 * running a query 
-    		 * to get the value of quizId in session
-    		 */
     		
     		int quizId = obj.gettingQuizId(createQuizVO);
     		
 			session.setAttribute("quizId", quizId);
-			//request.getRequestDispatcher("/createQuestions.ftl").forward(request, response);
 			response.sendRedirect(request.getContextPath() + "/createQuestions.ftl");
     		
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 		}
 	}
 }
