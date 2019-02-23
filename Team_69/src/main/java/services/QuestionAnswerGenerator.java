@@ -31,12 +31,12 @@ public class QuestionAnswerGenerator {
 
 		QuestionAnswer questionAnswers = new QuestionAnswer();
 		List<Question> questionList = questionDao.getQuestionsByQuizId(quizId);
-		if(questionList!= null) {
+		if(questionList.size()!= 0) {
 			Quiz quiz = questionList.get(0).getQuiz();
 			questionAnswers.setQuizId(quiz.getQuizId());
 			questionAnswers.setQuizName(quiz.getQuizName());
 			questionAnswers.setQuizInstructions(quiz.getQuizInstructions());
-			questionAnswers.setPublished(quiz.isPublished());
+			questionAnswers.setPublished(quiz.getIsPublished());
 			questionAnswers.setShuffled(quiz.isShuffled());
 			questionAnswers.setQuizType(quiz.getQuizType());
 			questionAnswers.setQuizTimeLimit(quiz.getQuizTimeLimit());
