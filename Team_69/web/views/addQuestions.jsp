@@ -16,31 +16,34 @@
     </textarea>
 	<br>
 	<br>
-	Answer?:
+	Correct Answer?:
 	<input type="checkbox" name="options" value="option1">
 	<br>
     <label for="option1">Option 1: </label>
     <textarea type="text" name="option1" rows="2" cols="50" required>
 	</textarea>
 	<br>
+	<br>
 
-	Answer?:
+	Correct Answer?:
 	<input type="checkbox" name="options" value="option2">
 	<br>
     <label for="option2">Option 2: </label>
     <textarea type="text" name="option2" rows="2" cols="50" required>
     </textarea>
     <br>
+    <br>
     
-    Answer?:
+    Correct Answer?:
     <input type="checkbox" name="options" value="option3">
 	<br>
     <label for="option3">Option 3: </label>
     <textarea type="text" name="option3" rows="2" cols="50">
     </textarea>
     <br>
+    <br>
     
-    Answer?:
+    Correct Answer?:
     <input type="checkbox" name="options" value="option4">
 	<br>
     <label for="option4">Option 4: </label>
@@ -58,8 +61,7 @@
 	<input type="submit" name="flag" value="Save and Exit"/>
 	<%String pathWebcontent=request.getContextPath();%>
 	<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>
-	
-	
+		
 </form>
 </body>
 </html>

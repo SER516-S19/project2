@@ -12,9 +12,8 @@ import bean.HibernateUtil;
 import bean.Question;
 import bean.Quiz;
 
-
 /**
- * This is the DAO class for performing CRUD operations.
+ * This class implements various database operations for Professor database.
  *
  * @version 1.0
  * @since 02-16-2019
@@ -25,7 +24,7 @@ public class ProfessorDAO {
 	Logger logger = Logger.getAnonymousLogger();
 	
 	/**
-	 * Gets the list of quizzes from the database.
+	 * Gets the list of all available quizzes from the Quiz Table.
 	 */
 	public List<Quiz> getAllQuizzes(){
 		List<Quiz> lists = new ArrayList<>();
@@ -46,7 +45,7 @@ public class ProfessorDAO {
 	}
 
 	/**
-	 * The method is used to retrieve all question from quiz ID.
+	 * This method is used to retrieve all questions with provided quiz ID from Question Table.
 	 */
 	public List<Question> getAllQuestionFromQuizID(int quizID){
 		List<Question> lists = new ArrayList<>();
@@ -67,9 +66,7 @@ public class ProfessorDAO {
 	}
 	
 	/**
-	 * The method set the publish flag in the database
-	 *
-	 * @param quizId the quiz id
+	 * This method set the publish flag to true in the Quiz Table
 	 */
 	public void publishQuiz(int quizId) {
 		 Transaction transaction = null;
@@ -93,9 +90,7 @@ public class ProfessorDAO {
 	    }
 	
 	/**
-	 * The method is used to add the quiz details into the database
-	 *
-	 * @param quiz the quiz
+	 * This method is used to add the quiz details into the Quiz Table
 	 */
 	public void insertQuizDetails(Quiz quiz) {
         Transaction transaction = null;
@@ -111,6 +106,9 @@ public class ProfessorDAO {
         }
     }
 	
+	/**
+	 * This method is used to retrieve Quiz data with provided quiz ID from Quiz Table.
+	 */
 	public Quiz getQuizFromID(int quizID) {
 		 Quiz quizObj = null;
 		 Transaction transaction = null;
@@ -129,7 +127,7 @@ public class ProfessorDAO {
 	}
 	
 	/**
-	 * Gets all answers for each question.
+	 * This method is used to retrieve all answers with provided question ID from Answer Table.
 	 */
 	public List<Answer> getAllAnswersFromQuestionID(int questionID) {
 		List<Answer> lists = new ArrayList<>();
