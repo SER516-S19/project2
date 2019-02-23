@@ -56,7 +56,18 @@ out.write("<form method=\"Post\" action=" + str +">");
 	<br>
 	<br>
 	
-	<input type="submit" name="flag" value="Save"/>
+<%
+String quizType = (String) session.getAttribute("quizType");
+if(("G").equals(quizType)){
+	out.write("Enter points : ");
+	out.write("<input type=\"number\" name=\"points\" required>");
+}
+%>
+	<br>
+	<br>
+	<input type="submit" name="flag" value="Add Next Question"/>
+	<input type="submit" name="flag" value="Save and Exit"/>
+	<input type="submit" name="flag" value="Verify Questions"/>
 	
 	<%
 	out.write("</form>");
