@@ -9,8 +9,7 @@ import org.sqlite.JDBC;
 
 /** @author Hari Krishnan Puthiya Veetil, Aman Kaushik */
 public final class DataOps {
-  private DataOps() {
-  }
+  private DataOps() {}
 
   private static Connection getConnection() throws SQLException {
     DriverManager.registerDriver(new JDBC());
@@ -49,13 +48,4 @@ public final class DataOps {
     validateQueryString(query);
     executeInsertQuery(query);
   }
-
-  public QuizResultsDAO getQuizResultsDAO() {
-    return new QuizResultsDAO();
-  }
-
-  public QuizContentDAO getQuizContextDAO() {
-    return new QuizContentDAO();
-  }
-
 }
