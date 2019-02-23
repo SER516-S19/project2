@@ -38,7 +38,7 @@
     <th>Score</th>
   </tr>
   <tr>
-    <td>Question #1</td>
+    <td><a href="./viewContentDetails.jsp"> Question #1 </a></td>
     <td>
       <ol type = 'a'>
         <li>First</li>
