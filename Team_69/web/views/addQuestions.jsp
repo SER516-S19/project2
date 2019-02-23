@@ -8,13 +8,7 @@
 </head>
 <body>
 
-<%
-String str = "../ProfessorController";
-if(request.getAttribute("profnavigate") != null){
-	str = (String) request.getAttribute("profnavigate");
-}
-out.write("<form method=\"Post\" action=" + str +">");
-%>
+<form method="Post" action="../ProfessorController">
     <p>Please add the question.</p>
 	
 	Question:
@@ -69,8 +63,6 @@ if(("G").equals(quizType)){
 	<input type="submit" name="flag" value="Save and Exit"/>
 	<input type="submit" name="flag" value="Verify Questions"/>
 	
-	<%
-	out.write("</form>");
-	%>
+</form>
 </body>
 </html>
