@@ -48,7 +48,7 @@
   
     <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.LoginServlet</servlet-class>
+    <servlet-class>controller.LoginServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
  		
@@ -59,13 +59,13 @@
   
       <servlet>
     <servlet-name>ProfessorHomeServlet</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.ProfessorHomeServlet</servlet-class>
+    <servlet-class>controller.ProfessorHomeServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
 
 	<servlet>
     <servlet-name>CreateQuizServlet</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.CreateQuizServlet</servlet-class>
+    <servlet-class>controller.CreateQuizServlet</servlet-class>
     <init-param>
     	<param-name></param-name>
     	<param-value></param-value>
@@ -85,7 +85,7 @@
 	</servlet-mapping>
    <servlet>
     <servlet-name>CourseDashboardServlet</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.CourseDashboardServlet</servlet-class>
+    <servlet-class>controller.CourseDashboardServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
  		
@@ -96,7 +96,7 @@
 
     <servlet>
     <servlet-name>CreateQuestionsServlet</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.CreateQuestionsServlet</servlet-class>
+    <servlet-class>controller.CreateQuestionsServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
  		
@@ -107,7 +107,7 @@
   
   <servlet>
     <servlet-name>ViewQuizServlet</servlet-name>
-    <servlet-class>edu.asupoly.ser516.controller.ViewQuizServlet</servlet-class>
+    <servlet-class>controller.ViewQuizServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
  		
@@ -118,7 +118,7 @@
 
     <servlet>
         <servlet-name>DisplayQuizServlet</servlet-name>
-        <servlet-class>edu.asupoly.ser516.controller.DisplayQuizServlet</servlet-class>
+        <servlet-class>controller.DisplayQuizServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
