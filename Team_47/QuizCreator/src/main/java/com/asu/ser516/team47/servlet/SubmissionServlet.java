@@ -55,6 +55,9 @@ public class SubmissionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        htmlCode = 204;
+        htmlMessage = "";
+
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
