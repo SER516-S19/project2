@@ -12,7 +12,6 @@ import com.asu.ser516.team47.database.*;
  * @version 1.0
  * @since 2/22/19
  */
-
 public class ServletHelper {
 
     /**
@@ -24,7 +23,7 @@ public class ServletHelper {
      * @param date      date the quiz was taken
      * @param score     graded quiz score
      * @param attempt   number of attempts
-     * @return true if the submission succeeded, false if it failed.
+     * @return true if the insertion into database succeeds, otherwise false.
      */
     public boolean sendSubmission(int quizID, int enrollID, int time, Date date,
                                   float score, int attempt) {
@@ -34,9 +33,22 @@ public class ServletHelper {
         SubmissionDAOImpl submitter = new SubmissionDAOImpl();
 
         return submitter.insertSubmission(studentSubmission);
-
     }
 
-    //TODO: add sendAnswers() {}
+    /**
+     * Creates an Answer object based on the data from the servlet and sends it
+     * to the database as a new answers table.
+     * @param answerID      answer ID
+     * @param submissionID  submission ID
+     * @param questionID    question ID
+     * @param choiceID      choice ID
+     * @return true if the insertion into database succeeds, otherwise false.
+     */
+    public boolean sendAnswer(int answerID, int submissionID, int questionID, int choiceID) {
 
+        Answer studentAnswer = new Answer(answerID, submissionID, questionID, choiceID);
+        AnswerDAOImpl submitter = new AnswerDAOImpl();
+
+        return submitter.insertAnswer(studentAnswer);
+    }
 }
