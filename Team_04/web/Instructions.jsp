@@ -48,7 +48,7 @@
     </div>
     <br>
     <p align="center">
-        <input type = "submit" class = "btn2" name="action" value = "NEXT" >
+        <input type = "submit" class = "btn2" name="action" value = "Start Quiz" >
     </p>
 </form>
 </body>
