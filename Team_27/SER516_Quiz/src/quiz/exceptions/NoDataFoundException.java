@@ -5,12 +5,12 @@
 package quiz.exceptions;
 
 @SuppressWarnings("serial")
-public class NoDataFoundException extends DataAccessException{
-  public NoDataFoundException(String pExceptionMsg){
-    super(pExceptionMsg);
-  }
+public class NoDataFoundException extends DataAccessException {
+	public NoDataFoundException(String pExceptionMsg) {
+		super(pExceptionMsg);
+	}
 
-  public NoDataFoundException(String pExceptionMsg, Throwable pException){
-    super(pExceptionMsg, pException);
-  }
+	public NoDataFoundException(String pExceptionMsg, Throwable pException) {
+		super(pExceptionMsg, pException);
+	}
 }
