@@ -75,7 +75,12 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         doGet(request, response);
     }
 
-
+    /**
+     * Method to calculate the score
+     * @param currentQuestionIndex index of the current question
+     * @param selectedOptions      list of selected options
+     * @return
+     */
     private int computeScore(int currentQuestionIndex, List<String> selectedOptions) {
         int actualCorrectAnsCount = 0, totalCorrectAnsCount = 0;
         int result;
@@ -96,6 +101,13 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         return result;
     }
 
+    /**
+     * Method to get the quiz results
+     * @param request the request from Client
+     * @param response the response from Server
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (this.questions.size() == 0) {
@@ -105,8 +117,8 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         questionNumber++;
         session.setAttribute("count", questionNumber);
-
         String action = request.getParameter("action");
+
         if (action.isEmpty()) {
             view = "error.jsp";
         } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
