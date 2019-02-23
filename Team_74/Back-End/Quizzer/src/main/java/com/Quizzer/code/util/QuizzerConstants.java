@@ -2,7 +2,8 @@ package com.Quizzer.code.util;
 
 /**
  * This class is the utility class for constants.
- * @author kumar
+ * 
+ * @author Kumar Prabhu Kalyan
  *
  */
 public class QuizzerConstants {

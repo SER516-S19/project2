@@ -8,6 +8,7 @@ import com.Quizzer.code.model.db.StudentQuiz;
 
 /**
  * This repository implements the mongo repository for StudentQuiz table.
+ * 
  * @author Kirti Jha
  *
  */

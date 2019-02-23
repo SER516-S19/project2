@@ -2,6 +2,7 @@ package com.Quizzer.code.exceptions;
 
 /**
  * This class is the custom exception class for get quiz service.
+ * 
  * @author Kirti Jha
  *
  */

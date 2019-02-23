@@ -9,13 +9,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * This class is the model class for Question item.
+ * 
  * @author Kumar Prabhu Kalyan
  *
  */
 @Document(collection = "Question")
 public class Question implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
@@ -28,8 +28,9 @@ public class Question implements Serializable {
 	private int marks;
 
 	public Question() {
-		
+
 	}
+
 	public Question(String id, String questionText, List<String> options, String quizId, String correctAnswer,
 			String type, int totalCorrectAttempts, int marks) {
 		super();

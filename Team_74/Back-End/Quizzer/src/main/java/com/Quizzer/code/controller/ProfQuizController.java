@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +24,12 @@ import com.Quizzer.code.service.ProfQuizService;
  * @author Kumar Prabhu Kalyan and Kirti Jha
  *
  */
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class ProfQuizController {
 
 	@Autowired
 	ProfQuizService quizService;
-
 
 	/**
 	 * This method handles the add quiz request.
@@ -42,7 +43,8 @@ public class ProfQuizController {
 
 		try {
 			quizService.addQuiz(quiz);
-			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, null), HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, null),
+					HttpStatus.ACCEPTED);
 
 		} catch (Prof_AddQuiz_Exception e) {
 			return new ResponseEntity<>(new ResponseListVO(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null),
