@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This is helper for performing database operation on the Quiz table
+ * This is helper class for performing database operation on the Quiz table
  *
  * @author : Jahnvi Rai
  * @version : 1.0
@@ -46,8 +46,6 @@ public class QuizDAO {
        }
        return quizNames;
    }
-
-
 
    public int fetchQuizId(String quizName){
        Transaction transaction = null;

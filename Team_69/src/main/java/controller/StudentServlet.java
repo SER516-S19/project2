@@ -32,8 +32,6 @@ public class StudentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String queryParams = req.getQueryString();
 		String quizId = queryParams.split("=")[1];
-		QuizDAO quizDAO = new QuizDAO();
-		//int quizId = quizDAO.fetchQuizId(quizName);
 		StudentServices service = new StudentServices();
 		String questionAnswerJSON = service.getQuestionDetails(Integer.parseInt(quizId));
 		HttpSession session = req.getSession();
