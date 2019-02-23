@@ -80,7 +80,7 @@ function createQuestionElement(index) {
 	});
 
 	var header = $('<h2>Question ' + (index + 1)
-			+ ': <span float:"right"> Points </span></h2>');
+			+ ': <span float:"right"> '+questions[index].points+'Points </span></h2>');
 	qElement.append(header);
 
 	var question = $('<p>').append(questions[index].question);
