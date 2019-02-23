@@ -12,6 +12,9 @@ Freemarker page to display CourseDashboard
 	<body>
 		<h2 class="fontColor">Course Dashboard</h2>
          <div class="box">
+         	<form action="professorHome.ftl" method="POST">
+	        	<button type="submit">Return to Dashboard</button>
+        	</form>
          <p class="smallFontColor"> ${Session.courseName} </p>
 	         <form action="viewQuiz" method="POST">
 	         <select class="options" name="Quiz">
