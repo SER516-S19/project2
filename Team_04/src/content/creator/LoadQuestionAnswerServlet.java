@@ -14,12 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @WebServlet("/servlet")
 public class LoadQuestionAnswerServlet extends HttpServlet {
 	String view = "";
-
+	private int score = 0;
 	private List<QuizContent> questions = new ArrayList<>();
 	private int currentQuestionIndex = 0;
 
@@ -34,22 +37,32 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 		this.questions = questions;
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long userSelectedAns = 0;
+		String selectedOptId =request.getParameter("selectedOptionId");
+		if(selectedOptId == null || selectedOptId.isEmpty())
+		{
+			userSelectedAns = -1;
+		}
+		else
+		{
 
-private int score = 0;
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
+			userSelectedAns = new Long(selectedOptId);
+		}
+
+	//long ansId = (long) request.getAttribute("ansId");
+	    String ansDesc = (String)request.getAttribute("ansDesc");
+
 		QuizContent quiz = this.questions.get(currentQuestionIndex-1);
 		if(quiz.getQues_type().equals("SA"))
 		{
 			long userSelectedAns = new Long(request.getParameter("selectedOptionId"));
 			String ansDesc = (String)request.getAttribute("ansDesc");
 			for(AnswerOption ans : quiz.getAnswerOptions())
+			if ( ans.getIsCorrect() && userSelectedAns != -1 && userSelectedAns == ans.getAns_id())
 			{
-				if ( ans.getIsCorrect() && userSelectedAns == ans.getAns_id())
-				{
 					score = score +(int) quiz.getMax_score();
 					System.out.println(score);
-				}
 			}
 		}
 		else
@@ -75,7 +88,8 @@ private int score = 0;
 		{
 			view="error.jsp";
 		}
-		else if(action.equalsIgnoreCase("NEXT") && currentQuestionIndex < questions.size())
+		else if( (action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
+				&& currentQuestionIndex < questions.size())
 			{
 
 				request.setAttribute("data", questions.get(currentQuestionIndex));
@@ -89,10 +103,6 @@ private int score = 0;
 		else {
 			System.out.println(currentQuestionIndex);
 		}
-
-
-
-
 	}
 
 }
