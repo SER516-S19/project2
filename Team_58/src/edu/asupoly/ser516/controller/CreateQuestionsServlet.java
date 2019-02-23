@@ -1,6 +1,7 @@
 package edu.asupoly.ser516.controller;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +16,11 @@ import edu.asupoly.ser516.model.QuestionsVO;
  * Create Questions after Create Quiz.
  * 
  * @author trupti khatavkar
- * @version 1.2
+ * @version 1.3
  * @date 02/22/2019
  **/
 public class CreateQuestionsServlet extends HttpServlet {
+	private static Logger log = Logger.getLogger(CreateQuestionsServlet.class.getName());
 
 	// This servlet will not make any Get requests.
 	@Override
@@ -56,7 +58,7 @@ public class CreateQuestionsServlet extends HttpServlet {
 
 			res.sendRedirect(req.getContextPath() + "/createQuestions.ftl");
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 		}
 	}
 }
