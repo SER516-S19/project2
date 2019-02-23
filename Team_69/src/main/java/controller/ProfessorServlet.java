@@ -84,9 +84,9 @@ public class ProfessorServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
 		ProfessorServices professorServices = new ProfessorServices();
-		if ("InsertProfDetails".equals(flag)) {
-			professorServices.insertProfDetails(request);
-			response.sendRedirect("views/professorDetails.jsp");
+		if ("InsertQuizDetails".equals(flag)) {
+			professorServices.insertQuizDetails(request);
+			response.sendRedirect("views/quizDetails.jsp");
 		} 
 		else if ("DeleteQuestion".equals(flag)) {
 			String quesId = request.getParameter("box1");

@@ -21,8 +21,7 @@ import javax.servlet.http.HttpSession;
 public class ProfessorServices {
 	
 	private static String name = "option";
-	private ProfessorDAO professorDAO = new ProfessorDAO();
-
+	ProfessorDAO professorDAO = new ProfessorDAO();
 	/**
 	 * The method creates the question model and sends it to the DAO for processing
 	 */
@@ -71,7 +70,7 @@ public class ProfessorServices {
 	/**
 	 * Insert quiz details and validate the input.
 	 */
-	public void insertProfDetails(HttpServletRequest request) {
+	public void insertQuizDetails(HttpServletRequest request) {
 		HttpSession sess = request.getSession(true);
 		String quizName = request.getParameter("name");
         String quizInstructions = request.getParameter("instructions");
@@ -100,15 +99,13 @@ public class ProfessorServices {
 
         if(request.getParameter("shuffle")!=null)
         	isShuffled = true;
-		ProfessorDAO professorDAO = new ProfessorDAO();
 		Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
 		sess.setAttribute("quiz", quiz);
-		professorDAO.insertProfDetails(quiz);
+		professorDAO.insertQuizDetails(quiz);
 	}
 
 	public List<Question> getAllQuestionFromQuizID(int quizid){
-		List<Question> questions =  professorDAO.getAllQuestionFromQuizID(quizid);
-		return questions;	
+		return professorDAO.getAllQuestionFromQuizID(quizid);
 	}
 	
 	/**
@@ -116,7 +113,7 @@ public class ProfessorServices {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List getAllAnswersFromQueList(List<Question> questions) {
-		List questionData = new ArrayList<>();			
+		List questionData = new ArrayList<>();	
 		for(Question question : questions) {
 			int queID = question.getQuestionId();
 			List questionInfo = new ArrayList<>();
