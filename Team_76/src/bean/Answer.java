@@ -1,5 +1,9 @@
 package bean;
 public class Answer {
+	private int ansno;
+	private Question qs;
+	private String ans;
+	private boolean correctAns;
 	public Answer() {
 	}	    
 	public Answer(Question qs, String ans, boolean correctAns) {
