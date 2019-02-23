@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import edu.asupoly.ser516.model.QuestionsVO;
+import jdk.nashorn.internal.parser.JSONParser;
+
 import java.sql.PreparedStatement;
 import javax.servlet.annotation.WebServlet;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 @WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
 public class DisplayQuizServlet extends HttpServlet{
@@ -31,16 +35,27 @@ public class DisplayQuizServlet extends HttpServlet{
             String schema = connection.getSchema();
             System.out.println("Successful connection - Schema: " + schema);
 
-            PreparedStatement query2 = connection.prepareStatement("select questionId, question, totalChoices from [dbo].[questions]" + " where questionId = ?");
+            PreparedStatement query2 = connection.prepareStatement("select questionId, question, actualAnswer, totalChoices from [dbo].[questions]" + " where questionId = ?");
             query2.setInt(1, questionID);
             ResultSet userData = query2.executeQuery();
             QuestionsVO questionsVO = null;
 
             while(userData.next()){
-                String question = userData.getString("question");
+                int questionId = userData.getInt("questionId");
                 int totalPoints = userData.getInt("totalPoints");
+                String question = userData.getString("question");
+                String answer = userData.getString("actualAnswer");
+                int choices = userData.getInt("totalChoices");
 
-                questionsVO = new QuestionsVO(questionID, totalPoints, question, "CORRECT", "INCORRECT", "INCORRECT", "INCORRECT");
+                JSONParser parser = new JSONParser(answer, null, false);
+                JSONObject jo = null;//(JSONObject) parser.parse(choices);
+                //JSONObject jo2 = (JSONObject) parser.parse(answer);
+
+                String choice1 = (String) jo.get("incorrectAnswer1");
+                String choice2 = (String) jo.get("incorrectAnswer2");
+                String choice3 = (String) jo.get("incorrectAnswer3");
+
+                questionsVO = new QuestionsVO(questionID, totalPoints, question, answer, choice1, choice2, choice3);
             }
 
 
