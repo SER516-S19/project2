@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import edu.asupoly.ser516.model.QuestionsVO;
-import jdk.nashorn.internal.parser.JSONParser;
 
 import java.sql.PreparedStatement;
 import javax.servlet.annotation.WebServlet;
-import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 
 @WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
@@ -45,11 +44,10 @@ public class DisplayQuizServlet extends HttpServlet{
                 int totalPoints = userData.getInt("totalPoints");
                 String question = userData.getString("question");
                 String answer = userData.getString("actualAnswer");
-                int choices = userData.getInt("totalChoices");
+                String choices = userData.getString("totalChoices");
 
-                JSONParser parser = new JSONParser(answer, null, false);
-                JSONObject jo = null;//(JSONObject) parser.parse(choices);
-                //JSONObject jo2 = (JSONObject) parser.parse(answer);
+                JSONParser parser = new JSONParser();
+                JSONObject jo = (JSONObject) parser.parse(choices);
 
                 String choice1 = (String) jo.get("incorrectAnswer1");
                 String choice2 = (String) jo.get("incorrectAnswer2");
