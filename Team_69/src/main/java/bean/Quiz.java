@@ -30,7 +30,7 @@ public class Quiz {
     private String quizType;
 
     @Column(name = "Time_Limit")
-    private Time quizTimeLimit;
+    private String quizTimeLimit;
 
     @Column(name="Is_Shuffled")
     private boolean isShuffled;
@@ -41,7 +41,7 @@ public class Quiz {
     Quiz() {}
 
 
-    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, boolean isShuffled,
+    public Quiz(String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
 			boolean isPublished) {
 		this.quizName = quizName;
 		this.quizInstructions = quizInstructions;
@@ -51,7 +51,7 @@ public class Quiz {
 		this.isPublished = isPublished;
 	}
     
-    public Quiz(int quizId, String quizName, String quizInstructions, String quizType, Time quizTimeLimit, boolean isShuffled,
+    public Quiz(int quizId, String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
 			boolean isPublished) {
 		this.quizName = quizName;
 		this.quizInstructions = quizInstructions;
@@ -119,12 +119,12 @@ public class Quiz {
 
  
 
-    public Time getQuizTimeLimit() {
+    public String getQuizTimeLimit() {
 		return quizTimeLimit;
 	}
 
 
-	public void setQuizTimeLimit(Time quizTimeLimit) {
+	public void setQuizTimeLimit(String quizTimeLimit) {
 		this.quizTimeLimit = quizTimeLimit;
 	}
 

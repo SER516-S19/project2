@@ -62,15 +62,16 @@ public class ProfessorServlet extends HttpServlet{
 	        String quizInstructions = request.getParameter("instructions");
 	        String quizType = request.getParameter("quiz_type");
 	        String isTimeLimitSet = request.getParameter("time_limit");
-	        Time quizTimeLimit = new Time(0);
+	       // Time quizTimeLimit = new Time(0);
+			String quizTimeLimit="";
 	        boolean isShuffled = false;
 	        boolean isPublished = false;
 	        String assignmentGroup = request.getParameter("assignment_group");
 	        
-	        if(isTimeLimitSet!="null")
-	        {
-	        	quizTimeLimit = new Time(10);
-	        }
+//	        if(isTimeLimitSet!="null")
+//	        {
+//	        	quizTimeLimit = new Time(10);
+//	        }
 	        
 	        if(request.getParameter("shuffle")!="null")
 	        {
