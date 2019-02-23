@@ -20,7 +20,7 @@ import services.DatabaseConnection;
 public class quizServlet extends HttpServlet {
     private static Logger log = Logger.getLogger(quizServlet.class.getName());
 
-
+    
     public void doPost(HttpServletRequest req, HttpServletResponse res) 
 	throws ServletException, IOException	{
     	 	PreparedStatement preparedStatement = null;
@@ -29,24 +29,29 @@ public class quizServlet extends HttpServlet {
     		int skip = Integer.parseInt(req.getParameter("skip"));
     		Quiz[] ques = new Quiz[skip];
     		try {
-				Connection conn = (Connection) DatabaseConnection.createConnection();
-				 String query = "SELECT * FROM questions WHERE quiz_id BETWEEN " + currpage + " AND " + (currpage + skip); //Insert user details into the table 'USERS'
-				 preparedStatement = (PreparedStatement) conn.prepareStatement(query); //Making use of prepared statements here to insert bunch of data
-				 ResultSet rs = preparedStatement.executeQuery();
-				 int i = 0;
-				 if(!rs.next()) {
-					 return;
-				 }
-				 while (rs.next()) {
+    				Connection conn = (Connection) DatabaseConnection.createConnection();
+    				String query = "SELECT * FROM questions WHERE quiz_id BETWEEN " + currpage + " AND " + (currpage + skip); //Insert user details into the table 'USERS'
+    				String query1 = "SELECT * FROM questions WHERE quiz_id = " + quizid; //Insert user details into the table 'USERS'
+    				preparedStatement = (PreparedStatement) conn.prepareStatement(query); //Making use of prepared statements here to insert bunch of data
+    				ResultSet rs = preparedStatement.executeQuery();
+    				int count = rs.getInt("rowcount");
+    				if(skip<count) {
+    					skip--;
+    				}
+    				int i = 0;
+    				if(!rs.next()) {
+    					return;
+    				}
+    				while (rs.next()) {
 					 
 					 
-				 }
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    				}
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
     		
-    }
+    	}
 	
     public void doGet(HttpServletRequest req, HttpServletResponse res) 
 	throws ServletException, IOException	{
