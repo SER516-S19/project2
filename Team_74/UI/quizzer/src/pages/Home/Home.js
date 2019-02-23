@@ -1,8 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Home.css';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import ListGroup from "react-bootstrap/ListGroup";
+import MediaCard from "../../Card";
+
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 class Home extends Component {
 
@@ -19,32 +25,45 @@ class Home extends Component {
         return (
             <div className="Home">
                 {
-                    (parseInt(localStorage.getItem('type'),10) === 0)?
+                    (parseInt(localStorage.getItem('type'), 10) === 0) ?
                         <div>
+                            <CardBody>
                                 <center>
                                     <h3>Student Portal</h3>
                                     <h5>Click on the Quiz to be completed</h5>
                                     <br></br></center>
 
-                                <ListGroup className="QuizList">
-                                    <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 1</NavLink></li></ListGroupItem>
-                                    <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 2</NavLink></li></ListGroupItem>
-                                    <ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 3</NavLink></li></ListGroupItem>
+                                <ListGroup>
+                                    <Card> <ListGroupItem>
+                                        <li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 1</NavLink>
+                                        </li>
+                                    </ListGroupItem>
+
+                                        <ListGroupItem>
+                                            <li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 2</NavLink>
+                                            </li>
+                                        </ListGroupItem>
+                                        <ListGroupItem>
+                                            <li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 3</NavLink>
+                                            </li>
+                                        </ListGroupItem>
+                                    </Card>
                                 </ListGroup>
-                            </div>
-                    :
+                            </CardBody>
+                        </div>
+                        :
 
                         <div>
-                            <button type="button" className="Prof-Button" >Professor</button>
+                            <button type="button" className="Prof-Button">Professor</button>
                             <center>
                                 <h3>Professor Portal</h3>
                                 <h5>Select Quiz to be edited</h5>
                                 <br></br></center>
 
                             {/*<ListGroup className="QuizList">*/}
-                                {/*<ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 1</NavLink></li></ListGroupItem>*/}
-                                {/*<ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 2</NavLink></li></ListGroupItem>*/}
-                                {/*<ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 3</NavLink></li></ListGroupItem>*/}
+                            {/*<ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 1</NavLink></li></ListGroupItem>*/}
+                            {/*<ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 2</NavLink></li></ListGroupItem>*/}
+                            {/*<ListGroupItem><li><NavLink exact activeClassName="current" to='/takeQuiz'>Quiz 3</NavLink></li></ListGroupItem>*/}
                             {/*</ListGroup>*/}
 
 
