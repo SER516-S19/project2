@@ -9,3 +9,8 @@
 .DS_Store
 build.properties
 /.idea
+/dist
+/nbproject
+/build
+avikram4.Team_58.jar
+Team_58.war

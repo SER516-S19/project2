@@ -34,7 +34,8 @@ public class ProfessorHomeServlet extends HttpServlet{
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
+		
+		Boolean isCoursesAssigned = false;
 		UserVO userVO = (UserVO) req.getAttribute("UserVO");
 		
 		HttpSession session = req.getSession();
@@ -52,11 +53,14 @@ public class ProfessorHomeServlet extends HttpServlet{
 				session.setAttribute("displayMessage", "No Courses have been assigned to the professor");
 				log.info("No Courses have been assigned to the professor.");
 			}
-			
-			HashMap<Integer, String> course = new HashMap<>();
-			for (int i = 0; i < courseVO.size(); i++)
-				course.put(courseVO.get(i).getCourseId(), courseVO.get(i).getCourseName());
-			session.setAttribute("CourseHashMap", course);
+			else {
+				isCoursesAssigned = true;
+				HashMap<Integer, String> course = new HashMap<>();
+				for (int i = 0; i < courseVO.size(); i++)
+					course.put(courseVO.get(i).getCourseId(), courseVO.get(i).getCourseName());
+				session.setAttribute("CourseHashMap", course);
+			}
+			session.setAttribute("isCoursesAssigned", isCoursesAssigned);
 			res.sendRedirect(req.getContextPath() + "/professorHome.ftl");
 		} catch (Exception e) {
 			log.info(e.getMessage());
