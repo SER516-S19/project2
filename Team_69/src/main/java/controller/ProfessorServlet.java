@@ -58,6 +58,18 @@ public class ProfessorServlet extends HttpServlet{
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
 			rd.forward(request, response);	
 		
+		}else if("addQueInQuiz".equalsIgnoreCase(flag)) {
+			
+			String quizID = request.getParameter("id");
+			int quizId = Integer.parseInt(quizID);
+			
+			ProfessorDAO professorDAO = new ProfessorDAO();
+			Quiz quiz = professorDAO.getQuizFromID(quizId);
+			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("quiz", quiz);
+			
+			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
 		}
 	}
 	
@@ -70,7 +82,9 @@ public class ProfessorServlet extends HttpServlet{
 			
 			ProfessorServices professorServices = new ProfessorServices();
 			professorServices.insertProfDetails(request);
-			response.sendRedirect("views/professorDetails.jsp");
+			//RequestDispatcher rd = request.getRequestDispatcher("ProfessorController?flag=fetchQuizList");
+			//rd.forward(request,response);
+			response.sendRedirect("views/professorLanding.jsp");
 		}
 		else if("DeleteQuestion".equals(flag)){
 			System.out.println("hi fetching question inside");
@@ -84,30 +98,35 @@ public class ProfessorServlet extends HttpServlet{
             response.sendRedirect("views/removeQuestionPage.jsp");
             
         }else if("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
-        	String question = request.getParameter("question");
-        	String questionOption1 = request.getParameter("option1");
-        	String questionOption2 = request.getParameter("option2");
-        	String questionOption3 = request.getParameter("option3");
-        	String questionOption4 = request.getParameter("option4");
+			
+
+        	String question = request.getParameter("question").trim();
+        	String questionOption1 = request.getParameter("option1").trim();
+        	String questionOption2 = request.getParameter("option2").trim();
+        	String questionOption3 = request.getParameter("option3").trim();
+        	String questionOption4 = request.getParameter("option4").trim();
         	String points = request.getParameter("points");
         	String[] correctanswers = (String[]) request.getParameterValues("options");
      
-        	HttpSession sess = request.getSession(true);
-			Quiz quiz = (Quiz) sess.getAttribute("quiz");
+        	
+			HttpSession session = request.getSession(true);
+			
     
 			professorServices = new ProfessorServices();
-			professorServices.storeQuestion(quiz, question, questionOption1, questionOption2, questionOption3, questionOption4, correctanswers, points);
+			professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1, questionOption2, questionOption3, questionOption4, correctanswers, points);
 			
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
         	if("Add Next Question".equals(flag)) {
-        		response.sendRedirect("views/AddQuestions.jsp");
+        		response.sendRedirect("views/addQuestions.jsp");
         		return;
         	}else if("Save and Exit".equals(flag)) {
-        		response.sendRedirect("views/QuizList.jsp");
+        		response.sendRedirect("views/professorLanding.jsp");
             	return;
         	}
-        }else if("Verify Questions".equals(flag)) {
+        
+        	
+		}else if("Verify Questions".equals(flag)) {
         	response.sendRedirect("views/displayQuestionAnswer.jsp");
         	return;
         }
