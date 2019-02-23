@@ -120,22 +120,23 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.isEmpty()) {
-            view = "error.jsp";
+            view = "ErrorHandler.jsp";
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            request.setAttribute("errorResponse", response.getStatus());
         } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
                 && currentQuestionIndex < questions.size()) {
             request.setAttribute("data", questions.get(currentQuestionIndex));
             currentQuestionIndex += 1;
             request.setAttribute("enableSubmitButton", currentQuestionIndex == questions.size());
             view = "questionsanswers.jsp";
-            response.setContentType("text/html");
             response.setStatus(response.SC_OK);
-            request.getRequestDispatcher(view).forward(request, response);
+
         } else if(action.equalsIgnoreCase("submit")){
             request.setAttribute("totalScore", totalScore);
             view = "ThankYou.jsp";
-            response.setContentType("text/html");
             response.setStatus(response.SC_OK);
-            request.getRequestDispatcher(view).forward(request, response);
         }
+        response.setContentType("text/html");
+        request.getRequestDispatcher(view).forward(request, response);
     }
 }
