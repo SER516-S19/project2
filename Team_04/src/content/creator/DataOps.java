@@ -53,18 +53,4 @@ public class DataOps {
   public QuizContentDAO getQuizContextDAO() {
     return new QuizContentDAO();
   }
-
-	public List getQuizDetails(int id) {
-		List<String> list = new ArrayList<String>;
-		String sql = "SELECT * FROM quiz_content where quiz_id="+id;
-		try (ResultSet rs = executeGetQuery(sql)) {
-        list.add(rs.getString("ques_desc"));
-        list.add(rs.getString("ans_desc"));
-        list.add(rs.getString("max_score"));
-        }
-    catch (SQLException e) {
-        System.out.println(e.getMessage());
-        }
-		return list;
-	}
 }
