@@ -1,7 +1,17 @@
 .LoginForm{
-    padding-left: 30%;
-    padding-right: 30%;
-    align-content: center;
+    position: relative;
+    width: 350px;
+    margin: 0 auto;
+    height: 320px;
+    padding: 20px 22px;
+    border: 1px solid;
+    border-top-color: rgba(255,255,255,.4);
+    border-left-color: rgba(255,255,255,.4);
+    border-bottom-color: rgba(60,60,60,.4);
+    border-right-color: rgba(60,60,60,.4);
+    background: #999;
+    padding: 40px;
+    font-family: "Open Sans Condensed", sans-serif;
 }
 
 .Login-formheader{
@@ -10,23 +20,31 @@
 
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 14px 20px;
+    margin: 10px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    text-shadow: 0 1px 0 #133d3e;
 }
 
 input[type=submit]{
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+    	background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 10px 0;
+        border-top-color: #9fb5b5;
+        border-left-color: #608586;
+        border-bottom-color: #1b4849;
+        border-right-color: #1e4d4e;
+        cursor: pointer;
+        width: 100%;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        text-shadow: 0 1px 0 #133d3e;
 }
 
 input[type=submit]:hover{
+	background-color: #5b5b99;
     opacity: 0.8;
 }

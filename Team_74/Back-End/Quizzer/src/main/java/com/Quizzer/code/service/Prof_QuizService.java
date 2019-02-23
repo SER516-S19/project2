@@ -1,5 +1,6 @@
 package com.Quizzer.code.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +12,10 @@ import com.Quizzer.code.dao.QuestionRepo;
 import com.Quizzer.code.dao.QuizRepo;
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
-import com.Quizzer.code.model.Question;
-import com.Quizzer.code.model.Quiz;
+import com.Quizzer.code.model.db.Question;
+import com.Quizzer.code.model.db.Quiz;
+import com.Quizzer.code.model.response.Response;
+import com.Quizzer.code.model.response.Response_getQuizlist;
 import com.mongodb.MongoWriteException;
 
 @Service
@@ -76,9 +79,16 @@ public class Prof_QuizService {
 		return totalMarks;
 	}
 
-	public List<Quiz> getQuiz() throws Prof_GetQuiz_Exception {
+	public List<Response_getQuizlist> getQuiz() throws Prof_GetQuiz_Exception {
 		try {
-			return quizRepo.findAll();
+			
+			List<Response_getQuizlist> response_list = new ArrayList<Response_getQuizlist>();
+			for(Quiz quiz : quizRepo.findAll()) {
+				response_list.add(new Response_getQuizlist(quiz.getId(),quiz.getName()));
+			}
+
+			return response_list;
+			
 		} catch (Exception e) {
 			throw new Prof_GetQuiz_Exception(e.getMessage());
 		}
