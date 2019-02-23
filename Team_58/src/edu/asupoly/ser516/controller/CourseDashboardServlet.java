@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,8 @@ import edu.asupoly.ser516.model.UserVO;
  **/
 
 public class CourseDashboardServlet extends HttpServlet {
+	
+	private static Logger log = Logger.getLogger(CourseDashboardServlet.class.getName());
 	
 	// This servlet will not make any Get requests.
 	@Override
@@ -69,6 +72,9 @@ public class CourseDashboardServlet extends HttpServlet {
 		try {
 			QuizDAOBean quizBean = new QuizDAOBean();
 			List<QuizVO> quizList = quizBean.getQuizzesForCourse(courseId);
+			if(quizList.isEmpty()) {
+				log.info("No Quizzes exist for this course.");
+			}
 			HashMap<Integer, String> quiz = new HashMap<>();
 			for(int i=0;i<quizList.size();i++)
 				quiz.put(quizList.get(i).getQuizId(), quizList.get(i).getQuizTitle());
@@ -76,7 +82,7 @@ public class CourseDashboardServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/courseDashboard.ftl");  
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 		}
 	}
 }
