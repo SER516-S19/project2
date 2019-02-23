@@ -60,7 +60,7 @@
     </dependencies>
 
     <build>
-        <finalName>QuizCreator2</finalName>
+        <finalName>QuizCreator</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -79,6 +79,8 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <finalName>QuizCreator-Server</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
                             <mainClass>com.asu.ser516.team47.main.Main</mainClass>

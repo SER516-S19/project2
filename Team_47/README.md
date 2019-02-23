@@ -1,20 +1,40 @@
+# Team 47's quiz creator application.
 
-Team 47's quiz creator application.
+## Structure
+`/src/main/java`: Java Source Code directory  
+`./WebContent/`: Web Assets. HTML,jsp code.  
+`./WebContent/CSS`: CSS files
 
+## Members
 
-Skeleton Code of the quiz creator application.
+Front End:
+ - Meng-Ze Chen
+ - Yu-Ting Tsao
+ - Jiayan Wang
+ - Krishna Chandu Akula
+ - Sairam Eadala
+ - Bhavana Vakkalagadda
+ - Suraj Atmakuri
 
-HTML,jsp code in webcontent folder .
-Styles(CSS files) to be added in CSS folder in /webcontent/CSS.
-Java Files to go in /src folder.
+Back End:
+ - John Alden
+ - Trevor Forrey
+ - Paul Horton
+ - David Lahtinen
+ - Cecilia La Place
+ - Amit Pandey
+ - Qianru "Ruby" Zhao
 
+## Instructions
 
-Front End Dev:
+Scripts are provided to build and run the rpoejct for Windows, macOS, and linux.
 
-Meng-Ze Chen,
-Yu-Ting Tsao,
-Jiayan Wang,
-Krishna Chandu Akula,
-Sairam Eadala,
-Bhavana vakkalagadda,
-Suraj Atmakuri.
+macOS and linux:  
+`cd QuizCreator`  
+`./build.sh`  
+`./run.sh`  
+
+windows
+`cd QuizCreator`  
+`./build.bat`
+`./run.bat`  
