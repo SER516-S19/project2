@@ -36,8 +36,8 @@ public class QuizList {
     public static String createQuizSelectTable() {
     	// This should ultimately come from DB.
     	String[] quizNo = {"1", "2", "3", "4", "5"};
-		String[] instructions = {"This is pretty easy!", "A little bit hard.",
-				"Extremely Hard", "SUPER HOT!", "BYE BYE"};
+		String[] instructions = {"This is pretty easy! This is pretty easy!", "A little bit hard.",
+				"Extremely Hard", "SUPER HOT!", "BYE BYE BYE BYE"};
 		
 		List<Map<String,String>> maps = new ArrayList<Map<String,String>>();
 		
@@ -56,7 +56,8 @@ public class QuizList {
 			String myIns = map.get("instruction");
 			buf.append(String.format(
 					"<tr>" +
-                    "<td>%s</td>" +
+                    "<td class=\"text-left\">" +
+                    "%s</td>" +
                     "<td>%s</td>" +
                 "</tr>", myNo, myIns));
 		}

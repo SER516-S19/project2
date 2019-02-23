@@ -1,26 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@page import="model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src = "js/myquizzes.js"></script>
+<link rel="stylesheet" href="CSS/myquizzes.css" type="text/css"/>
+<script type="text/javascript" src="js/myquizzes.js"></script>
 <title>My Quizzes</title>
 </head>
 <body>
-
-	<table width="60%" border="1">
+<div class="table-title">
+<h3>Quiz Summary</h3>
+</div>
+	<div>
+		<table class="table-fill" id="tableId">
 		<thead>
-			<tr>
-				<td>Quiz No.</td>
-				<td>Quiz Instruction</td>
-			</tr>
+		<tr>
+		<th class="text-left">Quiz No.</th>
+		<th class="text-left">Quiz Instruction</th>
+		</tr>
 		</thead>
-		<tbody>
-<%= QuizList.createQuizSelectTable() %>
+		<tbody class="table-hover">
+			<%=QuizList.createQuizSelectTable()%>
 		</tbody>
-	</table>
-
+		</table>
+	</div>
 </body>
-</html>
