@@ -46,7 +46,7 @@ public interface EnrolledDAO {
      * Inserts a Enrolled in the database based on the
      * values in a business object
      *
-     * @param enrolled
+     * @param enrolled enrollment to insert
      * @return a boolean representing a successful/failed insert
      */
     boolean insertEnrolled(Enrolled enrolled);
@@ -55,7 +55,7 @@ public interface EnrolledDAO {
      * Updates a Enrolled in the database based on the
      * values in a business object
      *
-     * @param enrolled
+     * @param enrolled enrollment to update
      * @return a boolean representing a successful/failed update
      */
     boolean updateEnrolled(Enrolled enrolled);
@@ -64,7 +64,7 @@ public interface EnrolledDAO {
      * Deletes a Enrolled in the database based on the
      * values in a business object.
      *
-     * @param enrolled
+     * @param enrolled enrollment to delete
      * @return a boolean representing a successful/failed deletion
      */
     boolean deleteEnrolled(Enrolled enrolled);

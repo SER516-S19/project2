@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @since   2/22/19
  */
 public class SubmissionDAOImpl implements SubmissionDAO {
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all submissions in the table
@@ -25,7 +25,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<Submission>();
+        List<Submission> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -62,7 +62,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<Submission>();
+        List<Submission> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -99,7 +99,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<Submission>();
+        List<Submission> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -169,7 +169,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     /**
      * Inserts a submission in the database based on the
      * values in a business object
-     * @param submission
+     * @param submission submission to delete
      * @return a boolean representing a successful/failed insert
      */
     public boolean insertSubmission(Submission submission) {
@@ -237,11 +237,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             stmt.setInt(6, submission.getAttempt());
             stmt.setInt(7, submission.getSubmission_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();

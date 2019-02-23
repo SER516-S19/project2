@@ -15,11 +15,7 @@ import java.util.List;
  * @since 2/22/19
  */
 public class EnrolledDAOImpl implements EnrolledDAO{
-    // Hardcoded (will switch to loading through props in future)
-    //    private static Properties __dbProperties;
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
-    private static String __jdbcUser;
-    private static String __jdbcPasswd;
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all the enrollments in the database
@@ -30,7 +26,7 @@ public class EnrolledDAOImpl implements EnrolledDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Enrolled> rval = new ArrayList<Enrolled>();
+        List<Enrolled> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -66,7 +62,7 @@ public class EnrolledDAOImpl implements EnrolledDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Enrolled> rval = new ArrayList<Enrolled>();
+        List<Enrolled> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -103,7 +99,7 @@ public class EnrolledDAOImpl implements EnrolledDAO{
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Enrolled> rval = new ArrayList<Enrolled>();
+        List<Enrolled> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -172,7 +168,7 @@ public class EnrolledDAOImpl implements EnrolledDAO{
          * Inserts a Enrolled in the database based on the
          * values in a business object
          *
-         * @param enrolled
+         * @param enrolled enrollment to insert
          * @return a boolean representing a successful/failed insert
          */
     public boolean insertEnrolled(Enrolled enrolled) {
@@ -216,7 +212,7 @@ public class EnrolledDAOImpl implements EnrolledDAO{
      * Updates a Enrolled in the database based on the
      * values in a business object
      *
-     * @param enrolled
+     * @param enrolled enrollment to update
      * @return a boolean representing a successful/failed update
      */
     public boolean updateEnrolled(Enrolled enrolled) {
@@ -231,11 +227,7 @@ public class EnrolledDAOImpl implements EnrolledDAO{
             stmt.setString(2, enrolled.getStudent_fk());
             stmt.setInt(3, enrolled.getEnrolled_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -253,7 +245,7 @@ public class EnrolledDAOImpl implements EnrolledDAO{
      * Deletes a Enrolled in the database based on the
      * values in a business object.
      *
-     * @param enrolled
+     * @param enrolled enrollment to delete
      * @return a boolean representing a successful/failed deletion
      */
     public boolean deleteEnrolled(Enrolled enrolled) {

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @since   2/22/19
  */
 public class QuizDAOImpl implements QuizDAO {
-    private static String __jdbcUrl = "jdbc:sqlite:schema.db";
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all quizzes in the table
@@ -25,7 +25,7 @@ public class QuizDAOImpl implements QuizDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Quiz> rval = new ArrayList<Quiz>();
+        List<Quiz> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -63,7 +63,7 @@ public class QuizDAOImpl implements QuizDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Quiz> rval = new ArrayList<Quiz>();
+        List<Quiz> rval = new ArrayList<>();
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -134,7 +134,7 @@ public class QuizDAOImpl implements QuizDAO {
     /**
      * Inserts a quiz in the database based on the
      * values in a business object
-     * @param quiz
+     * @param quiz quiz to insert
      * @return a boolean representing a successful/failed insert
      */
     public boolean insertQuiz(Quiz quiz) {
@@ -214,11 +214,7 @@ public class QuizDAOImpl implements QuizDAO {
             stmt.setDouble(11, quiz.getTotal_points());
             stmt.setInt(12, quiz.getQuiz_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();
