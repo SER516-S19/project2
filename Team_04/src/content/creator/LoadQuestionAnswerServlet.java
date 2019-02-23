@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/servlet")
 public class LoadQuestionAnswerServlet extends HttpServlet {
 	String view = "";
-
+	private int score = 0;
 	private List<QuizContent> questions = new ArrayList<>();
 	private int currentQuestionIndex = 0;
 
@@ -34,8 +34,6 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 		this.questions = questions;
 	}
 
-
-private int score = 0;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	long userSelectedAns = new Long(request.getParameter("selectedOptionId"));
@@ -66,7 +64,8 @@ private int score = 0;
 		{
 			view="error.jsp";
 		}
-		else if(action.equalsIgnoreCase("NEXT") && currentQuestionIndex < questions.size())
+		else if( (action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
+				&& currentQuestionIndex < questions.size())
 			{
 
 				request.setAttribute("data", questions.get(currentQuestionIndex));

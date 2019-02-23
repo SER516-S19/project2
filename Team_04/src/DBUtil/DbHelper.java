@@ -9,7 +9,6 @@ public class DbHelper {
         return DB_URL;
     }
 
-
     static {
         try {
             Properties dbProperties = new Properties();
@@ -17,7 +16,6 @@ public class DbHelper {
             DB_URL    = dbProperties.getProperty("jdbcUrl");
         } catch (Throwable t) {
             t.printStackTrace();
-        } finally {
         }
     }
 }
