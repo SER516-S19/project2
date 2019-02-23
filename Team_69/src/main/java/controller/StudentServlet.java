@@ -1,12 +1,9 @@
 package controller;
 
-import bean.ResponseStatistics;
-import dao.QuestionDAO;
 import dao.QuizDAO;
 import services.StudentServices;
 
 import java.io.IOException;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,12 +27,12 @@ public class StudentServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setStatus(200);
-		StudentServices studentServices = new StudentServices();
 		String queryParams = req.getQueryString();
-		String quizId = queryParams.split("=")[1];
-		//int quizId =studentServices.fetchQuizId(quizName);
-		String questionAnswerJSON = studentServices.getQuestionDetails(Integer.parseInt(quizId));
+		String quizName = queryParams.split("=")[1];
+		QuizDAO quizDAO = new QuizDAO();
+		int quizId = quizDAO.fetchQuizId(quizName);
+		StudentServices service = new StudentServices();
+		String questionAnswerJSON = service.getQuestionDetails(quizId);
 		HttpSession session = req.getSession();
 		session.setAttribute("studentResponseJSON", questionAnswerJSON);
 		resp.setContentType("text/html");

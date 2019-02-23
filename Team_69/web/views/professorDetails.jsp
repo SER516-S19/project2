@@ -16,10 +16,12 @@ function myFunction(elem)
     if (elem.checked)
     {
     	document.getElementById('minutes').readOnly = false;
+    	document.getElementById('hours').readOnly = false;
     }
     else
     {
     	document.getElementById('minutes').readOnly = true;
+    	document.getElementById('hours').readOnly = false;
     }
 }
 </script>
@@ -75,7 +77,8 @@ function myFunction(elem)
     <td>
     	<input type="checkbox" name="time_limit" value="time_limit" onchange="myFunction(this);">Time Limit
 		
-		<input type="number" id ="minutes" name="minutes" value="" readonly> Minutes
+		<input type="number" id ="hours" name="hours" value="" min="0" readonly> Hours
+		<input type="number" id ="minutes" name="minutes" value="" min="0" max="60" readonly> Minutes
     </td>
   </tr>
   

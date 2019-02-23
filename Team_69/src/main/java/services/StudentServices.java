@@ -1,7 +1,5 @@
 package services;
 
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 
@@ -13,8 +11,6 @@ import bean.QuestionMapper;
 import bean.Quiz;
 import bean.ResponseStatistics;
 import bean.User;
-import dao.QuestionDAO;
-import dao.QuizDAO;
 import dao.StatisticsDAO;
 
 /**
@@ -27,9 +23,7 @@ import dao.StatisticsDAO;
  */
 
 public class StudentServices {
-
-	private long co;
-
+	
 	public String getQuestionDetails(int quizId) {
 		QuestionAnswerGenerator quizData = new QuestionAnswerGenerator();
 		String jsonString = null;
@@ -79,41 +73,5 @@ public class StudentServices {
 		Gson gson = new Gson();
 		QuestionAnswer quizList = gson.fromJson(studentResponse, QuestionAnswer.class);
 		return quizList;
-	}
-
-	public List<String> fetchAllQuizNames(){
-		QuizDAO quizDAO = new QuizDAO();
-		return quizDAO.fetchAllQuizName();
-	}
-
-	public int fetchQuizId(String quizName){
-		QuizDAO quizDAO = new QuizDAO();
-		return quizDAO.fetchQuizId(quizName);
-	}
-
-	public List<String> fetchQuizStatus(List<String> quizNames){
-		List<String> status = new ArrayList<>();
-		StatisticsDAO statisticsDAO = new StatisticsDAO();
-		for(String quizName : quizNames) {
-			int quizID = fetchQuizId(quizName);
-			long count = statisticsDAO.checkQuizStatus(quizID);
-			if(count>=1){
-				status.add("Answered");
-			}
-			else {
-				status.add("Unanswered");
-			}
-		}
-
-		return status;
-	}
-
-	public List<Integer> fetchAllQuizIds(List<String> quizNames){
-		List<Integer> quizIds = new ArrayList<>();
-		for(String quizName : quizNames){
-			int quizId = fetchQuizId(quizName);
-			quizIds.add(quizId);
-		}
-		return quizIds;
 	}
 }
