@@ -31,14 +31,14 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
     private int currentQuestionIndex = 0;
     private int totalScore = 0;
     private int questionNumber = 0;
-    SimpleDateFormat dateformat=new SimpleDateFormat("MMM-dd-yyyy");
-    String dates=dateformat.format(new Date());
-    SimpleDateFormat timeformat=new SimpleDateFormat("HH:mm:ss");
-    String time=timeformat.format(new Date());
+    SimpleDateFormat dateformat = new SimpleDateFormat("MMM-dd-yyyy");
+    String dates = dateformat.format(new Date());
+    SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm:ss");
+    String time = timeformat.format(new Date());
     int attemptId = (int) (System.currentTimeMillis() & 0xfffffff);
     int studentId = (int) (System.currentTimeMillis() & 0xfffffff);
 
-    private void executeQuery () {
+    private void executeInsertQuery() {
 
         for (String selectedOption : currentQuestion.getSelectedAnswers()) {
             String updateQuery = "INSERT INTO ques_response(quesId,quizId,ansId,attemptId,studentId,totalScore, attemptedOn, timeTaken, isFinal) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -46,7 +46,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
                     currentQuestion.getQuesId(),
                     currentQuestion.getQuizId(),
                     selectedOption
-                    , attemptId,studentId,currentQuestion.getScore(),dates,time, true);
+                    , attemptId, studentId, currentQuestion.getScore(), dates, time, true);
         }
 
     }
@@ -70,6 +70,11 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         this.questions = questions;
     }
 
+    private void executeSubmitEntry() {
+        String submitQuizQuery = "insert into quiz_result(quizId, attemptId, studentId, finalScore) values (?,?,?,?)";
+        DataManager.getInstance().executeUpdateQuery(submitQuizQuery,
+                currentQuestion.getQuizId(), attemptId, studentId, totalScore);
+    }
 
     /**
      * Method to post the quiz results
@@ -96,12 +101,15 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
                     break;
             }
         }
-        executeQuery();
+        executeInsertQuery();
+        if (currentQuestionIndex == questions.size())
+            executeSubmitEntry();
         doGet(request, response);
     }
 
     /**
      * Method to calculate the score
+     *
      * @param currentQuestionIndex index of the current question
      * @param selectedOptions      list of selected options
      * @return
@@ -129,7 +137,8 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 
     /**
      * Method to get the quiz results
-     * @param request the request from Client
+     *
+     * @param request  the request from Client
      * @param response the response from Server
      * @throws ServletException
      * @throws IOException
@@ -158,13 +167,11 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             view = "questionsanswers.jsp";
             response.setStatus(response.SC_OK);
 
-        } else if(action.equalsIgnoreCase("submit")){
+        } else if (action.equalsIgnoreCase("submit")) {
             request.setAttribute("totalScore", totalScore);
             view = "ThankYou.jsp";
             response.setStatus(response.SC_OK);
-        }
-        else
-        {
+        } else {
             view = "ErrorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
