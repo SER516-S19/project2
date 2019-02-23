@@ -29,6 +29,9 @@
 </label>
 <br>
 <br>
+<form action="myquizzes.jsp">
+<input id = "beginbtn" type="submit" value="Dashboard">
+</form>
 
 </frameset>
 </body>
