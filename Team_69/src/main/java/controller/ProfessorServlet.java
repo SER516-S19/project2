@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Answer;
 import bean.Question;
@@ -49,8 +50,6 @@ public class ProfessorServlet extends HttpServlet{
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
-    	System.out.println("hi fetching question");
-
         String flag = request.getParameter("flag");
 		if("InsertProfDetails".equals(flag)){
 			String quizName = request.getParameter("name");
@@ -76,6 +75,9 @@ public class ProfessorServlet extends HttpServlet{
 			ProfessorDAO professorDAO = new ProfessorDAO();
 			Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
 			
+			HttpSession sess = request.getSession(true);
+			sess.setAttribute("quiz", quiz);
+		
 			professorDAO.insertProfDetails(quiz);
             response.sendRedirect("views/professorDetails.jsp");
 		}
@@ -97,14 +99,15 @@ public class ProfessorServlet extends HttpServlet{
         	String option2 = request.getParameter("option2");
         	String option3 = request.getParameter("option3");
         	String option4 = request.getParameter("option4");
-        	String[] correctanswers = (String[]) request.getParameterValues("options");
+        	String[] correctanswers = (String[]) request.getParameterValues("options"); //correct answers
         	
-        	Time t = new Time(343443);
-        	Quiz quiz = new Quiz("Quiz1","Hello", "Graded",t, false, false );
+        	HttpSession sess = request.getSession(true);
+			Quiz quiz = (Quiz) sess.getAttribute("quiz");
+        	
         	Question q = new Question(quiz, question, 2, false, 25 );
+        	
         	QuestionDAO questionDAO = new QuestionDAO();
         	questionDAO.addQuestion(q);
-        	System.out.println("Here I AM");
         	
         	for(String s: correctanswers)
         		System.out.println("CorrectAnswe ID is   - " + s);

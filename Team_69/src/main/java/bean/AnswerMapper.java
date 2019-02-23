@@ -10,7 +10,7 @@ package bean;
 public class AnswerMapper {
 	private int answerId;
     private String answer;
-    private String correctAnswer;
+    private boolean correctAnswer;
 	public int getAnswerId() {
 		return answerId;
 	}
@@ -20,10 +20,10 @@ public class AnswerMapper {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public String getCorrectAnswer() {
+	public boolean getCorrectAnswer() {
 		return correctAnswer;
 	}
-	public void setCorrectAnswer(String correctAnswer) {
+	public void setCorrectAnswer(boolean correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
 	public void setAnswerId(int answerId) {
