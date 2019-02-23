@@ -2,8 +2,7 @@ import React from 'react';
 import './Login.css';
 import { Redirect } from 'react-router-dom';
 
-class LoginForm extends React.Component {
-  
+class LoginForm extends React.Component { 
   // Class based component to access DOM refs
   handleSignIn(e) {
     e.preventDefault()
@@ -16,9 +15,9 @@ class LoginForm extends React.Component {
     return (
       <form className="LoginForm" onSubmit={this.handleSignIn.bind(this)}>
         <div className="Login-formheader">
-        <h3>Sign in</h3>
+        <h3>Sign In</h3>
         </div>
-        <input type="text" ref="username" required={true} placeholder="Enter your username" />
+        <input type="text" ref="username" required={true} placeholder="Enter username" />
         <input type="password" ref="password" required={true} placeholder="Enter password" />
         <input type="submit" value="Login" />
       </form>
@@ -37,18 +36,13 @@ class Login extends React.Component {
     }
   }
   
-  // App "actions" (functions that modify state)
   signIn(username, password) {
-    // This is where you would call Firebase, an API etc...
-    // calling setState will re-render the entire app (efficiently!)
-
     this.setState({
       user: {
         username,
         password,
       }
     })
-
     if (username.toString().localeCompare("Prof") === 0){
       this.state.type = 1;
     }else{
@@ -60,9 +54,6 @@ class Login extends React.Component {
   }
   
   render() {
-    
-    // Passing relevant state to child components as props.
-    // Functions are passed using `bind` to make sure we keep our scope to App
     return (
       <div>
         { 
