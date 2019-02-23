@@ -3,6 +3,9 @@
 	version: 1.1
   -->
 <html>
+	<head>
+		<#include "stylesheet.css">
+	</head>
 	<style>
 		table, th, td {
 		  border: 1px solid black;
@@ -14,10 +17,11 @@
 		}
 	</style>
 	<body>
-		<h1>
+		
+		<h1 class="fontColor">
 		   Title: ${Session.quizName}
 		</h1>
-		<table>
+		<table class="box">
 			<tr>
 				<th>Student</th>
 				<th>Score</th>
@@ -29,6 +33,9 @@
 	            </tr>
 	        </#list>
         </table>
+        <form action="viewQuiz.ftl" method="POST">
+	        	<button type="submit" class="button quizButton">Return to Quiz Page</button>
+        </form>
         <script>
         
         </script>
