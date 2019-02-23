@@ -63,7 +63,9 @@ public class ProfessorServlet extends HttpServlet{
 	        
 	        if(isTimeLimitSet!="null")
 	        {
-	        	quizTimeLimit = new Time(10);
+	        	Integer quizTimeHour = Integer.parseInt(request.getParameter("hours"));
+	        	Integer quizTimeMinutes =Integer.parseInt(request.getParameter("minutes"));
+	        	quizTimeLimit = new Time(quizTimeHour * 60 * 60000 + quizTimeMinutes * 60000);
 	        }
 	        
 	        if(request.getParameter("shuffle")!="null")
