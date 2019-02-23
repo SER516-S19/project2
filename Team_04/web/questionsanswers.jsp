@@ -66,6 +66,7 @@
 
     <%
         QuizContent question = (QuizContent)request.getAttribute("data");
+        boolean enableSubmitButton = (boolean)request.getAttribute("enableSubmitButton");
         String buttonType = "";
         if(question.getQuesType().equals("SA"))
         {
@@ -76,10 +77,21 @@
             buttonType = "checkbox";
         }
 
-        int count = 1;
+        String submitBtn = "";
+        String nextBtn = "";
+        if(!enableSubmitButton)
+        {
+            submitBtn = "disabled";
+        }
+        else
+        {
+            nextBtn ="disabled";
+        }
+        int count = (int)session.getAttribute("count");
+
     %>
 
-    <b> QUESTION <%= count++ %> :</b>
+    <b> QUESTION <%=count%> :</b>
     <hr>
     <div class="quesStyle"><%=question.getQuesDesc()%></div>
     <%
@@ -96,9 +108,9 @@
 </div>
 <div class="navBtn">
 
-<input type="button" text="previous" value="previous" class="prevBtn"/>
+    <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn" <%=nextBtn%>/>
+    <input type="button" text="submit" value="submit" class="prevBtn" <%=submitBtn%>/>
 <%--<input type="button" text="next" value="next" class="nextBtn"/>--%>
-    <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn"/>
     </form>
 </div>
 
