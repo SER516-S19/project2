@@ -14,6 +14,16 @@ import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
+/**
+ * Class DisplayQuizInstructions Servlet is a controller that display Instructions
+ * Home after login.
+ * 
+ * @author Prashansa
+ * @version 1.2
+ * @date 02/22/2019
+ **/
+
+
 @WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuizInstruction")
 public class DisplayQuizInstructionsServlet extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
@@ -39,12 +49,12 @@ public class DisplayQuizInstructionsServlet extends HttpServlet{
             String quizInstruction = "";
             while(userData.next())
             	quizInstruction = userData.getString("quizInstruction");
-            QuizVO quizVO = new QuizVO(quizInstruction, "", "", "", "", "", "" );
+            QuizVO quizVO = new QuizVO("", quizInstruction, "", false );
 
             HttpSession session = req.getSession();
             session.setAttribute("QuizVO", quizVO);
             
-            System.out.println("Successful connection - Schema: endddd");
+            System.out.println("Successful connection - Schema:");
 
             res.sendRedirect(req.getContextPath() + "/displayQuizInstructions.ftl");
 
