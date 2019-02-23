@@ -1,14 +1,17 @@
-package content.creator;
+package content.creator.dao;
 
 import java.util.Date;
 
-class QuizContentDAO {
+public class QuizResultsDAO {
   private int studentId;
   private int attemptId;
   private int quizId;
   private int quesId;
   private int ansId;
   private int totalScore;
+  private Date attemptedOn;
+  private int timeTaken;
+  private boolean isFinal;
 
   public int getStudentId() {
     return studentId;
@@ -81,8 +84,4 @@ class QuizContentDAO {
   public void setFinal(boolean aFinal) {
     isFinal = aFinal;
   }
-
-  private Date attemptedOn;
-  private int timeTaken;
-  private boolean isFinal;
 }
