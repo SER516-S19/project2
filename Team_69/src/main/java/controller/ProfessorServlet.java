@@ -45,11 +45,17 @@ public class ProfessorServlet extends HttpServlet{
 		}else if("viewQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
 			int quizId = Integer.parseInt(id);
-			QuestionDAO questionDAO = new QuestionDAO();
-			List<Answer> questionList = questionDAO.getQuestionsAndAnswers(quizId);
-			request.setAttribute("questionList", questionList);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionAnswer.jsp");
-			rd.forward(request, response);
+			String quizName = request.getParameter("quizName");
+			
+			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
+			
+			List queAnsData =professorServices.getAllAnswersFromQueList(questions);
+
+			request.setAttribute("quizName", quizName);
+			request.setAttribute("queAnsData", queAnsData);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
+			rd.forward(request, response);	
+		
 		}
 	}
 
