@@ -8,13 +8,7 @@
 </head>
 <body>
 
-<%
-String str = "../ProfessorController";
-if(request.getAttribute("profnavigate") != null){
-	str = (String) request.getAttribute("profnavigate");
-}
-out.write("<form method=\"Post\" action=" + str +">");
-%>
+<form method="Post" action="../ProfessorController">
     <p>Please add the question.</p>
 	
 	Question:
@@ -56,10 +50,19 @@ out.write("<form method=\"Post\" action=" + str +">");
 	<br>
 	<br>
 	
-	<input type="submit" name="flag" value="Save"/>
+<%
+String quizType = (String) session.getAttribute("quizType");
+if(("G").equals(quizType)){
+	out.write("Enter points : ");
+	out.write("<input type=\"number\" name=\"points\" required>");
+}
+%>
+	<br>
+	<br>
+	<input type="submit" name="flag" value="Add Next Question"/>
+	<input type="submit" name="flag" value="Save and Exit"/>
+	<input type="submit" name="flag" value="Verify Questions"/>
 	
-	<%
-	out.write("</form>");
-	%>
+</form>
 </body>
 </html>

@@ -20,7 +20,23 @@ import bean.Question;
  * @version : 1.0
  * @since : 02/20/2019
  */
+
 public class AnswerDAO {
+	
+	public void addAnswer(Answer answer) {
+		Transaction transaction = null;
+		try  {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			session.save(answer);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
 	
 	public List<Answer> getAnswersByQuestionId(int questionId){
 		Transaction transaction = null;
