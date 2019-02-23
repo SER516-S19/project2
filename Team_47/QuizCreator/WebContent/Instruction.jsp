@@ -1,21 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <!-- TODO:the import path-->
-<%@ page language="java" import="com.servlet.*"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="CSS/Instruction.css" type="text/css">
+<link rel="stylesheet" href="css/Instruction.css" type="text/css">
+<script type="text/javascript" src = "instruction.js"></script>
 
 <head>
 <meta charset="UTF-8">
 <title>Instruction</title>
 </head>
 <body>
-<script>
-	function changeCheck(){
-		document.getElementById("multiAttemps").checked = true;
-	}
-</script>
 <%
 	//String title = session.getAttribute("title");
 	String title = "TestTitle";
@@ -34,10 +29,12 @@
 </div>
 
 <label id="attemp">
-<input id = "multiAttemps" type="checkbox" checked = "<%=mulAttemp %>" onclick="return false;">
+<input id = "multiAttemps" type="checkbox" checked = "<%=mulAttemp %>" onclick = "return false">
 Allow Multiple Attemps
 </label>
-<input id = "mulbtn" type="<%=mulbutton %>" value="retake" >
+
+<input id = "mulbtn" type="<%=mulbutton %>" value="retake">
+<input id = "beginbtn" type="button" value="Begin" onclick='location.href=("questions.jsp")'>
 
 </div>
 </body>
