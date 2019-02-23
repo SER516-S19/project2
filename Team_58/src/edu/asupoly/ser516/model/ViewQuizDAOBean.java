@@ -66,6 +66,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		try {
 			
 			if(result.next()) {
+				
 				quizName = result.getString("quizTitle");
 				instruction = result.getString("quizInstruction");
 				scheduledDate = result.getDate("quizScheduledDate");
@@ -121,6 +122,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
+
 	 			   
 	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, question, answer, choice1, choice2, choice3);
 	 			   list.add(quiz);
