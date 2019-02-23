@@ -1,0 +1,37 @@
+.quizInstruction {
+    width: 70%;
+    height: 100%;
+    padding: 3em;
+    border-color: rgb(10, 0, 0);
+    border-width: 2px;
+
+}
+
+.descriptionTextArea{
+    padding-left: 1.2em;
+    padding-right: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    min-height: 10em;
+    border-color: rgb(201, 196, 196);
+    width: 100%;
+    height: 50%;
+}
+
+.padding{
+    padding: .5em;
+    padding-left: 1em;
+}
+.rightAlign{
+    text-align: right;
+    align-items: flex-end;
+    align-content: flex-end;
+    padding-right: 1em;
+}
+
+.leftAlign{
+    text-align: left;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-left: 1em;
+}
