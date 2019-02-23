@@ -7,7 +7,7 @@ package bean;
  * 
  */
 
-public class AnswerMapper {
+public class AnswerDetails {
 	private int answerId;
     private String answer;
     private boolean correctAnswer;

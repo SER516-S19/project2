@@ -11,13 +11,13 @@ import java.util.List;
  * @since : 02/22/2019
  * 
  */
-public class QuestionMapper {
+public class QuestionDetails {
 	private int questionId;
 	private String question;
 	private int correctAnswerId;
 	private boolean isMultiple;
-	private List<AnswerMapper> responseAnswer;
-	private List<AnswerMapper> availableAnswers;
+	private List<AnswerDetails> responseAnswer;
+	private List<AnswerDetails> availableAnswers;
 
 	public int getQuestionId() {
 		return questionId;
@@ -61,19 +61,19 @@ public class QuestionMapper {
 		this.isMultiple = isMultiple;
 	}
 
-	public List<AnswerMapper> getResponseAnswer() {
+	public List<AnswerDetails> getResponseAnswer() {
 		return responseAnswer;
 	}
 
-	public void setResponseAnswer(List<AnswerMapper> responseAnswer) {
+	public void setResponseAnswer(List<AnswerDetails> responseAnswer) {
 		this.responseAnswer = responseAnswer;
 	}
 
-	public List<AnswerMapper> getAvailableAnswers() {
+	public List<AnswerDetails> getAvailableAnswers() {
 		return availableAnswers;
 	}
 
-	public void setAvailableAnswers(List<AnswerMapper> availableAnswers) {
+	public void setAvailableAnswers(List<AnswerDetails> availableAnswers) {
 		this.availableAnswers = availableAnswers;
 	}
 }
