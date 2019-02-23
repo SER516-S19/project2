@@ -33,8 +33,10 @@ Freemarker page to display CreateQuestions Page
       });
     });
   </script>
-	<body>
-	
+	<form action="createQuiz.ftl" method="POST">
+		<button type="submit"> <- Create Quiz</button>
+	</form>
+	<body>	
 	<h1 class="fontColor">Enter your questions and answers</h1>
 	<div class="box">
 		<form action="createQuestions" id="questionForm" method="POST">

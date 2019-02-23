@@ -1,7 +1,8 @@
 <!-- 
 Freemarker page to display Professor details
 @authour Shivam Verma
-@authour NarenkumarKonchada
+@authour NarenkumarKonchada 
+@authour Carnic
 @version 1.2
 @date 02/20/2019
  -->
@@ -38,6 +39,3 @@ Freemarker page to display Professor details
         </div>
 	</body>
 </html>
-
-
-  

@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +29,8 @@ import edu.asupoly.ser516.model.QuizVO;
 
 public class CreateQuizServlet extends HttpServlet {
 
+	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
+	
 	/**
 	 * This method is to get CreateQuiz UI page 
 	 *@param request  Request made to server
@@ -67,7 +70,7 @@ public class CreateQuizServlet extends HttpServlet {
     		CreateQuizVO createQuizVO = new CreateQuizVO(courseId, quizTitle, quizInstructions, quizScheduledDate, 0, isShuffled, assignedTime, false);
     		
     		QuizDAOBean obj = new QuizDAOBean();
-    		obj.creatingQuiz(createQuizVO);
+    		obj.insertingQuizDetails(createQuizVO);
     		
     		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
     		
@@ -77,7 +80,7 @@ public class CreateQuizServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/createQuestions.ftl");
     		
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info(e.getMessage());
 		}
 	}
 }
