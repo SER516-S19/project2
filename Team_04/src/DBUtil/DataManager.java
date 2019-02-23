@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * The {@code DataManager} class represents a container {@code JPanel} to display a {@code JLabel}
+ * The {@code DataManager} class represents a singleton controller for database CRUD operations
  * @author Pradeep Ambalam Jawaharlal
  */
 public class DataManager {
@@ -19,15 +19,21 @@ public class DataManager {
     private static DataManager dataManager = new DataManager();
     //endregion
 
-    private DataManager() {
-
-    }
-
     //region public methods
+
+    /**
+     * @return a singleton instance of {@code DataManager} class
+     */
     public static DataManager getInstance() {
         return dataManager;
     }
 
+    /**
+     * Executes the fetch type queries in the database
+     * @param queryString SQL query string to perform fetch operations
+     * @param <T> Class Type representing the single row in the table
+     * @return collection of {@code T}
+     */
     public <T> List<T> executeGetQuery(Class<T> responseType, String queryString) {
         Connection connection = getConnection();
         QueryRunner queryRunner = new QueryRunner();
@@ -48,9 +54,10 @@ public class DataManager {
     }
 
     /**
-     * @param query  UPDATE Person SET height=? WHERE name=?
-     * @param params 2.05, "John Doe"
-     * @return number of rows affected
+     *
+     * @param query
+     * @param params
+     * @return
      */
     public int executeUpdateQuery(String query, Object... params) {
         Connection connection = getConnection();
@@ -74,7 +81,15 @@ public class DataManager {
     //region private methods
 
     /**
-     * @return a new Database connection
+     * private constructor to enforce singleton pattern
+     */
+    private DataManager() {
+
+    }
+
+    /**
+     * Creates a new {@code Connection} instance
+     * @return a new {@code Connection} instance
      */
     private Connection getConnection() {
         Connection connection = null;
