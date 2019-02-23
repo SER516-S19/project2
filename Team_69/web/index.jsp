@@ -6,8 +6,6 @@
 <body>
 Hello <br>
 <br>
-To register a new user follow the link - <a href = "registerUser.jsp"> Register User </a>
-<br>
 To view the professor page - <a href = "views/professorDetails.jsp"> Professor Page </a>
 <br>
 To view the student page - <a href = "Login"> Student Page </a>
