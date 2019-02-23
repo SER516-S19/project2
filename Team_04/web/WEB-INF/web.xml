@@ -3,8 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
-
+    <servlet>
+        <servlet-name>CreateContentServlet</servlet-name>
+        <servlet-class>content.creator.servlet.CreateContentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateContentServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+    <!--<servlet>
+        <servlet-name>ViewContentListServlet</servlet-name>
+        <servlet-class>content.creator.servlet.ViewContentListServlet</servlet-class>
+    </servlet>-->
     <servlet>
         <servlet-name>LoadQuestionAnswerServlet</servlet-name>
         <servlet-class>content.creator.LoadQuestionAnswerServlet</servlet-class>
@@ -22,6 +32,15 @@
     <servlet-mapping>
         <servlet-name>QuizInstructions</servlet-name>
         <url-pattern>/quizinstructions</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewContentDetailsServlet</servlet-name>
+        <servlet-class>content.creator.servlet.ViewContentDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewContentDetailsServlet</servlet-name>
+        <url-pattern>/details</url-pattern>
     </servlet-mapping>
     <!--<servlet>-->
         <!--<servlet-name>CreateContentServlet</servlet-name>-->
