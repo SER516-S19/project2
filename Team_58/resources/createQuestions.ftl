@@ -54,7 +54,7 @@ Freemarker page to display CreateQuestions Page
   			<input class="mediumInput" type="text" name="incorrectAnswer3">
   			<br><br>
   			Total Points:<br>
-  			<input class="smallInput" type="text" name="totalPoints">
+  			<input class="smallInputLeft" type="text" name="totalPoints">
   			<br><br>
   			<input type="radio" name="isMCQ" checked>Multiple Answers
   			<br><br>
