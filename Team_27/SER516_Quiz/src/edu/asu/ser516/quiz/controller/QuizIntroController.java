@@ -19,6 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.asu.ser516.quiz.dao.impl.QuizDetailsDao;
+import edu.asu.ser516.quiz.exceptions.DataAccessException;
+import edu.asu.ser516.quiz.exceptions.NoDataFoundException;
+
 //import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 /**
@@ -33,34 +37,21 @@ public class QuizIntroController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//System.out.print("here");
 		
-		response.getWriter();
+		ArrayList rowValues = new ArrayList();
 		try {
-			PrintWriter out = response.getWriter();
-			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project2_team27?useSSL=false","root","root");  
-			PreparedStatement ps = ((java.sql.Connection) con).prepareStatement("SELECT quiz_id, title FROM quiz");
-			ResultSet rs= ps.executeQuery();	
-			HttpSession session = request.getSession();
-			//ArrayList listid = new ArrayList();
-			ArrayList rowValues = new ArrayList();
-			Object[] objects;
-			while (rs.next()) {
-				 rowValues.add(rs.getString("title"));
-			}   
-			//objects = rowValues.toArray(); 
-			//for (Object obj : objects) 
-				//out.println(obj + " "); 
-		    
-			session.setAttribute("rowValues", rowValues);
-			
-			response.sendRedirect("showQuizes.jsp");
-			
-		}catch(Exception e) 
-		{
+			rowValues = QuizDetailsDao.getAll();
+		} catch (NoDataFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.getSession().setAttribute("rowValues", rowValues);
+		
+		response.sendRedirect("showQuizes.jsp");
+		
 		
 	}
 
