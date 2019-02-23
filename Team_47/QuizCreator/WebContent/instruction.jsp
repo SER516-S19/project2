@@ -20,22 +20,25 @@
 <title>Instruction</title>
 </head>
 <body>
-<div id = "content">
+<div class = "content">
 
-<input id = "title" type = "text" value="Title" disabled="disabled">
+	<input id = "title" type = "text" value="Title" disabled="disabled">
 
-<div id ="instrcu_all">
-<p>Quiz Instruction</p>
-<input id = "instruc"type = "text" value="<%=title %>" disabled="disabled">
+	<div class ="instruction_area">
+	<p>Quiz Instruction</p>
+	<input id = "instruction"type = "text" value="<%=title %>" disabled="disabled">
+	</div>
+
+<div class="bottom">
+
+	<label id="attemp">
+	<input id = "multiAttemps" type="checkbox" checked = "<%=temp %>" onclick = "return false">
+	Allow Multiple Attemps
+	</label>
+	
+	<input id = "mulbtn" type="<%=mulbutton %>" value="retake">
+	<input id = "beginbtn" type="button" value="Begin" onclick='location.href=("questions.jsp")'>
 </div>
-
-<label id="attemp">
-<input id = "multiAttemps" type="checkbox" checked = "<%=temp %>" onclick = "return false">
-Allow Multiple Attemps
-</label>
-
-<input id = "mulbtn" type="<%=mulbutton %>" value="retake">
-<input id = "beginbtn" type="button" value="Begin" onclick='location.href=("questions.jsp")'>
 
 </div>
 </body>
