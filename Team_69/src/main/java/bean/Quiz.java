@@ -73,12 +73,14 @@ public class Quiz {
 	}
 
 
-	public boolean isPublished() {
+	
+
+	public boolean getIsPublished() {
 		return isPublished;
 	}
 
 
-	public void setPublished(boolean isPublished) {
+	public void setIsPublished(boolean isPublished) {
 		this.isPublished = isPublished;
 	}
 
@@ -135,8 +137,8 @@ public class Quiz {
                 ", quizInstructions='" + quizInstructions + '\'' +
                 ", quizType='" + quizType + '\'' +
                 ", quizTimeLimit=" + quizTimeLimit +
-                ", shuffleAnswer='" + isShuffled + '\'' +
-                ", Published='" + isPublished + '\'' +
+                ", isShuffled='" + isShuffled + '\'' +
+                ", isPublished='" + isPublished + '\'' +
                 '}';
     }
 }

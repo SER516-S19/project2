@@ -14,17 +14,19 @@ import bean.Question;
 import bean.Quiz;
 import dao.ProfessorDAO;
 import dao.QuestionDAO;
+import services.ProfessorServices;
 
 public class ProfessorServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
+	
+	private ProfessorServices professorServices = new ProfessorServices();
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String flag = request.getParameter("flag");
 		if("fetchQuizList".equalsIgnoreCase(flag)){
-			System.out.println("Hi!....");
-			ProfessorDAO proffessorDAO = new ProfessorDAO();
-			List quizList = proffessorDAO.getAllQuizzes();
+			List<Quiz> quizList = professorServices.getAllQuizzes();
 			request.setAttribute("quizList", quizList);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			rd.forward(request, response);
@@ -32,8 +34,12 @@ public class ProfessorServlet extends HttpServlet{
 		}else if("publishQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
 			int quizID = Integer.parseInt(id);
-			ProfessorDAO professorDAO = new ProfessorDAO();
-			professorDAO.publishQuiz(quizID);
+			professorServices.publishQuiz(quizID);
+			List<Quiz> quizList = professorServices.getAllQuizzes();
+			// Display updated quiz list after publish
+			request.setAttribute("quizList", quizList);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
+			rd.forward(request, response);			
 			
 		}else if("viewQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
