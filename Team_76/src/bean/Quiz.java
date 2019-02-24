@@ -2,7 +2,7 @@ package bean;
 
 public class Quiz {
 
-	String quizId,questionId,questions,options,correctAnswer;
+	String quizId,questionId,questions,options;
 
 	/**
 	 * @return the quizId
@@ -59,19 +59,4 @@ public class Quiz {
 	public void setOptions(String options) {
 		this.options = options;
 	}
-
-	/**
-	 * @return the correctAnswer
-	 */
-	public String getCorrectAnswer() {
-		return correctAnswer;
-	}
-
-	/**
-	 * @param correctAnswer the correctAnswer to set
-	 */
-	public void setCorrectAnswer(String correctAnswer) {
-		this.correctAnswer = correctAnswer;
-	}
-
 }
