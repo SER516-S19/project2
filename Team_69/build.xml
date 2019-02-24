@@ -1,5 +1,5 @@
 <!--
-   build.xml file for Lab2-Task2.
+   build.xml file for Project2.
 -->
 <project name="project2" default="compile" basedir=".">
     <property file="build.properties"/>
