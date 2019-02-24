@@ -14,11 +14,9 @@
 <h1>Available Functionality</h1>
 <div>
     <ul>
-        <li><a href="./createContent.jsp">  Quiz </a></li>
+        <li><a href="./createContent.jsp"> Quiz </a></li>
         <li><a href="./viewContentList.jsp"> View Quiz List </a></li>
-
     </ul>
-
 </div>
 </body>
 </html>

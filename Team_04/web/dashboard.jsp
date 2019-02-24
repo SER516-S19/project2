@@ -100,7 +100,7 @@
 <form class="panel" method="get">
     <h1>Select the user</h1>
     <div class="wrapper">
-        <input type="submit" class="btn1" name="action" value="professor"/>
+        <input type="submit" class="btn1" formaction="./index.jsp" name="action" value="professor"/>
         <input type="submit" class="btn2" formaction="./quizinstructions" name="action" value="student"/>
     </div>
 </form>
