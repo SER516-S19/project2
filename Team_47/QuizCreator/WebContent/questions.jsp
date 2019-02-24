@@ -17,31 +17,46 @@
 	</div>
 	<div class="question-board">
 		<div class="question-top-area">
-			<h3>Question 1</h3>
+			<h3 class="question_num">Question 1</h3>
 			<h4>10 pts</h4>
 		</div>
 		<div class="question-title">
 		Which of the followings are prerequisites of this course?</div>
 		<div class="selection-area">
-			<input type="radio" name="myAnwer" value="optionA">
-			proficient in a high-level programming language like Java or C++ and the environment in which a program is developed, e.g., editor, compiler/interpreter, etc.
+			<input type="checkbox" name="myAnwer" value="optionA">
+			<label  class="option1">proficient in a high-level programming language like Java or C++ and the environment in which a program is developed, e.g., editor, compiler/interpreter, etc.</label>
 			<hr>
-			<input type="radio" name="myAnwer" value="optionB">
-			understood basic concept of computer organization, including registers, memory arithmetic and logic units, processor, input and output.
+			<input type="checkbox" name="myAnwer" value="optionB">
+			<label  class="option2">understood basic concept of computer organization, including registers, memory arithmetic and logic units, processor, input and output.</label>
+			
+			
 			<hr>
-			<input type="radio" name="myAnwer" value="optionC"> 
-			I don't wanna be alone tonight It's pretty clear that I'm not over you I'm still thinking 'bout the things you do So I don't want to be alone tonight, alone tonight, alone tonight Can you light the fire?
+			<input type="checkbox" name="myAnwer" value="optionC"> 
+			<label  class="option3">Nothing!</label>
 			<hr>
-			<input type="radio" name="myAnwer" value="optionD"> 
-			Hello World!!!
+			<input type="checkbox" name="myAnwer" value="optionD">
+			<label class="option4">Hello World!!!
+			
+			</label>
 		</div>
 		<br>
 	</div>
-	<div style="height:60px; display: flex; align-items: center; justify-content: center;">
-		<a href="#" class="rainbow-button" alt="Next"></a>
+	<!--  <div style="height:60px; display: flex; align-items: right; justify-content: center;">
+		<a href="#" class="rainbow-button" alt="Next" id="nextQ1"></a>
 	</div>
-	<div class="bottom-area">
-		<button type="button">Submit Quiz</button>
+	<div style="top:100px;height:60px; display: flex; align-items: left; justify-content:right;">
+		<a href="#" class="rainbow-button" alt="Previous" id="prevQ1"></a>  -->
+	</div>
+	<div class="next">
+		<button type="button" onClick="" class="nextQ" style="width:200px;bottom:300px;left:300px">Next</button>
+	</div>
+	<div class="previous">
+		<button type="button" class="prevQ" style="visibility:hidden;width:200px">Previous</button>
 	</div> 
+		
+	<button style="width:100px" type="button" value="Submit Quiz" onclick='location.href=("submit.jsp")'>Submit Quiz</button>
+	
+	  <script src="js/question.js"></script>
+	
 </body>
 </html>
