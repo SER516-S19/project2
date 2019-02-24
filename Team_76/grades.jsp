@@ -31,6 +31,8 @@ Version: 6  -->
 		<tr>
 			<td>studentID</td>
 			<td>QuizId</td>
+			<td>quiztitle</td>
+			<td>studentName</td>
 			<td>grade</td>
 		</tr>
 		<%
@@ -44,6 +46,8 @@ Version: 6  -->
 		<tr>
 			<td><%=resultSet.getString("studentID")%></td>
 			<td><%=resultSet.getString("QuizId")%></td>
+			<td><%=resultSet.getString("quiztitle")%></td>
+			<td><%=resultSet.getString("studentName")%></td>
 			<td><%=resultSet.getString("grade")%></td>
 		</tr>
 		<%
