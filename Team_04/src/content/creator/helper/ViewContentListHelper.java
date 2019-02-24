@@ -1,5 +1,6 @@
 package content.creator.helper;
 
+import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -17,10 +18,7 @@ public final class ViewContentListHelper {
         String colName = "quiz_id";
         List<Integer> list = new ArrayList<>();
         String queryString = getQueryString(tableName, colName);
-        ResultSet rs = DataOps.getData(queryString);
-        while (rs.next()) {
-            list.add(rs.getInt(colName));
-        }
+        List<QuizContentDAO> data = DataOps.getData(queryString);
         return list;
     }
 
