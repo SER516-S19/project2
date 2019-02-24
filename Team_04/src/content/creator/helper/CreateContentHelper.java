@@ -1,5 +1,6 @@
 package content.creator.helper;
 
+import content.creator.constants.Constants;
 import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
 import java.sql.SQLException;
@@ -42,16 +43,7 @@ public final class CreateContentHelper {
 
   private static String convertToQueryString(QuizContentDAO quizContent) {
     String tableName = "quiz_content";
-    List<String> colNames =
-        Arrays.asList(
-            "quiz_id",
-            "ques_id",
-            "ques_type",
-            "ques_desc",
-            "ans_id",
-            "ans_desc",
-            "is_correct",
-            "max_score");
+    List<String> colNames = Constants.colNames;
     return String.format(
         "INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s) VALUES (%s, %s, '%s', '%s', %s, '%s', '%s', %s)",
         tableName,
