@@ -18,6 +18,15 @@ import javax.servlet.http.HttpSession;
  */
 public class StudentServlet extends HttpServlet {
 
+	/**
+	 * Handles the get request coming to the student
+	 *
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String queryParams = req.getQueryString();
@@ -32,6 +41,15 @@ public class StudentServlet extends HttpServlet {
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
 
 	}
+
+	/**
+	 * Handles the post request going from student
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
