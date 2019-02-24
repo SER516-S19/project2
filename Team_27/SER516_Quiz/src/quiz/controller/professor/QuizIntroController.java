@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import quiz.dao.ConnectionFactory;
+import quiz.dao.professor.QuizDetailsDao;
+import quiz.exceptions.DataAccessException;
+import quiz.exceptions.NoDataFoundException;
 
 //import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
@@ -23,42 +26,20 @@ import quiz.dao.ConnectionFactory;
 public class QuizIntroController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static Properties dbProperties = new Properties();
-	static {
-		try {
-			dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("rdbm.properties"));
-			Class.forName(dbProperties.getProperty("mysql_jdbcDriver"));
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
-	}
-
-	/**
-	 * @return
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String sql = dbProperties.getProperty("SELECT_QUIZ");
-		Connection conn = ConnectionFactory.getConnection();
-		PreparedStatement preparedStatement = null;
-
+		QuizDetailsDao quizDetailsDao = new QuizDetailsDao();
+		
+		ArrayList rowValues = new ArrayList();
 		try {
-			preparedStatement = conn.prepareStatement(sql);
-			ResultSet rs = preparedStatement.executeQuery();
-			HttpSession session = request.getSession();
-			ArrayList<String> rowValues = new ArrayList<String>();
-			while (rs.next()) {
-				rowValues.add(rs.getString("title"));
-			}
-			session.setAttribute("rowValues", rowValues);
-
-			response.sendRedirect("showQuizes.jsp");
-
-		} catch (Exception e) {
+		rowValues = quizDetailsDao.getAll();
+		}
+		catch(DataAccessException e) {
 			e.printStackTrace();
 		}
+		request.getSession().setAttribute("rowValues", rowValues);
+		response.sendRedirect("showQuizes.jsp");
+		
 
 	}
 
