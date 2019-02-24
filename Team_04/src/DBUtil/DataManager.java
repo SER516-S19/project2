@@ -53,11 +53,14 @@ public class DataManager {
         return result;
     }
 
+
     /**
-     *
      * @param query
+     * Update the values in the database
      * @param params
+     * Changes the values of the parameters
      * @return
+     * returns the number of rows effected
      */
     public int executeUpdateQuery(String query, Object... params) {
         Connection connection = getConnection();
