@@ -187,7 +187,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
 
         } else if (action.equalsIgnoreCase("submit")) {
             request.setAttribute("totalScore", totalScore);
-            view = "thankYou.jsp";
+            view = "quizResult.jsp";
             response.setStatus(response.SC_OK);
         } else {
             view = "errorHandler.jsp";
