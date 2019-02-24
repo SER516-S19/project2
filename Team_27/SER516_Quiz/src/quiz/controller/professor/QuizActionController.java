@@ -1,21 +1,24 @@
 package quiz.controller.professor;
 
 import java.io.IOException;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import quiz.dao.professor.QuizDetailsDao;
 import quiz.exceptions.DataAccessException;
 import quiz.exceptions.NoDataFoundException;
 import quiz.model.professor.QuizModel;
 
 /**
- * Servlet implementation class Main
+ * A servlet which controls add a new quiz,update and go to particular quiz and delete a quiz for the professor.
+ * 
+ * @author (Palak Chugh)
+ * @version (1.0)
+ * @createDate (20 Feb 2019)
  */
+
 
 public class QuizActionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,19 +26,25 @@ public class QuizActionController extends HttpServlet {
 	private static QuizDetailsDao quizDetailsDao = null;
 
 	public void init(ServletConfig config) throws ServletException {
-		// if you forget this your getServletContext() will get a NPE!
+		
 		super.init(config);
 		quizDetailsDao = new QuizDetailsDao();
 	}
 
+	/* This method manages the quiz introduction page.It deletes the quiz selected from the drop down.	 
+	 * It directs to create Quiz page for adding a new quiz. It allows to update the parameters
+	 * of the quiz by redirecting to redirects to update quiz detail page
+	 * It also redirects to Quiz detail page showing the details for the selected quiz.*/
 	@SuppressWarnings("static-access")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// perform processing and selects the action based on the button click
 		try {
 			String strActionToPerform = request.getParameter("actonToPerform");
 			String selectedQuiz = (String) request.getParameter("selectedQuiz");
 
+			// Block for deleting the quiz.
 			if (strActionToPerform.equalsIgnoreCase("delete")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
 				if (quizModel != null) {
@@ -50,6 +59,7 @@ public class QuizActionController extends HttpServlet {
 				}
 			}
 
+			//Block for redirecting to selected quiz detail page.
 			else if (strActionToPerform.equalsIgnoreCase("go")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
 				if (quizModel != null) {
@@ -58,7 +68,10 @@ public class QuizActionController extends HttpServlet {
 				} else {
 					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quiz doesn't exist!");
 				}
-			} else if (strActionToPerform.equalsIgnoreCase("update")) {
+			} 
+
+			// Block for updating the details of the selected quiz.
+			else if (strActionToPerform.equalsIgnoreCase("update")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
 
 				if (quizModel != null) {
@@ -72,10 +85,9 @@ public class QuizActionController extends HttpServlet {
 			}
 
 		} catch (NoDataFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (DataAccessException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (DataAccessException e) {
 			e.printStackTrace();
 		}
 
