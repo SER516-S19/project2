@@ -19,6 +19,7 @@
 <style>
     .QuesAnsDiv
     {
+
         width:50%;
         margin-top:10%;
         margin-left: 30%;
@@ -31,24 +32,27 @@
 
     .prevBtn, .nextBtn
     {
+        border-style: solid;
         margin-bottom: 25%;
         display: inline-block;
         white-space: nowrap;
         flex-basis: auto;
         width: auto;
-        border: none;
         cursor: pointer;
         border-radius: 4px;
         text-align: center;
         font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-        font-weight: 400;
+        font-weight: 800;
         line-height: 1.28571429;
         letter-spacing: .5px;
         text-transform: uppercase;
         padding: 10px 30px 10px;
         transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
     }
+    body{
+        background-color: rgb(220,208,255);
 
+    }
     .quesStyle
     {
         font-size: 175%;
@@ -68,6 +72,8 @@
 
     .entireDiv
     {
+        border: black;
+        background-color: rgb(241,228,254);
         margin: 70px 50px 70px 70px;
         border-style: ridge;
     }
