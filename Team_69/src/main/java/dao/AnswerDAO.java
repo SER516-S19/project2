@@ -26,8 +26,9 @@ public class AnswerDAO {
 	
 	public void addAnswer(Answer answer) {
 		Transaction transaction = null;
+		Session session = null;
 		try  {
-			Session session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.save(answer);
 			transaction.commit();
@@ -36,14 +37,17 @@ public class AnswerDAO {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		}finally {
+			session.close();
 		}
 	}
 	
 	public List<Answer> getAnswersByQuestionId(int questionId){
 		Transaction transaction = null;
 		List<Answer> answerDetails = null;
+		Session session = null;
 		try  {
-			Session session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
@@ -62,6 +66,8 @@ public class AnswerDAO {
 			}
 			e.printStackTrace();
 			return answerDetails;
+		}finally {
+			session.close();
 		}
 		return answerDetails;
 	}
