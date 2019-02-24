@@ -1,14 +1,14 @@
 # Team 74
-Web application for Blackboard kind of application
-Tech Stack(As Discussed with Professor)
-Frontend: React
-Backend: Spring Boot
+Web application for Blackboard kind of application <br />
+Tech Stack(As Discussed with Professor) <br />
+`Frontend: React` <br />
+`Backend: Spring Boot` <br />
 
 ##### Team Details:
-Product Owner: Ishan Kumar Sarangi
-Scrum Master: Kirti Jha(Team 1), Abhinab Mohanty(Team2) 
-Development Team 1: Ishan Kumar Sarangi, Kirti Jha, Kumar Prabhu Kalyan, Raju Koushik Gorantla, Sabyasachi Mohanty
-Development Team 2: Abhinab Mohanty, Koushik Kotamraju, Darshan Prakash, Pranav Mandadi, Harshita Kajal and Sakshi Chaudhary
+**Product Owner:** Ishan Kumar Sarangi<br />
+**Scrum Master:** Kirti Jha(Team 1), Abhinab Mohanty(Team2) <br />
+**Development Team 1:** Ishan Kumar Sarangi, Kirti Jha, Kumar Prabhu Kalyan, Raju Koushik Gorantla, Sabyasachi Mohanty<br />
+**Development Team 2:** Abhinab Mohanty, Koushik Kotamraju, Darshan Prakash, Pranav Mandadi, Harshita Kajal and Sakshi Chaudhary <br />
 
 
 ## Getting started and Running Project
