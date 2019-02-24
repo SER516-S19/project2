@@ -14,8 +14,9 @@
         }
 
     </style>
-    <script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        /*
         var quiz = [];
         var ques = {'choice':1};
 
@@ -36,9 +37,6 @@
             quiz.push(ques);
         }
 
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
         function submitForm(thisObj, thisEvent) {
             var jsonQuiz = new Object();
             jsonQuiz.quiz = quiz;
@@ -50,7 +48,7 @@
             });
 
             return false;
-        }
+        }*/
     </script>
 
     <head>
@@ -62,13 +60,18 @@
                 width: 100%;
             }
 
-            input[name="question_text"] {
+            input[name="1_question_text"], input[name="2_question_text"], input[name="3_question_text"],
+            input[name="4_question_text"], input[name="5_question_text"] {
                 font-family: arial, sans-serif;
                 width: 30%;
                 height: 20%;
             }
 
-            input[name="1"],input[name="2"],input[name="3"],input[name="4"] {
+            input[name="1_1"],input[name="1_2"],input[name="1_3"],input[name="1_4"],
+            input[name="2_1"],input[name="2_2"],input[name="2_3"],input[name="2_4"],
+            input[name="3_1"],input[name="3_2"],input[name="3_3"],input[name="3_4"],
+            input[name="4_1"],input[name="4_2"],input[name="4_3"],input[name="4_4"],
+            input[name="5_1"],input[name="5_2"],input[name="5_3"],input[name="5_4"] {
                 font-family: arial, sans-serif;
                 width: 15%;
             }
@@ -95,35 +98,132 @@
     <form  name="quizForm" method="POST" action="create" target="index.jsp">
     <br>
         <h3>Question text:</h3><br>
-        <input type="text" id="question" name="question_text" onchange="formUpdate()" class="formtext">
+        <input type="text" id="1_question" name="1_question_text" class="formtext">
         <br>
         <p name="option_a">Answer text A:</p><br>
-        <input type="radio" id="choice_1" name="choice" value = "1" checked = "true" onchange="choiceUpdate(1)"
-               class="formtext"> A
-        <input type="text" id="1" name="1" onchange="formUpdate()">
+        <input type="radio" name="1_choice" value = "1" checked = "true"> A
+        <input type="text" id="1_1" name="1_1" class="formtext">
         <br>
         <p name="option_b">Answer text B:</p><br>
-        <input type="radio" id="choice_2" name="choice" value = "2" onchange="choiceUpdate(2)" class="formtext"> B
-        <input type="text" id="2" name="2" onchange="formUpdate()">
+        <input type="radio" name="1_choice" value = "2"> B
+        <input type="text" id="1_2" name="1_2" class="formtext">
         <br>
         <p name="option_c">Answer text C:</p><br>
-        <input type="radio" id="choice_3" name="choice" value = "3" onchange="choiceUpdate(3)" class="formtext"> C
-        <input type="text" id="3" name="3" onchange="formUpdate()">
+        <input type="radio" name="1_choice" value = "3"> C
+        <input type="text" id="1_3" name="1_3" class="formtext">
         <br>
         <p name="option_d">Answer text D:</p><br>
-        <input type="radio" id="choice_4" name="choice" value = "4" onchange="choiceUpdate(4)" class="formtext"> D
-        <input type="text" id="4" name="4" onchange="formUpdate()">
+        <input type="radio" name="1_choice" value = "4"> D
+        <input type="text" id="1_4" name="1_4" class="formtext">
         <br>
         <p name="score">Score:</p><br>
-        <input type="text" id="score" name="score" onchange="formUpdate()"><br>
+        <input type="text" id="1_score" name="1_score"><br>
         <br>
-        <input id="add" type="button" value="Add" onclick="addQues()">
-        <input type="button"  value="Save" onclick="return submitForm(this, event);">
+
+        <br>
+        <h3>Question text:</h3><br>
+        <input type="text" id="2_question" name="2_question_text" class="formtext">
+        <br>
+        <p name="option_a">Answer text A:</p><br>
+        <input type="radio" name="2_choice" value = "1" checked = "true"> A
+        <input type="text" id="2_1" name="2_1" class="formtext">
+        <br>
+        <p name="option_b">Answer text B:</p><br>
+        <input type="radio" name="2_choice" value = "2"> B
+        <input type="text" id="2_2" name="2_2" class="formtext">
+        <br>
+        <p name="option_c">Answer text C:</p><br>
+        <input type="radio" name="2_choice" value = "3"> C
+        <input type="text" id="2_3" name="2_3" class="formtext">
+        <br>
+        <p name="option_d">Answer text D:</p><br>
+        <input type="radio" name="2_choice" value = "4"> D
+        <input type="text" id="2_4" name="2_4" class="formtext">
+        <br>
+        <p name="score">Score:</p><br>
+        <input type="text" id="2_score" name="2_score"><br>
+        <br>
+
+        <br>
+        <h3>Question text:</h3><br>
+        <input type="text" id="3_question" name="3_question_text" class="formtext">
+        <br>
+        <p name="option_a">Answer text A:</p><br>
+        <input type="radio" name="3_choice" value = "1" checked = "true"> A
+        <input type="text" id="3_1" name="3_1" class="formtext">
+        <br>
+        <p name="option_b">Answer text B:</p><br>
+        <input type="radio" name="3_choice" value = "2"> B
+        <input type="text" id="3_2" name="3_2" class="formtext">
+        <br>
+        <p name="option_c">Answer text C:</p><br>
+        <input type="radio" name="3_choice" value = "3"> C
+        <input type="text" id="3_3" name="3_3" class="formtext">
+        <br>
+        <p name="option_d">Answer text D:</p><br>
+        <input type="radio" name="3_choice" value = "4"> D
+        <input type="text" id="3_4" name="3_4" class="formtext">
+        <br>
+        <p name="score">Score:</p><br>
+        <input type="text" id="3_score" name="3_score"><br>
+        <br>
+
+        <br>
+        <h3>Question text:</h3><br>
+        <input type="text" id="4_question" name="4_question_text" class="formtext">
+        <br>
+        <p name="option_a">Answer text A:</p><br>
+        <input type="radio" name="4_choice" value = "1" checked = "true"> A
+        <input type="text" id="4_1" name="4_1" class="formtext">
+        <br>
+        <p name="option_b">Answer text B:</p><br>
+        <input type="radio" name="4_choice" value = "2"> B
+        <input type="text" id="4_2" name="4_2" class="formtext">
+        <br>
+        <p name="option_c">Answer text C:</p><br>
+        <input type="radio" name="4_choice" value = "3"> C
+        <input type="text" id="4_3" name="4_3" class="formtext">
+        <br>
+        <p name="option_d">Answer text D:</p><br>
+        <input type="radio" name="4_choice" value = "4"> D
+        <input type="text" id="4_4" name="4_4" class="formtext">
+        <br>
+        <p name="score">Score:</p><br>
+        <input type="text" id="4_score" name="4_score"><br>
+        <br>
+
+        <br>
+        <h3>Question text:</h3><br>
+        <input type="text" id="5_question" name="5_question_text" class="formtext">
+        <br>
+        <p name="option_a">Answer text A:</p><br>
+        <input type="radio" name="5_choice" value = "1" checked = "true"> A
+        <input type="text" id="5_1" name="5_1" class="formtext">
+        <br>
+        <p name="option_b">Answer text B:</p><br>
+        <input type="radio" name="5_choice" value = "2"> B
+        <input type="text" id="5_2" name="5_2" class="formtext">
+        <br>
+        <p name="option_c">Answer text C:</p><br>
+        <input type="radio" name="5_choice" value = "3"> C
+        <input type="text" id="5_3" name="5_3" class="formtext">
+        <br>
+        <p name="option_d">Answer text D:</p><br>
+        <input type="radio" name="5_choice" value = "4"> D
+        <input type="text" id="5_4" name="5_4" class="formtext">
+        <br>
+        <p name="score">Score:</p><br>
+        <input type="text" id="5_score" name="5_score"><br>
+        <br>
+
+        <!--input id="add" type="button" value="Add" onclick="addQues()"-->
+        <input type="button"  value="Save">
+        <!--onclick="return submitForm(this, event);"-->
     </form>
 
     <script src="js/validation.js" type="text/javascript">
         $(document).ready(function () {
-            $("input[value='Add']").prop('disabled', true);
+            $("input[value='Save']").prop('disabled', true);
             $('.error').hide();
 
             $(".formtext").on('keyup blur', function (e) {
@@ -135,7 +235,7 @@
                 }
                 else {
                     input.removeClass("valid").addClass("invalid");
-                    $("input[value='Add']").prop('disabled', true);
+                    $("input[value='Save']").prop('disabled', true);
                     $(".error").show();
                 }
 
