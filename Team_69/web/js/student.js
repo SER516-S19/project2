@@ -4,22 +4,30 @@
  * @since - 02/19/2019
  */
 
-// Displays all questions with answers
-function displayQuiz(studentResponseObj) {
-	var questions = [];
+var questions = [];
+var studentResponseObj = [];
+var selections = [];
+var questionCounter = 0;
+var quiz = $('#quiz');
 
-	for (var i = 0; i < studentResponseObj.length; i++) {
+// Displays all questions with answers
+function displayQuiz(jsonResponse) {
+	studentResponseObj = jsonResponse;
+	selections = [];
+	questionCounter = 0;
+	quiz = $('#quiz');
+
+	for (var i = 0; i < studentResponseObj.question.length; i++) {
+		choiceList = [];
+		studentResponseObj.question[i].availableAnswers.forEach(function(Element) {
+			choiceList.push(Element.answer)
+		});
 		questions[i] = {
-			question : studentResponseObj[i].question,
-			//	    choices: studentResponseObj[i].answerList,
-			choices : [ 1, 2, 3, 4 ],
-			points : studentResponseObj[i].points
+			question : studentResponseObj.question[i].question,
+			choices : choiceList,
+			points : studentResponseObj.question[i].points
 		};
 	}
-
-	var questionCounter = 0; // Tracks question number
-	var selections = []; // Array containing user choices
-	var quiz = $('#quiz'); // Quiz div object
 
 	// Display initial question
 	displayNext();
@@ -27,7 +35,7 @@ function displayQuiz(studentResponseObj) {
 	// Click handler for the 'next' button
 	$('#next').on('click', function(e) {
 		e.preventDefault();
-
+		autoSave();
 		// Suspend click listener during fade animation
 		if (quiz.is(':animated')) {
 			return false;
@@ -46,7 +54,8 @@ function displayQuiz(studentResponseObj) {
 	// Click handler for the 'prev' button
 	$('#prev').on('click', function(e) {
 		e.preventDefault();
-
+		
+		autoSave();
 		if (quiz.is(':animated')) {
 			return false;
 		}
@@ -62,105 +71,88 @@ function displayQuiz(studentResponseObj) {
 	$('.button').on('mouseleave', function() {
 		$(this).removeClass('active');
 	});
+}
 
-	// Creates and returns the div that contains the questions and
-	// the answer selections
-	function createQuestionElement(index) {
-		var qElement = $('<div>', {
-			id : 'question'
-		});
+// Creates and returns the div that contains the questions and
+// the answer selections
+function createQuestionElement(index) {
+	var qElement = $('<div>', {
+		id : 'question'
+	});
 
-		var header = $('<h2>Question ' + (index + 1)
-				+ ': <span float:"right"> Points </span></h2>');
-		qElement.append(header);
+	var header = $('<h2>Question ' + (index + 1)
+			+ ': <span float:"right"> '+questions[index].points+' Points </span></h2>');
+	qElement.append(header);
 
-		var question = $('<p>').append(questions[index].question);
-		qElement.append(question);
+	var question = $('<p>').append(questions[index].question);
+	qElement.append(question);
 
-		var radioButtons = createRadios(index);
-		qElement.append(radioButtons);
+	var radioButtons = createRadios(index);
+	qElement.append(radioButtons);
 
-		return qElement;
+	return qElement;
+}
+
+// Creates a list of the answer choices as radio inputs
+function createRadios(index) {
+	var radioList = $('<ul>');
+	var item;
+	var input = '';
+	for (var i = 0; i < questions[index].choices.length; i++) {
+		item = $('<li>');
+		input = '<input type="radio" name="answer" value=' + i + ' />';
+		input += questions[index].choices[i];
+		item.append(input);
+		radioList.append(item);
 	}
+	return radioList;
+}
 
-	// Creates a list of the answer choices as radio inputs
-	function createRadios(index) {
-		var radioList = $('<ul>');
-		var item;
-		var input = '';
-		for (var i = 0; i < questions[index].choices.length; i++) {
-			item = $('<li>');
-			input = '<input type="radio" name="answer" value=' + i + ' />';
-			input += questions[index].choices[i];
-			item.append(input);
-			radioList.append(item);
-		}
-		return radioList;
-	}
+// Reads the user selection and pushes the value to an array
+function choose() {
+	selections[questionCounter] = +$('input[name="answer"]:checked').val();
+}
 
-	// Reads the user selection and pushes the value to an array
-	function choose() {
-		selections[questionCounter] = +$('input[name="answer"]:checked').val();
-	}
+// Displays next requested element
+function displayNext() {
+	quiz.fadeOut(function() {
+		$('#question').remove();
 
-	function autoSave() {
-		console.log("Saved!");
-
-		var questionContainers = $(".question");
-		for (var i = 0; i < questionContainers.length; i++) {
-			var questionID = questionContainers[i].id;
-			var ansElems = questionContainers[i].getElementsByTagName("input");
-			for (var j = 0; j < ansElems.length; j++) {
-				if (ansElems[j].checked) {
-					console.log(questionID + ": " + ansElems[j].value);
-					createResponseJSON();
-					//Save in session or temp Table?
-				}
+		if (questionCounter < questions.length) {
+			var nextQuestion = createQuestionElement(questionCounter);
+			quiz.append(nextQuestion).fadeIn();
+			if (!(isNaN(selections[questionCounter]))) {
+				$('input[value=' + selections[questionCounter] + ']').prop(
+						'checked', true);
 			}
-		}
-	}
 
-	// Displays next requested element
-	function displayNext() {
-		quiz.fadeOut(function() {
-			$('#question').remove();
-
-			if (questionCounter < questions.length) {
-				var nextQuestion = createQuestionElement(questionCounter);
-				quiz.append(nextQuestion).fadeIn();
-				if (!(isNaN(selections[questionCounter]))) {
-					$('input[value=' + selections[questionCounter] + ']').prop(
-							'checked', true);
-				}
-
-				// Controls display of 'prev' button
-				if (questionCounter === 1) {
-					$('#prev').show();
-				} else if (questionCounter === 0) {
-
-					$('#prev').hide();
-					$('#next').show();
-				}
-			} else {
-				$('#next').hide();
+			// Controls display of 'prev' button
+			if (questionCounter === 1) {
+				$('#prev').show();
+			} else if (questionCounter === 0) {
 				$('#prev').hide();
-				$('#start').show();
+				$('#next').show();
 			}
-		});
-	}
-
-	function updateResponseJSON() {
-		for (var i = 0; i < studentResponseObj.length; i++) {
-			if (!isNaN(selections[i])) {
-				studentResponseObj[i].responseAnswer.push(selections[i]);
-			}
+		} else {
+			$('#next').hide();
+			$('#prev').show();
+			$('#submitBtn').show();
 		}
-		'<%=session.setAttribute("studentResponseJSON", studentResponseJSON)%>'
-	}
+	});
+}
 
-	function autoSave() {
-		console.log("Saved!");
-		updateResponseJSON();
+function updateResponseJSON() {
+	for (var i = 0; i < studentResponseObj.question.length; i++) {
+		if (!(isNaN(selections[i]))) {
+			studentResponseObj.question[i].responseAnswer.length = 0;
+			studentResponseObj.question[i].responseAnswer.push(studentResponseObj.question[i].availableAnswers[selections[i]]);
+		}
 	}
+	studentResponseJSON = JSON.stringify(studentResponseObj);
+	document.getElementById("finish").value = studentResponseJSON;
+}
 
+function autoSave() {
+	updateResponseJSON();
+	console.log("Saved!");
 }
