@@ -11,6 +11,7 @@
           <element id="library" level="project" name="commons-dbutils-1.7" />
           <element id="library" level="project" name="javax.servlet" />
           <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="jstl-1.2" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Team_04/web/Web" />
