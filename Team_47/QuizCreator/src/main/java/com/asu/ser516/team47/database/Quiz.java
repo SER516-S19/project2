@@ -21,13 +21,14 @@ public class Quiz {
     private String quiz_type;
     private int attempts;
     private String quiz_group;
+    private double total_points;
 
     /**
      * @param quiz_id unique id for quiz
      * @param title title for the quiz
      * @param course_fk foreign key for the quiz's course
      * @param instructions instructions for the quiz
-     * @param shuffle if quesitons are shuffled
+     * @param shuffle if questions are shuffled
      * @param time_limit time limit for quiz
      * @param date_open date to open quiz
      * @param date_close date to close quiz
@@ -37,7 +38,7 @@ public class Quiz {
      */
     public Quiz(int quiz_id, String title, int course_fk, String instructions,
                 boolean shuffle, int time_limit, Date date_open, Date date_close,
-                String quiz_type, int attempts, String quiz_group) {
+                String quiz_type, int attempts, String quiz_group, double total_points) {
         this.quiz_id = quiz_id;
         this.title = title;
         this.course_fk = course_fk;
@@ -49,6 +50,7 @@ public class Quiz {
         this.quiz_type = quiz_type;
         this.attempts = attempts;
         this.quiz_group = quiz_group;
+        this.total_points = total_points;
     }
 
     public int getQuiz_id() {
@@ -138,4 +140,8 @@ public class Quiz {
     public void setQuiz_group(String quiz_group) {
         this.quiz_group = quiz_group;
     }
+
+    public double getTotal_points() { return total_points; }
+
+    public void setTotal_points(double newTotal) { this.total_points = newTotal; }
 }

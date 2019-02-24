@@ -27,7 +27,7 @@ public interface StudentDAO {
     /**
      * Inserts a student in the database based on the
      * values in a business object
-     * @param student
+     * @param student student to insert
      * @return a boolean representing a successful/failed insert
      */
     boolean insertStudent(Student student);
@@ -43,7 +43,7 @@ public interface StudentDAO {
     /**
      * Deletes a student in the database based on the
      * values in a business object.
-     * @param student
+     * @param student student to delete
      * @return a boolean representing a successful/failed deletion
      */
     boolean deleteStudent(Student student);

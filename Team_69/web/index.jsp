@@ -10,6 +10,6 @@ To register a new user follow the link - <a href = "registerUser.jsp"> Register 
 <br>
 To view the professor page - <a href = "views/professorDetails.jsp"> Professor Page </a>
 <br>
-To view the student page - <a href = "views/student.jsp"> Student Page </a>
+To view the student page - <a href = "Login"> Student Page </a>
 </body>
 </html>
