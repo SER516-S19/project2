@@ -51,10 +51,10 @@ button {
 	width: 50%;
 	margin: auto;
 	padding: 0 25px 40px 10px;
-	background-color: #1E90FF;
+	background-color: #F;
 	border: 4px solid #B0E0E6;
 	border-radius: 5px;
-	color: #FFFFFF;
+	color: #0;
 	font-weight: bold;
 	box-shadow: 5px 5px 5px #888;
 }
@@ -75,5 +75,6 @@ ul {
 }
 
 #ridge {
-    border-style: ridge;
+	padding: 5px ;
+	border-style: none;
 }

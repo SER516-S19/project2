@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 */
 
 public class ViewGradesController {
-	mySQL obj = new mySQL();
+	MySQL obj = new MySQL();
 	/* This retrieves the request and response parameters from the UI.
 	 */
 	public void getParameters(HttpServletRequest request, HttpServletResponse response) throws Exception {
