@@ -50,7 +50,9 @@
 			}
 		%>
 	</table>
-
+	<br />
+	<br />
+	<input type="submit" value="Back" />
 
 </body>
 
