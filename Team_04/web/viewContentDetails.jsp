@@ -36,7 +36,12 @@
         <th>Score</th>
     </tr>
     <tr>
-        <td><a href="./viewContentDetails.jsp"> Question #1 </a></td>
+        <td>Static Data</td>
+        <td>Static Data</td>
+        <td>Static Data</td>
+    </tr>
+    <tr>
+        <td><span>Question #1<span></td>
         <td>
             <ol type = 'a'>
                 <li>First</li>
@@ -48,7 +53,7 @@
         <td>10</td>
     </tr>
     <tr>
-        <td><a href="./viewContentDetails.jsp"> Question #2 </a></td>
+        <td><span>Question #2 </span></td>
         <td>
             <ol type = 'a'>
                 <li>First</li>
@@ -60,7 +65,7 @@
         <td>5</td>
     </tr>
     <tr>
-        <td><a href="./viewContentDetails.jsp"> Question #3 </a></td>
+        <td><span > Question #3 </span></td>
         <td>
             <ol type = 'a'>
                 <li>First</li>
@@ -72,7 +77,7 @@
         <td>15</td>
     </tr>
     <tr>
-        <td><a href="./viewContentDetails.jsp"> Question #4 </a></td>
+        <td><span > Question #4 </span></td>
         <td>
             <ol type = 'a'>
                 <li>First</li>

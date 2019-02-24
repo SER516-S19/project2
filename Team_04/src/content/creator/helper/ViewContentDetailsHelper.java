@@ -17,6 +17,7 @@ public final class ViewContentDetailsHelper {
   }
 
   private static String getContentQuery(int quizId) {
-    return String.format("SELECT * FROM quiz_content WHERE quiz_id = %s", quizId);
+    String COL_NAME = "quizId";
+    return String.format("SELECT * FROM quiz_content WHERE %s = %s", COL_NAME, quizId);
   }
 }

@@ -9,12 +9,12 @@ public final class Constants {
 
   public static final List<String> colNames =
       Arrays.asList(
-          "quiz_id",
-          "ques_id",
-          "ques_type",
-          "ques_desc",
-          "ans_id",
-          "ans_desc",
-          "is_correct",
-          "max_score");
+          "quizId",
+          "quesId",
+          "quesType",
+          "quesDesc",
+          "ansId",
+          "ansDesc",
+          "isCorrect",
+          "maxScore");
 }

@@ -4,18 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>CreateContentServlet</servlet-name>
-        <servlet-class>content.creator.servlet.CreateContentServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CreateContentServlet</servlet-name>
-        <url-pattern>/create</url-pattern>
-    </servlet-mapping>
-    <!--<servlet>
-        <servlet-name>ViewContentListServlet</servlet-name>
-        <servlet-class>content.creator.servlet.ViewContentListServlet</servlet-class>
-    </servlet>-->
-    <servlet>
         <servlet-name>QuestionAnswerServlet</servlet-name>
         <servlet-class>student.servlet.QuestionAnswerServlet</servlet-class>
     </servlet>
@@ -50,14 +38,7 @@
         <!--<servlet-name>CreateContentServlet</servlet-name>-->
         <!--<url-pattern>/create</url-pattern>-->
     <!--</servlet-mapping>-->
-    <!--<servlet>-->
-        <!--<servlet-name>ViewContentListServlet</servlet-name>-->
-        <!--<servlet-class>content.creator.ViewContentListServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>ViewContentListServlet</servlet-name>-->
-        <!--<url-pattern>/list</url-pattern>-->
-    <!--</servlet-mapping>-->
+
     <!--<servlet>-->
         <!--<servlet-name>ViewContentDetailsServlet</servlet-name>-->
         <!--<servlet-class>content.creator.ViewContentDetailsServlet</servlet-class>-->

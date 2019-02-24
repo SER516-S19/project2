@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import student.dto.QuizContent;
 
 /** @author Hari Krishnan Puthiya Veetil */
 public final class ViewContentListHelper {
@@ -15,10 +16,13 @@ public final class ViewContentListHelper {
 
     public static List<Integer> getQuizList() throws SQLException {
         String tableName = "quiz_content";
-        String colName = "quiz_id";
+        String colName = "quizId";
         List<Integer> list = new ArrayList<>();
         String queryString = getQueryString(tableName, colName);
         List<QuizContentDAO> data = DataOps.getData(queryString);
+        for (QuizContentDAO content: data) {
+            list.add(content.getQuizId());
+        }
         return list;
     }
 
