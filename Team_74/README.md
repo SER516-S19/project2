@@ -17,5 +17,5 @@ Tech Stack(As Discussed with Professor) <br />
 
 ## Navigate to http://localhost:8081/ on a browser to view running application
 
-### To Login as Professor please use username as "Prof" and any password
-### To Login as Student any username and password would work
+**To Login as Professor please use username as "Prof" and any password** <br />
+**To Login as Student any username and password would work** <br />
