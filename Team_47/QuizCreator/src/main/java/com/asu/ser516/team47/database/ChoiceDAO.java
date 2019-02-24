@@ -46,9 +46,9 @@ public interface ChoiceDAO {
     boolean updateChoice(Choice choice);
 
     /**
-     * Deletes a choice in the database basec on the
+     * Deletes a choice in the database based on the
      * values in a business object.
-     * @param choice
+     * @param choice choice to delete
      * @return a boolean representing a successful deletion
      */
     boolean deleteChoice(Choice choice);

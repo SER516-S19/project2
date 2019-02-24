@@ -7,27 +7,27 @@ VALUES ("xXKitten_OwnerXx", "DDA", "123");
 INSERT INTO Quizzes (title, course_fk, instructions, shuffle,
 	time_limit, date_open, date_close, quiz_type, attempts, quiz_group, total_points)
 VALUES ("Minute Quiz", 1, "This is a straightforward quiz. You have 1 minute.",
-	1, 60, "2018-12-25", "2020-04-08", "quiz",
+	1, 60, "2018-12-25 00:00:00.000", "2020-04-08 00:00:00.000", "quiz",
 	3, "Cool Questions", 340.5);
 INSERT INTO Quizzes (title, course_fk, instructions, shuffle,
 	time_limit, date_open, date_close, quiz_type, attempts, quiz_group, total_points)
 VALUES	("Nasty Quiz", 1,
 	"This quiz will test how the system responds to 0s in certain areas", 0,
-	0, "2018-12-25", "2020-04-08", "quiz", 0, "null", 90);
+	0, "2018-12-25 00:00:00.000", "2020-04-08 00:00:00.000", "quiz", 0, "null", 90);
 INSERT INTO Quizzes (title, course_fk, instructions, shuffle,
 	time_limit, date_open, date_close, quiz_type, attempts, quiz_group, total_points)
 VALUES	("Surveillance Survey", 1,
 	"This isn't for a grade, yet there are points.",
-	1, 0, "2018-12-25", "2020-04-08", "survey", 2, "likeability", 29);
+	1, 0, "2018-12-25 00:00:00.000", "2020-04-08 00:00:00.000", "survey", 2, "likeability", 29);
 INSERT INTO Quizzes (title, course_fk, instructions, shuffle,
 	time_limit, date_open, date_close, quiz_type, attempts, quiz_group, total_points)
 VALUES	("Late Quiz", 1, "Dude, this was due a while ago.",
-	1, 90000, "1995-12-25", "2012-10-31", "quiz", 5, "Being totally radical",
+	1, 90000, "1995-12-25 00:00:00.000", "2012-10-31 00:00:00.000", "quiz", 5, "Being totally radical",
 	9000000.9);
 INSERT INTO Quizzes (title, course_fk, instructions, shuffle,
 	time_limit, date_open, date_close, quiz_type, attempts, quiz_group, total_points)
 VALUES	("Negatives", 1, "test negative numbers throughout", 0,
-	-1, "2018-12-25", "2020-04-08", "quiz", -2, "negatives", -50);
+	-1, "2018-12-25 00:00:00.000", "2020-04-08 00:00:00.000", "quiz", -2, "negatives", -50);
 	
 
 INSERT INTO Questions (quiz_fk, quesType, points, content)
@@ -140,3 +140,9 @@ INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(14, "True", 0);
 INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(14, "False", 1);
+
+INSERT INTO Students (username, firstname, lastname, hashedpass)
+VALUES ("boywholived", "Harry", "Potter", "214988dgsadg79");
+
+INSERT INTO Enrolled (course_fk, student_fk)
+VALUES (1, "boywholived");

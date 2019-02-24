@@ -3,17 +3,9 @@ package com.asu.ser516.team47.database;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.ArrayList;
-
-import java.util.List;
-import java.util.Properties;
 
 /**
  * An Submission Database Abstraction
@@ -23,20 +15,7 @@ import java.util.Properties;
  * @since   2/22/19
  */
 public class SubmissionDAOImpl implements SubmissionDAO {
-//    private static Properties __dbProperties;
-    private static String __jdbcUrl;
-    private static String __jdbcUser;
-    private static String __jdbcPasswd;
-    private static String __jdbcDriver;
-
-    private Connection getConnection() throws Exception {
-        try {
-            Class.forName(__jdbcDriver);
-            return DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-        } catch (Exception exc) {
-            throw exc;
-        }
-    }
+    private static final String __jdbcUrl = "jdbc:sqlite:schema.db";
 
     /**
      * Gets all submissions in the table
@@ -46,12 +25,12 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<Submission>();
+        List<Submission> rval = new ArrayList<>();
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions");
+            stmt = conn.prepareStatement("select * from submissions");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
@@ -83,11 +62,11 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<Submission>();
+        List<Submission> rval = new ArrayList<>();
 
         try {
-            conn = getConnection();
-            stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions where quiz_id = ?");
+            conn = DriverManager.getConnection(__jdbcUrl);
+            stmt = conn.prepareStatement("select * from submissions where quiz_fk = ?");
             stmt.setInt(1, quiz_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -120,12 +99,12 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Submission> rval = new ArrayList<Submission>();
+        List<Submission> rval = new ArrayList<>();
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions where enrolled_fk = ?");
+            stmt = conn.prepareStatement("select * from submissions where enrolled_fk = ?");
             stmt.setInt(1, enrolled_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -161,9 +140,9 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         Submission rval = null;
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt from submissions where id = ?");
+            stmt = conn.prepareStatement("select * from submissions where submission_id = ?");
             stmt.setInt(1, submission_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
@@ -190,34 +169,37 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     /**
      * Inserts a submission in the database based on the
      * values in a business object
-     * @param submission
+     * @param submission submission to delete
      * @return a boolean representing a successful/failed insert
      */
     public boolean insertSubmission(Submission submission) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Submission rval = null;
-        LocalDate currentDate = LocalDate.now(ZoneId.of("PNT"));
-        java.sql.Date submissionDate = java.sql.Date.valueOf(currentDate);
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into submissions (id, quiz_id, enrolled_fk, timeTaken, dateTaken, score, attempt) VALUES (?,?,?,?,?,?,?)");
-            stmt.setInt(1, 123456);
-            stmt.setInt(2, submission.getQuiz_fk());
-            stmt.setInt(3, submission.getEnrolled_fk());
-            stmt.setInt(4, submission.getTime_taken());
-            stmt.setDate(5, submissionDate);
-            stmt.setDouble(6, submission.getScore());
-            stmt.setInt(7, submission.getAttempt());
+            stmt = conn.prepareStatement("insert into submissions (quiz_fk, enrolled_fk," +
+                    " time_taken, date_taken, score, attempt) VALUES (?,?,?,?,?,?)");
+            stmt.setInt(1, submission.getQuiz_fk());
+            stmt.setInt(2, submission.getEnrolled_fk());
+            stmt.setInt(3, submission.getTime_taken());
+            stmt.setDate(4, new java.sql.Date(submission.getDate_taken().getTime()));
+            stmt.setDouble(5, submission.getScore());
+            stmt.setInt(6, submission.getAttempt());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
+            if (updatedRows <= 0) {
                 return false;
             }
+
+            // Update submission id to SQLite generated id
+            stmt = conn.prepareStatement("SELECT last_insert_rowid()");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                submission.setSubmission_id(rs.getInt(1));
+            }
+            return true;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -241,26 +223,21 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     public boolean updateSubmission(Submission submission) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
-        Submission rval = null;
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update submissions set id=?, quiz_id=?, enrolled_fk=?, timeTaken=?, dateTaken=?, score=?, attempt=?) where id=?");
-            stmt.setInt(1, 123456);
-            stmt.setInt(2, submission.getQuiz_fk());
-            stmt.setInt(3, submission.getEnrolled_fk());
-            stmt.setInt(4, submission.getTime_taken());
-            stmt.setDate(5, new java.sql.Date(submission.getDate_taken().getTime()));
-            stmt.setDouble(6, submission.getScore());
-            stmt.setInt(7, submission.getAttempt());
+            stmt = conn.prepareStatement("update submissions set quiz_fk=?, enrolled_fk=?, time_taken=?," +
+                    " date_taken=?, score=?, attempt=? where submission_id=?");
+            stmt.setInt(1, submission.getQuiz_fk());
+            stmt.setInt(2, submission.getEnrolled_fk());
+            stmt.setInt(3, submission.getTime_taken());
+            stmt.setDate(4, new java.sql.Date(submission.getDate_taken().getTime()));
+            stmt.setDouble(5, submission.getScore());
+            stmt.setInt(6, submission.getAttempt());
+            stmt.setInt(7, submission.getSubmission_id());
             int updatedRows = stmt.executeUpdate();
-            if (updatedRows > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return updatedRows > 0;
         }
         catch (Exception se) {
             se.printStackTrace();
@@ -268,7 +245,6 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
@@ -284,16 +260,14 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     public boolean deleteSubmission(Submission submission) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
-        Submission rval = null;
 
         try {
-            conn = getConnection();
+            conn = DriverManager.getConnection(__jdbcUrl);
             conn.setAutoCommit(false);
 
-            stmt = conn.prepareStatement("delete from submissions where id=?");
+            stmt = conn.prepareStatement("delete from submissions where submission_id=?");
+            stmt.setInt(1, submission.getSubmission_id());
             stmt.executeUpdate();
-            // TODO (DELETE BEFORE SUBMISSION) May need to manually delete foreign keys in Answers
             conn.commit();
             return true;
         }
@@ -303,23 +277,9 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         }
         finally {
             try {
-                if (rs != null) { rs.close();}
                 if (stmt != null) { stmt.close();}
                 if (conn != null) { conn.close();}
             } catch (Exception e) { e.printStackTrace(); }
-        }
-    }
-
-    static {
-        try {
-//            __dbProperties = new Properties();
-//            __dbProperties.load(SubmissionDAOImpl.class.getClassLoader().getResourceAsStream("database.properties"));
-//            __jdbcUrl    = __dbProperties.getProperty("jdbcUrl");
-//            __jdbcUser   = __dbProperties.getProperty("jdbcUser");
-//            __jdbcPasswd = __dbProperties.getProperty("jdbcPasswd");
-//            __jdbcDriver = __dbProperties.getProperty("jdbcDriver");
-        } catch (Throwable t) {
-            t.printStackTrace();
         }
     }
 }
