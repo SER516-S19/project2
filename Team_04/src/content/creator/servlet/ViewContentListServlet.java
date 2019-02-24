@@ -11,20 +11,19 @@ import content.creator.helper.ViewContentListHelper;
 /*
 * @author Archana Madhavan
 */
-@WebServlet(name = "ViewContentListServlet", urlPatterns = {"/viewContentList"})
+@WebServlet(urlPatterns = "/list")
 public class ViewContentListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
       try {
         List<Integer> quizId = ViewContentListHelper.getQuizList();
+        System.out.println(quizId.size());
         request.setAttribute("ids", quizId);
-        RequestDispatcher view = request.getRequestDispatcher("viewContentList.jsp");
-        view.forward(request,response);
-      }
+        request.getRequestDispatcher("viewContentList.jsp").forward(request,response);
+        }
       catch (SQLException e) {
         e.printStackTrace();
       }
