@@ -1,0 +1,73 @@
+<!--
+   build.xml file for Lab2-Task2.
+-->
+<project name="project2" default="compile" basedir=".">
+    <property file="build.properties"/>
+
+    <!-- init target makes the directory structure. -->
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${classes.dir}"/>
+    </target>
+
+    <!-- Compiles your java files and puts the classes in classes.dir -->
+    <target name="compile" depends="init">
+        <javac
+                srcdir="${src.dir}"
+                destdir="${classes.dir}">
+            <classpath>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+                <fileset dir="${tomcat.home}/lib" includes="servlet-api.jar"/>
+                <pathelement path="${classes.dir}" />
+            </classpath>
+        </javac>
+    </target>
+
+
+    <target name="deploy" depends="dist">
+        <copy file="${dist.jar}" todir="${tomcat.home}/webapps" overwrite="yes"/>
+    </target>
+
+    <target name="build" depends="compile">
+        <mkdir dir="${build.home}"/>
+        <mkdir dir="${build.home}/WEB-INF"/>
+        <copy todir="${build.home}/WEB-INF">
+            <fileset dir="." includes="${classes.dir}/**,${lib.dir}/**" excludes="${classes.dir}/driver/**"/>
+        </copy>
+        <copy todir = "${build.home}/WEB-INF/lib">
+            <fileset dir = "web/WEB-INF/lib" includes="*.jar"/>
+        </copy>
+        <copy file="web/WEB-INF/web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
+        <copy todir = "${build.home}/views">
+            <fileset dir = "web/views" includes="*.jsp"/>
+         </copy>
+        <copy todir = "${build.home}/js">
+            <fileset dir = "web/js" includes="*.js"/>
+        </copy>
+        <copy todir = "${build.home}/css">
+            <fileset dir = "web/css" includes="*.css"/>
+        </copy>
+        <copy file="web/index.jsp" tofile="${build.home}/index.jsp"/>
+    </target>
+
+    <target name="dist" depends="build">
+        <jar destfile="${dist.jar}" basedir="${build.home}">
+        </jar>
+    </target>
+
+    <!-- Clean -->
+    <target name="clean">
+        <delete file="${dist.jar}"/>
+        <delete dir="${tomcat.home}/webapps/${app.name}"/>
+        <delete file="${tomcat.home}/webapps/${dist.jar}"/>
+        <delete dir="${build.home}"/>
+        <delete dir="${classes.dir}"/>
+    </target>
+
+    <!-- Clean all -->
+    <target name="cleanall" depends="clean">
+        <delete dir="${javadoc.dir}"/>
+        <delete file="${submit.jar}"/>
+    </target>
+
+</project>

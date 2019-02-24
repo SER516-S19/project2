@@ -17,6 +17,13 @@ import services.StudentServices;
  */
 
 public class LoginServlet extends HttpServlet{
+    /**
+     * Handles the get request redirecting the user to the student landing
+     * page
+     *
+     * @param request
+     * @param response
+     */
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
@@ -32,6 +39,7 @@ public class LoginServlet extends HttpServlet{
         request.setAttribute("quizIds",quizIds);
         getServletContext().getRequestDispatcher("/views/studentLanding.jsp").forward(request, response);
     }
+
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
