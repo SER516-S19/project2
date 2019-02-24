@@ -5,7 +5,6 @@ import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -36,7 +35,6 @@ public final class CreateContentHelper {
       quizContent.setCorrect(Boolean.parseBoolean(answerBundle.get(answerKey).get(1)));
       quizContent.setMaxScore(Integer.parseInt(score));
       String queryString = convertToQueryString(quizContent);
-      System.out.println(queryString);
       DataOps.saveData(queryString);
     }
   }

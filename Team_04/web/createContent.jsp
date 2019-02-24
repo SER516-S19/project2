@@ -6,15 +6,15 @@
       Time: 7:02 PM
       To change this template use File | Settings | File Templates.
     --%>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <html>
-    <style>
-        .invalid {
-            border: 1px solid red;
-        }
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<style>
+    .invalid {
+        border: 1px solid red;
+    }
 
-    </style>
-    <script>
+</style>
+<script>
 
         var quiz = [];
         var ques = {'choice':1};
@@ -36,9 +36,14 @@
             quiz.push(ques);
         }
 
-    </script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+
+
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
         function submitForm(thisObj, thisEvent) {
             var jsonQuiz = new Object();
             jsonQuiz.quiz = quiz;
@@ -51,77 +56,206 @@
 
             return false;
         }
-    </script>
 
-    <head>
-        <title>create-quiz</title>
-        <style>
-            form {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
 
-            input[name="question_text"] {
-                font-family: arial, sans-serif;
-                width: 30%;
-                height: 20%;
-            }
 
-            input[name="1"],input[name="2"],input[name="3"],input[name="4"] {
-                font-family: arial, sans-serif;
-                width: 15%;
-            }
 
-            input[value="Add"], input[value="Save"] {
-                width: 5%;
-                height:5%;
-                font-size: 20px;
-            }
 
-            p {
-                font-family: arial, sans-serif;
-                font-size: large;
-                height:5%;
-            }
-        </style>
-    </head>
-    <body>
-    <h1>
-        Create Quiz
-    </h1>
-    <p class="error"><b> Points to be noted:</b> Make sure you fill out all fields & the score should be a number.
-    </p>
-    <form  name="quizForm" method="POST" action="create" target="index.jsp">
+</script>
+
+<head>
+    <title>create-quiz</title>
+    <style>
+        form {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        input[name="question_text"] {
+            font-family: arial, sans-serif;
+            width: 30%;
+            height: 20%;
+        }
+
+        input[name="1"], input[name="2"], input[name="3"], input[name="4"] {
+            font-family: arial, sans-serif;
+            width: 15%;
+        }
+
+        input[value="Add"], input[value="Save"] {
+            width: 5%;
+            height: 5%;
+            font-size: 20px;
+        }
+
+        p {
+            font-family: arial, sans-serif;
+            font-size: large;
+            height: 5%;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    Create Quiz
+</h1>
+<p class="error"><b> Points to be noted:</b> Make sure you fill out all fields & the score should be
+    a number.
+</p>
+<form name="quizForm" method="POST" action="create" target="index.jsp">
     <br>
-        <h3>Question text:</h3><br>
-        <input type="text" id="question" name="question_text" onchange="formUpdate()" class="formtext">
-        <br>
-        <p name="option_a">Answer text A:</p><br>
-        <input type="radio" id="choice_1" name="choice" value = "1" checked = "true" onchange="choiceUpdate(1)"
-               class="formtext"> A
-        <input type="text" id="1" name="1" onchange="formUpdate()">
-        <br>
-        <p name="option_b">Answer text B:</p><br>
-        <input type="radio" id="choice_2" name="choice" value = "2" onchange="choiceUpdate(2)" class="formtext"> B
-        <input type="text" id="2" name="2" onchange="formUpdate()">
-        <br>
-        <p name="option_c">Answer text C:</p><br>
-        <input type="radio" id="choice_3" name="choice" value = "3" onchange="choiceUpdate(3)" class="formtext"> C
-        <input type="text" id="3" name="3" onchange="formUpdate()">
-        <br>
-        <p name="option_d">Answer text D:</p><br>
-        <input type="radio" id="choice_4" name="choice" value = "4" onchange="choiceUpdate(4)" class="formtext"> D
-        <input type="text" id="4" name="4" onchange="formUpdate()">
-        <br>
-        <p name="score">Score:</p><br>
-        <input type="text" id="score" name="score" onchange="formUpdate()"><br>
-        <br>
-        <input id="add" type="button" value="Add" onclick="addQues()">
-        <input type="button"  value="Save" onclick="return submitForm(this, event);">
-    </form>
+    <table>
+        <tr>
+            <td>
+                <span>Question text:</span>
+                <input type="text" id="question_1" name="question_text_1" onchange="formUpdate()"
+                       class="formtext">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_a">Answer text A:</span>
+                <input type="text" id="1_1" name="1_1" onchange="formUpdate()">
+                <input type="radio" id="choice_1_1" name="choice_1" value="1" checked="true"
+                       onchange="choiceUpdate(1)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_b">Answer text B:</span>
+                <input type="text" id="2_1" name="2_1" onchange="formUpdate()">
+                <input type="radio" id="choice_2_1" name="choice_1" value="2"
+                       onchange="choiceUpdate(2)"> CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_c">Answer text C:</span>
+                <input type="text" id="3_1" name="3_1" onchange="formUpdate()">
+                <input type="radio" id="choice_3_1" name="choice_1" value="3"
+                       onchange="choiceUpdate(3)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_d">Answer text D:</span>
+                <input type="text" id="4_1" name="4_1" onchange="formUpdate()">
+                <input type="radio" id="choice_4_1" name="choice_1" value="4"
+                       onchange="choiceUpdate(4)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="score">Score:</span>
+                <input type="text" id="score_1" name="score_1" onchange="formUpdate()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Question text:</span>
+                <input type="text" id="question_2" name="question_text_2" onchange="formUpdate()"
+                       class="formtext">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_a">Answer text A:</span>
+                <input type="text" id="1_2" name="1_2" onchange="formUpdate()">
+                <input type="radio" id="choice_2_1" name="choice_2" value="1" checked="true"
+                       onchange="choiceUpdate(1)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_b">Answer text B:</span>
+                <input type="text" id="2_2" name="2_2" onchange="formUpdate()">
+                <input type="radio" id="choice_2_2" name="choice_2" value="2"
+                       onchange="choiceUpdate(2)"> CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_c">Answer text C:</span>
+                <input type="text" id="3_2" name="3_2" onchange="formUpdate()">
+                <input type="radio" id="choice_3_2" name="choice_2" value="3"
+                       onchange="choiceUpdate(3)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_d">Answer text D:</span>
+                <input type="text" id="4_2" name="4_2" onchange="formUpdate()">
+                <input type="radio" id="choice_4_2" name="choice_2" value="4"
+                       onchange="choiceUpdate(4)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="score">Score:</span>
+                <input type="text" id="score_2" name="score_2" onchange="formUpdate()">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Question text:</span>
+                <input type="text" id="question_3" name="question_text_3" onchange="formUpdate()"
+                       class="formtext">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_a">Answer text A:</span>
+                <input type="text" id="1_3" name="1_3" onchange="formUpdate()">
+                <input type="radio" id="choice_3_3" name="choice_3" value="1" checked="true"
+                       onchange="choiceUpdate(1)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_b">Answer text B:</span>
+                <input type="text" id="2_3" name="2_3" onchange="formUpdate()">
+                <input type="radio" id="choice_3_3" name="choice_3" value="2"
+                       onchange="choiceUpdate(2)"> CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_c">Answer text C:</span>
+                <input type="text" id="3_3" name="3_3" onchange="formUpdate()">
+                <input type="radio" id="choice_3_3" name="choice_3" value="3"
+                       onchange="choiceUpdate(3)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="option_d">Answer text D:</span>
+                <input type="text" id="4_3" name="4_3" onchange="formUpdate()">
+                <input type="radio" id="choice_4_3" name="choice_3" value="4"
+                       onchange="choiceUpdate(4)"
+                > CORRECT_ANSWER
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span name="score">Score:</span>
+                <input type="text" id="score_3" name="score_3" onchange="formUpdate()">
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Save Quiz">
+</form>
 
-    <script src="js/validation.js" type="text/javascript">
+
+<script src="js/validation.js" type="text/javascript">
         $(document).ready(function () {
             $("input[value='Add']").prop('disabled', true);
             $('.error').hide();
@@ -164,7 +298,12 @@
 
         });
 
-    </script>
 
-    </body>
-    </html>
+
+
+
+
+</script>
+
+</body>
+</html>

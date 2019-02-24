@@ -1,7 +1,9 @@
 package content.creator.operations;
 
+import DBUtil.DbHelper;
 import content.creator.constants.Constants;
 import content.creator.dao.QuizContentDAO;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,16 +11,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import org.sqlite.JDBC;
 
 /** @author Hari Krishnan Puthiya Veetil, Aman Kaushik */
 public final class DataOps {
+
+
   private DataOps() {}
 
   private static Connection getConnection() throws SQLException {
     DriverManager.registerDriver(new JDBC());
-    String dbURL = "jdbc:sqlite:quizDatabase.db";
-    return DriverManager.getConnection(dbURL);
+    String dbUrl = null;
+    try {
+    Properties dbProperties = new Properties();
+    dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
+    dbUrl = dbProperties.getProperty("jdbcUrl");
+    } catch (IOException ioExp) {
+      System.out.println(ioExp.getMessage());
+    }
+    return DriverManager.getConnection(dbUrl);
   }
 
   private static List<QuizContentDAO> executeGetQuery(String query) throws SQLException {
