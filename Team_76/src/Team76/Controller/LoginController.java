@@ -34,13 +34,13 @@ public class LoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
 		if (action == null || action.isEmpty()) {
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("Login.jsp");
 		} else if (action.equalsIgnoreCase("login")) {
 			String uName = (String) request.getParameter("uName");
 			String password = (String) request.getParameter("password");
 			if((uName == null || uName.isEmpty()) && (password == null || password.isEmpty())) {
 				response.getWriter().println("<font color=red>Please enter your proper credentials.</font>");
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("Login.jsp");
 			}
 			if(uName.equals("student") && password.equals("123")) {
 				response.sendRedirect("StudentDash.jsp");
@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
 				response.sendRedirect("ProfessorDash.jsp");
 			}else {
 				response.getWriter().println("<font color=red>Either user name or password is wrong.</font>");
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("Login.jsp");
 			}
 			request.getSession().setAttribute("uName", uName);
 			
@@ -61,10 +61,10 @@ public class LoginController extends HttpServlet {
 	    		session.invalidate();
 	    	}
 	    	response.getWriter().println("<font color=red>Logged off successfully.</font>");
-	    	response.sendRedirect("login.jsp");
+	    	response.sendRedirect("Login.jsp");
 		} else {
 			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("Login.jsp");
 		}
 	}
 
