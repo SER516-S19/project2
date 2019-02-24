@@ -20,10 +20,11 @@ import javax.servlet.http.HttpSession;
  */
 public class ProfessorServices {
 	
-	private static String name = "option";
-	ProfessorDAO professorDAO = new ProfessorDAO();
+	private final String OPTIONS = "option";
+	private static ProfessorDAO professorDAO = new ProfessorDAO();
+	
 	/**
-	 * The method creates the question model and sends it to the DAO for processing
+	 * This method verifies question form data and add question details in Question table
 	 */
 	public void storeQuestion(HttpServletRequest request) {
 		String question = request.getParameter("question");
@@ -35,7 +36,6 @@ public class ProfessorServices {
 		String[] correctanswers = request.getParameterValues("options");
 		HttpSession session = request.getSession(true);
 		Quiz quiz = (Quiz)session.getAttribute("quiz");
-		
 		boolean isMutiple = false;
 		boolean isCorrectAnswer = false;
 		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
@@ -47,10 +47,11 @@ public class ProfessorServices {
 		Question quest = new Question(quiz, question,isMutiple, Integer.parseInt(points));
 		QuestionDAO questionDAO = new QuestionDAO();
 		questionDAO.addQuestion(quest);
-		for(int i=1; i<=optionArray.length; i++) {
-			if(optionArray[i - 1] != null) {
-			isCorrectAnswer = checkAnswerExist(i,correctanswers);
-			answer = new Answer(quest, optionArray[i - 1], isCorrectAnswer);
+		
+		for(int option=1; option<=optionArray.length; option++) {
+			if(optionArray[option - 1] != null) {
+			isCorrectAnswer = checkAnswerExist(option,correctanswers);
+			answer = new Answer(quest, optionArray[option - 1], isCorrectAnswer);
 			answerDAO.addAnswer(answer);
 			}
 		}
@@ -65,19 +66,19 @@ public class ProfessorServices {
 	}
 	
 	/**
-	 * Check if correct answer exist.
+	 * This method checks if correct answer exists in correctAnswers array.
 	 */
-	private boolean checkAnswerExist(int i, String[] correctanswers) {
-		if(correctanswers ==  null)
+	private boolean checkAnswerExist(int i, String[] correctAnswers) {
+		if(correctAnswers ==  null)
 			return false;
-		for(String s: correctanswers)
-			if((name+i).equals(s))
+		for(String s: correctAnswers)
+			if((OPTIONS+i).equals(s))
 				return true;
 		return false;
 	}
 
 	/**
-	 * Insert quiz details and validate the input.
+	 * This method validates provided input from quiz form and insert data into Quiz table.
 	 */
 	public void insertQuizDetails(HttpServletRequest request) {
 		HttpSession sess = request.getSession(true);
@@ -94,7 +95,6 @@ public class ProfessorServices {
         {
         	String hours = request.getParameter("hours");
         	String minutes = request.getParameter("minutes");
-        	
         	if(hours.length() == 0)
         		hours = "0";        	
         	if(minutes.length() == 0)
@@ -105,9 +105,9 @@ public class ProfessorServices {
         		minutes = "0" + minutes;
         	quizTimeLimit = hours+":"+minutes+":00";
         }
-
         if(request.getParameter("shuffle")!=null)
         	isShuffled = true;
+        
 		Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
 		sess.setAttribute("quiz", quiz);
 		professorDAO.insertQuizDetails(quiz);
@@ -118,7 +118,7 @@ public class ProfessorServices {
 	}
 	
 	/**
-	 * Returns a new list having question details and corresponding options
+	 * This method generates list containing quiz name, question details and related answers
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List getAllAnswersFromQueList(List<Question> questions) {
