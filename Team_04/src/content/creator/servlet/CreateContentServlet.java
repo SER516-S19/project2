@@ -1,22 +1,23 @@
 package content.creator.servlet;
 
-import static content.creator.helper.CreateContentHelper.generateRandom;
-import static content.creator.helper.CreateContentHelper.saveDataToDb;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static content.creator.helper.CreateContentHelper.generateRandom;
+import static content.creator.helper.CreateContentHelper.saveDataToDb;
 
 @WebServlet(name = "create")
 public class CreateContentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(response);
         String score = request.getParameter("score");
         String isCorrect = request.getParameter("choice");
         String questionText = request.getParameter("question_text");

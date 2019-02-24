@@ -1,5 +1,5 @@
         $(document).ready(function () {
-            $("input[type='submit']").prop('disabled', true);
+            $("input[value='Add']").prop('disabled', true);
             $('.error').hide();
 
             $(".formtext").on('keyup blur', function (e) {
@@ -11,7 +11,7 @@
                 }
                 else {
                     input.removeClass("valid").addClass("invalid");
-                    $("input[type='submit']").prop('disabled', true);
+                    $("input[value='Add']").prop('disabled', true);
                     $(".error").show();
                 }
 
@@ -23,7 +23,7 @@
                 if (score && !isNaN(score)) { input.removeClass("invalid").addClass("valid"); allHaveClass(); }
                 else {
                     input.removeClass("valid").addClass("invalid");
-                    $("input[type='submit']").prop('disabled', true);
+                    $("input[value='Add']").prop('disabled', true);
                     $(".error").show();
                 }
 
@@ -32,7 +32,7 @@
             function allHaveClass() {
                 var allHaveClass = $('input.invalid').length == 0;
                 if (allHaveClass) {
-                    $("input[type='submit']").prop('disabled', false);
+                    $("input[value='Add']").prop('disabled', false);
                     $('.error').hide();
 
                 }
