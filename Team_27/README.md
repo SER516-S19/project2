@@ -5,7 +5,7 @@ Team is a s follows:
 
 Bharat Goel (Product Owner)
 
-Team 1: Sumanth Prajapati (Scrum Master) Sajith Manisha Miriyala Shashidhar Reddy Srivan Surya Narendra Mohan
+Team 1: Sumanth Paranjape (Scrum Master) Sajith Manisha Miriyala Shashidhar Reddy Srivan Surya Narendra Mohan
 
 Team 2: Palak Chugh(Scrum Master) Bharat Goel Sarthak Tiwari Yuti Desai Bijayalaxmi Panda Lakshmi Kala Shefali Anand
 
@@ -13,7 +13,7 @@ START TOMCAT SERVER
 
 1. Run Cmd as Administrator.
 2. Change directory to the bin folder of Tomcat.
-3. Start the Tomcat Server by using ìstartup.batî
+3. Start the Tomcat Server by using ‚Äústartup.bat‚Äù
 4. Open the server from the browser using the link : http://localhost:8080/
 5. Go to Manager App and click on /Quiz Path. If prompted for username and password, add tomcat for username and password.
 
@@ -26,8 +26,8 @@ PROJECT SETUP
 5. Also change the username and password of MYSQL in rdbm.properties file.
 6. Necessary jar files have been added in the lib folder of the project
 7. For building the project, add Quiz.war file in the wepapps folder of Tomcat.
-8. As an alternative, you can build the project by following the below instructions: ï	Right click on build.xml ï	9. 
-Click on Run-as?External Tools Configuration?Targets ï	Add init, clean, compile, build ,dist, deploy in the order. ï	Click on Run
+8. As an alternative, you can build the project by following the below instructions: ‚Ä¢	Right click on build.xml ‚Ä¢	9. 
+Click on Run-as?External Tools Configuration?Targets ‚Ä¢	Add init, clean, compile, build ,dist, deploy in the order. ‚Ä¢	Click on Run
 
 DATABASE SETUP If you are using MacOS, do the following:
 
