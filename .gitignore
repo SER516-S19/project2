@@ -131,7 +131,12 @@ local.properties
 # Project Specific Stuff
 #
 target/
-=======
+/.metadata/
+/Team_58/nbproject/private/
+/Team_58/build/
+/recommenders/
+/Project2/nbproject/private/
+/Team_58/Project2/nbproject/private/
 /.metadata/
 /Team_58/nbproject/private/
 /Team_58/build/
@@ -148,4 +153,5 @@ target/
 .DS_Store
 build.properties
 
+/Team_58/dist/
 /Team_58/dist/
