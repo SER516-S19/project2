@@ -1,7 +1,6 @@
 package bean;
-import javax.persistence.*;
-import java.sql.Time;
 
+import javax.persistence.*;
 
 /**
  * This class represents the Quiz table
@@ -30,7 +29,7 @@ public class Quiz {
     private String quizType;
 
     @Column(name = "Time_Limit")
-    private Time quizTimeLimit;
+    private String quizTimeLimit;
 
     @Column(name="Is_Shuffled")
     private boolean isShuffled;
@@ -41,7 +40,7 @@ public class Quiz {
     Quiz() {}
 
 
-    public Quiz(String quizName, String quizInstructions, String quizType, Time quizTimeLimit, boolean isShuffled,
+    public Quiz(String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
 			boolean isPublished) {
 		this.quizName = quizName;
 		this.quizInstructions = quizInstructions;
@@ -50,27 +49,34 @@ public class Quiz {
 		this.isShuffled = isShuffled;
 		this.isPublished = isPublished;
 	}
+    
+    public Quiz(int quizId, String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
+			boolean isPublished) {
+		this.quizName = quizName;
+		this.quizInstructions = quizInstructions;
+		this.quizType = quizType;
+		this.quizTimeLimit = quizTimeLimit;
+		this.isShuffled = isShuffled;
+		this.isPublished = isPublished;
+		this.quizId = quizId;
+	}
 
 
 	public boolean isShuffled() {
 		return isShuffled;
 	}
 
-
 	public void setShuffled(boolean isShuffled) {
 		this.isShuffled = isShuffled;
 	}
 
-
-	public boolean isPublished() {
+	public boolean getIsPublished() {
 		return isPublished;
 	}
 
-
-	public void setPublished(boolean isPublished) {
+	public void setIsPublished(boolean isPublished) {
 		this.isPublished = isPublished;
 	}
-
 
 	public int getQuizId() {
         return quizId;
@@ -104,17 +110,13 @@ public class Quiz {
         this.quizType = quizType;
     }
 
- 
-
-    public Time getQuizTimeLimit() {
+    public String getQuizTimeLimit() {
 		return quizTimeLimit;
 	}
 
-
-	public void setQuizTimeLimit(Time quizTimeLimit) {
+	public void setQuizTimeLimit(String quizTimeLimit) {
 		this.quizTimeLimit = quizTimeLimit;
 	}
-
 
     @Override
     public String toString() {
@@ -124,8 +126,8 @@ public class Quiz {
                 ", quizInstructions='" + quizInstructions + '\'' +
                 ", quizType='" + quizType + '\'' +
                 ", quizTimeLimit=" + quizTimeLimit +
-                ", shuffleAnswer='" + isShuffled + '\'' +
-                ", Published='" + isPublished + '\'' +
+                ", isShuffled='" + isShuffled + '\'' +
+                ", isPublished='" + isPublished + '\'' +
                 '}';
     }
 }
