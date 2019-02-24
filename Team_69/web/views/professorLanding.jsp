@@ -17,7 +17,7 @@
 		<input type="hidden" id="flag" name="flag" value="fetchQuizList">
 	    <input type="submit" value="Display Quiz List" class="btn btn-primary" />
 	</form>
-	
+	<br>
 	<a href="quizDetails.jsp">Create New Quiz </a>
 
 

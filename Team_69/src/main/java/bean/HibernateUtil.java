@@ -7,6 +7,14 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+/**
+ * This class consists of database configuration properties 
+ * 
+ * @author jinalpatel
+ * @since 02/16/2019
+ * @version 1.0.0
+ *
+ */
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
     public static SessionFactory getSessionFactory() {
@@ -22,7 +30,14 @@ public class HibernateUtil {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                /*
+                 * 1.) uncomment line at 40 if you are running project for the first time
+                 * 			it will create all database tables which are configured in this file 
+                 * 2.) Comment line at 40 if you have database tables already created. 
+                 * 			This line will drop all existing tables/data and create new tables with
+                 * 			no records.
+                 */
+                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Quiz.class);

@@ -14,27 +14,18 @@
 </head>
 <body>
 	
-
-
-
 <table class="table table-hover">
 	<tbody>
-	<tr>
-		
+	<tr>	
 		<th scope="col">Name</th>
-		
 		<th scope="col">Quiz Details</th>
 		<th scope="col">Published Quizzes</th>
 		<th scope="col">Add Questions in quiz</th>
-		</tr>
+	</tr>
 	<c:forEach items="${requestScope.quizList}" var="quiz">
 
-	<tr>
-
-		<tr scope="row">
-
-		<td><c:out value="${quiz.quizName}"></c:out></td>
-		
+	<tr scope="row">
+		<td><c:out value="${quiz.quizName}"></c:out></td>	
 		<td>
 		<%String pathWebcontent=request.getContextPath();%>
 			<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>			
@@ -48,10 +39,7 @@
 			     <a href="<%=pathWebcontent %>/ProfessorController?flag=publishQuiz&id=${quiz.quizId}"> Publish Quiz</a>	
 			   </c:otherwise>
 			</c:choose>
-						
-			
 		</td>
-		
 		<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
 		
 	</tr>
