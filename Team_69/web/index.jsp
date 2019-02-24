@@ -1,9 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Blackboard</title>
 </head>
 <body>
-Hello
+Hello <br>
+<br>
+To view the professor page - <a href = "views/professorLanding.jsp"> Professor Page </a>
+<br>
+To view the student page - <a href = "Login"> Student Page </a>
 </body>
 </html>
