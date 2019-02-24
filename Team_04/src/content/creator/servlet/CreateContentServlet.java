@@ -1,9 +1,13 @@
 package content.creator.servlet;
 
+import content.creator.dao.QuizContentDAO;
+import content.creator.helper.ViewContentDetailsHelper;
+
 import static content.creator.helper.CreateContentHelper.generateRandom;
 import static content.creator.helper.CreateContentHelper.saveDataToDb;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +21,21 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "create")
 public class CreateContentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        PrintWriter p = response.getWriter();
+        ArrayList<QuizContentDAO> q = null;
+        try {
+            p.println(" Start call");
+            System.out.println(" Start call");
+           q = ViewContentDetailsHelper.getQuizContent();
+        } catch (Exception exp) {
+
+        } finally {
+            p.println(" finally");
+            System.out.println(" Finally");
+            //System.out.println(q.get(0));
+        }
+
         String score = request.getParameter("score");
         String isCorrect = request.getParameter("choice");
         String questionText = request.getParameter("question_text");

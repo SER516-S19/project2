@@ -13,14 +13,14 @@ public final class DataOps {
 
   private static Connection getConnection() throws SQLException {
     DriverManager.registerDriver(new JDBC());
-    String dbURL = "jdbc:sqlite:../../quizDatabase.db";
+    String dbURL = "jdbc:sqlite:quizDatabase.db";
     return DriverManager.getConnection(dbURL);
   }
 
   private static ResultSet executeGetQuery(String query) throws SQLException {
     try (Connection connection = getConnection()) {
       try (Statement statement = connection.createStatement()) {
-        return statement.executeQuery(query);
+          return statement.executeQuery(query);
       }
     }
   }
