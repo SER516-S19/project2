@@ -50,7 +50,7 @@ public class Answer {
 	 public boolean getCorrectAnswer() {
 	        return correctAns;
 	  }
-	  public void setCorrectAnswer(boolean correctAnswer) {
+	  public void setCorrectAnswer(boolean correctAns) {
 	        this.correctAns = correctAns;
 	  }
 }
