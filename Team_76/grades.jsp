@@ -1,8 +1,12 @@
 <%@page import="java.sql.*"%>
+
+<!--This file shows student grade;
+Author: Hsin-Jung Lee
+Version: 6  -->
 <%
-	String userId = request.getParameter("user");
+	String userID = request.getParameter("userID");
 	String driver = "com.mysql.jdbc.driver";
-	String url = "jdbc:mysql://localhost:3306";
+	String url = "jdbc:mysql://localhost:3306/";
 	String database = "ser516p2";
 	String user = "root";
 	String password = "1hsinjung!";
@@ -25,22 +29,22 @@
 
 	<table border="5">
 		<tr>
-			<td>StudentId</td>
+			<td>studentID</td>
 			<td>QuizId</td>
-			<td>Grade</td>
+			<td>grade</td>
 		</tr>
 		<%
 			try {
 				connection = DriverManager.getConnection(url + database, user, password);
 				statement = connection.createStatement();
-				String sql = "SELECT * FROM student";
+				String sql = "SELECT * FROM grade;";
 				resultSet = statement.executeQuery(sql);
 				while (resultSet.next()) {
 		%>
 		<tr>
-			<td><%=resultSet.getString("StudentId")%></td>
+			<td><%=resultSet.getString("studentID")%></td>
 			<td><%=resultSet.getString("QuizId")%></td>
-			<td><%=resultSet.getString("Grade")%></td>
+			<td><%=resultSet.getString("grade")%></td>
 		</tr>
 		<%
 			}
