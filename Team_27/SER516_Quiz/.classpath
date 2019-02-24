@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Apache Tomcat/tomcat-8.5.37-8080/lib/tomcat-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Shefali Anand/Desktop/MSSE/Spring19/SER516/project2/SER516_Quiz/lib/mysql-connector-java-5.1.23-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/bijayalaxmipanda/Downloads/apache-tomcat-8.0.53/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/Users/bijayalaxmipanda/Desktop/Books/Second_Term/516/servlet_project2/Team_27/SER516_Quiz/lib/mysql-connector-java-5.1.23-bin.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
