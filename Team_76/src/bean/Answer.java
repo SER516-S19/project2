@@ -51,6 +51,6 @@ public class Answer {
 	        return correctAns;
 	  }
 	  public void setCorrectAnswer(boolean correctAnswer) {
-	        this.correctAns = correctAns;
+	        this.correctAns = correctAnswer;
 	  }
 }
