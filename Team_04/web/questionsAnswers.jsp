@@ -1,10 +1,6 @@
-<%@ page import="com.model.QuestionAnswers" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.model.QuestionAnswers" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
+<%@ page import="student.dto.AnswerOption" %>
 <%@ page import="student.dto.QuizContent" %>
-<%@ page import="student.dto.AnswerOption" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: yuvan
   Date: 2/20/2019
@@ -124,8 +120,8 @@
 
     </div>
     <div class="navBtn">
-        <input type="submit" text="submit" value="submit" formaction="./loadquestionanswerservlet" name="action" class="prevBtn" <%=submitBtn%>/>
-        <input type="submit" text="next" value="next" formaction="./loadquestionanswerservlet" name= "action" class="nextBtn" <%=nextBtn%>/>
+        <input type="submit" text="submit" value="submit" formaction="./quiz" name="action" class="prevBtn" <%=submitBtn%>/>
+        <input type="submit" text="next" value="next" formaction="./quiz" name= "action" class="nextBtn" <%=nextBtn%>/>
         </form>
     </div>
 </div>

@@ -1,11 +1,11 @@
 /*
- * Classname : QuizInstructions
+ * Classname : QuizInstructionsServlet
  * Version : 1.0
  * Author: Harika Kolli
  * Date : 02-13-2019
  */
 
-package com.model;
+package student.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The {@code QuizInstructions} class fetches instructions for the quiz.s
+ * The {@code QuizInstructionsServlet} class fetches instructions for the quiz.s
  *  @author Harika Kolli
  */
-public class QuizInstructions extends HttpServlet {
+public class QuizInstructionsServlet extends HttpServlet {
     /**
      * Executes the fetch type from Instruction page
      * @code doGet to perform fetch operations
