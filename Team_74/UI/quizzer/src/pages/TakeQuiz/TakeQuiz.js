@@ -13,7 +13,8 @@ class TakeQuiz extends Component {
         this.state = {
             counter: 0,
             questionId: 1,
-            question: '',
+            questionSerial: 1,
+            questionText: '',
             answerOptions: [],
             answer: '',
             answersCount: {
@@ -31,9 +32,9 @@ class TakeQuiz extends Component {
      * both on the client and server, immediately before the initial rendering occurs*/
 
     componentWillMount() {
-        const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));
+        const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.options));
         this.setState({
-            question: quizQuestions[0].question,
+            questionText: quizQuestions[0].questionText,
             answerOptions: shuffledAnswerOptions[0]
         });
     }
@@ -65,16 +66,19 @@ class TakeQuiz extends Component {
             },
             answer: answer
         }));
+
+        console.log(answer);
     }
 
     setNextQuestion() {
         const counter = this.state.counter + 1;
-        const questionId = this.state.questionId + 1;
+        const questionSerial = this.state.questionSerial + 1;
         this.setState({
             counter: counter,
-            questionId: questionId,
-            question: quizQuestions[counter].question,
-            answerOptions: quizQuestions[counter].answers,
+            questionId: quizQuestions[counter].id,
+            questionSerial: questionSerial,
+            questionText: quizQuestions[counter].questionText,
+            answerOptions: quizQuestions[counter].options,
             answer: ''
         });
     }
@@ -99,7 +103,7 @@ class TakeQuiz extends Component {
 
     handleAnswerSelected(event) {
         this.setUserAnswer(event.currentTarget.value);
-        if (this.state.questionId < quizQuestions.length) {
+        if (this.state.questionSerial < quizQuestions.length) {
             setTimeout(() => this.setNextQuestion(), 300);
         } else {
             setTimeout(() => this.setResults(this.getResults()), 300);
@@ -113,7 +117,8 @@ class TakeQuiz extends Component {
                 answer={this.state.answer}
                 answerOptions={this.state.answerOptions}
                 questionId={this.state.questionId}
-                question={this.state.question}
+                questionSerial={this.state.questionSerial}
+                question={this.state.questionText}
                 questionTotal={quizQuestions.length}
                 onAnswerSelected={this.handleAnswerSelected}
             />
