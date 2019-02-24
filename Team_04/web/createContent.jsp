@@ -8,28 +8,51 @@
     --%>
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <html>
+    <style>
+        .invalid {
+            border: 1px solid red;
+        }
+
+    </style>
     <script>
+
         var quiz = [];
-        var ques = {};
+        var ques = {'choice':1};
+
+        function choiceUpdate(a) {
+            ques['choice'] = a;
+        }
 
         function formUpdate() {
-            ques['question'] = document.getElementsByName("question_text").value;
-            ques['choice'] = document.getElementsByName("choice").value;
-            ques['option_a'] = document.getElementsByName("1").value;
-            ques['option_b'] = document.getElementsByName("2").value;
-            ques['option_c'] = document.getElementsByName("3").value;
-            ques['option_d'] = document.getElementsByName("4").value;
-            ques['score'] = document.getElementsByName("score").value;
+            ques['question'] = document.getElementById("question").value;
+            ques['option_a'] = document.getElementById("1").value;
+            ques['option_b'] = document.getElementById("2").value;
+            ques['option_c'] = document.getElementById("3").value;
+            ques['option_d'] = document.getElementById("4").value;
+            ques['score'] = document.getElementById("score").value;
         }
 
         function addQues() {
             quiz.push(ques);
         }
 
-        function submitQues() {
-            
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        function submitForm(thisObj, thisEvent) {
+            var jsonQuiz = new Object();
+            jsonQuiz.quiz = quiz;
+            var jsonData = JSON.stringify(jsonQuiz);
+
+            $.post("create", {action:"export",json:jsonData}, function(data) {
+                alert(data.message);
+                $('#return_message').html(data.message);
+            });
+
+            return false;
         }
     </script>
+
     <head>
         <title>create-quiz</title>
         <style>
@@ -67,32 +90,81 @@
     <h1>
         Create Quiz
     </h1>
-    <form  method="POST" action="create">
+    <p class="error"><b> Points to be noted:</b> Make sure you fill out all fields & the score should be a number.
+    </p>
+    <form  name="quizForm" method="POST" action="create" target="index.jsp">
     <br>
         <h3>Question text:</h3><br>
-        <input type="text" name="question_text" onchange="formUpdate()">
+        <input type="text" id="question" name="question_text" onchange="formUpdate()" class="formtext">
         <br>
         <p name="option_a">Answer text A:</p><br>
-        <input type="radio" name="choice" value = "1" checked = "true" onchange="formUpdate()"> A
-        <input type="text" name="1" onchange="formUpdate()">
+        <input type="radio" id="choice_1" name="choice" value = "1" checked = "true" onchange="choiceUpdate(1)"
+               class="formtext"> A
+        <input type="text" id="1" name="1" onchange="formUpdate()">
         <br>
         <p name="option_b">Answer text B:</p><br>
-        <input type="radio" name="choice" value = "2" onchange="formUpdate()"> B
-        <input type="text" name="2" onchange="formUpdate()">
+        <input type="radio" id="choice_2" name="choice" value = "2" onchange="choiceUpdate(2)" class="formtext"> B
+        <input type="text" id="2" name="2" onchange="formUpdate()">
         <br>
         <p name="option_c">Answer text C:</p><br>
-        <input type="radio" name="choice" value = "3" onchange="formUpdate()"> C
-        <input type="text" name="3" onchange="formUpdate()">
+        <input type="radio" id="choice_3" name="choice" value = "3" onchange="choiceUpdate(3)" class="formtext"> C
+        <input type="text" id="3" name="3" onchange="formUpdate()">
         <br>
         <p name="option_d">Answer text D:</p><br>
-        <input type="radio" name="choice" value = "4" onchange="formUpdate()"> D
-        <input type="text" name="4" onchange="formUpdate()">
+        <input type="radio" id="choice_4" name="choice" value = "4" onchange="choiceUpdate(4)" class="formtext"> D
+        <input type="text" id="4" name="4" onchange="formUpdate()">
         <br>
         <p name="score">Score:</p><br>
-        <input type="text" name="score" onchange="formUpdate()"><br>
+        <input type="text" id="score" name="score" onchange="formUpdate()"><br>
         <br>
         <input id="add" type="button" value="Add" onclick="addQues()">
-        <input type="button"  value="Save" onclick="submitQuiz()">
+        <input type="button"  value="Save" onclick="return submitForm(this, event);">
     </form>
+
+    <script src="js/validation.js" type="text/javascript">
+        $(document).ready(function () {
+            $("input[value='Add']").prop('disabled', true);
+            $('.error').hide();
+
+            $(".formtext").on('keyup blur', function (e) {
+                var input = $(this);
+                var message = $(this).val();
+                if (message) {
+                    input.removeClass("invalid").addClass("valid");
+                    allHaveClass();
+                }
+                else {
+                    input.removeClass("valid").addClass("invalid");
+                    $("input[value='Add']").prop('disabled', true);
+                    $(".error").show();
+                }
+
+            });
+
+            $("input[name='score']").on('keyup blur', function (e) {
+                var input = $(this);
+                var score = $(this).val();
+                if (score && !isNaN(score)) { input.removeClass("invalid").addClass("valid"); allHaveClass(); }
+                else {
+                    input.removeClass("valid").addClass("invalid");
+                    $("input[value='Add']").prop('disabled', true);
+                    $(".error").show();
+                }
+
+            });
+
+            function allHaveClass() {
+                var allHaveClass = $('input.invalid').length == 0;
+                if (allHaveClass) {
+                    $("input[value='Add']").prop('disabled', false);
+                    $('.error').hide();
+
+                }
+            }
+
+        });
+
+    </script>
+
     </body>
     </html>
