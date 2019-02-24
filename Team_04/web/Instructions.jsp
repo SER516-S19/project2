@@ -35,7 +35,7 @@
     }
 </style>
 <body>
-<form action="./loadquestionanswerservlet" method="get">
+<form action="./quiz" method="get">
     <p style="font-size:200%;" align="center"> QUIZ INSTRUCTIONS </p>
     <div style="font-family:Sans-serif; font-size:100%; line-height: 1.0; padding: 3em;">
         <p>The following are the instructions realted to the quiz : </p> <br>

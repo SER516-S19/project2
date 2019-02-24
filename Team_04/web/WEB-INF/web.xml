@@ -16,22 +16,22 @@
         <servlet-class>content.creator.servlet.ViewContentListServlet</servlet-class>
     </servlet>-->
     <servlet>
-        <servlet-name>LoadQuestionAnswerServlet</servlet-name>
-        <servlet-class>content.creator.LoadQuestionAnswerServlet</servlet-class>
+        <servlet-name>QuestionAnswerServlet</servlet-name>
+        <servlet-class>student.servlet.QuestionAnswerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoadQuestionAnswerServlet</servlet-name>
-        <url-pattern>/loadquestionanswerservlet</url-pattern>
+        <servlet-name>QuestionAnswerServlet</servlet-name>
+        <url-pattern>/quiz</url-pattern>
     </servlet-mapping>
 
 
     <servlet>
-        <servlet-name>QuizInstructions</servlet-name>
-        <servlet-class>com.model.QuizInstructions</servlet-class>
+        <servlet-name>QuizInstructionsServlet</servlet-name>
+        <servlet-class>student.servlet.QuizInstructionsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>QuizInstructions</servlet-name>
-        <url-pattern>/quizinstructions</url-pattern>
+        <servlet-name>QuizInstructionsServlet</servlet-name>
+        <url-pattern>/instructions</url-pattern>
     </servlet-mapping>
 
     <servlet>

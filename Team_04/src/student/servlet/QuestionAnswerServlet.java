@@ -1,4 +1,4 @@
-package content.creator;
+package student.servlet;
 
 import DBUtil.DataManager;
 
@@ -19,31 +19,30 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The {@code LoadQuestionAnswerServlet} class represents a web servlet.
+ * The {@code QuestionAnswerServlet} class represents a web servlet.
  * It includes methods to load questions from the database,insert answers,
  * submit answers to the database.
  *
  * @author Ankita Shivanand Bhandari
  */
 @WebServlet("/servlet")
-public class LoadQuestionAnswerServlet extends HttpServlet {
+public class QuestionAnswerServlet extends HttpServlet {
 
-    QuizContent currentQuestion = null;
-    String view = "";
-    private int score = 0;
+    private QuizContent currentQuestion = null;
+    private String view = "";
     private List<QuizContent> questions = new ArrayList<>();
     private int currentQuestionIndex = 0;
     private int totalScore = 0;
     private int questionNumber = 0;
-    SimpleDateFormat dateformat = new SimpleDateFormat("MMM-dd-yyyy");
-    String dates = dateformat.format(new Date());
-    SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm:ss");
-    String time = timeformat.format(new Date());
-    int attemptId = (int) (System.currentTimeMillis() & 0xfffffff);
-    int studentId = (int) (System.currentTimeMillis() & 0xfffffff);
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy");
+    private String dates = dateFormat.format(new Date());
+    private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    private String time = timeFormat.format(new Date());
+    private int attemptId = (int) (System.currentTimeMillis() & 0xfffffff);
+    private int studentId = (int) (System.currentTimeMillis() & 0xfffffff);
 
     /**
-     * Function to insert the ques response to DB
+     * Inserts the question response to the database
      */
     private void executeInsertQuery() {
 
@@ -121,8 +120,9 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             }
         }
         executeInsertQuery();
-        if (currentQuestionIndex == questions.size())
+        if (currentQuestionIndex == questions.size()) {
             executeSubmitEntry();
+        }
         doGet(request, response);
     }
 
@@ -173,6 +173,7 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
         session.setAttribute("count", questionNumber);
         String action = request.getParameter("action");
         if (action.isEmpty()) {
+            currentQuestionIndex = 0;
             view = "errorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
@@ -186,10 +187,12 @@ public class LoadQuestionAnswerServlet extends HttpServlet {
             response.setStatus(response.SC_OK);
 
         } else if (action.equalsIgnoreCase("submit")) {
+            currentQuestionIndex = 0;
             request.setAttribute("totalScore", totalScore);
             view = "quizResult.jsp";
             response.setStatus(response.SC_OK);
         } else {
+            currentQuestionIndex = 0;
             view = "errorHandler.jsp";
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("errorResponse", response.getStatus());
