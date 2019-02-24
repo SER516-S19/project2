@@ -1,13 +1,9 @@
 package content.creator.servlet;
 
-import content.creator.dao.QuizContentDAO;
-import content.creator.helper.ViewContentDetailsHelper;
-
 import static content.creator.helper.CreateContentHelper.generateRandom;
 import static content.creator.helper.CreateContentHelper.saveDataToDb;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,53 +16,38 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "create")
 public class CreateContentServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
 
-        PrintWriter p = response.getWriter();
-        ArrayList<QuizContentDAO> q = null;
-        try {
-            p.println(" Start call");
-            System.out.println(" Start call");
-           q = ViewContentDetailsHelper.getQuizContent();
-        } catch (Exception exp) {
-
-        } finally {
-            p.println(" finally");
-            System.out.println(" Finally");
-            //System.out.println(q.get(0));
-        }
-
-        String score = request.getParameter("score");
-        String isCorrect = request.getParameter("choice");
-        String questionText = request.getParameter("question_text");
-        String responseRedirect = "viewContentList.jsp";
-        int quizId = generateRandom(100,999);
-        int questionId = generateRandom(1000,9999);
-        Map<Integer, ArrayList<String>> answerBundle = new HashMap<>();
-        for(int i = 1; i<=4; i++) {
-            ArrayList<String> ansList = new ArrayList<>();
-            String ansChoice = request.getParameter(Integer.toString(i));
-            ansList.add(ansChoice);
-            if(isCorrect.equals(Integer.toString(i))) {
-                ansList.add("true");
-            } else {
-                ansList.add("false");
-            }
-            int ansId = generateRandom(10000,99999);
-            answerBundle.put(ansId, ansList);
-        }
-        try {
-            saveDataToDb(quizId, questionId, questionText, answerBundle, score);
-        } catch (SQLException sqlEx) {
-            System.out.println(sqlEx.getMessage());
-            responseRedirect = "createContent.jsp";
-        }
-        finally{
-            response.sendRedirect(responseRedirect);
-        }
+    String score = request.getParameter("score");
+    String isCorrect = request.getParameter("choice");
+    String questionText = request.getParameter("question_text");
+    String responseRedirect = "viewContentList.jsp";
+    int quizId = generateRandom(100, 999);
+    int questionId = generateRandom(1000, 9999);
+    Map<Integer, ArrayList<String>> answerBundle = new HashMap<>();
+    for (int i = 1; i <= 4; i++) {
+      ArrayList<String> ansList = new ArrayList<>();
+      String ansChoice = request.getParameter(Integer.toString(i));
+      ansList.add(ansChoice);
+      if (isCorrect.equals(Integer.toString(i))) {
+        ansList.add("true");
+      } else {
+        ansList.add("false");
+      }
+      int ansId = generateRandom(10000, 99999);
+      answerBundle.put(ansId, ansList);
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    try {
+      saveDataToDb(quizId, questionId, questionText, answerBundle, score);
+    } catch (SQLException sqlEx) {
+      System.out.println(sqlEx.getMessage());
+      responseRedirect = "createContent.jsp";
+    } finally {
+      response.sendRedirect(responseRedirect);
     }
+  }
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {}
 }
