@@ -22,7 +22,14 @@
 		<servlet-name>AddQuestionsController</servlet-name>
 		<servlet-class>quiz.controller.professor.AddQuestionsController</servlet-class>
 	</servlet>
-
+  <servlet>
+    <servlet-name>StudentQuiz</servlet-name>
+    <servlet-class>quiz.controller.student.StudentQuiz</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StudentQuestionsAndOptions</servlet-name>
+    <servlet-class>quiz.controller.student.StudentQuestionsAndOptions</servlet-class>
+  </servlet>
 	<servlet-mapping>
 		<servlet-name>QuizDetailsController</servlet-name>
 		<url-pattern>/createQuiz</url-pattern>
@@ -42,6 +49,15 @@
 		<url-pattern>/QuizAction</url-pattern>
 	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>StudentQuiz</servlet-name>
+		<url-pattern>/StudentQuiz</url-pattern>
+	</servlet-mapping>
+  
+  	<servlet-mapping>
+		<servlet-name>StudentQuestionsAndOptions</servlet-name>
+		<url-pattern>/StudentQuestionsAndOptions</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
