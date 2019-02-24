@@ -29,6 +29,12 @@ Back End:
 
 Scripts are provided to build and run the rpoejct for Windows, macOS, and linux.
 
+Prerequisites:
+Make sure maven is installed
+
+macOS and linux:
+`brew install maven`
+
 macOS and linux:  
 `cd QuizCreator`  
 `./build.sh`  
@@ -38,3 +44,6 @@ windows
 `cd QuizCreator`  
 `./build.bat`
 `./run.bat`  
+
+After successfully building and running, you can view the project by going to:
+http://localhost:8080
