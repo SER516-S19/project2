@@ -17,6 +17,7 @@ INSTRUCTIONS TO SET DB PROPERTIES
 
 INSTRUCTIONS TO EXECUTE THE PROJECT
 ---------------------------------------------------------------------
--Copy the war file Team_04.war in the webapps folder of the Tomcat 
+-Copy the folder Team_04 to the webapps folder of the Tomcat 
 and start the Tomcat server
 -Go to the browser and request for http://localhost:8080/Team_04/
+(need not be 8080 , it is your Local tomcat port)
