@@ -1,22 +1,30 @@
-<%@page import="quiz.model.professor.QuizModel"%> 
+<%@page import="quiz.model.professor.QuizModel"%>
+<%--
+  A jsp file to display the details of the quiz fetched from a database.
+  The quiz details are made available for read only purpose.
+  @author (Palak Chugh)
+  @version (1.0)
+  @createDate (20 Feb 2019)
+ --%>
 
 <html>
-	<head>
-		<title>Quiz!</title>
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
-		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<head>
+<title>Quiz!</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet">
 
-	</head>
-	<body>
-		<div class="form_div">
-			<div id="quizheadbaner">
-				<h2 id = "quizhead">Quiz Details</h2>
-			</div>
-	<form action="/Quiz/createQuiz" method="POST" id = "quizDetails">
-	            <table>
-    			<tr>
-        		<td>
-        		<%
+</head>
+<body>
+	<div class="form_div">
+		<div id="quizheadbaner">
+			<h2 id="quizhead">Quiz Details</h2>
+		</div>
+		<form action="/Quiz/createQuiz" method="POST" id="quizDetails">
+			<table>
+				<tr>
+					<td>
+						<%
         			QuizModel mod = (QuizModel)request.getAttribute("model"); 
         		        		
         		        		String html_tags = "</td>\r\n" + 
@@ -65,12 +73,9 @@
         		        				"          				<br>\r\n" + 
         		        				"          				<br>";
         		        			out.print(html_tags);
-        		%>
-        			
-        		 
-  				<input type="submit" name="Action" value="View Questions"/>
-  				<input type="submit" name="Action" value="Cancel"/> 
-			</form>
-		</div>
-	</body>
+        		%> <input type="submit" name="Action" value="View Questions" />
+						<input type="submit" name="Action" value="Cancel" />
+						</form>
+						</div>
+</body>
 </html>
