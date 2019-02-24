@@ -2,6 +2,11 @@
 <%@page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%--
+  JSP page that display list of saved quizes with options such as Go to quiz, delete quiz, 
+  update quiz and add more quizes
+--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +27,6 @@
 	crossorigin="anonymous">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -50,7 +47,6 @@ body {
 <title>Quiz!</title>
 </head>
 <body>
-
 	</div>
 	</br>
 	</br>
@@ -71,41 +67,42 @@ body {
 							<tr>
 								<td><button type="submit" name="actonToPerform" id="add"
 										class="btn btn-success" value="add">
-										<i class="fas fa-plus"></i> Click Here to Add More Quizes
+										<i class="fas fa-plus"></i> Click Here to Add More Quiz options
 									</button></td>
-									
 							</tr>
 							<tr>
 								<td>
-									<%  ArrayList rowValues = (ArrayList)session.getAttribute("rowValues");
-	
-	int i=0;
-	%> <select id="mySelect" name="selectedQuiz" />
-									<option>--------------------SELECT-------------------</option>
+									<%-- Display saved quizes list fetched by controller --%>
 									<%
-	while(i < rowValues.size())
-	
-	{%>
-									<option value="<%= rowValues.get(i)%>" /><%= rowValues.get(i)%>
+										ArrayList rowValues = (ArrayList) session.getAttribute("rowValues");
+
+										int i = 0;
+									%> <select id="mySelect" name="selectedQuiz" />
+									<option>---------------------SELECT--------------------</option>
 									<%
-	i++;
-	}
-%>
+										while (i < rowValues.size())
+
+										{
+									%>
+									<option value="<%=rowValues.get(i)%>" /><%=rowValues.get(i)%>
+									<%
+										i++;
+										}
+									%>
 
 								</td>
-								<td><button type="submit" name="actonToPerform" id="go" value="go"
-										class="btn btn-primary">
+								<td><button type="submit" name="actonToPerform" id="go"
+										value="go" class="btn btn-primary">
 										<i class="fas fa-arrow-right"></i> Go To Quiz
 									</button></td>
-								<td><button type="submit" name="actonToPerform" id="delete" value="delete"
-										class="btn btn-danger" >
+								<td><button type="submit" name="actonToPerform" id="delete"
+										value="delete" class="btn btn-danger">
 										<i class="fas fa-trash-alt">Delete</i>
 									</button></td>
-								<td><button type="submit" name="actonToPerform" id="update" value="update"
-										class="btn btn-warning">
+								<td><button type="submit" name="actonToPerform" id="update"
+										value="update" class="btn btn-warning">
 										<i class="fas fa-pen"></i> Update
 									</button></td>
-
 							</tr>
 						</table>
 					</div>
@@ -113,6 +110,5 @@ body {
 			</form>
 		</div>
 	</div>
-
 </body>
 </html>
