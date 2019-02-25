@@ -198,32 +198,8 @@ public class SubmissionServlet extends HttpServlet {
      * @return int ID of the question associated with the choice ID
      */
     private int getQuestionID(int choiceID) {
-        String url = "jdbc:sqlite:schema.db";
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int result;
-
-        try {
-            conn = DriverManager.getConnection(url);
-            stmt = conn.prepareStatement("select question_fk from choices where choice_id = ?");
-            stmt.setInt(1, choiceID);
-            rs = stmt.executeQuery();
-            result = rs.getInt("question_fk");
-        }
-        catch (Exception se) {
-            se.printStackTrace();
-            return 0;
-        }
-        finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
-        }
-
-        return result;
+        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
+        return choiceDAO.getChoice(choiceID).getQuestion_fk();
     }
 
     /**
