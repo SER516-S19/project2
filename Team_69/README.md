@@ -2,7 +2,6 @@
 SER 516- Project2 
 Team_69
 
-
 1. Inside Build.properties replace Tomcat.home with your Tomcat Home Directory Path
 
 2. Run build.xml file with deploy command using ANT build
