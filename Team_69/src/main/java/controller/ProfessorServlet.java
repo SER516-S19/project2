@@ -68,6 +68,7 @@ public class ProfessorServlet extends HttpServlet {
 			Quiz quiz = professorDAO.getQuizFromID(quizId);
 			HttpSession session = request.getSession(true);
 			session.setAttribute("quiz", quiz);
+			session.setAttribute("quiz", quiz);
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
 		}
 	}
@@ -96,14 +97,13 @@ public class ProfessorServlet extends HttpServlet {
 			questionDAO.deleteQuestionByQuestionId(quesId);
 			response.sendRedirect("views/removeQuestionPage.jsp");
 		} 
-		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag)) {
+		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag) || "Verify Questions".equals(flag)) {
 			
 			//professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
 			//		questionOption2, questionOption3, questionOption4, correctanswers, points);
 			
 			professorServices.storeQuestion(request);
-			
-			
+
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
         	if("Add Next Question".equals(flag)) {
