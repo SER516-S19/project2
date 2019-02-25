@@ -1,5 +1,5 @@
 (function() {
-  var questions; = [{
+  var questions = [{
     question: "What is 2*5?",
     choices: [2, 5, 10, 15, 20],
     correctAnswer: 2
