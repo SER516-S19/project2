@@ -27,24 +27,47 @@ public class ProfessorServices {
 	 * This method verifies question form data and add question details in Question table
 	 */
 	public void storeQuestion(HttpServletRequest request) {
+		boolean isMutiple = false;
+		boolean isCorrectAnswer = false;
 		String question = request.getParameter("question");
 		String questionOption1 = request.getParameter("option1").trim();
 		String questionOption2 = request.getParameter("option2").trim();
 		String questionOption3 = request.getParameter("option3").trim();
 		String questionOption4 = request.getParameter("option4").trim();
-		String points = request.getParameter("points").trim();
+		String points;
+		
+		if(request.getParameter("points").trim() ==  null) {
+			points = "0";
+			System.out.println("Inside points - " + points);
+		}else {
+			points = request.getParameter("points").trim();
+			System.out.println("Inside points - " + points);
+		}
+		
 		String[] correctanswers = request.getParameterValues("options");
 		HttpSession session = request.getSession(true);
 		Quiz quiz = (Quiz)session.getAttribute("quiz");
-		boolean isMutiple = false;
-		boolean isCorrectAnswer = false;
+		
 		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
 		Answer answer;
 		AnswerDAO answerDAO = new AnswerDAO();
 	
-		if(correctanswers!=null && correctanswers.length > 1)
+		if(correctanswers.length > 1)
 			isMutiple = true;
-		Question quest = new Question(quiz, question,isMutiple, Integer.parseInt(points));
+		else
+			isMutiple = false;
+		
+		int point;
+		if(points ==  null)
+			point = 0;
+		else
+			try {
+				point = Integer.parseInt(points);
+			}catch(NumberFormatException e) {
+				point = 0;
+			}
+		
+		Question quest = new Question(quiz, question,isMutiple, point);
 		QuestionDAO questionDAO = new QuestionDAO();
 		questionDAO.addQuestion(quest);
 		
