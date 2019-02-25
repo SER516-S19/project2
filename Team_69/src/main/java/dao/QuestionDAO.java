@@ -43,8 +43,8 @@ public class QuestionDAO {
 			Root<Question> root = query.from(Question.class);
 			Join<Question,Quiz> join = root.join("quiz");
 			query.select(root).where(builder.equal(join.get("quizId"),quizId));
-			Query<Question> q = session.createQuery(query);
-			quesList = q.getResultList();
+			Query<Question> questionByIdQuery = session.createQuery(query);
+			quesList = questionByIdQuery.getResultList();
 			for(Question qu: quesList)
 				System.out.println(qu.toString());
 			transaction.commit();

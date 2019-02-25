@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import services.LoginServices;
 import services.StudentServices;
 
 /**
@@ -44,8 +46,16 @@ public class LoginServlet extends HttpServlet{
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
-        response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
-        response.sendError(501,"Method not supported yet");
+        String userEmail = (String) request.getAttribute("userEmai");
+        String userPassword = (String) request.getAttribute("userPassword");
+        LoginServices loginServices = new LoginServices();
+        String userType = loginServices.checkUserType(userEmail);
+        if(userType.equals("Student")){
+            getServletContext().getRequestDispatcher("/views/studentLanding.jsp").forward(request, response);
+        }
+        else {
+            getServletContext().getRequestDispatcher("/views/professorLanding.jsp").forward(request, response);
+        }
 
     }
 }

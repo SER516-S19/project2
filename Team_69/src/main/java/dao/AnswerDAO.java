@@ -54,8 +54,8 @@ public class AnswerDAO {
 			Root<Answer> root = query.from(Answer.class);
 			Join<Answer, Question> join = root.join("question");
 			query.select(root).where(builder.equal(join.get("questionId"),questionId));
-			Query<Answer> q = session.createQuery(query);
-			answerDetails = q.getResultList();
+			Query<Answer> answerQuery = session.createQuery(query);
+			answerDetails = answerQuery.getResultList();
 			transaction.commit();
 			session.close();
 			for(Answer ans: answerDetails)

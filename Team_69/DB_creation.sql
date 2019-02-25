@@ -90,7 +90,7 @@ CREATE TABLE `response_stats` (
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `user_email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) DEFAULT NULL

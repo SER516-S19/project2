@@ -52,8 +52,8 @@ public class StatisticsDAO {
             Root<ResponseStatistics> root = query.from(ResponseStatistics.class);
             Join<ResponseStatistics, Quiz> join = root.join("quiz");
             query.select((builder.count(root))).where(builder.equal(join.get("quizId"),quizId));
-            Query<Long> q = session.createQuery(query);
-            count = q.getSingleResult();
+            Query<Long> userStatusQuery = session.createQuery(query);
+            count = userStatusQuery.getSingleResult();
             transaction.commit();
             session.close();
         } catch (Exception e) {
