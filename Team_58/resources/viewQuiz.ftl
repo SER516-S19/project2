@@ -22,9 +22,18 @@
 		}
 	</style>
 	<body>
-		<form action="courseDashboard.ftl" method="POST">
-	        	<button type="submit"> <- Course Dashboard</button>
-        	</form>
+		<div class="navbar">
+		  <a method="POST" href="courseDashboard.ftl"> < Course Dashboard</a>
+		  <div class="dropdown">
+		    <button class="dropbtn">v
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		    	<a href="professorHome.ftl">Home</a>
+		    	<a href="login.jsp" name="logoutProfile">Logout</a>
+		    </div>
+		  </div> 
+		</div>
 		<h1 class="fontColor">
 		   TITLE: ${Session.quizName}
 		</h1>

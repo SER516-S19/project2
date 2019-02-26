@@ -3,8 +3,8 @@ Freemarker page to display Professor details
 @authour Shivam Verma
 @authour NarenkumarKonchada 
 @authour Carnic
-@version 1.2
-@date 02/20/2019
+@version 1.3
+@date 02/25/2019
  -->
 
 <html>
@@ -12,6 +12,18 @@ Freemarker page to display Professor details
 		<#include "stylesheet.css">
 	</head>
 	<body>
+		<div class="navbar">
+		  
+		  <div class="dropdown">
+		    <button class="dropbtn">v
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		    	
+		    	<a href="login.jsp" name="logoutProfile">Logout</a>
+		    </div>
+		  </div> 
+		</div>
          <p class="fontColor" style="text-transform: uppercase;">Welcome  ${Session.userVO.getFirstname()}</p>
          <div class="boxOuter">
        		<div class="boxRight" style="padding-bottom: 75%">

@@ -78,6 +78,12 @@ public class CreateQuizServlet extends HttpServlet {
     		
 			session.setAttribute("quizId", quizId);
 			response.sendRedirect(request.getContextPath() + "/createQuestions.ftl");
+			
+			if (request.getParameter("logoutProfile") != null) {  
+			    session.invalidate();
+			    response.sendRedirect("login.jsp");
+			    return; 
+			}
     		
 		} catch (Exception e) {
 			log.info(e.getMessage());

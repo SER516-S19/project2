@@ -1,8 +1,8 @@
 <!-- 
 Freemarker page to display createquiz page
 @authour Carnic / @author Aditya
-@version 1.2
-@date 02/22/2019
+@version 1.3
+@date 02/25/2019
  -->
 
 <html>
@@ -30,12 +30,19 @@ Freemarker page to display createquiz page
       });
     });
   </script>
-  
-	<form action="courseDashboard.ftl" method="POST">
-		<button type="submit"> <- Course Dashboard</button>
-	</form>
-	
 	<body>
+		<div class="navbar">
+		  <a method="POST" href="courseDashboard.ftl"> < Course Dashboard</a>
+		  <div class="dropdown">
+		    <button class="dropbtn">v
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		    	<a href="professorHome.ftl">Home</a>
+		    	<a href="login.jsp" name="logoutProfile">Logout</a>
+		    </div>
+		  </div> 
+		</div>
 	<p class="fontColor"> CREATE QUIZ </p>
 		<div class="box">
 			<form action="createQuiz" id="quizForm" method = "POST">
