@@ -1,8 +1,8 @@
 <!-- 
 Freemarker page to display CreateQuestions Page 
-@authour Trupti Khatavkar / @author Aditya Vikram
-@version 1.4
-@date 02/22/2019
+@authour Trupti Khatavkar / @author Aditya Vikram / @author Carnic
+@version 1.5
+@date 02/25/2019
  -->
 
 <html>
@@ -33,10 +33,19 @@ Freemarker page to display CreateQuestions Page
       });
     });
   </script>
-	<form action="createQuiz.ftl" method="POST">
-		<button type="submit"> <- Create Quiz</button>
-	</form>
-	<body>	
+	<body>
+		<div class="navbar">
+		  <a method="POST" href="createQuiz.ftl"> < Create Quiz </a>
+		  <div class="dropdown">
+		    <button class="dropbtn">v
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		    	<a href="professorHome.ftl">Home</a>
+		    	<a href="login.jsp" name="logoutProfile">Logout</a>
+		    </div>
+		  </div> 
+		</div>
 	<h1 class="fontColor">Enter your questions and answers</h1>
 	<div class="box">
 		<form action="createQuestions" id="questionForm" method="POST">

@@ -79,7 +79,13 @@ public class CourseDashboardServlet extends HttpServlet {
 			for(int i=0;i<quizList.size();i++)
 				quiz.put(quizList.get(i).getQuizId(), quizList.get(i).getQuizTitle());
 			session.setAttribute("QuizHashMap", quiz);
-			response.sendRedirect(request.getContextPath()+"/courseDashboard.ftl");  
+			response.sendRedirect(request.getContextPath()+"/courseDashboard.ftl"); 
+			
+			if (request.getParameter("logoutProfile") != null) {  
+			    session.invalidate();
+			    response.sendRedirect("login.jsp");
+			    return; 
+			}
 		}
 		catch(Exception e) {
 			log.info(e.getMessage());

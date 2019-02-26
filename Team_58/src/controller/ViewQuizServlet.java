@@ -142,6 +142,12 @@ public class ViewQuizServlet extends HttpServlet {
 		   		   session.setAttribute("Total", total);
 	       
 		   		   res.sendRedirect(req.getContextPath()+"/viewQuiz.ftl");
+		   		   
+			   		if (req.getParameter("logoutProfile") != null) {  
+					    session.invalidate();
+					    res.sendRedirect("login.jsp");
+					    return; 
+					}
 	       }catch(Exception e) {
 	    	   	   e.printStackTrace();
 	       }
