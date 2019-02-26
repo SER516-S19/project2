@@ -1,19 +1,12 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
-<%--
-  Created by IntelliJ IDEA.
-  User: jahnvi
-  Date: 2/19/19
-  Time: 11:32 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
 	<title>Student</title>
-	<link href="../css/static/bootstrap.min.css" rel="stylesheet">
-	<script src="../js/static/jquery.min.js"></script>
-	<script src="../js/static/bootstrap.min.js"></script>
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </head>
 <body>
 	<%
