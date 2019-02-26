@@ -1,6 +1,7 @@
 <!-- 
 Freemarker page to display createquiz page
-@authour Carnic / @author Aditya
+<<<<<<< HEAD
+@authour Carnic / @author Aditya Vikram
 @version 1.3
 @date 02/25/2019
  -->
