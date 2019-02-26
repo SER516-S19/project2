@@ -6,12 +6,16 @@ public class UserData {
     private String password;
     private String userType;
     private double userId;
+    private boolean isActive;
 
-    public UserData(String userName, String password, String userType, double userId) {
+
+
+    public UserData(String userName, String password, String userType, double userId, boolean isActive) {
         this.userName = userName;
         this.password = password;
         this.userType = userType;
         this.userId = userId;
+        this.isActive = isActive;
     }
 
     public String getUserName() {
@@ -44,6 +48,14 @@ public class UserData {
 
     public void setUserId(double userId) {
         this.userId = userId;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
 }
