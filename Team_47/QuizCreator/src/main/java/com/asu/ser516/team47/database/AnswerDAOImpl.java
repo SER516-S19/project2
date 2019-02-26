@@ -92,6 +92,46 @@ public class AnswerDAOImpl implements AnswerDAO{
     }
 
     /**
+     * Gets all answers for a submission for a question
+     *
+     * @param submission_fk submission_id
+     * @param question_fk   question_id
+     * @return all answers for a submission for a given question
+     */
+    public List<Answer> getSubmissionAnswers(int submission_fk, int question_fk) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Answer> rval = new ArrayList<>();
+
+        try {
+            conn = DriverManager.getConnection(__jdbcUrl);
+            stmt = conn.prepareStatement("select * from answers where submission_fk = ?" +
+                    " and question_fk = ?");
+            stmt.setInt(1, submission_fk);
+            stmt.setInt(2, question_fk);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                rval.add(new Answer(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4)));
+            }
+        }
+        catch (Exception se) {
+            se.printStackTrace();
+            return null;
+        }
+        finally {
+            try {
+                if (rs != null) { rs.close();}
+                if (stmt != null) { stmt.close();}
+                if (conn != null) { conn.close();}
+            } catch (Exception e) { e.printStackTrace(); }
+        }
+
+        return rval;
+    }
+
+    /**
      * Gets all answered responses for a question
      *
      * @param question_fk question_id
