@@ -22,6 +22,7 @@ public class ProfessorServices {
 	
 	private final String OPTIONS = "option";
 	private static ProfessorDAO professorDAO = new ProfessorDAO();
+	private static QuestionDAO questionDAO = new QuestionDAO();
 	
 	/**
 	 * This method verifies question form data and add question details in Question table
@@ -83,6 +84,8 @@ public class ProfessorServices {
 	public List<Quiz> getAllQuizzes(){
 		return professorDAO.getAllQuizzes();
 	}
+	
+	
 	
 	public void publishQuiz(int quizId) {
 		professorDAO.publishQuiz(quizId);

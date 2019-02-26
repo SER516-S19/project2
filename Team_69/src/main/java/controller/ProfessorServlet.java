@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import bean.Answer;
 import bean.Question;
 import bean.Quiz;
 import dao.ProfessorDAO;
@@ -97,6 +99,21 @@ public class ProfessorServlet extends HttpServlet {
 			questionDAO.deleteQuestionByQuestionId(quesId);
 			response.sendRedirect("views/removeQuestionPage.jsp");
 		} 
+		else if ("EditQuestion".equals(flag)) {
+			String quesId = request.getParameter("box2");
+			System.out.println(quesId);
+			//List<Quiz> quizList = professorServices.getAllQuizzes();
+			QuestionDAO questionDAO = new QuestionDAO();
+			List<Answer> answerList=questionDAO.getDataByQuestionId(quesId);
+			System.out.println(answerList);
+			
+			//request.setAttribute("name", "Hussein Terek");
+			//request.getRequestDispatcher("home.jsp").forward(request, response);
+			
+			request.setAttribute("answerList", answerList);
+			request.getRequestDispatcher("views/canEditQuestion.jsp").forward(request, response);
+			//response.sendRedirect("views/canEditQuestion.jsp");
+		}
 		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag) || "Verify Questions".equals(flag)) {
 			
 			//professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,

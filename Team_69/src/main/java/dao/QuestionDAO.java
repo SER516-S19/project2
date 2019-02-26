@@ -2,6 +2,8 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+
 import javax.persistence.criteria.*;
 import bean.Question;
 import org.hibernate.HibernateException;
@@ -105,6 +107,28 @@ public class QuestionDAO {
 	           }
 	       }
 	       return quesList;
+	}
+
+	public List<Answer> getDataByQuestionId(String quesId) {
+		Transaction transaction = null;
+		Question quesList = null;
+		List<Answer> lists = new ArrayList<>();
+		try  {
+			int qId = Integer.parseInt(quesId);
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.questionId = "+qId);	            
+            lists = query.list();
+            System.out.println("hello");
+			transaction.commit();
+		} catch (Exception sqlException) {
+            if (transaction != null)
+                transaction.rollback();
+            //logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", sqlException);
+        }
+	return lists;
+		
+		
 	}
 	
 }

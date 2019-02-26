@@ -31,6 +31,7 @@
 							aria-controls="collapse${question[3]}">
 						<c:out value="${question[0]}"></c:out>	
 						</button>
+						<button type="submit" class="btn btn-primary">Edit</button>
 					</h5>
 				</div>
 	
