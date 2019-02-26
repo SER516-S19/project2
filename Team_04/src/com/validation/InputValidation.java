@@ -10,7 +10,7 @@ public class InputValidation {
         }
         else
         {
-            System.out.println("Password");
+            System.out.println("Password set");
         }
     }
 }
