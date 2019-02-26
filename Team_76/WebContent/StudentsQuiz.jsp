@@ -10,14 +10,14 @@
 <body>
 	<%@page import="Model.Quiz"%>
 	<%@page import="java.util.List"%>
-<%-- <%
+<%
         String uName = (String) session.getAttribute("uName");
         String isSessionValid = (String) session.getAttribute("validSession");
         if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
                 || uName == null || uName.isEmpty()) {
             response.sendRedirect("Login.jsp");
         }
-    %>   --%>  
+    %>    
 	<h2 align="center"><font><strong>Available Quizzes</strong></font></h2>
 	<table align="center" cellpadding="5" cellspacing="5" border="1">
 	<tr></tr>
