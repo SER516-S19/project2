@@ -13,6 +13,20 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<c:choose>
+    <c:when test="${empty requestScope.quizList}">
+       <blockquote class="blockquote text-center">
+        <p class="mb-0" style="color: red">No Quiz added.</p>
+        <div></div>
+        <blockquote class="blockquote text-center">
+        <a href="quizDetails.jsp">Create New Quiz </a>
+        </blockquote>
+        
+        </blockquote>
+    </c:when>
+    <c:otherwise>
+       
+
 	
 <table class="table table-hover">
 	<tbody>
@@ -46,6 +60,7 @@
 	</c:forEach>
 </tbody>
 </table>
-	
+	    </c:otherwise>
+</c:choose>
 </body>
 </html>
