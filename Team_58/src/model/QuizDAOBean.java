@@ -186,5 +186,51 @@ public class QuizDAOBean implements QuizDAO{
 		
 		return list;
 	}
+	
+	/**
+	 * Makes a connection to the database via ConnectionFactory to gain information about quiz
+	 * and returns a custom quiz object to be used by ViewQuizServlet.java
+	 * 
+	 * @param quizId the id of the quiz that is being retrieved, is primary key.
+	 * @throws SQLException in case of database error
+	 * @throws ClassNotFoundException in case referencing class does not exist
+	 * @return quiz A quiz object with necessary information to display on viewQuiz page
+	 * */
+	@Override
+	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException {
+		
+	    QuizVO quiz = null;
+				
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet result = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		query = connection.prepareStatement(dbProperties.getProperty("getQuizInfo"));
+		query.setInt(1, quizId);
+		result = query.executeQuery();
+		
+		
+	    String quizName = "";
+	    String instruction = "";
+	    Date scheduledDate = new Date(0);
+	    boolean graded = true;
+		
+		try {
+			
+			if(result.next()) {
+				quizName = result.getString("quizTitle");
+				instruction = result.getString("quizInstruction");
+				scheduledDate = result.getDate("quizScheduledDate");
+			    graded = result.getBoolean("isGraded"); 
+			}
+			quiz = new QuizVO(quizName, instruction, scheduledDate, graded);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return quiz;
+	}
 
 }

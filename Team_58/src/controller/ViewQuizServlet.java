@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.QuestionsDAOBean;
+import model.QuizDAOBean;
 import model.QuestionsVO;
 import model.QuizVO;
-import model.ViewQuizDAOBean;
+
 
 /**
  * Servlet code takes quizId from courseDashboard.ftl  and renders a page displaying
@@ -109,13 +110,13 @@ public class ViewQuizServlet extends HttpServlet {
 	       
 	       try {
 
-	    	   	   ViewQuizDAOBean bean = new ViewQuizDAOBean();
+	    	   	   QuizDAOBean bean = new QuizDAOBean();
 	    	   	   QuizVO quiz = bean.getQuizInfo(quizId);
-	    	   	   quizQuestions = bean.getQuestionsInfo(quizId);
+	    	   	   
 	    	   	   QuestionsDAOBean bean2 = new QuestionsDAOBean();
+	    	   	   quizQuestions = bean2.getQuestionsInfo(quizId);
 	    	   	   
-	    	   	   
-	    	   	   if(question.isEmpty()== false) {
+	    	   	   if(question.isEmpty()==false) {
 	    	   		   bean2.updateQuestionsTable(question, answer, one, two, three, pts, questId);
 	    	   	   }
 	    	   	   

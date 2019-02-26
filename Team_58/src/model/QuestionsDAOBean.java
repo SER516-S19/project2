@@ -3,12 +3,17 @@ package model;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
  * 
@@ -165,5 +170,60 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * The following method connects with the SQL database via ConnectionFactory and
+	 * retrieves information and parses it to appropriate formats prior to creating a list
+	 * of Question objects.
+	 * 
+	 * @param quizId the id of the quiz whose questions are being retrieved
+	 * @throws SQLException  in case errors exist in the database connection
+	 * @throws ClassNotFoundException in class referenced is not found
+	 * @throws ParseException in case string cannot be parsed to JSON
+	 * 
+	 * @return list a list of questions with relevant information used to display on view quiz page.
+	 * */
+	@Override
+	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException{
+		
+	    List<QuestionsVO> list = new ArrayList<QuestionsVO>();
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet result = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		query = connection.prepareStatement(dbProperties.getProperty("getQuestionsInfo"));
+		query.setInt(1, quizId);
+		result = query.executeQuery();
+		try {
+		    while (result.next()) {
+		    	   int questionId = result.getInt("questionId");
+	 			   int points = result.getInt("totalPoints");
+	 			   String question = result.getString("question");
+	 			   
+	 			   
+	 			   String answer = result.getString("actualAnswer"); 
+	 			   String choices = result.getString("totalChoices"); 
+	 			   
+	 			   JSONParser parser = new JSONParser();
+	 			   JSONObject jo = (JSONObject) parser.parse(choices);
+
+	 			   
+	 			   String choice1 = (String) jo.get("incorrectAnswer1");
+	 			   String choice2 = (String) jo.get("incorrectAnswer2");
+	 			   String choice3 = (String) jo.get("incorrectAnswer3");
+
+	 			   
+	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, 
+	 					   						choice1, choice2, choice3, question);
+	 			   list.add(quiz);
+			   }
+		}catch(ParseException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
