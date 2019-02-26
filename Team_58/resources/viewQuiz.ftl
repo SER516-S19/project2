@@ -4,8 +4,8 @@
 	An edit button shows up next to each question that allows professor to edit ungraded quiz questions 
 	that have not passed the schedule date. 
 	Ungraded quizzes also show the grade quiz button that transfers professor to grade quiz page for grading.
-	 
-	version: 1.3
+	
+	version: 1.4
   -->
 <html>
 	<head>
@@ -45,8 +45,33 @@
         <h4> 
         	${Session.Directions}
         </h4>
-    
-		<table id ="table">
+    	<div id="edit" hidden>
+    		<form action="viewQuiz" method="POST">
+    		Question:
+    			<input name="question" type="text" />
+    			<br>
+    		Answer:
+    			<input name="answer" type="text" />
+    			<br>
+    		Choice One:
+    			<input name="one" type="text" />
+    			<br>
+    		Choice Two:
+    			<input name="two" type="text"/>
+    			<br>
+    		Choice Three:
+    			<input name="three" type="text" />
+    			<br>
+    		Points:
+    			<input name="points" type="text" />
+    			<br>
+    			<input name= "quizId" type="hidden" />
+    			<br><br>
+    			
+    			<input name="Submit" type="submit"/>
+    		</form>
+    	</div>
+		<table id="table">
 			<tr>
 				<th>Question</th>
 				<th>Answer</th>
@@ -61,79 +86,78 @@
 			</tr>
 	        <#list Session.QuizQuestions as questions>
 	        <#assign qId = questions.getqId()>
-	            <tr>
-	               <td contenteditable="false" value=${qId}>${questions.getQuestion()}</td>
-				   <td contenteditable="false" value=${qId}>${questions.getCorrectAnswer()}</td>
-				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer1()}</td>
-				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer2()}</td>
-				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer3()}</td>
-				   <td contenteditable="false" value=${qId}>${questions.getTotalPoints()}</td>
+	        <#assign question = questions.getQuestion()>
+	        <#assign ans = questions.getCorrectAnswer()>
+	        <#assign choiceOne = questions.getIncorrectAnswer1()>
+	        <#assign choiceTwo = questions.getIncorrectAnswer2()>
+	        <#assign choiceThree = questions.getIncorrectAnswer3()>
+	        <#assign pts = questions.getTotalPoints()>
+		     	 <tr>
+		           <td contenteditable="false" value=${qId}>${question}</td>
+				   <td contenteditable="false" value=${qId}>${ans}</td>
+				   <td contenteditable="false" value=${qId}>${choiceOne}</td>
+				   <td contenteditable="false" value=${qId}>${choiceTwo}</td>
+				   <td contenteditable="false" value=${qId}>${choiceThree}</td>
+				   <td contenteditable="false" value=${qId}>${pts}</td>
 				   <#if Session.Grade == false>
-				   		<td id=${qId}><button name="edit" onclick="editRow(this.value);" value=${qId}>Edit</button></td>
+					   <td><button name="editButton" onclick="editRow(this.value);" value=${qId}>Edit</button></td>
 				   </#if>
-	            </tr>
+		        </tr>
 	        </#list>
         </table>
+       
         
         <#--
         	The following script edits a row of the table and updates the database with the question.
         	author: Aditya Samant
         -->
-        <script>
-       		function editRow(qId){
-       			var row = document.getElementsByTagName("td");
-       		    var button = document.getElementsByName("edit");
-       		
-       			for (var i = 0; i < button.length; i++){
-       				if(button[i].getAttribute("value") == qId){
-       					button[i].innerHTML = "Submit";
-       					button[i].setAttribute("type", "submit");
-       					button[i].setAttribute("onclick", "submitEdit(this.value);");
-       					button[i].setAttribute("id", qId);
-       				}
-       			}
-       			
-       			
-       			for(var j= 0; j < row.length; j++){
-       				if(row[j].getAttribute("value") == qId){
-       					row[j].setAttribute("contenteditable", "true");
-       				}
-       			}
-       		}
-       		
-       		function submitEdit(qId){
-       			var row = document.getElementsByTagName("td");
-       			var question, answer, wrong1, wrong2, wrong3, pts, count;
-       			count = 0;
-       			
-       			
-       			for(var j = 0; j < row.length; j++){
-       				if(row[j].getAttribute("value") == qId){
-       					row[j].setAttribute("contenteditable", "false");
-       					switch(count){
-       						case 0:
-       							question = row[j].innerHTML;
-       							break;
-       						case 1:
-       							answer = row[j].innerHTML;
-       							break;
-       						case 2:
-       							wrong1 = row[j].innerHTML;
-       							break;
-       						case 3:
-       							wrong2 = row[j].innerHTML;
-       							break;
-       						case 4:
-       							wrong3 = row[j].innerHTML;
-       							break;
-       						case 5:
-       							pts = row[j].innerHTML;
-       					
-       					}
-       					count++;
-       				}
-       			}		
-       		}
+        <script type="text/javascript">
+        	function editRow(qId){
+        		document.getElementById("edit").hidden= false;
+        		
+  				var row = document.getElementsByTagName("td");
+  				var count = 0;
+  				
+  				for (var i = 0; i < row.length; i++){
+  				
+  					if(row[i].value == qId){
+  						switch(count){
+  							
+  							case 0:
+  								console.log(row[i].innerHTML);
+  								document.getElementsByName("question")[0].setAttribute("value", row[i]);
+  								break;
+  							case 1:
+  								console.log(row[i].innerHTML);
+  								document.getElementsByName("answer")[0].setAttribute("value", row[i]);
+  								break;
+  							case 2:
+  								console.log(row[i].innerHTML);
+  							    document.getElementsByName("one")[0].setAttribute("value", row[i]);
+  								break;
+  							case 3:
+  								console.log(row[i].innerHTML);
+  								document.getElementsByName("two")[0].setAttribute("value, row[i]);
+  								break;
+  							case 4:
+  								console.log(row[i].innerHTML);
+  								document.getElementsByName("three")[0].setAttribute("value", row[i]);
+  								break;
+  							case 5:
+  								console.log(row[i].innerHTML);
+  								document.getElementsByName("points")[0].setAttribute("value",row[i]);
+  						
+  						}
+  						count++;
+  					}
+  				
+  				}
+  				
+  				//document.getElementById("table").style.display ="none";
+        		document.getElementsByName("quizId")[0].setAttribute("value", qId);
+  				
+        	
+        	}
         </script>
         <#if Session.Grade == false && Session.isAfter == true>
         	<form action="gradeQuiz" method="POST">
