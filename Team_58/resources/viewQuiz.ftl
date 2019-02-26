@@ -5,7 +5,7 @@
 	that have not passed the schedule date. 
 	Ungraded quizzes also show the grade quiz button that transfers professor to grade quiz page for grading.
 	 
-	version: 1.2
+	version: 1.3
   -->
 <html>
 	<head>
@@ -23,7 +23,7 @@
 	</style>
 	<body>
 		<form action="courseDashboard.ftl" method="POST">
-	        	<button type="submit"> <- Course Dashboard</button>
+	        	<button type="submit">Course Dashboard</button>
         	</form>
 		<h1 class="fontColor">
 		   TITLE: ${Session.quizName}
@@ -45,6 +45,7 @@
         <h4> 
         	${Session.Directions}
         </h4>
+    
 		<table id ="table">
 			<tr>
 				<th>Question</th>
@@ -59,26 +60,79 @@
 				</#if>
 			</tr>
 	        <#list Session.QuizQuestions as questions>
+	        <#assign qId = questions.getqId()>
 	            <tr>
-	               <td contenteditable="false">${questions.getQuestion()}</td>
-				   <td contenteditable="false">${questions.getCorrectAnswer()}</td>
-				   <td contenteditable="false">${questions.getIncorrectAnswer1()}</td>
-				   <td contenteditable="false">${questions.getIncorrectAnswer2()}</td>
-				   <td contenteditable="false">${questions.getIncorrectAnswer3()}</td>
-				   <td contenteditable="false">${questions.getTotalPoints()}</td>
+	               <td contenteditable="false" value=${qId}>${questions.getQuestion()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getCorrectAnswer()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer1()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer2()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer3()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getTotalPoints()}</td>
 				   <#if Session.Grade == false>
-				   		<td><button id=	qid? onclick="editRow(this.id); value= ">edit</button></td>
+				   		<td id=${qId}><button name="edit" onclick="editRow(this.value);" value=${qId}>Edit</button></td>
 				   </#if>
 	            </tr>
 	        </#list>
         </table>
+        
+        <#--
+        	The following script edits a row of the table and updates the database with the question.
+        	author: Aditya Samant
+        -->
         <script>
-       		function editRow(){
-       			var table = document.getElementById("table");
-       			var button = document.getElementsByClassName("editButton");
+       		function editRow(qId){
+       			var row = document.getElementsByTagName("td");
+       		    var button = document.getElementsByName("edit");
+       		
+       			for (var i = 0; i < button.length; i++){
+       				if(button[i].getAttribute("value") == qId){
+       					button[i].innerHTML = "Submit";
+       					button[i].setAttribute("type", "submit");
+       					button[i].setAttribute("onclick", "submitEdit(this.value);");
+       					button[i].setAttribute("id", qId);
+       				}
+       			}
        			
-       			</div>
        			
+       			for(var j= 0; j < row.length; j++){
+       				if(row[j].getAttribute("value") == qId){
+       					row[j].setAttribute("contenteditable", "true");
+       				}
+       			}
+       		}
+       		
+       		function submitEdit(qId){
+       			var row = document.getElementsByTagName("td");
+       			var question, answer, wrong1, wrong2, wrong3, pts, count;
+       			count = 0;
+       			
+       			
+       			for(var j = 0; j < row.length; j++){
+       				if(row[j].getAttribute("value") == qId){
+       					row[j].setAttribute("contenteditable", "false");
+       					switch(count){
+       						case 0:
+       							question = row[j].innerHTML;
+       							break;
+       						case 1:
+       							answer = row[j].innerHTML;
+       							break;
+       						case 2:
+       							wrong1 = row[j].innerHTML;
+       							break;
+       						case 3:
+       							wrong2 = row[j].innerHTML;
+       							break;
+       						case 4:
+       							wrong3 = row[j].innerHTML;
+       							break;
+       						case 5:
+       							pts = row[j].innerHTML;
+       					
+       					}
+       					count++;
+       				}
+       			}		
        		}
         </script>
         <#if Session.Grade == false && Session.isAfter == true>
@@ -88,5 +142,7 @@
 	        	<button class="button" type="submit">Grade Quiz</button>
         	</form>
         </#if>
+        </div>
 	</body>
+	
 </html>

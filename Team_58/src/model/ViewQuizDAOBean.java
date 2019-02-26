@@ -108,7 +108,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		result = query.executeQuery();
 		try {
 		    while (result.next()) {
-		    	 int questionId = result.getInt("questionId");
+		    	   int questionId = result.getInt("questionId");
 	 			   int points = result.getInt("totalPoints");
 	 			   String question = result.getString("question");
 	 			   
@@ -125,7 +125,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
 
 	 			   
-	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, question, answer, choice1, choice2, choice3);
+	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, choice1, choice2, choice3, question);
 	 			   list.add(quiz);
 			   }
 		}catch(ParseException e) {

@@ -23,10 +23,12 @@ import model.ViewQuizDAOBean;
  * @author Aditya Samant / @author akashkadam
  * @version 1.2
  * @see resources/courseDashboard.ftl
- * @see edu.asupoly.ser516.model/ViewQuizDAOBean.java
+ * @see model/ViewQuizDAOBean.java
  * @see resources/viewQuiz.ftl
  */
 public class ViewQuizServlet extends HttpServlet {
+	private static final long serialVersionUID = -1008363826217594704L;
+
 	// This servlet will not make any Get requests.
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {

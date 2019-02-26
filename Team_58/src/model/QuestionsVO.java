@@ -45,7 +45,7 @@ public class QuestionsVO {
 	 */
 	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
 			String incorrectAnswer3, String question) {
-		this.questionId = questionId;
+		this.questionId = qId;
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.incorrectAnswer1 = incorrectAnswer1;
