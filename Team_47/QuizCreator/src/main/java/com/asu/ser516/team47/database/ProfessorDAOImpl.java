@@ -34,8 +34,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
             stmt = conn.prepareStatement("select * from professors");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Professor(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4)));
+                rval.add(new Professor(rs.getString(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5)));
             }
         }
         catch (Exception se) {
@@ -71,8 +71,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
             stmt = conn.prepareStatement("select * from professors");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval = new Professor(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4));
+                rval = new Professor(rs.getString(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5));
             }
         }
         catch (Exception se) {
@@ -104,12 +104,14 @@ public class ProfessorDAOImpl implements ProfessorDAO{
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into professors (username, firstname, lastname, hashedpass)" +
-                    " VALUES (?,?,?,?)");
+            stmt = conn.prepareStatement("insert into professors " +
+                    "(username, firstname, lastname, hashedpass, session) " +
+                    "VALUES (?,?,?,?)");
             stmt.setString(1, professor.getUsername());
             stmt.setString(2, professor.getFirstname());
             stmt.setString(3, professor.getLastname());
-            stmt.setString(4, professor.getHashedpass());
+            stmt.setString(4, professor.getSession());
+            stmt.setString(5, professor.getHashedpass());
             int updatedRows = stmt.executeUpdate();
             return updatedRows > 0;
         }
@@ -139,11 +141,12 @@ public class ProfessorDAOImpl implements ProfessorDAO{
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("update professors set username=?, firstname=?, lastname=?," +
-                    " hashedpass=? where username=?");
+                    " hashedpass=?, session=? where username=?");
             stmt.setString(1, professor.getUsername());
             stmt.setString(2, professor.getFirstname());
             stmt.setString(3, professor.getLastname());
-            stmt.setString(4, professor.getHashedpass());
+            stmt.setString(4, professor.getSession());
+            stmt.setString(5, professor.getHashedpass());
             int updatedRows = stmt.executeUpdate();
             return updatedRows > 0;
         }
