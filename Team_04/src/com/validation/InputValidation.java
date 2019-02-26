@@ -1,4 +1,4 @@
-package src.com.validation;
+package com.validation;
 
 public class InputValidation {
     public void loginValidation(String username, String password)

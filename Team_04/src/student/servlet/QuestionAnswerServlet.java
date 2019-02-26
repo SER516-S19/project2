@@ -1,9 +1,12 @@
 package student.servlet;
 
+
 import DBUtil.DataManager;
 
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
+import com.validation.InputValidation;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -101,6 +104,14 @@ public class QuestionAnswerServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+
+        if(!request.getParameter("username").isEmpty() || !request.getParameter("password").isEmpty())
+        {
+            InputValidation input = new InputValidation();
+            String name = request.getParameter("username");
+            String password = request.getParameter("password");
+            input.loginValidation(name,password);
+        }
         if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex <= questions.size()) {
             switch (currentQuestion.getQuesType()) {
                 case "SA":
