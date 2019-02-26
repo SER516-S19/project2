@@ -31,7 +31,13 @@
 							aria-controls="collapse${question[3]}">
 						<c:out value="${question[0]}"></c:out>	
 						</button>
+					
+					<%String pathWebcontent=request.getContextPath();%>
+					<a href="<%=pathWebcontent %>/ProfessorController?flag=deleteQuestion&quesId=${question[2][1].question.questionId}">Delete Question</a> 
+					</form>	
+					
 					</h5>
+					
 				</div>
 	
 				<div id="collapse${question[3]}" class="collapse show"

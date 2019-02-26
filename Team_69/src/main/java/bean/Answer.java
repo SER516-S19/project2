@@ -19,7 +19,7 @@ public class Answer {
     @Column(name = "Answer_id",nullable = false)
     private int answerId;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "Question_id")
     private Question question;
 
