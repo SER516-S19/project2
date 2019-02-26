@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import quiz.dao.professor.QuizDetailsDao;
+import quiz.dao.student.StudentQuizDao;
+import quiz.exceptions.DataAccessException;
+import quiz.model.professor.QuizModel;
+import quiz.model.student.QuizAttempt;
 
 public class StudentQuiz extends HttpServlet{
 
@@ -33,5 +37,16 @@ public class StudentQuiz extends HttpServlet{
 		
 		response.setContentType("text/plain");
 		response.getWriter().write(resultString);
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		QuizAttempt attempt = new QuizAttempt(1, 1, 1, "");
+		StudentQuizDao quizDetailsDao = new StudentQuizDao();
+		try {
+			quizDetailsDao.insert(attempt);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
