@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.List;
-import java.util.logging.Logger;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,25 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ConnectionFactory;
 import model.QuestionsVO;
-import model.UserVO;
-import model.QuestionsVO;
-
 import java.sql.PreparedStatement;
 
-import javax.servlet.ServletContext;
-import javax.servlet.annotation.WebServlet;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 
 /*
  *  @Author: Jainish Soni
- *  @Version: 1.0
- *  @Date: 02/22/2019
- */
-//@WebServlet(name = "DisplayQuizServlet", urlPatterns = "/DisplayQuiz")
-/*
+ *  @Version: 1.1
+ *  @Date: 02/25/2019
  * DisplayQuizServlet class is created to display the question of a quiz to the
  * student.
  */
@@ -66,7 +56,7 @@ public class DisplayQuizServlet extends HttpServlet {
 
 			while (userData.next()) {
 				int questionId = userData.getInt("questionId");
-				int quizId = userData.getInt("quizId");
+				int quizID = userData.getInt("quizId");
 				int totalPoints = userData.getInt("totalPoints");
 				String question = userData.getString("question");
 				String answer = userData.getString("actualAnswer");
