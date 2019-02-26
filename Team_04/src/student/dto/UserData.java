@@ -1,5 +1,9 @@
 package student.dto;
 
+/**
+ * This Class represents the model for userData
+ */
+
 public class UserData {
 
     private String userName;
@@ -8,7 +12,19 @@ public class UserData {
     private double userId;
     private boolean isActive;
 
-
+    /**
+     * Constructor for the class UserData
+     * @param userName
+     *        Unique name for the user
+     * @param userType
+     *        Type of user
+     * @param password
+     *        Password for the user
+     * @param userId
+     *        Unique id for the user
+     * @param isActive
+     *        Checks if the user is active or not
+     */
 
     public UserData(String userName, String password, String userType, double userId, boolean isActive) {
         this.userName = userName;
