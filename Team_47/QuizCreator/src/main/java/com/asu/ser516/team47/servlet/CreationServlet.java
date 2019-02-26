@@ -35,7 +35,7 @@ public class CreationServlet extends HttpServlet{
      */
     private boolean submitQuiz(Quiz quiz, ArrayList<Question> questions,
                                ArrayList<ArrayList<Choice>> choices) {
-        if (choices.size() == questions.size()) {
+        if (choices.size() != questions.size()) {
             throw new InputMismatchException("Number of questions " +
                     "does not match number of sets of choices");
         }
