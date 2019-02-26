@@ -1,4 +1,4 @@
-package com.validation;
+package src.com.validation;
 
 public class InputValidation {
     public void loginValidation(String username, String password)
@@ -11,6 +11,22 @@ public class InputValidation {
         else
         {
             System.out.println("Password set");
+        }
+    }
+
+    /**
+     * Method to check the entered username is already there or not
+     * @param username
+     *        Entered UserName
+     */
+    public void signupValidation(String username)
+    {
+        if (username.equalsIgnoreCase("")) {
+            System.out.println("Username not exists");
+        }
+        else
+        {
+            System.out.println("Username exists");
         }
     }
 }
