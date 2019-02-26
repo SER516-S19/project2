@@ -12,8 +12,8 @@ import java.util.Properties;
  * Class QuestionsDAOBean is a class that comes after create quiz Page
  * 
  * @author trupti khatavkar
- * @version 1.1
- * @date 02/22/2019
+ * @version 1.2
+ * @date 02/26/2019
  **/
 
 public class QuestionsDAOBean implements QuestionsDAO {
@@ -64,6 +64,39 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 		String incorrectAnswer = sb.toString();
 
+		Map<String, String> answerChoices = new HashMap<>();
+
+		String str = questionsVO.getCorrectAnswer();
+		String arrOfStr[] = str.split(",");
+		System.out.println(arrOfStr.length);
+		for (int i = 0; i < arrOfStr.length; i++) {
+			answerChoices.put("correctAnswer" + (i + 1), arrOfStr[i]);
+		}
+
+		for (String key : answerChoices.values()) {
+			System.out.println(key);
+		}
+		System.out.println(answerChoices.size());
+		StringBuilder sb1 = new StringBuilder();
+		sb1.append("{");
+		int count1 = 0;
+		for (Map.Entry<String, String> entry1 : answerChoices.entrySet()) {
+			sb1.append("\"");
+			sb1.append(entry1.getKey());
+			sb1.append("\"");
+			sb1.append(":");
+			sb1.append("\"");
+			sb1.append(entry1.getValue());
+			sb1.append("\"");
+			count1++;
+			if (answerChoices.size() - 1 != count1) {
+				sb1.append(",");
+			}
+		}
+		sb1.append("}");
+
+		String correctAnswers = sb1.toString();
+
 		Connection connection = null;
 		PreparedStatement query = null;
 
@@ -72,7 +105,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query = connection.prepareStatement(dbProperties.getProperty("postQuestions"));
 			query.setInt(1, questionsVO.getQuizId());
 			query.setString(2, questionsVO.getQuestion());
-			query.setString(3, questionsVO.getCorrectAnswer());
+			query.setString(3, correctAnswers);
 			query.setString(4, incorrectAnswer);
 			query.setInt(5, questionsVO.getTotalPoints());
 			query.setBoolean(6, questionsVO.isMCQ());
