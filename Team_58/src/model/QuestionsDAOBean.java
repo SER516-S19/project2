@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.json.simple.JSONObject;
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
  * 
@@ -85,5 +86,51 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			connection = null;
 		}
 
+	}
+	
+	/**
+	 * updateQuestionsTable
+	 * Update a question entry in the Questions table based on info obtained from ViewQuiz page.
+	 * 
+	 * 
+	 * @author Aditya Samant
+	 * @throws SQLException error occurs during connecting or updating the information in SQL 
+	 * @throws ClassNotFoundException for Connection Factory
+	 * 
+	 * @param question the question
+	 * @param answer the solution choice
+	 * @param wrongOne wrong answer number one
+	 * @param wrongTwo wrong answer number two
+	 * @param wrongThree wrong answer number three
+	 * @param points points for the question
+	 * @param qId the question ID
+	 * 
+	 * @see controller/ViewQuizServlet.java
+	 * @verson 1.0
+	 * */
+	public void updateQuestionsTable(String question, String answer, String wrongOne,
+			String wrongTwo, String wrongThree, int points, int qId) throws SQLException, ClassNotFoundException{
+		Connection connection = null;
+		PreparedStatement query = null;
+		connection = ConnectionFactory.getConnection();
+		
+		try {
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("incorrectAnswer1", wrongOne);
+			jsonObj.put("incorrectAnswer2", wrongTwo);
+			jsonObj.put("incorrectAnswer3", wrongThree);
+			
+			query = connection.prepareStatement(dbProperties.getProperty("updateQuestionsTable"));
+			query.setString(1, question);
+			query.setString(2, answer);
+			query.setString(3, jsonObj.toJSONString());
+			query.setInt(4, points);
+			query.setInt(5, qId);
+			
+			query.executeQuery();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

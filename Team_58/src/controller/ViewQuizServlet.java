@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.QuestionsDAOBean;
 import model.QuestionsVO;
 import model.QuizVO;
 import model.ViewQuizDAOBean;
@@ -22,9 +23,10 @@ import model.ViewQuizDAOBean;
  * Database connections and retrievals are all conducted via the DAO interface.
  * @author Aditya Samant / @author akashkadam
  * @version 1.2
- * @see resources/courseDashboard.ftl
- * @see model/ViewQuizDAOBean.java
- * @see resources/viewQuiz.ftl
+ * @see resources/courseDashboard.ftl for the initial info pass
+ * @see model/ViewQuizDAOBean.java for Data Access methods used
+ * @see model/QuestionsDAOBean.java for update Quiz method
+ * @see resources/viewQuiz.ftl for the rendering of the page
  */
 public class ViewQuizServlet extends HttpServlet {
 	private static final long serialVersionUID = -1008363826217594704L;
@@ -51,9 +53,46 @@ public class ViewQuizServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException{
 		   
 	       HttpSession session = req.getSession();
+	       int quizId = 0;
 	       List<QuestionsVO> quizQuestions = new ArrayList<QuestionsVO>();
-	       int quizId = Integer.parseInt(req.getParameter("Quiz"));
+	       if(req.getParameterMap().containsKey("Quiz")) {
+	    	  quizId = Integer.parseInt(req.getParameter("Quiz"));
+	       }
+	      
+	       String question = new String();
+	       String answer = new String();
+	       String one = new String();
+	       String two = new String();
+	       String three = new String();
+	       int pts = 0;
+	       int questId = 0;
+	       //get info from viewQuiz page
+	       if (req.getParameterMap().containsKey("question")) {
+	    	   question = req.getParameter("question");
+	       }
 	       
+	       if(req.getParameterMap().containsKey("answer")) {
+	    	   answer = req.getParameter("answer");
+	       }
+	       
+	       if(req.getParameterMap().containsKey("one")) {
+	    	   one = req.getParameter("one");
+	       }
+	       
+	       if(req.getParameterMap().containsKey("two")) {
+	    	   two = req.getParameter("two");
+	       }
+	       
+	       if(req.getParameterMap().containsKey("three")) {
+	    	   three = req.getParameter("three");
+	       }
+	       if(req.getParameterMap().containsKey("points")) {
+	    	   pts = Integer.parseInt(req.getParameter("points"));
+	       }
+	       if(req.getParameterMap().containsKey("questId")) {
+	    	   questId = Integer.parseInt(req.getParameter("questId"));
+	       }
+	      
 	       
 	       //Get today's date for comparison
 	       Calendar cal = Calendar.getInstance();
@@ -73,6 +112,12 @@ public class ViewQuizServlet extends HttpServlet {
 	    	   	   ViewQuizDAOBean bean = new ViewQuizDAOBean();
 	    	   	   QuizVO quiz = bean.getQuizInfo(quizId);
 	    	   	   quizQuestions = bean.getQuestionsInfo(quizId);
+	    	   	   QuestionsDAOBean bean2 = new QuestionsDAOBean();
+	    	   	   
+	    	   	   
+	    	   	   if(question.isEmpty()== false) {
+	    	   		   bean2.updateQuestionsTable(question, answer, one, two, three, pts, questId);
+	    	   	   }
 	    	   	   
 	    	   	   for (int i = 0; i < quizQuestions.size(); i++) {
 	    	   		 int points = quizQuestions.get(i).getTotalPoints();
@@ -84,7 +129,6 @@ public class ViewQuizServlet extends HttpServlet {
 		   			   isAfter = true;
 	    	   	   }
 	    	   	   
-	    	   	  // QuizVO quizInfo = new QuizVO(quizId, quizName);
 		   		   
 		   		   //Add Quiz info to Session attributes
 		   		   session.setAttribute("quizId", quizId);
