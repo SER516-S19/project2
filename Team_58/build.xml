@@ -55,6 +55,7 @@
   	<copy file="${resources.dir}/stylesheet.css" tofile="${build.home}/stylesheet.css"/>
   	<copy file="${resources.dir}/studentHome.ftl" tofile="${build.home}/studentHome.ftl"/>
   	<copy file="${resources.dir}/DisplayQuizInstruction.ftl" tofile="${build.home}/DisplayQuizInstruction.ftl"/>
+  	<copy file="${resources.dir}/displayQuiz.ftl" tofile="${build.home}/displayQuiz.ftl"/>
     <copy file="web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
   </target>
     

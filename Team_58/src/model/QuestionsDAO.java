@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Interface QuestionsDAO with the following method: a. get questions under this
@@ -13,4 +14,5 @@ import java.sql.SQLException;
  */
 public interface QuestionsDAO {
 	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException;
+	public List<Integer> getQuestionIDsForQuiz(QuizVO quizVO) throws SQLException, ClassNotFoundException;
 }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.ConnectionFactory;
+import model.QuestionsDAOBean;
 import model.QuestionsVO;
 import model.QuestionsVO;
 import model.QuizVO;
@@ -71,7 +72,7 @@ public class DisplayQuizInstructionServlet extends HttpServlet  {
             PreparedStatement query2 = connection.prepareStatement("select * from [dbo].[Quiz]" + "where quizId = ?");
             query2.setInt(1, quizID);
             ResultSet userData = query2.executeQuery();
-            QuizVO QuizVO = null;
+            QuizVO quizVO = null;
             String quizInstruction = "";
             log.info("After query");
             
@@ -97,18 +98,24 @@ public class DisplayQuizInstructionServlet extends HttpServlet  {
 				boolean isShuffled = userData.getBoolean("isShuffled");
 				String quizTitle = userData.getString("quizTitle");
             	
-				QuizVO = new QuizVO(quizID, isGraded, assignedTime, quizInstruction, quizScheduledDate, isShuffled, quizTitle);
+				quizVO = new QuizVO(quizID, isGraded, assignedTime, quizInstruction, quizScheduledDate, isShuffled, quizTitle);
 				
 				log.info("After Values");
             }
             	
-            	HttpSession session = req.getSession();
-				
-				session.setAttribute("QuizVO", QuizVO);
-				
-				log.info("After Assign atttribute");
+        	HttpSession session = req.getSession();
 			
-				res.sendRedirect(req.getContextPath() + "/DisplayQuizInstruction.ftl");
+			session.setAttribute("QuizVO", quizVO);
+			
+			log.info("After Assign atttribute");
+		
+			QuestionsDAOBean questionBean = new QuestionsDAOBean();
+			List<Integer> questionNumbers = questionBean.getQuestionIDsForQuiz(quizVO);
+			log.info("SIZE 1: " + questionNumbers.size());
+			session.setAttribute("QuizQuestions", questionNumbers);
+			
+			
+			res.sendRedirect(req.getContextPath() + "/DisplayQuizInstruction.ftl");
             
             System.out.println("Successful connection - Schema: endddd");
             log.info("at the end do get inst servlet");

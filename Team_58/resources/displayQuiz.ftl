@@ -5,7 +5,7 @@
 <body>
     <h1 align="center" style="text-decoration-color: black">QUIZ</h1>
     
-	        <form action="DisplayQuizServlet" method="GET">
+	        <form action="DisplayQuiz" method="GET">
 	            
 	                <h3 align="center">
 	                    Question: ${Session.QuestionsVO.getQuestion()}

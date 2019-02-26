@@ -3,8 +3,12 @@ package model;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -85,5 +89,27 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			connection = null;
 		}
 
+	}
+
+	@Override
+	public List<Integer> getQuestionIDsForQuiz(QuizVO quizVO) throws SQLException, ClassNotFoundException
+	{
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		query = connection.prepareStatement(dbProperties.getProperty("getQuizQuestionNumbers"));
+		query.setInt(1, quizVO.getQuizId());
+
+		resultData = query.executeQuery();
+		
+		List<Integer> list = new ArrayList<>();
+		
+		while(resultData.next())
+			list.add(resultData.getInt("questionId"));
+		
+		return list;
 	}
 }

@@ -61,8 +61,8 @@ public class StudentHomeServlet extends HttpServlet {
 				List<CourseVO> courseList = courseBean.getCourseAssignedToProfessor(userVO);
 				List<QuizVO> quizList = quizBean.getQuizzesForStudent(userVO);
 				if (courseList.isEmpty()) {
-					session.setAttribute("displayMessage", "No Courses have been assigned to the professor");
-					log.info("No Courses have been assigned to the professor.");
+					session.setAttribute("displayMessage", "No Courses have been assigned to the student");
+					log.info("No Courses have been assigned to the student.");
 				} else {
 					isCoursesAssigned = true;
 					HashMap<Integer, String> courses = new HashMap<>();

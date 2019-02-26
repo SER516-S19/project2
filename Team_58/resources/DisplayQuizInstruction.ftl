@@ -9,8 +9,9 @@
 	<body>
 	<h1> Start Quiz here </h1>
 		<form action="DisplayQuiz" method = "GET">	
-			  <input type="submit" value="Start">  
-			</form> 
+			<input type="hidden" name="questionId" value="1">
+			<input type="submit" value="Start">
+		</form> 
 	</body>
 </body>
 </html>

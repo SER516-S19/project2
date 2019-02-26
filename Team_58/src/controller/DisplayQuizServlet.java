@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+import java.util.logging.Logger;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,9 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.ConnectionFactory;
 import model.QuestionsVO;
+import model.UserVO;
 import model.QuestionsVO;
 
 import java.sql.PreparedStatement;
+
+import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -22,7 +27,7 @@ import org.json.simple.JSONObject;
  *  @Version: 1.0
  *  @Date: 02/22/2019
  */
-//@WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
+//@WebServlet(name = "DisplayQuizServlet", urlPatterns = "/DisplayQuiz")
 /*
  * DisplayQuizServlet class is created to display the question of a quiz to the
  * student.
@@ -34,6 +39,9 @@ public class DisplayQuizServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		try {
+			HttpSession session = req.getSession();
+			List<Integer> quizQuestions = (List<Integer>) session.getAttribute("QuizQuestions");
+			
 			int questionID = Integer.parseInt(req.getParameter("questionId"));
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
@@ -51,7 +59,8 @@ public class DisplayQuizServlet extends HttpServlet {
 
 			PreparedStatement query2 = connection
 					.prepareStatement("select * from [dbo].[questions] where questionId = ?");
-			query2.setInt(1, questionID);
+			query2.setInt(1, quizQuestions.get(questionID - 1));
+			
 			ResultSet userData = query2.executeQuery();
 			QuestionsVO questionsVO = null;
 
@@ -72,6 +81,11 @@ public class DisplayQuizServlet extends HttpServlet {
 
 				questionsVO = new QuestionsVO(questionId, totalPoints, answer, choice1, choice2, choice3, question);
 			}
+			
+			session.setAttribute("QuestionsVO", questionsVO);
+			
+			res.sendRedirect(req.getContextPath() + "/displayQuiz.ftl");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
