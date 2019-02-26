@@ -20,7 +20,7 @@ import org.json.simple.parser.ParseException;
  * Implements ViewQuiz interface and establishes connection between
  * database and Servlet.
  * 
- *  @see edu.asupoly.ser516.controller/ViewQuizServlet.java
+ *  @see controller/ViewQuizServlet.java
  *  @see resources/viewQuiz.ftl
  * 	@author Aditya Samant / @author akashkadam
  * 	@version 1.1
@@ -133,5 +133,4 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		}
 		return list;
 	}
-
 }

@@ -57,27 +57,28 @@
     	<div id="edit" hidden>
     		<form action="viewQuiz" method="POST">
     		Question:
-    			<input name="question" type="text" />
+    			<input name="question" type="text">
     			<br>
     		Answer:
-    			<input name="answer" type="text" />
+    			<input name="answer" type="text">
     			<br>
     		Choice One:
-    			<input name="one" type="text" />
+    			<input name="one" type="text">
     			<br>
     		Choice Two:
-    			<input name="two" type="text"/>
+    			<input name="two" type="text">
     			<br>
     		Choice Three:
-    			<input name="three" type="text" />
+    			<input name="three" type="text">
     			<br>
     		Points:
-    			<input name="points" type="text" />
+    			<input name="points" type="text">
     			<br>
-    			<input name= "quizId" type="hidden" />
+    			<input name= "questId" type="hidden">
+    			<br>
+    			<input name="Quiz" type="hidden" value=${Session.quizId}>
     			<br><br>
-    			
-    			<input name="Submit" type="submit"/>
+    			<button type="submit" name="submit">Submit</button>
     		</form>
     	</div>
 		<table id="table">
@@ -95,21 +96,15 @@
 			</tr>
 	        <#list Session.QuizQuestions as questions>
 	        <#assign qId = questions.getqId()>
-	        <#assign question = questions.getQuestion()>
-	        <#assign ans = questions.getCorrectAnswer()>
-	        <#assign choiceOne = questions.getIncorrectAnswer1()>
-	        <#assign choiceTwo = questions.getIncorrectAnswer2()>
-	        <#assign choiceThree = questions.getIncorrectAnswer3()>
-	        <#assign pts = questions.getTotalPoints()>
 		     	 <tr>
-		           <td contenteditable="false" value=${qId}>${question}</td>
-				   <td contenteditable="false" value=${qId}>${ans}</td>
-				   <td contenteditable="false" value=${qId}>${choiceOne}</td>
-				   <td contenteditable="false" value=${qId}>${choiceTwo}</td>
-				   <td contenteditable="false" value=${qId}>${choiceThree}</td>
-				   <td contenteditable="false" value=${qId}>${pts}</td>
-				   <#if Session.Grade == false>
-					   <td><button name="editButton" onclick="editRow(this.value);" value=${qId}>Edit</button></td>
+		           <td contenteditable="false" value=${qId}>${questions.getQuestion()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getCorrectAnswer()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer1()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer2()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer3()}</td>
+				   <td contenteditable="false" value=${qId}>${questions.getTotalPoints()}</td>
+				   <#if Session.Grade == false && Session.isAfter == true>
+					   <td><button name="editButton" value=${qId} onclick="editRow(this.value)">Edit</button></td>
 				   </#if>
 		        </tr>
 	        </#list>
@@ -117,56 +112,61 @@
        
         
         <#--
-        	The following script edits a row of the table and updates the database with the question.
-        	author: Aditya Samant
-        -->
-        <script type="text/javascript">
-        	function editRow(qId){
-        		document.getElementById("edit").hidden= false;
-        		
-  				var row = document.getElementsByTagName("td");
-  				var count = 0;
-  				
-  				for (var i = 0; i < row.length; i++){
-  				
-  					if(row[i].value == qId){
-  						switch(count){
-  							
-  							case 0:
-  								console.log(row[i].innerHTML);
-  								document.getElementsByName("question")[0].setAttribute("value", row[i]);
-  								break;
-  							case 1:
-  								console.log(row[i].innerHTML);
-  								document.getElementsByName("answer")[0].setAttribute("value", row[i]);
-  								break;
-  							case 2:
-  								console.log(row[i].innerHTML);
-  							    document.getElementsByName("one")[0].setAttribute("value", row[i]);
-  								break;
-  							case 3:
-  								console.log(row[i].innerHTML);
-  								document.getElementsByName("two")[0].setAttribute("value, row[i]);
-  								break;
-  							case 4:
-  								console.log(row[i].innerHTML);
-  								document.getElementsByName("three")[0].setAttribute("value", row[i]);
-  								break;
-  							case 5:
-  								console.log(row[i].innerHTML);
-  								document.getElementsByName("points")[0].setAttribute("value",row[i]);
-  						
-  						}
-  						count++;
-  					}
-  				
-  				}
-  				
-  				//document.getElementById("table").style.display ="none";
-        		document.getElementsByName("quizId")[0].setAttribute("value", qId);
-  				
         	
-        	}
+        	author: Aditya Samant
+        	see src/controller/ViewQuizServlet.java
+        -->
+        <script>
+        	/**
+        	* The following script edits a row of the table and sends info to servlet
+        	*
+        	*
+        	* @author Aditya Samant
+        	* @version 1.2
+        	* @param qId question Id
+        	* @see src/controller/ViewQuizServlet.java
+        	*/
+        	function editRow(qId){
+        		try{
+	        		document.getElementById("edit").hidden= false;
+	        		document.getElementsByName("questId")[0].setAttribute("value", qId);
+	        		document.getElementById("table").style.display ="none";
+	        		
+	  				var row = document.getElementsByTagName("td");
+	  				var count = 0;
+	  				
+	  				//pre-populate
+	  				for (var i = 0; i < row.length; i++){
+	  					console.log("for");
+	  					if(row[i].getAttribute("value") == qId){
+	  						console.log("row");
+	  						switch(count){
+	  							case 0:
+	  								document.getElementsByName("question")[0].setAttribute("value", row[i].innerHTML);
+	  								break;
+	  							case 1:
+	  								document.getElementsByName("answer")[0].setAttribute("value", row[i].innerHTML);
+	  								break;
+	  							case 2:
+	  							    document.getElementsByName("one")[0].setAttribute("value", row[i].innerHTML);
+	  								break;
+	  							case 3:
+	  								document.getElementsByName("two")[0].setAttribute("value", row[i].innerHTML);
+	  								break;
+	  							case 4:
+	  								document.getElementsByName("three")[0].setAttribute("value", row[i].innerHTML);
+	  								break;
+	  							case 5:
+	  								document.getElementsByName("points")[0].setAttribute("value",row[i].innerHTML);
+	  						
+	  						}
+	  						count++;
+	  					}
+					}
+	  			}catch(e){
+	        		console.log(e.message);
+	        	}
+			}
         </script>
         <#if Session.Grade == false && Session.isAfter == true>
         	<form action="gradeQuiz" method="POST">
