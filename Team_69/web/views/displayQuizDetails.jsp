@@ -23,7 +23,10 @@
 			</blockquote>
 			<div></div>
 			<blockquote class="blockquote text-center">
-				<a href="quizDetails.jsp">Create New Quiz </a>
+			<%
+									String pathWebcontent = request.getContextPath();
+								%> 
+				<a href="<%=pathWebcontent %>/views/quizDetails.jsp">Create New Quiz </a>
 			</blockquote>
 
 		</c:when>

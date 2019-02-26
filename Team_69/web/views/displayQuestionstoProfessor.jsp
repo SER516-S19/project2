@@ -31,7 +31,10 @@
 				</blockquote>
 				<div></div>
 				<blockquote class="blockquote text-center">
-					<a href="professorLanding.jsp">Home Page </a>
+				<%
+									String pathWebcontent = request.getContextPath();
+								%> 
+					<a href="<%=pathWebcontent %>/views/professorLanding.jsp">Home Page </a>
 				</blockquote>
 
 			</c:when>
