@@ -20,7 +20,7 @@ Freemarker page to display the Student Homepage
             <input disabled type = "submit" value="Submit"/>
         </form>
         
-        <form action="quizInstructions" method="POST">
+      <form action="DisplayInst" method="GET">
             <select name="QuizId">
                 <#list Session.QuizHashMap as quizId, quizName>
                     <option value=${quizId}> ${quizName}</option>

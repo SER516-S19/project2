@@ -131,7 +131,17 @@
 
     <servlet-mapping>
         <servlet-name>DisplayQuizServlet</servlet-name>
-        <url-pattern>/DisplayQuizServlet</url-pattern>
+        <url-pattern>/DisplayQuiz</url-pattern>
+    </servlet-mapping>
+    
+        <servlet>
+        <servlet-name>DisplayQuizInstructionServlet</servlet-name>
+        <servlet-class>controller.DisplayQuizInstructionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DisplayQuizInstructionServlet</servlet-name>
+        <url-pattern>/DisplayInst</url-pattern>
     </servlet-mapping>
 
 <welcome-file-list>

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         version="3.1">
-         
-    <display-name>Education Portal</display-name>
-	<servlet>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>First</display-name>
+  	<servlet>
 		<servlet-name>freemarker</servlet-name>
 		<servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
 
@@ -44,6 +40,8 @@
 		<servlet-name>freemarker</servlet-name>
 		<url-pattern>*.ftl</url-pattern>
 	</servlet-mapping>
+	
+  
   
   
     <servlet>
@@ -57,7 +55,7 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
-      <servlet>
+   <servlet>
     <servlet-name>ProfessorHomeServlet</servlet-name>
     <servlet-class>controller.ProfessorHomeServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
@@ -76,8 +74,7 @@
   <servlet-mapping>
     <servlet-name>CreateQuizServlet</servlet-name>
     <url-pattern>/createQuiz</url-pattern>
-  </servlet-mapping>
-  
+  </servlet-mapping> 
 
   <servlet-mapping>
   <servlet-name>ProfessorHomeServlet</servlet-name>
@@ -115,6 +112,17 @@
     <servlet-name>ViewQuizServlet</servlet-name>
     <url-pattern>/viewQuiz</url-pattern>
   </servlet-mapping>
+	
+  <servlet>
+    <servlet-name>GradeQuizServlet</servlet-name>
+    <servlet-class>controller.GradeQuizServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>GradeQuizServlet</servlet-name>
+    <url-pattern>/gradeQuiz</url-pattern>
+  </servlet-mapping>
 
     <servlet>
         <servlet-name>DisplayQuizServlet</servlet-name>
@@ -123,10 +131,20 @@
 
     <servlet-mapping>
         <servlet-name>DisplayQuizServlet</servlet-name>
-        <url-pattern>/DisplayQuizServlet</url-pattern>
+        <url-pattern>/DisplayQuiz</url-pattern>
+    </servlet-mapping>
+    
+        <servlet>
+        <servlet-name>DisplayQuizInstructionServlet</servlet-name>
+        <servlet-class>controller.DisplayQuizInstructionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DisplayQuizInstructionServlet</servlet-name>
+        <url-pattern>/DisplayInst</url-pattern>
     </servlet-mapping>
 
 <welcome-file-list>
-<welcome-file>/login.jsp</welcome-file>
+<welcome-file>login.jsp</welcome-file>
 </welcome-file-list>
 </web-app>

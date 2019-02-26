@@ -22,7 +22,7 @@ import org.json.simple.JSONObject;
  *  @Version: 1.0
  *  @Date: 02/22/2019
  */
-@WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
+//@WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
 /*
  * DisplayQuizServlet class is created to display the question of a quiz to the
  * student.
