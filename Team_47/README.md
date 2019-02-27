@@ -45,9 +45,9 @@ windows
 `./build.bat`
 `./run.bat`
 
-### Example Quizzes
-calling `SQLScriptRunner.run("exampleQuiz");` somewhere in main before tomcat runs will insert some example quizzes into the database. exampleQuiz.sql is meant to be run EXACTLY ONCE on a database with the schema loaded, but no entries.
-
 After successfully building and running, you can view the project by going to:
 http://localhost:8080
+
+#####Example Quizzes
+calling `SQLScriptRunner.run("exampleQuiz");` somewhere in main before tomcat runs will insert some example quizzes into the database. exampleQuiz.sql is meant to be run EXACTLY ONCE on a database with the schema loaded, but no entries. For testing purposes only.
 
