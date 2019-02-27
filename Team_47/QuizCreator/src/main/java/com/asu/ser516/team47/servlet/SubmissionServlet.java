@@ -1,21 +1,5 @@
 package com.asu.ser516.team47.servlet;
 
-/**
- * This servlet is called when a student submits a quiz
- * It validates that all input is proper; and records submission in database.
- *
- * created with manouti's answer on
- * https://stackoverflow.com/questions/24371957/iterate-through-jsonobject-from-root-in-json-simple as a reference.
- *
- * @author Amit Pandey
- * @author Qianru "Ruby" Zhao
- * @author David Lahtinen
- * @author John Alden
- *
- * @version 1.0
- * @since 2019-22-02
- */
-
 import java.io.IOException;
 import java.util.*;
 import javax.servlet.ServletException;
@@ -28,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.asu.ser516.team47.database.*;
+import com.asu.ser516.team47.utils.ServletValidation;
 import com.asu.ser516.team47.utils.JSONRequestParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -39,6 +24,7 @@ public class SubmissionServlet extends HttpServlet {
     private int submissionID = 0;
     private int httpCode = 204;
     private String httpErrorMessage;
+    private String url = "jdbc:sqlite:schema.db";
     private Quiz quiz;
     private Enrolled enrollment;
 
@@ -54,6 +40,8 @@ public class SubmissionServlet extends HttpServlet {
     /**
      * The endpoint for a quiz submission
      * requires the presence of quiz_id, enroll_id, timeTaken, and attempt fields in the form. all integers.
+     * created with manouti's answer on
+     * https://stackoverflow.com/questions/24371957/iterate-through-jsonobject-from-root-in-json-simple as a reference.
      *
      * @param request
      * @param response
@@ -65,11 +53,14 @@ public class SubmissionServlet extends HttpServlet {
             throws ServletException, IOException {
         httpCode = 204;
         httpErrorMessage = "";
-        JSONObject requestForm = null;
+        JSONObject requestForm;
+        ServletValidation validation = new ServletValidation();
 
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
+        Integer attempt;
+        Integer timeTaken;
 
         List<Integer> choiceIds = new ArrayList<>();
 
@@ -109,6 +100,27 @@ public class SubmissionServlet extends HttpServlet {
                     JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
 
                     int choiceId = validateInteger((String) requestForm.get(paramName), response);
+                } else if (paramName.equals("attempt")) {
+                    attempt = validateInteger(request.getParameter("attempt"), response);
+                    if (attempt <= 0){
+                        httpCode = 400;
+                        break;
+                    }
+                    if (!validation.validAttempt(quizId, attempt.intValue())) {
+                        httpCode = 400;
+                        httpErrorMessage = "Submission exceeds attempt limit";
+                        break;
+                    }
+                } else if (paramName.equals("timeTaken")) {
+                    timeTaken = validateInteger(request.getParameter("timeTaken"), response);
+                    if (timeTaken <= 0) {
+                        httpCode = 400;
+                        break;
+                    }
+                } else if (paramName.equals("choices")) {
+                    JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
+
+                    int choiceId = validateInteger((String) requestForm.get(paramName), response);
                     Choice choice = new ChoiceDAOImpl().getChoice(choiceId);
                     if (choice == null) {
                         httpCode = 500;
@@ -142,8 +154,6 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
         response.setStatus(httpCode);
-
-        //TODO: call autograder, update score on Submission.
     }
 
     /**
@@ -203,7 +213,6 @@ public class SubmissionServlet extends HttpServlet {
      * @return int ID of the question associated with the choice ID
      */
     private int getQuestionID(int choiceID) {
-        String url = "jdbc:sqlite:schema.db";
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -258,10 +267,12 @@ public class SubmissionServlet extends HttpServlet {
      */
     private List<Choice> buildAndValidateChoiceList(JSONArray jsonChoices){
         Iterator<Integer> it = jsonChoices.iterator();
+        List<Choice> ret = new ArrayList<Choice>();
         try {
             while (it.hasNext()) {
-                int courseId = it.next();
-                Course course = new CourseDAOImpl().getCourse(courseId);
+                int choiceId = it.next();
+                Choice choice = new ChoiceDAOImpl().getChoice(choiceId);
+                ret.add(choice);
             }
         }
     }
