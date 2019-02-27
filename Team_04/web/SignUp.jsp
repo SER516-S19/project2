@@ -39,7 +39,15 @@
     .row{
         margin: 0px;
     }
+    @media only screen and (max-width: 768px) {
+        .col-md-8
+        {
+            height: 250px; / height: 60%;
+        }
+    }
+
 </style>
+
 <body>
 <div class="container">
     <div class="row">
