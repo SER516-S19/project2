@@ -75,8 +75,6 @@
 
         .dropdown:hover .dropbtn {background-color: #961212;}
     </style>
-
-
     <body>
    <%
         String uName = (String) session.getAttribute("uName");
@@ -92,45 +90,32 @@
                 type="submit" value="LogOut" class="logout">
         </form>
     </div> 
-
         <ul class="topnav">
             <li><a href="#news">WELCOME PROFESSOR</a></li>
-           <!--  <li class="right" style="text-align: right"><a href="#">LOGOUT</a></li> -->
+            <li class="right" style="text-align: right"><a href="#">LOGOUT</a></li>
         </ul>
-
-        <br/> <br/>
-
+        <br/>
         <form action="ProfessorController" method="post">
             <div class="check">
                 <div class="BTN">
                     <input type="hidden" name="action" value="CreateQuiz">
-                    <input style="margin-left:auto;margin-right:auto"
-                    type="submit" name="CreateQuiz" value="CreateQuiz">
+                    <input style="margin-left:auto;margin-right:auto" type="submit" name="CreateQuiz" value="CreateQuiz">
                 </div>
             </div>
         </form>
-
-    <!--     <form action="ProfessorController" method="post">
-            <input type="hidden" name="action" value="Questions">
-            <input type="submit" value="Questions">
-        </form> -->
-
         <form action="ProfessorController" method="post">
             <div class="check">
                 <div class="BTN">
                     <input type="hidden" name="action" value="ViewGrades">
-                    <input style="margin-left:auto;margin-right:auto"
-                    type="submit" name="ViewGrades" value="ViewGrades">
+                    <input style="margin-left:auto;margin-right:auto" type="submit" name="ViewGrades" value="ViewGrades">
                 </div>
             </div>
         </form>
-
         <form action="ProfessorController" method="post">
             <div class="check">
                 <div class="BTN">
                     <input type="hidden" name="action" value="Statistics">
-                    <input style="margin-left:auto;margin-right:auto"
-                    type="submit" name="Statistics" value="Statistics">
+                    <input style="margin-left:auto;margin-right:auto" type="submit" name="Statistics" value="Statistics">
                 </div>
             </div>
         </form>

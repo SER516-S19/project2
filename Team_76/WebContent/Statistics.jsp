@@ -17,10 +17,10 @@
     %>
     <div style="float: right">
         <form align="right" action="LoginController" method="post">
-            <input type="hidden" name="action" value="logoff"> <input
-                type="submit" value="LogOut" class="logout">
+            <input type="hidden" name="action" value="logoff">
+            <input type="submit" value="LogOut" class="logout">
         </form>
     </div>
-<h1>View Statistics here.</h1>
+	<h1>View Statistics here.</h1>
 </body>
 </html>

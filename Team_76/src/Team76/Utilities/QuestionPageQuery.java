@@ -1,6 +1,9 @@
-package Team76.Controller;
+package Team76.Utilities;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import Team76.Database.DatabaseConnection;
 
 /**
  * SER516-Project2 File content- Insert the Values into Database
@@ -10,19 +13,15 @@ import java.sql.*;
  *
  **/
 
-public class DatabaseQuestions {
+public class QuestionPageQuery {
+	DatabaseConnection connect = new DatabaseConnection();
 
 	public void databaseConnect(String question, String options, String answer) throws Exception {
+		Connection con = connect.establishConnection();
 		String query = "INSERT INTO Question (QuestionId,Questions,Options,CORRECT_ANSWER) VALUES (' 3 ','" + question
 				+ " ' , '" + options + " ' , ' " + answer + " ') ";
-		String user = "root";
-		String password = "pass123";
-
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ser516p2?useSSL=false", user,
-				password);
 		PreparedStatement pstmt = con.prepareStatement(query);
-		int result = pstmt.executeUpdate();
+		pstmt.executeUpdate();
 
 		con.close();
 	}

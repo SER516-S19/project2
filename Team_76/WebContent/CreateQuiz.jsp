@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <style>
@@ -88,45 +89,39 @@ input[type=submit]:hover {
                 || uName == null || uName.isEmpty()) {
             response.sendRedirect("Login.jsp");
         }
-    %>
+%>
     <div style="float: right">
         <form align="right" action="LoginController" method="post">
-            <input type="hidden" name="action" value="logoff"> <input
-                type="submit" value="LogOut" class="logout">
+            <input type="hidden" name="action" value="logoff"> 
+            <input type="submit" value="LogOut" class="logout">
         </form>
     </div>
-    
 	<ul>
 		<li><a href="#news">DETAILS PAGE</a></li>
 	</ul>
-
 	<p>QUIZ TITLE</p>
 	<div>
 		<form action="ProfessorController" method="post">
 			<input type="text" name="quiztitle" placeholder="Takes quiztitle">
-
 			<p>QUIZ INSTRUCTIONS</p>
 			<textarea name="qinstruct" rows="20" cols="100"></textarea>
-
 			<p>SELECT THE QUIZ TYPE</p>
 			<div class="dropdown">
 				<button name="qtype" class="dropbtn">Quiz Type</button>
 				<div class="dropdown-content">
 					<a>MCQ</a>
+					<a>Subjective</a>
 				</div>
 			</div>
-			<br><br>
-			
+			<br>
 			<form action="ProfessorController" method="post">
 				<input type="hidden" name="action" value="Continue1"> 
 				<input type="submit" value="CONTINUE">
 			</form>
-			
 		 	<form action="ProfessorController" method="post">                
 				<input type="hidden" name="action" value="Cancel1"> 
 				<input type="submit" value="CANCEL">
 			</form> 
-
 		</form>
 	</div>
 </body>

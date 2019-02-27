@@ -46,11 +46,8 @@ ul {
 	background-color: #333;
 }
 
-li {first-child { float:left;
-	
-}
+li {first-child { float:left;}}
 
-}
 li a {
 	display: block;
 	color: white;
@@ -65,47 +62,43 @@ li a:hover {
 }
 </style>
 </head>
+
 <body>
-<%
-        String uName = (String) session.getAttribute("uName");
-        String isSessionValid = (String) session.getAttribute("validSession");
-        if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
-                || uName == null || uName.isEmpty()) {
-            response.sendRedirect("Login.jsp");
-        }
-    %>
-    <div style="float: right">
-        <form align="right" action="LoginController" method="post">
-            <input type="hidden" name="action" value="logoff"> <input
-                type="submit" value="LogOut" class="logout">
-        </form>
-    </div>
+	<%
+		String uName = (String) session.getAttribute("uName");
+		String isSessionValid = (String) session.getAttribute("validSession");
+		if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True") || uName == null || uName.isEmpty()) {
+			response.sendRedirect("Login.jsp");
+		}
+	%>
 	<ul>
 		<li><a href="ProfessorDash.jsp" class="w3-bar-item">DashBoard</a></li>
 		<li><a href="#" class="w3-bar-item w3-right">SignOut</a></li>
 	</ul>
 	<h3>Grades</h3>
-
 	<div>
 		<form action="ProfessorController" method="GET">
 			<label for="qTitle">Quiz Title</label> 
-			<input type="text" id="qTitle" name="quiztitle" placeholder="quiz title...">
-			 <select id="qtitle" name="quiztitle">
-				<option value="q1">Quiz-1</option>
-				<option value="q2">Quiz-2</option>
-				<option value="q3">Quiz-3</option>
-			</select> <br> 
-			<label for="sName">Student Name</label> 
-			<input type="text" id="sName" name="studentName" placeholder="student name..."> <br>
-			
-			<input type="hidden" name="action" value="ProfessorDash"> 
-			<input type="submit" value="Back">
-			
-			<input type="hidden" name="action" value="ViewGrades"> 
-			<input type="submit" value="Ok">
-			
-			<label for="grade">Grade</label> 
+            <div>
+            	<input type="text" id="qTitle" name="quiztitle" placeholder="quiz title..."> 
+					<select id="qtitle" name="quiztitle">
+						<option value="q1">Quiz-1</option>
+						<option value="q2">Quiz-2</option>
+						<option value="q3">Quiz-3</option>
+			    	</select> 
+            </div>
+            <div>
+				<label for="sName">Student Name</label> 
+            	<input type="text" id="sName" name="studentName" placeholder="student name...">
+			</div>
+            <label for="grade">Grade</label>
 			<textarea rows="1" cols="4"></textarea>
+            <div>
+			    <input type="hidden" name="action" value="ProfessorDash">
+			    <input type="submit" value="Back"> 
+                <input type="hidden" name="action" value="ViewGrades"> 
+                <input type="submit" value="Ok"> 
+            </div>
 		</form>
 	</div>
 </body>

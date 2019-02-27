@@ -10,15 +10,14 @@
 <%
         String uName = (String) session.getAttribute("uName");
         String isSessionValid = (String) session.getAttribute("validSession");
-        if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
-                || uName == null || uName.isEmpty()) {
+        if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True") || uName == null || uName.isEmpty()) {
             response.sendRedirect("Login.jsp");
         }
-    %>
+%>
     <div style="float: right">
         <form align="right" action="LoginController" method="post">
-            <input type="hidden" name="action" value="logoff"> <input
-                type="submit" value="LogOut" class="logout">
+            <input type="hidden" name="action" value="logoff">
+            <inputtype="submit" value="LogOut" class="logout">
         </form>
     </div>
 	<h1>This is Student DashBoard.</h1>

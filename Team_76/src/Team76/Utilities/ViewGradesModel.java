@@ -1,4 +1,4 @@
-package Team76.Controller;
+package Team76.Utilities;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 * @since 02-15-19
 */
 
-public class ViewGradesController {
-	MySQL obj = new MySQL();
+public class ViewGradesModel {
+	GradeDetailsQuery obj = new GradeDetailsQuery();
 	/* This retrieves the request and response parameters from the UI.
 	 */
 	public void getParameters(HttpServletRequest request, HttpServletResponse response) throws Exception {
