@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Student Dashboard</title>
+<link rel="stylesheet" type="text/css" href="css/StudentDash.css">
 </head>
 <body>
 	<%
@@ -20,13 +21,12 @@
             <inputtype="submit" value="LogOut" class="logout">
         </form>
     </div>
-	<h1>This is Student DashBoard.</h1>
-	<form action="StudentController" method="get">
+	<h1>Student DashBoard</h1>
+	<form class="action" action="StudentController" method="get">
 		<input type="hidden" name="action" value="AttemptQuiz">
 		<input type="submit" value="Attempt Quiz">
 	</form>
-	
-	<form action="StudentController" method="get">
+	<form class="action" action="StudentController" method="get">
 		<input type="hidden" name="action" value="ViewGrade">
 		<input type="submit" value="View Grade">
 	</form>

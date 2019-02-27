@@ -5,6 +5,7 @@ h1 {
   	padding: 12px;
   	text-decoration: none;
   	border-radius: 4px;
+  	text-shadow: 1px 1px grey;
 }
 
 .action {
@@ -14,7 +15,7 @@ h1 {
 }
 
 input {
-	background-color: #4CAF50; /* Green */
+	background-color: orange;
   	border: none;
  	color: white;
   	padding: 15px 32px;

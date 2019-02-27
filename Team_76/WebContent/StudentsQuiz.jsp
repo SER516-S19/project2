@@ -17,8 +17,8 @@
                 || uName == null || uName.isEmpty()) {
             response.sendRedirect("Login.jsp");
         }
-    %>    
-	<h2 align="center"><font><strong>Available Quizzes</strong></font></h2>
+    %>
+	<h1 align="center"><font><strong>Available Quizzes</strong></font></h1>
 	<table align="center" cellpadding="5" cellspacing="5" border="1">
 	<tr></tr>
 	<tr bgcolor="orange">
