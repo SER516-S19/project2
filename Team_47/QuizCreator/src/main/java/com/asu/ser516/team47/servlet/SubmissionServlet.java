@@ -1,22 +1,11 @@
 package com.asu.ser516.team47.servlet;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Date;
-import java.util.List;
-import com.asu.ser516.team47.database.*;
-
 /**
  * This servlet is called when a student submits a quiz
+ * It validates that all input is proper; and records submission in database.
+ *
+ * created with manouti's answer on
+ * https://stackoverflow.com/questions/24371957/iterate-through-jsonobject-from-root-in-json-simple as a reference.
  *
  * @author Amit Pandey
  * @author Qianru "Ruby" Zhao
@@ -26,6 +15,24 @@ import com.asu.ser516.team47.database.*;
  * @version 1.0
  * @since 2019-22-02
  */
+
+import java.io.IOException;
+import java.util.*;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.asu.ser516.team47.database.*;
+import com.asu.ser516.team47.utils.JSONRequestParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
 @WebServlet(name = "SubmissionServlet")
 public class SubmissionServlet extends HttpServlet {
 
@@ -55,56 +62,53 @@ public class SubmissionServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         httpCode = 204;
         httpErrorMessage = "";
+        JSONObject requestForm = null;
 
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
-        Integer timeTaken = null;
-        Integer attempt = null;
 
         List<Integer> choiceIds = new ArrayList<>();
 
-        Enumeration paramNames = request.getParameterNames();
-        if (paramNames == null){
-            response.sendError(400, "no parameters");
+        //Check if json form can be read.
+        try {
+            requestForm = JSONRequestParser.getJsonFromRequest(request);
+        } catch (IOException ioe){
+            response.sendError(400, "Problem reading form.");
+            return;
+        } catch (ParseException pe){
+            response.sendError(400, "Problem parsing form.");
+            return;
+        } catch (ClassCastException cce){
+            response.sendError(400, "Problem parsing form. Are you sure you sent an object and not an array?");
             return;
         }
-        //Validate that all necessary fields are present and build ChoiceIds
-        while (paramNames.hasMoreElements()) {
-            try{
-                String paramName = (String) paramNames.nextElement();
+
+        //Validate that all necessary fields are present and build ChoiceId array
+        try {
+            for (Iterator it = requestForm.keySet().iterator(); it.hasNext(); ) {
+                String paramName = (String) it.next();
                 if (paramName.equals("quiz_id")) {
-                    quizId = validateInteger(request.getParameter("quiz_id"), response);
+                    quizId = (Integer) requestForm.get("quiz_id");
                     quiz = new QuizDAOImpl().getQuiz(quizId);
-                    if (quiz == null){
+                    if (quiz == null) {
                         httpCode = 500;
                         break;
                     }
-                } else if (paramName.equals("enroll_id")) {
-                    enrollId = validateInteger(request.getParameter("enroll_id"), response);
+                } else if (paramName.equals("enrolled_id")) {
+                    enrollId = (Integer)requestForm.get("enrolled_id");
                     enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
-                    if (enrollment == null){
+                    if (enrollment == null) {
                         httpCode = 500;
                         break;
                     }
-                } else if (paramName.equals("attempt")) {
-                    attempt = validateInteger(request.getParameter("attempt"), response);
-                    if (attempt <= 0){
-                        httpCode = 400;
-                        break;
-                    }
-                } else if (paramName.equals("timeTaken")) {
-                    timeTaken = validateInteger(request.getParameter("timeTaken"), response);
-                    if (timeTaken <= 0) {
-                        httpCode = 400;
-                        break;
-                    }
-                } else if (paramName.length() >= "choice_fk".length() &&
-                        paramName.substring(0, "choice_fk".length()).equals("choice_fk")) {
-                    int choiceId = validateInteger(request.getParameter(paramName), response);
+                } else if (paramName.equals("choices")) {
+                    JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
+
+                    int choiceId = validateInteger((String) requestForm.get(paramName), response);
                     Choice choice = new ChoiceDAOImpl().getChoice(choiceId);
                     if (choice == null) {
                         httpCode = 500;
@@ -113,14 +117,14 @@ public class SubmissionServlet extends HttpServlet {
                         choiceIds.add(choiceId);
                     }
                 }
-            } catch (NullPointerException npe){
-                httpCode = 400;
-                return;
             }
+        } catch (ClassCastException cce){
+            response.sendError(400, "Some field is wrong data type.");
+            return;
         }
 
-        if (httpCode != 204 || quizId == null || enrollId == null || timeTaken == null
-                || attempt == null) {
+        //check that all fields are present and no error has occurred
+        if (httpCode != 204 || quizId == null || enrollId == null) {
             if (httpCode == 500) {
                 httpErrorMessage = "Server Error";
             }
@@ -128,7 +132,8 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
 
-        if (!sendSubmission(quizId, enrollId, timeTaken, 0, attempt)){
+        //TODO: Call function to check if time limit is passed.
+        if (!sendSubmission(quizId, enrollId, 1, 0, 0)){
             response.sendError(500);
             return;
         }
@@ -244,5 +249,20 @@ public class SubmissionServlet extends HttpServlet {
             httpErrorMessage = "Missing form data";
         }
         return null;
+    }
+
+    /**
+     * Check if array of choices is valid.
+     * @param jsonChoices A json array of choice Ids
+     * @return null if invalid. else a list of choices.
+     */
+    private List<Choice> buildAndValidateChoiceList(JSONArray jsonChoices){
+        Iterator<Integer> it = jsonChoices.iterator();
+        try {
+            while (it.hasNext()) {
+                int courseId = it.next();
+                Course course = new CourseDAOImpl().getCourse(courseId);
+            }
+        }
     }
 }
