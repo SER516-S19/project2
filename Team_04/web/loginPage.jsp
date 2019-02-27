@@ -18,7 +18,11 @@
             float: none;
             margin: 0 auto;
         }
+        p.big {
+            line-height: 2.0px;
+        }
     </style>
+
 </head>
 <body style="background-color: #4b5257">
 <div class="container">
@@ -27,16 +31,17 @@
             <h3>Please login</h3>
             <form>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Enter Username">
+                    <input name="username" class="form-control" placeholder="Enter Username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Enter password">
+                    <input name="password" class="form-control" placeholder="Enter password">
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select User
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="auto btnStyle btn-group">
+                    <p class="big" style="text-align:left"> I am a </p>
+                        <button type="button" class="btn btn-default dropdown-toggle pull-right" id="Select User" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select User
+                        </button>
+                    <div class="dropdown-menu" id="user-dropdown">
                         <a class="dropdown-item" href="#">Professor</a>
                         <a class="dropdown-item" href="#">Student</a>
                     </div>
