@@ -204,7 +204,7 @@ public class QuestionAnswerServlet extends HttpServlet {
                 view = "quizResult.jsp";
                 response.setStatus(response.SC_OK);
             }
-            else if (action.equalsIgnoreCase("signup")) {
+            else if (action.equalsIgnoreCase("SignUp")) {
                 String userName = "";
                 if(validObj.signupValidation(userName).equals("success"))
                 {

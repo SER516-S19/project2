@@ -26,10 +26,16 @@ public class InputValidation {
      */
     public String signupValidation(String username)
     {
+        username = "Pradeep";
         List<QuizContent> userExists = DataManager.getInstance().executeGetQuery(QuizContent.class,
-                "SELECT * FROM quiz_content where quizId='1' group by quesId");
+                "SELECT userName from userData where userName=" +username);
+        String updateQuery = "INSERT INTO userData(userName,"
+                            +"password,userType,isActive)"
+                            + "VALUES(?,?,?,?)";
 
-        if (userExists.equals("")){
+        if (userExists.equals(null) || userExists.isEmpty()){
+            int numOfRowsAffected = DataManager.getInstance().
+                    executeUpdateQuery(updateQuery, username, "abc", "S","1");
             System.out.println("Username not exists");
         }
         else
