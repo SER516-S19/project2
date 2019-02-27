@@ -71,13 +71,13 @@ public class ProfessorServlet extends HttpServlet {
 			session.setAttribute("quiz", quiz);
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
 		}
-		else if("deleteQuestion".equalsIgnoreCase(flag)) {
-			String quesID = request.getParameter("quesId");
-			QuestionDAO questionDAO = new QuestionDAO();
-			questionDAO.deleteQuestionByQuestionId(quesID);
+//		else if("deleteQuestion".equalsIgnoreCase(flag)) {
+//			String quesID = request.getParameter("quesId");
+//			QuestionDAO questionDAO = new QuestionDAO();
+//			questionDAO.deleteQuestionByQuestionId(quesID);
 			// need to refresh the same page after delete
 //			response.sendRedirect(request.getContextPath()+"/views/displayQuestionstoProfessor.jsp");
-		}
+//		}
 	}
 
 	/**
@@ -97,6 +97,20 @@ public class ProfessorServlet extends HttpServlet {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			request.setAttribute("quizList", quizList);
 			rd.forward(request, response);
+		} 
+		else if ("deleteQuestion".equals(flag)) {
+			String quesID = request.getParameter("quesId");
+			String flag1 = request.getParameter("flagOld");
+			String id = request.getParameter("quizId");
+			String quizName = request.getParameter("quizName");
+			
+			System.out.println(flag1);
+			System.out.println(id);
+			System.out.println(quizName);
+			QuestionDAO questionDAO = new QuestionDAO();
+			questionDAO.deleteQuestionByQuestionId(quesID);
+//			questionDAO.deleteAnswerByQuestionId(quesId);
+			response.sendRedirect("ProfessorController?" + "flag="+ flag1 + "&id="+id + "&quizName=" + quizName);
 		} 
 		else if ("DeleteQuestion".equals(flag)) {
 			String quesId = request.getParameter("box1");

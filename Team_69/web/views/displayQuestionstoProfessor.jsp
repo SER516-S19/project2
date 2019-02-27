@@ -31,11 +31,14 @@
 							aria-controls="collapse${question[3]}">
 						<c:out value="${question[0]}"></c:out>	
 						</button>
-					
-					<%String pathWebcontent=request.getContextPath();%>
-					<a href="<%=pathWebcontent %>/ProfessorController?flag=deleteQuestion&quesId=${question[2][1].question.questionId}">Delete Question</a> 
+					<form action="../Team_69/ProfessorController" method="post">
+						<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
+						<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
+						<input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden">
+						<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
+						
+	    				<input type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" />
 					</form>	
-					
 					</h5>
 					
 				</div>
