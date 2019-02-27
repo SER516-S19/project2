@@ -23,7 +23,7 @@ public class LoginDAO {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<String> query = builder.createQuery(String.class);
             Root<User> root = query.from(User.class);
-            query.select(root.get("user_type")).where(builder.equal(root.get("user_email"),userEmail));
+            //query.select(root.get("user_type")).where(builder.equal(root.get("user_email"),userEmail));
             Query<String> userQuery = session.createQuery(query);
             userType = userQuery.getSingleResult();
             transaction.commit();

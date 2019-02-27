@@ -9,6 +9,7 @@ import bean.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
@@ -68,6 +69,7 @@ public class QuestionDAO {
 		Question quesList = null;
 		try  {
 			int qId = Integer.parseInt(quesId);
+			System.out.println(qId);
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			quesList = (Question) session.get(Question.class, qId);
@@ -109,6 +111,7 @@ public class QuestionDAO {
 	       return quesList;
 	}
 
+
 	public List<Answer> getDataByQuestionId(String quesId) {
 		Transaction transaction = null;
 		Question quesList = null;
@@ -130,5 +133,6 @@ public class QuestionDAO {
 		
 		
 	}
+
 	
 }

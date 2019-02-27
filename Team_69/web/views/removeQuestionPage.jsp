@@ -11,7 +11,11 @@
 	<form action="../ProfessorController" method="post">
 		<input id="flag" name="box1" >
 	    <input type="submit" value="DeleteQuestion" name="flag" class="btn btn-primary" />
+	    
+	 
 	</form>
+	
+	
 
 </body>
 </html>

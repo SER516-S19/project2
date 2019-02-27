@@ -33,8 +33,19 @@
 							aria-controls="collapse${question[3]}">
 						<c:out value="${question[0]}"></c:out>	
 						</button>
-						<button type="submit" class="btn btn-primary">Edit</button>
+
+					<form action="../Team_69/ProfessorController" method="post">
+						<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
+						<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
+						<input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden">
+						<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
+						
+	    				<input type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" />
+					</form>	
+					<button type="submit" class="btn btn-primary">Edit</button>
+
 					</h5>
+					
 				</div>
 	
 				<div id="collapse${question[3]}" class="collapse show"

@@ -1,5 +1,8 @@
 package bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 /**
  * This class represents the Question table
@@ -17,7 +20,7 @@ public class Question {
     @Column(name = "Question_id")
     private int questionId;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.REFRESH})
 	@JoinColumn(name = "Quiz_Id")
 	private Quiz quiz;
 
@@ -30,6 +33,11 @@ public class Question {
     @Column(name = "Points")
     private int points;
 
+    
+    //For the answer side
+    @OneToMany(mappedBy = "question",orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private List<Answer> answerList = new ArrayList<Answer>();
+    
 
 	public Question(Quiz quiz, String question, boolean isMultiple, int points) {
 		super();
