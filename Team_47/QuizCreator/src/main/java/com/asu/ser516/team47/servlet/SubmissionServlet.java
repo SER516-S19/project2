@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import com.asu.ser516.team47.database.*;
+import com.asu.ser516.team47.utils.ServletValidation;
 
 /**
  * This servlet is called when a student submits a quiz
@@ -32,6 +33,7 @@ public class SubmissionServlet extends HttpServlet {
     private int submissionID = 0;
     private int httpCode = 204;
     private String httpErrorMessage;
+    private String url = "jdbc:sqlite:schema.db";
     private Quiz quiz;
     private Enrolled enrollment;
 
@@ -58,6 +60,7 @@ public class SubmissionServlet extends HttpServlet {
         throws ServletException, IOException {
         httpCode = 204;
         httpErrorMessage = "";
+        ServletValidation validation = new ServletValidation();
 
         //Mandatory fields to create a submission entry
         Integer quizId = null;
@@ -96,6 +99,11 @@ public class SubmissionServlet extends HttpServlet {
                         httpCode = 400;
                         break;
                     }
+                    if (!validation.validAttempt(quizId, attempt.intValue())) {
+                        httpCode = 400;
+                        httpErrorMessage = "Submission exceeds attempt limit";
+                        break;
+                    }
                 } else if (paramName.equals("timeTaken")) {
                     timeTaken = validateInteger(request.getParameter("timeTaken"), response);
                     if (timeTaken <= 0) {
@@ -109,7 +117,13 @@ public class SubmissionServlet extends HttpServlet {
                     if (choice == null) {
                         httpCode = 500;
                         break;
-                    } else {
+                    }
+                    if(!validation.validSameQuiz(quizId, choiceId)) {
+                        httpCode = 400;
+                        httpErrorMessage = "Choices not all from same quiz";
+                        break;
+                    }
+                    else {
                         choiceIds.add(choiceId);
                     }
                 }
@@ -137,8 +151,6 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
         response.setStatus(httpCode);
-
-        //TODO: call autograder, update score on Submission.
     }
 
     /**
@@ -198,7 +210,6 @@ public class SubmissionServlet extends HttpServlet {
      * @return int ID of the question associated with the choice ID
      */
     private int getQuestionID(int choiceID) {
-        String url = "jdbc:sqlite:schema.db";
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
