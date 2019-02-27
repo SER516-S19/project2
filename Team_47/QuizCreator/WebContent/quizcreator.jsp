@@ -13,7 +13,7 @@ Quiz editor
 </head>
 <body>
 <div id='top'>
-<p><a href="loginpage.jsp" class='button' align:"right">logout</a></p>
+<p><a href="login.jsp" class='button' align:"right">logout</a></p>
 </div>
 <div id='mid'>
 <form action="summarypage.jsp">

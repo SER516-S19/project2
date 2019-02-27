@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div id="top">
-		<a href="index.html" class="btn btn-default btn-sm"> <span
+		<a href="login.jsp" class="btn btn-default btn-sm"> <span
 			class="glyphicon glyphicon-log-out"></span> Log out
 		</a>
 	</div>
