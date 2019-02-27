@@ -1,11 +1,15 @@
 package com.asu.ser516.team47.utils;
 
 import com.asu.ser516.team47.database.QuizDAOImpl;
+import org.json.simple.JSONArray;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Utility to help the submission servlet validate incoming data. Checks for
@@ -16,7 +20,7 @@ import java.sql.ResultSet;
  */
 public class ServletValidation {
 
-    private String url = "jdbc:sqlite:schema.db";
+    private static String url = "jdbc:sqlite:schema.db";
 
     /**
      * Validates whether the quiz associated with the given choice ID matches
@@ -25,7 +29,7 @@ public class ServletValidation {
      * @param choiceID  choice ID to be validated
      * @return true if choice ID matches, otherwise false.
      */
-    public boolean validSameQuiz(int quizID, int choiceID) {
+    public static boolean  validSameQuiz(int quizID, int choiceID) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -62,8 +66,28 @@ public class ServletValidation {
      * @param attempt   student attempt number
      * @return true if attempt is within limits, otherwise false.
      */
-    public boolean validAttempt(int quizID, int attempt) {
+    public static boolean validAttempt(int quizID, int attempt) {
         QuizDAOImpl quizDAO = new QuizDAOImpl();
         return attempt <= quizDAO.getQuiz(quizID).getAttempts();
+    }
+
+    /**
+     * Check if array of choices is valid.
+     * @param jsonChoices A json array of choice Ids
+     * @param quizId The ID of the quiz that these choices belong to.
+     * @return null if invalid. else a list of choices.
+     */
+    public static List<Integer> buildAndValidateChoiceList(JSONArray jsonChoices, int quizId){
+        Iterator<Integer> it = jsonChoices.iterator();
+        List<Integer> ret = new ArrayList<Integer>();
+        while (it.hasNext()) {
+            int choiceId = it.next();
+            if (ServletValidation.validSameQuiz(choiceId, quizId)){
+                ret.add(choiceId);
+            } else {
+                return null;
+            }
+        }
+        return ret;
     }
 }

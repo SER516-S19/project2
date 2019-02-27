@@ -18,6 +18,17 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+/**
+ * This servlet is called when a student submits a quiz
+ *
+ * @author Amit Pandey
+ * @author Qianru "Ruby" Zhao
+ * @author David Lahtinen
+ * @author John Alden
+ *
+ * @version 1.0
+ * @since 2019-22-02
+ */
 @WebServlet(name = "SubmissionServlet")
 public class SubmissionServlet extends HttpServlet {
 
@@ -62,7 +73,7 @@ public class SubmissionServlet extends HttpServlet {
         Integer attempt;
         Integer timeTaken;
 
-        List<Integer> choiceIds = new ArrayList<>();
+        List<Integer> choiceIds;
 
         //Check if json form can be read.
         try {
@@ -80,58 +91,36 @@ public class SubmissionServlet extends HttpServlet {
 
         //Validate that all necessary fields are present and build ChoiceId array
         try {
-            for (Iterator it = requestForm.keySet().iterator(); it.hasNext(); ) {
-                String paramName = (String) it.next();
-                if (paramName.equals("quiz_id")) {
-                    quizId = (Integer) requestForm.get("quiz_id");
-                    quiz = new QuizDAOImpl().getQuiz(quizId);
-                    if (quiz == null) {
-                        httpCode = 500;
-                        break;
-                    }
-                } else if (paramName.equals("enrolled_id")) {
-                    enrollId = (Integer)requestForm.get("enrolled_id");
-                    enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
-                    if (enrollment == null) {
-                        httpCode = 500;
-                        break;
-                    }
-                } else if (paramName.equals("choices")) {
-                    JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
-
-                    int choiceId = validateInteger((String) requestForm.get(paramName), response);
-                } else if (paramName.equals("attempt")) {
-                    attempt = validateInteger(request.getParameter("attempt"), response);
-                    if (attempt <= 0){
-                        httpCode = 400;
-                        break;
-                    }
-                    if (!validation.validAttempt(quizId, attempt.intValue())) {
-                        httpCode = 400;
-                        httpErrorMessage = "Submission exceeds attempt limit";
-                        break;
-                    }
-                } else if (paramName.equals("timeTaken")) {
-                    timeTaken = validateInteger(request.getParameter("timeTaken"), response);
-                    if (timeTaken <= 0) {
-                        httpCode = 400;
-                        break;
-                    }
-                } else if (paramName.equals("choices")) {
-                    JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
-
-                    int choiceId = validateInteger((String) requestForm.get(paramName), response);
-                    Choice choice = new ChoiceDAOImpl().getChoice(choiceId);
-                    if (choice == null) {
-                        httpCode = 500;
-                        break;
-                    } else {
-                        choiceIds.add(choiceId);
-                    }
-                }
+            quizId = (Integer) requestForm.get("quiz_id");
+            quiz = new QuizDAOImpl().getQuiz(quizId);
+            if (quiz == null) {
+                httpCode = 500;
             }
+            enrollId = (Integer)requestForm.get("enrolled_id");
+            enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
+            if (enrollment == null) {
+                httpCode = 500;
+            }
+            attempt = (Integer)requestForm.get("attempt");
+            if (attempt <= 0){
+                httpCode = 400;
+            }
+            if (!validation.validAttempt(quizId, attempt.intValue())) {
+                httpCode = 400;
+                httpErrorMessage = "Submission exceeds attempt limit";
+            }
+
+            timeTaken = validateInteger(request.getParameter("timeTaken"), response);
+            if (timeTaken <= 0) {
+                httpCode = 400;
+            }
+            JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
+            choiceIds = ServletValidation.buildAndValidateChoiceList(jsonChoices, quizId);
         } catch (ClassCastException cce){
             response.sendError(400, "Some field is wrong data type.");
+            return;
+        } catch (NullPointerException npe){
+            response.sendError(400, "Some field is missing.");
             return;
         }
 
@@ -145,6 +134,7 @@ public class SubmissionServlet extends HttpServlet {
         }
 
         //TODO: Call function to check if time limit is passed.
+        //TODO: Call function to increment submission.
         if (!sendSubmission(quizId, enrollId, 1, 0, 0)){
             response.sendError(500);
             return;
@@ -154,6 +144,8 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
         response.setStatus(httpCode);
+
+        //TODO: call autograder, update score on Submission.
     }
 
     /**
@@ -213,31 +205,8 @@ public class SubmissionServlet extends HttpServlet {
      * @return int ID of the question associated with the choice ID
      */
     private int getQuestionID(int choiceID) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int result;
-
-        try {
-            conn = DriverManager.getConnection(url);
-            stmt = conn.prepareStatement("select question_fk from choices where choice_id = ?");
-            stmt.setInt(1, choiceID);
-            rs = stmt.executeQuery();
-            result = rs.getInt("question_fk");
-        }
-        catch (Exception se) {
-            se.printStackTrace();
-            return 0;
-        }
-        finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
-        }
-
-        return result;
+        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
+        return choiceDAO.getChoice(choiceID).getQuestion_fk();
     }
 
     /**
@@ -258,22 +227,5 @@ public class SubmissionServlet extends HttpServlet {
             httpErrorMessage = "Missing form data";
         }
         return null;
-    }
-
-    /**
-     * Check if array of choices is valid.
-     * @param jsonChoices A json array of choice Ids
-     * @return null if invalid. else a list of choices.
-     */
-    private List<Choice> buildAndValidateChoiceList(JSONArray jsonChoices){
-        Iterator<Integer> it = jsonChoices.iterator();
-        List<Choice> ret = new ArrayList<Choice>();
-        try {
-            while (it.hasNext()) {
-                int choiceId = it.next();
-                Choice choice = new ChoiceDAOImpl().getChoice(choiceId);
-                ret.add(choice);
-            }
-        }
     }
 }
