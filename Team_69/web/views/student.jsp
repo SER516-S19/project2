@@ -40,23 +40,6 @@
 	</form>
 	</button>
 </div>
-<script>
-	$(document).ready(function() {
-		$('#submitBtn').hide();
-		studentResponseJSON = '<%=session.getAttribute("studentResponseJSON")%>';
-		var studentResponseObj = JSON.parse(studentResponseJSON);
-		var hms = studentResponseObj.quizTimeLimit;
-		var quizName = studentResponseObj.quizName;
-		var quizInstruction = studentResponseObj.quizInstructions;
-		document.getElementById("quiz_name").innerHTML = quizName;
-		document.getElementById("quiz_instructions").innerHTML = quizInstruction;
-		var a = hms.split(':');
-		var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-		setInterval(function() {
-			document.getElementById("submitForm").submit();
-		}, seconds*1000);
-		displayQuiz(studentResponseObj);
-	});
-</script>
+
 </body>
 </html>
