@@ -47,17 +47,21 @@
             <h1>Sign Up for the Quiz Application</h1>
         </div>
         <div class="col-md-4">
-            <form action="./SignUp.jsp" method="get">
+            <form action="./quiz" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="bmd-label-floating">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1">
+                    <input type="email" name="username" class="form-control" id="exampleInputEmail1">
                     <span class="bmd-help">We'll never share your email with anyone else.</span>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="bmd-label-floating">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <input type="submit" name="action" class="btn btn-primary btn-raised" value="SignUp">
+                <div class="form-group">
+                    <input type="radio" name="userTypeBtn" value="Professor"/> Professor
+                    <input type="radio" name="userTypeBtn" value="Student"/>   Student
+                </div>
+                <input type="submit" name="action" class="btn btn-primary btn-raised" value="SignUp"/>
             </form>
         </div>
     </div>

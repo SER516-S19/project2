@@ -2,6 +2,7 @@ package com.validation;
 
 import DBUtil.DataManager;
 import student.dto.QuizContent;
+import student.dto.UserData;
 
 import java.util.List;
 
@@ -21,21 +22,23 @@ public class InputValidation {
 
     /**
      * Method to check the entered username is already there or not
-     * @param username
-     *        Entered UserName
+     * @param userName
+     *        User name for login
+     * @param passWord
+     *        Password for login
+     * @param userType
+     *        denotes the type of user (Professor or Student)
+     * @return
      */
-    public String signupValidation(String username)
+    public String signupValidation(String userName, String passWord, String userType)
     {
-        username = "Pradeep";
-        List<QuizContent> userExists = DataManager.getInstance().executeGetQuery(QuizContent.class,
-                "SELECT userName from userData where userName=" +username);
-        String updateQuery = "INSERT INTO userData(userName,"
-                            +"password,userType,isActive)"
-                            + "VALUES(?,?,?,?)";
+        List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
+                "SELECT userName from userDetails where userName=" +userName);
+        String updateQuery = "INSERT INTO userDetails(userName,password,userType,isActive) VALUES(?,?,?,?)";
 
-        if (userExists.equals(null) || userExists.isEmpty()){
-            int numOfRowsAffected = DataManager.getInstance().
-                    executeUpdateQuery(updateQuery, username, "abc", "S","1");
+        if (userExists == null || userExists.isEmpty()){
+            DataManager.getInstance().
+                    executeUpdateQuery(updateQuery, userName, passWord, userType, true);
             System.out.println("Username not exists");
         }
         else

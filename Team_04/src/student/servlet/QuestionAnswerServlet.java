@@ -5,6 +5,7 @@ import DBUtil.DataManager;
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
 import com.validation.InputValidation;
+import sun.security.util.Password;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -102,7 +103,8 @@ public class QuestionAnswerServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
+        String action = request.getParameter("action");
+        InputValidation validObj = new InputValidation();
         if(!request.getParameter("username").isEmpty() || !request.getParameter("password").isEmpty())
         {
             InputValidation input = new InputValidation();
@@ -128,9 +130,21 @@ public class QuestionAnswerServlet extends HttpServlet {
                     break;
             }
         }
-        executeInsertQuery();
-        if (currentQuestionIndex == questions.size()) {
-            executeSubmitEntry();
+        if (action.equalsIgnoreCase("SignUp")) {
+            String userName = request.getParameter("username");
+            String passWord = request.getParameter("password");
+            String userType = request.getParameter("userTypeBtn");
+            if(validObj.signupValidation(userName, passWord, userType).equals("success"))
+            {
+                view = "loginPage.jsp";
+            }
+        }
+        else
+        {
+            executeInsertQuery();
+            if (currentQuestionIndex == questions.size()) {
+                executeSubmitEntry();
+            }
         }
         doGet(request, response);
     }
@@ -176,14 +190,15 @@ public class QuestionAnswerServlet extends HttpServlet {
          */
         protected void doGet (HttpServletRequest request,
                 HttpServletResponse response) throws ServletException, IOException {
-            if (this.questions.size() == 0) {
+            String action = request.getParameter("action");
+            if (this.questions.size() == 0 && !action.equalsIgnoreCase("SignUp")) {
                 loadQuestionsAnswers();
             }
-            InputValidation validObj = new InputValidation();
+
             HttpSession session = request.getSession(true);
             questionNumber++;
             session.setAttribute("count", questionNumber);
-            String action = request.getParameter("action");
+
             if (action.isEmpty()) {
                 currentQuestionIndex = 0;
                 view = "errorHandler.jsp";
@@ -204,14 +219,10 @@ public class QuestionAnswerServlet extends HttpServlet {
                 view = "quizResult.jsp";
                 response.setStatus(response.SC_OK);
             }
-            else if (action.equalsIgnoreCase("SignUp")) {
-                String userName = "";
-                if(validObj.signupValidation(userName).equals("success"))
-                {
-                    request.setAttribute("signup", "success");
-                    view = "loginPage.jsp";
-                    response.setStatus(response.SC_OK);
-                }
+            else if (action.equalsIgnoreCase("SignUp"))
+            {
+                request.setAttribute("signup", "success");
+                response.setStatus(response.SC_OK);
             }
             else {
                 currentQuestionIndex = 0;
