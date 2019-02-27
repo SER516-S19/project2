@@ -57,7 +57,7 @@
                     <label for="exampleInputPassword1" class="bmd-label-floating">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <button type="submit" class="btn btn-primary btn-raised">Sign Up</button>
+                <button type="submit" name="signup" class="btn btn-primary btn-raised">Sign Up</button>
             </form>
         </div>
     </div>

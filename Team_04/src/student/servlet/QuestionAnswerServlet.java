@@ -4,6 +4,7 @@ import DBUtil.DataManager;
 
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
+import com.validation.InputValidation;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -170,6 +171,7 @@ public class QuestionAnswerServlet extends HttpServlet {
             if (this.questions.size() == 0) {
                 loadQuestionsAnswers();
             }
+            InputValidation validObj = new InputValidation();
             HttpSession session = request.getSession(true);
             questionNumber++;
             session.setAttribute("count", questionNumber);
@@ -193,7 +195,17 @@ public class QuestionAnswerServlet extends HttpServlet {
                 request.setAttribute("totalScore", totalScore);
                 view = "quizResult.jsp";
                 response.setStatus(response.SC_OK);
-            } else {
+            }
+            else if (action.equalsIgnoreCase("signup")) {
+                String userName = "";
+                if(validObj.signupValidation(userName).equals("success"))
+                {
+                    request.setAttribute("signup", "success");
+                    view = "loginPage.jsp";
+                    response.setStatus(response.SC_OK);
+                }
+            }
+            else {
                 currentQuestionIndex = 0;
                 view = "errorHandler.jsp";
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
