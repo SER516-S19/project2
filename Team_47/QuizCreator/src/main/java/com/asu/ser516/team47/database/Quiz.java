@@ -11,8 +11,8 @@ import java.util.Date;
  */
 public class Quiz {
     private int quiz_id;
-    private String title;
     private int course_fk;
+    private String title;
     private String instructions;
     private boolean shuffle;
     private int time_limit;
@@ -36,12 +36,12 @@ public class Quiz {
      * @param attempts max number of attempts
      * @param quiz_group quiz grouping for professor
      */
-    public Quiz(int quiz_id, String title, int course_fk, String instructions,
+    public Quiz(int quiz_id, int course_fk, String title,  String instructions,
                 boolean shuffle, int time_limit, Date date_open, Date date_close,
                 String quiz_type, int attempts, String quiz_group, double total_points) {
         this.quiz_id = quiz_id;
-        this.title = title;
         this.course_fk = course_fk;
+        this.title = title;
         this.instructions = instructions;
         this.shuffle = shuffle;
         this.time_limit = time_limit;
@@ -61,20 +61,20 @@ public class Quiz {
         this.quiz_id = quiz_id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getCourse_fk() {
         return course_fk;
     }
 
     public void setCourse_fk(int course_fk) {
         this.course_fk = course_fk;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getInstructions() {
