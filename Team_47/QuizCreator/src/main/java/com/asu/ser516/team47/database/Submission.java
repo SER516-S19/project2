@@ -1,5 +1,6 @@
 package com.asu.ser516.team47.database;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -13,8 +14,8 @@ public class Submission {
     private int submission_id;
     private int quiz_fk;
     private int enrolled_fk;
-    private Date start_time;
-    private Date end_time;
+    private LocalDateTime start_time;
+    private LocalDateTime end_time;
     private float score;
     private int attempt;
 
@@ -28,7 +29,7 @@ public class Submission {
      * @param attempt attempt number for submission
      */
     public Submission(int submission_id, int quiz_fk, int enrolled_fk,
-                      Date start_time, Date end_time, float score, int attempt) {
+                      LocalDateTime start_time, LocalDateTime end_time, float score, int attempt) {
         this.submission_id = submission_id;
         this.quiz_fk = quiz_fk;
         this.enrolled_fk = enrolled_fk;
@@ -62,17 +63,17 @@ public class Submission {
         this.enrolled_fk = enrolled_fk;
     }
 
-    public Date getStart_time() {
+    public LocalDateTime getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(Date start_time) {
+    public void setStart_time(LocalDateTime start_time) {
         this.start_time = start_time;
     }
 
-    public Date getEnd_time() { return end_time; }
+    public LocalDateTime getEnd_time() { return end_time; }
 
-    public void setEnd_time(Date end_time) {
+    public void setEnd_time(LocalDateTime end_time) {
         this.end_time = end_time;
     }
 

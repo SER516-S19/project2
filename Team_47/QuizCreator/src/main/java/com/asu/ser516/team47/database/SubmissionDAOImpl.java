@@ -34,7 +34,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getDate(4), rs.getDate(5), rs.getFloat(6),
+                        rs.getTimestamp(4).toLocalDateTime(),
+                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
                         rs.getInt(7)));
             }
         }
@@ -71,7 +72,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getDate(4), rs.getDate(5), rs.getFloat(6),
+                        rs.getTimestamp(4).toLocalDateTime(),
+                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
                         rs.getInt(7)));
             }
         }
@@ -109,7 +111,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getDate(4), rs.getDate(5), rs.getFloat(6),
+                        rs.getTimestamp(4).toLocalDateTime(),
+                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
                         rs.getInt(7)));
             }
         }
@@ -147,7 +150,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval = new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getDate(4), rs.getDate(5), rs.getFloat(6),
+                        rs.getTimestamp(4).toLocalDateTime(),
+                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
                         rs.getInt(7));
             }
         }
@@ -181,11 +185,14 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("insert into submissions (quiz_fk, enrolled_fk," +
-                    " time_taken, date_taken, score, attempt) VALUES (?,?,?,?,?,?)");
+                    " start_time, end_time, score, attempt) VALUES (?,?,?,?,?,?)");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
-            stmt.setDate(3, new java.sql.Date(submission.getStart_time().getTime()));
-            stmt.setDate(4, new java.sql.Date(submission.getEnd_time().getTime()));
+            stmt.setDate(3, new java.sql.Date(submission.getStart_time().getYear()));
+            if (submission.getEnd_time() == null)
+                stmt.setDate(4, null);
+            else
+                stmt.setDate(4, new java.sql.Date(submission.getEnd_time().getYear()));
             stmt.setDouble(5, submission.getScore());
             stmt.setInt(6, submission.getAttempt());
             int updatedRows = stmt.executeUpdate();
@@ -227,12 +234,12 @@ public class SubmissionDAOImpl implements SubmissionDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update submissions set quiz_fk=?, enrolled_fk=?, time_taken=?," +
-                    " date_taken=?, score=?, attempt=? where submission_id=?");
+            stmt = conn.prepareStatement("update submissions set quiz_fk=?, enrolled_fk=?, start_time=?," +
+                    " end_time=?, score=?, attempt=? where submission_id=?");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
-            stmt.setDate(3, new java.sql.Date(submission.getStart_time().getTime()));
-            stmt.setDate(4, new java.sql.Date(submission.getEnd_time().getTime()));
+            stmt.setDate(3, new java.sql.Date(submission.getStart_time().getYear()));
+            stmt.setDate(4, new java.sql.Date(submission.getEnd_time().getYear()));
             stmt.setDouble(5, submission.getScore());
             stmt.setInt(6, submission.getAttempt());
             stmt.setInt(7, submission.getSubmission_id());
