@@ -35,7 +35,12 @@ pageEncoding="UTF-8"%>
             Group of the quiz:</br>
             <input type='text' name='group' value='group name' size=30></br>
             <div id='questionDiv'>
-                <input type='button' onclick='addFields(this)' value='add question'>
+                <script>
+                    var questionDict = {};
+                    var nameTracingList = [];
+                    var questionChoiceIterator = 0;
+                </script>
+                <input type='button' onclick='addFields(this, nameTracingList)' value='add question'>
             </div>
             <input id="beginbtn" type="submit" value="Submit">
 
