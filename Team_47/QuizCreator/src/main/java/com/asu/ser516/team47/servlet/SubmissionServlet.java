@@ -47,7 +47,8 @@ public class SubmissionServlet extends HttpServlet {
 
     /**
      * The endpoint for a quiz submission
-     * requires the presence of quiz_id, enroll_id, timeTaken, and attempt fields in the form. all integers.
+     * requires the presence of quiz_id, enroll_id, start_time, and attempt fields in the form.
+     * All integers except Timestamps start_time and optional end_time
      *
      * @param request
      * @param response
@@ -55,7 +56,7 @@ public class SubmissionServlet extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost (HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         httpCode = 204;
         httpErrorMessage = "";
@@ -64,8 +65,12 @@ public class SubmissionServlet extends HttpServlet {
         Integer quizId = null;
         Integer enrollId = null;
         Date startTime = null;
-        Date endTime = null;
         Integer attempt = null;
+
+        //Mandatory field to update a submission entry
+        Date endTime = null;
+
+        Boolean isInitial = null;
 
         List<Integer> choiceIds = new ArrayList<>();
 
@@ -74,6 +79,24 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(400, "no parameters");
             return;
         }
+
+        // No guarantee of parameter order, specifically looking for initial field
+        while(paramNames.hasMoreElements()) {
+            try{
+                String paramName = (String) paramNames.nextElement();
+                if (paramName.equals("initial")) {
+                    isInitial = validateInitial(request.getParameter("initial"), response);
+                    if (isInitial == null) {
+                        httpCode = 400;
+                        break;
+                    }
+                }
+            } catch (NullPointerException npe){
+                httpCode = 400;
+                return;
+            }
+        }
+
         //Validate that all necessary fields are present and build ChoiceIds
         while (paramNames.hasMoreElements()) {
             try{
@@ -101,6 +124,12 @@ public class SubmissionServlet extends HttpServlet {
                 } else if (paramName.equals("start_time")) {
                     startTime = validateDate(request.getParameter("start_time"), response);
                     if (startTime == null) {
+                        httpCode = 400;
+                        break;
+                    }
+                } else if (paramName.equals("end_time") && !isInitial) {
+                    endTime = validateDate(request.getParameter("end_time"), response);
+                    if (endTime == null) {
                         httpCode = 400;
                         break;
                     }
@@ -203,6 +232,23 @@ public class SubmissionServlet extends HttpServlet {
     private int getQuestionID(int choiceID) {
         ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
         return choiceDAO.getChoice(choiceID).getQuestion_fk();
+    }
+
+    /**
+     * Checks if parameter can be converted to integer. If not, sends an error.
+     * @param value the value to be validated
+     * @param response http response through which to send errors
+     * @return null if invalid input, a valid int otherwise
+     * @throws IOException sends an error if parameter cannot be reported
+     */
+    private Boolean validateInitial(String value, HttpServletResponse response) throws IOException {
+        try {
+            return Boolean.parseBoolean(value);
+        } catch (NullPointerException npe) {
+            httpCode = 400;
+            httpErrorMessage = "Missing form data";
+        }
+        return null;
     }
 
     /**
