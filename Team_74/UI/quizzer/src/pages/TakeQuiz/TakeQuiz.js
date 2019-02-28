@@ -37,6 +37,8 @@ class TakeQuiz extends Component {
             questionText: quizQuestions[0].questionText,
             answerOptions: shuffledAnswerOptions[0]
         });
+        const params = new URLSearchParams(this.props.location.search);
+        console.log(params.get('quizId'));
     }
 
     /**+
