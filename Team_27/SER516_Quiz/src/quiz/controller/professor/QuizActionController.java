@@ -39,7 +39,9 @@ public class QuizActionController extends HttpServlet {
 	@SuppressWarnings("static-access")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// set Content-Type and other response headers
+		response.setHeader("Cache-Control", "no-cache");
+		response.setContentType("text/html");
 		// perform processing and selects the action based on the button click
 		try {
 			String strActionToPerform = request.getParameter("actonToPerform");
@@ -49,8 +51,10 @@ public class QuizActionController extends HttpServlet {
 			if (strActionToPerform.equalsIgnoreCase("delete")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
 				if (quizModel != null) {
+					
+					
 					if (quizDetailsDao.delete(quizModel)) {
-						request.getSession().getAttribute("rowValues");
+						request.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
 						response.sendRedirect("showQuizes.jsp");
 					} else {
 						response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, " Couldn't delete");
