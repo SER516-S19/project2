@@ -4,6 +4,8 @@ import DBUtil.DataManager;
 
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
+import com.validation.InputValidation;
+import sun.security.util.Password;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -101,6 +103,15 @@ public class QuestionAnswerServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        InputValidation validObj = new InputValidation();
+        if(!request.getParameter("username").isEmpty() || !request.getParameter("password").isEmpty())
+        {
+            InputValidation input = new InputValidation();
+            String name = request.getParameter("username");
+            String password = request.getParameter("password");
+            input.loginValidation(name,password);
+        }
         if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex <= questions.size()) {
             switch (currentQuestion.getQuesType()) {
                 case "SA":
@@ -119,9 +130,21 @@ public class QuestionAnswerServlet extends HttpServlet {
                     break;
             }
         }
-        executeInsertQuery();
-        if (currentQuestionIndex == questions.size()) {
-            executeSubmitEntry();
+        if (action.equalsIgnoreCase("SignUp")) {
+            String userName = request.getParameter("username");
+            String passWord = request.getParameter("password");
+            String userType = request.getParameter("userTypeBtn");
+            if(validObj.signupValidation(userName, passWord, userType).equals("success"))
+            {
+                view = "loginPage.jsp";
+            }
+        }
+        else
+        {
+            executeInsertQuery();
+            if (currentQuestionIndex == questions.size()) {
+                executeSubmitEntry();
+            }
         }
         doGet(request, response);
     }
@@ -138,14 +161,16 @@ public class QuestionAnswerServlet extends HttpServlet {
         int result;
         QuizContent currentQuestion = questions.get(currentQuestionIndex);
         for (AnswerOption answerOption : currentQuestion.getAnswerOptions()) {
-            if (answerOption.getIsCorrect()) {
+            boolean isCorrectAns = answerOption.getIsCorrect();
+            boolean isSelected = selectedOptions.contains(Long.toString(answerOption.getAnsId()));
+            if (isCorrectAns) {
                 totalCorrectAnsCount += 1;
-                if (selectedOptions.contains(Long.toString(answerOption.getAnsId()))) {
-                    actualCorrectAnsCount += 1;
-                }
+                actualCorrectAnsCount = isSelected ? actualCorrectAnsCount + 1 : actualCorrectAnsCount - 1;
+            } else if (isSelected) {
+                actualCorrectAnsCount -= 1;
             }
         }
-        if (totalCorrectAnsCount != 0) {
+        if (totalCorrectAnsCount != 0 && actualCorrectAnsCount > 0) {
             result = (int) ((actualCorrectAnsCount / totalCorrectAnsCount) *
                     currentQuestion.getMaxScore());
         } else {
@@ -153,51 +178,59 @@ public class QuestionAnswerServlet extends HttpServlet {
         }
         currentQuestion.setScore(result);
         return result;
-    }
-
-    /**
-     * Method to get the quiz results
-     *
-     * @param request  the request from Client
-     * @param response the response from Server
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws ServletException, IOException {
-        if (this.questions.size() == 0) {
-            loadQuestionsAnswers();
         }
-        HttpSession session = request.getSession(true);
-        questionNumber++;
-        session.setAttribute("count", questionNumber);
-        String action = request.getParameter("action");
-        if (action.isEmpty()) {
-            currentQuestionIndex = 0;
-            view = "errorHandler.jsp";
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            request.setAttribute("errorResponse", response.getStatus());
-        } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
-                && currentQuestionIndex < questions.size()) {
-            currentQuestion = questions.get(currentQuestionIndex);
-            request.setAttribute("data", currentQuestion);
-            currentQuestionIndex += 1;
-            request.setAttribute("enableSubmitButton", currentQuestionIndex == questions.size());
-            view = "questionsAnswers.jsp";
-            response.setStatus(response.SC_OK);
 
-        } else if (action.equalsIgnoreCase("submit")) {
-            currentQuestionIndex = 0;
-            request.setAttribute("totalScore", totalScore);
-            view = "quizResult.jsp";
-            response.setStatus(response.SC_OK);
-        } else {
-            currentQuestionIndex = 0;
-            view = "errorHandler.jsp";
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            request.setAttribute("errorResponse", response.getStatus());
+        /**
+         * Method to get the quiz results
+         *
+         * @param request  the request from Client
+         * @param response the response from Server
+         * @throws ServletException
+         * @throws IOException
+         */
+        protected void doGet (HttpServletRequest request,
+                HttpServletResponse response) throws ServletException, IOException {
+            String action = request.getParameter("action");
+            if (this.questions.size() == 0 && !action.equalsIgnoreCase("SignUp")) {
+                loadQuestionsAnswers();
+            }
+
+            HttpSession session = request.getSession(true);
+            questionNumber++;
+            session.setAttribute("count", questionNumber);
+
+            if (action.isEmpty()) {
+                currentQuestionIndex = 0;
+                view = "errorHandler.jsp";
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                request.setAttribute("errorResponse", response.getStatus());
+            } else if ((action.equalsIgnoreCase("Start Quiz") || action.equalsIgnoreCase("NEXT"))
+                    && currentQuestionIndex < questions.size()) {
+                currentQuestion = questions.get(currentQuestionIndex);
+                request.setAttribute("data", currentQuestion);
+                currentQuestionIndex += 1;
+                request.setAttribute("enableSubmitButton", currentQuestionIndex == questions.size());
+                view = "questionsAnswers.jsp";
+                response.setStatus(response.SC_OK);
+
+            } else if (action.equalsIgnoreCase("submit")) {
+                currentQuestionIndex = 0;
+                request.setAttribute("totalScore", totalScore);
+                view = "quizResult.jsp";
+                response.setStatus(response.SC_OK);
+            }
+            else if (action.equalsIgnoreCase("SignUp"))
+            {
+                request.setAttribute("signup", "success");
+                response.setStatus(response.SC_OK);
+            }
+            else {
+                currentQuestionIndex = 0;
+                view = "errorHandler.jsp";
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                request.setAttribute("errorResponse", response.getStatus());
+            }
+            response.setContentType("text/html");
+            request.getRequestDispatcher(view).forward(request, response);
         }
-        response.setContentType("text/html");
-        request.getRequestDispatcher(view).forward(request, response);
     }
-}
