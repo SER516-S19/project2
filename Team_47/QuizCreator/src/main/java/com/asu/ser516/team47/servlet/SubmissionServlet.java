@@ -1,6 +1,7 @@
 package com.asu.ser516.team47.servlet;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.servlet.ServletException;
@@ -97,9 +98,9 @@ public class SubmissionServlet extends HttpServlet {
                         httpCode = 400;
                         break;
                     }
-                } else if (paramName.equals("startTime")) {
-                    startTime = validateInteger(request.getParameter("startTime"), response);
-                    if (startTime <= 0) {
+                } else if (paramName.equals("start_time")) {
+                    startTime = validateDate(request.getParameter("start_time"), response);
+                    if (startTime == null) {
                         httpCode = 400;
                         break;
                     }
@@ -218,6 +219,21 @@ public class SubmissionServlet extends HttpServlet {
             httpCode = 400;
             httpErrorMessage = "Invalid form data";
         } catch (NullPointerException npe) {
+            httpCode = 400;
+            httpErrorMessage = "Missing form data";
+        }
+        return null;
+    }
+
+    private Date validateDate(String value, HttpServletResponse response) throws IOException {
+        try{
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss");
+            DateTime dt = formatter.parseDateTime(value);
+            return dt;
+        } catch (NumberFormatException nfe) {
+            httpCode = 400;
+            httpErrorMessage = "Invalid form data";
+        } catch(NullPointerException npe) {
             httpCode = 400;
             httpErrorMessage = "Missing form data";
         }
