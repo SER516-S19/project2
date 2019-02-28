@@ -34,8 +34,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getTimestamp(4).toLocalDateTime(),
-                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
+                        rs.getTimestamp(4), rs.getTimestamp(5), rs.getFloat(6),
                         rs.getInt(7)));
             }
         }
@@ -72,8 +71,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getTimestamp(4).toLocalDateTime(),
-                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
+                        rs.getTimestamp(4), rs.getTimestamp(5), rs.getFloat(6),
                         rs.getInt(7)));
             }
         }
@@ -111,8 +109,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getTimestamp(4).toLocalDateTime(),
-                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
+                        rs.getTimestamp(4), rs.getTimestamp(5), rs.getFloat(6),
                         rs.getInt(7)));
             }
         }
@@ -150,8 +147,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval = new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                        rs.getTimestamp(4).toLocalDateTime(),
-                        rs.getTimestamp(5).toLocalDateTime(), rs.getFloat(6),
+                        rs.getTimestamp(4), rs.getTimestamp(5), rs.getFloat(6),
                         rs.getInt(7));
             }
         }
@@ -188,11 +184,11 @@ public class SubmissionDAOImpl implements SubmissionDAO {
                     " start_time, end_time, score, attempt) VALUES (?,?,?,?,?,?)");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
-            stmt.setDate(3, new java.sql.Date(submission.getStart_time().getYear()));
+            stmt.setTimestamp(3, new java.sql.Timestamp(submission.getStart_time().getTime()));
             if (submission.getEnd_time() == null)
-                stmt.setDate(4, null);
+                stmt.setTimestamp(4, null);
             else
-                stmt.setDate(4, new java.sql.Date(submission.getEnd_time().getYear()));
+                stmt.setTimestamp(4, new java.sql.Timestamp(submission.getEnd_time().getTime()));
             stmt.setDouble(5, submission.getScore());
             stmt.setInt(6, submission.getAttempt());
             int updatedRows = stmt.executeUpdate();
@@ -238,8 +234,8 @@ public class SubmissionDAOImpl implements SubmissionDAO {
                     " end_time=?, score=?, attempt=? where submission_id=?");
             stmt.setInt(1, submission.getQuiz_fk());
             stmt.setInt(2, submission.getEnrolled_fk());
-            stmt.setDate(3, new java.sql.Date(submission.getStart_time().getYear()));
-            stmt.setDate(4, new java.sql.Date(submission.getEnd_time().getYear()));
+            stmt.setTimestamp(3, new java.sql.Timestamp(submission.getStart_time().getTime()));
+            stmt.setTimestamp(4, new java.sql.Timestamp(submission.getEnd_time().getTime()));
             stmt.setDouble(5, submission.getScore());
             stmt.setInt(6, submission.getAttempt());
             stmt.setInt(7, submission.getSubmission_id());

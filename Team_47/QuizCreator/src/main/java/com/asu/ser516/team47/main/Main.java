@@ -73,8 +73,8 @@ public class Main {
                         "instructions NVARCHAR(500),\n" +
                         "shuffle BOOLEAN NOT NULL,\n" +
                         "time_limit INTEGER,\n" +
-                        "date_open DATE NOT NULL,\n" +
-                        "date_close DATE,\n" +
+                        "date_open DATETIME NOT NULL,\n" +
+                        "date_close DATETIME,\n" +
                         "quiz_type NVARCHAR(50) NOT NULL,\n" +
                         "attempts INTEGER,\n" +
                         "quiz_group NVARCHAR(50),\n" +
@@ -114,8 +114,8 @@ public class Main {
                         "submission_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                         "quiz_fk INTEGER NOT NULL,\n" +
                         "enrolled_fk INTEGER NOT NULL,\n" +
-                        "start_time DATETIME NOT NULL,\n" +
-                        "end_time DATETIME,\n" +
+                        "start_time TIMESTAMP NOT NULL,\n" +
+                        "end_time TIMESTAMP,\n" +
                         "score REAL,\n" +
                         "attempt INTEGER NOT NULL,\n" +
                         "FOREIGN KEY (quiz_fk) REFERENCES quizzes(quiz_id) ON DELETE CASCADE,\n" +

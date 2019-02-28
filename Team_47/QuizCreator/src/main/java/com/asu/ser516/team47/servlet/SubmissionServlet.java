@@ -1,7 +1,6 @@
 package com.asu.ser516.team47.servlet;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -64,8 +63,8 @@ public class SubmissionServlet extends HttpServlet {
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
-        LocalDateTime startTime = null;
-        LocalDateTime endTime = null;
+        Date startTime = null;
+        Date endTime = null;
         Integer attempt = null;
 
         List<Integer> choiceIds = new ArrayList<>();
@@ -155,8 +154,8 @@ public class SubmissionServlet extends HttpServlet {
      * @param attempt   number of attempts
      * @return true if the insertion into database succeeds, otherwise false.
      */
-    private boolean sendSubmission(int quizID, int enrollID, LocalDateTime startTime,
-                                   LocalDateTime endTime, float score, int attempt) {
+    private boolean sendSubmission(int quizID, int enrollID, Date startTime,
+                                   Date endTime, float score, int attempt) {
         boolean hasSucceeded;
         Date today = new Date();
 
@@ -226,10 +225,10 @@ public class SubmissionServlet extends HttpServlet {
         return null;
     }
 
-    private LocalDateTime validateDate(String value, HttpServletResponse response) throws IOException {
+    private Date validateDate(String value, HttpServletResponse response) throws IOException {
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-            LocalDateTime dt = (LocalDateTime) formatter.parse(value);
+            Date dt = (Date) formatter.parse(value);
             return dt;
         } catch (NumberFormatException nfe) {
             httpCode = 400;
