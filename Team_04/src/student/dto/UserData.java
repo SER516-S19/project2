@@ -13,6 +13,13 @@ public class UserData {
     private boolean isActive;
 
     /**
+     * Constructor will get called on object creation
+     */
+    public UserData() {
+
+    }
+
+    /**
      * Constructor for the class UserData
      * @param userName
      *        Unique name for the user
@@ -73,5 +80,7 @@ public class UserData {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+
 
 }
