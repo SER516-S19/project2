@@ -40,6 +40,7 @@ function Quiz(props) {
                 <ul className="answerOptions">
                     {props.answerOptions.map(renderAnswerOptions)}
                 </ul>
+
             </div>
         </CSSTransitionGroup>
     );
@@ -53,7 +54,8 @@ Quiz.propTypes = {
     questionId: PropTypes.any.isRequired,
     questionSerial: PropTypes.number.isRequired,
     questionTotal: PropTypes.number.isRequired,
-    onAnswerSelected: PropTypes.func.isRequired
+    onAnswerSelected: PropTypes.func.isRequired,
+
 };
 
 export default Quiz;

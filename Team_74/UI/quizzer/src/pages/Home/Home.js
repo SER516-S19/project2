@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import './Home.css';
-import {NavLink} from 'react-router-dom';
-import ListGroupItem from "react-bootstrap/ListGroupItem";
 import ListGroup from "react-bootstrap/ListGroup";
 import QuizListService from '../../api/QuizListService'
 
@@ -10,7 +8,7 @@ import {
     Card, CardBody
 } from 'reactstrap';
 import QuizInstruction from '../Professor/QuizInstruction/QuizInstruction';
-import axios from 'axios';
+
 
 
 class Home extends Component {
