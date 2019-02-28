@@ -1,8 +1,14 @@
 package bean;
 
-public class Grade {
+public final class Grade {
 
-	String studentId,quizId,grade;
+	private String studentId ="";
+	private String quizId = "";
+	private String grade = "";
+	private int totalAttempts = 0;
+	private int totalMarks = 0;
+	
+	// GETTER - SETTER METHODS.
 
 	/**
 	 * @return the studentId
@@ -31,7 +37,30 @@ public class Grade {
 	public void setQuizId(String quizId) {
 		this.quizId = quizId;
 	}
-
+	/**
+	 * @return the totalAttempts
+	 */
+	public int getTotalAttempts() {
+		return totalAttempts;
+	}
+	/**
+	 * @param TotalAttempts the TotalAttempts to set
+	 */
+	public void setTotalAttempts(int totalAttempts) {
+		this.totalAttempts = totalAttempts;
+	}
+	/**
+	 * @return the TotalMarks
+	 */
+	public int getTotalMarks() {
+		return totalMarks;
+	}
+	/**
+	 * @param TotalMarks the TotalMarks to set
+	 */
+	public void setTotalMarks(int totalMarks) {
+		this.totalMarks = totalMarks;
+	}
 	/**
 	 * @return the grade
 	 */
@@ -45,5 +74,4 @@ public class Grade {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}			
-
 }
