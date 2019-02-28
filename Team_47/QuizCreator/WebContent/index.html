@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="CSS/login_Style.css" />
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+<body>
+   <div class="Options">
+   <form>
+  <input type="radio" name="hello"  class="rd1"   value="Professor" checked>Professor<br>
+  <input type="radio" name="hello" class="rd2"  value="Student">Student
+  </div>
+</form> 
+   <div class="login-page">
+   <div class="form">
+   <form class="login-form">
+     <h3>Login</h3> 
+     <input type="text" placeholder="username" name="email" required/>
+     <input type="password" placeholder="password" name="password" required/>
+     <button id="btnlogin" onClick="onBtnClick()">login</button>
+   </form>
+   </div>
+</div>
+
+<script type="text/JavaScript">
+function onBtnClick(){
+	//alert("hi");
+	if(document.querySelectorAll(".rd2")[0].checked){
+		document.querySelector(".login-form").action="myquizzes.jsp"
+	}
+	else
+		{
+		document.querySelector(".login-form").action="dashboard_professor.jsp"
+		}
+}
+
+</script>
+</body>
+</html>

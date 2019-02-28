@@ -1,0 +1,90 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.App-logo {
+  animation: spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #8c1d40;
+  padding: 20px;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Blank-Nav{
+  list-style: none;
+  display: flex;
+  background-color: black;
+  margin-bottom: 20px;
+}
+
+.logout-button{
+  position:fixed;
+  font-size: 15px;
+  padding: 7px 15px;;
+  right:18px;
+  top:20px;
+  border-radius: 2px;
+  background-color: #e7e7e7; color: black;
+  transition-duration: 0.4s;
+}
+
+.logout-button:hover{
+  color: white;
+  background-color: #228B22;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  background-color: #2F4F4F;
+  margin-bottom: 20px;
+}
+
+nav ul li {
+  padding: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.current {
+  border-bottom: 4px solid white;
+}
+
+h1 {
+  margin-bottom: 20px;
+  -webkit-text-fill-color: white;
+}
+
+/*h2{*/
+  /*-webkit-text-fill-color: white;*/
+/*}*/
+p {
+  margin-bottom: 15px;
+}
