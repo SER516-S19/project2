@@ -37,8 +37,10 @@
                     <input name="password" class="form-control" placeholder="Enter password">
                 </div>
                 <div class="auto btnStyle btn-group">
-                    <p class="big" style="text-align:left"> I am a </p>
-                        <button type="button" class="btn btn-default dropdown-toggle pull-right" id="Select User" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="form-text">
+                        <label for="Select User">I am a</label>
+                    </div>
+                        <button type="button" class="btn btn-default dropdown-toggle" style="text-align:right" id="Select User" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Select User
                         </button>
                     <div class="dropdown-menu" id="user-dropdown">
@@ -48,6 +50,9 @@
                 </div>
                 <div class="custom-checkbox">
                     <label><input type="checkbox"> Remember me</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn1" formaction="./signup.jsp" name="action" value="signup"/>
                 </div>
                 <button type="submit" class="btn-primary form-control">Login</button>
             </form>
