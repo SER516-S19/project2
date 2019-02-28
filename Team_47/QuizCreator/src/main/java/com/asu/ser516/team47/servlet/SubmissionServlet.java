@@ -1,7 +1,9 @@
 package com.asu.ser516.team47.servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -127,7 +129,7 @@ public class SubmissionServlet extends HttpServlet {
         //check that all fields are present and no error has occurred
         if (httpCode != 204 || quizId == null || enrollId == null) {
             if (httpCode == 500) {
-                httpErrorMessage = "Server Error";
+                httpErrorMessage = "Error Loading parameters";
             }
             response.sendError(httpCode, httpErrorMessage);
             return;
@@ -143,6 +145,11 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(500);
             return;
         }
+
+        if(isLateSubmission(quizId)) {
+            response.sendError(401, "Your submission was past the due date");
+        }
+
         response.setStatus(httpCode);
 
         //TODO: call autograder, update score on Submission.
@@ -227,5 +234,33 @@ public class SubmissionServlet extends HttpServlet {
             httpErrorMessage = "Missing form data";
         }
         return null;
+    }
+
+    /**
+     * isLateSubmission
+     * Checks if submission for a quiz is overdue
+     * @param quizId the id of the quiz the submission is for
+     * @return true if late, false if submission is not late
+     */
+    private boolean isLateSubmission(int quizId) {
+        // Get due date of the quiz
+        QuizDAOImpl quizDAO = new QuizDAOImpl();
+        Quiz quizInfo = quizDAO.getQuiz(quizId);
+        Date quizSubmissionDate = quizInfo.getDate_close();
+
+        // Get current date
+        Calendar cal = Calendar.getInstance();
+        Date currentDate = cal.getTime();
+
+        // Format current date to same format as java.sql.Date
+        String dateFormat = "yyyy-MM-dd";
+        SimpleDateFormat dbDateFormat = new SimpleDateFormat(dateFormat);
+        String todayDate = dbDateFormat.format(currentDate);
+
+        // If the current date is > the quiz submission date, the quiz was submitted late
+        if (todayDate.compareTo(quizSubmissionDate.toString()) > 0) {
+            return true;
+        }
+        return false;
     }
 }
