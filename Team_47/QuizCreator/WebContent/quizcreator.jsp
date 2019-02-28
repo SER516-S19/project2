@@ -28,15 +28,15 @@ pageEncoding="UTF-8"%>
     </div>
     <div id='mid'>
         <form action="summarypage.jsp">
-            quiz title:</br>
+            Quiz title:</br>
             <input type='text' name='title' value='enter the title' size=30></br>
-            enter instructions:</br>
+            Instructions:</br>
             <input type='text' name='instructions' value='enter instructions' size=30></br>
-            enter the group of the quiz:</br>
+            Group of the quiz:</br>
             <input type='text' name='group' value='group name' size=30></br>
-            <div id='div1'>
+            <div id='questionDiv'>
+                <input type='button' onclick='addFields(this)' value='add question'>
             </div>
-            <input type='button' onclick='addFields()' value='add question'>
             <input id="beginbtn" type="submit" value="Submit">
 
         </form>
