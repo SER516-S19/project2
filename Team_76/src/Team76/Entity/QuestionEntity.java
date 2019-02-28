@@ -1,4 +1,4 @@
-package Team76.Controller;
+package Team76.Entity;
 
 public class QuestionEntity {
 	String question;

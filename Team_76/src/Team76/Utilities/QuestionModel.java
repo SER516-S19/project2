@@ -1,4 +1,4 @@
-package Team76.Controller;
+package Team76.Utilities;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Team76.Entity.QuestionEntity;
 
 /**
  * SER516-Project2 File content- Captures the Quiz Questions Information from UI
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  **/
 
-public class QuestionsController {
+public class QuestionModel {
 	List<QuestionEntity> questionsList;
 
 	/*
@@ -25,7 +27,7 @@ public class QuestionsController {
 
 	public void getParameters(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		questionsList = new ArrayList();
-		DatabaseQuestions database = new DatabaseQuestions();
+		QuestionPageQuery database = new QuestionPageQuery();
 		QuestionEntity entity = new QuestionEntity();
 
 		entity.setQuestion(request.getParameter("question"));
