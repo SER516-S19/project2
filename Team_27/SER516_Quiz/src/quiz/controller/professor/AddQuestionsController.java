@@ -32,6 +32,8 @@ public class AddQuestionsController extends HttpServlet {
 
 		try {
 			String quizId = request.getSession().getAttribute("quizId").toString();
+			
+			QuestionsDao.removeAllQuestionsFromQuiz(Integer.parseInt(quizId));
 
 			while (paramNames.hasMoreElements()) {
 				String paramName = (String) paramNames.nextElement();
