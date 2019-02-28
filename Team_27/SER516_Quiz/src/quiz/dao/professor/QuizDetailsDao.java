@@ -46,6 +46,7 @@ public class QuizDetailsDao {
 		String sql = dbProperties.getProperty("SELECTALL_QUIZ");
 
 		try {
+			System.out.println(conn);
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
 			rs = preparedStatement.executeQuery();
 			while (rs.next()) {
