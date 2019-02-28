@@ -42,19 +42,11 @@
         <tr>
             <td>
                 <c:forEach items="${ids}" var="quizId">
-                    <a href="viewContentDetails.jsp?quizId=${quizId}">Quiz<c:out value="${quizId}"></c:out></a><br>
+                    <a href="./viewContentDetails?quizId=${quizId}">Quiz<c:out value="${quizId}"></c:out></a><br>
                 </c:forEach>
             </td>
         </tr>
     </table>
 </div>
-<%--<table>
-  <tr><th>Quizzes</th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #1</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #2</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #3</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #4</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #5</a></th></tr>
-</table>--%>
 </body>
 </html>

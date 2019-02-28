@@ -6,6 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="content.creator.dao.QuizContentDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
 <html>
 <head>
     <title>view-details</title>
@@ -31,63 +36,34 @@
 <h2> <%="Quiz"%></h2>
 <table>
     <tr>
+        <th>Question Number</th>
         <th>Questions</th>
         <th>Options</th>
         <th>Score</th>
     </tr>
+
+    <%
+        Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
+        List<QuizContentDAO> questionList=(ArrayList<QuizContentDAO>)request.getAttribute("questions");
+        int count = 0;
+        Boolean flag;
+        for(QuizContentDAO question:questionList){
+            flag = true ? count % answers.size() == 0 : false;
+    %>
     <tr>
-        <td>Static Data</td>
-        <td>Static Data</td>
-        <td>Static Data</td>
+
+        <td><%=question.getQuesId()%></td>
+        <td><%=question.getQuesDesc()%></td>
+        <td><%=question.getMaxScore()%></td></tr>
+        <tr>
+
+
+
     </tr>
-    <tr>
-        <td><span>Question #1<span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>10</td>
-    </tr>
-    <tr>
-        <td><span>Question #2 </span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>5</td>
-    </tr>
-    <tr>
-        <td><span > Question #3 </span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>15</td>
-    </tr>
-    <tr>
-        <td><span > Question #4 </span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>10</td>
-    </tr>
+    <%
+            count++;
+
+        }%>
 </table>
 </body>
 </html>
