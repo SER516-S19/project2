@@ -37,6 +37,7 @@ class Login extends React.Component {
     }
   }
 
+
   // App "actions" (functions that modify state)
   signIn(username, password) {
     // This is where you would call Firebase, an API etc...
