@@ -39,9 +39,6 @@ public class QuizActionController extends HttpServlet {
 	@SuppressWarnings("static-access")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// set Content-Type and other response headers
-		response.setHeader("Cache-Control", "no-cache");
-		response.setContentType("text/html");
 		// perform processing and selects the action based on the button click
 		try {
 			String strActionToPerform = request.getParameter("actonToPerform");
@@ -78,7 +75,6 @@ public class QuizActionController extends HttpServlet {
 			// Block for updating the details of the selected quiz.
 			else if (strActionToPerform.equalsIgnoreCase("update")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
-
 				if (quizModel != null) {
 					request.setAttribute("model", quizModel);
 					request.getRequestDispatcher("EditQuiz.jsp").forward(request, response);
