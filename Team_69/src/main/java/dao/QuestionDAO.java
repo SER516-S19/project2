@@ -134,5 +134,27 @@ public class QuestionDAO {
 		
 	}
 
+	public void editQuestionByQuestionId(String quesId) {
+		Transaction transaction = null;
+		Question quesList = null;
+		try  {
+			int qId = Integer.parseInt(quesId);
+			System.out.println(qId);
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			quesList = (Question) session.get(Question.class, qId);
+			session.save(quesList);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return ;
+		}
+		return ;
+		
+	}
+
 	
 }

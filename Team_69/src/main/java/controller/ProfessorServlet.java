@@ -73,13 +73,6 @@ public class ProfessorServlet extends HttpServlet {
 			session.setAttribute("quiz", quiz);
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
 		}
-//		else if("deleteQuestion".equalsIgnoreCase(flag)) {
-//			String quesID = request.getParameter("quesId");
-//			QuestionDAO questionDAO = new QuestionDAO();
-//			questionDAO.deleteQuestionByQuestionId(quesID);
-			// need to refresh the same page after delete
-//			response.sendRedirect(request.getContextPath()+"/views/displayQuestionstoProfessor.jsp");
-//		}
 	}
 
 	/**
@@ -105,36 +98,20 @@ public class ProfessorServlet extends HttpServlet {
 			String flag1 = request.getParameter("flagOld");
 			String id = request.getParameter("quizId");
 			String quizName = request.getParameter("quizName");
-			
-			System.out.println(flag1);
-			System.out.println(id);
-			System.out.println(quizName);
 			QuestionDAO questionDAO = new QuestionDAO();
 			questionDAO.deleteQuestionByQuestionId(quesID);
-//			questionDAO.deleteAnswerByQuestionId(quesId);
 			response.sendRedirect("ProfessorController?" + "flag="+ flag1 + "&id="+id + "&quizName=" + quizName);
-		} 
-		else if ("DeleteQuestion".equals(flag)) {
-			String quesId = request.getParameter("box1");
-			QuestionDAO questionDAO = new QuestionDAO();
-			questionDAO.deleteQuestionByQuestionId(quesId);
-//			questionDAO.deleteAnswerByQuestionId(quesId);
-			response.sendRedirect("views/removeQuestionPage.jsp");
-		} 
+		}  
 		else if ("EditQuestion".equals(flag)) {
-			String quesId = request.getParameter("box2");
-			System.out.println(quesId);
-			//List<Quiz> quizList = professorServices.getAllQuizzes();
-			QuestionDAO questionDAO = new QuestionDAO();
-			List<Answer> answerList=questionDAO.getDataByQuestionId(quesId);
-			System.out.println(answerList);
-			
-			//request.setAttribute("name", "Hussein Terek");
-			//request.getRequestDispatcher("home.jsp").forward(request, response);
-			
-			request.setAttribute("answerList", answerList);
+			String quesId = request.getParameter("quesId");
+			String quizId = request.getParameter("quizId");
+			String quizName = request.getParameter("quizName");
+			int quizid = Integer.parseInt(quizId);
+			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizid);
+			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
+			request.setAttribute("quesId", quesId);
+			request.setAttribute("queAnsData", queAnsData);
 			request.getRequestDispatcher("views/canEditQuestion.jsp").forward(request, response);
-			//response.sendRedirect("views/canEditQuestion.jsp");
 		}
 		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag) || "Verify Questions".equals(flag)) {
 			

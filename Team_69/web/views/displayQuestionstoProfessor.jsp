@@ -20,7 +20,7 @@
 
 		<div>
 			<center>
-				<h1>${requestScope.quizName}</h1>
+				<h6>${requestScope.quizName}</h6>
 			</center>
 		</div>
 
@@ -33,16 +33,16 @@
 							aria-controls="collapse${question[3]}">
 						<c:out value="${question[0]}"></c:out>	
 						</button>
-
+					
 					<form action="../Team_69/ProfessorController" method="post">
 						<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
 						<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
 						<input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden">
 						<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
-						
-	    				<input type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" />
+						<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
+	    				<button type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" >Delete</button>
+	    				<button type="submit" value="EditQuestion" name="flag" class="btn btn-primary">Edit</button>
 					</form>	
-					<button type="submit" class="btn btn-primary">Edit</button>
 
 					</h5>
 					
