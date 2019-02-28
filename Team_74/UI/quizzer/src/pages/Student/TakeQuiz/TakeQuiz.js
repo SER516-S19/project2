@@ -35,6 +35,7 @@ class TakeQuiz extends Component {
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
         this.setPreviousQuestion = this.setPreviousQuestion.bind(this);
         this.submitQuiz = this.submitQuiz.bind(this);
+        // this.calculatePoints(any) = this.calculatePoints.bind(this);
     }
 
     /**
@@ -52,12 +53,17 @@ class TakeQuiz extends Component {
                 const shuffledAnswerOptions = this.state.quizQuestions.map((question) => this.shuffleArray(question.options));
                 this.setState({
                     questionText: this.state.quizQuestions[0].questionText,
+                    point: this.state.quizQuestions[0].marks,
+                    correctAnswer: this.state.quizQuestions[0].correctAnswer,
                     answerOptions: shuffledAnswerOptions[0]
             });
+
+                console.log(this.state.point);
         })
 
-        console.log(params.get('quizId'));
+        console.log(this.state.point);
     }
+
 
     submitQuiz() {
         setTimeout(() => this.setResults(this.getResults()), 300);
@@ -83,29 +89,19 @@ class TakeQuiz extends Component {
     };
 
     setUserAnswer(answer) {
-        const totalMarks = this.state.totalMarks + this.state.point;
-        if(answer.toString().localeCompare(this.state.correctAnswer) === 0){
-            const totalPoints = this.state.totalPoints + this.state.point;
+        console.log("Here")
+        this.setState((state) => ({
+            answersCount: {
+                ...state.answersCount,
+                [answer]: state.answersCount[answer] + 1
+            },
+            answer: answer,
+            totalMarks: state.totalMarks + state.point,
+            totalPoints: (answer.toString().localeCompare(this.state.correctAnswer) === 0) ? state.totalPoints + state.point: state.totalPoints
+        }));
 
-            this.setState((state) => ({
-                answersCount: {
-                    ...state.answersCount,
-                    [answer]: state.answersCount[answer] + 1
-                },
-                answer: answer,
-                totalPoints: totalPoints,
-                totalMarks:totalMarks
-            }));
-        }else {
-            this.setState((state) => ({
-                answersCount: {
-                    ...state.answersCount,
-                    [answer]: state.answersCount[answer] + 1
-                },
-                answer: answer,
-                totalMarks:totalMarks
-            }));
-        }
+        console.log(answer)
+
 
         console.log(this.state.totalPoints);
     }
@@ -113,6 +109,7 @@ class TakeQuiz extends Component {
     setNextQuestion() {
         const counter = this.state.counter + 1;
         const questionSerial = this.state.questionSerial + 1;
+
         this.setState({
             counter: counter,
             questionId: this.state.quizQuestions[counter].id,
@@ -123,7 +120,7 @@ class TakeQuiz extends Component {
             correctAnswer: this.state.quizQuestions[counter].correctAnswer,
             point: this.state.quizQuestions[counter].marks
         });
-        console.log(this.state.point);
+        // console.log(this.state.point);
     }
 
     setPreviousQuestion() {
@@ -151,24 +148,13 @@ class TakeQuiz extends Component {
         const answersCountKeys = Object.keys(answersCount);
         const answersCountValues = answersCountKeys.map((key) => answersCount[key]);
         const maxAnswerCount = Math.max.apply(null, answersCountValues);
+
         return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
     }
 
     setResults (result) {
-        const totalMarks = this.state.totalMarks + this.state.point;
-         if(this.state.answer.toString().localeCompare(this.state.correctAnswer) === 0){
-             const totalPoints = this.state.totalPoints + this.state.point;
-             this.setState({
-                 totalPoints: totalPoints,
-                 totalMarks: totalMarks
-             });
-         }else{
-             const totalPoints = this.state.totalPoints;
-             this.setState({
-                 totalPoints: totalPoints,
-                 totalMarks: totalMarks
-             });
-         }
+        console.log(this.state.answer)
+        // this.calculatePoints(this.state.answer);
 
         if (result.length === 1) {
             this.setState({ result: result[0] });
@@ -228,21 +214,11 @@ class TakeQuiz extends Component {
                     >
                         {() => (
                             <React.Fragment>
-                                {/*<Timer.Days /> days*/}
-                                {/*<Timer.Hours /> hours*/}
                                 <Timer.Minutes /> minutes <span></span> <span></span>
                                 <Timer.Seconds /> seconds
-                                {/*<Timer.Milliseconds /> milliseconds*/}
                             </React.Fragment>
                         )}
                     </Timer>
-                {/*<Timer >*/}
-                    {/*/!*<Timer.Days /> days*!/*/}
-                    {/*/!*<Timer.Hours /> hours*!/*/}
-                    {/*<Timer.Minutes /> minutes <span></span> <span></span>*/}
-                    {/*<Timer.Seconds /> seconds*/}
-                    {/*/!*<Timer.Milliseconds /> milliseconds*!/*/}
-                {/*</Timer>*/}
                 </div>
             <Quiz
                 answer={this.state.answer}
@@ -289,7 +265,6 @@ class TakeQuiz extends Component {
             </div>
         );
     }
-
 
 
 }
