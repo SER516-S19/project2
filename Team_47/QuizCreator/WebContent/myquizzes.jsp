@@ -5,7 +5,8 @@
   --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
+<%@ page import="com.asu.ser516.team47.database.*"%>
+<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +31,31 @@
 			<thead>
 				<tr>
 					<th class="text-left">Quiz No.</th>
+					<th class="text-left">Title</th>
 					<th class="text-left">Quiz Instruction</th>
 				</tr>
 			</thead>
 			<tbody class="table-hover">
-				<%=QuizList.createQuizSelectTable()%>
+				<%!String createQuizSelectTable() {
+		List<Quiz> quizzes = new QuizDAOImpl().getAllQuizzes();
+		StringBuilder buf = new StringBuilder();
+
+		for (int i = 0; i < quizzes.size(); i++) {
+			int id = quizzes.get(i).getQuiz_id();
+			String title = quizzes.get(i).getTitle();
+			String instruction = quizzes.get(i).getInstructions();
+			buf.append(String.format(
+					"<tr>" + "<td>%d</td>" + 
+					"<td class=\"text-left\">" + 
+					"%s</td>" + 
+					"<td>%s</td>" +
+					"</tr>",
+					id, title, instruction));
+		}
+		String html = buf.toString();
+		return html;
+	}%>
+				<%=createQuizSelectTable()%>
 			</tbody>
 		</table>
 	</div>
