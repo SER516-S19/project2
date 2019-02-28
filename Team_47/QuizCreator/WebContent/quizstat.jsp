@@ -25,9 +25,31 @@
 
                 <%
                 QuizDAO quizDAO = new QuizDAOImpl();
+                SubmissionDAO submissionDAO = new SubmissionDAOImpl();
+
                 List<Quiz> quizzes = quizDAO.getAllQuizzes();
-                int quizLength = quizzes.size();
-                out.println(quizLength);
+                int scoreRange = quizzes.size();
+                int[] scoreBucket = new int[5];
+                for (int i=0; i<scoreRange; ++i) {
+                    Quiz quiz = quizzes.get(i);
+                    List<Submission> submissionForThisQuiz = submissionDAO.getQuizSubmissions(quiz.getQuiz_id());
+                    for (int submissionIdx=0; submissionIdx<submissionForThisQuiz.size(); submissionIdx++) {
+                        Submission thisSubmission = submissionForThisQuiz.get(submissionIdx);
+                        float score = thisSubmission.getScore();
+                        if (score < 60) {
+                            scoreBucket[0] += 1;
+                        } else if (score < 70) {
+                            scoreBucket[1] += 1;
+                        } else if (score < 80) {
+                            scoreBucket[2] += 1;
+                        } else if (score < 90) {
+                            scoreBucket[3] += 1;
+                        } else if (score <= 100) {
+                            scoreBucket[4] += 1;
+                        }
+                    }
+                    out.println("Quiz " + i + " has " + submissionForThisQuiz.size() + " submissions.\n");
+                }
                 %>
 
                 <div id="area2">
@@ -36,12 +58,21 @@
                     <canvas id="chart2" width="600" height="400"></canvas>
 
                     <script>
-                        var studentID = [...Array(<%=quizLength%>)];
-                        var scores = [50, 30, 25, 10, 80];
+                        var scoreRangeDescript = [...Array(<%=scoreRange%>)];
+                        var scores = [...Array(<%=scoreRange%>)];
+                        scoreRangeDescript[0] = "F";
+                        scoreRangeDescript[1] = "60 - 69";
+                        scoreRangeDescript[2] = "70 - 79";
+                        scoreRangeDescript[3] = "80 - 89";
+                        scoreRangeDescript[4] = "90 - 100";
+
+                        <% for (int i=0; i<scoreBucket.length; i++) { %>
+                        scores[<%= i %>] = "<%= scoreBucket[i] %>"; 
+                        <% } %>
 
                         // bar chart data
                         var barData = {
-                            labels: studentID,
+                            labels: scoreRangeDescript,
                             datasets: [
                                 {
                                     fillColor: "rgba(151,187,205,0.2)",
