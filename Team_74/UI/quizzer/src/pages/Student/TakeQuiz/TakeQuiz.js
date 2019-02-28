@@ -26,6 +26,10 @@ class TakeQuiz extends Component {
                 microsoft: 0,
                 sony: 0
             },
+            correctAnswer:'',
+            point:0,
+            totalPoints:0,
+            totalMarks:0,
             result: ''
         };
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -79,15 +83,31 @@ class TakeQuiz extends Component {
     };
 
     setUserAnswer(answer) {
-        this.setState((state) => ({
-            answersCount: {
-                ...state.answersCount,
-                [answer]: state.answersCount[answer] + 1
-            },
-            answer: answer
-        }));
+        const totalMarks = this.state.totalMarks + this.state.point;
+        if(answer.toString().localeCompare(this.state.correctAnswer) === 0){
+            const totalPoints = this.state.totalPoints + this.state.point;
 
-        console.log(answer);
+            this.setState((state) => ({
+                answersCount: {
+                    ...state.answersCount,
+                    [answer]: state.answersCount[answer] + 1
+                },
+                answer: answer,
+                totalPoints: totalPoints,
+                totalMarks:totalMarks
+            }));
+        }else {
+            this.setState((state) => ({
+                answersCount: {
+                    ...state.answersCount,
+                    [answer]: state.answersCount[answer] + 1
+                },
+                answer: answer,
+                totalMarks:totalMarks
+            }));
+        }
+
+        console.log(this.state.totalPoints);
     }
 
     setNextQuestion() {
@@ -99,8 +119,11 @@ class TakeQuiz extends Component {
             questionSerial: questionSerial,
             questionText: this.state.quizQuestions[counter].questionText,
             answerOptions: this.state.quizQuestions[counter].options,
-            answer: ''
+            answer: '',
+            correctAnswer: this.state.quizQuestions[counter].correctAnswer,
+            point: this.state.quizQuestions[counter].marks
         });
+        console.log(this.state.point);
     }
 
     setPreviousQuestion() {
@@ -117,7 +140,9 @@ class TakeQuiz extends Component {
                 questionSerial: questionSerial,
                 questionText: this.state.quizQuestions[counter].questionText,
                 answerOptions: this.state.quizQuestions[counter].options,
-                answer: ''
+                answer: '',
+                correctAnswer: this.state.quizQuestions[counter].correctAnswer,
+                point:this.state.quizQuestions[counter].marks
             });
         }
     }
@@ -130,10 +155,25 @@ class TakeQuiz extends Component {
     }
 
     setResults (result) {
+        const totalMarks = this.state.totalMarks + this.state.point;
+         if(this.state.answer.toString().localeCompare(this.state.correctAnswer) === 0){
+             const totalPoints = this.state.totalPoints + this.state.point;
+             this.setState({
+                 totalPoints: totalPoints,
+                 totalMarks: totalMarks
+             });
+         }else{
+             const totalPoints = this.state.totalPoints;
+             this.setState({
+                 totalPoints: totalPoints,
+                 totalMarks: totalMarks
+             });
+         }
+
         if (result.length === 1) {
             this.setState({ result: result[0] });
         } else {
-            this.setState({ result: 'Undetermined' });
+            this.setState({ result: this.state.totalPoints +" out of "+ this.state.totalMarks });
         }
     }
 
