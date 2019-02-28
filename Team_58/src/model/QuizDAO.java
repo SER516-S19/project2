@@ -16,8 +16,8 @@ import java.util.List;
  */
 public interface QuizDAO {
 	public List<QuizVO> getQuizzesForCourse(int courseId) throws SQLException, ClassNotFoundException;
-	public void insertingQuizDetails (CreateQuizVO createQuizVO) throws  SQLException, ClassNotFoundException;
-	public int gettingQuizId (CreateQuizVO createQuizVO) throws  SQLException, ClassNotFoundException;
+	public void insertingQuizDetails (QuizVO quizVO) throws  SQLException, ClassNotFoundException;
+	public int gettingQuizId (QuizVO quizVO) throws  SQLException, ClassNotFoundException;
 	public List<QuizVO> getQuizzesForStudent(UserVO student) throws SQLException, ClassNotFoundException;
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException;
 }

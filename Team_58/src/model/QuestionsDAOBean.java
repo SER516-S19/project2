@@ -165,7 +165,8 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query.setInt(4, points);
 			query.setInt(5, qId);
 			
-			query.executeQuery();
+			query.executeUpdate();
+			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -202,6 +203,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		    while (result.next()) {
 		    	   int questionId = result.getInt("questionId");
 	 			   int points = result.getInt("totalPoints");
+	 			   int mcq = result.getInt("isMCQ");
 	 			   String question = result.getString("question");
 	 			   
 	 			   
@@ -210,16 +212,18 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 			   
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
-
+	 			   JSONObject jo2 = (JSONObject)parser.parse(answer);
+	 			   String ans1 = (String) jo2.get("correctAnswer1");
+	 			  
 	 			   
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
-
+	 			   
 	 			   
 	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, 
-	 					   						choice1, choice2, choice3, question);
-	 			   list.add(quiz);
+		 					   						choice1, choice2, choice3, question);
+		 			   list.add(quiz);
 			   }
 		}catch(ParseException e) {
 			e.printStackTrace();
