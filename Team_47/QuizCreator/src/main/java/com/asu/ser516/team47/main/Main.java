@@ -114,10 +114,10 @@ public class Main {
                         "submission_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                         "quiz_fk INTEGER NOT NULL,\n" +
                         "enrolled_fk INTEGER NOT NULL,\n" +
-                        "time_taken INTEGER,\n" +
-                        "date_taken DATE,\n" +
+                        "start_time DATETIME NOT NULL,\n" +
+                        "end_time DATETIME,\n" +
                         "score REAL,\n" +
-                        "attempt INTEGER,\n" +
+                        "attempt INTEGER NOT NULL,\n" +
                         "FOREIGN KEY (quiz_fk) REFERENCES quizzes(quiz_id) ON DELETE CASCADE,\n" +
                         "FOREIGN KEY (enrolled_fk) REFERENCES enrolled(enrolled_id) ON DELETE CASCADE\n" +
                         ");",
