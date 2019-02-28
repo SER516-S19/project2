@@ -24,15 +24,10 @@ INSERT INTO Quizzes (title, course_fk, instructions, shuffle,
 VALUES	("Late Quiz", 1, "Dude, this was due a while ago.",
 	1, 90000, "1995-12-25 00:00:00.000", "2012-10-31 00:00:00.000", "quiz", 5, "Being totally radical",
 	9000000.9);
-INSERT INTO Quizzes (title, course_fk, instructions, shuffle,
-	time_limit, date_open, date_close, quiz_type, attempts, quiz_group, total_points)
-VALUES	("Negatives", 1, "test negative numbers throughout", 0,
-	-1, "2018-12-25 00:00:00.000", "2020-04-08 00:00:00.000", "quiz", -2, "negatives", -50);
 	
 
 INSERT INTO Questions (quiz_fk, quesType, points, content)
-VALUES 
-	(1, "mc", 20.5, "1. What species has the greatest knees?");
+VALUES (1, "mc", 20.5, "1. What species has the greatest knees?");
 INSERT INTO Questions (quiz_fk, quesType, points, content)
 VALUES 	(1, "ma", 280, "2. Which of the following are cool places?");
 INSERT INTO Questions (quiz_fk, quesType, points, content)
@@ -55,10 +50,6 @@ INSERT INTO Questions (quiz_fk, quesType, points, content)
 VALUES 	(3, "mc", 1, "Hang on, there's only one answer here?");
 INSERT INTO Questions (quiz_fk, quesType, points, content)
 VALUES 	(4, "mc", 9000000.9, "Who authored this file?");
-INSERT INTO Questions (quiz_fk, quesType, points, content)
-VALUES 	(5, "mc", 50, "True is the correct answer");
-INSERT INTO Questions (quiz_fk, quesType, points, content)
-VALUES 	(5, "mc", -100, "False is the correct answer");
 
 INSERT INTO Choices (question_fk, content, correct)
 VALUES	(1, "Bears", 0);
@@ -132,14 +123,6 @@ INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(12, "A swarm of bees", 0);
 INSERT INTO Choices (question_fk, content, correct)
 VALUES 	(12, "3 midgets in a trench coat", 0);
-INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(13, "True", 1);
-INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(13, "False", 0);
-INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(14, "True", 0);
-INSERT INTO Choices (question_fk, content, correct)
-VALUES 	(14, "False", 1);
 
 INSERT INTO Students (username, firstname, lastname, hashedpass)
 VALUES ("boywholived", "Harry", "Potter", "214988dgsadg79");

@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String context_Path = "";
         String base_path = new File("WebContent").getAbsolutePath();
+        String url = "jdbc:sqlite:schema.db";
 
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(base_path);
@@ -29,8 +30,6 @@ public class Main {
 
         Connection conn = null;
         try {
-            // db parameters
-            String url = "jdbc:sqlite:schema.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
@@ -38,6 +37,12 @@ public class Main {
             //}
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+        //populate the db with test data
+        try {
+            SQLScriptRunner.run("exampleQuiz.sql");
+        } catch( SQLException sqle){
+            //Database already contains these entries: Do nothing.
         }
         tomcat.start();
         tomcat.getServer().await();

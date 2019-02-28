@@ -1,6 +1,6 @@
 package com.asu.ser516.team47.utils;
 
-import com.asu.ser516.team47.database.QuizDAOImpl;
+import com.asu.ser516.team47.database.*;
 import org.json.simple.JSONArray;
 
 import java.sql.Connection;
@@ -15,8 +15,9 @@ import java.util.List;
  * Utility to help the submission servlet validate incoming data. Checks for
  * quiz sameness and attempt limits.
  * @author Ruby (Qianru) Zhao
- * @version 1.0
- * @since 2/23/19
+ * @author David Lahtinen
+ * @version 1.1
+ * @since 2/28/19
  */
 public class ServletValidation {
 
@@ -29,46 +30,12 @@ public class ServletValidation {
      * @param choiceID  choice ID to be validated
      * @return true if choice ID matches, otherwise false.
      */
-    public static boolean  validSameQuiz(int quizID, int choiceID) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int result;
-
-        try {
-            conn = DriverManager.getConnection(url);
-            stmt = conn.prepareStatement("select quiz_id from submissions" +
-                    "inner join answers on answers.submission_fk =" +
-                    "submissions.submission_id where = ?");
-            stmt.setInt(1, choiceID);
-            rs = stmt.executeQuery();
-            result = rs.getInt("quiz_id");
-        }
-        catch (Exception se) {
-            se.printStackTrace();
-            return false;
-        }
-        finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
-        }
-
-        return quizID == result;
-    }
-
-    /**
-     * Validates whether the attempt number of the student's current submission is within
-     * the limits of the attempt limit set for the quiz.
-     * @param quizID    quiz ID of current submission
-     * @param attempt   student attempt number
-     * @return true if attempt is within limits, otherwise false.
-     */
-    public static boolean validAttempt(int quizID, int attempt) {
-        QuizDAOImpl quizDAO = new QuizDAOImpl();
-        return attempt <= quizDAO.getQuiz(quizID).getAttempts();
+    public static boolean validSameQuiz(int quizID, int choiceID) {
+        Choice choice = new ChoiceDAOImpl().getChoice(choiceID);
+        Question ques = new QuestionDAOImpl().getQuestion(choice.getQuestion_fk());
+        Quiz quizOfOrigin = new QuizDAOImpl().getQuiz(ques.getQuiz_fk());
+        int quizOfOriginID = quizOfOrigin.getQuiz_id();
+        return quizID == quizOfOrigin.getQuiz_id();
     }
 
     /**
@@ -78,11 +45,11 @@ public class ServletValidation {
      * @return null if invalid. else a list of choices.
      */
     public static List<Integer> buildAndValidateChoiceList(JSONArray jsonChoices, int quizId){
-        Iterator<Integer> it = jsonChoices.iterator();
-        List<Integer> ret = new ArrayList<Integer>();
+        Iterator<Long> it = jsonChoices.iterator();
+        List<Integer> ret = new ArrayList<>();
         while (it.hasNext()) {
-            int choiceId = it.next();
-            if (ServletValidation.validSameQuiz(choiceId, quizId)){
+            int choiceId = it.next().intValue();
+            if (ServletValidation.validSameQuiz(quizId, choiceId)){
                 ret.add(choiceId);
             } else {
                 return null;
