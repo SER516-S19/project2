@@ -33,7 +33,10 @@ public class InputValidation {
     public String signupValidation(String userName, String passWord, String userType)
     {
         List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
-                "SELECT userName from userDetails where userName=" +userName);
+                "SELECT * from userDetails where userName='"+userName+"'");
+
+
+
         String updateQuery = "INSERT INTO userDetails(userName,password,userType,isActive) VALUES(?,?,?,?)";
 
         if (userExists == null || userExists.isEmpty()){
