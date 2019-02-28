@@ -58,12 +58,12 @@
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="bmd-label-floating">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1">
+                    <input type="email" class="form-control" id="exampleInputEmail1" required>
                     <span class="bmd-help">We'll never share your email with anyone else.</span>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="bmd-label-floating">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" id="exampleInputPassword1" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-raised">Sign Up</button>
             </form>
