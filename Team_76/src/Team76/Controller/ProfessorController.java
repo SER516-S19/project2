@@ -80,18 +80,23 @@ public class ProfessorController extends HttpServlet {
 			}
 			response.sendRedirect("ProfessorDash.jsp");
 		}
-		if (action.equals("Continue1")) {
+		if (action.equals("Continue1")) { 
 			try {
-				q.getParameters(request, response);
+				q.getParameters(request, response);       
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			response.sendRedirect("Questions.jsp");
 		}
 
-		if (action.equals("Cancel1")) {
+		if (action.equals("Cancel")) {
 			response.sendRedirect("ProfessorDash.jsp");
 		}
+		
+		if (action.equals("Logout")) {
+			response.sendRedirect("ProfessorDash.jsp");
+		}
+		
 
 	}
 
