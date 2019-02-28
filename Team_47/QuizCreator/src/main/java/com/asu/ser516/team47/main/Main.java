@@ -4,9 +4,7 @@ import java.io.File;
 import java.sql.*;
 
 import com.asu.ser516.team47.servlet.SubmissionServlet;
-import com.asu.ser516.team47.servlet.StatsServlet;
 
-import com.asu.ser516.team47.utils.SQLScriptRunner;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
@@ -27,11 +25,6 @@ public class Main {
 
         tomcat.addServlet(context_Path, servletName, new SubmissionServlet());
         context.addServletMappingDecoded("/submit", servletName);
-
-        servletName = "StatsServlet";
-
-        tomcat.addServlet(context_Path, servletName, new StatsServlet());
-        context.addServletMappingDecoded("/stats", servletName);
 
         Connection conn = null;
         try {
