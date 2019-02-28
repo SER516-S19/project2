@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './TakeQuiz.css';
-import Result from '../../components/Result';
+import Result from '../../../components/Result';
 // import quizQuestions from '../../api/quizQuestions';
-import Quiz from '../../components/Quiz';
+import Quiz from '../../../components/Quiz';
 import Timer from "react-compound-timer";
 import axios from "axios";
 
@@ -150,16 +150,59 @@ class TakeQuiz extends Component {
     }
 
     renderQuiz() {
+
+
         return (
+
             <div>
                 <div className="Timer">
-                <Timer >
-                    {/*<Timer.Days /> days*/}
-                    {/*<Timer.Hours /> hours*/}
-                    <Timer.Minutes /> minutes <span></span> <span></span>
-                    <Timer.Seconds /> seconds
-                    {/*<Timer.Milliseconds /> milliseconds*/}
-                </Timer>
+                    <Timer
+
+                        checkpoints={[
+                            {
+                                time: 1000,
+                                callback: () => {
+
+                                    window.onbeforeunload = function() {
+                                        return "Data will be lost if you leave the page, are you sure?";
+
+                                    };
+
+                                }
+                            },{
+                                time: 1000 * 30,
+                                callback: () => {
+
+                                    alert ("Half-Time over Warning Message!! Quiz will submit automatically on time completion")
+
+                                }
+
+                            },
+                            {
+                                time: 1000 * 60,
+                                callback: () => {
+                                    alert("Your Quiz is being submitted!! Thanks for taking the Test");
+                                    this.submitQuiz()},
+                            }
+                        ]}
+                    >
+                        {() => (
+                            <React.Fragment>
+                                {/*<Timer.Days /> days*/}
+                                {/*<Timer.Hours /> hours*/}
+                                <Timer.Minutes /> minutes <span></span> <span></span>
+                                <Timer.Seconds /> seconds
+                                {/*<Timer.Milliseconds /> milliseconds*/}
+                            </React.Fragment>
+                        )}
+                    </Timer>
+                {/*<Timer >*/}
+                    {/*/!*<Timer.Days /> days*!/*/}
+                    {/*/!*<Timer.Hours /> hours*!/*/}
+                    {/*<Timer.Minutes /> minutes <span></span> <span></span>*/}
+                    {/*<Timer.Seconds /> seconds*/}
+                    {/*/!*<Timer.Milliseconds /> milliseconds*!/*/}
+                {/*</Timer>*/}
                 </div>
             <Quiz
                 answer={this.state.answer}
