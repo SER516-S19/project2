@@ -62,7 +62,8 @@ public class SubmissionServlet extends HttpServlet {
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
-        Integer timeTaken = null;
+        Date startTime = null;
+        Date endTime = null;
         Integer attempt = null;
 
         List<Integer> choiceIds = new ArrayList<>();
@@ -96,9 +97,9 @@ public class SubmissionServlet extends HttpServlet {
                         httpCode = 400;
                         break;
                     }
-                } else if (paramName.equals("timeTaken")) {
-                    timeTaken = validateInteger(request.getParameter("timeTaken"), response);
-                    if (timeTaken <= 0) {
+                } else if (paramName.equals("startTime")) {
+                    startTime = validateInteger(request.getParameter("startTime"), response);
+                    if (startTime <= 0) {
                         httpCode = 400;
                         break;
                     }
@@ -119,7 +120,7 @@ public class SubmissionServlet extends HttpServlet {
             }
         }
 
-        if (httpCode != 204 || quizId == null || enrollId == null || timeTaken == null
+        if (httpCode != 204 || quizId == null || enrollId == null || startTime == null
                 || attempt == null) {
             if (httpCode == 500) {
                 httpErrorMessage = "Server Error";
@@ -128,7 +129,7 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
 
-        if (!sendSubmission(quizId, enrollId, timeTaken, 0, attempt)){
+        if (!sendSubmission(quizId, enrollId, startTime, endTime, 0,attempt)){
             response.sendError(500);
             return;
         }
@@ -146,18 +147,19 @@ public class SubmissionServlet extends HttpServlet {
      * sends it to the database as a new submission table.
      * @param quizID    quiz ID
      * @param enrollID  enrollment ID
-     * @param time      time the quiz was taken
+     * @param startTime date quiz started
+     * @param endTime   date quiz ended
      * @param score     graded quiz score
      * @param attempt   number of attempts
      * @return true if the insertion into database succeeds, otherwise false.
      */
-    private boolean sendSubmission(int quizID, int enrollID, int time,
-                                  float score, int attempt) {
+    private boolean sendSubmission(int quizID, int enrollID, Date startTime,
+                                  Date endTime, float score, int attempt) {
         boolean hasSucceeded;
         Date today = new Date();
 
         Submission studentSubmission = new Submission(0, quizID, enrollID,
-                time, today, score, attempt);
+                startTime, endTime, score, attempt);
         SubmissionDAOImpl submitter = new SubmissionDAOImpl();
 
         hasSucceeded = submitter.insertSubmission(studentSubmission);
