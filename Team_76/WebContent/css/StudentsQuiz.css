@@ -3,7 +3,7 @@ h1 {
 	text-shadow: 1px 1px grey;
 }
 
-table {
+table {	
 	width: 90%;
 	text-align: center;
   	text-decoration: none;
@@ -11,18 +11,22 @@ table {
 }
 
 td {
-	border-radius: 8px;
+	border-radius: 4px;
 }
 
 input {
-	background-color: orange;
+	background-color: Gold;
   	border: none;
  	color: black;
-  	padding: 5px 5px;
+  	padding: 3px 3px;
   	text-align: center;
   	text-decoration: none;
   	display: inline-block;
-  	border-radius: 8px;
+  	border-radius: 4px;
   	width: 100%;  	
   	margin: auto;
+}
+
+input:hover {
+  background-color: DarkOrange;
 }
