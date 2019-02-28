@@ -35,14 +35,14 @@ function displayQuiz(jsonResponse) {
 	// Click handler for the 'next' button
 	$('#next').on('click', function(e) {
 		e.preventDefault();
-		autoSave();
+		
 		// Suspend click listener during fade animation
 		if (quiz.is(':animated')) {
 			return false;
 		}
 		choose();
-
-		// If no user selection, progress is stopped
+		autoSave();
+		
 		if (isNaN(selections[questionCounter])) {
 			alert('Please make a selection!');
 		} else {
@@ -60,10 +60,20 @@ function displayQuiz(jsonResponse) {
 			return false;
 		}
 		choose();
+		autoSave();
+		
 		questionCounter--;
 		displayNext();
 	});
+	
+	$('#submitBtn').on("click", function(){
+		$(".popup, .popup-content").addClass("active");
+		});
 
+	$('.close, .popup').on("click", function(){
+		$(".popup, .popup-content").removeClass("active");
+	});
+	
 	// Animates buttons on hover
 	$('.button').on('mouseenter', function() {
 		$(this).addClass('active');
@@ -141,18 +151,6 @@ function displayNext() {
 	});
 }
 
-function updateResponseJSON() {
-	for (var i = 0; i < studentResponseObj.question.length; i++) {
-		if (!(isNaN(selections[i]))) {
-			studentResponseObj.question[i].responseAnswer.length = 0;
-			studentResponseObj.question[i].responseAnswer.push(studentResponseObj.question[i].availableAnswers[selections[i]]);
-		}
-	}
-	studentResponseJSON = JSON.stringify(studentResponseObj);
-	document.getElementById("finish").value = studentResponseJSON;
-}
-
 function autoSave() {
-	updateResponseJSON();
-	console.log("Saved!");
+	updateResponseJSON(studentResponseObj, selections);
 }
