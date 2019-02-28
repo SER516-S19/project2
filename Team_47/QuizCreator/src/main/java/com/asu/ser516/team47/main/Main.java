@@ -3,6 +3,7 @@ package com.asu.ser516.team47.main;
 import java.io.File;
 import java.sql.*;
 
+import com.asu.ser516.team47.servlet.LoginServlet;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
 import com.asu.ser516.team47.utils.SQLScriptRunner;
@@ -22,10 +23,13 @@ public class Main {
 
         Context context = tomcat.addWebapp(context_Path, base_path);
 
-        String servletName = "SubmissionServlet";
+        String submissionservlet_name = "SubmissionServlet";
+        tomcat.addServlet(context_Path, submissionservlet_name, new SubmissionServlet());
+        context.addServletMappingDecoded("/submit", submissionservlet_name);
 
-        tomcat.addServlet(context_Path, servletName, new SubmissionServlet());
-        context.addServletMappingDecoded("/submit", servletName);
+        String login_servlet_name = "LoginServlet";
+        tomcat.addServlet(context_Path, login_servlet_name, new LoginServlet());
+        context.addServletMappingDecoded("/login", login_servlet_name);
 
         Connection conn = null;
         try {
@@ -39,6 +43,7 @@ public class Main {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
         tomcat.start();
         tomcat.getServer().await();
         conn.close();
