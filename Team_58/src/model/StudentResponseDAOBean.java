@@ -82,7 +82,7 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 	}
 	
 	@Override
-	public void updateStudentResponse(int quizId, int getqId, int userId,int score) {
+	public void updateStudentResponse(int quizId, int questionId, int userId,int score) {
 
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -92,6 +92,8 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 			connection = ConnectionFactory.getConnection();
 			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponseForScore"));
 			query.setInt(1,quizId);
+			query.setInt(2,userId );
+			query.setInt(3,questionId);
 			query.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
