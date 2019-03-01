@@ -57,6 +57,7 @@ public class StudentServlet extends HttpServlet {
 		String studentResponse = request.getParameter("data");
 		String action = request.getParameter("action");
 		StudentServices service = new StudentServices();
+		HttpSession session = request.getSession();
 		try {
 			if(action.equals("submit")) {
 				response.setContentType("text/html");
@@ -65,9 +66,9 @@ public class StudentServlet extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_CREATED);
 				else
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				session.removeAttribute("data");
 				request.getRequestDispatcher(view).forward(request, response);
 			}else if(action.equals("save")) {
-				HttpSession session = request.getSession();
 				session.setAttribute("data", studentResponse);
 				if ("/success".equals(view))
 					response.setStatus(HttpServletResponse.SC_OK);

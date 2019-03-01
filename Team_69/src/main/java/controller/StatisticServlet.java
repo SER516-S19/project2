@@ -9,11 +9,16 @@ import java.io.IOException;
 public class StatisticServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        resp.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
-        resp.sendError(501,"Method not implemented yet");
+    	String flag = request.getParameter("flag");
+    	if("quizStats".equals(flag)) {
+			String quizID = request.getParameter("id");
+			int quizId = Integer.parseInt(quizID);
+			response.sendRedirect(request.getContextPath()+"/views/stats.jsp");
+		}
+    	
     }
 
     protected void doPost(HttpServletRequest request,

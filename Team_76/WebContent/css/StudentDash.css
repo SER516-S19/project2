@@ -12,9 +12,18 @@ h1 {
 	margin: auto;
   	width: 40%;
   	padding: 5px;
+  	
 }
 
-input {
+.logout {
+	float: right;
+	background-color: orange;
+	width: 10%;
+  	border: none;
+  	border-radius: 8px;
+}
+
+.option {
 	background-color: orange;
   	border: none;
  	color: white;
