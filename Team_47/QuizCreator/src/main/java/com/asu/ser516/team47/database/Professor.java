@@ -68,4 +68,19 @@ public class Professor {
     public void setSession(String session) {
         this.sessionid = session;
     }
+
+    /**
+     * toString
+     * @return string representation of professor object
+     */
+    public String toString() {
+        String result = "Professor {" + "\n" +
+                "  username: " + username + "\n" +
+                "  firstname: " + firstname + "\n" +
+                "  lastname: " + lastname + "\n" +
+                "  hashedpass: " + hashedpass + "\n" +
+                "  sessionid: " + sessionid + "\n" +
+                "}";
+        return result;
+    }
 }

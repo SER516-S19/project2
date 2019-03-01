@@ -57,4 +57,18 @@ public class Answer {
     public void setChoice_fk(int choice_fk) {
         this.choice_fk = choice_fk;
     }
+
+    /**
+     * toString
+     * @return string representation of answer object
+     */
+    public String toString() {
+        String result = "Answer {" + "\n" +
+                "  answer_id: " + Integer.toString(answer_id) + "\n" +
+                "  submission_fk: " + Integer.toString(submission_fk) + "\n" +
+                "  question_fk: " + Integer.toString(question_fk) + "\n" +
+                "  choice_fk: " + Integer.toString(choice_fk) + "\n" +
+                "}";
+        return result;
+    }
 }

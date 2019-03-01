@@ -1,5 +1,7 @@
 package com.asu.ser516.team47.database;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 /**
  * A business object for a choice in the choices table.
  *
@@ -56,5 +58,19 @@ public class Choice {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    /**
+     * toString
+     * @return string representation of choice object
+     */
+    public String toString() {
+        String result = "Choice {" + "\n" +
+                "  choice_id: " + Integer.toString(choice_id) + "\n" +
+                "  question_fk: " + Integer.toString(question_fk) + "\n" +
+                "  correct: " + Boolean.toString(correct) + "\n" +
+                "  content: " + content + "\n" +
+                "}";
+        return result;
     }
 }
