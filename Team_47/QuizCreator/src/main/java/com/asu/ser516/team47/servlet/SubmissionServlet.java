@@ -35,7 +35,7 @@ public class SubmissionServlet extends HttpServlet {
     private Quiz quiz;
     private Enrolled enrollment;
 
-    @Override
+    @Override\
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
@@ -139,6 +139,8 @@ public class SubmissionServlet extends HttpServlet {
         response.setStatus(httpCode);
 
         //TODO: call autograder, update score on Submission.
+        AutoGrader ag =  new AutoGrader(submissionID);
+        int points = ag.gradeSubmission();
     }
 
     /**
