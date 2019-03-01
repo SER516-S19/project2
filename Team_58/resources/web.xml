@@ -123,6 +123,17 @@
     <servlet-name>GradeQuizServlet</servlet-name>
     <url-pattern>/gradeQuiz</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DisplayGradesServlet</servlet-name>
+    <servlet-class>controller.DisplayGradesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>DisplayGradesServlet</servlet-name>
+    <url-pattern>/displayGrades</url-pattern>
+  </servlet-mapping>
 
     <servlet>
         <servlet-name>DisplayQuizServlet</servlet-name>
