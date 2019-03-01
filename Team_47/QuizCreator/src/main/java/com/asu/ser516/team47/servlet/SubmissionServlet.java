@@ -141,6 +141,22 @@ public class SubmissionServlet extends HttpServlet {
         //TODO: call autograder, update score on Submission.
         AutoGrader ag =  new AutoGrader(submissionID);
         int points = ag.gradeSubmission();
+        Submission s = new Submission ();
+        s.getSubmission_id();
+        s.setSubmission_id();
+        s.getQuiz_fk();
+        s.setQuiz_fk(int quiz_fk);
+        s.getEnrolled_fk();
+        s.setEnrolled_fk(int enrolled_fk);
+        s.getTime_taken();
+        s.setTime_taken(int time_taken);
+        s.getDate_taken();
+        s.setDate_taken(Date date_taken);
+        s.getScore();
+        s.setScore(float score);
+        s.getAttempt();
+        s.setAttempt(int attempt);
+        insertPointsInDB(s);
     }
 
     /**
@@ -247,4 +263,13 @@ public class SubmissionServlet extends HttpServlet {
         }
         return null;
     }
+    private void insertPointsInDB(Submission sub )
+    { 	
+    	SubmissionDAO subDao = new SubmissionDAOImpl();
+    	subao.insertSubmission(sub);
+    }
+    <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+</natures>
+
 }
