@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import services.LoginServices;
 import services.StudentServices;
@@ -45,11 +46,15 @@ public class LoginServlet extends HttpServlet{
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
+        response.setContentType("text/html");
+        response.setStatus(200);
         String userEmail = (String) request.getAttribute("userEmai");
         String userPassword = (String) request.getAttribute("userPassword");
+        HttpSession session = request.getSession();
         LoginServices loginServices = new LoginServices();
         String userType = loginServices.checkUserType(userEmail);
+        int userId = loginServices.fetchUserId(userEmail);
+        session.setAttribute("userId",userId);
         if(userType.equals("Student")){
             getServletContext().getRequestDispatcher("/views/studentLanding.jsp").forward(request, response);
         }

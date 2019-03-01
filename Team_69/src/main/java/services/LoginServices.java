@@ -11,6 +11,10 @@ public class LoginServices {
         return userType;
     }
 
-
+    public int fetchUserId(String userEmail){
+        LoginDAO loginDAO = new LoginDAO();
+        int userId = loginDAO.fetchUserId(userEmail);
+        return userId;
+    }
 
 }
