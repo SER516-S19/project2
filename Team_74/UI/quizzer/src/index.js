@@ -3,12 +3,15 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+// import App from './components/NewLogin/App';
+import App from './App';
 
 ReactDOM.render((  <BrowserRouter>
-        <App />
+        {/* <App /> */}
+        <App/>
     </BrowserRouter>),
     document.getElementById('root'));
 
