@@ -36,6 +36,9 @@ public class Question {
 		this.points = points;
 	}
 
+	public Question() {
+	}
+
 	public boolean isMultiple() {
 		return isMultiple;
 	}

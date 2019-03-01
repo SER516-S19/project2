@@ -23,7 +23,7 @@ public class GradeQuizVO {
 	public GradeQuizVO(int score, String quizName, String courseName) {
 		this.score = score;
 		this.quizName = quizName;
-		this.quizName = quizName;
+		this.courseName = courseName;
 	}
 	
 	public int getScore() {

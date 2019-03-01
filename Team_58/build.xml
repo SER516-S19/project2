@@ -45,6 +45,7 @@
   	  <fileset dir="${resources.dir}" includes="**/*.txt,**/*.properties" excludes="**/*.html,**/*.jsp"/>
   	</copy>
   	<copy file="${resources.dir}/login.jsp" tofile="${build.home}/login.jsp"/>
+  	<copy file="${resources.dir}/forgotpassword.jsp" tofile="${build.home}/forgotpassword.jsp"/>
   	<copy file="${resources.dir}/professorHome.ftl" tofile="${build.home}/professorHome.ftl"/>
   	<copy file="${resources.dir}/createQuestions.ftl" tofile="${build.home}/createQuestions.ftl"/>
   	<copy file="${resources.dir}/createQuiz.ftl" tofile="${build.home}/createQuiz.ftl"/>
@@ -56,6 +57,7 @@
   	<copy file="${resources.dir}/studentHome.ftl" tofile="${build.home}/studentHome.ftl"/>
   	<copy file="${resources.dir}/displayQuizInstruction.ftl" tofile="${build.home}/displayQuizInstruction.ftl"/>
   	<copy file="${resources.dir}/displayQuiz.ftl" tofile="${build.home}/displayQuiz.ftl"/>
+  	<copy file="${resources.dir}/displayGrades.ftl" tofile="${build.home}/displayGrades.ftl"/>
   	<copy file="${resources.dir}/studentCourseHome.ftl" tofile="${build.home}/studentCourseHome.ftl"/>
   	<copy file="${resources.dir}/logout.html" tofile="${build.home}/logout.html"/>
     <copy file="web.xml" tofile="${build.home}/WEB-INF/web.xml"/>
