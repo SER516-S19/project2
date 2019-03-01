@@ -10,10 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import controller.DisplayQuizServlet;
 
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
@@ -45,16 +48,25 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	@Override
 	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException {
 
-		Map<String, String> totalChoices = new HashMap<>();
+		Map<String, String> incorrectChoices = new HashMap<>();
+		Map<String, String> correctChoices = new HashMap<>();
 
-		totalChoices.put("incorrectAnswer1", questionsVO.getIncorrectAnswer1());
-		totalChoices.put("incorrectAnswer2", questionsVO.getIncorrectAnswer2());
-		totalChoices.put("incorrectAnswer3", questionsVO.getIncorrectAnswer3());
+		for(int i = 0; i < questionsVO.getIncorrectAnswers().size(); i++)
+		{
+			String wrongAnswer = questionsVO.getIncorrectAnswers().get(i);
+			incorrectChoices.put("incorrectAnswer" + (i + 1), wrongAnswer);
+		}
+		
+		for(int i = 0; i < questionsVO.getCorrectAnswers().size(); i++)
+		{
+			String rightAnswer = questionsVO.getCorrectAnswers().get(i);
+			correctChoices.put("correctAnswer" + (i + 1), rightAnswer);
+		}
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		int count = 0;
-		for (Map.Entry<String, String> entry : totalChoices.entrySet()) {
+		for (Map.Entry<String, String> entry : incorrectChoices.entrySet()) {
 			sb.append("\"");
 			sb.append(entry.getKey());
 			sb.append("\"");
@@ -63,13 +75,33 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb.append(entry.getValue());
 			sb.append("\"");
 			count++;
-			if (totalChoices.size() - 1 != count) {
+			if (incorrectChoices.size() - 1 != count) {
 				sb.append(",");
 			}
 		}
 		sb.append("}");
 
-		String incorrectAnswer = sb.toString();
+		String incorrectAnswers = sb.toString();
+		
+		sb = new StringBuilder();
+		sb.append("{");
+		count = 0;
+		for (Map.Entry<String, String> entry : correctChoices.entrySet()) {
+			sb.append("\"");
+			sb.append(entry.getKey());
+			sb.append("\"");
+			sb.append(":");
+			sb.append("\"");
+			sb.append(entry.getValue());
+			sb.append("\"");
+			count++;
+			if (correctChoices.size() - 1 != count) {
+				sb.append(",");
+			}
+		}
+		sb.append("}");
+
+		String correctAnswers = sb.toString();
 
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -79,8 +111,8 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query = connection.prepareStatement(dbProperties.getProperty("postQuestions"));
 			query.setInt(1, questionsVO.getQuizId());
 			query.setString(2, questionsVO.getQuestion());
-			query.setString(3, questionsVO.getCorrectAnswer());
-			query.setString(4, incorrectAnswer);
+			query.setString(3, correctAnswers);
+			query.setString(4, incorrectAnswers);
 			query.setInt(5, questionsVO.getTotalPoints());
 			query.setBoolean(6, questionsVO.isMCQ());
 
@@ -114,17 +146,35 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		{
 			int totalPoints = resultData.getInt("totalPoints");
 			String question = resultData.getString("question");
-			String answer = resultData.getString("actualAnswer");
+			String answers = resultData.getString("actualAnswer");
 			String choices = resultData.getString("totalChoices");
 			
 			JSONParser parser = new JSONParser();
-			JSONObject jo = (JSONObject) parser.parse(choices);
+			JSONObject incorrectJO = (JSONObject) parser.parse(choices);
+			JSONObject correctJO = (JSONObject) parser.parse(answers);
 			
-			String choice1 = (String) jo.get("incorrectAnswer1");
-			String choice2 = (String) jo.get("incorrectAnswer2");
-			String choice3 = (String) jo.get("incorrectAnswer3");
+			List<String> incorrectAnswers = new ArrayList(3);
+			List<String> correctAnswers = new ArrayList(3);
 			
-			QuestionsVO questionVO = new QuestionsVO(quizID, totalPoints, answer, choice1, choice2, choice3, question);
+			int i = 1;
+			String choice = (String) incorrectJO.get("incorrectAnswer" + i);
+			while(choice != null)
+			{
+				incorrectAnswers.add(choice);
+				i++;
+				choice = (String) incorrectJO.get("incorrectAnswer" + i);
+			}
+			
+			i = 1;
+			choice = (String) correctJO.get("correctAnswer" + i);
+			while(choice != null)
+			{
+				correctAnswers.add(choice);
+				i++;
+				choice = (String) correctJO.get("correctAnswer" + i);
+			}
+			
+			QuestionsVO questionVO = new QuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(questionVO);
 		}
 		

@@ -3,6 +3,8 @@ package model;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
+
 /**
  * Interface
  * 
@@ -14,6 +16,6 @@ import java.util.List;
 
 public interface ViewQuizDAO {
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException;
-	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException;
+	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException;
 		
 }

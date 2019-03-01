@@ -93,44 +93,57 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 * @return list a list of questions with relevant information used to display on view quiz page.
 	 * */
 	@Override
-	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException{
+	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException{
 		
-	    List<QuestionsVO> list = new ArrayList<QuestionsVO>();
-
 		Connection connection = null;
 		PreparedStatement query = null;
-		ResultSet result = null;
+		ResultSet resultData = null;
 		
 		connection = ConnectionFactory.getConnection();
 		
-		query = connection.prepareStatement(dbProperties.getProperty("getQuestionsInfo"));
+		query = connection.prepareStatement(dbProperties.getProperty("getQuizQuestions"));
 		query.setInt(1, quizId);
-		result = query.executeQuery();
-		try {
-		    while (result.next()) {
-		    	 int questionId = result.getInt("questionId");
-	 			   int points = result.getInt("totalPoints");
-	 			   String question = result.getString("question");
-	 			   
-	 			   
-	 			   String answer = result.getString("actualAnswer"); 
-	 			   String choices = result.getString("totalChoices"); 
-	 			   
-	 			   JSONParser parser = new JSONParser();
-	 			   JSONObject jo = (JSONObject) parser.parse(choices);
 
-	 			   
-	 			   String choice1 = (String) jo.get("incorrectAnswer1");
-	 			   String choice2 = (String) jo.get("incorrectAnswer2");
-	 			   String choice3 = (String) jo.get("incorrectAnswer3");
-
-	 			   
-	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, question, answer, choice1, choice2, choice3);
-	 			   list.add(quiz);
-			   }
-		}catch(ParseException e) {
-			e.printStackTrace();
+		resultData = query.executeQuery();
+		
+		List<QuestionsVO> list = new ArrayList<>();
+		
+		while(resultData.next())
+		{
+			int totalPoints = resultData.getInt("totalPoints");
+			String question = resultData.getString("question");
+			String answers = resultData.getString("actualAnswer");
+			String choices = resultData.getString("totalChoices");
+			
+			JSONParser parser = new JSONParser();
+			JSONObject incorrectJO = (JSONObject) parser.parse(choices);
+			JSONObject correctJO = (JSONObject) parser.parse(answers);
+			
+			List<String> incorrectAnswers = new ArrayList(3);
+			List<String> correctAnswers = new ArrayList(3);
+			
+			int i = 1;
+			String choice = (String) incorrectJO.get("incorrectAnswer" + i);
+			while(choice != null)
+			{
+				incorrectAnswers.add(choice);
+				i++;
+				choice = (String) incorrectJO.get("incorrectAnswer" + i);
+			}
+			
+			i = 1;
+			choice = (String) correctJO.get("correctAnswer" + i);
+			while(choice != null)
+			{
+				correctAnswers.add(choice);
+				i++;
+				choice = (String) correctJO.get("correctAnswer" + i);
+			}
+			
+			QuestionsVO questionVO = new QuestionsVO(quizId, totalPoints, correctAnswers, incorrectAnswers, question);
+			list.add(questionVO);
 		}
+		
 		return list;
 	}
 

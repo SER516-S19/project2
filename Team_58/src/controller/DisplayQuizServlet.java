@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,9 @@ import model.QuestionsVO;
  * student.
  */
 public class DisplayQuizServlet extends HttpServlet {
+	
+	private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName());
+	
 	/*
 	 * This method will establish the connection with the database and will fetch
 	 * every detail to display the quiz for a student.
