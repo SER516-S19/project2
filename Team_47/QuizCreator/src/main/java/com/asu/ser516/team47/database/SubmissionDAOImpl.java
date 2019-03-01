@@ -43,11 +43,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -80,11 +76,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -118,11 +110,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -156,11 +144,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -206,11 +190,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return false;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
     }
 
@@ -244,10 +224,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 
@@ -276,10 +253,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 }
