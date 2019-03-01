@@ -26,13 +26,14 @@ public class Question implements Serializable {
 	private String type;
 	private int totalCorrectAttempts;
 	private int marks;
+	private String markedAnswer;
 
 	public Question() {
 
 	}
 
 	public Question(String id, String questionText, List<String> options, String quizId, String correctAnswer,
-			String type, int totalCorrectAttempts, int marks) {
+			String type, int totalCorrectAttempts, int marks,String markedAnswer) {
 		super();
 		this.id = id;
 		this.questionText = questionText;
@@ -42,6 +43,20 @@ public class Question implements Serializable {
 		this.type = type;
 		this.totalCorrectAttempts = totalCorrectAttempts;
 		this.marks = marks;
+		this.markedAnswer =markedAnswer;
+	}
+
+	
+	public String getMarkedAnswer() {
+		return markedAnswer;
+	}
+
+	public void setMarkedAnswer(String markedAnswer) {
+		this.markedAnswer = markedAnswer;
+	}
+
+	public void setOptions(List<String> options) {
+		this.options = options;
 	}
 
 	public String getId() {
@@ -64,9 +79,6 @@ public class Question implements Serializable {
 		return options;
 	}
 
-	public void setAnswers(List<String> options) {
-		this.options = options;
-	}
 
 	public String getQuizId() {
 		return quizId;

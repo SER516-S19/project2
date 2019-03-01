@@ -20,13 +20,13 @@ public class StudentQuiz implements Serializable {
 	@Id
 	private User studentId;
 	private ArrayList<Quiz> quizlist;
-	private HashMap<Quiz, Integer> attemptedQuiz;
+	private HashMap<String, Integer> attemptedQuiz;
 
-	public StudentQuiz(User studentId, ArrayList<Quiz> quizlist, HashMap<Quiz, Integer> attemptedQuiz) {
+	public StudentQuiz(User studentId, ArrayList<Quiz> quizlist, HashMap<String, Integer> attemptedQuiz) {
 		super();
 		this.studentId = studentId;
 		this.quizlist = new ArrayList<Quiz>();
-		this.attemptedQuiz = new HashMap<Quiz, Integer>();
+		this.attemptedQuiz = new HashMap<String, Integer>();
 	}
 
 	public User getStudentId() {
@@ -45,11 +45,11 @@ public class StudentQuiz implements Serializable {
 		this.quizlist = quizlist;
 	}
 
-	public HashMap<Quiz, Integer> getAttemptedQuiz() {
+	public HashMap<String, Integer> getAttemptedQuiz() {
 		return attemptedQuiz;
 	}
 
-	public void setAttemptedQuiz(HashMap<Quiz, Integer> attemptedQuiz) {
+	public void setAttemptedQuiz(HashMap<String, Integer> attemptedQuiz) {
 		this.attemptedQuiz = attemptedQuiz;
 	}
 

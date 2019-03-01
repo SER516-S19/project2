@@ -38,7 +38,7 @@ public class ProfQuizController {
 	 * @return
 	 */
 
-	@RequestMapping(method = RequestMethod.POST, value = "/prof")
+	@RequestMapping(method = RequestMethod.POST, value = "/prof/quiz")
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 
 		try {

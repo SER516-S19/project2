@@ -14,5 +14,5 @@ import com.Quizzer.code.model.db.StudentQuiz;
  */
 public interface StudentQuizRepo extends MongoRepository<StudentQuiz, String> {
 
-	public Optional<StudentQuiz> findBystudentId(String id);
+	public Optional<StudentQuiz> findByStudentId(String id);
 }
