@@ -23,7 +23,7 @@ public class QuestionDAO {
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			session.save(question);
+			session.saveOrUpdate(question);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {

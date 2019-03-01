@@ -24,25 +24,32 @@
 <title>Edit Question</title>
 </head>
 <body>
+<script type="text/javascript">
+	function valthis() {
+		var checkBoxes = document.getElementsByName('options');
+		var isChecked = false;
+
+		console.log("I am here checking for check boxes");
+		    for (var i = 0; i < checkBoxes.length; i++) {
+		        if ( checkBoxes[i].checked ) {
+		        	console.log("I am here Again inside");
+		        	isChecked = true;
+		        };
+		    };
+		    if ( !isChecked ){
+		            alert( 'Please, check at least one checkbox!' );
+		        }   
+		}
+</script>
+
 <div align="center" >
 	<H2>Please Edit the question</H2>
 </div>
 
-<%
-  System.out.println("Hellohere");
-  request.getAttribute("queAnsData");
-  request.getAttribute("quesId");
-  System.out.println(request.getAttribute("queAnsData"));
-  System.out.println(request.getAttribute("quesId"));
-  String question="Question1";
-  String option1="Option1";
-  String option2="Option2";
-  String option3="Option3";
-  String option4="Option4";
-  int points=10;
-  
 
-  %>
+
+		
+		
 	 <c:set var="quesId" value="${requestScope.quesId}"/>
   	<c:forEach items="${requestScope.queAnsData}" var="questionAnsList">
  	
@@ -50,17 +57,17 @@
   	<c:choose>
 		<c:when test="${questionAnsList[2][0].question.questionId eq quesId}">
 			
-			
-	<form method="Post" action="../ProfessorController">
-		<div class="borderexample" class="form-group">   
+	   <form action="../Team_69/ProfessorController" method="post">
+		<div class="borderexample" class="form-group">
+	   
 			
 		<label for="question" >Question:</label>
 		<textarea name="question" id="question" rows="6" cols="50"  class="form-control">${questionAnsList[2][0].question.question}</textarea>	
 		<br>
 		
-		<c:forEach items="${questionAnsList[2]}" var="answer">
+		<c:forEach items="${questionAnsList[2]}" var="answer"  varStatus="theCount">
 		
-			<label for="option1">Option 1: </label>
+			<label for="option${theCount.count}">Option ${theCount.count}: </label>
 			<br>
 			
 			<c:choose>
@@ -71,7 +78,7 @@
 			    <input type="checkbox" name="options" value="" >
 			  </c:otherwise>
 			</c:choose>
-	    	<textarea name="option1" rows="2" cols="50" class="form-control">${answer.answer}</textarea>
+	    	<textarea name="option${theCount.count}" rows="2" cols="50" class="form-control">${answer.answer}</textarea>
 			<br>
 		
 						
@@ -83,20 +90,31 @@
 		<input type="number" name="points" value="${questionAnsList[2][0].question.points}">
 		<br>
 		<br>
+		
+		<td>		
+		<input type="hidden" name="flag" value="Save and Exit"   />
+		<button type="submit" onclick="javascript:valthis()" class="btn btn-primary">Save and Exit</button>
+		</td>
 		</div>
 		
 		</form>
-			
+		
 		</c:when>
 		
 		<c:otherwise>
  			<!--  keep this blank -->
 		</c:otherwise>
+		
+		
+		
 	</c:choose>
   	
   	</c:forEach>
+		
+			
+		
 
-
+				
 		
 </body>
 </html>
