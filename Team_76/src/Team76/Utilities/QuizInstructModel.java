@@ -34,14 +34,13 @@ public class QuizInstructModel {
 		}
 	}
 
-	public QuizEntity getquiz(String quizId) {	
+	public QuizEntity getQuiz(String quizId) {	
 		ResultSet resultSet = null;		
 		QuizEntity quiztaken = new QuizEntity();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate("use " + dbname);
-			String sql ="SELECT * FROM quiz WHERE QuizId ="+quizId;
-			System.out.println("**** SQL SELECT");
+			String sql ="SELECT * FROM quiz WHERE QuizId="+quizId;
 			resultSet = stmt.executeQuery(sql);		
 			while (resultSet.next()) {
 				quiztaken.setProfessorId(resultSet.getInt("ProfId"));
@@ -51,9 +50,9 @@ public class QuizInstructModel {
 				quiztaken.setTimeLimit(resultSet.getInt("Timelimit"));
 				quiztaken.setQuizType(resultSet.getString("QuizType"));
 				quiztaken.setQuizTitle(resultSet.getString("quiztitle"));
-				quiztaken.setQuizInstruct(resultSet.getString("qinstruct"));				
+				quiztaken.setQuizInstruct(resultSet.getString("qinstruct"));
+				System.out.println(quiztaken.getQuizInstruct());
 			}
-			System.out.println("******2"+quiztaken.getQuizInstruct());
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
