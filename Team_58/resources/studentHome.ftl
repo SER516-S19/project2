@@ -1,4 +1,3 @@
-
 <!-- 
 Freemarker page to display the Student Homepage
 @authour Joshua Drumm
@@ -11,19 +10,10 @@ Freemarker page to display the Student Homepage
     </head>
     <body>
         <p>Welcome ${Session.userVO.getFirstname()}!</p>
-        <form action="courseDashboard" method="POST">
-            <select name="Course">
+        <form action="StudentCourseHome" method="GET">
+            <select name="CourseId">
                 <#list Session.CourseHashMap as courseId, courseName>
                     <option value=${courseId}> ${courseName}</option>
-                </#list>
-            </select>
-            <input disabled type = "submit" value="Submit"/>
-        </form>
-        
-      <form action="DisplayInst" method="GET">
-            <select name="QuizId">
-                <#list Session.QuizHashMap as quizId, quizName>
-                    <option value=${quizId}> ${quizName}</option>
                 </#list>
             </select>
             <input type = "submit" value="Submit"/>

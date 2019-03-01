@@ -17,5 +17,6 @@ public interface CourseDAO {
 
 
 	public List<CourseVO> getCourseAssignedToProfessor(UserVO userVO) throws SQLException, ClassNotFoundException;
+	public CourseVO getCourseInfoForUser(UserVO userVO, int courseID) throws SQLException, ClassNotFoundException;
 
 }

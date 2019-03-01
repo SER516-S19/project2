@@ -54,6 +54,33 @@ public class CourseDAOBean implements CourseDAO{
 		
 		return list;
 
+	}
+
+	@Override
+	public CourseVO getCourseInfoForUser(UserVO userVO, int courseID) throws SQLException, ClassNotFoundException
+	{
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		
+		connection = ConnectionFactory.getConnection();
+		query = connection.prepareStatement(dbProperties.getProperty("getCourseForUser"));
+		query.setInt(1, courseID);
+		query.setInt(2, userVO.getUserId());
+
+		resultData = query.executeQuery();
+
+		CourseVO course = null;
+
+		while (resultData.next())
+		{
+			int courseId = resultData.getInt("courseId");
+			String courseName = resultData.getString("courseName");
+			String courseNumber = resultData.getString("courseNumber");
+			course = new CourseVO(courseName, courseNumber, courseId);
+		}
+		
+		return course;
 	}   
 
 }

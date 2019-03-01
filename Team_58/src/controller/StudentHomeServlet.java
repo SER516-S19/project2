@@ -53,13 +53,11 @@ public class StudentHomeServlet extends HttpServlet {
 
 			try {
 				CourseDAOBean courseBean = new CourseDAOBean();
-				QuizDAOBean quizBean = new QuizDAOBean();
 
-				if (courseBean.equals(null) || quizBean.equals(null))
+				if (courseBean.equals(null))
 					log.info("Database Connection Error");
 
 				List<CourseVO> courseList = courseBean.getCourseAssignedToProfessor(userVO);
-				List<QuizVO> quizList = quizBean.getQuizzesForStudent(userVO);
 				if (courseList.isEmpty()) {
 					session.setAttribute("displayMessage", "No Courses have been assigned to the student");
 					log.info("No Courses have been assigned to the student.");
@@ -69,13 +67,9 @@ public class StudentHomeServlet extends HttpServlet {
 					for (CourseVO course : courseList)
 						courses.put(course.getCourseId(), course.getCourseName());
 					session.setAttribute("CourseHashMap", courses);
-
-					HashMap<Integer, String> quizzes = new HashMap<>();
-					for (QuizVO quiz : quizList)
-						quizzes.put(quiz.getQuizId(), quiz.getQuizTitle());
-					session.setAttribute("QuizHashMap", quizzes);
 				}
 				session.setAttribute("isCourseAssigned", isCoursesAssigned);
+				session.setAttribute("UserVO", userVO);
 				res.sendRedirect(req.getContextPath() + "/studentHome.ftl");
 			} catch (Exception e) {
 				log.info(e.getMessage());
