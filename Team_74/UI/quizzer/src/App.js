@@ -17,21 +17,17 @@ class App extends Component {
                             </div>
                             <Navigation />
                             <Routes />
-                            <NavLink to="/login">
-                            <button type="button" className="logout-button" onClick={this.signOut}>
-                            SignOut
-                            </button>
-                            </NavLink>
+                            <NavLink to="/login"><button type="button" className="logout-button" onClick={this.signOut}>SignOut</button></NavLink>
                         </div>
 
                         :
-                         <div className="App">
-                             {/* <div className="App-header">
+                        <div className="App">
+                            <div className="App-header">
                                 <h1>Demo Canvas</h1>
-                             </div> */}
-                            <div className="Blank-Nav"/> 
-                            <Routes />
                             </div>
+                            <div className="Blank-Nav"/>
+                            <Routes />
+                        </div>
                 }
 
             </div>
