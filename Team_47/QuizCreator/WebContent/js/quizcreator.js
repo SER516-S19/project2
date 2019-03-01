@@ -4,7 +4,11 @@
   * Description: Page for creating quizzes
   */
 
+var snapshotList = []
 function addFields(thisElem, idTracingList) {
+	var snapshotDict = {}
+	snapshot(snapshotList, snapshotDict)
+
 	var divID = thisElem.parentNode;
 	divID.innerHTML = divID.innerHTML + "<br>"
 	divID.innerHTML = divID.innerHTML + "question:<br>"
@@ -14,6 +18,8 @@ function addFields(thisElem, idTracingList) {
 	divID.innerHTML = divID.innerHTML + "<br> Select the check boxes for correct answers <br>"
 	idTracingList.push(questionID)
 	addAnswerFields(divID, idTracingList);
+
+	reverseToSnapshot(snapshotList, snapshotDict)
 }
 
 function addAnswerFields(divID, idTracingList) {
@@ -28,6 +34,7 @@ function addAnswerFields(divID, idTracingList) {
 		divID.innerHTML = divID.innerHTML + `<input type='text' id='${choiceDescID}' name='choiceDesc-${questionChoiceIterator}' value='enter the answer' size=30><br>`
 
 		idTracingList.push(checkboxID)
+		snapshotList.push(checkboxID)
 		idTracingList.push(choiceDescID)
 	}
 	var creditBoxID = `pointBox-${questionChoiceIterator}`
@@ -37,15 +44,19 @@ function addAnswerFields(divID, idTracingList) {
 }
 
 function addQuestionTypeFields(divID) {
-	var multichoiceStr = `multichoice_${questionChoiceIterator}`
-	var multianswerStr = `multianswer_${questionChoiceIterator}`
+	var multichoiceStr = `multichoice-${questionChoiceIterator}`
+	var multianswerStr = `multianswer-${questionChoiceIterator}`
 	divID.innerHTML = divID.innerHTML + `Select question type: <br>`
 	divID.innerHTML = divID.innerHTML + `<input type='radio' id='${multichoiceStr}' onclick="selectQuestionType('${multichoiceStr}')" name='answerType-${questionChoiceIterator}' checked=true value='singleAnswer'> Single Answer Question<br>`
 	divID.innerHTML = divID.innerHTML + `<input type='radio' id='${multianswerStr}' onclick="selectQuestionType('${multianswerStr}')" name='answerType-${questionChoiceIterator}' value='multiAnswer'> Multiple Answers Question<br>`
+	idTracingList.push(multianswerStr)
+	idTracingList.push(multichoiceStr)
+	snapshotList.push(multichoiceStr)
+	snapshotList.push(multianswerStr)
 }
 
 function selectQuestionType(answerTypeEncoded) {
-	answerTypeList = answerTypeEncoded.split('_')
+	answerTypeList = answerTypeEncoded.split('-')
 
 	questionID = answerTypeList[answerTypeList.length - 1]
 	answerType = answerTypeList[0]
@@ -98,6 +109,27 @@ function createDictionUsingPageData(idTracingList, questionDict) {
 				break
 			default:
 				var hi = 'hi'
+		}
+	}
+}
+
+function snapshot(snapshotList, targetDict) {
+	for (var idx = 0; idx < snapshotList.length; idx += 1) {
+		var keyword = snapshotList[idx]
+		targetDict[keyword] = document.getElementById(keyword).checked
+	}
+}
+
+function reverseToSnapshot(snapshotList, snapshotDict) {
+	for (var idx = 0; idx < snapshotList.length; idx += 1) {
+		var keyword = snapshotList[idx]
+		var keywordSplit = keyword.split('-')[0]
+		if (keywordSplit == 'multichoice' || keywordSplit == 'multianswer' || keywordSplit == 'checkbox') {
+			document.getElementById(keyword).checked = snapshotDict[keyword]
+		} else {
+			if (keyword in snapshot) {
+				document.getElementById(keyword).value = snapshotDict[keyword]
+			} 
 		}
 	}
 }
