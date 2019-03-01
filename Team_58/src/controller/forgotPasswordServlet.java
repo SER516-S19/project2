@@ -1,5 +1,11 @@
-package controller;
+/*
+Servlet for user to reset password
+@authour Vaibhav Bhasin
+@version 2.0
+@date 02/27/2019
+*/
 
+package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -27,26 +33,24 @@ public class forgotPasswordServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		try {
 			res.sendRedirect(req.getContextPath() + "/forgotpassword.jsp");
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
 	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		String userName	= (String) req.getParameter("username");										//get user details for password change
+		String pass = (String) req.getParameter("newPassword");											//set new password
 	
-		String userName	= (String) req.getParameter("username");
-		String pass = (String) req.getParameter("newPassword");
-		
 		UserDAOBean update = new UserDAOBean();
 		try {
-			update.updatePassword(userName, pass);
+			update.updatePassword(userName, pass);														//call update password method 
 			res.sendRedirect(req.getContextPath() + "/login.jsp");
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 }
