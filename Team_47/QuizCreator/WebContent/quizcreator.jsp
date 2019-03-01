@@ -55,14 +55,12 @@
 
                 <br> <br>
                 <script>
-                    var quizDict = {};
-                    var idTracingList = [];
                     var questionChoiceIterator = 0;
+                    var idTracingList = []
                 </script>
                 <input type='button' onclick='addFields(this, idTracingList)' value='add question'>
+                <input type="button" id="submitQuizRequest" onclick='submitQuizCreateRequest()' value="Submit">
             </div>
-            <input type="button" id="submitQuizRequest"
-                onclick='createQuizDict(idTracingList, quizDict)' value="Submit">
 
         </form>
     </div>

@@ -70,6 +70,27 @@ function selectQuestionType(answerTypeEncoded) {
 		}
 	}
 }
+
+function submitQuizCreateRequest() {
+	var quizDict = {}
+
+	createQuizDict(idTracingList, quizDict)
+	// var saveData = $.ajax({
+	// 	url: 'createQuiz',
+	// 	type: 'POST',
+	// 	contentType: 'application/json',
+
+	// 	data: JSON.stringify(quizDict),
+	// 	success: function (result) {
+	// 		alert("Request submitted success!");
+	// 	},
+	// 	error: function (err) {
+	// 		alert("Request submission Error!");
+	// 	}
+	// });
+	alert(JSON.stringify(quizDict))
+}
+
 function createQuizDict(idTracingList, quizDict) {
 	// var quizDict = {
 	// 	"title": 'title',
@@ -95,7 +116,7 @@ function createQuizDict(idTracingList, quizDict) {
 
 	var hrs = document.getElementById('hrs_id').value
 	var min = document.getElementById('min_id').value
-	var totalSeconds = 3600*parseFloat(hrs)+60*parseFloat(min)
+	var totalSeconds = 3600 * parseFloat(hrs) + 60 * parseFloat(min)
 	quizDict['time_limit'] = totalSeconds // In second, Not calculated yet
 
 	quizDict['date_open'] = document.getElementById('start_id').value
@@ -106,7 +127,7 @@ function createQuizDict(idTracingList, quizDict) {
 	} else {
 		quizDict['quiz_type'] = 'survey'
 	}
-	
+
 	quizDict['attempts'] = 0 // No recorded
 	quizDict['quiz_group'] = document.getElementById('quizGroup_id').value
 	var points = 0
