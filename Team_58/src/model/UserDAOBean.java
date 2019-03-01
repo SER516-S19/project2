@@ -94,7 +94,7 @@ public class UserDAOBean implements UserDAO {
 		query=connection.prepareStatement(dbProperties.getProperty("updatePassword"));
 		query.setString(2,userName);
 		query.setString(1,password);
-		query.executeQuery();
+		query.executeUpdate();
 	}
 
 }

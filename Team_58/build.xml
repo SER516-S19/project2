@@ -45,6 +45,7 @@
   	  <fileset dir="${resources.dir}" includes="**/*.txt,**/*.properties" excludes="**/*.html,**/*.jsp"/>
   	</copy>
   	<copy file="${resources.dir}/login.jsp" tofile="${build.home}/login.jsp"/>
+  	<copy file="${resources.dir}/forgotpassword.jsp" tofile="${build.home}/forgotpassword.jsp"/>
   	<copy file="${resources.dir}/professorHome.ftl" tofile="${build.home}/professorHome.ftl"/>
   	<copy file="${resources.dir}/createQuestions.ftl" tofile="${build.home}/createQuestions.ftl"/>
   	<copy file="${resources.dir}/createQuiz.ftl" tofile="${build.home}/createQuiz.ftl"/>

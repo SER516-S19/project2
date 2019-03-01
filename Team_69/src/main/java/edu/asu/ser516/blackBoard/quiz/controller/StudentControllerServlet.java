@@ -1,10 +1,12 @@
 package edu.asu.ser516.blackBoard.quiz.controller;
 import edu.asu.ser516.blackBoard.quiz.bean.*;
 import edu.asu.ser516.blackBoard.quiz.dao.QuestionDAO;
+import edu.asu.ser516.blackBoard.quiz.dao.QuizDAO;
 import edu.asu.ser516.blackBoard.quiz.dao.StatisticsDAO;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +22,16 @@ public class StudentControllerServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setStatus(200);
 		ResponseStatistics stats;
-		StatisticsDAO statisticsDAO = new StatisticsDAO();
+		String queryParams = req.getQueryString();
+		String quizName = queryParams.split("=")[1];
+		QuizDAO quizDAO = new QuizDAO();
+		int quizId = quizDAO.fetchQuizId(quizName);
 		QuestionDAO questionDAO = new QuestionDAO();
+		List<Question> questions = questionDAO.getQuestionsByQuizId(1);
+
+
+		StatisticsDAO statisticsDAO = new StatisticsDAO();
+		//QuestionDAO questionDAO = new QuestionDAO();
 		User user = new User("abc","student","abc.com","1234");
 		Time time = new Time(00,10,00);
 		Quiz quiz = new Quiz("Quiz3","read/write","graded",time,true,true);
