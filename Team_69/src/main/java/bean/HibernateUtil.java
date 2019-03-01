@@ -44,6 +44,7 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Answer.class);
                 configuration.addAnnotatedClass(Question.class);
                 configuration.addAnnotatedClass(ResponseStatistics.class);
+                configuration.addAnnotatedClass(CalculatedScores.class);
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
