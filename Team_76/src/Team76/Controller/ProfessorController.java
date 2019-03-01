@@ -1,11 +1,17 @@
 package Team76.Controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Team76.Entity.QuestionEntity;
+import Team76.Utilities.DetailsModel;
+import Team76.Utilities.QuestionModel;
+import Team76.Utilities.ViewGradesModel;
 
 /**
  * Servlet implementation class ProfessorController
@@ -13,70 +19,51 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ProfessorController")
 public class ProfessorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
-	QuestionsController quiz = new QuestionsController();
+
+	QuestionModel quiz = new QuestionModel();
 	QuestionEntity entity = new QuestionEntity();
-	DetailsController q = new DetailsController(); // object of quiz class used for calling fetch method
-	ViewGradesController vc = new ViewGradesController();
+	DetailsModel q = new DetailsModel(); // object of quiz class used for calling fetch method
+	ViewGradesModel vc = new ViewGradesModel();
 
-    public ProfessorController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doPost(request, response);
-		String action = request.getParameter("action");
-		  
-		  if(action.equals("ProfessorDash")) {
-		  response.sendRedirect("ProfessorDash.jsp"); 
-		  } 
-		  if(action.equals("ViewGrades"))
-		  { 
-			  try { 
-				  vc.getParameters(request, response); 
-				  } 
-			  catch (Exception e) {
-				  e.printStackTrace(); 
-				  } 
-			  response.sendRedirect("ViewGrades.jsp"); 
-		  }		 
+	public ProfessorController() {
+		super();
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		doPost(request, response);
 		String action = request.getParameter("action");
-		if (action == null || action.isEmpty()) 
-		{
-			response.sendRedirect("Login.jsp");
+
+		if (action.equals("ProfessorDash")) {
+			response.sendRedirect("ProfessorDash.jsp");
 		}
-		if(action.equals("CreateQuiz"))
-		{
-			response.sendRedirect("CreateQuiz.jsp");
-		}
-		/*
-		 * if(action.equals("Questions")) { response.sendRedirect("Questions.jsp"); }
-		 */
-		if(action.equals("ViewGrades"))
-		{
+		if (action.equals("ViewGrades")) {
+			try {
+				vc.getParameters(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			response.sendRedirect("ViewGrades.jsp");
 		}
-		if(action.equals("Statistics"))
-		{
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String action = request.getParameter("action");
+		if (action == null || action.isEmpty()) {
+			response.sendRedirect("Login.jsp");
+		}
+		if (action.equals("CreateQuiz")) {
+			response.sendRedirect("CreateQuiz.jsp");
+		}
+		if (action.equals("ViewGrades")) {
+			response.sendRedirect("ViewGrades.jsp");
+		}
+		if (action.equals("Statistics")) {
 			response.sendRedirect("Statistics.jsp");
 		}
-		if (action.equals("Continue"))
-		{
+		if (action.equals("Continue")) {
 			try {
 				quiz.getParameters(request, response);
 			} catch (Exception e) {
@@ -84,9 +71,8 @@ public class ProfessorController extends HttpServlet {
 			}
 			response.sendRedirect("Questions.jsp");
 		}
-		
-		if (action.equals("Submit"))
-		{
+
+		if (action.equals("Submit")) {
 			try {
 				quiz.getParameters(request, response);
 			} catch (Exception e) {
@@ -94,23 +80,23 @@ public class ProfessorController extends HttpServlet {
 			}
 			response.sendRedirect("ProfessorDash.jsp");
 		}
-		if (action.equals("Continue1"))
-		{
-			try
-			{
-				q.getParameters(request, response);
-			} catch (Exception e) 
-			{
-				// TODO Auto-generated catch block
+		if (action.equals("Continue1")) { 
+			try {
+				q.getParameters(request, response);       
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			response.sendRedirect("Questions.jsp");
 		}
 
-		  if (action.equals("Cancel1")) { 
-		  response.sendRedirect("ProfessorDash.jsp"); 
-		  }
-		 
+		if (action.equals("Cancel")) {
+			response.sendRedirect("ProfessorDash.jsp");
+		}
+		
+		if (action.equals("Logout")) {
+			response.sendRedirect("ProfessorDash.jsp");
+		}
+		
 
 	}
 

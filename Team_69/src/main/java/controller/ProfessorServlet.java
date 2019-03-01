@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import bean.Answer;
 import bean.Question;
 import bean.Quiz;
 import dao.ProfessorDAO;
@@ -101,17 +103,31 @@ public class ProfessorServlet extends HttpServlet {
 			request.setAttribute("quizList", quizList);
 			rd.forward(request, response);
 		} 
-		else if ("DeleteQuestion".equals(flag)) {
-			String quesId = request.getParameter("box1");
+		else if ("deleteQuestion".equals(flag)) {
+			String quesID = request.getParameter("quesId");
+			String flag1 = request.getParameter("flagOld");
+			String id = request.getParameter("quizId");
+			String quizName = request.getParameter("quizName");
 			QuestionDAO questionDAO = new QuestionDAO();
-			questionDAO.deleteQuestionByQuestionId(quesId);
-			response.sendRedirect("views/removeQuestionPage.jsp");
-		} 
+			questionDAO.deleteQuestionByQuestionId(quesID);
+			response.sendRedirect("ProfessorController?" + "flag="+ flag1 + "&id="+id + "&quizName=" + quizName);
+		}  
+		else if ("EditQuestion".equals(flag)) {
+			String quesId = request.getParameter("quesId");
+			String quizId = request.getParameter("quizId");
+			String quizName = request.getParameter("quizName");
+			int quizid = Integer.parseInt(quizId);
+			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizid);
+			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
+			request.setAttribute("quesId", quesId);
+			request.setAttribute("queAnsData", queAnsData);
+			request.getRequestDispatcher("views/canEditQuestion.jsp").forward(request, response);
+		}
 		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag) || "Verify Questions".equals(flag)) {
 			
 			//professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
 			//		questionOption2, questionOption3, questionOption4, correctanswers, points);
-			
+			System.out.println("hello");
 			professorServices.storeQuestion(request);
 
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
@@ -119,6 +135,7 @@ public class ProfessorServlet extends HttpServlet {
         	if("Add Next Question".equals(flag)) {
         		response.sendRedirect("views/addQuestions.jsp");
         	}else if("Save and Exit".equals(flag)) {
+        		
         		response.sendRedirect("views/professorLanding.jsp");
         	}else if("Verify Questions".equals(flag)) {
             	response.sendRedirect("views/displayQuestionAnswer.jsp");

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+h1 {
+	text-shadow: 1px 1px grey;
+}
+
+table {	
+	width: 90%;
+	text-align: center;
+  	text-decoration: none;
+  	border-radius: 8px;
+}
+
+td {
+	border-radius: 4px;
+}
+
+input {
+	background-color: Gold;
+  	border: none;
+ 	color: black;
+  	padding: 3px 3px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	border-radius: 4px;
+  	width: 100%;  	
+  	margin: auto;
+}
+
+input:hover {
+  background-color: DarkOrange;
+}

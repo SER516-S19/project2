@@ -2,11 +2,14 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+
 import javax.persistence.criteria.*;
 import bean.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
@@ -20,7 +23,7 @@ public class QuestionDAO {
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			session.save(question);
+			session.saveOrUpdate(question);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -66,6 +69,7 @@ public class QuestionDAO {
 		Question quesList = null;
 		try  {
 			int qId = Integer.parseInt(quesId);
+			System.out.println(qId);
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			quesList = (Question) session.get(Question.class, qId);
@@ -106,5 +110,51 @@ public class QuestionDAO {
 	       }
 	       return quesList;
 	}
+
+
+	public List<Answer> getDataByQuestionId(String quesId) {
+		Transaction transaction = null;
+		Question quesList = null;
+		List<Answer> lists = new ArrayList<>();
+		try  {
+			int qId = Integer.parseInt(quesId);
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.questionId = "+qId);	            
+            lists = query.list();
+            System.out.println("hello");
+			transaction.commit();
+		} catch (Exception sqlException) {
+            if (transaction != null)
+                transaction.rollback();
+            //logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", sqlException);
+        }
+	return lists;
+		
+		
+	}
+
+	public void editQuestionByQuestionId(String quesId) {
+		Transaction transaction = null;
+		Question quesList = null;
+		try  {
+			int qId = Integer.parseInt(quesId);
+			System.out.println(qId);
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			quesList = (Question) session.get(Question.class, qId);
+			session.save(quesList);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return ;
+		}
+		return ;
+		
+	}
+
 	
 }

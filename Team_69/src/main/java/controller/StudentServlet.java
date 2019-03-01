@@ -55,15 +55,25 @@ public class StudentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String view = "/error";
 		String studentResponse = request.getParameter("data");
+		String action = request.getParameter("action");
 		StudentServices service = new StudentServices();
 		try {
-			view = service.feedAnswers(studentResponse);
-			response.setContentType("text/html");
-			if ("/success".equals(view))
-				response.setStatus(HttpServletResponse.SC_CREATED);
-			else
-				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			request.getRequestDispatcher(view).forward(request, response);
+			if(action.equals("submit")) {
+				response.setContentType("text/html");
+				view = service.feedAnswers(studentResponse);
+				if ("/success".equals(view))
+					response.setStatus(HttpServletResponse.SC_CREATED);
+				else
+					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				request.getRequestDispatcher(view).forward(request, response);
+			}else if(action.equals("save")) {
+				HttpSession session = request.getSession();
+				session.setAttribute("data", studentResponse);
+				if ("/success".equals(view))
+					response.setStatus(HttpServletResponse.SC_OK);
+				else
+					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			}
 		} catch (Exception exception) {
 			response.setContentType("text/html");
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

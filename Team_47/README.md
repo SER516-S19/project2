@@ -43,7 +43,9 @@ macOS and linux:
 windows
 `cd QuizCreator`  
 `./build.bat`
-`./run.bat`  
+`./run.bat`
 
 After successfully building and running, you can view the project by going to:
 http://localhost:8080
+
+
