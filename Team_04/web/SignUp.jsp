@@ -98,10 +98,10 @@
                     <input type="radio" name="userTypeBtn" value="Professor"/> Professor
                     <input type="radio" name="userTypeBtn" value="Student"/>   Student
                 </div>
+
                 <div class = "btnwrapper">
                     <input type="submit" name="action" class="button" value="SignUp"/>
                 </div>
-
             </form>
         </div>
     </div>
