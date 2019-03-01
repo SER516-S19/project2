@@ -39,6 +39,35 @@
     .row{
         margin: 0px;
     }
+
+    .button {
+        display: inline-block;
+        white-space: nowrap;
+        flex-basis: auto;
+        width: auto;
+        font-size: .875rem;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: center;
+        font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+        font-weight: 700;
+        line-height: 1.28571429;
+        letter-spacing: .8px;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 19px 40px 20px;
+        transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+        background-color: #ea4c89;
+
+    }
+    .btnwrapper{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
     @media only screen and (max-width: 768px) {
         .col-md-8
         {
@@ -55,17 +84,24 @@
             <h1>Sign Up for the Quiz Application</h1>
         </div>
         <div class="col-md-4">
-            <form>
+            <form action="./quiz" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="bmd-label-floating">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" required>
+                    <input type="email" name="username" class="form-control" id="exampleInputEmail1">
                     <span class="bmd-help">We'll never share your email with anyone else.</span>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="bmd-label-floating">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" required>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                 </div>
-                <button type="submit" class="btn btn-primary btn-raised">Sign Up</button>
+                <div class="form-group">
+                    <input type="radio" name="userTypeBtn" value="Professor"/> Professor
+                    <input type="radio" name="userTypeBtn" value="Student"/>   Student
+                </div>
+                <div class = "btnwrapper">
+                    <input type="submit" name="action" class="button" value="SignUp"/>
+                </div>
+
             </form>
         </div>
     </div>
