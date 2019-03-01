@@ -142,15 +142,20 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 * @param wrongThree wrong answer number three
 	 * @param points points for the question
 	 * @param qId the question ID
+	 * @param mcq whether the question is multiple choices or not
 	 * 
 	 * @see controller/ViewQuizServlet.java
 	 * @verson 1.0
 	 * */
+	@SuppressWarnings("unchecked")
 	public void updateQuestionsTable(String question, String answer, String wrongOne,
 			String wrongTwo, String wrongThree, int points, int qId) throws SQLException, ClassNotFoundException{
+		
 		Connection connection = null;
 		PreparedStatement query = null;
 		connection = ConnectionFactory.getConnection();
+		
+		int mcq = 0;
 		
 		try {
 			JSONObject jsonObj = new JSONObject();
@@ -158,12 +163,28 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			jsonObj.put("incorrectAnswer2", wrongTwo);
 			jsonObj.put("incorrectAnswer3", wrongThree);
 			
+			JSONObject answerObj = new JSONObject();
+			if(answerObj.size() == 1) {
+				mcq = 1;
+			}
+			String [] arr = answer.split(", ");
+			System.out.println("Arr");
+			
+			String temp = null;	
+			for (int i = 0; i < arr.length; i++) {
+				temp = "correctAnswer"+ Integer.toString(i+1);
+				System.out.println("temp1 "+ temp);
+				answerObj.put(temp, arr[i]);
+			}
+			
+		    answer = answerObj.toJSONString();
 			query = connection.prepareStatement(dbProperties.getProperty("updateQuestionsTable"));
 			query.setString(1, question);
 			query.setString(2, answer);
 			query.setString(3, jsonObj.toJSONString());
 			query.setInt(4, points);
-			query.setInt(5, qId);
+			query.setInt(5, mcq);
+			query.setInt(6, qId);
 			
 			query.executeUpdate();
 			
@@ -203,7 +224,6 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		    while (result.next()) {
 		    	   int questionId = result.getInt("questionId");
 	 			   int points = result.getInt("totalPoints");
-	 			   int mcq = result.getInt("isMCQ");
 	 			   String question = result.getString("question");
 	 			   
 	 			   
@@ -213,8 +233,24 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
 	 			   JSONObject jo2 = (JSONObject)parser.parse(answer);
-	 			   String ans1 = (String) jo2.get("correctAnswer1");
+	 			   String temp = null;
+	 			   System.out.println(jo2.toJSONString());
+	 			   System.out.println("Next");
+	 			   System.out.println(jo2.toString());
+	 			   
+	 			  StringBuilder ans = new StringBuilder();
 	 			  
+	 			   temp = "correctAnswer";
+	 			   for(int i = 1; i <=jo2.size(); i++) {
+	 				   
+	 				  ans.append((String) jo2.get(temp+Integer.toString(i)));
+	 				 
+	 				  if(jo2.size() != i) {
+	 					  ans.append(", ");
+	 				  }
+	 			   }
+	 			   
+	 			   answer = ans.toString();
 	 			   
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");
