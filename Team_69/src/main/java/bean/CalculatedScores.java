@@ -10,6 +10,8 @@ import javax.persistence.*;
  * @since : 02/26/2019
  */
 
+@Entity
+@Table(name = "CalculatedScores")
 public class CalculatedScores {
 
     @Id
@@ -18,7 +20,7 @@ public class CalculatedScores {
     private int id;
 
     @ManyToOne(cascade = {CascadeType.ALL})
-    @Column(name = "quiz_id", nullable = false)
+    @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
     @ManyToOne(cascade = {CascadeType.ALL})
@@ -35,8 +37,6 @@ public class CalculatedScores {
         this.score = score;
     }
 
-    public CalculatedScores() {
-    }
 
     public int getId() {
         return id;

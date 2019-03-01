@@ -49,53 +49,56 @@
 	</div>
 	
 	<script>
-	$(document).ready(function() {
-		$('#submitBtn').hide();
-		studentResponseJSON = '<%=session.getAttribute("studentResponseJSON")%>';
-		var studentResponseObj = JSON.parse(studentResponseJSON);
-		var hms = studentResponseObj.quizTimeLimit;
-		//clear
-		hms = '01:01:01';
-		var quizName = studentResponseObj.quizName;
-		var quizInstruction = studentResponseObj.quizInstructions;
-		document.getElementById("quiz_name").innerHTML = quizName;
-		document.getElementById("quiz_instructions").innerHTML = quizInstruction;
-		var a = hms.split(':');
-		var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60+ (+a[2]);
-		setInterval(function() {
-			document.getElementById("submitForm").submit();
-		}, seconds * 1000);
-		displayQuiz(studentResponseObj);
-	});
+        //script to be executed when the page loads
+        $(document).ready(function() {
+            $('#submitBtn').hide();
+            studentResponseJSON = '<%=session.getAttribute("studentResponseJSON")%>';
+            var studentResponseObj = JSON.parse(studentResponseJSON);
+            var hms = studentResponseObj.quizTimeLimit;
+            //clear
+            hms = '01:01:01';
+            var quizName = studentResponseObj.quizName;
+            var quizInstruction = studentResponseObj.quizInstructions;
+            document.getElementById("quiz_name").innerHTML = quizName;
+            document.getElementById("quiz_instructions").innerHTML = quizInstruction;
+            var a = hms.split(':');
+            var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60+ (+a[2]);
+            setInterval(function() {
+                document.getElementById("submitForm").submit();
+            }, seconds * 1000);
+            displayQuiz(studentResponseObj);
+        });
 
-	function updateResponseJSON(studentResponseObj, selections) {		
-		for (var i = 0; i < studentResponseObj.question.length; i++) {
-			if (!(isNaN(selections[i]))) {
-				studentResponseObj.question[i].responseAnswer.length = 0;
-				studentResponseObj.question[i].responseAnswer
-						.push(studentResponseObj.question[i].availableAnswers[selections[i]]);
-			}
-		}
-		var studentResponse = JSON.stringify(studentResponseObj);
-		
-		$.ajax({
-			url:'',
-			type: 'POST',
-			data: {data: studentResponse, action: 'save'},
-			statusCode : {
-				404 : function(){
-					console.log("Auto Save not functioning");
-				},
-				500 : function(){
-					console.log("Auto Save not functioning");
-				}
-			},
-			success : (function() {
-				console.log("Saved!!");
-			})
-		})
-		document.getElementById("finish").value = studentResponseJSON;
-	}
+        //method to update JSON from user inputs
+        function updateResponseJSON(studentResponseObj, selections) {
+            for (var i = 0; i < studentResponseObj.question.length; i++) {
+                if (!(isNaN(selections[i]))) {
+                    studentResponseObj.question[i].responseAnswer.length = 0;
+                    studentResponseObj.question[i].responseAnswer
+                            .push(studentResponseObj.question[i].availableAnswers[selections[i]]);
+                }
+            }
+            var studentResponse = JSON.stringify(studentResponseObj);
+
+            //ajax call to update the session attribute on the server
+            $.ajax({
+                url:'',
+                type: 'POST',
+                data: {data: studentResponse, action: 'save'},
+                statusCode : {
+                    404 : function(){
+                        console.log("Auto Save not functioning");
+                    },
+                    500 : function(){
+                        console.log("Auto Save not functioning");
+                    }
+                },
+                success : (function() {
+                    console.log("Saved!!");
+                })
+            })
+            document.getElementById("finish").value = studentResponseJSON;
+        }
 	</script>
 </body>
 </html>

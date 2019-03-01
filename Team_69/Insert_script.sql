@@ -17,3 +17,6 @@ insert into answer values(8,"0",0,2);
 insert into answer values(9,"0",0,3);
 insert into answer values(10,"7",1,3);
 insert into answer values(11,"17",0,3);
+
+insert into User values(1,"12345","abc.com","ABC","student");
+insert into User values(2,"67890","xyz.com","XYZ","professor");

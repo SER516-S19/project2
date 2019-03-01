@@ -10,32 +10,32 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 
-public class LoginDAO {
+public class UserDAO {
 
-    public String checkUserType(String userEmail){
+    public User fetchUserDetails(String userEmail){
         Transaction transaction = null;
-        String userType = null;
+        User user = null;
         Session session = null;
 
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<String> query = builder.createQuery(String.class);
+            CriteriaQuery<User> query = builder.createQuery(User.class);
             Root<User> root = query.from(User.class);
-            //query.select(root.get("user_type")).where(builder.equal(root.get("user_email"),userEmail));
-            Query<String> userQuery = session.createQuery(query);
-            userType = userQuery.getSingleResult();
+            query.select(root).where(builder.equal(root.get("userEmail"),userEmail));
+            Query<User> userQuery = session.createQuery(query);
+            user = userQuery.getSingleResult();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
-            return userType;
+            return user;
         }finally {
             session.close();
         }
-        return userType;
+        return user;
     }
 }
