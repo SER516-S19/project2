@@ -21,14 +21,17 @@ public class RegisterController extends HttpServlet {
 	 //Copying all the input parameters in to local variables
 	 String fullName = request.getParameter("fullname");
 	 String email = request.getParameter("email");
+	 String user_type = request.getParameter("user_type");
 	 String userName = request.getParameter("username");
 	 String password = request.getParameter("password");
+	 
 	 
 	 Register registerBean = new Register();
 	 //Using Java Beans - An easiest way to play with group of related data
 	 registerBean.setFullName(fullName);
 	 registerBean.setEmail(email);
 	 registerBean.setUserName(userName);
+	 registerBean.setUserType(user_type);
 	 registerBean.setPassword(password); 
 	 
 	 RegisterDao registerDao = new RegisterDao();

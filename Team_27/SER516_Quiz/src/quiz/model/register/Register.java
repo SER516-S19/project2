@@ -4,15 +4,17 @@ public class Register {
 	private String fullName;
 	 private String email;
 	 private String userName;
+	 private String user_type;
 	 private String password;
 	 public Register() {}
 	 
 	 /* A contructor that sets all the member variables */
-		public Register(String fullName, String email, String userName, String password) {
+		public Register(String fullName, String email, String userName,String user_type,String password) {
 			super();
 			this.fullName = fullName;
 			this.email = email;
 			this.userName = userName;
+			this.user_type = user_type;
 			this.password = password;
 		}
 		
@@ -22,6 +24,12 @@ public class Register {
 	 public void setUserName(String userName) {
 	 this.userName = userName;
 	 }
+	 public String getUserType() {
+	 return user_type;
+	 }
+	 public void setUserType(String user_type) {
+	 this.user_type = user_type;
+	 }	 
 	 public String getPassword() {
 	 return password;
 	 }
