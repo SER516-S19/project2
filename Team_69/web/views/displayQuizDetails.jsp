@@ -16,44 +16,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
-	
-<table class="table table-hover">
-	<tbody>
-	<tr>	
-		<th scope="col">Name</th>
-		<th scope="col">Quiz Details</th>
-		<th scope="col">Published Quizzes</th>
-		<th scope="col">Add Questions in quiz</th>
-		<th scope="col">Stats</th>
-	</tr>
-	<c:forEach items="${requestScope.quizList}" var="quiz">
-
-	<tr scope="row">
-		<td><c:out value="${quiz.quizName}"></c:out></td>	
-		<td>
-		<%String pathWebcontent=request.getContextPath();%>
-			<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>			
-		</td>
-		<td>
-			<c:choose>
-			   <c:when test="${quiz.isPublished}">
-			     <p style="color:green">Published</p>
-			   </c:when>
-			   <c:otherwise>
-			     <a href="<%=pathWebcontent %>/ProfessorController?flag=publishQuiz&id=${quiz.quizId}"> Publish Quiz</a>	
-			   </c:otherwise>
-			</c:choose>
-		</td>
-		<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
-		<td><a href="<%=pathWebcontent %>/ProfessorController?flag=quizStats&id=${quiz.quizId}">View Stats</a></td>
-		
-	</tr>
-	</c:forEach>
-</tbody>
-</table>
-	
-=======
 	<c:choose>
 		<c:when test="${empty requestScope.quizList}">
 			<blockquote class="blockquote text-center">
@@ -61,56 +23,45 @@
 			</blockquote>
 			<div></div>
 			<blockquote class="blockquote text-center">
-			<%
-									String pathWebcontent = request.getContextPath();
-								%> 
+			<%String pathWebcontent = request.getContextPath();%> 
 				<a href="<%=pathWebcontent %>/views/quizDetails.jsp">Create New Quiz </a>
 			</blockquote>
-
 		</c:when>
 		<c:otherwise>
-
-
-
 			<table class="table table-hover">
 				<tbody>
-					<tr>
-						<th scope="col">Name</th>
-						<th scope="col">Quiz Details</th>
-						<th scope="col">Published Quizzes</th>
-						<th scope="col">Add Questions in quiz</th>
+				<tr>	
+					<th scope="col">Name</th>
+					<th scope="col">Quiz Details</th>
+					<th scope="col">Published Quizzes</th>
+					<th scope="col">Add Questions in quiz</th>
+					<th scope="col">Stats</th>
+				</tr>
+				<c:forEach items="${requestScope.quizList}" var="quiz">
+					<tr scope="row">
+						<td><c:out value="${quiz.quizName}"></c:out></td>	
+						<td>
+						<%String pathWebcontent=request.getContextPath();%>
+							<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>			
+						</td>
+						<td>
+							<c:choose>
+							   <c:when test="${quiz.isPublished}">
+							     <p style="color:green">Published</p>
+							   </c:when>
+							   <c:otherwise>
+							     <a href="<%=pathWebcontent %>/ProfessorController?flag=publishQuiz&id=${quiz.quizId}"> Publish Quiz</a>	
+							   </c:otherwise>
+							</c:choose>
+						</td>
+						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
+						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=quizStats&id=${quiz.quizId}">View Stats</a></td>
+						
 					</tr>
-					<c:forEach items="${requestScope.quizList}" var="quiz">
-
-						<tr scope="row">
-							<td><c:out value="${quiz.quizName}"></c:out></td>
-							<td>
-								<%
-									String pathWebcontent = request.getContextPath();
-								%> <a
-								href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View
-									Quiz</a>
-							</td>
-							<td><c:choose>
-									<c:when test="${quiz.isPublished}">
-										<p style="color: green">Published</p>
-									</c:when>
-									<c:otherwise>
-										<a
-											href="<%=pathWebcontent %>/ProfessorController?flag=publishQuiz&id=${quiz.quizId}">
-											Publish Quiz</a>
-									</c:otherwise>
-								</c:choose></td>
-							<td><a
-								href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add
-									Questions</a></td>
-
-						</tr>
-					</c:forEach>
+				</c:forEach>
 				</tbody>
 			</table>
 		</c:otherwise>
 	</c:choose>
->>>>>>> 214c2bee84b4db811b8da0e813324b3bea330cf4
 </body>
 </html>
