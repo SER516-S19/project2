@@ -61,6 +61,7 @@ public class GradeQuizServlet extends HttpServlet{
 				List<StudentResponseVO> studentResponseVOList = studentResponseDAOBean.getStudentListFromQuizIdQuestionId(quizId,question.getqId());
 				for (StudentResponseVO student : studentResponseVOList) {
 					int score = calculateScore(student,question);
+					System.out.println("score" + score);
 					studentResponseDAOBean.updateStudentResponse(quizId,question.getqId(),student.getUserId(),score);
 				}
 			}
@@ -103,7 +104,7 @@ public class GradeQuizServlet extends HttpServlet{
 				}
 			}
 			countOfCorrectAnswered = countOfCorrectAnswered - countOfWrongAnswers;
-			score = countOfCorrectAnswered <= 0 ? 0 : (2 /  countOfCorrectAnswers)*countOfCorrectAnswered;
+			score = countOfCorrectAnswered <= 0 ? 0 : (question.getTotalPoints() /  countOfCorrectAnswers)*countOfCorrectAnswered;
 		} catch (ParseException exception) {
 	
 		}

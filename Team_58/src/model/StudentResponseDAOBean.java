@@ -88,12 +88,12 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 		PreparedStatement query = null;
 
 		try {
-			
 			connection = ConnectionFactory.getConnection();
 			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponseForScore"));
-			query.setInt(1,quizId);
-			query.setInt(2,userId );
-			query.setInt(3,questionId);
+			query.setInt(1,score);
+			query.setInt(2,quizId);
+			query.setInt(3,userId );
+			query.setInt(4,questionId);
 			query.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
