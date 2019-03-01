@@ -1,3 +1,9 @@
+<!--
+  User: sumanth, manisha
+  Date: 2/21/2019
+  Description: Page that displays instructions of the quiz
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,41 +11,104 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascript/studentHomePage.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    
-   
     <title>StudentHomePage</title>
 </head>
 <style>
-    .table-wrapper {
-        margin-top: 50px;
-    }
-	.h3 {
-   font-size: 38px;
-   font-family: verdana;
+
+		* {
+	  box-sizing: border-box;
 	}
+
+	body {
+	  font-family: Arial, Helvetica, sans-serif;
+	}
+
+	/* Style the header */
+	header {
+	  background-color: #666;
+	  padding: 20px;
+	  text-align: center;
+	  font-size: 25px;
+	  color: white;
+	}
+
+	/* Create two columns/boxes that floats next to each other */
+	nav {
+	  float: left;
+	  width: 30%;
+	  height: 300px; /* only for demonstration, should be removed */
+	  background: #ccc;
+	  padding: 20px;
+	}
+
+	/* Style the list inside the menu */
+	nav ul {
+	  list-style-type: none;
+	  padding: 0;
+	}
+
+	article {
+	  float: left;
+	  padding: 20px;
+	  width: 70%;
+	  background-color: #f1f1f1;
+	  height: 300px; /* only for demonstration, should be removed */
+	}
+
+	/* Clear floats after the columns */
+	section:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+
+	/* Style the footer */
+	footer {
+	  background-color: white;
+	  padding: 10px;
+	  text-align: center;
+	  color: black;
+	}
+
+	#takeQuiz{
+	    margin-left: 642px;
+	}
+   
 </style>
+
 <body>
-<div class="page-wrapper">
-  <p align="right">
-        <button class="button" style="color:black"><a href="https://www.google.com/"> Profile </a> </button>
-        <button class="button"><a href="https://weblogin.asu.edu/cas/logout?eventSource=myasu">Logout</a></button>
-  </p>
-</div>
-<div class="page-wrapper">
-        <h3 align="center">STUDENT QUIZ PLATFORM </h3> <br> <br>
+	<br>
+	<h1>
+		<center>Student Quiz Platform </center>
+	</h1>
+	<br><br><br>
+	<p><div style="background-color: #F5DEB3 ; padding: 10px; border: 1px white;">
+		<span>
+			<strong>
+				<center>Available Quizes :</center>
+			</strong>
+		</span>
+	</div>
+	<div class="page-wrapper">
+		<hr width="99%">
 		<form name="Quiz">
-		<fieldset align= "center">
-			<legend>Available Quizes</legend>
-			<p>
-            <label> Quiz:</label> &ensp;
-            <select name="QuizList" id ="QuizList">
-            </select>
-          </p>
-       </fieldset>
-	   </form> 
-	   <button id="takeQuiz">Take Quiz</button>
-	  
-</div>
+			<fieldset align= "center">
+		    	<label> QUIZ:</label> &ensp;
+		   		<select name="QuizList" id ="QuizList"></select>
+		    	</p>
+		    </fieldset>
+		</form> 
+		<button id="takeQuiz">Take Quiz</button>
+	</div>
+	<hr width="99%">
+
+	<footer>
+	  <div class="page-wrapper">
+	  <p align="right">
+	        <button class="button" style="color:black"><a href="https://www.google.com/"> Profile </a> </button>
+	        <button class="button"><a href="https://weblogin.asu.edu/cas/logout?eventSource=myasu">Logout</a></button>
+	  </p>
+	  </div>
+	</footer>
+
 </body>
-</html>

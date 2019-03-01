@@ -1,29 +1,104 @@
+<!--
+  User: sashidhar
+  Date: 2/20/2019
+  Description: Page that displays instructions of the quiz
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
 <link rel="stylesheet" type="text/css" href="stylesheet.css"> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="javascript/quizInstructions.js"></script>
 
+<style>
+
+	* {
+	  box-sizing: border-box;
+	}
+
+	body {
+	  font-family: Arial, Helvetica, sans-serif;
+	}
+
+	/* Style the header */
+	header {
+	  background-color: #666;
+	  padding: 20px;
+	  text-align: center;
+	  font-size: 25px;
+	  color: white;
+	}
+
+	/* Create two columns/boxes that floats next to each other */
+	nav {
+	  float: left;
+	  width: 30%;
+	  height: 300px; /* only for demonstration, should be removed */
+	  background: #ccc;
+	  padding: 20px;
+	}
+
+	/* Style the list inside the menu */
+	nav ul {
+	  list-style-type: none;
+	  padding: 0;
+	}
+
+	article {
+	  float: left;
+	  padding: 20px;
+	  width: 70%;
+	  background-color: #f1f1f1;
+	  height: 300px; /* only for demonstration, should be removed */
+	}
+
+	/* Clear floats after the columns */
+	section:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+
+	/* Style the footer */
+	footer {
+	  background-color: white;
+	  padding: 10px;
+	  text-align: center;
+	  color: black;
+	}
+
+</style>
 </head>
+
 <body>
 
-<h1>Quiz</h1>
+	<h1>
+		<center>QUIZ</center>
+	</h1>
+	<br><br><br>
+	<p><div style="background-color: #F5DEB3 ; padding: 10px; border: 1px white;">
+		<span>
+			<strong>QUIZ  INSTRUCTIONS :</strong>
+		</span>
+	</div>
+	<hr width="99%">
+	<ul>
+		<li>
+			<strong>This quiz contains 15 Questions </strong>
+		</li>
+		<br>
+		<li>
+			<strong>Each question carries 10 marks.</strong>
+		</li>
+	</ul>
+	  
+	<hr width="99%">
 
-<header>
-  <h2>Quiz Instructions</h2>
-</header>
-
-  <article>This quiz contains 15 Questions </p>
-    <p>Each question carries 10 marks.</p>
-  </article>
-
-
-<footer>
- <input type="button" class="button" id="startQuiz" value="Next">
-</footer>
+	<footer>
+	  <div align="right">
+	  <input type="button" class="button" id="startQuiz" value="NEXT">
+	</footer>
 
 </body>
 </html>
