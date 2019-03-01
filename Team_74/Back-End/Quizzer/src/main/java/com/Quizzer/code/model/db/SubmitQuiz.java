@@ -2,6 +2,13 @@ package com.Quizzer.code.model.db;
 
 import java.io.Serializable;
 
+/**
+ * This class is the model for Student quiz data.
+ * 
+ * @author Kirti Jha
+ *
+ */
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
