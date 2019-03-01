@@ -12,6 +12,7 @@ import bean.Question;
 import bean.Quiz;
 import dao.ProfessorDAO;
 import dao.QuestionDAO;
+import dao.QuizDAO;
 import services.ProfessorServices;
 
 /**
@@ -35,6 +36,9 @@ public class ProfessorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
+		System.out.println("Inside Prof get method");
+		System.out.println( request.getParameter("flag"));
+		
 		if ("fetchQuizList".equalsIgnoreCase(flag)) {
 			List<Quiz> quizList = professorServices.getAllQuizzes();
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
@@ -70,7 +74,13 @@ public class ProfessorServlet extends HttpServlet {
 			session.setAttribute("quiz", quiz);
 			session.setAttribute("quiz", quiz);
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
-		}
+		}else if("quizStats".equals(flag)) {
+			String quizID = request.getParameter("id");
+			int quizId = Integer.parseInt(quizID);
+			
+		
+			
+        }
 	}
 
 	/**
@@ -110,9 +120,9 @@ public class ProfessorServlet extends HttpServlet {
         		response.sendRedirect("views/addQuestions.jsp");
         	}else if("Save and Exit".equals(flag)) {
         		response.sendRedirect("views/professorLanding.jsp");
-        	}
-		}else if("Verify Questions".equals(flag)) {
-        	response.sendRedirect("views/displayQuestionAnswer.jsp");
-        }
+        	}else if("Verify Questions".equals(flag)) {
+            	response.sendRedirect("views/displayQuestionAnswer.jsp");
+            }
+		}
     }
 }
