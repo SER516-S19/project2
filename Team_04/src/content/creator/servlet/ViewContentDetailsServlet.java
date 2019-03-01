@@ -45,18 +45,18 @@ public class ViewContentDetailsServlet extends HttpServlet {
                     answerMap.put(key,answerList);
                 }
             }
-            System.out.println(answerMap);
-            request.setAttribute("questions",questionsList);
-           request.setAttribute("answers",answerMap);
-               // for (QuizContentDAO question : questionsList ) {
-
-                    //Map<QuizContentDAO,List<String>> collect = questionsList.stream().collect(Collectors.groupingBy(QuizContentDAO::getQuesId,QuizContentDAO::getQuesDesc,)
-                //}
-
-
-
-
-            //singleLevelGrouping(questionsList);
+            Map<Integer, Map<String, String>> quesData = new HashMap<>();
+            for (QuizContentDAO question : questionsList) {
+                Integer quesId = question.getQuesId();
+                if(!quesData.containsKey(quesId)) {
+                    Map<String, String> details = new HashMap<>();
+                    details.put("desc", question.getQuesDesc());
+                    details.put("score", Integer.toString(question.getMaxScore()));
+                    quesData.put(quesId, details);
+                }
+            }
+            request.setAttribute("questions",quesData);
+            request.setAttribute("answers",answerMap);
             request.getRequestDispatcher("viewContentDetails.jsp").forward(request,response);
         }
         catch (Exception e)

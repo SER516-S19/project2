@@ -11,6 +11,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
 <html>
 <head>
     <title>view-details</title>
@@ -44,26 +46,28 @@
 
     <%
         Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
-        List<QuizContentDAO> questionList=(ArrayList<QuizContentDAO>)request.getAttribute("questions");
+        Map<Integer, Map<String, String>> questionList=(HashMap)request.getAttribute("questions");
         int count = 0;
         Boolean flag;
-        for(QuizContentDAO question:questionList){
-            flag = true ? count % answers.size() == 0 : false;
+        for(Integer quesId:questionList.keySet()){
     %>
     <tr>
 
-        <td><%=question.getQuesId()%></td>
-        <td><%=question.getQuesDesc()%></td>
-        <td><%=question.getMaxScore()%></td></tr>
+        <td><%=quesId%></td>
+        <td><%=questionList.get(quesId).get("desc")%></td>
+        <td><%=questionList.get(quesId).get("score")%></td></tr>
         <tr>
-
-
-
-    </tr>
+      <%
+        for(String answer: answers.get(quesId)) {
+      %>
+            <td><%=answer%></td>
+        <%
+            }
+        %>
+        </tr>
     <%
-            count++;
-
-        }%>
+    }
+    %>
 </table>
 </body>
 </html>
