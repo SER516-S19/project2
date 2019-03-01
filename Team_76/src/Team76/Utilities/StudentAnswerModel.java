@@ -27,9 +27,8 @@ public class StudentAnswerModel{
 		} catch (Throwable t) {
 		    t.printStackTrace();
 		}
-}
-public String storeResponses(String studentResponse) {
-
+	}
+	public String storeResponses(String studentResponse) {
 		QuizDetails Response = StudentAnswerModel.convertStringtoJSON(studentResponse);
 		int quizId = Response.getQuizId();
 		ResponseStats statR = new ResponseStats();
@@ -54,12 +53,12 @@ public String storeResponses(String studentResponse) {
 		return "succesfullystoredanswers";
 
 	}
-public static QuizDetails convertStringtoJSON(String studentResponse) {
+	public static QuizDetails convertStringtoJSON(String studentResponse) {
 		Gson gson = new Gson();
 		QuizDetails quizList = gson.fromJson(studentResponse, QuizEnity.class);
 		return quizList;
 	}
-public List<String> fetchAllQuizNames(){
+	public List<String> fetchAllQuizNames(){
 		QuizEntity quizEntity = new QuizEntity();
 		return quizEntity.fetchAllQuizNames();
 	}
