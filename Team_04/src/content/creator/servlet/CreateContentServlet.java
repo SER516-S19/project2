@@ -15,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.*;
+import content.creator.dao.QuizQuestionsDAO;
 
 @WebServlet(urlPatterns = "/create")
 public class CreateContentServlet extends HttpServlet {
@@ -68,5 +70,11 @@ public class CreateContentServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {}
+      throws ServletException, IOException {
+	    Gson gson = new Gson();
+    	String json = request.getParameter("test");
+    	System.out.println(json);
+    	QuizQuestionsDAO[] QuizQuestions = gson.fromJson(json, QuizQuestionsDAO[].class);
+
+      }
 }
