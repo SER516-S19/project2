@@ -2,18 +2,13 @@ import * as helpers from "../helpers/arrayHelpers";
 import axios from 'axios';
 
 export default class ListController {
-  constructor( array, callback) {
+  constructor(array, callback) {
     this.array = array;
     this.callback = callback;
   }
 
   set(index, newContent) {
     this.callback(helpers.set(this.array, index, newContent));
-  }
-
-  setInstructions(details){
-    this.details = details;
-    console.log(details);
   }
 
   add(newContent) {
@@ -36,9 +31,7 @@ export default class ListController {
 
   submit() {
     let questions = this.array;
-    let details = this.details;
-    let combined = { questions, ...details };
-    console.log(combined);
+    console.log(questions);
 
     // axios.post(`https://localhost:8080/quiz`,
     //   { questions })

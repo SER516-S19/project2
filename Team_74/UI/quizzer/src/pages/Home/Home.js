@@ -8,7 +8,6 @@ import {
     Card, CardBody
 } from 'reactstrap';
 import QuizInstruction from '../Professor/QuizInstruction/QuizInstruction';
-import Toolbar from '../../components/Nav/Toolbar';
 
 
 
@@ -59,27 +58,24 @@ class Home extends Component {
     render() {
         // console.log(this.state.quizList[0].quizName);
         return (
-            <div>
-                
+            <form onSubmit={this.handleSubmit}>
                 <div className="Home">
                     {
                         (this.state.isProfessorType)?
                             <div>
-                                <Toolbar title="Professor's Portal"/>
                                 {
                                 (this.state.isCreatingQuiz)?
-                                <button type="submit" className="Prof-Button" onClick={this.handleSubmit} value="Submit">Back</button>
+                                <button type="submit" className="Prof-Button" value="Submit">Back</button>
                                 : 
-                                <button type="submit" className="Prof-Button" onClick={this.handleSubmit} value="Submit">Create Quiz</button>
+                                <button type="submit" className="Prof-Button" value="Submit">Create Quiz</button>
                             }
                             <center>
-                            {/* <h3>Professor Portal</h3> */}
+                            <h3>Professor Portal</h3>
                             {
                                 (this.state.isCreatingQuiz)?
                                 <h5>Create Quiz for your students</h5>
                                 : 
-                                <></>
-                                // <h5>Welcome to your home page</h5>
+                                <h5>Welcome to your home page</h5>
                             }
                             <br></br></center>
                             {
@@ -125,7 +121,7 @@ class Home extends Component {
                             </div>
                     }
                 </div>
-            </div>
+            </form>
         );
     }
 }
