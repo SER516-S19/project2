@@ -70,13 +70,60 @@ function selectQuestionType(answerTypeEncoded) {
 		}
 	}
 }
+function createQuizDict(idTracingList, quizDict) {
+	// var quizDict = {
+	// 	"title": 'title',
+	// 	"course_id": 0,
+	// 	"instructions": 'instruction',
+	// 	"shuffle": false,
+	// 	"time_limit": 0, //second
+	// 	"date_open": 'yyyy-mm-dd',
+	// 	"date_close": 'yyyy-mm-dd',
+	// 	"quiz_type": "quiz", // "quiz" or "survey",
+	// 	"attempts": 0,
+	// 	"quiz_group": 'quizGroup',
+	// 	"total_points": 0.0,
+	// 	"questions": []
+	// }
+	questionDict = {}
+	createQuestionsDict(idTracingList, questionDict)
+	quizDict['questions'] = []
+	quizDict['title'] = document.getElementById('title_id').value
+	quizDict['course_id'] = 0 // No such field
+	quizDict['instruction'] = document.getElementById('instruction_id').value
+	quizDict['shuffle'] = true// No such field
 
-function createDictionUsingPageData(idTracingList, questionDict) {
+	var hrs = document.getElementById('hrs_id').value
+	var min = document.getElementById('min_id').value
+	var totalSeconds = 3600*parseFloat(hrs)+60*parseFloat(min)
+	quizDict['time_limit'] = totalSeconds // In second, Not calculated yet
+
+	quizDict['date_open'] = document.getElementById('start_id').value
+	quizDict['date_close'] = document.getElementById('end_id').value
+	var quizTypSelect = document.getElementById('quizType_id').value
+	if (quizTypSelect == 'g') {
+		quizDict['quiz_type'] = 'quiz'
+	} else {
+		quizDict['quiz_type'] = 'survey'
+	}
+	
+	quizDict['attempts'] = 0 // No recorded
+	quizDict['quiz_group'] = document.getElementById('quizGroup_id').value
+	var points = 0
+	for (var key in questionDict) {
+		quizDict['questions'].push(questionDict[key])
+		points += questionDict[key]['points']
+	}
+	quizDict['total_points'] = points
+	returnQuizDict = quizDict
+}
+
+function createQuestionsDict(idTracingList, questionDict) {
 	var tmpDict = {}
 	for (var keyIdx = 0; keyIdx < idTracingList.length; keyIdx += 1) {
 		var keyword = idTracingList[keyIdx]
 		var parseArray = keyword.split('-')
-		var questionID = parseArray[parseArray.length-1]
+		var questionID = parseArray[parseArray.length - 1]
 		var questionKeyword = `question-${questionID}`
 		switch (parseArray[0]) {
 			case 'question':
@@ -98,7 +145,7 @@ function createDictionUsingPageData(idTracingList, questionDict) {
 				break
 			case 'choicedesc':
 				var correspondingCheckKey = `checkbox-${parseArray[1]}-${questionID}`
-				questionDict[questionKeyword]['choices'].push( {
+				questionDict[questionKeyword]['choices'].push({
 					'correct': tmpDict[correspondingCheckKey],
 					'content': document.getElementById(keyword).value
 				})
@@ -129,7 +176,7 @@ function reverseToSnapshot(snapshotList, snapshotDict) {
 		} else {
 			if (keyword in snapshot) {
 				document.getElementById(keyword).value = snapshotDict[keyword]
-			} 
+			}
 		}
 	}
 }
