@@ -18,6 +18,12 @@
             response.sendRedirect("Login.jsp");
         }
     %>
+    <div>
+        <form align="right" action="LoginController" method="post">
+            <input type="hidden" name="action" value="logoff">
+            <input class="logout" type="submit" value="LogOut" class="logout">
+        </form>
+    </div>
 	<h1 align="center"><font><strong>Available Quizzes</strong></font></h1>
 	<table align="center" cellpadding="5" cellspacing="5" border="1">
 	<tr></tr>

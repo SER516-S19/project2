@@ -14,6 +14,14 @@ td {
 	border-radius: 4px;
 }
 
+.logout {
+	float: right;
+	background-color: orange;
+	width: 10%;
+  	border: none;
+  	border-radius: 8px;
+}
+
 input {
 	background-color: Gold;
   	border: none;
