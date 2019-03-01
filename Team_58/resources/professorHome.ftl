@@ -43,9 +43,7 @@ Freemarker page to display Professor details
          				</#list>
          				<input class="button" type ="submit" value="Proceed"/>
         			</form>
-        			<form action="statistics" method="POST">
-        			<input class="button" type ="submit" value="Statistics"/>
-        			</form>
+        			
         		</div>
         	<#else>
         		<p class="shiftTop">${Session.displayMessage}</p>
