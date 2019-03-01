@@ -15,20 +15,20 @@
             response.sendRedirect("Login.jsp");
         }
 	%>
-    <div style="float: right">
+    <div>
         <form align="right" action="LoginController" method="post">
             <input type="hidden" name="action" value="logoff">
-            <inputtype="submit" value="LogOut" class="logout">
+            <input class="logout" type="submit" value="LogOut" class="logout">
         </form>
     </div>
 	<h1>Student DashBoard</h1>
 	<form class="action" action="StudentController" method="get">
 		<input type="hidden" name="action" value="AttemptQuiz">
-		<input type="submit" value="Attempt Quiz">
+		<input class="option" type="submit" value="Attempt Quiz">
 	</form>
 	<form class="action" action="StudentController" method="get">
 		<input type="hidden" name="action" value="ViewGrade">
-		<input type="submit" value="View Grade">
+		<input class="option" type="submit" value="View Grade">
 	</form>
 </body>
 </html>
