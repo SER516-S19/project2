@@ -18,5 +18,6 @@ Freemarker page to display the Student Homepage
             </select>
             <input type = "submit" value="Submit"/>
         </form>
+        <#include "logout.html">
     </body>
 </html>
