@@ -3,34 +3,31 @@
     <title>QUIZ</title>
 </head>
 <body>
-    
-	        <form action="DisplayQuiz" method="GET">
-	            
-	                <h3 align="center">
-	                    Question: ${Session.QuestionsVO.getQuestion()}
-	                </h3>
-	                <h5 align="center">
-	                    Total Points: <i>${Session.QuestionsVO.getTotalPoints()}</i>
-	                </h5>	
-	            	            
-	                <h3 align="center">
-	                    <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getCorrectAnswer()}
-	                </h3>
-	                <h3 align="center">
-	                    <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getIncorrectAnswer1()}
-	                </h3>
-	            	<h3 align="center">
-	                    <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getIncorrectAnswer2()}
-	                </h3>
-	                <h3 align="center">
-	                     <input type="radio" name= "questionId" /> ${Session.QuestionsVO.getIncorrectAnswer3()}
-	                </h3>
-	            
-	        </form>
-	
-	<form action="DisplayQuizServlet" method="POST">
-		<input type = "submit" value = "Submit"/>
-	</form>
-	
+	<table>
+    <form action="DisplayQuizSubmit" method="POST">
+    <#list Session.QuestionsVO as question>
+	    <h3 align="center">
+	        Question: ${question.getQuestion()}
+	    </h3>
+	    <h5 align="center">
+	        Total Points: <i>${question.getTotalPoints()}</i>
+	    </h5>	
+		            
+	    <h3 align="center">
+	        <input type="radio" name= "questionId" /> ${question.getCorrectAnswer()}
+	    </h3>
+	    <h3 align="center">
+	        <input type="radio" name= "questionId" /> ${question.getIncorrectAnswer1()}
+	    </h3>
+		<h3 align="center">
+	        <input type="radio" name= "questionId" /> ${question.getIncorrectAnswer2()}
+	    </h3>
+	    <h3 align="center">
+	         <input type="radio" name= "questionId" /> ${question.getIncorrectAnswer3()}
+	    </h3>
+    </#list>
+    <input type = "submit" value = "Submit"/>
+    </form>
+    </table>
 </body>
 </html>

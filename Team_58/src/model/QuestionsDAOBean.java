@@ -6,11 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
@@ -92,7 +95,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	}
 
 	@Override
-	public List<Integer> getQuestionIDsForQuiz(QuizVO quizVO) throws SQLException, ClassNotFoundException
+	public List<QuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
 	{
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -100,15 +103,30 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		
 		connection = ConnectionFactory.getConnection();
 		
-		query = connection.prepareStatement(dbProperties.getProperty("getQuizQuestionNumbers"));
-		query.setInt(1, quizVO.getQuizId());
+		query = connection.prepareStatement(dbProperties.getProperty("getQuizQuestions"));
+		query.setInt(1, quizID);
 
 		resultData = query.executeQuery();
 		
-		List<Integer> list = new ArrayList<>();
+		List<QuestionsVO> list = new ArrayList<>();
 		
 		while(resultData.next())
-			list.add(resultData.getInt("questionId"));
+		{
+			int totalPoints = resultData.getInt("totalPoints");
+			String question = resultData.getString("question");
+			String answer = resultData.getString("actualAnswer");
+			String choices = resultData.getString("totalChoices");
+			
+			JSONParser parser = new JSONParser();
+			JSONObject jo = (JSONObject) parser.parse(choices);
+			
+			String choice1 = (String) jo.get("incorrectAnswer1");
+			String choice2 = (String) jo.get("incorrectAnswer2");
+			String choice3 = (String) jo.get("incorrectAnswer3");
+			
+			QuestionsVO questionVO = new QuestionsVO(quizID, totalPoints, answer, choice1, choice2, choice3, question);
+			list.add(questionVO);
+		}
 		
 		return list;
 	}
