@@ -61,7 +61,8 @@ public class ViewQuizServlet extends HttpServlet {
 	       }
 	      
 	       String question = new String();
-	       String ansOne = new String();
+	       String[] ansOne = null; //get param vals
+	       String answer = new String();
 	       String one = new String();
 	       String two = new String();
 	       String three = new String();
@@ -70,10 +71,13 @@ public class ViewQuizServlet extends HttpServlet {
 	       //get info from viewQuiz page
 	       if (req.getParameterMap().containsKey("question")) {
 	    	   question = req.getParameter("question");
+	    	   System.out.println("Question "+ question);
 	       }
 	       
 	       if(req.getParameterMap().containsKey("answer")) {
-	    	   ansOne = req.getParameter("answer");
+	    	   ansOne = req.getParameterValues("answer");
+	    	   answer = ansOne[0];
+	    	   System.out.println("Answer: "+ answer);
 	       }
 	       
 	       if(req.getParameterMap().containsKey("one")) {
@@ -116,7 +120,7 @@ public class ViewQuizServlet extends HttpServlet {
 	    	   	   QuestionsDAOBean bean2 = new QuestionsDAOBean();
 	    	   	   
 	    	   	   if(question.isEmpty()==false){
-	    	   		   bean2.updateQuestionsTable(question, ansOne, one, two, three, pts, questId);
+	    	   		   bean2.updateQuestionsTable(question, answer, one, two, three, pts, questId);
 	    	   	   }
 	    	   	   
 	    	   	   quizQuestions = bean2.getQuestionsInfo(quizId);
