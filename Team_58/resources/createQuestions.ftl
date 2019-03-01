@@ -1,8 +1,8 @@
 <!-- 
 Freemarker page to display CreateQuestions Page 
 @authour Trupti Khatavkar / @author Aditya Vikram / @author Carnic
-@version 1.5
-@date 02/25/2019
+@version 1.6
+@date 02/27/2019
  -->
 
 <html>
@@ -67,9 +67,9 @@ Freemarker page to display CreateQuestions Page
   			Total Points:<br>
   			<input class="smallInputLeft" type="text" name="totalPoints">
   			<br><br>
-  			<input type="radio" name="isMCQ" checked>Multiple Answers
+  			<input type="radio" name="isMCQ" value="1" checked>Multiple Answers
   			<br><br>
-  			<input type="radio" name="isMCQ">Single Answer
+  			<input type="radio" name="isMCQ" value="0">Single Answer
   			<br><br>
   			<input class="button" type="submit" value="Add more Questions/ Submit">
 		</form>
