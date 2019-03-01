@@ -3,6 +3,7 @@
 #====================#
 
 # User-specific stuff
+.idea/*
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -131,6 +132,7 @@ local.properties
 #
 target/
 /.metadata/
+/Team_*/
 /Team_58/nbproject/private/
 /Team_58/build/
 /recommenders/
