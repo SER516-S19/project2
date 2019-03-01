@@ -20,6 +20,30 @@ public class InputValidation {
         }
     }
 
+
+
+    public String loginValidation(String userName, String passWord, String userType)
+    {
+        List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
+                "SELECT udername,password  from userDetails where userName='"+userName+"'");
+
+
+
+        //String updateQuery = "INSERT INTO userDetails(userName,password,userType,isActive) VALUES(?,?,?,?)";
+
+        if (userExists != null || !userExists.isEmpty()){
+
+            System.out.println("Username exists");
+            return "success";
+
+        }
+        else
+        {
+            return "signup";
+        }
+
+    }
+
     /**
      * Method to check the entered username is already there or not
      * @param userName
