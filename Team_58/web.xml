@@ -144,6 +144,18 @@
         <url-pattern>/DisplayInst</url-pattern>
     </servlet-mapping>
 
+	<servlet>
+    	<servlet-name>DisplayGradesServlet</servlet-name>
+    	<servlet-class>controller.DisplayGradesServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+  	</servlet>
+  
+  	<servlet-mapping>
+    	<servlet-name>DisplayGradesServlet</servlet-name>
+    	<url-pattern>/displayGrades</url-pattern>
+  	</servlet-mapping>    
+
+
 <welcome-file-list>
 <welcome-file>login.jsp</welcome-file>
 </welcome-file-list>
