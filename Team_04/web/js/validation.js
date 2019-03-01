@@ -1,5 +1,8 @@
 $("input[value='Add']").prop('disabled', true);
 $("input[value='Save']").prop('disabled', true);
+$("input[value='Add']").addClass('btn-disabled');
+$("input[value='Save']").addClass('btn-disabled');
+
 $('.error').hide();
 
 $(".formtext").on('keyup blur', function (e) {
@@ -30,22 +33,29 @@ $("input[name='score']").on('keyup blur', function (e) {
 });
 
 function allHaveClass(add) {
-    
+    if(typeof add !== "undefined" && add){ $("input[value='Save']").prop('disabled', false);
+    $("input[value='Save']").removeClass('btn-disabled');
+    $("input[value='Add']").prop('disabled', true);
+    $("input[value='Add']").addClass('btn-disabled');
+}
+    else{
     var allHaveClass = $('input.valid').length == 6;
     if (allHaveClass) {
-        console.log('if');
         $("input[value='Add']").prop('disabled', false);
         $("input[value='Save']").prop('disabled', false);
+        $("input[value='Add']").removeClass('btn-disabled');
+        $("input[value='Save']").removeClass('btn-disabled');
         $('.error').hide();
 
     }
     else{	
-        console.log('else');
         $("input[value='Add']").prop('disabled', true);
         $("input[value='Save']").prop('disabled', true);
-        
+        $("input[value='Add']").addClass('btn-disabled');
+        $("input[value='Save']").addClass('btn-disabled');
     }
     
-    if(typeof add !== "undefined") { $("input[value='Save']").prop('disabled', false);}
-}
+    }
+    
+        }
 
