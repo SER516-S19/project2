@@ -37,10 +37,11 @@ function validateForm() {
 					<input type="text" name="username" placeholder = "Username"/><br/><br/>  
 					<input type="password" name="userpass" placeholder = "Password"/><br/><br/> 
 					<input type="submit" value="login"/>  
-				</form>
+				</form> 
 				<form name="Form2" action="forgotpassword" method="GET">
-					<input type="submit" value="Forgot Password">
+					<input style="font-size:12px;" type="submit" value="Forgot Password">
 				</form>
+				
           	</div>
     </section><!-- content -->
 </div><!-- container -->
