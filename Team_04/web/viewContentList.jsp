@@ -1,9 +1,9 @@
 <%--
   Created by IntelliJ IDEA.
-  User: amankaushik
+  Modified By: Archana Madhavan
   Date: 18/2/19
   Time: 1:53 PM
-  To change this template use File | Settings | File Templates.
+  Description: Displays List of Quizzes.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
