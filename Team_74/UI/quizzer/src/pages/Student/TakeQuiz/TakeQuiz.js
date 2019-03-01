@@ -29,6 +29,7 @@ class TakeQuiz extends Component {
             point:0,
             totalPoints:0,
             totalMarks:0,
+            totalTime:1000,
             result: ''
         };
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -46,17 +47,21 @@ class TakeQuiz extends Component {
             .then(response => {
                 this.setState({
                     quizInstructions: response.data.response.instruction,
-                    quizQuestions: response.data.response.questions
+                    quizQuestions: response.data.response.questions,
+                    totalMarks: response.data.response.totalMarks,
+                    totalTime: response.data.response.time * 60 * 1000
                 });
                 const shuffledAnswerOptions = this.state.quizQuestions.map((question) => this.shuffleArray(question.options));
                 this.setState({
+                    questionId: this.state.quizQuestions[0].id,
                     questionText: this.state.quizQuestions[0].questionText,
                     point: this.state.quizQuestions[0].marks,
                     correctAnswer: this.state.quizQuestions[0].correctAnswer,
                     answerOptions: shuffledAnswerOptions[0]
             });
-                console.log(this.state.point);
-        })
+                console.log(this.state.totalTime);
+                localStorage.setItem('Time',this.state.totalTime);
+        });
         console.log(this.state.point);
     }
 
@@ -90,7 +95,7 @@ class TakeQuiz extends Component {
                 [answer]: state.answersCount[answer] + 1
             },
             answer: answer,
-            totalMarks: state.totalMarks + state.point,
+            // totalMarks: state.totalMarks + state.point,
             totalPoints: (answer.toString().localeCompare(this.state.correctAnswer) === 0) ? state.totalPoints + state.point: state.totalPoints
         }));
 
@@ -144,7 +149,8 @@ class TakeQuiz extends Component {
     }
 
     setResults (result) {
-        console.log(this.state.answer)
+        console.log(this.state.answer);
+        localStorage.removeItem('Time');
 
         if (result.length === 1) {
             this.setState({ result: result[0] });
@@ -176,17 +182,19 @@ class TakeQuiz extends Component {
                                 callback: () => {
 
                                     window.onbeforeunload = function() {
+                                        const time = this.state.totalTime;
                                         return "Data will be lost if you leave the page, are you sure?";
                                     };
                                 }
                             },{
-                                time: 1000 * 30,
+                                time: localStorage.getItem('Time') / 2,
                                 callback: () => {
-                                    alert ("Half-Time over Warning Message!! Quiz will submit automatically on time completion")
+                                    alert ("Half-Time over Warning Message!! Quiz will submit automatically on time completion");
+                                    console.log(this.state.totalTime)
                                 }
                             },
                             {
-                                time: 1000 * 60,
+                                time: localStorage.getItem('Time'),
                                 callback: () => {
                                     alert("Your Quiz is being submitted!! Thanks for taking the Test");
                                     this.submitQuiz()},
@@ -220,7 +228,7 @@ class TakeQuiz extends Component {
     renderResult() {
         return <div>
                 <Timer className="TakeQuiz-timer">
-                    {({ start, resume, pause, stop,timerState }) => (
+                    {({ start, resume, pause, stop, timerState }) => (
                         <div>{stop}</div>
                     )}
                 </Timer>
