@@ -43,6 +43,7 @@ Freemarker page to display Professor details
          				</#list>
          				<input class="button" type ="submit" value="Proceed"/>
         			</form>
+        			
         		</div>
         	<#else>
         		<p class="shiftTop">${Session.displayMessage}</p>

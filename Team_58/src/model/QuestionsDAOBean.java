@@ -14,6 +14,7 @@ import java.util.Properties;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
  * 
@@ -62,7 +63,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb.append(entry.getValue());
 			sb.append("\"");
 			count++;
-			if (totalChoices.size() - 1 != count) {
+			if (totalChoices.size() != count) {
 				sb.append(",");
 			}
 		}
@@ -74,15 +75,10 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 		String str = questionsVO.getCorrectAnswer();
 		String arrOfStr[] = str.split(",");
-		System.out.println(arrOfStr.length);
 		for (int i = 0; i < arrOfStr.length; i++) {
 			answerChoices.put("correctAnswer" + (i + 1), arrOfStr[i]);
 		}
 
-		for (String key : answerChoices.values()) {
-			System.out.println(key);
-		}
-		System.out.println(answerChoices.size());
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append("{");
 		int count1 = 0;
@@ -95,7 +91,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb1.append(entry1.getValue());
 			sb1.append("\"");
 			count1++;
-			if (answerChoices.size() - 1 != count1) {
+			if (answerChoices.size() != count1) {
 				sb1.append(",");
 			}
 		}
@@ -125,27 +121,28 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		}
 
 	}
-	
+
 	/**
-	 * updateQuestionsTable
-	 * Update a question entry in the Questions table based on info obtained from ViewQuiz page.
+	 * updateQuestionsTable Update a question entry in the Questions table based on
+	 * info obtained from ViewQuiz page.
 	 * 
 	 * 
 	 * @author Aditya Samant
-	 * @throws SQLException error occurs during connecting or updating the information in SQL 
+	 * @throws SQLException           error occurs during connecting or updating the
+	 *                                information in SQL
 	 * @throws ClassNotFoundException for Connection Factory
 	 * 
-	 * @param question the question
-	 * @param answer the solution choice
-	 * @param wrongOne wrong answer number one
-	 * @param wrongTwo wrong answer number two
+	 * @param question   the question
+	 * @param answer     the solution choice
+	 * @param wrongOne   wrong answer number one
+	 * @param wrongTwo   wrong answer number two
 	 * @param wrongThree wrong answer number three
 	 * @param points points for the question
 	 * @param qId the question ID
 	 * @param mcq whether the question is multiple choices or not
 	 * 
 	 * @see controller/ViewQuizServlet.java
-	 * @verson 1.0
+	 * @version 1.1
 	 * */
 	@SuppressWarnings("unchecked")
 	public void updateQuestionsTable(String question, String answer, String wrongOne,
@@ -168,8 +165,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 				mcq = 1;
 			}
 			String [] arr = answer.split(", ");
-			System.out.println("Arr");
-			
+
 			String temp = null;	
 			for (int i = 0; i < arr.length; i++) {
 				temp = "correctAnswer"+ Integer.toString(i+1);
@@ -178,6 +174,9 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			}
 			
 		    answer = answerObj.toJSONString();
+
+
+
 			query = connection.prepareStatement(dbProperties.getProperty("updateQuestionsTable"));
 			query.setString(1, question);
 			query.setString(2, answer);
@@ -187,36 +186,37 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query.setInt(6, qId);
 			
 			query.executeUpdate();
-			
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * The following method connects with the SQL database via ConnectionFactory and
-	 * retrieves information and parses it to appropriate formats prior to creating a list
-	 * of Question objects.
+	 * retrieves information and parses it to appropriate formats prior to creating
+	 * a list of Question objects.
 	 * 
 	 * @param quizId the id of the quiz whose questions are being retrieved
-	 * @throws SQLException  in case errors exist in the database connection
+	 * @throws SQLException           in case errors exist in the database
+	 *                                connection
 	 * @throws ClassNotFoundException in class referenced is not found
-	 * @throws ParseException in case string cannot be parsed to JSON
+	 * @throws ParseException         in case string cannot be parsed to JSON
 	 * 
-	 * @return list a list of questions with relevant information used to display on view quiz page.
-	 * */
+	 * @return list a list of questions with relevant information used to display on
+	 *         view quiz page.
+	 */
 	@Override
-	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException{
-		
-	    List<QuestionsVO> list = new ArrayList<QuestionsVO>();
+	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException {
+
+		List<QuestionsVO> list = new ArrayList<QuestionsVO>();
 
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet result = null;
-		
+
 		connection = ConnectionFactory.getConnection();
-		
+
 		query = connection.prepareStatement(dbProperties.getProperty("getQuestionsInfo"));
 		query.setInt(1, quizId);
 		result = query.executeQuery();
@@ -233,18 +233,14 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
 	 			   JSONObject jo2 = (JSONObject)parser.parse(answer);
-	 			   String temp = null;
-	 			   System.out.println(jo2.toJSONString());
-	 			   System.out.println("Next");
-	 			   System.out.println(jo2.toString());
-	 			   
-	 			  StringBuilder ans = new StringBuilder();
+	 			   String temp = "correctAnswer";
+	 			 
+	 			   StringBuilder ans = new StringBuilder();
 	 			  
-	 			   temp = "correctAnswer";
 	 			   for(int i = 1; i <=jo2.size(); i++) {
 	 				   
 	 				  ans.append((String) jo2.get(temp+Integer.toString(i)));
-	 				 
+	 				  
 	 				  if(jo2.size() != i) {
 	 					  ans.append(", ");
 	 				  }
@@ -262,6 +258,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		 			   list.add(quiz);
 			   }
 		}catch(ParseException e) {
+
 			e.printStackTrace();
 		}
 		return list;
