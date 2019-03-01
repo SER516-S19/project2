@@ -40,8 +40,10 @@ public class QuizIntroController extends HttpServlet {
 		}
 		request.getSession().setAttribute("rowValues", rowValues);
 		response.sendRedirect("showQuizes.jsp");
-
-
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }

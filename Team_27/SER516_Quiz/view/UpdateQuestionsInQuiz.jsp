@@ -76,7 +76,7 @@
 	</br>
 	</br>
 	<div class="pageheader">
-		<p>Quizlet - Add Questions</p>
+		<p>Quizlet - Update Questions</p>
 	</div>
 	</br>
 	<div class="formstyle">

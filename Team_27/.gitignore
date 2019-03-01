@@ -1,4 +1,3 @@
-/DatabaseConnectionFactory.class
-/SearchServ.class
-/UpdateDB.class
 *.class
+*.war
+build/

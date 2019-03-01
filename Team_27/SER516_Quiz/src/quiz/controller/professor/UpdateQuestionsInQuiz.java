@@ -23,7 +23,7 @@ import quiz.model.professor.Question;
  */
 
 @SuppressWarnings("serial")
-public class ViewQuestions extends HttpServlet {
+public class UpdateQuestionsInQuiz extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class ViewQuestions extends HttpServlet {
 			questions = QuestionsDao.getQuestions(Integer.parseInt(quizId));
 
 			request.getSession().setAttribute("questions", questions);
-			response.sendRedirect("showQuestions.jsp");
+			response.sendRedirect("UpdateQuestionsInQuiz.jsp");
 			
 		} catch (Exception exc) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");

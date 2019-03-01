@@ -83,7 +83,7 @@ public class QuizDetailsController extends HttpServlet {
 						
 						String quizId = quizDetailsDao.getQuizId(title);
 						req.getSession().setAttribute("quizId", quizId);
-						req.getRequestDispatcher("addQuestions.html").forward(req, res);
+						req.getRequestDispatcher("/updateQuestions").forward(req, res);
 					}
 
 				} else {
@@ -117,7 +117,13 @@ public class QuizDetailsController extends HttpServlet {
 				} else {
 					res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Wrong Parameters Sent!");
 				}
-			} else {
+			}
+			else if (action.equals("View Questions")) {
+				String quizId = quizDetailsDao.getQuizId(title);
+				req.getSession().setAttribute("quizId", quizId);
+				req.getRequestDispatcher("/viewQuestions").forward(req, res);
+			}
+			else {
 				req.getRequestDispatcher("index.html").forward(req, res);
 			}
 		} catch (Exception exc) {
