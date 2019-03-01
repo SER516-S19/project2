@@ -4,9 +4,7 @@ import Home from './pages/Home/Home'
 import Login from './pages/Login/Login';
 import TakeQuiz from './pages/Student/TakeQuiz/TakeQuiz'
 //import Login from './pages/Login/Login';
-//
-
-import TakeQuiz from './pages/TakeQuiz/TakeQuiz'
+//import TakeQuiz from './pages/TakeQuiz/TakeQuiz'
 import QuizBuilder from './components/professor/QuizBuilder';
 import App from './components/NewLogin/App';
 import './index.css';
