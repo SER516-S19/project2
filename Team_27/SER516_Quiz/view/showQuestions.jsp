@@ -36,12 +36,13 @@
 			var container = document.getElementById("QuestionContainer");
 
 			if (typeof addAnotherQuestion.counter == 'undefined') {
-				addAnotherQuestion.counter = 1;
+				<% ArrayList<Question> questions = (ArrayList) session.getAttribute("questions"); %>
+				addAnotherQuestion.counter = <%=questions.size()%>;
 			}
 			addAnotherQuestion.counter++;
 
 			var questionDiv = document.createElement("div");
-			questionDiv.innerHTML = "Question " + addAnotherQuestion.counter + ": <br /><br />" +
+			questionDiv.innerHTML = "<div id=\"question" + addAnotherQuestion.counter + "\">Question " + addAnotherQuestion.counter + ": <br /><br />" +
 				"<textarea name=\"question" + addAnotherQuestion.counter + "\" rows=\"5\" cols=\"80\" placeholder=\"Enter your question here ! \"></textarea> <br />" +
 				"Points: <input type=\"number\" style=\"width:40px; text-align: center\" name=\"PointsForQues" + addAnotherQuestion.counter + "\" value=\"1\" />" +
 				"<input type=\"checkbox\" name=\"isMultipleAnswerQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Is Multiple Answer <hr />" +
@@ -58,9 +59,15 @@
 				"<tr><td>Option D:</td>" +
 				"<td><input type=\"checkbox\" name=\"isOptionDCorrectForQues" + addAnotherQuestion.counter + "\" value=\"True\" /> Correct Answer</td>" +
 				"<td><input type=\"text\" name=\"OptionDForQues" + addAnotherQuestion.counter + "\" placeholder=\"Enter Option D\" /></td></tr>" +
-				"</table></div><hr/>"
+				"<tr><td colspan=\"3\"><input type=\"button\" value=\"Remove Question\" onclick=\"removeQuestion(" + addAnotherQuestion.counter + ")\"/></td></tr>" +
+				"</table></div><hr/></div>"
 
 			container.appendChild(questionDiv);
+		}
+
+		function removeQuestion(i) {
+			var element = document.getElementById("question" + i);
+			element.parentNode.removeChild(element);
 		}
 	</script>
 </head>
@@ -77,87 +84,90 @@
 			<div id="QuestionContainer">
 				<%-- Display saved questions fetched by controller --%>
 				<%
-					ArrayList<Question> questions = (ArrayList) session.getAttribute("questions");
-
 					int i = 1;
 									
 					while (i <= questions.size())
 					{
 				%>
+				<div id="question<%=i%>">
+					Question <%=i%>: <br /><br />
+					<textarea name="question<%=i%>" rows="5" cols="80"><%=questions.get(i-1).getQuestion()%></textarea>
+					<br />
+					Points: <input type="number" style="width:40px; text-align: center" name="PointsForQues<%=i%>"
+						value="<%=questions.get(i-1).getPoints()%>" />
+					<input type="checkbox" name="isMultipleAnswerQues<%=i%>" value="True"
+						<%=questions.get(i-1).getIsMultipleAnswer()?"checked":""%> /> Is Multiple Answer
+					<hr />
+					<div class="tablestyle">
+						<table>
+							<tr>
+								<td>
+									Option A: &nbsp;
+								</td>
+								<td>
+									<input type="checkbox" name="isOptionACorrectForQues<%=i%>" value="True"
+										<%=questions.get(i-1).getIsOptionACorrect()?"checked":""%> /> Correct
+									Answer &nbsp;
+								</td>
+								<td>
+									<input type="text" name="OptionAForQues<%=i%>"
+										value="<%=questions.get(i-1).getOptionA()%>" />
+								</td>
+							</tr>
 
-				Question <%=i%>: <br /><br />
-				<textarea name="question<%=i%>" rows="5" cols="80"><%=questions.get(i-1).getQuestion()%></textarea>
-				<br />
-				Points: <input type="number" style="width:40px; text-align: center" name="PointsForQues<%=i%>"
-					value="<%=questions.get(i-1).getPoints()%>" />
-				<input type="checkbox" name="isMultipleAnswerQues<%=i%>" value="True"
-					<%=questions.get(i-1).getIsMultipleAnswer()?"checked":""%> /> Is Multiple Answer
-				<hr />
-				<div class="tablestyle">
-					<table>
-						<tr>
-							<td>
-								Option A: &nbsp;
-							</td>
-							<td>
-								<input type="checkbox" name="isOptionACorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionACorrect()?"checked":""%> /> Correct
-								Answer &nbsp;
-							</td>
-							<td>
-								<input type="text" name="OptionAForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionA()%>" />
-							</td>
-						</tr>
+							<tr>
+								<td>
+									Option B:
+								</td>
+								<td>
+									<input type="checkbox" name="isOptionBCorrectForQues<%=i%>" value="True"
+										<%=questions.get(i-1).getIsOptionBCorrect()?"checked":""%> /> Correct
+									Answer
+								</td>
+								<td>
+									<input type="text" name="OptionBForQues<%=i%>"
+										value="<%=questions.get(i-1).getOptionB()%>" />
+								</td>
+							</tr>
 
-						<tr>
-							<td>
-								Option B:
-							</td>
-							<td>
-								<input type="checkbox" name="isOptionBCorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionBCorrect()?"checked":""%> /> Correct
-								Answer
-							</td>
-							<td>
-								<input type="text" name="OptionBForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionB()%>" />
-							</td>
-						</tr>
+							<tr>
+								<td>
+									Option C:
+								</td>
+								<td>
+									<input type="checkbox" name="isOptionCCorrectForQues<%=i%>" value="True"
+										<%=questions.get(i-1).getIsOptionCCorrect()?"checked":""%> /> Correct
+									Answer
+								</td>
+								<td>
+									<input type="text" name="OptionCForQues<%=i%>"
+										value="<%=questions.get(i-1).getOptionC()%>" />
+								</td>
+							</tr>
 
-						<tr>
-							<td>
-								Option C:
-							</td>
-							<td>
-								<input type="checkbox" name="isOptionCCorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionCCorrect()?"checked":""%> /> Correct
-								Answer
-							</td>
-							<td>
-								<input type="text" name="OptionCForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionC()%>" />
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								Option D:
-							</td>
-							<td>
-								<input type="checkbox" name="isOptionDCorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionDCorrect()?"checked":""%> /> Correct
-								Answer
-							</td>
-							<td>
-								<input type="text" name="OptionDForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionD()%>" />
-							</td>
-						</tr>
-					</table>
+							<tr>
+								<td>
+									Option D:
+								</td>
+								<td>
+									<input type="checkbox" name="isOptionDCorrectForQues<%=i%>" value="True"
+										<%=questions.get(i-1).getIsOptionDCorrect()?"checked":""%> /> Correct
+									Answer
+								</td>
+								<td>
+									<input type="text" name="OptionDForQues<%=i%>"
+										value="<%=questions.get(i-1).getOptionD()%>" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<input type="button" value="Remove Question" onclick="removeQuestion(<%=i%>)" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<hr />
 				</div>
-				<hr />
-
 				<%
 					i++;
 					}
