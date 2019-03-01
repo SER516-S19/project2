@@ -2,7 +2,10 @@ package com.asu.ser516.team47.main;
 
 import java.io.File;
 import java.sql.*;
+import java.util.Calendar;
+import java.util.Date;
 
+import com.asu.ser516.team47.database.*;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
 import com.asu.ser516.team47.utils.SQLScriptRunner;
@@ -14,6 +17,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String context_Path = "";
         String base_path = new File("WebContent").getAbsolutePath();
+        String url = "jdbc:sqlite:schema.db";
 
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(base_path);
@@ -29,8 +33,6 @@ public class Main {
 
         Connection conn = null;
         try {
-            // db parameters
-            String url = "jdbc:sqlite:schema.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
@@ -39,6 +41,51 @@ public class Main {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        //populate the db with test data
+        try {
+            SQLScriptRunner.run("exampleQuiz.sql");
+        } catch( SQLException sqle){
+            //Database already contains these entries: Do nothing.
+        }
+
+
+//        ProfessorDAOImpl professorDAO = new ProfessorDAOImpl();
+//        Professor professor = new Professor("pressor", "william", "colbert", "1309312901390", "sessionID");
+//        professorDAO.insertProfessor(professor);
+//        System.out.println("professor: " + professor.getUsername());
+//
+//        StudentDAOImpl studentDAO = new StudentDAOImpl();
+//        Student student = new Student("tforrey", "trevor", "forrey", "hashedpass", "sessionid");
+//        studentDAO.insertStudent(student);
+//        System.out.println("student: " + student.getUsername());
+//
+//        CourseDAOImpl courseDAO = new CourseDAOImpl();
+//        Course course = new Course(123, professor.getUsername(), "CST", "200");
+//        courseDAO.insertCourse(course);
+//        System.out.println("course: " + course.getCourse_id());
+//
+//        EnrolledDAOImpl enrolledDAO = new EnrolledDAOImpl();
+//        Enrolled enrolled = new Enrolled(123, course.getCourse_id(), student.getUsername());
+//        enrolledDAO.insertEnrolled(enrolled);
+//        System.out.println("enrolled: " + enrolled.getEnrolled_id());
+//
+//        java.sql.Date openAndCloseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+//        QuizDAOImpl quizDAO = new QuizDAOImpl();
+//        Quiz quiz = new Quiz(123, course.getCourse_id(), "My Quiz", "Take my quiz please", false, 40000,
+//                openAndCloseDate, openAndCloseDate, "MC", 4, "QuizGroup1", 100);
+//        quizDAO.insertQuiz(quiz);
+//        System.out.println("quiz: " + quiz.getQuiz_id());
+//
+//        QuestionDAOImpl questionDAO = new QuestionDAOImpl();
+//        Question question = new Question(123, quiz.getQuiz_id(), "MA", 12, "What is my favorite soup?");
+//        questionDAO.insertQuestion(question);
+//        System.out.println("question: " + question.getQuestion_id());
+//
+//        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
+//        Choice choice = new Choice(123, question.getQuestion_id(), true, "spicy soup");
+//        choiceDAO.insertChoice(choice);
+//        System.out.println("choice: " + choice.getChoice_id());
+
         tomcat.start();
         tomcat.getServer().await();
         conn.close();
@@ -56,7 +103,7 @@ public class Main {
                 "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                 "firstname NVARCHAR(50) NOT NULL,\n" +
                 "lastname NVARCHAR(50) NOT NULL,\n" +
-                "session CHAR(16),\n" +
+                "sessionid CHAR(16),\n" +
                 "hashedpass NVARCHAR(60) NOT NULL\n" +
                 ");",
                 "CREATE TABLE IF NOT EXISTS courses (\n" +
@@ -100,7 +147,7 @@ public class Main {
                         "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                         "firstname NVARCHAR(50) NOT NULL,\n" +
                         "lastname NVARCHAR(50) NOT NULL,\n" +
-                        "session CHAR(16),\n" +
+                        "sessionid CHAR(16),\n" +
                         "hashedpass NVARCHAR(60) NOT NULL\n" +
                         ");",
                 "CREATE TABLE IF NOT EXISTS enrolled (\n" +
