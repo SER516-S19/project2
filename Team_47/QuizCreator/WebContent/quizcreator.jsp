@@ -40,13 +40,13 @@
                 <option value='ug'> ungraded </option>
             </select> <br>
             Start date:</br>
-            <input type='date' id='start' name='start_date' value='28-02-19' min='01-01-19' max='01-05-19'><br>
+            <input type='date' id='start' name='start_date' value='2019-03-01' min='2019-01-01' max='2019-05-30'><br>
             Start time:</br>
-            <input type='time' id='stime' name='start_time' value='13:30' min='00:00' max='23:59'><br>
+            <input type='time' id='start_clock' name='start_clock' value='13:30' min='00:00' max='23:59'><br>
             End date:</br>
-            <input type='date' id='end' name='end_date' value='29-02-19' min='02-01-19' max='07-05-19'><br>
+            <input type='date' id='end' name='end_date' value='2019-03-01' min='2019-01-01' max='2019-05-30'><br>
             End time:</br>
-            <input type='time' id='etime' name='end_time' value='1:30' min='00:00' max='23:59'><br>
+            <input type='time' id='end_clock' name='end_clock' value='13:30' min='00:00' max='23:59'><br>
             Duration of the quiz:</br>
             <input type='text' id='hrs' value='0' min='0' max='3'>hrs
             <input type='text' id='min' value='0' min='0' max='59'>mins
@@ -54,12 +54,12 @@
             <div id='questionsDiv'>
                 <script>
                     var questionDict = {};
-                    var nameTracingList = [];
+                    var idTracingList = [];
                     var questionChoiceIterator = 0;
                 </script>
-                <input type='button' onclick='addFields(questionsDiv, nameTracingList)' value='add question'>
+                <input type='button' onclick='addFields(questionsDiv, idTracingList)' value='add question'>
             </div>
-            <input id="beginbtn" type="submit" value="Submit">
+            <input type="button" id="submitQuizRequest" onclick='createDictionUsingPageData(idTracingList, questionDict)' value="Submit">
 
         </form>
     </div>
