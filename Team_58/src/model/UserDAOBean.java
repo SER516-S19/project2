@@ -85,4 +85,16 @@ public class UserDAOBean implements UserDAO {
 		return list;
 	}
 
+	@Override
+	public void updatePassword(String userName, String password)
+			throws ClassNotFoundException, SQLException, IOException
+	{
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement query = null;
+		query=connection.prepareStatement(dbProperties.getProperty("updatePassword"));
+		query.setString(2,userName);
+		query.setString(1,password);
+		query.executeQuery();
+	}
+
 }
