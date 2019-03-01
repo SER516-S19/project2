@@ -22,7 +22,7 @@ public class ProfessorServices {
 	
 	private final String OPTIONS = "option";
 	private static ProfessorDAO professorDAO = new ProfessorDAO();
-	private static QuestionDAO questionDAO = new QuestionDAO();
+	
 	
 	/**
 	 * This method verifies question form data and add question details in Question table
@@ -70,6 +70,7 @@ public class ProfessorServices {
 		
 		Question quest = new Question(quiz, question,isMutiple, point);
 		QuestionDAO questionDAO = new QuestionDAO();
+		System.out.println("hello");
 		questionDAO.addQuestion(quest);
 		
 		for(int option=1; option<=optionArray.length; option++) {

@@ -8,7 +8,18 @@
 </head>
 <body>
 <form action="../ProfessorController" method="post">
-		<input id="flag" name="box2" >
+		<label for="quesId">Enter Question ID:</label>
+		<input id="quesId" name="quesId" >
+		<br>
+		
+		<label for="quizId">Enter Quiz ID:</label>
+		<input id="quizId" name="quizId" >
+		<br>
+		
+		<label for="quizName">Enter quiz name:</label>
+		<input id="quizName" name="quizName" >
+		<br>
+		
 	    <input type="submit" value="EditQuestion" name="flag" class="btn btn-primary" />
 	</form>
 </body>
