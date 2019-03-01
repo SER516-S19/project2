@@ -16,55 +16,37 @@ import javax.servlet.http.HttpSession;
 
 import model.CourseDAOBean;
 import model.CourseVO;
+import model.UserDAO;
 import model.UserDAOBean;
 import model.UserVO;
 
-@WebServlet(name = "forgotPassword", urlPatterns = "/forgotPassword")
+@WebServlet(name = "forgotPassword", urlPatterns = "/forgotpassword")
 public class forgotPasswordServlet extends HttpServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		try {
-			res.sendRedirect(req.getContextPath() + "/login.jsp");
+			res.sendRedirect(req.getContextPath() + "/forgotpassword.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	
+		String userName	= (String) req.getParameter("username");
+		String pass = (String) req.getParameter("newPassword");
+		
+		UserDAOBean update = new UserDAOBean();
 		try {
-			UserVO userVO = (username) req.getAttribute("username");
-			HttpSession session = req.getSession();
-			session.setAttribute("userVO", userVO);
-
-			try {
-				CourseDAOBean courseBean = new CourseDAOBean();
-
-				if (courseBean.equals(null))
-					log.info("Database Connection Error");
-
-				List<CourseVO> courseList = courseBean.getCourseAssignedToProfessor(userVO);
-				if (courseList.isEmpty()) {
-					session.setAttribute("displayMessage", "No Courses have been assigned to the student");
-					log.info("No Courses have been assigned to the student.");
-				} else {
-					HashMap<Integer, String> courses = new HashMap<>();
-					for (CourseVO course : courseList)
-						courses.put(course.getCourseId(), course.getCourseName());
-					session.setAttribute("CourseHashMap", courses);
-				}
-				session.setAttribute("userVO", userVO);
-				res.sendRedirect(req.getContextPath() + "/studentHome.ftl");
-			} catch (Exception e) {
-				log.info(e.getMessage());
-			}
+			update.updatePassword(userName, pass);
+			res.sendRedirect(req.getContextPath() + "/login.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
-	
-	
-	
 }
