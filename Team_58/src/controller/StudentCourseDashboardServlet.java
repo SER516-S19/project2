@@ -33,12 +33,13 @@ public class StudentCourseDashboardServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO) session.getAttribute("UserVO");
+		UserVO userVO = (UserVO) session.getAttribute("userVO");
 		int courseId = 0;
 		if (request.getParameter("CourseId") != null)
 			courseId = Integer.parseInt(request.getParameter("CourseId"));
 		else
 			courseId = (int) session.getAttribute("courseId");
+		log.info("" + courseId);
 
 		try {
 			if (courseId == 0) {
@@ -46,18 +47,25 @@ public class StudentCourseDashboardServlet extends HttpServlet {
 				return;
 			}
 
+			log.info("Here 0");
 			CourseDAOBean courseBean = new CourseDAOBean();
+			log.info("Here 0.1");
 			CourseVO courseVO = courseBean.getCourseInfoForUser(userVO, courseId);
+			log.info("Here 0.2");
 			QuizDAOBean quizBean = new QuizDAOBean();
+			log.info("Here 0.3");
 			List<QuizVO> quizList = quizBean.getQuizzesForCourse(courseId);
+			log.info("Here 0.4");
 			if (quizList.isEmpty())
 				log.info("No Quizzes exist for this course.");
 			
+			log.info("Here");
 			HashMap<Integer, String> quizzes = new HashMap<>();
 			for (QuizVO q : quizList)
 				quizzes.put(q.getQuizId(), q.getQuizTitle());
 			session.setAttribute("QuizHashMap", quizzes);
 			session.setAttribute("courseName", courseVO.getCourseName());
+			log.info("Here2");
 			response.sendRedirect(request.getContextPath() + "/studentCourseHome.ftl");
 		} catch (Exception e) {
 			log.info(e.getMessage());

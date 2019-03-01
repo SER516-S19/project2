@@ -108,11 +108,6 @@ public class DisplayQuizInstructionServlet extends HttpServlet  {
 			session.setAttribute("QuizVO", quizVO);
 			
 			log.info("After Assign atttribute");
-		
-			QuestionsDAOBean questionBean = new QuestionsDAOBean();
-			List<Integer> questionNumbers = questionBean.getQuestionIDsForQuiz(quizVO);
-			log.info("SIZE 1: " + questionNumbers.size());
-			session.setAttribute("QuizQuestions", questionNumbers);
 			
 			
 			res.sendRedirect(req.getContextPath() + "/DisplayQuizInstruction.ftl");
