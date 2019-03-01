@@ -16,16 +16,30 @@ function displayQuiz(jsonResponse) {
 	selections = [];
 	questionCounter = 0;
 	quiz = $('#quiz');
+	//correctAnswer = [];
 
 	for (var i = 0; i < studentResponseObj.question.length; i++) {
 		choiceList = [];
 		studentResponseObj.question[i].availableAnswers.forEach(function(Element) {
 			choiceList.push(Element.answer)
 		});
+
+		// checking for multiple choice options
+		var totalRightOptions = 0;
+		studentResponseObj.question[i].availableAnswers.forEach(function(Element) {
+			totalRightOptions = 0;
+			if(Element.correctAnswer){
+				++totalRightOptions;
+			}
+		});
+
+		//correctAnswer.push(totalRightOptions);
+
 		questions[i] = {
 			question : studentResponseObj.question[i].question,
 			choices : choiceList,
-			points : studentResponseObj.question[i].points
+			points : studentResponseObj.question[i].points,
+			answer : totalRightOptions
 		};
 	}
 
@@ -35,14 +49,14 @@ function displayQuiz(jsonResponse) {
 	// Click handler for the 'next' button
 	$('#next').on('click', function(e) {
 		e.preventDefault();
-		
+
 		// Suspend click listener during fade animation
 		if (quiz.is(':animated')) {
 			return false;
 		}
 		choose();
 		autoSave();
-		
+
 		if (isNaN(selections[questionCounter])) {
 			alert('Please make a selection!');
 		} else {
@@ -54,26 +68,26 @@ function displayQuiz(jsonResponse) {
 	// Click handler for the 'prev' button
 	$('#prev').on('click', function(e) {
 		e.preventDefault();
-		
+
 		autoSave();
 		if (quiz.is(':animated')) {
 			return false;
 		}
 		choose();
 		autoSave();
-		
+
 		questionCounter--;
 		displayNext();
 	});
-	
+
 	$('#submitBtn').on("click", function(){
 		$(".popup, .popup-content").addClass("active");
-		});
+	});
 
 	$('.close, .popup').on("click", function(){
 		$(".popup, .popup-content").removeClass("active");
 	});
-	
+
 	// Animates buttons on hover
 	$('.button').on('mouseenter', function() {
 		$(this).addClass('active');
@@ -91,14 +105,20 @@ function createQuestionElement(index) {
 	});
 
 	var header = $('<h2>Question ' + (index + 1)
-			+ ': <span float:"right"> '+questions[index].points+' Points </span></h2>');
+		+ ': <span float:"right"> '+questions[index].points+' Points </span></h2>');
 	qElement.append(header);
 
 	var question = $('<p>').append(questions[index].question);
 	qElement.append(question);
 
-	var radioButtons = createRadios(index);
-	qElement.append(radioButtons);
+	if(questions[index].answer == 0){
+		var radioButtons = createRadios(index);
+		qElement.append(radioButtons);
+	}
+	else if(questions[index].answer == 1) {
+		var checkBoxes = createCheckBox(index);
+		qElement.append(checkBoxes);
+	}
 
 	return qElement;
 }
@@ -118,6 +138,21 @@ function createRadios(index) {
 	return radioList;
 }
 
+// Creates a list of the answer choices as checkbox inputs
+function createCheckBox(index) {
+	var checkBoxList = $('<ul>');
+	var item;
+	var input = '';
+	for (var i = 0; i < questions[index].choices.length; i++) {
+		item = $('<li>');
+		input = '<input type="checkbox" name="answer" value=' + i + ' />';
+		input += questions[index].choices[i];
+		item.append(input);
+		checkBoxList.append(item);
+	}
+	return checkBoxList;
+}
+
 // Reads the user selection and pushes the value to an array
 function choose() {
 	selections[questionCounter] = +$('input[name="answer"]:checked').val();
@@ -133,7 +168,7 @@ function displayNext() {
 			quiz.append(nextQuestion).fadeIn();
 			if (!(isNaN(selections[questionCounter]))) {
 				$('input[value=' + selections[questionCounter] + ']').prop(
-						'checked', true);
+					'checked', true);
 			}
 
 			// Controls display of 'prev' button
