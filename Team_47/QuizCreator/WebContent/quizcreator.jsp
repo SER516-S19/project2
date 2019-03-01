@@ -3,8 +3,8 @@
   - Date: 2019/2/20
   - Description: Page for creating quizzes
   -->
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -57,7 +57,6 @@ pageEncoding="UTF-8"%>
                     var nameTracingList = [];
                     var questionChoiceIterator = 0;
                 </script>
-                <!-- <input type='button' onclick='addFields(this, nameTracingList)' value='add question'> -->
                 <input type='button' onclick='addFields(questionsDiv, nameTracingList)' value='add question'>
             </div>
             <input id="beginbtn" type="submit" value="Submit">
