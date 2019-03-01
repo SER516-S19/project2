@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -12,4 +13,5 @@ import java.util.List;
 public interface GradeQuizVODAO {
 
 	public List<GradeQuizVO> getgradeQuiz(int quizId,String quizName);
+	public List<GradeQuizVO> getQuizGradesForStudent(int userId) throws SQLException, ClassNotFoundException;
 }
