@@ -1,8 +1,8 @@
 <!-- 
 JSP page for user to login
-@authour Aditya Vikram
-@version 1.1
-@date 02/22/2019
+@authour Vaibhav Bhasin
+@version 2.0
+@date 02/27/2019
  -->
 
 <!DOCTYPE html>
@@ -13,14 +13,14 @@ JSP page for user to login
 </head>
 <script>
 function validateForm() {
-  var userName = document.forms["myForm"]["username"].value;
-  var passWord = document.forms["myForm"]["userpass"].value;
+  var userName = document.forms["Form2"]["username"].value;
+  var newPassword = document.forms["Form2"]["newPassword"].value;
   
-  if (userName == "" || passWord == "") {
+  if (userName == "" || newPassword == "") {
     alert("Username must be filled out");
     return false;
   }
-  if (passWord == "") {
+  if (newPassword == "") {
     alert("Password must be filled out");
     return false;
   }
@@ -29,17 +29,14 @@ function validateForm() {
 <body>
 <div class="container">
     <section id="content">
-            <h1>Login Form</h1>
+            <h1>Set new Password</h1>
             <div>
-            	<form name="myForm" action="login" onsubmit="return validateForm()" method="POST">  
+            	<form name="Form2" action="forgotPassword" onsubmit="return validateForm()" method="POST">  
             		<div style="color: #FF0000;">${setMessage}</div>
             		<div></div>
 					<input type="text" name="username" placeholder = "Username"/><br/><br/>  
-					<input type="password" name="userpass" placeholder = "Password"/><br/><br/> 
-					<input type="submit" value="login"/>  
-				</form>
-				<form name="Form2" action="forgotPassword" method="POST">
-					<input type="submit" value="Forgot Password">
+					<input type="password" name="newPassword" placeholder = "Type new Password"/><br/><br/> 
+					<input type="submit" value="Submit"/> 
 				</form>
           	</div>
     </section><!-- content -->
