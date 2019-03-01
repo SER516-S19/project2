@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './TakeQuiz.css';
 import Result from '../../../components/Result';
-// import quizQuestions from '../../api/quizQuestions';
 import Quiz from '../../../components/Quiz';
 import Timer from "react-compound-timer";
 import axios from "axios";
@@ -35,7 +34,6 @@ class TakeQuiz extends Component {
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
         this.setPreviousQuestion = this.setPreviousQuestion.bind(this);
         this.submitQuiz = this.submitQuiz.bind(this);
-        // this.calculatePoints(any) = this.calculatePoints.bind(this);
     }
 
     /**
@@ -57,25 +55,21 @@ class TakeQuiz extends Component {
                     correctAnswer: this.state.quizQuestions[0].correctAnswer,
                     answerOptions: shuffledAnswerOptions[0]
             });
-
                 console.log(this.state.point);
         })
-
         console.log(this.state.point);
     }
-
 
     submitQuiz() {
         setTimeout(() => this.setResults(this.getResults()), 300);
     }
 
-    /**+
+    /**
      * shuffleArray would randomise the order of questions*/
     shuffleArray(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
         
         while (0 !== currentIndex) {
-
             // Pick a remaining element...
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
@@ -101,8 +95,6 @@ class TakeQuiz extends Component {
         }));
 
         console.log(answer)
-
-
         console.log(this.state.totalPoints);
     }
 
@@ -120,14 +112,12 @@ class TakeQuiz extends Component {
             correctAnswer: this.state.quizQuestions[counter].correctAnswer,
             point: this.state.quizQuestions[counter].marks
         });
-        // console.log(this.state.point);
     }
 
     setPreviousQuestion() {
 
         console.log(this.state.counter);
-        // this.setUserAnswer(event.currentTarget.value);
-
+        
         if(this.state.questionSerial > 1) {
             const counter = this.state.counter - 1;
             const questionSerial = this.state.questionSerial - 1;
@@ -143,6 +133,7 @@ class TakeQuiz extends Component {
             });
         }
     }
+    
     getResults() {
         const answersCount = this.state.answersCount;
         const answersCountKeys = Object.keys(answersCount);
@@ -154,7 +145,6 @@ class TakeQuiz extends Component {
 
     setResults (result) {
         console.log(this.state.answer)
-        // this.calculatePoints(this.state.answer);
 
         if (result.length === 1) {
             this.setState({ result: result[0] });
@@ -163,9 +153,8 @@ class TakeQuiz extends Component {
         }
     }
 
-    /**+
+    /**
      *handleAnswerSelected function performs two tasks: setting the answer and then setting the next question*/
-
     handleAnswerSelected(event) {
         this.setUserAnswer(event.currentTarget.value);
         if (this.state.questionSerial < this.state.quizQuestions.length) {
@@ -176,10 +165,7 @@ class TakeQuiz extends Component {
     }
 
     renderQuiz() {
-
-
         return (
-
             <div>
                 <div className="Timer">
                     <Timer
@@ -191,18 +177,13 @@ class TakeQuiz extends Component {
 
                                     window.onbeforeunload = function() {
                                         return "Data will be lost if you leave the page, are you sure?";
-
                                     };
-
                                 }
                             },{
                                 time: 1000 * 30,
                                 callback: () => {
-
                                     alert ("Half-Time over Warning Message!! Quiz will submit automatically on time completion")
-
                                 }
-
                             },
                             {
                                 time: 1000 * 60,
@@ -241,7 +222,6 @@ class TakeQuiz extends Component {
                 <Timer className="TakeQuiz-timer">
                     {({ start, resume, pause, stop,timerState }) => (
                         <div>{stop}</div>
-
                     )}
                 </Timer>
                 <Result quizResult={this.state.result} />
@@ -254,8 +234,6 @@ class TakeQuiz extends Component {
                 <div className="TakeQuiz-header">
                     <h2>Demo Quiz</h2>
                     <h5>Instructions: {this.state.quizInstructions}</h5>
-
-
                 </div>
                 {this.state.result ? this.renderResult()
                     :
@@ -265,8 +243,6 @@ class TakeQuiz extends Component {
             </div>
         );
     }
-
-
 }
 
 export default TakeQuiz;
