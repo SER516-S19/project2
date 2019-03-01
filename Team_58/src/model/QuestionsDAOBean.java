@@ -91,7 +91,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb1.append(entry1.getValue());
 			sb1.append("\"");
 			count1++;
-			if (answerChoices.size() - 1 != count1) {
+			if (answerChoices.size() != count1) {
 				sb1.append(",");
 			}
 		}
@@ -163,7 +163,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query.setInt(4, points);
 			query.setInt(5, qId);
 
-			query.executeQuery();
+			query.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
