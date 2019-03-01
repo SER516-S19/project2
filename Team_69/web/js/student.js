@@ -1,4 +1,6 @@
 /**
+ * Javascript file to render questions for the student and autosave functionality.
+ *
  * @author - amanjotsingh
  * @version - 1.0
  * @since - 02/19/2019
@@ -16,8 +18,8 @@ function displayQuiz(jsonResponse) {
 	selections = [];
 	questionCounter = 0;
 	quiz = $('#quiz');
-	//correctAnswer = [];
 
+	//reading the JSON object to initialize Javascript variables
 	for (var i = 0; i < studentResponseObj.question.length; i++) {
 		choiceList = [];
 		studentResponseObj.question[i].availableAnswers.forEach(function(Element) {
@@ -32,8 +34,6 @@ function displayQuiz(jsonResponse) {
 				++totalRightOptions;
 			}
 		});
-
-		//correctAnswer.push(totalRightOptions);
 
 		questions[i] = {
 			question : studentResponseObj.question[i].question,
@@ -57,7 +57,7 @@ function displayQuiz(jsonResponse) {
 		choose();
 		autoSave();
 
-		if (isNaN(selections[questionCounter])) {
+		if (selections[questionCounter].length == 0) {
 			alert('Please make a selection!');
 		} else {
 			questionCounter++;
@@ -111,6 +111,7 @@ function createQuestionElement(index) {
 	var question = $('<p>').append(questions[index].question);
 	qElement.append(question);
 
+	//checking for single or multiple choice questions
 	if(questions[index].answer == 0){
 		var radioButtons = createRadios(index);
 		qElement.append(radioButtons);
@@ -155,7 +156,12 @@ function createCheckBox(index) {
 
 // Reads the user selection and pushes the value to an array
 function choose() {
-	selections[questionCounter] = +$('input[name="answer"]:checked').val();
+	//selections[questionCounter] = +$('input[name="answer"]:checked').val();
+	selectedAnswers = []
+	$.each($("input[name='answer']:checked"), function(){
+		selectedAnswers.push(+$(this).val());
+		selections[questionCounter] = selectedAnswers;
+	});
 }
 
 // Displays next requested element
@@ -167,8 +173,10 @@ function displayNext() {
 			var nextQuestion = createQuestionElement(questionCounter);
 			quiz.append(nextQuestion).fadeIn();
 			if (!(isNaN(selections[questionCounter]))) {
-				$('input[value=' + selections[questionCounter] + ']').prop(
-					'checked', true);
+				selections[questionCounter].forEach(function(Element){
+					$('input[value=' + Element + ']').prop(
+						'checked', true);
+				});
 			}
 
 			// Controls display of 'prev' button
@@ -186,6 +194,7 @@ function displayNext() {
 	});
 }
 
+//function to auto save progress in quiz
 function autoSave() {
 	updateResponseJSON(studentResponseObj, selections);
 }
