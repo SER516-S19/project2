@@ -92,8 +92,8 @@ input[type=submit]:hover {
             response.sendRedirect("Login.jsp");
         }
 %>
-    <div style="float: right">
-        <form  action="LoginController" method="post">
+    <div>
+        <form align="right"  action="LoginController" method="post">
             <input type="hidden" name="action" value="logoff"> 
             <input type="submit" value="LogOut" class="logout">
         </form>
