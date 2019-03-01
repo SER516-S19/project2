@@ -74,6 +74,22 @@ button {
 	height: 40%;
 }
 
+.button{
+	text-decoration: none;
+	color: black;
+	width: 80px;
+	height: 40%;
+}
+
+input.button {
+	width: 50%;
+}
+
+#submitBtn.button {
+	width: 50%;
+	float:left;
+}
+
 #container {
 	width: 50%;
 	margin: auto;
