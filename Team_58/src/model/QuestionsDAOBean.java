@@ -63,7 +63,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb.append(entry.getValue());
 			sb.append("\"");
 			count++;
-			if (totalChoices.size() - 1 != count) {
+			if (totalChoices.size() != count) {
 				sb.append(",");
 			}
 		}
