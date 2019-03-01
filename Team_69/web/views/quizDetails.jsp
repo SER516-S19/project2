@@ -31,8 +31,8 @@
 				<tr>
 					<td width="200px">Quiz Type :</td>
 					<td width="800px"><select name="quiz_type" required>
-						<option value="G">Graded Quiz</option>
-						<option value="U">Ungraded Quiz</option>
+						<option value="graded">Graded Quiz</option>
+						<option value="ungraded">Ungraded Quiz</option>
 					</select></td>
 				</tr>
 				<tr>
