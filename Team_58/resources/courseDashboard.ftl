@@ -35,6 +35,9 @@ Freemarker page to display CourseDashboard
 	         	<form action="createQuiz" method="GET">
          			<input class="buttonLarge" type ="submit" value="Create New Quiz"/>
          		</form>
+         		<form action="statistics" method="POST">
+        			<input class="buttonLarge" type ="submit" value="Statistics"/>
+        			</form>
 	     	</div>
 	</body>
 </html>
