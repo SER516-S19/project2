@@ -55,7 +55,7 @@
 							</c:choose>
 						</td>
 						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
-						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=quizStats&id=${quiz.quizId}">View Stats</a></td>
+						<td><a href="<%=pathWebcontent %>/Statistic?flag=quizStats&id=${quiz.quizId}">View Stats</a></td>
 						
 					</tr>
 				</c:forEach>

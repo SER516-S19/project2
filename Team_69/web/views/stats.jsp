@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Statistics</title>
 </head>
 <body>
 
+Statistics
 <form method="GET" action="../ProfessorController">
 	<input type="submit" name="flag" value="StudentStats">
 </form>
