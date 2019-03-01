@@ -8,6 +8,7 @@ import TakeQuiz from './pages/Student/TakeQuiz/TakeQuiz'
 import QuizBuilder from './components/professor/QuizBuilder';
 import App from './components/NewLogin/App';
 import './index.css';
+import Dashboard from './components/Dashboard/Dashboard';
 
 /**+
  *
@@ -20,6 +21,7 @@ const Routes = () => (
         {/* <Route exact path='/' component={Login}></Route> */}
         <Route exact path='/' component={App}></Route>
         <Route exact path='/home' component={Home}></Route>
+        <Route exact path='/dash' component={Dashboard}></Route>
         {/* <Route exact path='/login' component={Login}></Route> */}
         <Route exact path='/login' component={App}></Route>
         <Route exact path='/takeQuiz' component={TakeQuiz}></Route>
