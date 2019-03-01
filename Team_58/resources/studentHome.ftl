@@ -18,6 +18,9 @@ Freemarker page to display the Student Homepage
             </select>
             <input type = "submit" value="Submit"/>
         </form>
+        <form action="displayGrades" method="GET">
+        	<input type="submit" value="View Grades">
+        </form>
         <#include "logout.html">
     </body>
 </html>
