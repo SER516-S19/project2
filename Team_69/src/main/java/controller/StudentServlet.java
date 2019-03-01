@@ -1,9 +1,6 @@
 package controller;
 
-import bean.ResponseStatistics;
-import dao.QuizDAO;
 import services.StudentServices;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,31 +19,42 @@ import javax.servlet.http.HttpSession;
 public class StudentServlet extends HttpServlet {
 
 	/**
-	 * 
+	 * Handles the get request coming to the student
+	 *
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
 	 */
-	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String queryParams = req.getQueryString();
-		String quizName = queryParams.split("=")[1];
-		QuizDAO quizDAO = new QuizDAO();
-		int quizId = quizDAO.fetchQuizId(quizName);
+		String quizId = queryParams.split("=")[1];
 		StudentServices service = new StudentServices();
-		String questionAnswerJSON = service.getQuestionDetails(quizId);
+		String questionAnswerJSON = service.getQuestionDetails(Integer.parseInt(quizId));
 		HttpSession session = req.getSession();
 		session.setAttribute("studentResponseJSON", questionAnswerJSON);
+		session.setAttribute("startTime", service.getCurrentDateTime());
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
+
 	}
+
+	/**
+	 * Handles the post request going from student
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String view = "/error";
-		HttpSession session = request.getSession();
-		String studentResponse = (String) session.getAttribute("studentResponseJSON");
-		System.out.print(studentResponse);
+		String studentResponse = request.getParameter("data");
 		StudentServices service = new StudentServices();
 		try {
 			view = service.feedAnswers(studentResponse);

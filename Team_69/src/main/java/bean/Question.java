@@ -1,7 +1,14 @@
 package bean;
 
 import javax.persistence.*;
-
+/**
+ * This class represents the Question table
+ *  
+ * @author jinalpatel
+ * @since 02/16/2019
+ * @version 1.0.0
+ *
+ */
 @Entity
 @Table(name = "Question")
 public class Question {
@@ -17,9 +24,6 @@ public class Question {
     @Column(name = "Question")
     private String question;
 
-    @Column(name = "Correct_Answer_id")
-    private int correctAnswerId;
-
     @Column(name = "Is_Multiple")
     private boolean isMultiple;
     
@@ -27,13 +31,21 @@ public class Question {
     private int points;
 
 
-	public Question(Quiz quiz, String question, int correctAnswerId, boolean isMultiple, int points) {
+	public Question(Quiz quiz, String question, boolean isMultiple, int points) {
 		super();
 		this.quiz = quiz;
 		this.question = question;
-		this.correctAnswerId = correctAnswerId;
 		this.isMultiple = isMultiple;
 		this.points = points;
+	}
+	
+	public Question(Quiz quiz,int questionId, String question, boolean isMultiple, int points) {
+		super();
+		this.quiz = quiz;
+		this.question = question;
+		this.isMultiple = isMultiple;
+		this.points = points;
+		this.questionId = questionId;
 	}
 
 	public Question() {
@@ -63,14 +75,6 @@ public class Question {
 		this.question = question;
 	}
 
-	public int getCorrectAnswerId() {
-		return correctAnswerId;
-	}
-
-	public void setCorrectAnswerId(int correctAnswerId) {
-		this.correctAnswerId = correctAnswerId;
-	}
-
 	public int getPoints() {
 		return points;
 	}
@@ -93,7 +97,6 @@ public class Question {
 				"questionId=" + questionId +
 				", quiz=" + quiz +
 				", question='" + question + '\'' +
-				", correctAnswerId=" + correctAnswerId +
 				", isMultiple=" + isMultiple +
 				", points=" + points +
 				'}';

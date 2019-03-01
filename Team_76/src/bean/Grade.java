@@ -3,6 +3,7 @@ package bean;
 public class Grade {
 
 	String studentId,quizId,grade;
+	int totalAttempts,totalMarks;
 
 	/**
 	 * @return the studentId
@@ -31,7 +32,30 @@ public class Grade {
 	public void setQuizId(String quizId) {
 		this.quizId = quizId;
 	}
-
+	/**
+	 * @return the totalAttempts
+	 */
+	public int getTotalAttempts() {
+		return totalAttempts;
+	}
+	/**
+	 * @param TotalAttempts the TotalAttempts to set
+	 */
+	public void setTotalAttempts(int totalAttempts) {
+		this.totalAttempts = totalAttempts;
+	}
+	/**
+	 * @return the TotalMarks
+	 */
+	public int getTotalMarks() {
+		return totalMarks;
+	}
+	/**
+	 * @param TotalMarks the TotalMarks to set
+	 */
+	public void setTotalMarks(int totalMarks) {
+		this.totalMarks = totalMarks;
+	}
 	/**
 	 * @return the grade
 	 */

@@ -2,11 +2,17 @@ package bean;
 
 import javax.persistence.*;
 
+/**
+ * This class reprsents the Answer table
+ *
+ * @author : Alsha Samantaray
+ * @version : 1.0
+ * @since : 02/20/2019
+ */
+
 @Entity
 @Table(name = "Answer")
 public class Answer {
-
-  
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,17 +27,23 @@ public class Answer {
     private String answer;
 
     @Column(name = "Correct_Answer")
-    private String correctAnswer;
-
+    private boolean correctAnswer;
 
     public Answer() {
 
   	}
     
-    public Answer(Question question, String answer, String correctAnswer) {
+    public Answer(Question question, String answer, boolean correctAnswer) {
         this.question = question;
         this.answer = answer;
         this.correctAnswer = correctAnswer;
+    }
+    
+    public Answer(Question question, int answerId, String answer, boolean correctAnswer) {
+        this.question = question;
+        this.answer = answer;
+        this.correctAnswer = correctAnswer;
+        this.answerId = answerId;
     }
 
     public int getAnswerId() {
@@ -58,11 +70,11 @@ public class Answer {
         this.answer = answer;
     }
 
-    public String getCorrectAnswer() {
+    public boolean getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(String correctAnswer) {
+    public void setCorrectAnswer(boolean correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 
