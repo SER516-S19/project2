@@ -7,10 +7,6 @@ import java.sql.Statement;
 public class DatabaseConnection {
 
 	public Connection establishConnection() throws Exception {
-
-		//Class.forName("com.mysql.cj.jdbc.Driver");
-		//Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ser516p2?useSSL=false", "root",
-		//		"199021");//pass123
 		String driver = "com.mysql.jdbc.Driver";
 		try {
 			Class.forName(driver);

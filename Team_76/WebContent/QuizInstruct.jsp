@@ -82,8 +82,8 @@ input[type=submit]:hover {
 </head>
 
 <body>
-	<%@page import="Team76.Entity.QuizEntity"%>
-	<%@page import="java.util.List"%>
+<%@page import="Team76.Entity.QuizEntity"%>
+<%@page import="java.util.List"%>
 <%
         String uName = (String) session.getAttribute("uName");
         String isSessionValid = (String) session.getAttribute("validSession");

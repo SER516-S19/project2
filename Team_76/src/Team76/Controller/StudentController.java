@@ -42,9 +42,10 @@ public class StudentController extends HttpServlet {
 			}			
 			request.getSession().setAttribute("quizzes", quizzes);
 			response.sendRedirect("StudentsQuiz.jsp");
-		            } */else if (action.equalsIgnoreCase("AttemptQuiz")) {			
-			      //} else if (action.equalsIgnoreCase("StartQuiz")) {//TEST
-			//Xiangwei
+		            } */
+		
+		    //TEST	VERSION for quiz instruction, delete this after fix "AttemptQuiz""
+		    else if (action.equalsIgnoreCase("AttemptQuiz")) {	
 			System.out.println("**** start quiz");
 			String quizId = request.getParameter("quizId");
 			System.out.println("**** quiz id: " + quizId);
@@ -59,9 +60,10 @@ public class StudentController extends HttpServlet {
 			request.getSession().setAttribute("quiztaken", quiztaken);
 			response.sendRedirect("QuizInstruct.jsp");	
 			//Xiangwei
-			/*System.out.println("**** start quiz");
+			/*This is working version, after fix "AttemptQuiz"
+			 * 
+		            } else if (action.equalsIgnoreCase("StartQuiz")) {
 			String quizId = request.getParameter("quizId");
-			System.out.println("**** quiz id: " + quizId);
 			QuizEntity quiztaken = null;
 			QuizInstructModel QuizInstruct;
 			try {

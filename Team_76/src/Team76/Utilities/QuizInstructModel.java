@@ -26,17 +26,6 @@ public class QuizInstructModel {
 	
 	public QuizInstructModel(){
 		try {
-			/*
-			Connection connection = null;
-			Statement statement = null;
-			String driver = "com.mysql.jdbc.Driver";
-			String connectionUrl = "jdbc:mysql://localhost:3306/";
-			String database = "ser516p2";
-			String userid = "root";
-			String password = "199021";
-			connection = DriverManager.getConnection(connectionUrl+database, userid, password);
-			statement=connection.createStatement();
-			*/
 			connect = new DatabaseConnection();
 			conn = connect.establishConnection();
 		    dbname = "ser516p2";   
@@ -45,39 +34,16 @@ public class QuizInstructModel {
 		}
 	}
 
-	public QuizEntity getquiz(String quizId) {
-		//String quizId="1";//Xiangwei			
+	public QuizEntity getquiz(String quizId) {	
 		ResultSet resultSet = null;		
-		QuizEntity quiztaken = new QuizEntity();//xiangwei
+		QuizEntity quiztaken = new QuizEntity();
 		try {
-		    /*
-			Connection connection = null;
-			Statement statement = null;
-			String driver = "com.mysql.jdbc.Driver";
-			String connectionUrl = "jdbc:mysql://localhost:3306/";
-			String database = "ser516p2";
-			String userid = "root";
-			String password = "199021";
-			try {
-				Class.forName(driver);
-				} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				}
-			connection = DriverManager.getConnection(connectionUrl+database, userid, password);
-			statement=connection.createStatement();
-			*/
-					
 			stmt = conn.createStatement();
 			stmt.executeUpdate("use " + dbname);
-			//xiangwei
-			String sql ="SELECT * FROM quiz WHERE QuizId ='1' ";
+			String sql ="SELECT * FROM quiz WHERE QuizId ="+quizId;
 			System.out.println("**** SQL SELECT");
-			//String sql ="SELECT * FROM quiz WHERE QuizId ="+quizId;//Xiangwei
-			resultSet = stmt.executeQuery(sql);
-			//resultSet = statement.executeQuery(sql);
-			
+			resultSet = stmt.executeQuery(sql);		
 			while (resultSet.next()) {
-				System.out.println("******1"+resultSet.getString("qinstruct"));
 				quiztaken.setProfessorId(resultSet.getInt("ProfId"));
 				quiztaken.setQuizId(resultSet.getInt("QuizId"));
 				quiztaken.setQuizStatus(resultSet.getString("status"));
@@ -85,13 +51,10 @@ public class QuizInstructModel {
 				quiztaken.setTimeLimit(resultSet.getInt("Timelimit"));
 				quiztaken.setQuizType(resultSet.getString("QuizType"));
 				quiztaken.setQuizTitle(resultSet.getString("quiztitle"));
-				quiztaken.setQuizInstruct(resultSet.getString("qinstruct"));//xiangwei
-				
+				quiztaken.setQuizInstruct(resultSet.getString("qinstruct"));				
 			}
-			//quiztaken.getQuizInstruct()
 			System.out.println("******2"+quiztaken.getQuizInstruct());
 			stmt.close();
-			//statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}  finally {
