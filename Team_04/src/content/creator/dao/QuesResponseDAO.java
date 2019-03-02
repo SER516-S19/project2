@@ -2,7 +2,7 @@ package content.creator.dao;
 
 import java.util.Date;
 
-public class QuizResultsDAO {
+public class QuesResponseDAO {
   private int studentId;
   private int attemptId;
   private int quizId;
