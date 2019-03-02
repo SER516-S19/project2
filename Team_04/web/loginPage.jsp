@@ -22,7 +22,17 @@
             line-height: 2.0px;
         }
     </style>
-
+    <%
+        String userName = request.getAttribute("userEntName").toString();
+        String userStatus = request.getAttribute("userStatus").toString();
+    %>
+    <script type="text/javascript">
+        var userStat =  "<%=userStatus%>";
+        if(userStat === "returningUser")
+        {
+                alert("User already exists, please login");
+        }
+    </script>
 </head>
 <body style="background-color: #4b5257">
 <div class="container">
@@ -31,7 +41,7 @@
             <h3>Please login</h3>
             <form>
                 <div class="form-group">
-                    <input name="username" class="form-control" placeholder="Enter Username">
+                    <input name="username" class="form-control" value="<%=userName%>" placeholder="Enter Username">
                 </div>
                 <div class="form-group">
                     <input name="password" class="form-control" placeholder="Enter password">
@@ -55,5 +65,6 @@
     </div>
 
 </div>
+
 </body>
 </html>

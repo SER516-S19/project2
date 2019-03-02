@@ -134,10 +134,15 @@ public class QuestionAnswerServlet extends HttpServlet {
             String userName = request.getParameter("username");
             String passWord = request.getParameter("password");
             String userType = request.getParameter("userTypeBtn");
-            if(validObj.signupValidation(userName, passWord, userType).equals("success"))
+            if(validObj.signupValidation(userName, passWord, userType).equals("returningUser"))
             {
-                view = "loginPage.jsp";
+                request.setAttribute("userStatus", "returningUser");
             }
+            else{
+                request.setAttribute("userStatus", "newUser");
+            }
+            request.setAttribute("userEntName", userName);
+            view = "loginPage.jsp";
         }
         else
         {
