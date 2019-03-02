@@ -20,7 +20,7 @@
 		<input id="quizName" name="quizName" >
 		<br>
 		
-	    <input type="submit" value="EditQuestion" name="flag" class="btn btn-primary" />
+	    <input type="submit" value="editQuestion" name="flag" class="btn btn-primary" />
 	</form>
 </body>
 </html>

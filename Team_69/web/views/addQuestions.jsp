@@ -105,12 +105,12 @@
 		<table>
 			<tr>
 				<td>
-					<input type="hidden" name="flag" value="Add Next Question"  />
+					<input type="hidden" name="flag" value="addNextQuestion"  />
 					<button type="submit" class="btn btn-primary" 
 						onclick="javascript:valthis()">Add Next Question</button>
 				</td>
 				<td>		
-					<input type="hidden" name="flag" value="Save and Exit"   />
+					<input type="hidden" name="flag" value="saveAndExit"   />
 					<button type="submit"
 						onclick="javascript:valthis()" class="btn btn-primary">Save and Exit</button>
 				</td>

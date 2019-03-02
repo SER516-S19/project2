@@ -61,7 +61,7 @@
 				</tr>
 			</table>
 		</div>
-		<input type="hidden" id="flag" name="flag" value="InsertQuizDetails">
+		<input type="hidden" id="flag" name="flag" value="insertQuizDetails">
 		<button type="submit" class="btn btn-primary"
 			onclick="javascript:checkBoxStatus(myCheckBox)">Submit</button>
 	</form>

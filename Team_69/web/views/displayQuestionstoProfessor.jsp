@@ -60,7 +60,7 @@
 									<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
 									<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
 									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" >Delete</button>
-									<button type="submit" value="EditQuestion" name="flag" class="btn btn-primary">Edit</button>
+									<button type="submit" value="editQuestion" name="flag" class="btn btn-primary">Edit</button>
 								</form>	
 							</c:when>
 							<c:otherwise>

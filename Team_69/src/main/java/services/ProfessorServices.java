@@ -225,4 +225,11 @@ public class ProfessorServices {
 		return questionData;	
 	}
 
+
+	public Quiz getQuizFromID(int quizId) {
+		ProfessorDAO professorDAO = new ProfessorDAO();
+		Quiz quiz = professorDAO.getQuizFromID(quizId);
+		return quiz;
+	}
+
 }

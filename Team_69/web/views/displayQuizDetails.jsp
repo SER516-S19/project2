@@ -62,7 +62,7 @@
 							   </c:otherwise>
 							</c:choose>
 						</td>
-						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
+						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQuestionInQuiz&id=${quiz.quizId}">Add Questions</a></td>
 						
 						<c:choose>
 							   <c:when test="${quiz.isPublished}">
