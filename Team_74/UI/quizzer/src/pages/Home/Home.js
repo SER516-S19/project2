@@ -82,7 +82,7 @@ class Home extends Component {
                                             <CardBody>
                                                 <ListGroup>
                                                     <Card>
-                                                        <QuizListService callbackFunc={this.updateQuizSection} />
+                                                        <QuizListService />
                                                     </Card>
                                                 </ListGroup>
                                             </CardBody>
@@ -100,9 +100,9 @@ class Home extends Component {
 
                         :
 
-                        <div>
+                      
 
-                            {(this.state.isQuizActive) ? 
+                            
                              <ListGroup>
                              <center>
                                         <h3>Welcome Student</h3>
@@ -111,21 +111,12 @@ class Home extends Component {
                                         <CardBody>
                                     <ListGroup>
                                         <Card>
-                                            <QuizListService callbackFunc={this.updateQuizSection} />
+                                            <QuizListService  />
                                         </Card>
                                     </ListGroup>
                                 </CardBody>
-                         </ListGroup> :
-                                <CardBody>
-                                    <ListGroup>
-                                        <Card>
-                                            <QuizListService callbackFunc={this.updateQuizSection} />
-                                        </Card>
-                                    </ListGroup>
-                                </CardBody>
-                            }
-
-                        </div>
+                         </ListGroup> 
+                            
                 }
             </div>
         );

@@ -13,7 +13,7 @@ class QuizListService extends React.Component {
         this.state = {
             quizList: [],
             isStudent: ((parseInt(localStorage.getItem('type'), 10) === 0) ? true : false),
-            isQuizActiveCallback : this.props.callbackFunc
+            //isQuizActiveCallback : this.props.callbackFunc
         }
     }
 
@@ -48,11 +48,11 @@ class QuizList extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
-        this.updateQuizSection = this.updateQuizSection.bind(this);
+       // this.updateQuizSection = this.updateQuizSection.bind(this);
     }
-    updateQuizSection() {
-        this.props.data.isQuizActiveCallback();
-     }
+    // updateQuizSection() {
+    //     this.props.data.isQuizActiveCallback();
+    //  }
     
 
     render() {
@@ -61,7 +61,7 @@ class QuizList extends React.Component {
         const quizList = this.props.data.quizList;
         if (isStudent) {
             view = Object.keys(quizList).map(function (key) {
-                return <li className="list-group-item list-group-item-info" onClick={this.updateQuizSection}>
+                return <li className="list-group-item list-group-item-info" >
                     <Link to="TakeQuiz" to={{
                             pathname: '/takeQuiz/:quizId',
                             quizId: quizList[key].quizId.toString()
