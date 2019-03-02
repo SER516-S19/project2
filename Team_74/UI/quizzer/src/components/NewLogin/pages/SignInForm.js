@@ -4,43 +4,65 @@ import '../index.css';
 import Routes from '../../../Routes';
 import Home from '../../../pages/Home/Home';
 import axios from "axios";
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import '../index.css';
 
-class LogInForm extends Component {
+class SignInForm extends Component {
+  constructor(props) {
+    super(props);
 
+    localStorage.clear();
+    this.state = {
+      username: '',
+      password: '',
+      submitted: false,
+      loading: false,
+      error: ''
+    };
 
-  handleSignIn(e) {
-    // e.preventDefault();
-    let username = this.refs.username.value;
-    let password = this.refs.password.value;
-    this.props.onSignIn(username, password);
+    this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
-  axios.post('http://localhost:8081/login', {
-  userPassword: password,
-  userEmailId: username
-})
-.then((response) => {
-      if (response.data.response != null) {
-        console.log(response);
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        localStorage.setItem('type', response.data.response.role);
-        const {from} = this.props.location.state || {from: {pathname: "/home"}};
-        this.props.history.push(from)
-      }else{
-        this.setState({ error: response.data.errorMessage , loading: false });
-        const {from} = this.props.location.state || {from: {pathname: "/login"}};
-        this.props.history.push(from)
-      }
-    },
-    error => this.setState({ error, loading: false })
-);
-}
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+  handleSignIn(e) {
+    e.preventDefault();
+    this.setState({ submitted: true });
+    const { username, password } = this.state;
+
+    // stop here if form is invalid
+    if (!(username && password)) {
+      return;
+    }
+
+    this.setState({ loading: true });
+
+    axios.post('http://localhost:8081/login', {
+    userPassword: password,
+    userEmailId: username
+  })
+      .then((response) => {
+        if (response.data.response != null) {
+          console.log(response);
+          localStorage.setItem('username', username);
+          localStorage.setItem('password', password);
+          localStorage.setItem('type', response.data.response.role);
+          const {from} = this.props.location.state || {from: {pathname: "/home"}};
+          this.props.history.push(from)
+        }else{
+          this.setState({ error: response.data.errorMessage , loading: false });
+          const {from} = this.props.location.state || {from: {pathname: "/login"}};
+          this.props.history.push(from)
+        }
+      },
+      error => this.setState({ error, loading: false })
+  );
+  }
 
   render() {
+    const { username, password, submitted, loading, error } = this.state;
     return (
         <form className="FormCenter" onSubmit={this.handleSignIn}>
           <div className={'FormField' + (submitted && !username ? ' has-error' : '')}>
