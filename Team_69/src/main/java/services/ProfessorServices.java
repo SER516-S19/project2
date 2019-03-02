@@ -31,10 +31,11 @@ public class ProfessorServices {
 		boolean isMutiple = false;
 		boolean isCorrectAnswer = false;
 		String question = request.getParameter("question");
-		String questionOption1 = request.getParameter("option1").trim();
-		String questionOption2 = request.getParameter("option2").trim();
-		String questionOption3 = request.getParameter("option3").trim();
-		String questionOption4 = request.getParameter("option4").trim();
+		String[] optionArray = request.getParameterValues("questionOptions");
+		
+		for(String str: optionArray)
+			str.trim();
+		
 		String points;
 		
 		if(request.getParameter("points").trim() ==  null) {
@@ -48,8 +49,9 @@ public class ProfessorServices {
 		String[] correctanswers = request.getParameterValues("options");
 		HttpSession session = request.getSession(true);
 		Quiz quiz = (Quiz)session.getAttribute("quiz");
+		request.setAttribute("id", quiz.getQuizId());
+		request.setAttribute("quizName", quiz.getQuizName());	
 		
-		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
 		Answer answer;
 		AnswerDAO answerDAO = new AnswerDAO();
 	
@@ -70,7 +72,6 @@ public class ProfessorServices {
 		
 		Question quest = new Question(quiz, question,isMutiple, point);
 		QuestionDAO questionDAO = new QuestionDAO();
-		System.out.println("hello");
 		questionDAO.addQuestion(quest);
 		
 		for(int option=1; option<=optionArray.length; option++) {
