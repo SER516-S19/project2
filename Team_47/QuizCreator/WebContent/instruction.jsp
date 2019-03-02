@@ -1,6 +1,10 @@
+<%-- 
+  - Author(s): Jiayan Wang, Yu-Ting Tsao
+  - Date: 2019/2/18
+  - Description: Last chance to get away from this class!
+  --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
+	pageEncoding="UTF-8"%>
 
 <!-- TODO:the import path-->
 <!DOCTYPE html>
@@ -14,26 +18,20 @@
 		mulbutton = "button";
 	}
 	String title = "The maximum time for quiz is 30 minutes.  No partial grading is avaialable";
-
 %>
 <head>
 <meta charset="UTF-8">
 <title>Instruction</title>
 </head>
 <body>
-<div class = "content">
-
-
-<input id = "title" type = "text" value="Quiz 1" disabled="disabled">
-
-	<div class ="instruction_area">
-	<p>Quiz Instruction</p>
-	<input id = "instruction"type = "text" value="<%=title %>" disabled="disabled">
-	</div>
-
-
-
-<!--  input id = "mulbtn" type="<%=mulbutton %>" value="retake">
+	<div class="content">
+		<input id="title" type="text" value="Quiz 1" disabled="disabled">
+		<div class="instruction_area">
+			<p>Quiz Instruction</p>
+			<input id="instruction" type="text" value="<%=title %>"
+				disabled="disabled">
+		</div>
+		<!--  input id = "mulbtn" type="<%=mulbutton %>" value="retake">
 <label id="attemp">
 <input id = "multiAttemps" type="checkbox" checked = "<%=temp %>" onclick = "return false">
 Allow Multiple Attemps
@@ -45,15 +43,10 @@ Allow Multiple Attemps
 	Allow Multiple Attemps
 	</label -->
 
-	
-
-
-<div class="bottom">
-
-	
-	<input id = "beginbtn" type="button" value="Begin Quiz" onclick='location.href=("questions.jsp")'>
-</div>
-
-</div>
+		<div class="bottom">
+			<input id="beginbtn" type="button" value="Begin Quiz"
+				onclick='location.href=("questions.jsp")'>
+		</div>
+	</div>
 </body>
 </html>

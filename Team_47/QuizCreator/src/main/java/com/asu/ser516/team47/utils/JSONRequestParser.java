@@ -20,9 +20,11 @@ import java.io.IOException;
 public class JSONRequestParser {
 
     /**
+     *  Parses json object from HttpRequest
+     *
      * @param req an HTTP request with a JSON form.
      * @return JSONObject of the form.
-     * @throws IOException    If there is a problem with accessing the form
+     * @throws IOException If there is a problem with accessing the form
      * @throws ParseException If there is a problem with parsing the form
      */
     public static JSONObject getJsonFromRequest(HttpServletRequest req) throws IOException, ParseException {

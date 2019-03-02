@@ -1,5 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
-
+/**
+ * Author: Yu-Ting Tsao
+ * Date: 2019/2/20
+ */
 body {
   background-color: #3e94ec;
   font-family: "Roboto", helvetica, arial, sans-serif;
@@ -14,6 +17,17 @@ div.table-title {
   max-width: 600px;
   padding:5px;
   width: 100%;
+}
+
+#top {
+  position: -webkit-sticky;
+  position: sticky;
+  margin: 0px;
+  height: 50px;
+  background-color: #fff8f0;
+  border: 0px solid #4CAF50;
+  text-align: right;
+  vertical-align: middle;
 }
 
 .table-title h3 {
@@ -77,6 +91,7 @@ tr:hover td {
   background:#4E5066;
   color:#FFFFFF;
   border-top: 1px solid #22262e;
+  cursor: pointer;
 }
  
 tr:first-child {
@@ -139,14 +154,5 @@ td.text-center {
 }
 
 td.text-right {
-  text-align: right;
-}
-#top {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding: 0px;
-  background-color: #fff8f0;
-  border: 0px solid #4CAF50;
   text-align: right;
 }
