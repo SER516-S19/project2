@@ -13,6 +13,7 @@ class QuizListService extends React.Component {
         this.state = {
             quizList: [],
             isStudent: ((parseInt(localStorage.getItem('type'), 10) === 0) ? true : false),
+            takingQuiz:false
             //isQuizActiveCallback : this.props.callbackFunc
         }
     }
@@ -48,6 +49,7 @@ class QuizList extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
+        // this.state.takingQuiz = false;
        // this.updateQuizSection = this.updateQuizSection.bind(this);
     }
     // updateQuizSection() {
@@ -59,6 +61,7 @@ class QuizList extends React.Component {
         let view;
         const isStudent = this.props.data.isStudent;
         const quizList = this.props.data.quizList;
+        var takingQuiz = this.props.data.takingQuiz;
         if (isStudent) {
             view = Object.keys(quizList).map(function (key) {
                 return <li className="list-group-item list-group-item-info" >
@@ -78,17 +81,16 @@ class QuizList extends React.Component {
 
         return (
 
-
-            <div className="container">
-                <Router>
-                    <div>
-                        {view}
-                        <Switch>
-                            <Route exact path='/takeQuiz/:quizId' component={TakeQuiz} />
-                        </Switch>
+                    <div className="container">
+                        <Router>
+                            <div>
+                                {view}
+                                <Switch>
+                                    <Route exact path='/takeQuiz/:quizId' component={TakeQuiz}/>
+                                </Switch>
+                            </div>
+                        </Router>
                     </div>
-                </Router>
-            </div>
 
 
         );
