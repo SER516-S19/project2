@@ -69,7 +69,7 @@ class Home extends Component {
                 <div className="Home">
                     {
                         (this.state.isProfessorType)?
-                            <div>
+                            <div style = {{width:"100%"}}>
                                 {
                                 (this.state.isCreatingQuiz)?
                                 <button type="submit" className="Prof-Button" onClick={this.handleSubmit} value="Submit">Back</button>

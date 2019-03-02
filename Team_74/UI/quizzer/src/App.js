@@ -28,7 +28,7 @@ class App extends Component {
                             <div>
                             <Toolbar title={this.state.title}/>
                             </div>
-                            <div>
+                            <div style = {{width:"100%",marginTop: "56px"}}>
                             <Home />                           
                             </div>
                         </div>

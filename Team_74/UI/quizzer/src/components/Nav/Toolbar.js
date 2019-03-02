@@ -63,7 +63,7 @@ class Toolbar extends Component {
   // }
   render(){
     return(
-      <Container>
+      <div>
       <Row>
       <header className="toolbar">
       <nav className="toolbar__navigation">
@@ -102,7 +102,7 @@ class Toolbar extends Component {
   </header>
 
       </Row>
-    </Container>
+    </div>
 
     )
   }
