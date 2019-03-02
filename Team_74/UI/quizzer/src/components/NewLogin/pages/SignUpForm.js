@@ -12,7 +12,9 @@ class SignUpForm extends Component {
             password: '',
             firstName: '',
             lastName:'',
-            role: '',
+            role: 0,
+            isStudent:false,
+            isProfessor:false,
             hasAgreed: false,
             dob: ''
         };
@@ -23,16 +25,42 @@ class SignUpForm extends Component {
 
     handleChange(e) {
         let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
 
-        this.setState({
-          [name]: value
-        });
+        // if(target.type === 'radio'){
+        //     if(target.id === 'Professor')
+        //         this.setState({ role: 1 });
+        //     else if(target.id === 'Student')
+        //         this.setState({ role: 0 });
+        // }else {
+            // if(){
+            //     let value = target.
+            // }
+            let value = (target.type === 'checkbox') ? target.checked : target.value;
+            let name = target.name;
+
+            console.log(name, value);
+
+            this.setState({
+                [name]: value
+            });
+
+            // console.log(this.state.isProfessor);
+            // if(this.state.isProfessor)
+            //     this.setState({ role: 1 });
+            // else
+            //     this.setState({ role: 0 });
+        //
+        // console.log("Role", this.state.role);
+
+        // }
     }
 
     handleSubmit(e) {
         e.preventDefault();
+
+        // if(this.state.isPr)
+        console.log(this.state.role);
+
         this.setState({ submitted: true });
         const { email, password,firstName,lastName,role, dob , hasAgreed } = this.state;
 
@@ -45,24 +73,22 @@ class SignUpForm extends Component {
 
 
         axios.post('http://localhost:8081/register', {
-            userFirstName: firstName,
+            firstName: firstName,
             userEmailId: email,
-            userLastName: lastName,
-            userRole: role,
-            userPassword: password,
-            userDOB: dob,
-            userHasAgreed: hasAgreed
+            lastName: lastName,
+            role: role,
+            userPassword: password
 
 
         })
             .then((response) => {
                     if (response.data.response != null) {
                         console.log(response);
-                        localStorage.setItem('firstName', firstName);
-                        localStorage.setItem('lastName', lastName);
+                        // localStorage.setItem('firstName', firstName);
+                        // localStorage.setItem('lastName', lastName);
                         localStorage.setItem('email', email);
-                        localStorage.setItem('password', password);
-                        localStorage.setItem('dob', dob);
+                        // localStorage.setItem('password', password);
+                        // localStorage.setItem('dob', dob);
                         localStorage.setItem('type', response.data.response.role);
                         const {from} = this.props.location.state || {from: {pathname: "/login"}};
                         this.props.history.push(from)
@@ -113,12 +139,12 @@ class SignUpForm extends Component {
                     <div className="FormRadioGroup">
                         <div className="FormRadioProfessor">
                             <label htmlFor="Professor">
-                                <input type="radio" id="Professor" name="drone" value="Professor"/> Professor
+                                <input type="radio" id="Professor" name="role" value={1} onChange={this.handleChange}/> Professor
                             </label>
                         </div>
                         <div className="FormRadioStudent">
                             <label htmlFor="Student">
-                                <input type="radio" id="Student" name="drone" value="Student"/> Student
+                                <input type="radio" id="Student" name="role" value={0} onChange={this.handleChange}/> Student
                             </label>
                         </div>
                     </div>
