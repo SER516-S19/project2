@@ -16,6 +16,14 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+	<div class="row" align="center">
+		<div class="col-md-12 details">
+			<h2>Quiz Details</h2>
+			<br>
+		</div>
+	</div>
+
 	<c:choose>
 		<c:when test="${empty requestScope.quizList}">
 			<blockquote class="blockquote text-center">
