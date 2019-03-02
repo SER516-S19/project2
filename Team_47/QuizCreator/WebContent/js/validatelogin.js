@@ -11,25 +11,7 @@ function loginCheck() {
 		var visitorJson = JSON.stringify(visitor);
 		
 		var userId = "878712345";
-		var userName = "Harry Potter";
-		
-//		//Do calls and use call back
-//		$.ajax({
-//	        type: $form.attr('method'),
-//	        url:  $form.attr('action'),
-//	        data: visitorJson,
-//	        success: function (data) {
-//	            console.log("Data received: ");
-//	            console.log(data);
-//	            if(data === "SUCCESS") {
-//	            	alert ("Login SUCCESS");
-//	            	window.location = pageDirection();
-//	            } else {
-//	            	alert ("Login FAILED");
-//	            }
-//	        }
-//	    });
-		
+		var userName = "Harry Potter";	
 		
 		document.querySelector(".login-form").action = pageDirection(userId, userName);
 	}
