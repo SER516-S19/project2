@@ -16,6 +16,7 @@
     <ul>
         <li><a href="./createContent.jsp"> Create Quiz </a></li>
         <li><a href="./list"> View Quiz List </a></li>
+        <li><a href="./studentList"> View Student List </a></li>
     </ul>
 </div>
 </body>
