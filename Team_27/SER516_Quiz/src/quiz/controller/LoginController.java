@@ -1,6 +1,7 @@
 package quiz.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import quiz.dao.UserDao;
+import quiz.dao.professor.QuizDetailsDao;
+import quiz.exceptions.DataAccessException;
 import quiz.model.User;
 
 /**
@@ -49,8 +52,18 @@ public class LoginController extends HttpServlet {
 
 				if ("student".equalsIgnoreCase(user.getUserType())) {
 					response.sendRedirect("./StudentHomePage.html");
-				} else {
-					response.sendRedirect("/Quiz/getQuiz");
+				} else if("professor".equalsIgnoreCase(user.getUserType())){
+					QuizDetailsDao quizDetailsDao = new QuizDetailsDao();
+
+					ArrayList rowValues = new ArrayList();
+					try {
+						rowValues = quizDetailsDao.getAll();
+					}
+					catch(DataAccessException e) {
+						e.printStackTrace();
+					}
+					request.getSession().setAttribute("rowValues", rowValues);
+					response.sendRedirect("showQuizes.jsp");
 				}
 
 			} else {
