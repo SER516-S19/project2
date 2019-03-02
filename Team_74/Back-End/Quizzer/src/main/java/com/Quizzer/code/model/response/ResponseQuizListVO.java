@@ -1,11 +1,13 @@
-/*
- * Comment
- * */
-
 package com.Quizzer.code.model.response;
 
 import java.io.Serializable;
 
+/**
+ * This class is the quiz list model.
+ *
+ * @author Kumar Prabhu Kalyan
+ *
+ */
 public class ResponseQuizListVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

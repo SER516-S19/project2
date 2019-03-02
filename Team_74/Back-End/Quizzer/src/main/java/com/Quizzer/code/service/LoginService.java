@@ -24,6 +24,11 @@ public class LoginService {
     private UserRepo userRepo;
     private User user = null;
 
+    /**
+     * This method authenticates each incoming request with the database
+     * @param user
+     * @return
+     */
     public ResponseEntity<ResponseVO> authenticateUser(User user) {
         User loginCred = user;
         if (ifEmailIdExists(loginCred.getUserEmailId())) {
@@ -37,8 +42,12 @@ public class LoginService {
         return new ResponseEntity<>(new ResponseVO("105", "User does not exist", null), HttpStatus.OK);
     }
 
-
-
+    /**
+     * This method adds each entry into the database
+     * @param userDefine
+     * @return
+     * @throws LoginException
+     */
     public boolean addUserRepo(User userDefine) throws LoginException {
         try {
             userDefine.setUserPassword(userDefine.getUserPassword());
@@ -52,11 +61,11 @@ public class LoginService {
 
     }
 
-    public boolean ifEmailIdExists(String strEmailId) {
-        return (null != userRepo.findByUserEmailId(strEmailId));
-
-    }
-
+    /**
+     * This method handles the request and send appropriate response
+     * @param user
+     * @return
+     */
 
     public ResponseEntity<ResponseVO> addUser(User user) {
         ResponseVO response = new ResponseVO(HttpStatus.OK.toString(), "", "");
@@ -81,11 +90,13 @@ public class LoginService {
         return new ResponseEntity<ResponseVO>(response, HttpStatus.OK);
     }
 
+
+    public boolean ifEmailIdExists(String strEmailId) {
+        return (null != userRepo.findByUserEmailId(strEmailId));
+
+    }
+
     private boolean validateUserRequest(ResponseVO response, User user) {
-
-
-
-
         if (ifEmailIdExists(user.getUserEmailId())) {
             response.setStatus("103");
             response.setErrorMessage("Email Id is already registered !");

@@ -2,7 +2,7 @@ package com.Quizzer.code.exceptions;
 
 
 /**
- * This class is the model for User data.
+ * This class is the exception class for User data.
  *
  * @author Koushik Kotamraju GIT ID: 44
  * @author Abhinab Mohanty GIT ID: 53

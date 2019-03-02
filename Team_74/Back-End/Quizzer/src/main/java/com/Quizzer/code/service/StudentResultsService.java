@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * This is the service layer for add quiz, get quizzes.
+ * This is the service layer for adding results of Quizzes taken.
  *
- * @author Kumar Prabhu Kalyan and Kirti Jha
+ * @author Abhinab Mohanty
  *
  */
 @Service
@@ -22,6 +22,12 @@ public class StudentResultsService {
     @Autowired
     SubmitQuizRepo submitQuizRepo;
 
+    /**
+     * This method handles the request and send appropriate response
+     * @param submitQuiz
+     * @return
+     * @throws StudentResultsException
+     */
     public ResponseEntity<ResponseVO> addResult(SubmitQuiz submitQuiz) throws StudentResultsException {
         ResponseVO response = new ResponseVO(HttpStatus.OK.toString(), "", "");
         if (submitQuiz != null) {
@@ -46,6 +52,12 @@ public class StudentResultsService {
 
     }
 
+    /**
+     * This method adds individual entries into the database
+     * @param submitQuiz
+     * @return
+     * @throws StudentResultsException
+     */
     private boolean addResultRepo(SubmitQuiz submitQuiz) throws StudentResultsException {
         try {
             submitQuiz.setMarksAchieved(submitQuiz.getMarksAchieved());

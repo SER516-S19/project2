@@ -23,6 +23,12 @@ public class StudentsResultsController {
     @Autowired
     StudentResultsService studentResultsService;
 
+    /**
+     * This method handles filling of Quiz Results in database
+     * @param submitQuiz
+     * @return
+     * @throws StudentResultsException
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/results")
     public ResponseEntity<?> addResult(@RequestBody SubmitQuiz submitQuiz) throws StudentResultsException {
 
