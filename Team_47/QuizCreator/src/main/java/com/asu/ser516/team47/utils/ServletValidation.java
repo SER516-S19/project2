@@ -1,12 +1,16 @@
 package com.asu.ser516.team47.utils;
 
+import com.asu.ser516.team47.database.Question;
 import com.asu.ser516.team47.database.QuizDAOImpl;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -77,7 +81,7 @@ public class ServletValidation {
      * @param quizId The ID of the quiz that these choices belong to.
      * @return null if invalid. else a list of choices.
      */
-    public static List<Integer> buildAndValidateChoiceList(JSONArray jsonChoices, int quizId){
+    public static List<Integer> buildAndValidateSubmittedChoiceList(JSONArray jsonChoices, int quizId){
         Iterator<Integer> it = jsonChoices.iterator();
         List<Integer> ret = new ArrayList<Integer>();
         while (it.hasNext()) {
@@ -90,4 +94,74 @@ public class ServletValidation {
         }
         return ret;
     }
+
+    /**
+     * validates that JSONArray of choices have all necessary info for choice creation
+     *
+     * @param jsonChoices json array containing info needed to build quizzes
+     * @return true if valid, false otherwise
+     */
+    public static boolean validateChoiceArray(JSONArray jsonChoices) throws IOException,
+            ParseException {
+        Iterator<JSONObject> it = jsonChoices.iterator();
+        boolean valid = true;
+        Boolean correct = null;
+        String content = null;
+        try {
+            while (it.hasNext()){
+                JSONObject choice = it.next();
+                correct = (Boolean) choice.get("correct");
+                content = (String) choice.get("content");
+            }
+        } catch (ClassCastException ex) {
+            valid = false;
+        }
+        if (correct == null || content == null){
+            valid = false;
+        }
+        return valid;
+    }
+
+    /**
+     * validates that JSONArray of questions have all necessary info for question creation
+     *
+     * @param jsonQuestions json array containing info needed to build quizzes
+     * @return true if valid, false otherwise
+     */
+    public static boolean validateQuestionArray(JSONArray jsonQuestions) throws IOException {
+        Iterator<JSONObject> it = jsonQuestions.iterator();
+        boolean valid = true;
+        String quesType = null;
+        Double points = null;
+        String content = null;
+
+        try {
+            while (it.hasNext()) {
+                JSONObject jsonQuestion = it.next();
+                quesType = (String) jsonQuestion.get("quesType");
+                if (!(quesType.equals("MC") || quesType.equals("MA"))) {
+                    return false;
+                }
+                points = (Double) jsonQuestion.get("points");
+                content = (String) jsonQuestion.get("content");
+                JSONArray choices = (JSONArray) jsonQuestion.get("choices");
+                if (choices == null || choices.isEmpty()){
+                    valid = false;
+                    break;
+                }
+                validateChoiceArray(choices);
+            }
+        } catch (ParseException | IOException | ClassCastException ex){
+            valid  = false;
+        }
+
+        if (quesType == null || points == null || content == null){
+            valid = false;
+        }
+
+        return valid;
+    }
+
+
+
 }

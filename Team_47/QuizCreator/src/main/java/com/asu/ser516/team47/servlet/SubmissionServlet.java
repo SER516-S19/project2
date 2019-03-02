@@ -1,15 +1,13 @@
 package com.asu.ser516.team47.servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import com.asu.ser516.team47.database.*;
 import com.asu.ser516.team47.utils.ServletValidation;
@@ -26,8 +24,8 @@ import org.json.simple.parser.ParseException;
  * @author David Lahtinen
  * @author John Alden
  *
- * @version 1.0
- * @since 2019-22-02
+ * @version 1.1
+ * @since 2019-28-02
  */
 @WebServlet(name = "SubmissionServlet")
 public class SubmissionServlet extends HttpServlet {
@@ -70,54 +68,34 @@ public class SubmissionServlet extends HttpServlet {
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
-        Integer attempt;
-        Integer timeTaken;
 
         List<Integer> choiceIds;
 
         //Check if json form can be read.
         try {
             requestForm = JSONRequestParser.getJsonFromRequest(request);
-        } catch (IOException ioe){
+        } catch (IOException | ParseException | ClassCastException ex){
             response.sendError(400, "Problem reading form.");
-            return;
-        } catch (ParseException pe){
-            response.sendError(400, "Problem parsing form.");
-            return;
-        } catch (ClassCastException cce){
-            response.sendError(400, "Problem parsing form. Are you sure you sent an object and not an array?");
             return;
         }
 
         //Validate that all necessary fields are present and build ChoiceId array
         try {
-            quizId = (Integer) requestForm.get("quiz_id");
+            quizId =  ((Long)requestForm.get("quiz_id")).intValue();
             quiz = new QuizDAOImpl().getQuiz(quizId);
             if (quiz == null) {
                 httpCode = 500;
             }
-            enrollId = (Integer)requestForm.get("enrolled_id");
+            enrollId = ((Long)requestForm.get("enrolled_id")).intValue();
             enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
             if (enrollment == null) {
                 httpCode = 500;
             }
-            attempt = (Integer)requestForm.get("attempt");
-            if (attempt <= 0){
-                httpCode = 400;
-            }
-            if (!validation.validAttempt(quizId, attempt.intValue())) {
-                httpCode = 400;
-                httpErrorMessage = "Submission exceeds attempt limit";
-            }
-
-            timeTaken = validateInteger(request.getParameter("timeTaken"), response);
-            if (timeTaken <= 0) {
-                httpCode = 400;
-            }
             JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
-            choiceIds = ServletValidation.buildAndValidateChoiceList(jsonChoices, quizId);
+            choiceIds = ServletValidation.buildAndValidateSubmittedChoiceList(jsonChoices, quizId);
         } catch (ClassCastException cce){
             response.sendError(400, "Some field is wrong data type.");
+            cce.printStackTrace();
             return;
         } catch (NullPointerException npe){
             response.sendError(400, "Some field is missing.");
@@ -127,7 +105,7 @@ public class SubmissionServlet extends HttpServlet {
         //check that all fields are present and no error has occurred
         if (httpCode != 204 || quizId == null || enrollId == null) {
             if (httpCode == 500) {
-                httpErrorMessage = "Server Error";
+                httpErrorMessage = "Error Loading parameters";
             }
             response.sendError(httpCode, httpErrorMessage);
             return;
@@ -135,7 +113,7 @@ public class SubmissionServlet extends HttpServlet {
 
         //TODO: Call function to check if time limit is passed.
         //TODO: Call function to increment submission.
-        if (!sendSubmission(quizId, enrollId, 1, 0, 0)){
+        if (!sendSubmission(quizId, enrollId, 1, 0, 1)){
             response.sendError(500);
             return;
         }
@@ -143,6 +121,11 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(500);
             return;
         }
+
+        if(isLateSubmission(quizId)) {
+            response.sendError(401, "Your submission was past the due date");
+        }
+
         response.setStatus(httpCode);
 
         //TODO: call autograder, update score on Submission.
@@ -188,8 +171,7 @@ public class SubmissionServlet extends HttpServlet {
             int choiceID = choiceList.get(i).intValue();
             int questionID = getQuestionID(choiceID);
 
-            boolean wasSubmitted = submitter.insertAnswer(new Answer(0,
-                    submissionID, questionID, choiceID));
+            boolean wasSubmitted = submitter.insertAnswer(new Answer(0, submissionID, questionID, choiceID));
 
             if(!wasSubmitted)
                 hasSucceeded = false;
@@ -210,22 +192,30 @@ public class SubmissionServlet extends HttpServlet {
     }
 
     /**
-     * Checks if parameter can be converted to integer. If not, sends an error.
-     * @param value the value to be validated
-     * @param response http response through which to send errors
-     * @return null if invalid input, a valid int otherwise
-     * @throws IOException sends an error if parameter cannot be reported
+     * isLateSubmission
+     * Checks if submission for a quiz is overdue
+     * @param quizId the id of the quiz the submission is for
+     * @return true if late, false if submission is not late
      */
-    private Integer validateInteger(String value, HttpServletResponse response) throws IOException {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException nfe) {
-            httpCode = 400;
-            httpErrorMessage = "Invalid form data";
-        } catch (NullPointerException npe) {
-            httpCode = 400;
-            httpErrorMessage = "Missing form data";
+    private boolean isLateSubmission(int quizId) {
+        // Get due date of the quiz
+        QuizDAOImpl quizDAO = new QuizDAOImpl();
+        Quiz quizInfo = quizDAO.getQuiz(quizId);
+        Date quizSubmissionDate = quizInfo.getDate_close();
+
+        // Get current date
+        Calendar cal = Calendar.getInstance();
+        Date currentDate = cal.getTime();
+
+        // Format current date to same format as java.sql.Date
+        String dateFormat = "yyyy-MM-dd";
+        SimpleDateFormat dbDateFormat = new SimpleDateFormat(dateFormat);
+        String todayDate = dbDateFormat.format(currentDate);
+
+        // If the current date is > the quiz submission date, the quiz was submitted late
+        if (todayDate.compareTo(quizSubmissionDate.toString()) > 0) {
+            return true;
         }
-        return null;
+        return false;
     }
 }
