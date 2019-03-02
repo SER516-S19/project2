@@ -5,8 +5,23 @@ import student.dto.UserData;
 
 import java.util.List;
 
+/**
+ * The {@code InputValidation} class represents a class.
+ *  * It includes methods to validate the login and sign up
+ *
+ *  @author Ankita Shivanand Bhandari
+ */
 public class InputValidation {
-
+    /**
+     *
+     * @param userName
+     * userName for login
+     * @param passWord
+     * passWord for login
+     * @param userType
+     * userType of the user
+     * @return success on successful validating and failed if validation is unsuccessful
+     */
     public String loginValidation(String userName, String passWord, String userType)
     {
         List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
@@ -46,12 +61,12 @@ public class InputValidation {
         if (userExists == null || userExists.isEmpty()){
             DataManager.getInstance().
                     executeUpdateQuery(updateQuery, userName, passWord, userType, true);
-            System.out.println("Username not exists");
+
             return "newUser";
         }
         else
         {
-            System.out.println("Username exists");
+
             return "returningUser";
         }
 
