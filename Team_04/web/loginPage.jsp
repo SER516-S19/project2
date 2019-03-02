@@ -44,7 +44,12 @@
     </style>
     <%
         //String userName = request.getAttribute("userEntName").toString();
-        String userStatus = "";
+        String userStatus;
+        if (request.getParameterMap().containsKey("userStatus")) {
+            userStatus = request.getAttribute("userStatus").toString();
+        } else {
+            userStatus = "";
+        }
     %>
     <script type="text/javascript">
         var userStat =  "<%=userStatus%>";
