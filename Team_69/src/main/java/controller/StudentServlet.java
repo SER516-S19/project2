@@ -1,12 +1,7 @@
 package controller;
 
-import dao.QuizDAO;
 import services.StudentServices;
-
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +19,13 @@ import javax.servlet.http.HttpSession;
 public class StudentServlet extends HttpServlet {
 
 	/**
-	 * 
+	 * Handles the get request coming to the student
+	 *
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
 	 */
-	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,10 +39,17 @@ public class StudentServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
-		session.getAttribute("quizName");
-		session.getAttribute("quizInstructions");
 
 	}
+
+	/**
+	 * Handles the post request going from student
+	 *
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

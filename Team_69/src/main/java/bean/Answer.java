@@ -2,6 +2,14 @@ package bean;
 
 import javax.persistence.*;
 
+/**
+ * This class reprsents the Answer table
+ *
+ * @author : Alsha Samantaray
+ * @version : 1.0
+ * @since : 02/20/2019
+ */
+
 @Entity
 @Table(name = "Answer")
 public class Answer {
