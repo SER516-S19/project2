@@ -39,18 +39,18 @@
 				<%!String createQuizSelectTable() {
 		List<Quiz> quizzes = new QuizDAOImpl().getAllQuizzes();
 		StringBuilder buf = new StringBuilder();
-
 		for (int i = 0; i < quizzes.size(); i++) {
 			int id = quizzes.get(i).getQuiz_id();
 			String title = quizzes.get(i).getTitle();
 			String instruction = quizzes.get(i).getInstructions();
 			buf.append(String.format(
-					"<tr>" + "<td>%d</td>" + 
+					"<tr onclick=\"window.location.href = '/instruction.jsp?quizId=%d';\">" +
+					"<td id=\"quizId\">%d</td>" + 
 					"<td class=\"text-left\">" + 
 					"%s</td>" + 
 					"<td>%s</td>" +
 					"</tr>",
-					id, title, instruction));
+					id, id, title, instruction));
 		}
 		String html = buf.toString();
 		return html;
