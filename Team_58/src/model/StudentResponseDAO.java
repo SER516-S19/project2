@@ -11,4 +11,5 @@ package model;
 public interface StudentResponseDAO {
 
 	public void updateStudentResponse(int quizId);
+	public void InsertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score) ;
 }

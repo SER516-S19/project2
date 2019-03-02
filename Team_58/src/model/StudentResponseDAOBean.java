@@ -2,8 +2,11 @@ package model;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -42,5 +45,31 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 			log.info(e.getMessage());
 		}
 	}
+	
+	@Override
+	public void InsertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score)   {
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		
+		
+		try {
+		connection = ConnectionFactory.getConnection();
+		query = connection.prepareStatement(dbProperties.getProperty("inserStudentResponse"));
+
+		query.setInt(1, courseId);
+		query.setInt(2, quizId);
+		query.setInt(3, userId);
+		query.setInt(4, questionId);
+		query.setString(5, answerSelected);
+		query.setInt(6, score);
+		query.executeUpdate();
+	}
+	catch (ClassNotFoundException | SQLException e) {
+		log.info(e.getMessage());
+	}
 
 }
+}
+
+

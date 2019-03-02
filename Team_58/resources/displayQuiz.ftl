@@ -57,7 +57,24 @@
 					
 				}
 				
-				alert("Going to Submit Quiz");
+		    $.ajax({
+        		type: 'POST', 
+        		url: 'SubmitQuizServlet',
+        		dataType: 'JSON',
+        		data: { 
+          		loadProds: 1,
+          		parsed: JSON.stringify(parsed)
+        		},
+        		success: function(data) {
+          		// PROCESS your RESPONSE here!!! It is in "data"!!!!
+        		},
+        		error: function(data) {
+            	// This is called when the request failed, what happend is in the "data"!!!
+       			 alert('fail');
+            }
+    });
+  return false;
+}
 				
 			}
 			
