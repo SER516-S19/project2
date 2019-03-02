@@ -26,4 +26,10 @@ public class LoginServices {
 
     }
 
+	public String fetchUserName(String userEmail) {
+		UserDAO userDAO = new UserDAO();
+		String userName = userDAO.fetchUserDetails(userEmail).getUser_name();
+        return userName;
+	}
+
 }

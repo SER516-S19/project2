@@ -15,11 +15,11 @@ import javax.persistence.*;
 public class Answer {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Answer_id",nullable = false)
     private int answerId;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "Question_id")
     private Question question;
 

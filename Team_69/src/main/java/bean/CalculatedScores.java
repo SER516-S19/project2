@@ -12,11 +12,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "CalculatedScores")
-@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
 public class CalculatedScores {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
