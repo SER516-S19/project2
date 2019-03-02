@@ -46,4 +46,17 @@ public class Enrolled {
     public void setStudent_fk(String student_fk) {
         this.student_fk = student_fk;
     }
+
+    /**
+     * toString
+     * @return string representation of enrolled object
+     */
+    public String toString() {
+        String result = "Enrolled {" + "\n" +
+                "  enrolled_id: " + Integer.toString(enrolled_id) + "\n" +
+                "  course_fk: " + Integer.toString(course_fk) + "\n" +
+                "  student_fk: " + student_fk+ "\n" +
+                "}";
+        return result;
+    }
 }

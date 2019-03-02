@@ -1,5 +1,7 @@
 package com.asu.ser516.team47.database;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -144,4 +146,27 @@ public class Quiz {
     public double getTotal_points() { return total_points; }
 
     public void setTotal_points(double newTotal) { this.total_points = newTotal; }
+
+    /**
+     * toString
+     * @return string representation of quiz object
+     */
+    public String toString() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String result = "Quiz {" + "\n" +
+                "  quiz_id: " + Integer.toString(quiz_id) + "\n" +
+                "  course_fk: " + Integer.toString(course_fk) + "\n" +
+                "  title: " + title + "\n" +
+                "  instructions: " + instructions + "\n" +
+                "  shuffle: " + Boolean.toString(shuffle) + "\n" +
+                "  time_limit: " + Integer.toString(time_limit) + "\n" +
+                "  date_open: " + dateFormat.format(date_open) + "\n" +
+                "  date_close: " + dateFormat.format(date_close) + "\n" +
+                "  quiz_type: " + quiz_type + "\n" +
+                "  attempts: " + Integer.toString(attempts) + "\n" +
+                "  quiz_group: " + quiz_group + "\n" +
+                "  total_points: " + Double.toString(total_points) + "\n" +
+                "}";
+        return result;
+    }
 }

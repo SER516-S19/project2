@@ -32,6 +32,14 @@ public interface SubmissionDAO {
     List<Submission> getEnrolledSubmissions(int enrolled_fk);
 
     /**
+     * Gets all submissions for an enrollment for a quiz
+     * @param enrolled_fk enrolled_id
+     * @param quiz_fk quiz_id
+     * @return all submissions for an enrollment for a quiz
+     */
+    List<Submission> getEnrolledQuizSubmissions(int enrolled_fk, int quiz_fk);
+
+    /**
      * Gets a submission based on it's submission_id
      * @param submission_id the id of the submission_id
      * @return a submission with the submission_id
