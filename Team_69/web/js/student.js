@@ -123,7 +123,7 @@ function createAnsElem(index, isMultiple) {
 
     for (var i = 0; i < questions[index].choices.length; i++) {
         item = $('<li>');
-        input = '<input type="' + type + '" name="answer" value=' + i + ' />';
+        input = '&nbsp;<input type="' + type + '" name="answer" value=' + i + ' />';
         input += questions[index].choices[i];
         item.append(input);
         elemList.append(item);

@@ -1,22 +1,25 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-    <link type='text/css' rel='stylesheet' href='../css/Login.css' />
-    <title>Login</title>
+<title>Login</title>
+<%@ include file="/header.jsp"%>
 </head>
 <body>
-<h2  style="color:blue;text-align:center">
-    Welcome to Quiz Portal!!
-</h2>
-<form action="Login" method="POST">
+	<div class="container">
+		<h2 style="color: blue; text-align: center">Welcome to Quiz
+			Portal!!</h2>
+		<form id="loginForm" action="Login" method="POST">
+			<div class="row">
+				<label class="col-sm-2" for="Email"><b>UserEmail</b></label> <input
+					class="col-sm-4" type="text" placeholder="Enter your email"
+					name="userEmail" id="Email" required><br>
+			</div>
+			<label for="password"><b>Password</b></label> <input type="password"
+				placeholder="Enter Password" name="userPassword" id="password"
+				required><br>
 
-    <label for="Email"><b>UserEmail</b></label><br>
-    <input type="text" placeholder="Enter your email" name = "userEmail" id="Email" required><br>
-
-    <label for="password"><b>Password</b></label><br>
-    <input type="password" placeholder="Enter Password" name="userPassword" id ="password" required><br>
-
-    <button type="submit">Login</button>
-</form>
+			<button id="submitBtn" type="submit">Login</button>
+		</form>
+	</div>
 </body>
 </html>

@@ -5,16 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Quiz Submitted</title>
-<link type='text/css' rel='stylesheet' href='../css/studentStyle.css' />
-<link type='text/css' rel='stylesheet' href='../css/bootstrap.min.css' />
-<script type='text/javascript'
-	src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
-<script type='text/javascript' src='../js/bootstrap.min.js'></script>
-<script type='text/javascript' src='../js/student.js'></script>
+<%@ include file = "/header.jsp" %>
 </head>
 <body>
 	Your response has been successfully recorded!! <br/>
-	Your score is : <%out.println(session.getAttribute("grade")); %>
+	<% int score = (int) session.getAttribute("grade"); 
+	if(score ==-1)
+		out.println("We are currently processing your grades. Check back later!!");
+	else
+		out.println("Your score is : "+score);
+	%>
+	
 	<div class="container">
 		<div class="row">
 			<form class="col-sm-4" method="GET">

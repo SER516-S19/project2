@@ -9,14 +9,14 @@ public class DatabaseConnection {
 		String driver = "com.mysql.jdbc.Driver";
 		try {
 			Class.forName(driver);
-			} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			}
-		Connection connection = null;	
+		}
+		Connection connection = null;
 		String connectionUrl = "jdbc:mysql://localhost:3306/ser516p2?allowPublicKeyRetrieval=true&useSSL=false";
 		String userid = "root";
-		String password = "root";  /*local MSQL pswdJ*/
-		
+		String password = "root"; /* local MSQL pswdJ */
+
 		connection = DriverManager.getConnection(connectionUrl, userid, password);
 		return connection;
 	}

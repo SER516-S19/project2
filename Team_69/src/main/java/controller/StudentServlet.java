@@ -2,6 +2,8 @@ package controller;
 
 import services.StudentServices;
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +36,12 @@ public class StudentServlet extends HttpServlet {
 		StudentServices service = new StudentServices();
 		String questionAnswerJSON = service.getQuestionDetails(Integer.parseInt(quizId));
 		HttpSession session = req.getSession();
+		Enumeration<String> attrNames = session.getAttributeNames();
+		while (attrNames.hasMoreElements()) {
+			if(attrNames.nextElement().equals("studentResponseJSON")){
+				questionAnswerJSON = (String)session.getAttribute("studentResponseJSON");
+			}
+		}
 		session.setAttribute("studentResponseJSON", questionAnswerJSON);
 		session.setAttribute("startTime", service.getCurrentDateTime());
 		resp.setContentType("text/html");
@@ -64,7 +72,7 @@ public class StudentServlet extends HttpServlet {
 				response.setContentType("text/html");
 				view = service.feedAnswers(studentResponse, userId);
 				if ("/success".equals(view)) {
-//					service.calculateScores(studentResponse,userId);
+					service.calculateScores(studentResponse,userId);
 					int score = service.getGrade(studentResponse, userId);
 					session.setAttribute("grade", score);
 					response.setStatus(HttpServletResponse.SC_CREATED);

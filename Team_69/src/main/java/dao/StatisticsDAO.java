@@ -114,7 +114,6 @@ public class StatisticsDAO {
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            
             Query query = session.createSQLQuery(
             		"select count(distinct user_id) as count FROM `response_stats` WHERE Quiz_id = :quizId")
             		.setParameter("quizId", quizId);
@@ -133,7 +132,6 @@ public class StatisticsDAO {
 		return studentQuizCount;
 	}
 
-	
 	public List<CalculatedScores> retrieveStudentsGrades(int quizId) {
         List<CalculatedScores> studentCalculatedScores = new ArrayList<CalculatedScores>();
 		Transaction transaction = null;
@@ -158,7 +156,6 @@ public class StatisticsDAO {
 	}
 	
 	public List<ResponseStatistics> getResponseOfEachQuestion(int quizId) {
-
 		List<ResponseStatistics> lists = new ArrayList<>();
 		 Transaction transaction = null;
 	        try  {
@@ -172,14 +169,11 @@ public class StatisticsDAO {
 	            if (transaction != null) {
 	                transaction.rollback();
 	            }
-	            //System.out.println(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", sqlException);
 	        }
-	
 		return lists;
 	}
 	
 	public List<Answer> getCorrectResponseOfEachQuestion(int quizId) {
-
 		List<Answer> lists = new ArrayList<>();
 		 Transaction transaction = null;
 	        try  {
@@ -193,10 +187,7 @@ public class StatisticsDAO {
 	            if (transaction != null) {
 	                transaction.rollback();
 	            }
-	            //System.out.println(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", sqlException);
 	        }
-	
 		return lists;
 	}
-	
 }

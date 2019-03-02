@@ -82,49 +82,53 @@ input[type=submit]:hover {
 </head>
 
 <body>
-<%@page import="Team76.Entity.QuizEntity"%>
-<%@page import="java.util.List"%>
-<%
-        String uName = (String) session.getAttribute("uName");
-        String isSessionValid = (String) session.getAttribute("validSession");
-        if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
-                || uName == null || uName.isEmpty()) {
-            response.sendRedirect("Login.jsp");
-        }
-%>
-    <div>
-        <form align="right"  action="LoginController" method="post">
-            <input type="hidden" name="action" value="logoff"> 
-            <input type="submit" value="LogOut" class="logout">
-        </form>
-    </div>
+	<%@page import="Team76.Entity.QuizEntity"%>
+	<%@page import="java.util.List"%>
+	<%
+		String uName = (String) session.getAttribute("uName");
+		String isSessionValid = (String) session.getAttribute("validSession");
+		if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
+				|| uName == null || uName.isEmpty()) {
+			response.setHeader("Cache-Control", "no-cache");
+			response.setHeader("Cache-Control", "no-store");
+			response.setHeader("Pragma", "no-cache");
+			response.setDateHeader("Expires", 0);
+			session.invalidate();
+			response.sendRedirect("Login.jsp");
+		}
+	%>
+	<div>
+		<form align="right" action="LoginController" method="post">
+			<input type="hidden" name="action" value="logoff"> <input
+				type="submit" value="LogOut" class="logout">
+		</form>
+	</div>
 	<ul>
 		<li><a href="#news">READ QUIZ INSTRUCTIONS</a></li>
 	</ul>
-	
+
 	<p>QUIZ INSTRUCTIONS:</p>
 
 	<ul>
-      <%
-      QuizEntity quiztaken =  (QuizEntity)session.getAttribute("quiztaken");
-		try{ 
-      %>
-        <li><a href="#news"><%= quiztaken.getQuizInstruct() %></a></li>
-      <%
-		}
-		 catch (Exception e) {
-			e.printStackTrace();
+		<%
+			QuizEntity quiztaken = (QuizEntity) session.getAttribute("quiztaken");
+			try {
+		%>
+		<li><a href="#news"><%=quiztaken.getQuizInstruct()%></a></li>
+		<%
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-	      %>
-    </ul>     
-	      
-	      
-	      
-	<div>		
-			<form action="StudentController" method="post">
-				<input type="hidden" name="action" value="Start Quiz"> 
-				<input type="submit" value="START QUIZ">
-			</form>	
+		%>
+	</ul>
+
+
+
+	<div>
+		<form action="StudentController" method="post">
+			<input type="hidden" name="action" value="Start Quiz"> <input
+				type="submit" value="START QUIZ">
+		</form>
 	</div>
 </body>
 </html>
