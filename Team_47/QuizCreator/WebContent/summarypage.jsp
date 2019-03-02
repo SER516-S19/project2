@@ -1,5 +1,10 @@
 <%@page import="com.asu.ser516.team47.database.*"%>
 <%@page import="java.util.*"%>
+<%--
+ - Author(s): Jiayan Wang
+ - Date: 2019/3/1
+ - Description: Show all quiz information.
+ --%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="CSS/summary.css">
