@@ -24,9 +24,13 @@ public class Quiz implements Serializable {
 	private int time;
 	private int totalAttempts;
 	private int totalMarks;
-
+	private boolean shouldShuffle;
+	private String quizType;
+	private String assignmnetGroup;
+	
+	
 	public Quiz(String id, String instruction, String name, List<Question> questions, int time, int totalAttempts,
-			int totalMarks) {
+			int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup) {
 		super();
 		this.id = id;
 		this.instruction = instruction;
@@ -35,66 +39,72 @@ public class Quiz implements Serializable {
 		this.time = time;
 		this.totalAttempts = totalAttempts;
 		this.totalMarks = totalMarks;
+		this.shouldShuffle = shouldShuffle;
+		this.quizType = quizType;
+		this.assignmnetGroup = assignmnetGroup;
 	}
-
-	public Quiz() {
-
-	}
-
+	
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getInstruction() {
 		return instruction;
 	}
-
 	public void setInstruction(String instruction) {
 		this.instruction = instruction;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public List<Question> getQuestions() {
 		return questions;
 	}
-
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-
 	public int getTime() {
 		return time;
 	}
-
 	public void setTime(int time) {
 		this.time = time;
 	}
-
 	public int getTotalAttempts() {
 		return totalAttempts;
 	}
-
 	public void setTotalAttempts(int totalAttempts) {
 		this.totalAttempts = totalAttempts;
 	}
-
 	public int getTotalMarks() {
 		return totalMarks;
 	}
-
 	public void setTotalMarks(int totalMarks) {
 		this.totalMarks = totalMarks;
 	}
+	public boolean isShouldShuffle() {
+		return shouldShuffle;
+	}
+	public void setShouldShuffle(boolean shouldShuffle) {
+		this.shouldShuffle = shouldShuffle;
+	}
+	public String getQuizType() {
+		return quizType;
+	}
+	public void setQuizType(String quizType) {
+		this.quizType = quizType;
+	}
+	public String getAssignmnetGroup() {
+		return assignmnetGroup;
+	}
+	public void setAssignmnetGroup(String assignmnetGroup) {
+		this.assignmnetGroup = assignmnetGroup;
+	}
+
+	
 
 }
