@@ -2,6 +2,7 @@
 <%@page import="java.util.*"%>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="CSS/summary.css">
 <%
 	QuizDAOImpl quizDAO = new QuizDAOImpl();
 	QuestionDAOImpl questionDAO = new QuestionDAOImpl();
@@ -19,6 +20,7 @@
 </head>
 <body style="background-color:Silver;">
 <h2><center>Summary Of Quiz created</center></h2>
+<div>
 <%
 	out.print("<h7><center> Quiz title: " + quiz.getTitle() + "</center></h7>");
 	out.print("<p><center> Quiz instruction: " + quiz.getInstructions() + "</center></p>");
@@ -34,27 +36,26 @@
 	
 	for(int i=0; i<questions.size();i++){
 		int num = i+1;
+		out.print("<div id='questions'>");
 		out.print("<h8><center><b> Question " +num+" : <br>"+ questions.get(i).getContent() + "</b></center></h7>");
-		out.print("<p><center> <b>Question type: " + questions.get(i).getQuesType()+ "</b></center></p><br>");
+		out.print("<p><center> <b>Question type: <span id='red'>" + questions.get(i).getQuesType()+ "</span></b></center></p>");
 		//get choices based on the question id
 		List<Choice> choices = choiceDAO.getQuestionChoices(questions.get(i).getQuestion_id());
+		out.print("<div id='choices'>");
 		for(int j=0;j<choices.size();j++){
 			char option = (char)(j + '0' + 17);
 			out.print("<p><center>"+ option +" :"+ choices.get(j).getContent()+" </center></p>");
 		}
-		out.print("<p><center><b> Points: " + questions.get(i).getPoints()+ "</b></center></p><br>");
+		out.print("</div>");
+		out.print("<p><center><b> Points: <span id='red'>" + questions.get(i).getPoints()+ "</span></b></center></p><br>");
+		out.print("</div>");
 		out.print("<br>");
 		
 	}
 %>
 <br>
 <br>
-
-<br>
-
-
-<br>
-
+</div>
 
 
 
