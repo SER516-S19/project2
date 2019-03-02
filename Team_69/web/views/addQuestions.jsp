@@ -111,10 +111,6 @@
 				<td>		
 					<button type="submit"
 						onclick="javascript:valthis()" name="flag" value="saveAndExit"   class="btn btn-primary">Save and Exit</button>
-				</td>
-				<td>
-					<%String pathWebcontent=request.getContextPath();%>
-					<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuestion&id=${quiz.quizId}&quizName=${quiz.quizName}" class="button btn btn-primary" >View Questions</a>
 				</td>	
 			</tr>
 		</table>
