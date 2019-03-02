@@ -92,7 +92,7 @@ public class SubmissionServlet extends HttpServlet {
                 httpCode = 500;
             }
             JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
-            choiceIds = ServletValidation.buildAndValidateSubmittedChoiceList(jsonChoices, quizId);
+            choiceIds = ServletValidation.buildAndValidateStudentChoiceList(jsonChoices, quizId);
         } catch (ClassCastException cce){
             response.sendError(400, "Some field is wrong data type.");
             cce.printStackTrace();

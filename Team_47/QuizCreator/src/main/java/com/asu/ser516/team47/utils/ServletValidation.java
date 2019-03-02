@@ -63,7 +63,7 @@ public class ServletValidation {
      * @param quizId The ID of the quiz that these choices belong to.
      * @return null if invalid. else a list of choices.
      */
-    public static List<Integer> buildAndValidateChoiceList(JSONArray jsonChoices, int quizId){
+    public static List<Integer> buildAndValidateStudentChoiceList(JSONArray jsonChoices, int quizId){
         Iterator<Long> it = jsonChoices.iterator();
         List<Integer> ret = new ArrayList<>();
         while (it.hasNext()) {

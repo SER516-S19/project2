@@ -80,7 +80,7 @@ public class QuizCreationServlet extends HttpServlet {
             //Date not included: open immediately and use no close date.
         }
         if (date_open == null) date_open = new Date();
-        Quiz qz = new Quiz(GARBAGE_VALUE, title, course_id, instructions, shuffle, time_limit, date_open, date_close,
+        Quiz qz = new Quiz(GARBAGE_VALUE, course_id, title, instructions, shuffle, time_limit, date_open, date_close,
                 quiz_type, attempts, quiz_group, total_points);
         if (submitQuiz(qz, questionList, choiceTable)) {
             res.setStatus(204);
