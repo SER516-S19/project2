@@ -53,14 +53,16 @@ public class ProfessorDAO {
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();
-	            Query query = session.createQuery("from  " + Question.class.getName() + " que where que.quiz.quizId = "+quizID);
+	            Query query = session.createQuery("from  " + Question.class.getName() +
+	            		" que where que.quiz.quizId = "+quizID);
 	            lists = query.list();
 	            transaction.commit();
 	        } catch (Exception sqlException) {
 	            if (transaction != null) {
 	                transaction.rollback();
 	            }
-	            logger.log(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", sqlException);
+	            logger.log(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", 
+	            		sqlException);
 	        }
 		return lists;
 	}
@@ -135,13 +137,15 @@ public class ProfessorDAO {
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();	            
-	            Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.questionId = "+questionID);	            
+	            Query query = session.createQuery("from  " + Answer.class.getName() + 
+	            		" ans where ans.question.questionId = "+questionID);	            
 	            lists = query.list();
 	            transaction.commit();
 	        } catch (Exception sqlException) {
 	            if (transaction != null)
 	                transaction.rollback();
-	            logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", sqlException);
+	            logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", 
+	            		sqlException);
 	        }
 		return lists;
 	}

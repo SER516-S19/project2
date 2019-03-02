@@ -141,7 +141,8 @@ public class StatisticsDAO {
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query query = session.createQuery("from  " + CalculatedScores.class.getName() + " calculatedscores where Quiz_id = "+quizId);	            
+            Query query = session.createQuery("from  " + CalculatedScores.class.getName() +
+            		" calculatedscores where Quiz_id = "+quizId);	            
             studentCalculatedScores = query.list();
             transaction.commit();
         } catch (Exception e) {
@@ -163,9 +164,9 @@ public class StatisticsDAO {
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();
-	            Query query = session.createQuery("from  " + ResponseStatistics.class.getName() + " res where res.quiz.quizId = "+quizId+ " and res.answer.correctAnswer=true");;
+	            Query query = session.createQuery("from  " + ResponseStatistics.class.getName() +
+	            		" res where res.quiz.quizId = "+quizId+ " and res.answer.correctAnswer=true");;
 	            lists = query.list();
-	            System.out.println(lists);
 	            transaction.commit();
 	        } catch (Exception sqlException) {
 	            if (transaction != null) {
@@ -184,9 +185,9 @@ public class StatisticsDAO {
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();
-	            Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.quiz.quizId = "+quizId + " and ans.correctAnswer = true");
+	            Query query = session.createQuery("from  " + Answer.class.getName() + 
+	            		" ans where ans.question.quiz.quizId = "+quizId + " and ans.correctAnswer = true");
 	            lists = query.list();
-	            System.out.println(lists);
 	            transaction.commit();
 	        } catch (Exception sqlException) {
 	            if (transaction != null) {
