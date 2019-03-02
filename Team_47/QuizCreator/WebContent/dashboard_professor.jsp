@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <div id='top'>
-<p><a href="index.html" class='button' align:"right">logout</a></p>
+<p><a href="login.jsp" class='button' align:"right">logout</a></p>
 </div>
 <div id='mid'>
 <p>To create a new quiz click the below button<br></p>

@@ -104,7 +104,7 @@ public class StudentDAOImpl implements StudentDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("insert into students (username, firstname, " +
-                    "lastname, hashedpass, session) VALUES (?,?,?,?,?)");
+                    "lastname, hashedpass, sessionid) VALUES (?,?,?,?,?)");
             stmt.setString(1, student.getUsername());
             stmt.setString(2, student.getFirstname());
             stmt.setString(3, student.getLastname());
@@ -139,7 +139,7 @@ public class StudentDAOImpl implements StudentDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("update students set firstname=?, lastname=?, " +
-                    "session=? where username=?");
+                    "sessionid=? where username=?");
             stmt.setString(1, student.getFirstname());
             stmt.setString(2, student.getLastname());
             stmt.setString(3, student.getSession());
