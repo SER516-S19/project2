@@ -24,22 +24,16 @@ public class LoginService {
     private UserRepo userRepo;
     private User user = null;
 
-    public User authenticateUser(String email, String pass){
-        try
-        {
-            if(ifEmailIdExists(email)){
-                User user = userRepo.findByUserEmailId(email);
-                if (user.getUserPassword().equals(pass)){
-                    return user;
-                }
+    public User authenticateUser(String email, String pass) {
+        if (ifEmailIdExists(email)) {
+            user = userRepo.findByUserEmailId(email);
+            if (user.getUserPassword().equals(pass)) {
+                return user;
             }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.toString());
         }
         return user;
     }
+
 
 
     public boolean addUserRepo(User userDefine) throws LoginException {

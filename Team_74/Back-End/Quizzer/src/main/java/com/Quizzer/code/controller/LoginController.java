@@ -31,7 +31,7 @@ public class LoginController {
         return loginService.addUser(userDefine);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    @RequestMapping(method = RequestMethod.POST, value = "/login")
     public @ResponseBody
     User login(@RequestBody String email, String pass) {
 
