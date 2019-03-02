@@ -24,14 +24,17 @@ public class LoginService {
     private UserRepo userRepo;
     private User user = null;
 
-    public User authenticateUser(String email, String pass) {
-        if (ifEmailIdExists(email)) {
-            user = userRepo.findByUserEmailId(email);
-            if (user.getUserPassword().equals(pass)) {
-                return user;
+    public ResponseEntity<ResponseVO> authenticateUser(User user) {
+        User loginCred = user;
+        if (ifEmailIdExists(loginCred.getUserEmailId())) {
+            user = userRepo.findByUserEmailId(loginCred.getUserEmailId());
+            if (user.getUserPassword().equals(loginCred.getUserPassword())) {
+                return new ResponseEntity<>(new ResponseVO(HttpStatus.OK.toString(), "", user), HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(new ResponseVO("104", "Wrong Password", null), HttpStatus.OK);
             }
         }
-        return user;
+        return new ResponseEntity<>(new ResponseVO("105", "User does not exist", null), HttpStatus.OK);
     }
 
 

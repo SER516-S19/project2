@@ -33,9 +33,9 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public @ResponseBody
-    User login(@RequestBody String email, String pass) {
+    ResponseEntity<ResponseVO> login(@RequestBody User user) {
 
-        return loginService.authenticateUser(email, pass);
+        return loginService.authenticateUser(user);
     }
 
 }
