@@ -76,7 +76,7 @@ class Toolbar extends Component {
         </Col>
         <Col>
         {this.renderRedirect()}
-            <button name="redirectToLogin" value = "true" onClick={this.setRedirect}> Sign Out </button>
+            <button name="redirectToLoginPage" value = "true" onClick={this.setRedirect}> Sign Out </button>
         </Col>
       </Col>
     </nav>
