@@ -8,9 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * This class is the model class for Quiz item.
- * 
  * @author Kumar Prabhu Kalyan
- *
  */
 @Document(collection = "Quiz")
 public class Quiz implements Serializable {
@@ -28,9 +26,9 @@ public class Quiz implements Serializable {
 	private String quizType;
 	private String assignmnetGroup;
 	
-	
 	public Quiz(String id, String instruction, String name, List<Question> questions, int time, int totalAttempts,
 			int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup) {
+		
 		super();
 		this.id = id;
 		this.instruction = instruction;
@@ -104,7 +102,4 @@ public class Quiz implements Serializable {
 	public void setAssignmnetGroup(String assignmnetGroup) {
 		this.assignmnetGroup = assignmnetGroup;
 	}
-
-	
-
 }
