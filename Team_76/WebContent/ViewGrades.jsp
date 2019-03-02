@@ -38,10 +38,12 @@ input[type=text], select {
 	<ul>
 		<li><a href="ProfessorDash.jsp" class="w3-bar-item">DASHBOARD</a></li>
 		<li style="float: right">
+		<div style="float: center">
 			<form action="LoginController" method="post">
 				<input type="hidden" name="action" value="logoff"> <input
 					class="logoutonly" type="submit" value="LogOut" class="logout">
 			</form>
+			</div>
 		</li>
 	</ul>
 
