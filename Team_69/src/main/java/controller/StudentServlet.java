@@ -72,7 +72,7 @@ public class StudentServlet extends HttpServlet {
 				response.setContentType("text/html");
 				view = service.feedAnswers(studentResponse, userId);
 				if ("/success".equals(view)) {
-//					service.calculateScores(studentResponse,userId);
+					service.calculateScores(studentResponse,userId);
 					int score = service.getGrade(studentResponse, userId);
 					session.setAttribute("grade", score);
 					response.setStatus(HttpServletResponse.SC_CREATED);

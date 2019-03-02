@@ -59,7 +59,7 @@
 	<ul>
 		<li><a>DETAILS PAGE</a></li>
 		<li><a href="ProfessorDash.jsp">DASHBOARD</a></li>
-		<li>
+		<li style="float: right">
 			<div style="float: center">
 				<form action="LoginController" method="post">
 					<input type="hidden" name="action" value="logoff"> <input

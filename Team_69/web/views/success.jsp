@@ -9,7 +9,13 @@
 </head>
 <body>
 	Your response has been successfully recorded!! <br/>
-	Your score is : <%out.println(session.getAttribute("grade")); %>
+	<% int score = (int) session.getAttribute("grade"); 
+	if(score ==-1)
+		out.println("We are currently processing your grades. Check back later!!");
+	else
+		out.println("Your score is : "+score);
+	%>
+	
 	<div class="container">
 		<div class="row">
 			<form class="col-sm-4" method="GET">
