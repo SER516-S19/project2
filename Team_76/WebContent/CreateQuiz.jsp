@@ -49,6 +49,7 @@
         }
 %>
 	<ul>
+		<li><a>DETAILS PAGE</a></li>
 		<li><a href="ProfessorDash.jsp">DASHBOARD</a></li>
 		<li>
 			<div style="float: center">
@@ -64,24 +65,24 @@
 
 	<div>
 		<form action="ProfessorController" method="post">
-			<input type="text" name="quiztitle" placeholder="Takes quiztitle">
+			<input type="text" name="quiztitle" required placeholder="Input quiztitle">
 			<p>QUIZ INSTRUCTIONS</p>
-			<textarea name="qinstruct" rows="20" cols="100"></textarea>
+			<textarea name="qinstruct"  required rows="20" cols="100"></textarea>
 			<p>SELECT THE QUIZ TYPE</p>
 			<div class="dropdown">
-				<select name="qtype">
+					<select name="qtype">
 					<option class="dropbtn" value="Graded" selected>Graded</option>
 					<option class="dropbtn" value="NonGraded">NonGraded</option>
-					<option class="dropbtn" value="Practice">Practice</option>
-				</select>
+			 	   </select>
+			</div><br><br>
+			<div class ="otherdetails">
+			<input type="radio" name="shuffleAns" required value="Shuffle">Shuffle Answers<br>
+			<p>OPTIONS<p>
+  				<input type="checkbox" name="timeOp1" value="T1">Timed<br>
+  				<input type="checkbox" name="timeOp2" value="T2">Not Timed (Practice Mode)
+  			</div>	
 			</div>
 			<br>
-			<p>OPTIONS
-			<p>
-				<input type="checkbox" name="ShuffleAns" value="Shuffle">Shuffle
-				Answers<br> <input type="checkbox" name="TimeOp1" value="T1">Timed<br>
-				<input type="checkbox" name="TimeOp2" value="T2">Not Timed
-				(Practice Mode)<br>
 			<form action="ProfessorController" method="post">
 				<input type="hidden" name="action" value="Continue1"> <input
 					type="submit" value="CONTINUE">
