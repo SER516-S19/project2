@@ -151,14 +151,14 @@ public final class DataOps {
     }
     private static List<QuizResultDAO> processQuizResultSet(ResultSet rs)
       throws SQLException {
-      List<String> colNames = Constants.colNames;
+      List<String> colNames = Constants.colNamesQuizResult;
       List<QuizResultDAO> detailsList = new ArrayList<>();
       while (rs.next()) {
         QuizResultDAO quizResultDAO = new QuizResultDAO();
         quizResultDAO.setQuizId(Integer.parseInt(getColumnValue(rs, colNames.get(0))));
         quizResultDAO.setAttemptId(Integer.parseInt(getColumnValue(rs, colNames.get(1))));
         quizResultDAO.setStudentId(Integer.parseInt(getColumnValue(rs, colNames.get(2))));
-        quizResultDAO.setFinalScore(Integer.parseInt(getColumnValue(rs, colNames.get(3))));
+        quizResultDAO.setFinalScore((int)Float.parseFloat(getColumnValue(rs, colNames.get(3))));
         detailsList.add(quizResultDAO);
       }
       return detailsList;

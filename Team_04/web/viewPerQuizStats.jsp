@@ -14,7 +14,11 @@
 <body>
     <%
         float classAvg = (float) request.getAttribute("classavg");
+        int studentStrength = (int) request.getAttribute("studentStrength");
+        float highestScore = (float) request.getAttribute("highestScore");
         %>
-    <span><%=classAvg%></span>
+    <h3> Average Score For Quiz is : </h3> <h4><span><%=classAvg%></span></h4>
+    <h3> Strength of Quiz is : </h3> <h4><span><%=studentStrength%></span></h4>
+    <h3> Highest Score of Quiz is : </h3> <h4><span><%=highestScore%></span></h4>
 </body>
 </html>
