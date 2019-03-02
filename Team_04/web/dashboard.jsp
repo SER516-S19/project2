@@ -101,7 +101,7 @@
     <h1>Select the user</h1>
     <div class="wrapper">
         <input type="submit" class="btn1" formaction="./index.jsp" name="action" value="professor"/>
-        <input type="submit" class="btn2" formaction="./loginPage.jsp" name="action" value="student"/>
+        <input type="submit" class="btn2" formaction="./instructions" name="action" value="student"/>
     </div>
 </form>
 </body>
