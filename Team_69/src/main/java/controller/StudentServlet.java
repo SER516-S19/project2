@@ -58,12 +58,16 @@ public class StudentServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		StudentServices service = new StudentServices();
 		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
 		try {
 			if(action.equals("submit")) {
 				response.setContentType("text/html");
-				view = service.feedAnswers(studentResponse);
-				if ("/success".equals(view))
+				view = service.feedAnswers(studentResponse, userId);
+				if ("/success".equals(view)) {
+					int score = service.getGrade(studentResponse, userId);
+					session.setAttribute("grade", score);
 					response.setStatus(HttpServletResponse.SC_CREATED);
+				}
 				else
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				session.removeAttribute("data");
