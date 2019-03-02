@@ -37,7 +37,7 @@ public class HibernateUtil {
                  * 			This line will drop all existing tables/data and create new tables with
                  * 			no records.
                  */
-//                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Quiz.class);
