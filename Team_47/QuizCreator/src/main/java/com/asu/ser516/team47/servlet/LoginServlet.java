@@ -35,10 +35,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String[] username_val = req.getParameterValues("username");
         String[] password_val = req.getParameterValues("password");
-        String[] role_val     = req.getParameterValues("role");
+        String[] role_val     = req.getParameterValues("identity");
 
         if(username_val == null || password_val == null) {
-            resp.sendRedirect("/index.jsp?error=true");
+            resp.sendRedirect("/login.jsp?error=true");
         } else {
             String username = username_val[0],
                    password = password_val[0],
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             }
 
             if(user_hash == null) {
-                resp.sendRedirect("/index.jsp?error=true");
+                resp.sendRedirect("/login.jsp?error=true");
             }
             else {
                 boolean password_check;
@@ -67,13 +67,13 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 if(!password_check) {
-                    resp.sendRedirect("/index.jsp?error=true");
+                    resp.sendRedirect("/login.jsp?error=true");
                 } else {
                     String new_token = generate_token();
 
                     resp.addCookie(new Cookie("session-role", role));
-                    resp.addCookie(new Cookie("session-token ", new_token));
-                    resp.addCookie(new Cookie("session-user ", username));
+                    resp.addCookie(new Cookie("session-token", new_token));
+                    resp.addCookie(new Cookie("session-user", username));
 
 
                     if(role.equals("student")) {
