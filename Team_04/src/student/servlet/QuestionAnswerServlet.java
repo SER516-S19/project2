@@ -105,13 +105,13 @@ public class QuestionAnswerServlet extends HttpServlet {
                           HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         InputValidation validObj = new InputValidation();
-        if (action.equalsIgnoreCase("SignUp")) {
+        if (action.equalsIgnoreCase("login")) {
             if (!request.getParameter("username").isEmpty() || !request.getParameter("password").isEmpty()) {
                 String name = request.getParameter("username");
                 String password = request.getParameter("password");
                 String userType = request.getParameter("userTypeBtn");
                 if (validObj.loginValidation(name, password, userType).equals("success")) {
-
+                    doGet(request, response);
                 }
             }
         }
@@ -234,6 +234,8 @@ public class QuestionAnswerServlet extends HttpServlet {
             }
             else if (action.equalsIgnoreCase("login"))
             {
+                //view = "Instructions.jsp";
+                System.out.println("view"+view);
                 if(request.getParameter("userTypeBtn").equalsIgnoreCase("student")) {
                     request.setAttribute("login", "success");
                     view = "Instructions.jsp";
@@ -241,7 +243,7 @@ public class QuestionAnswerServlet extends HttpServlet {
                 else
                 {
                     request.setAttribute("login", "success");
-                    view = "Instructions.jsp";
+                    view = "index.jsp";
                 }
                 response.setStatus(response.SC_OK);
             }

@@ -53,8 +53,8 @@
         }
     </style>
     <%
-        String userName = request.getAttribute("userEntName").toString();
-        String userStatus = request.getAttribute("userStatus").toString();
+        //String userName = request.getAttribute("userEntName").toString();
+        String userStatus = "";
     %>
     <script type="text/javascript">
         var userStat =  "<%=userStatus%>";
