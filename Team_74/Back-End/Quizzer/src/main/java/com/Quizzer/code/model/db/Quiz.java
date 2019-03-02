@@ -30,6 +30,11 @@ public class Quiz implements Serializable {
 	private String assignmnetGroup;
 	@CreatedDate
 	private Date date;
+	
+	public Quiz(){
+		
+	}
+	
 	public Quiz(String quizId, String id, String instruction, String name, List<Question> questions, int time,
 			int totalAttempts, int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup,
 			Date date) {
