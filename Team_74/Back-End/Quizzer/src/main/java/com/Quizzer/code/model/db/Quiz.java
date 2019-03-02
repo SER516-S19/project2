@@ -1,8 +1,10 @@
 package com.Quizzer.code.model.db;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -25,10 +27,10 @@ public class Quiz implements Serializable {
 	private boolean shouldShuffle;
 	private String quizType;
 	private String assignmnetGroup;
-	
+	@CreatedDate
+	private Date date;
 	public Quiz(String id, String instruction, String name, List<Question> questions, int time, int totalAttempts,
-			int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup) {
-		
+			int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup, Date date) {
 		super();
 		this.id = id;
 		this.instruction = instruction;
@@ -40,8 +42,8 @@ public class Quiz implements Serializable {
 		this.shouldShuffle = shouldShuffle;
 		this.quizType = quizType;
 		this.assignmnetGroup = assignmnetGroup;
+		this.date = date;
 	}
-	
 	public String getId() {
 		return id;
 	}
@@ -102,4 +104,12 @@ public class Quiz implements Serializable {
 	public void setAssignmnetGroup(String assignmnetGroup) {
 		this.assignmnetGroup = assignmnetGroup;
 	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	
 }

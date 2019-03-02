@@ -18,22 +18,22 @@ public class StudentQuiz implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	private User studentId;
+	private String studentId;
 	private ArrayList<Quiz> quizlist;
 	private HashMap<String, Integer> attemptedQuiz;
 
-	public StudentQuiz(User studentId, ArrayList<Quiz> quizlist, HashMap<String, Integer> attemptedQuiz) {
+	public StudentQuiz(String studentId, ArrayList<Quiz> quizlist, HashMap<String, Integer> attemptedQuiz) {
 		super();
 		this.studentId = studentId;
 		this.quizlist = new ArrayList<Quiz>();
 		this.attemptedQuiz = new HashMap<String, Integer>();
 	}
 
-	public User getStudentId() {
+	public String getStudentId() {
 		return studentId;
 	}
 
-	public void setStudentId(User studentId) {
+	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
 

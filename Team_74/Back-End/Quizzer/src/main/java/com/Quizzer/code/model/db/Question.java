@@ -2,8 +2,10 @@
 package com.Quizzer.code.model.db;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,8 +19,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Question implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	private String id;
+	@CreatedDate
+	private Date date;
 	private String questionText;
 	private List<String> options;
 	private String quizId;
@@ -32,10 +37,11 @@ public class Question implements Serializable {
 
 	}
 
-	public Question(String id, String questionText, List<String> options, String quizId, String correctAnswer,
-			String type, int totalCorrectAttempts, int marks,String markedAnswer) {
+	public Question(String id, Date date, String questionText, List<String> options, String quizId,
+			String correctAnswer, String type, int totalCorrectAttempts, int marks, String markedAnswer) {
 		super();
 		this.id = id;
+		this.date = date;
 		this.questionText = questionText;
 		this.options = options;
 		this.quizId = quizId;
@@ -43,20 +49,7 @@ public class Question implements Serializable {
 		this.type = type;
 		this.totalCorrectAttempts = totalCorrectAttempts;
 		this.marks = marks;
-		this.markedAnswer =markedAnswer;
-	}
-
-	
-	public String getMarkedAnswer() {
-		return markedAnswer;
-	}
-
-	public void setMarkedAnswer(String markedAnswer) {
 		this.markedAnswer = markedAnswer;
-	}
-
-	public void setOptions(List<String> options) {
-		this.options = options;
 	}
 
 	public String getId() {
@@ -65,6 +58,14 @@ public class Question implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public String getQuestionText() {
@@ -79,6 +80,9 @@ public class Question implements Serializable {
 		return options;
 	}
 
+	public void setOptions(List<String> options) {
+		this.options = options;
+	}
 
 	public String getQuizId() {
 		return quizId;
@@ -119,5 +123,15 @@ public class Question implements Serializable {
 	public void setMarks(int marks) {
 		this.marks = marks;
 	}
+
+	public String getMarkedAnswer() {
+		return markedAnswer;
+	}
+
+	public void setMarkedAnswer(String markedAnswer) {
+		this.markedAnswer = markedAnswer;
+	}
+
+	
 
 }
