@@ -14,11 +14,10 @@ public class DatabaseConnection {
 			e.printStackTrace();
 			}
 		Connection connection = null;	
-		String connectionUrl = "jdbc:mysql://localhost:3306/";
-		String database = "ser516p2";
+		String connectionUrl = "jdbc:mysql://localhost:3306/ser516p2?useSSL=false";
 		String userid = "root";
-		String password = "199021";
-		connection = DriverManager.getConnection(connectionUrl+database, userid, password);
+		String password = "pass123";
+		connection = DriverManager.getConnection(connectionUrl, userid, password);
 		return connection;
 	}
 }
