@@ -1,11 +1,13 @@
 package quiz.controller;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import quiz.model.User;
+
 import quiz.dao.UserDao;
+import quiz.model.User;
 
 /**
  * The Servlet controls when an new user registers in the application.

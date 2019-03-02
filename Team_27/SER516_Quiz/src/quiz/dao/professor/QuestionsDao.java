@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import quiz.dao.ConnectionFactory;
 import quiz.exceptions.DataAccessException;
@@ -29,14 +29,14 @@ public class QuestionsDao {
 			t.printStackTrace();
 		}
 	}
-	
+
 	public static void removeAllQuestionsFromQuiz(Integer quizID) throws DataAccessException {
-		
+
 		String sql = dbProperties.getProperty("DELETE_ALL_QUESTIONS_IN_QUIZ");
-		
+
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
 			/* Populating the prepared statement with data from the value object */
 			preparedStatement = conn.prepareStatement(sql.toString());
@@ -44,9 +44,9 @@ public class QuestionsDao {
 			preparedStatement.setInt(1, quizID);
 
 			preparedStatement.execute();
-			
-			
-			
+
+
+
 		} catch (SQLException e) {
 			/* Aborting the transaction */
 			e.printStackTrace();
@@ -144,7 +144,7 @@ public class QuestionsDao {
 						rs.getBoolean("isOption1Correct"), rs.getBoolean("isOption2Correct"),
 						rs.getBoolean("isOption3Correct"), rs.getBoolean("isOption4Correct"), rs.getString("points"),
 						rs.getBoolean("isMultipleAnswer"));
-				
+
 				questions.add(tmp);
 			}
 		} catch (SQLException e) {
@@ -168,7 +168,7 @@ public class QuestionsDao {
 				System.out.println("Unable to close resultset, database connection " + "or statement in select()");
 			}
 		}
-		
+
 		return questions;
 	}
 }

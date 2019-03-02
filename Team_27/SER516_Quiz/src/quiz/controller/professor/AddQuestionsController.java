@@ -28,11 +28,12 @@ public class AddQuestionsController extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache");
 		response.setContentType("text/html");
 
+		@SuppressWarnings("rawtypes")
 		Enumeration paramNames = request.getParameterNames();
 
 		try {
 			String quizId = request.getSession().getAttribute("quizId").toString();
-			
+
 			QuestionsDao.removeAllQuestionsFromQuiz(Integer.parseInt(quizId));
 
 			while (paramNames.hasMoreElements()) {
@@ -60,7 +61,7 @@ public class AddQuestionsController extends HttpServlet {
 					String points = request.getParameter("PointsForQues" + questionNumber);
 					tmp = request.getParameter("isMultipleAnswerQues" + questionNumber);
 					Boolean isMultipleAnswer = (tmp == null) ? false : true;
-					
+
 					// Create Question model to insert the questions in the database
 					Question questionModel = new Question(quizId, questionText, optionA, optionB, optionC, optionD,
 							isOptionACorrect, isOptionBCorrect, isOptionCCorrect, isOptionDCorrect, points,

@@ -14,11 +14,12 @@ public class StudentQuiz extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings({ "unchecked", "static-access" })
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// set Content-Type and other response headers
 		//response.setHeader("Cache-Control", "no-cache");
 		String resultString = "";
-		
+
 		try {
 			QuizDetailsDao quizDetailsDao = new QuizDetailsDao();
 			ArrayList<String> quizes = quizDetailsDao.getAll();
@@ -30,7 +31,7 @@ public class StudentQuiz extends HttpServlet{
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
 			exc.printStackTrace();
 		}	
-		
+
 		response.setContentType("text/plain");
 		response.getWriter().write(resultString);
 	}

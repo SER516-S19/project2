@@ -113,7 +113,7 @@ public class QuizDetailsDao {
 
 	/* Insert the quiz which was created by professor into the database */
 	public static void insert(QuizModel pValueObject) throws DataAccessException {
-		
+
 		String sql = dbProperties.getProperty("INSERT_QUIZ");
 
 		QuizModel pentry = (QuizModel) pValueObject;
@@ -212,7 +212,7 @@ public class QuizDetailsDao {
 
 	/* Delete the entire quiz, specified by the professor */
 	public boolean delete(QuizModel pValueObject) throws DataAccessException {
-	
+
 		String sql = dbProperties.getProperty("DELETE_QUIZ");
 
 		QuizModel pentry = (QuizModel) pValueObject;

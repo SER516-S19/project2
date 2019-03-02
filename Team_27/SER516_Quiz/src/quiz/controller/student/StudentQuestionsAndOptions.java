@@ -17,15 +17,15 @@ public class StudentQuestionsAndOptions extends HttpServlet{
 		// set Content-Type and other response headers
 		//response.setHeader("Cache-Control", "no-cache");
 		//Needs to be done on the basis of quiz-id
-				StudentQuizDao studentQuizDao = new StudentQuizDao();
-				String jsonResponse = null;
-				try {
-					jsonResponse = studentQuizDao.getQuestionsAndOptions();
-				} catch (DataAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-		
+		StudentQuizDao studentQuizDao = new StudentQuizDao();
+		String jsonResponse = null;
+		try {
+			jsonResponse = studentQuizDao.getQuestionsAndOptions();
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(jsonResponse);

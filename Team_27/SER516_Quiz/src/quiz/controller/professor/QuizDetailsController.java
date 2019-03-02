@@ -80,7 +80,7 @@ public class QuizDetailsController extends HttpServlet {
 								isMultipleAttempt);
 						quizDetailsDao.insert(quizModel);
 						req.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
-						
+
 						String quizId = quizDetailsDao.getQuizId(title);
 						req.getSession().setAttribute("quizId", quizId);
 						req.getSession().setAttribute("quizTitle", title);

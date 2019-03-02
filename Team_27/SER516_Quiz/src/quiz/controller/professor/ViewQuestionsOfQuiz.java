@@ -1,14 +1,12 @@
 package quiz.controller.professor;
 
 import java.io.IOException;
-import java.util.Enumeration;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.util.ArrayList;
 
 import quiz.dao.professor.QuestionsDao;
 import quiz.model.professor.Question;
@@ -30,14 +28,15 @@ public class ViewQuestionsOfQuiz extends HttpServlet {
 
 		try {
 			String quizId = request.getSession().getAttribute("quizId").toString();
-			
+
+			@SuppressWarnings("rawtypes")
 			ArrayList questions = new ArrayList<Question>();
-			
+
 			questions = QuestionsDao.getQuestions(Integer.parseInt(quizId));
 
 			request.getSession().setAttribute("questions", questions);
 			response.sendRedirect("ViewQuestionsOfQuiz.jsp");
-			
+
 		} catch (Exception exc) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
 			exc.printStackTrace();

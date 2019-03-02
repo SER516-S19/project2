@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import quiz.dao.professor.QuizDetailsDao;
 import quiz.exceptions.DataAccessException;
 import quiz.exceptions.NoDataFoundException;
@@ -27,7 +28,7 @@ public class QuizActionController extends HttpServlet {
 	private static QuizDetailsDao quizDetailsDao = null;
 
 	public void init(ServletConfig config) throws ServletException {
-		
+
 		super.init(config);
 		quizDetailsDao = new QuizDetailsDao();
 	}
@@ -48,8 +49,8 @@ public class QuizActionController extends HttpServlet {
 			if (strActionToPerform.equalsIgnoreCase("delete")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
 				if (quizModel != null) {
-					
-					
+
+
 					if (quizDetailsDao.delete(quizModel)) {
 						request.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
 						response.sendRedirect("showQuizes.jsp");
