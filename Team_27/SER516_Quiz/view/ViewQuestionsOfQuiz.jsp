@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="quiz.model.professor.Question"%>
+<%@page import="quiz.model.professor.QuizModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -126,6 +127,24 @@
 			%>
 		</div>
 	</div>
+
+	<table>
+		<tr>
+			<td>
+				<form action="/Quiz/getQuiz" class="formstyle">
+					<input type="submit" value="Go back to Quiz List" />
+				</form>
+			</td>
+			<td>
+				<form action="/Quiz/QuizAction" class="formstyle" method="POST">
+					<input type="hidden" id="selectedQuiz" name="selectedQuiz" value="<%=session.getAttribute("quizTitle")%>">
+					<button type="submit" name="actonToPerform" id="update" value="update" class="btn btn-warning">
+						<i class="fas fa-pen"></i> Update Quiz
+					</button>
+				</form>
+			</td>
+		</tr>
+	</table>
 </body>
 
 </html>

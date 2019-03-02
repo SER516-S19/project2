@@ -69,7 +69,8 @@ public class AddQuestionsController extends HttpServlet {
 
 				}
 			}
-			request.getRequestDispatcher("/getQuiz").forward(request, response);
+			request.getSession().setAttribute("showMessage", "true");
+			request.getRequestDispatcher("/updateQuestions").forward(request, response);
 		} catch (Exception exc) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
 			exc.printStackTrace();

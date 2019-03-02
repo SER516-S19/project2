@@ -66,6 +66,7 @@ public class QuizActionController extends HttpServlet {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
 				if (quizModel != null) {
 					request.setAttribute("model", quizModel);
+					request.getSession().setAttribute("quizTitle", selectedQuiz);
 					request.getRequestDispatcher("ViewQuiz.jsp").forward(request, response);
 				} else {
 					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Quiz doesn't exist!");

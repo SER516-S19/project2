@@ -31,6 +31,11 @@
 
 	</style>
 	<script type='text/javascript'>
+
+		function showMessage() {
+			alert("Questions Updated Successfully !");
+		}
+
 		function addAnotherQuestion() {
 			// Container <div> where dynamic content will be placed
 			var container = document.getElementById("QuestionContainer");
@@ -72,7 +77,7 @@
 	</script>
 </head>
 
-<body>
+<body <%=session.getAttribute("showMessage")=="true"?"onLoad=\"showMessage()\"":""%>>
 	</br>
 	</br>
 	<div class="pageheader">
@@ -84,6 +89,7 @@
 			<div id="QuestionContainer">
 				<%-- Display saved questions fetched by controller --%>
 				<%
+					session.removeAttribute("showMessage");
 					int i = 1;
 									
 					while (i <= questions.size())
