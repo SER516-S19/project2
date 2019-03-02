@@ -8,10 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
-    <meta charset="utf-8">
     <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" intgrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <style>
         .col-centered{
@@ -55,7 +59,7 @@
     <div class="col-xs-12 col-sm-8 col-md-4 col-lg-4 col-centered">
         <div class="jumbotron">
             <h3>Please login</h3>
-            <form>
+            <form method = "post">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <input id="email" name="username" class="form-control" placeholder="Enter Username">
@@ -64,23 +68,29 @@
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <input id="password" type="password" name="password" class="form-control" placeholder="Enter password">
                 </div>
-                <div class="auto btnStyle btn-group">
-                    <div class="form-text">
-                        <button type="button" class="btn form-control dropdown-toggle" style="text-align:right" id="Select User" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select User
-                        </button>
-                    <div class="dropdown-menu" id="user-dropdown">
-                        <a class="dropdown-item" href="#">Professor</a>
-                        <a class="dropdown-item" href="#">Student</a>
-                    </div>
-                    </div>
-                </div>
+                
+                    <%--<div class="dropdown">--%>
+                        <%--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+                            <%--Select User--%>
+                        <%--</button>--%>
+                        <%--<div class="dropdown-menu" id="size-dropdown">--%>
+                            <%--<a class="dropdown-item" href="#">Student</a>--%>
+                            <%--<a class="dropdown-item" href="#">Professor</a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                
                 <div class="custom-checkbox">
                     <label><input type="checkbox"> Remember me</label>
                 </div>
-                <div class="wrapper">
-                <button type="submit" class="btn-primary form-control">Login</button>
-                <input type="submit" class="btn-primary form-control" formaction="./signUp.jsp" name="action" value="Signup"/>
+                    <input type="submit" class="btn-primary form-control" name="action" formaction="./quiz" value = "Login">
+
+                <div class="mt-4">
+                    <div class="d-flex justify-content-center links">
+                        Don't have an account? <a href="#" formaction="./signupPage.jsp" name="action" class="ml-2">Sign Up</a>
+                    </div>
+                    <div class="d-flex justify-content-center links">
+                        <a href="#">Forgot your password?</a>
+                    </div>
                 </div>
             </form>
         </div>
