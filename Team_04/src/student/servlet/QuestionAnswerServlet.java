@@ -35,7 +35,6 @@ public class QuestionAnswerServlet extends HttpServlet {
     private List<QuizContent> questions = new ArrayList<>();
     private int currentQuestionIndex = 0;
     private int totalScore = 0;
-    private int questionNumber = 0;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy");
     private String dates = dateFormat.format(new Date());
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
@@ -60,6 +59,13 @@ public class QuestionAnswerServlet extends HttpServlet {
                             currentQuestion.getScore(), dates, time, true);
         }
 
+    }
+
+    /**
+     * @return the current question number
+     */
+    private int getQuestionNumber() {
+        return currentQuestionIndex + 1;
     }
 
     /**
@@ -159,9 +165,10 @@ public class QuestionAnswerServlet extends HttpServlet {
                     executeSubmitEntry();
                 }
             }
+            doGet(request, response);
         }
 
-        doGet(request, response);
+
     }
 
     /**
@@ -211,8 +218,7 @@ public class QuestionAnswerServlet extends HttpServlet {
             }
 
             HttpSession session = request.getSession(true);
-            questionNumber++;
-            session.setAttribute("count", questionNumber);
+            session.setAttribute("count", getQuestionNumber());
 
             if (action.isEmpty()) {
                 currentQuestionIndex = 0;
