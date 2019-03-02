@@ -4,6 +4,7 @@ import ListController from "../../controllers/ListController";
 import styled from "styled-components";
 import { FaCheck, FaPlus, FaTrash, FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import './Questions.css';
+import CorrectOptionController from '../../controllers/CorrectAnswerController';
 
 export default function QuestionForm({ question, setQuestion }) {
   function handleChangeText(e) {
@@ -22,10 +23,12 @@ export default function QuestionForm({ question, setQuestion }) {
   }
 
   function setCorrectAnswer(option) {
-    setQuestion(question['correctAnswer'] = option);
+    setQuestion(question.merge({ correctAnswer: option }));
   }
 
+
   const listController = new ListController(question.options, setOptions);
+  const correctAnswerController = new CorrectOptionController(question, setCorrectAnswer);
 
   return (
     <div>
@@ -72,7 +75,7 @@ export default function QuestionForm({ question, setQuestion }) {
                   <FaTrash />
                 </Button>
 
-                <Button onClick={() => setCorrectAnswer(option)}>
+                <Button onClick={() => correctAnswerController.setCorrectAnswer(option)}>
                   <FaCheck />
                 </Button>
 
@@ -90,6 +93,7 @@ export default function QuestionForm({ question, setQuestion }) {
     </div>
   );
 }
+
 
 const Option = styled.div`
   display: flex;
