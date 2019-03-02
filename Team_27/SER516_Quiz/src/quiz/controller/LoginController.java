@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import quiz.dao.login.LoginDao;
+import quiz.dao.UserDao;
 import quiz.model.User;
 
 /**
@@ -22,11 +22,11 @@ import quiz.model.User;
 @WebServlet(name = "LoginController", urlPatterns = { "/login" }, loadOnStartup = 1)
 public class LoginController extends HttpServlet {
 
-	private LoginDao loginDao = null;
+	private UserDao userDao = null;
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		loginDao = new LoginDao();
+		userDao = new UserDao();
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
 		final String password = request.getParameter("password");
 
 		try {
-			User user = loginDao.findByUsername(username);
+			User user = userDao.findByUsername(username);
 
 			if (password != null && password.equals(user.getPassword())) {
 				HttpSession httpSession = request.getSession();

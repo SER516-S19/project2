@@ -4,7 +4,7 @@ package quiz.model;
  * A Java class used for modelling New Users in MySQL
  * Database into JDBC
  * 
- * @author (Palak Chugh),(Yuti Desai)
+ * @author (Palak Chugh),(Yuti Desai), (Lakshmi Kala Pedarla)
  * @version (1.0)
  * @createDate (25 Feb 2019)
  */

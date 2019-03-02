@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import quiz.model.User;
-import quiz.dao.RegisterDao;
+import quiz.dao.UserDao;
 
 /**
  * The Servlet controls when an new user registers in the application.
@@ -43,7 +43,7 @@ public class RegisterController extends HttpServlet {
 		registerBean.setUserType(user_type);
 		registerBean.setPassword(password); 
 
-		RegisterDao registerDao = new RegisterDao();
+		UserDao registerDao = new UserDao();
 
 		//The core Logic of the Registration application is present here. We are going to insert user data in to the database.
 		String userRegistered = registerDao.registerUser(registerBean);
