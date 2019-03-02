@@ -127,7 +127,7 @@
 	<table class="formstyle">
 		<tr>
 			<td>
-				<form action="/Quiz/getQuiz">
+				<form action="./showQuizes.jsp">
 					<button type="submit" value="Go back to Quiz List" class="btn btn-primary">
 						<i class="fas fa-arrow-right"></i> Go to Quiz List
 					</button>
