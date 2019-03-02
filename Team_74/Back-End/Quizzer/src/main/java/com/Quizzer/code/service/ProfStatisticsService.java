@@ -1,0 +1,76 @@
+package com.Quizzer.code.service;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.Quizzer.code.dao.QuizRepo;
+import com.Quizzer.code.dao.SubmitQuizRepo;
+import com.Quizzer.code.model.db.Quiz;
+import com.Quizzer.code.model.db.SubmitQuiz;
+import com.Quizzer.code.model.response.StatisticsResponseVO;
+
+@Service
+public class ProfStatisticsService {
+
+	@Autowired
+	private SubmitQuizRepo submitQuiz;
+	@Autowired
+	private QuizRepo quiz;
+
+	public StatisticsResponseVO calculateStats() {
+		List<Quiz> listQuiz = quiz.findAll();
+		List<String> quizNames = new ArrayList<>();
+		List<Double> averageMarks = new ArrayList<>();
+		List<Integer> medians = new ArrayList<>();
+
+		List<SubmitQuiz> listSubmittedQuizzes = null;
+		int i = 0;
+		double avg = 0.0;
+		int median = 0;
+		if (listQuiz.size() > 0) {
+			for (Quiz quizzer : listQuiz) {
+				listSubmittedQuizzes = submitQuiz.findByQuizId(quizzer.getId());
+				if (listSubmittedQuizzes.size() > 0) {
+					avg = calculateAverage(listSubmittedQuizzes);
+					median = calculateMedian(listSubmittedQuizzes);
+					quizNames.set(i, quizzer.getName());
+					medians.set(i, median);
+					averageMarks.set(i, avg);
+					i++;
+				}
+			}
+		}
+		return new StatisticsResponseVO(quizNames, averageMarks, medians);
+	}
+
+	private double calculateAverage(List<SubmitQuiz> listSubmittedQuizzes) {
+
+		int length = listSubmittedQuizzes.size();
+		if (length > 0) {
+			double sum = 0.0;
+			for (SubmitQuiz submitted : listSubmittedQuizzes) {
+				sum = sum + submitted.getMarksAchieved();
+			}
+			return sum / length;
+		}
+		return 0;
+	}
+
+	private int calculateMedian(List<SubmitQuiz> listSubmittedQuizzes) {
+		int length = listSubmittedQuizzes.size();
+		if (length > 0) {
+			List<Integer> listMarks = new ArrayList<>();
+			for (SubmitQuiz submitted : listSubmittedQuizzes) {
+				listMarks.add(submitted.getMarksAchieved());
+			}
+			Collections.sort(listMarks);
+
+			return listMarks.get((length) / 2);
+		}
+		return 0;
+	}
+}

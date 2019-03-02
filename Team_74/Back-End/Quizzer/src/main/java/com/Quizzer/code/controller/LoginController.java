@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * This class is the model for User data.
+ * This class is the login controller.
  *
  * @author Koushik Kotamraju GIT ID: 44
  * @author Abhinab Mohanty GIT ID: 53

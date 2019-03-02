@@ -3,19 +3,21 @@ package com.Quizzer.code.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
 import com.Quizzer.code.model.db.Quiz;
 import com.Quizzer.code.model.response.ResponseListVO;
 import com.Quizzer.code.model.response.ResponseVO;
+import com.Quizzer.code.model.response.StatisticsResponseVO;
 import com.Quizzer.code.service.ProfQuizService;
+import com.Quizzer.code.service.ProfStatisticsService;
 
 /**
  * This class is the controller that handles requests for : 1.Adding the quiz.
@@ -38,7 +40,7 @@ public class ProfQuizController {
 	 * @return
 	 */
 
-	@RequestMapping(method = RequestMethod.POST, value = "/prof")
+	@RequestMapping(method = RequestMethod.POST, value = "/prof/quiz")
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 
 		try {
@@ -93,4 +95,6 @@ public class ProfQuizController {
 					HttpStatus.ACCEPTED);
 		}
 	}
+	
+
 }
