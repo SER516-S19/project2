@@ -76,13 +76,7 @@ public class ProfessorServlet extends HttpServlet {
 			session.setAttribute("quiz", quiz);
 			session.setAttribute("quiz", quiz);
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
-		}else if("quizStats".equals(flag)) {
-			String quizID = request.getParameter("id");
-			int quizId = Integer.parseInt(quizID);
-			
-		
-			
-        }
+		}
 	}
 
 	/**

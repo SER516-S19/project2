@@ -1,19 +1,32 @@
 package controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.ProfessorDAO;
+import services.StatisticServices;
+
 import java.io.IOException;
 
 public class StatisticServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        resp.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
-        resp.sendError(501,"Method not implemented yet");
+    	String flag = request.getParameter("flag");
+    	if("quizStats".equals(flag)) {
+			String quizID = request.getParameter("id");
+			int quizId = Integer.parseInt(quizID);
+			StatisticServices statisticServices = new StatisticServices();
+			request.setAttribute("professorStatistics", statisticServices.getQuizStatistics(quizId));
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/stats.jsp");
+			rd.forward(request, response);
+			
+		}
     }
 
     protected void doPost(HttpServletRequest request,

@@ -13,13 +13,11 @@
 <body>
 <h3>Select a quiz to view its contents</h3>
 
-	<form action="../ProfessorController" method="get">
+	<form action="ProfessorController" method="get">
 		<input type="hidden" id="flag" name="flag" value="fetchQuizList">
 	    <input type="submit" value="Display Quiz List" class="btn btn-primary" />
 	</form>
 	<br>
-	<a href="quizDetails.jsp">Create New Quiz </a>
-
-
+	<a href="views/quizDetails.jsp">Create New Quiz </a>
 </body>
 </html>
