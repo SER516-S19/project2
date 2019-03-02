@@ -77,7 +77,7 @@
 							value="${questionAnsList[2][0].question.points}"> <br>
 						<br>
 						<input type="hidden" name="flag" value="saveEdited" />
-						<input  name="questionId" value="${requestScope.quesId}" />
+						<input type="hidden" name="questionId" value="${requestScope.quesId}" />
 							<button type="submit" onclick="javascript:valthis()"
 								class="btn btn-primary">Save and Exit</button>
 					</div>

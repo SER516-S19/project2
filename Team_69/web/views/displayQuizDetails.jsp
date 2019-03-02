@@ -15,8 +15,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-<body>
 
+<body>
 	<div class="row" align="center">
 		<div class="col-md-12 details">
 			<h2>Quiz Details</h2>
@@ -29,12 +29,12 @@
 			<blockquote class="blockquote text-center">
 				<p class="mb-0" style="color: red">No Quiz added.</p>
 			</blockquote>
-			<div></div>
 			<blockquote class="blockquote text-center">
-			<%String pathWebcontent = request.getContextPath();%> 
+				<%String pathWebcontent = request.getContextPath();%> 
 				<a href="<%=pathWebcontent %>/views/quizDetails.jsp">Create New Quiz </a>
 			</blockquote>
 		</c:when>
+		
 		<c:otherwise>
 			<table class="table table-hover">
 				<tbody>
@@ -62,19 +62,26 @@
 							   </c:otherwise>
 							</c:choose>
 						</td>
-						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQuestionInQuiz&id=${quiz.quizId}">Add Questions</a></td>
-						
+						<td>
 							<c:choose>
 							   <c:when test="${quiz.isPublished}">
-							     <td><a href="<%=pathWebcontent %>/Statistic?flag=quizStats&id=${quiz.quizId}">View Stats</a></td>
+							     	<p style="color:red">Cannot Add - Quiz Published</p>
 							   </c:when>
 							   <c:otherwise>
-							     <td><p style="color:red">No Stats Available</p></td>
+							   		<a href="<%=pathWebcontent %>/ProfessorController?flag=addQuestionInQuiz&id=${quiz.quizId}">Add Questions</a>
 							   </c:otherwise>
 							</c:choose>
-							
-						
-						
+						</td>
+						<td>
+							<c:choose>
+							   <c:when test="${quiz.isPublished}">
+							     <a href="<%=pathWebcontent %>/Statistic?flag=quizStats&id=${quiz.quizId}">View Stats</a>
+							   </c:when>
+							   <c:otherwise>
+							     <p style="color:red">No Stats Available</p>
+							   </c:otherwise>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>
