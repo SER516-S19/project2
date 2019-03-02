@@ -37,9 +37,11 @@ class QuizListService extends React.Component {
     render() {
         return (
             <div>
-                <Switch>
+                {/* <Switch> */}
+                <div>
                     <QuizList data={this.state} />
-                </Switch>
+                {/* </Switch> */}
+                </div>
             </div>
         )
     }
@@ -49,47 +51,62 @@ class QuizList extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
-        // this.state.takingQuiz = false;
-       // this.updateQuizSection = this.updateQuizSection.bind(this);
+        this.state = {
+            isHiddenList : false,
+            ongoingTestLink : ''
+        }
+       this.updateQuizSection = this.updateQuizSection.bind(this);
     }
-    // updateQuizSection() {
-    //     this.props.data.isQuizActiveCallback();
-    //  }
+    updateQuizSection(quizId) {
+        this.setState({
+            isHiddenList : true,
+            ongoingTestLink : quizId
+        });
+        console.log('updateQuizSection :'+quizId);
+     }
     
 
     render() {
         let view;
         const isStudent = this.props.data.isStudent;
         const quizList = this.props.data.quizList;
-        var takingQuiz = this.props.data.takingQuiz;
-        if (isStudent) {
-            view = Object.keys(quizList).map(function (key) {
-                return <li className="list-group-item list-group-item-info" >
-                    <Link to="TakeQuiz" to={{
-                            pathname: '/takeQuiz/:quizId',
-                            quizId: quizList[key].quizId.toString()
-                        }}>{quizList[key].quizName} </Link>
-                </li>
-            }.bind(this))
-        } else {
-            view = Object.keys(quizList).map(function (key) {
-                return <li className="list-group-item list-group-item-info">
-                    <p>{quizList[key].quizName}</p>
-                </li>
-            }.bind(this))
-        }
+        if(!this.state.isHiddenList){
+            if (isStudent) {
+                view = Object.keys(quizList).map(function (key) {
+                    return <li className="list-group-item list-group-item-info" >
+                        {/* <Link onClick={this.updateQuizSection} to={{
+                                pathname: '/takeQuiz/:quizId',
+                                quizId: quizList[key].quizId.toString()
+                            }}>{quizList[key].quizName} </Link> */}
 
+                            <Link to={'/takeQuiz?quizId='+ quizList[key].quizId.toString()} onClick={() => this.updateQuizSection(quizList[key].quizId.toString())}>
+                            {quizList[key].quizName} </Link>
+                           
+                    </li>
+                }.bind(this))
+            } else {
+                view = Object.keys(quizList).map(function (key) {
+                    return <li className="list-group-item list-group-item-info">
+                        <p>{quizList[key].quizName}</p>
+                    </li>
+                }.bind(this))
+            }
+    
+        }else if(this.state.ongoingTestLink!==''){
+            view =  <TakeQuiz quizId={this.state.ongoingTestLink}/>
+        }
         return (
 
                     <div className="container">
-                        <Router>
+                        {/* <Router> */}
                             <div>
                                 {view}
-                                <Switch>
+                                {/* <Switch>
                                     <Route exact path='/takeQuiz/:quizId' component={TakeQuiz}/>
-                                </Switch>
+                                </Switch> */}
+                                
                             </div>
-                        </Router>
+                        {/* </Router> */}
                     </div>
 
 
