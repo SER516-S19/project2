@@ -133,7 +133,6 @@ function createAnsElem(index, isMultiple) {
 
 //Reads the user selection and pushes the value to an array
 function choose() {
-    //selections[questionCounter] = +$('input[name="answer"]:checked').val();
     selectedAnswers = [];
     $.each($("input[name='answer']:checked"), function(){
         selectedAnswers.push(+$(this).val());

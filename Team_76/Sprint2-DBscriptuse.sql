@@ -1,8 +1,8 @@
-CREATE DATABASE ser516p2;
+CREATE DATABASE ser516p4;
 
 SHOW DATABASES;
 
-USE ser516p2;
+USE ser516p4;
 
 CREATE TABLE answer_table
 (studentID INTEGER PRIMARY KEY,
@@ -22,8 +22,6 @@ marks)
 VALUES 
 (1,1,1,'ans',20);
 
-
-USE ser516p2;
 CREATE TABLE quiz (
  ProfId INT NOT NULL ,
  QuizId INT NOT NULL,
@@ -38,9 +36,6 @@ CREATE TABLE quiz (
  PRIMARY KEY (ProfId, QuizId)
  ); 
  
- drop table quiz;
- desc quiz;
- 
   INSERT INTO quiz(
   ProfId,
   QuizId,
@@ -51,16 +46,8 @@ CREATE TABLE quiz (
   values
 (1,1,'EXPIRE','2020-01-11',20,'title','instructions','multiple','','');
 
-/*old quiz insert, dont use */ 
-INSERT INTO quiz ( ProfId, QuizId, quiztitle, qinstruct, qtype) VALUES ( 1 , 101 ,'  null ' , ' null ' , ' null ' );
-
-select * from quiz;
-
-select * from quiz where quizId=(select max(quizid) from quiz); 
-  
-  USE ser516p2;
 CREATE TABLE Question (
- QuizId INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+ QuizId INT NOT NULL  PRIMARY KEY ,
  QuestionId INT NOT NULL,
  Questions VARCHAR(255) NOT NULL,
  Options VARCHAR(255) NOT NULL,
@@ -78,13 +65,7 @@ VALUES(
 1,1,'How are you ?','option 1: good$$@ option 2: Not good','1');
  
 
- select * from Question;
 
- 
- 
-
- 
- 
  CREATE TABLE user (
  id int NOT NULL AUTO_INCREMENT PRIMARY KEY ,
  username varchar(30) NOT NULL,

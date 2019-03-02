@@ -5,10 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.ProfessorDAO;
 import services.StatisticServices;
-
 import java.io.IOException;
 
 public class StatisticServlet extends HttpServlet {

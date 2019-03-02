@@ -13,7 +13,8 @@
 <script type='text/javascript' src='../js/student.js'></script>
 </head>
 <body>
-	Your response has been successfully recorded!!
+	Your response has been successfully recorded!! <br/>
+	Your score is : <%out.println(session.getAttribute("grade")); %>
 	<div class="container">
 		<div class="row">
 			<form class="col-sm-4" method="GET">

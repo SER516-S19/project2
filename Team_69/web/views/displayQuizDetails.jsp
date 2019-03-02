@@ -55,7 +55,17 @@
 							</c:choose>
 						</td>
 						<td><a href="<%=pathWebcontent %>/ProfessorController?flag=addQueInQuiz&id=${quiz.quizId}">Add Questions</a></td>
-						<td><a href="<%=pathWebcontent %>/Statistic?flag=quizStats&id=${quiz.quizId}">View Stats</a></td>
+						
+						<c:choose>
+							   <c:when test="${quiz.isPublished}">
+							     <td><a href="<%=pathWebcontent %>/Statistic?flag=quizStats&id=${quiz.quizId}">View Stats</a></td>
+							   </c:when>
+							   <c:otherwise>
+							     <td><p style="color:red">No Stats Available</p></td>
+							   </c:otherwise>
+							</c:choose>
+							
+						
 						
 					</tr>
 				</c:forEach>
