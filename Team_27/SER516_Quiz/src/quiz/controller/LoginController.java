@@ -54,7 +54,7 @@ public class LoginController extends HttpServlet {
 				}
 
 			} else {
-				response.sendRedirect("./index.html");
+				response.sendRedirect("./Register.jsp");
 			}
 
 		} catch (Exception exc) {
