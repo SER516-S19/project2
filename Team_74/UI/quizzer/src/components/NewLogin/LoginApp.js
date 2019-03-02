@@ -5,7 +5,6 @@ import SignInForm from './pages/SignInForm';
 import { Container, Row, Col, Label, Button } from 'reactstrap';
 
 import './LoginApp.css';
-import Home from './pages/Home';
 
 class LoginApp extends Component {
   render() {
