@@ -19,7 +19,7 @@ public class Answer {
     @Column(name = "Answer_id",nullable = false)
     private int answerId;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "Question_id")
     private Question question;
 

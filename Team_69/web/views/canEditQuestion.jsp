@@ -61,10 +61,11 @@
 							<br>
 							<c:choose>
 								<c:when test="${answer.correctAnswer eq 'true'}">
-									<input type="checkbox" name="options" value="" checked>
+								
+									<input type="checkbox" name="options" value="option${theCount.count}" checked>
 								</c:when>
 								<c:otherwise>
-									<input type="checkbox" name="options" value="">
+									<input type="checkbox" name="options" value="option${theCount.count}">
 								</c:otherwise>
 							</c:choose>
 							<textarea name="option${theCount.count}" rows="2" cols="50"
@@ -75,7 +76,8 @@
 						Enter points : <input type="number" name="points"
 							value="${questionAnsList[2][0].question.points}"> <br>
 						<br>
-						<input type="hidden" name="flag" value="Save and Exit" />
+						<input type="hidden" name="flag" value="saveEdited" />
+						<input  name="questionId" value="${requestScope.quesId}" />
 							<button type="submit" onclick="javascript:valthis()"
 								class="btn btn-primary">Save and Exit</button>
 					</div>

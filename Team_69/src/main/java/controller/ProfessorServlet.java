@@ -111,7 +111,6 @@ public class ProfessorServlet extends HttpServlet {
 		else if ("EditQuestion".equals(flag)) {
 			String quesId = request.getParameter("quesId");
 			String quizId = request.getParameter("quizId");
-			String quizName = request.getParameter("quizName");
 			int quizid = Integer.parseInt(quizId);
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizid);
 			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
@@ -136,6 +135,10 @@ public class ProfessorServlet extends HttpServlet {
         	}else if("Verify Questions".equals(flag)) {
             	response.sendRedirect("views/displayQuestionAnswer.jsp");
             }
+		}
+		else if("saveEdited".equals(flag))
+		{
+			professorServices.saveEdited(request);
 		}
     }
 }
