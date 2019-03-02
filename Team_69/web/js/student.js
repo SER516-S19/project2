@@ -146,7 +146,7 @@ function createCheckBox(index) {
 	var input = '';
 	for (var i = 0; i < questions[index].choices.length; i++) {
 		item = $('<li>');
-		input = '<input type="checkbox" name="answer" value=' + i + ' />';
+		input = '<input type="checkbox" name="answer" id=' + i + ' value=' + i + ' />';
 		input += questions[index].choices[i];
 		item.append(input);
 		checkBoxList.append(item);
@@ -173,10 +173,19 @@ function displayNext() {
 			var nextQuestion = createQuestionElement(questionCounter);
 			quiz.append(nextQuestion).fadeIn();
 			if (!(isNaN(selections[questionCounter]))) {
-				selections[questionCounter].forEach(function(Element){
+				if(selections[questionCounter].length == 1){
+					$('input[value=' + selections[questionCounter][0] + ']').prop(
+						'checked', true);
+				}
+				else{
+					selections[questionCounter].forEach(function(Element){
+						document.getElementById(Element).checked = true;
+					});
+				}
+				/*selections[questionCounter].forEach(function(Element){
 					$('input[value=' + Element + ']').prop(
 						'checked', true);
-				});
+				});*/
 			}
 
 			// Controls display of 'prev' button

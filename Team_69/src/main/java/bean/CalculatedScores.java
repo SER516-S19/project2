@@ -36,6 +36,9 @@ public class CalculatedScores {
         this.user = user;
         this.score = score;
     }
+    
+    public CalculatedScores() {
+    }
 
 
     public int getId() {

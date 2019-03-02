@@ -36,8 +36,8 @@ public class QuestionModel {
 		entity.setOption3(request.getParameter("option3"));
 		entity.setOption4(request.getParameter("option4"));
 		String concatoptions = entity.getOption1();
-		concatoptions = concatoptions.concat("&&").concat(entity.getOption2()).concat("&&").concat(entity.getOption3())
-				.concat("&&").concat(entity.getOption4());
+		concatoptions = concatoptions.concat("$$@").concat(entity.getOption2()).concat("$$@").concat(entity.getOption3())
+				.concat("$$@").concat(entity.getOption4());
 
 		entity.setAnswer(request.getParameter("correctanswer"));
 		entity.setMarks(request.getParameter("marks"));
