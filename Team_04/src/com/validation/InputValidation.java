@@ -7,17 +7,23 @@ import student.dto.UserData;
 import java.util.List;
 
 public class InputValidation {
-    public void loginValidation(String username, String password)
+
+    public String loginValidation(String userName, String passWord, String userType)
     {
-        if (username.equalsIgnoreCase("") || (password.equalsIgnoreCase(""))
-        ) {
-            System.out.println("Username");
+        List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
+                "SELECT userName,password  from userDetails where userName='"+userName+"' and password = '"+passWord+"'");
+
+        if (userExists != null || !userExists.isEmpty()){
+
+            System.out.println("Username exists");
+            return "success";
 
         }
         else
         {
-            System.out.println("Password set");
+            return "signup";
         }
+
     }
 
     /**

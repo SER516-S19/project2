@@ -105,12 +105,15 @@ public class QuestionAnswerServlet extends HttpServlet {
                           HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         InputValidation validObj = new InputValidation();
-        if(!request.getParameter("username").isEmpty() || !request.getParameter("password").isEmpty())
-        {
-            InputValidation input = new InputValidation();
-            String name = request.getParameter("username");
-            String password = request.getParameter("password");
-            input.loginValidation(name,password);
+        if (action.equalsIgnoreCase("SignUp")) {
+            if (!request.getParameter("username").isEmpty() || !request.getParameter("password").isEmpty()) {
+                String name = request.getParameter("username");
+                String password = request.getParameter("password");
+                String userType = request.getParameter("userTypeBtn");
+                if (validObj.loginValidation(name, password, userType).equals("success")) {
+
+                }
+            }
         }
         if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex <= questions.size()) {
             switch (currentQuestion.getQuesType()) {
@@ -227,6 +230,19 @@ public class QuestionAnswerServlet extends HttpServlet {
             else if (action.equalsIgnoreCase("SignUp"))
             {
                 request.setAttribute("signup", "success");
+                response.setStatus(response.SC_OK);
+            }
+            else if (action.equalsIgnoreCase("login"))
+            {
+                if(request.getParameter("userTypeBtn").equalsIgnoreCase("student")) {
+                    request.setAttribute("login", "success");
+                    view = "Instructions.jsp";
+                }
+                else
+                {
+                    request.setAttribute("login", "success");
+                    view = "Instructions.jsp";
+                }
                 response.setStatus(response.SC_OK);
             }
             else {
