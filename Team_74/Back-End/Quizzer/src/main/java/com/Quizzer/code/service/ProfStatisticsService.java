@@ -35,13 +35,14 @@ public class ProfStatisticsService {
 		if (listQuiz.size() > 0) {
 			for (Quiz quizzer : listQuiz) {
 				listSubmittedQuizzes = submitQuiz.findByQuizId(quizzer.getId());
-				avg = calculateAverage(listSubmittedQuizzes);
-				median = calculateMedian(listSubmittedQuizzes);
-				quizNames.set(i, quizzer.getName());
-				medians.set(i, median);
-				averageMarks.set(i, avg);
-				i++;
-
+				if (listSubmittedQuizzes.size() > 0) {
+					avg = calculateAverage(listSubmittedQuizzes);
+					median = calculateMedian(listSubmittedQuizzes);
+					quizNames.set(i, quizzer.getName());
+					medians.set(i, median);
+					averageMarks.set(i, avg);
+					i++;
+				}
 			}
 		}
 		return new StatisticsResponseVO(quizNames, averageMarks, medians);
