@@ -79,7 +79,11 @@ public class SubmissionServlet extends HttpServlet {
     	System.out.println(radioBox);
     	System.out.println(username);
     	System.out.println(password);
-    	request.getRequestDispatcher("/myquizzes.jsp").forward(request,response);
+    	if(radioBox.equals("student")) {
+    		request.getRequestDispatcher("/myquizzes.jsp").forward(request,response);
+    	} else {
+    		request.getRequestDispatcher("/dashboard_professor.jsp").forward(request,response);
+    	}
 //        if(radioBox.equals("student")) {
 //        	StudentDAOImpl studentDAO = new StudentDAOImpl();
 //        	Student student = studentDAO.getStudent(username);
