@@ -50,14 +50,14 @@
 			%>
 			<div id="question<%=i%>">
 				Question <%=i%>: <br /><br />
-				<textarea name="question<%=i%>" rows="5" cols="80"><%=questions.get(i-1).getQuestion()%></textarea>
+				<textarea name="question<%=i%>" rows="5" cols="80" disabled><%=questions.get(i-1).getQuestion()%></textarea>
 				<br />
 				<div style="text-align: center">
-					<input type="checkbox" name="isMultipleAnswerQues<%=i%>" value="True"
+					<input type="checkbox" name="isMultipleAnswerQues<%=i%>" value="True" disabled
 						<%=questions.get(i-1).getIsMultipleAnswer()?"checked":""%> /> Is Multiple Answer
 					&nbsp;&nbsp;&nbsp;
 					Points: <input type="number" style="width:60px;text-align: center" name="PointsForQues<%=i%>"
-						value="<%=questions.get(i-1).getPoints()%>" />
+						value="<%=questions.get(i-1).getPoints()%>" disabled/>
 				</div>
 				<hr />
 				<div class="tablestyle">
@@ -65,52 +65,48 @@
 						<tr>
 							<td>
 								<input type="checkbox" name="isOptionACorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionACorrect()?"checked":""%> /> Correct
-								Answer
+									<%=questions.get(i-1).getIsOptionACorrect()?"checked":""%> disabled/> Correct Answer
 							</td>
 							<td>
 								Option A: &nbsp;
 								<input type="text" name="OptionAForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionA()%>" />
+									value="<%=questions.get(i-1).getOptionA()%>" disabled/>
 							</td>
 						</tr>
 
 						<tr>
 							<td>
 								<input type="checkbox" name="isOptionBCorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionBCorrect()?"checked":""%> /> Correct
-								Answer
+									<%=questions.get(i-1).getIsOptionBCorrect()?"checked":""%> disabled/> Correct Answer
 							</td>
 							<td>
 								Option B: &nbsp;
 								<input type="text" name="OptionBForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionB()%>" />
+									value="<%=questions.get(i-1).getOptionB()%>" disabled/>
 							</td>
 						</tr>
 
 						<tr>
 							<td>
 								<input type="checkbox" name="isOptionCCorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionCCorrect()?"checked":""%> /> Correct
-								Answer
+									<%=questions.get(i-1).getIsOptionCCorrect()?"checked":""%> disabled/> Correct Answer
 							</td>
 							<td>
 								Option C: &nbsp;
 								<input type="text" name="OptionCForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionC()%>" />
+									value="<%=questions.get(i-1).getOptionC()%>" disabled/>
 							</td>
 						</tr>
 
 						<tr>
 							<td>
 								<input type="checkbox" name="isOptionDCorrectForQues<%=i%>" value="True"
-									<%=questions.get(i-1).getIsOptionDCorrect()?"checked":""%> /> Correct
-								Answer
+									<%=questions.get(i-1).getIsOptionDCorrect()?"checked":""%> disabled/> Correct Answer
 							</td>
 							<td>
 								Option D: &nbsp;
 								<input type="text" name="OptionDForQues<%=i%>"
-									value="<%=questions.get(i-1).getOptionD()%>" />
+									value="<%=questions.get(i-1).getOptionD()%>" disabled/>
 							</td>
 						</tr>
 					</table>
