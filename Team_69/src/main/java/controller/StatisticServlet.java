@@ -20,7 +20,7 @@ public class StatisticServlet extends HttpServlet {
 			int quizId = Integer.parseInt(quizID);
 			StatisticServices statisticServices = new StatisticServices();
 			request.setAttribute("professorStatistics", statisticServices.getQuizStatistics(quizId));
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/stats.jsp");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/statistics.jsp");
 			rd.forward(request, response);
 			
 		}

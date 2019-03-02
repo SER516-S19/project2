@@ -112,8 +112,9 @@ public class ProfessorDAO {
 	public Quiz getQuizFromID(int quizID) {
 		 Quiz quizObj = null;
 		 Transaction transaction = null;
+		 Session session = null;
 	        try  {
-	            Session session = HibernateUtil.getSessionFactory().openSession();
+	            session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();
 	            quizObj = session.get(Quiz.class, quizID);
 	            transaction.commit();
@@ -123,6 +124,10 @@ public class ProfessorDAO {
 	            }
 	            logger.log(Level.SEVERE, "getQuizFromID - exception in connecting to database", sqlException);
 	        }
+	        finally {
+	        	if(session!=null)
+	        		session.close();
+			}
 		return quizObj;
 	}
 	
@@ -144,5 +149,27 @@ public class ProfessorDAO {
 	            logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", sqlException);
 	        }
 		return lists;
+	}
+
+	public Question getQuestionFromID(Integer questionId) {
+		Question questionObj = null;
+		 Transaction transaction = null;
+		 Session session = null;
+	        try  {
+	            session = HibernateUtil.getSessionFactory().openSession();
+	            transaction = session.beginTransaction();
+	            questionObj = session.get(Question.class, questionId);
+	            transaction.commit();
+	        } catch (Exception sqlException) {
+	            if (transaction != null) {
+	                transaction.rollback();
+	            }
+	            logger.log(Level.SEVERE, "getQuestionFromID - exception in connecting to database", sqlException);
+	        }
+	        finally {
+	        	if(session!=null)
+	        		session.close();
+			}
+		return questionObj;
 	}
 }

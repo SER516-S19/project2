@@ -111,7 +111,6 @@ public class ProfessorServlet extends HttpServlet {
 		else if ("EditQuestion".equals(flag)) {
 			String quesId = request.getParameter("quesId");
 			String quizId = request.getParameter("quizId");
-			String quizName = request.getParameter("quizName");
 			int quizid = Integer.parseInt(quizId);
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizid);
 			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
@@ -123,9 +122,7 @@ public class ProfessorServlet extends HttpServlet {
 			
 			//professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
 			//		questionOption2, questionOption3, questionOption4, correctanswers, points);
-			System.out.println("hello");
 			professorServices.storeQuestion(request);
-
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
         	if("Add Next Question".equals(flag)) {
@@ -134,8 +131,13 @@ public class ProfessorServlet extends HttpServlet {
         		
         		response.sendRedirect("views/professorLanding.jsp");
         	}else if("Verify Questions".equals(flag)) {
+        		
             	response.sendRedirect("views/displayQuestionAnswer.jsp");
             }
+		}
+		else if("saveEdited".equals(flag))
+		{
+			professorServices.saveEdited(request);
 		}
     }
 }

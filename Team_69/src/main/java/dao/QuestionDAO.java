@@ -33,6 +33,28 @@ public class QuestionDAO {
 		}
 	}
 
+	public void updateQuestion(Question question) {
+
+		Transaction transaction = null;
+		try  {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			/*Question question =  session.get(Question.class,questionNew.getQuestionId());
+			
+			System.out.println(question);
+			System.out.println(questionNew.getQuestionId());
+			System.out.println(questionNew.getQuestion());
+			question.setQuestion(questionNew.getQuestion());*/
+			session.saveOrUpdate(question);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+	
 	public List<Question> getQuestionsByQuizId(int quizId){
 
 		Transaction transaction = null;

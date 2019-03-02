@@ -56,7 +56,7 @@
 								<form action="../Team_69/ProfessorController" method="post">
 									<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
 									<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
-									<input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden">
+									<!-- <input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden"> -->
 									<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
 									<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
 									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" >Delete</button>
