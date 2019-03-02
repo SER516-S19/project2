@@ -1,7 +1,5 @@
 package com.asu.ser516.team47.utils;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
@@ -22,17 +20,16 @@ import java.io.IOException;
 public class JSONRequestParser {
 
     /**
-     *
      * @param req an HTTP request with a JSON form.
      * @return JSONObject of the form.
-     * @throws IOException If there is a problem with accessing the form
+     * @throws IOException    If there is a problem with accessing the form
      * @throws ParseException If there is a problem with parsing the form
      */
     public static JSONObject getJsonFromRequest(HttpServletRequest req) throws IOException, ParseException {
         BufferedReader bufReader = req.getReader();
         StringBuilder strBldr = new StringBuilder();
         String line;
-        while ((line = bufReader.readLine()) != null){
+        while ((line = bufReader.readLine()) != null) {
             strBldr.append(line);
         }
 

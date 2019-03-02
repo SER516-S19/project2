@@ -142,7 +142,7 @@ public class SubmissionServlet extends HttpServlet {
      * @return true if the insertion into database succeeds, otherwise false.
      */
     private boolean sendSubmission(int quizID, int enrollID, int time,
-                                  float score, int attempt) {
+                                   float score, int attempt) {
         boolean hasSucceeded;
         Date today = new Date();
 
