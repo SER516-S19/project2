@@ -9,6 +9,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+/**
+ * This is a helper class to perform database operations on the
+ * User table
+ *
+ * @author : Jahnvi Rai
+ * @version : 1.0
+ * @since : 02/28/2019
+ */
 
 public class UserDAO {
 
@@ -16,7 +24,6 @@ public class UserDAO {
         Transaction transaction = null;
         User user = null;
         Session session = null;
-
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();

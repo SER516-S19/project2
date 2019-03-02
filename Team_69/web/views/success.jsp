@@ -16,11 +16,8 @@
 	Your response has been successfully recorded!!
 	<div class="container">
 		<div class="row">
-			<form class="col-sm-4" action="/Team_69" method="get">
-				<input class="button" type="submit" value="Go to homepage" />
-			</form>
-			<form class="col-sm-4" action="../Login" method="get">
-				<input class="button" type="submit" value="Logout" />
+			<form class="col-sm-4" method="GET">
+				<input class="button" type="submit" name="action" value="Logout" formaction="/Login" />
 			</form>
 		</div>
 	</div>

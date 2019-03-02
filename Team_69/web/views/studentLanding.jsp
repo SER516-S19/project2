@@ -10,9 +10,9 @@
 </head>
 <body>
 	<%
-    List<String> quizNames = (ArrayList<String>) request.getAttribute("quizNames");
-    List<String> quizStatus = (ArrayList<String>) request.getAttribute("quizStatus");
-    List<Integer> quizIds = (ArrayList<Integer>) request.getAttribute("quizIds");
+    List<String> quizNames = (ArrayList<String>) request.getSession().getAttribute("quizNames");
+    List<String> quizStatus = (ArrayList<String>) request.getSession().getAttribute("quizStatus");
+    List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
 %>
 	<h2>Quiz</h2>
 	<form method="GET" >
