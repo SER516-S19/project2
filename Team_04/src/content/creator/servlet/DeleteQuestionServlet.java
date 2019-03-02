@@ -23,7 +23,7 @@ public class DeleteQuestionServlet extends HttpServlet {
             int quizId = Integer.parseInt(request.getParameter("quizid"));
             int quesId = Integer.parseInt(request.getParameter("quesid"));
             DeleteQuestionHelper.removeQues(quizId, quesId);
-            response.sendRedirect("./viewContentDetails");
+            response.sendRedirect("./viewContentDetails?quizId=" + quizId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
