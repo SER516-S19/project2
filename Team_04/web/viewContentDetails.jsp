@@ -47,10 +47,13 @@
 
 <form action="delete" method="POST">
     <input type="hidden" name="quizid" value="${quizid}">
-    <input type="submit" value="Delete">
+    <input type="submit" value="Delete Quiz">
 </form>
 
-
+<form action="addQues" method="POST">
+    <input type="hidden" name="quizid" value="${quizId}">
+    <input type="submit" value=" Add Question ">
+</form>
 
 <table>
     <tr>

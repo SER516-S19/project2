@@ -70,7 +70,7 @@
                     <input type="text" id="4" name="4" class="formtext">
                 </div>
             </div>
-            <div class="row" ">
+            <div class="row">
                 <div class=" col-25">
                 <label name="score">Score:</label></div>
             <div class="col-75">
