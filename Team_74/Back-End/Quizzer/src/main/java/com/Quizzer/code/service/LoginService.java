@@ -22,6 +22,23 @@ public class LoginService {
 
     @Autowired
     private UserRepo userRepo;
+    private User user = null;
+
+    public User authenticateUser(String email, String pass){
+        try
+        {
+            if(ifEmailIdExists(email)){
+                User user = userRepo.findByUserEmailId(email);
+                return user;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.toString());
+        }
+        return user;
+    }
+
 
     public boolean addUserRepo(User userDefine) throws LoginException {
         try {
@@ -78,7 +95,5 @@ public class LoginService {
 
         return true;
     }
-
-
 
 }

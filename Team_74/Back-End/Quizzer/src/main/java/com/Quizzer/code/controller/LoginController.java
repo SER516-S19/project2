@@ -31,5 +31,11 @@ public class LoginController {
         return loginService.addUser(userDefine);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    public @ResponseBody
+    User login(@RequestBody String email, String pass) {
+
+        return loginService.authenticateUser(email, pass);
+    }
 
 }
