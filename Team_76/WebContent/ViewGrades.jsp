@@ -6,13 +6,9 @@
 		<title>Grades</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" type="text/css" href="Style.css">
 		
 		<style>
-			.logoutonly {
-				width: 10% !important;
-				margin-left: 300px !important;
-			
-			}
 			input[type=text], select {
 				width: 40%;
 				padding: 12px 20px;
@@ -22,43 +18,7 @@
 				border-radius: 4px;
 				box-sizing: border-box;
 			}
-			
-			input[type=submit] {
-				width: 20%;
-				background-color: #720c0c;
-				color: white;
-				padding: 14px 20px;
-				margin: 8px 0;
-				border: none;
-				border-radius: 4px;
-				cursor: pointer;
-			}
-			
-			input[type=submit]:hover {
-				background-color: #961212;
-			}
 
-			ul {
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-				overflow: hidden;
-				background-color: #333;
-			}
-			
-			li {first-child { float:left;}}
-			
-			li a {
-				display: block;
-				color: white;
-				text-align: center;
-				padding: 14px 16px;
-				text-decoration: none;
-				float: left; 
-			}
-			
-			li a:hover { background-color: #111; }
-		
 		</style>
 	</head>
 	
@@ -72,7 +32,7 @@
 		%>
 	 	 <ul>
 			<li><a href="ProfessorDash.jsp" class="w3-bar-item">DASHBOARD</a></li>
-			<li>
+			<li style="float:right">
 		        <form  action="LoginController" method="post">
 		            <input type="hidden" name="action" value="logoff">
 		            <input class="logoutonly" type="submit" value="LogOut" class="logout">
