@@ -1,11 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
-  User: amankaushik
+  Modified By: Archana Madhavan
   Date: 18/2/19
   Time: 1:53 PM
-  To change this template use File | Settings | File Templates.
+  Description: Displays List of Quizzes.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="java.util.List"%>
 <html>
 <head>
     <title>view-list</title>
@@ -13,7 +15,7 @@
       table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
-        width: 100%;
+        width: 40%;
       }
       
       td, th {
@@ -31,60 +33,20 @@
 <h1>
     View Quiz List
 </h1>
-<table>
-  <tr>
-    <th>Questions</th>
-    <th>Options</th>
-    <th>Score</th>
-  </tr>
-  <tr>
-    <td>Question #1</td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>10</td>
-  </tr>
-  <tr>
-    <td>Question #2</td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>5</td>
-  </tr>
-  <tr>
-    <td>Question #3</td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>15</td>
-  </tr>
-  <tr>
-    <td>Question #4</td>
-    <td>
-      <ol type = 'a'>
-        <li>First</li>
-        <li>Second</li>
-        <li>Third</li>
-        <li>Fourth</li>
-      </ol>
-    </td>
-    <td>10</td>
-  </tr>
-</table>
+<div align="center">
+    <table border="1" cellpadding="5">
+        <caption><h2>Quiz List</h2></caption>
+        <tr>
+            <th>Quiz ID</th>
+        </tr>
+        <tr>
+            <td>
+                <c:forEach items="${ids}" var="quizId">
+                    <a href="./viewContentDetails?quizId=${quizId}">Quiz<c:out value="${quizId}"></c:out></a><br>
+                </c:forEach>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

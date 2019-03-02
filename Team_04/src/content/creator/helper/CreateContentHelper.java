@@ -1,10 +1,10 @@
 package content.creator.helper;
 
+import content.creator.constants.Constants;
 import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -35,23 +35,13 @@ public final class CreateContentHelper {
       quizContent.setCorrect(Boolean.parseBoolean(answerBundle.get(answerKey).get(1)));
       quizContent.setMaxScore(Integer.parseInt(score));
       String queryString = convertToQueryString(quizContent);
-      System.out.println(queryString);
       DataOps.saveData(queryString);
     }
   }
 
   private static String convertToQueryString(QuizContentDAO quizContent) {
     String tableName = "quiz_content";
-    List<String> colNames =
-        Arrays.asList(
-            "quiz_id",
-            "ques_id",
-            "ques_type",
-            "ques_desc",
-            "ans_id",
-            "ans_desc",
-            "is_correct",
-            "max_score");
+    List<String> colNames = Constants.colNames;
     return String.format(
         "INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s) VALUES (%s, %s, '%s', '%s', %s, '%s', '%s', %s)",
         tableName,
