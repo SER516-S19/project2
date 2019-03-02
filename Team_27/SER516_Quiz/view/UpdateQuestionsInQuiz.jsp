@@ -182,6 +182,12 @@
 			<input type="button" class="btn btn-success" value="Add Another Question" onclick="addAnotherQuestion()" />
 			<input type="submit" class="btn btn-info" value="Update Question(s)" />
 		</form>
+		<form action="/Quiz/QuizAction" class="formstyle" method="POST">
+			<input type="hidden" id="selectedQuiz" name="selectedQuiz" value="<%=session.getAttribute("quizTitle")%>">
+			<button type="submit" name="actonToPerform" id="go" value="go" class="btn btn-warning">
+				<i class="fas fa-pen"></i> Preview Quiz
+			</button>
+		</form>
 	</div>
 </body>
 

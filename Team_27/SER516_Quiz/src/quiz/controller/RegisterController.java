@@ -4,8 +4,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import quiz.model.register.Register;
-import quiz.dao.RegisterDao;
+import quiz.model.User;
+import quiz.dao.UserDao;
 
 /**
  * The Servlet controls when an new user registers in the application.
@@ -23,6 +23,9 @@ public class RegisterController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	public RegisterController() {
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Copying all the input parameters in to local variables
 		String fullName = request.getParameter("fullname");
@@ -31,8 +34,7 @@ public class RegisterController extends HttpServlet {
 		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 
-
-		Register registerBean = new Register();
+		User registerBean = new User();
 		//Using Java Beans - An easiest way to play with group of related data
 		registerBean.setFullName(fullName);
 		registerBean.setEmail(email);
@@ -40,7 +42,7 @@ public class RegisterController extends HttpServlet {
 		registerBean.setUserType(user_type);
 		registerBean.setPassword(password); 
 
-		RegisterDao registerDao = new RegisterDao();
+		UserDao registerDao = new UserDao();
 
 		//The core Logic of the Registration application is present here. We are going to insert user data in to the database.
 		String userRegistered = registerDao.registerUser(registerBean);
@@ -52,7 +54,8 @@ public class RegisterController extends HttpServlet {
 		else   //On Failure, display a meaningful message to the User.
 		{
 			request.setAttribute("errMessage", userRegistered);
-			request.getRequestDispatcher("./Register.jsp").forward(request, response);
+			request.getRequestDispatcher("/Register.jsp").forward(request, response);
+
 		}
 	}
 }
