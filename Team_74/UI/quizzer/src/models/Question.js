@@ -1,8 +1,11 @@
 export default class Question {
+    // static TYPES = Object.freeze({
+    //   SINGLE: "Options: Pick One",
+    //   MULTIPLE: "Options: Pick Any Number",
+    //   TEXT: "Short Answer"
+    // });
     static TYPES = Object.freeze({
-      SINGLE: "Options: Pick One",
-      MULTIPLE: "Options: Pick Any Number",
-      TEXT: "Short Answer"
+      SINGLE: "Options: Pick One"
     });
   
     static DEFAULTS = Object.freeze({
@@ -21,16 +24,19 @@ export default class Question {
     }
   
     get hasOptions() {
+      // return (
+      //   this.type === Question.TYPES.SINGLE ||
+      //   this.type === Question.TYPES.MULTIPLE
+      // );
       return (
-        this.type === Question.TYPES.SINGLE ||
-        this.type === Question.TYPES.MULTIPLE
+        this.type === Question.TYPES.SINGLE 
       );
     }
   
     get inputType() {
       if (this.type === Question.TYPES.SINGLE) return "radio";
-      if (this.type === Question.TYPES.MULTIPLE) return "checkbox";
-      throw new Error("This question does not have an input type.");
+      //if (this.type === Question.TYPES.MULTIPLE) return "checkbox";
+      //throw new Error("This question does not have an input type.");
     }
   
     merge(patch) {

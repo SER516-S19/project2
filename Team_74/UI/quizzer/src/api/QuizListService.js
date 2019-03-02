@@ -9,7 +9,7 @@ class QuizListService extends React.Component {
     componentDidMount() {
             var self = this;
             axios.get("http://localhost:8081/prof/quiz")
-                // .then(response => response.json())
+                .then(response => response.json())
                 .then(response =>{
                     console.log(response);
                     this.setState({

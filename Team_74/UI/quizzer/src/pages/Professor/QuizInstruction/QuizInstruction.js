@@ -8,8 +8,8 @@ class QuizInstruction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      titleText: '',
-      description: '',
+      name: '',
+      instruction: '',
       shouldShuffle: false,
       quizType: 'default',
       assignmentGroup: 'default',
@@ -51,7 +51,7 @@ class QuizInstruction extends Component {
             <Container className="quizInstruction">
               <Row>
                 <Col>
-                  <input name="title" type="text" placeholder="Enter Quiz Title" value={this.state.value}
+                  <input name="name" type="text" placeholder="Enter Quiz Title" 
                     onChange={this.handleChange} />
                 </Col>
               </Row>
@@ -61,7 +61,7 @@ class QuizInstruction extends Component {
               <Row>
                 <Col >
                   <textarea className="descriptionTextArea" placeholder="Enter description here ..."
-                    name="description" type="text" value={this.state.value} onChange={this.handleChange} />
+                    name="instruction" type="text" onChange={this.handleChange} />
                 </Col>
               </Row>
               <Row>
@@ -72,7 +72,7 @@ class QuizInstruction extends Component {
                   <Label > Choose quiz type:</Label>
                 </Col>
                 <Col className="leftAlign" xs>
-                  <select name="quizType" value={this.state.quizType} onChange={this.handleChange}>
+                  <select name="quizType"  onChange={this.handleChange}>
                     <option value="mcq">MCQ</option>
                     <option value="survey">Survey</option>
                     <option value="default">Default</option>
@@ -84,7 +84,7 @@ class QuizInstruction extends Component {
                   <label> Assignment Group:</label>
                 </Col>
                 <Col className="leftAlign">
-                  <select name="assignmentGroup" value={this.state.assignmentGroup} onChange={this.handleChange}>
+                  <select name="assignmentGroup"  onChange={this.handleChange}>
                     <option value="quiz">Quiz</option>
                     <option value="test">Test</option>
                     <option value="default">Default</option>

@@ -21,6 +21,10 @@ export default function QuestionForm({ question, setQuestion }) {
     setQuestion(question.merge({ options }));
   }
 
+  function setCorrectAnswer(option) {
+    setQuestion(question['correctAnswer'] = option);
+  }
+
   const listController = new ListController(question.options, setOptions);
 
   return (
@@ -68,7 +72,7 @@ export default function QuestionForm({ question, setQuestion }) {
                   <FaTrash />
                 </Button>
 
-                <Button onClick={() => listController.remove(i)}>
+                <Button onClick={() => setCorrectAnswer(option)}>
                   <FaCheck />
                 </Button>
 

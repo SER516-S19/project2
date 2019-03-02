@@ -24,6 +24,10 @@ export default class ListController {
     this.callback(helpers.remove(this.array, index));
   }
 
+  addOption(index){
+
+  }
+
   moveUp(index) {
     let newIndex = index === 0 ? index : index - 1;
     this.callback(helpers.move(this.array, index, newIndex));
@@ -37,15 +41,25 @@ export default class ListController {
   submit() {
     let questions = this.array;
     let details = this.details;
-    let combined = { questions, ...details };
-    console.log(combined);
+    let payload = { questions, ...details };
+    console.log(payload);
 
-    // axios.post(`https://localhost:8080/quiz`,
-    //   { questions })
-    //   .then(res => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //   })
+    axios.post('http://localhost:8081/prof/quiz',
+      payload )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      });
+
+
+      // axios({
+      //   method: 'post',
+      //   url: '/prof/quiz',
+      //   data: payload, 
+      //   headers: {
+      //   'Content-Type': 'application/json'
+      //   }, 
+      // })
   }
 
 
