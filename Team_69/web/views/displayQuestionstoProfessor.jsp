@@ -23,14 +23,7 @@
 				<h3>${requestScope.quizName}</h3>
 			</center>
 		</div>
-		${requestScope.quizList}
-		<c:choose>
-			<c:when test="${empty requestScope.quizList}">
 
-			</c:when>
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
 		<c:choose>
 			<c:when test="${empty requestScope.queAnsData}">
 				<blockquote class="blockquote text-center">
@@ -57,16 +50,23 @@
 									<c:out value="${question[0]}"></c:out>
 								</button>
 							</h5>
-							<form action="../Team_69/ProfessorController" method="post">
-								<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
-								<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
-								<input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden">
-								<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
-								<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
-								<button type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" >Delete</button>
-								<button type="submit" value="EditQuestion" name="flag" class="btn btn-primary">Edit</button>
-							</form>	
-						</div>
+							
+							<c:choose>
+							<c:when test="${question[2][1].question.quiz.isPublished eq false}">
+								<form action="../Team_69/ProfessorController" method="post">
+									<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
+									<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
+									<input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden">
+									<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
+									<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
+									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" >Delete</button>
+									<button type="submit" value="EditQuestion" name="flag" class="btn btn-primary">Edit</button>
+								</form>	
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
+					</div>
 
 						<div id="collapse${question[3]}" class="collapse show"
 							aria-labelledby="heading${question[3]}" data-parent="#accordion">

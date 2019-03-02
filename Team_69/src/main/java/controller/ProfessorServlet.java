@@ -63,9 +63,9 @@ public class ProfessorServlet extends HttpServlet {
 			List<Quiz> quizList = professorServices.getAllQuizzes();
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
 			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
+			request.setAttribute("quizList", quizList);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
 			request.setAttribute("quizName", quizName);
-			request.setAttribute("quizList", quizList);
 			request.setAttribute("queAnsData", queAnsData);
 			rd.forward(request, response);	
 		}
