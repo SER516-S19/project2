@@ -45,16 +45,16 @@ class TakeQuiz extends Component {
      * componentWillMount life cycle event is invoked once,
      * both on the client and server, immediately before the initial rendering occurs*/
 
+     
     componentWillMount() {
-        console.log(this.props);
-        //const params = new URLSearchParams(this.props.location.quizId);
-        axios.get("http://localhost:8081/prof/quiz/"+this.props.location.quizId)
+        axios.get("http://localhost:8081/prof/quiz/"+this.props.quizId)
             .then(response => {
                 this.setState({
                     quizInstructions: response.data.response.instruction,
                     quizQuestions: response.data.response.questions,
-                    totalMarks: response.data.response.totalMarks,
-                    totalTime: response.data.response.time * 60 * 1000
+                     totalMarks: response.data.response.totalMarks,
+                      totalTime: response.data.response.time * 60 * 1000
+                    // totalTime: 5 * 60 * 1000
                 });
                 const shuffledAnswerOptions = this.state.quizQuestions.map((question) => this.shuffleArray(question.options));
                 this.setState({
