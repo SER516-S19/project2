@@ -39,6 +39,35 @@
     .row{
         margin: 0px;
     }
+
+    .button {
+        display: inline-block;
+        white-space: nowrap;
+        flex-basis: auto;
+        width: auto;
+        font-size: .875rem;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        text-align: center;
+        font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+        font-weight: 700;
+        line-height: 1.28571429;
+        letter-spacing: .8px;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 19px 40px 20px;
+        transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+        background-color: #ea4c89;
+
+    }
+    .btnwrapper{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
     @media only screen and (max-width: 768px) {
         .col-md-8
         {
@@ -69,7 +98,10 @@
                     <input type="radio" name="userTypeBtn" value="Professor"/> Professor
                     <input type="radio" name="userTypeBtn" value="Student"/>   Student
                 </div>
-                <input type="submit" name="action" class="btn btn-primary btn-raised" value="SignUp"/>
+
+                <div class = "btnwrapper">
+                    <input type="submit" name="action" class="button" value="SignUp"/>
+                </div>
             </form>
         </div>
     </div>
