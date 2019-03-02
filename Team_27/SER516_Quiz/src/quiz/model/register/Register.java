@@ -1,5 +1,14 @@
 package quiz.model.register;
 
+/**
+ * A Java class used for modelling New Users in MySQL
+ * Database into JDBC
+ * 
+ * @author (Palak Chugh),(Yuti Desai)
+ * @version (1.0)
+ * @createDate (25 Feb 2019)
+ */
+
 public class Register {
 	private String fullName;
 	 private String email;
@@ -8,7 +17,7 @@ public class Register {
 	 private String password;
 	 public Register() {}
 	 
-	 /* A contructor that sets all the member variables */
+	 /* A constructor that sets all the member variables */
 		public Register(String fullName, String email, String userName,String user_type,String password) {
 			super();
 			this.fullName = fullName;

@@ -7,11 +7,20 @@ import javax.servlet.http.HttpServletResponse;
 import quiz.model.register.Register;
 import quiz.dao.RegisterDao;
 
+/**
+ * The Servlet controls when an new user registers in the application.
+ * 
+ * @author (Palak Chugh), (Yuti Desai)
+ * @version (1.0)
+ * @createDate 25 Feb 2019
+ */
+
+/*
+ * Servlet implementation class RegisterController
+ */
 public class RegisterController extends HttpServlet {
 	 
-	 /**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	public RegisterController() {
