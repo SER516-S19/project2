@@ -66,16 +66,17 @@
         background-color: #ea4c89;
 
     }
-    .btnwrapper{
+
+    .btnwrapper {
         align-items: center;
         justify-content: center;
         display: flex;
     }
 
-   @media only screen and (max-width: 768px) {
-        .col-md-8
-        {
-            height: 250px; / height: 60%;
+    @media only screen and (max-width: 768px) {
+        .col-md-8 {
+            height: 250px;
+        / height: 60 %;
         }
     }
 
@@ -103,7 +104,7 @@
                     <input type="radio" name="userTypeBtn" value="Student"/> Student
                 </div>
 
-                <div class = "btnwrapper">
+                <div class="btnwrapper">
                     <input type="submit" name="action" class="button" value="SignUp"/>
                 </div>
             </form>
