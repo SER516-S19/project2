@@ -15,6 +15,8 @@ import Team76.Utilities.StudentQuizModel;
 
 /**
  * Servlet implementation class StudentController
+ * author: Hongfei Ju, Xiangwei Zheng
+ * version: 1.2
  */
 @WebServlet("/StudentController")
 public class StudentController extends HttpServlet {
@@ -28,12 +30,10 @@ public class StudentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if (action == null || action.isEmpty()) {
-			System.out.println("**** no acton");
 			response.sendRedirect("login.jsp");
 		} else if (action.equalsIgnoreCase("AttemptQuiz")) {
-			System.out.println("**** attempt quiz");
 			List<QuizEntity> quizzes = null;
-			StudentQuizModel AttemptQuiz;
+			StudentQuizModel AttemptQuiz = null;
 			try {
 				AttemptQuiz = new StudentQuizModel();
 				quizzes = AttemptQuiz.list();
@@ -43,9 +43,7 @@ public class StudentController extends HttpServlet {
 			request.getSession().setAttribute("quizzes", quizzes);
 			response.sendRedirect("StudentsQuiz.jsp");
 		} else if (action.equalsIgnoreCase("StartQuiz")) {
-			System.out.println("**** start quiz");
 			String quizId = request.getParameter("quizId");
-			System.out.println("**** quiz id: " + quizId);
 			QuizEntity quiztaken = null;
 			QuizInstructModel quizInstruct = null;
 			try {

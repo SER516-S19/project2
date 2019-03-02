@@ -15,13 +15,13 @@ public class QuizEntity {
 	private int timeLimit = 0;
 	private String quizType = "";
 	private String quizTitle = null;
-	private String quizInstruct= null;//Xiangwei
+	private String quizInstruct= null;
 	
-	public String getQuizInstruct() {//Xiangwei
+	public String getQuizInstruct() {
 		return quizInstruct;
 	}
 	
-	public void setQuizInstruct(String quizInstruct) {//Xiangwei
+	public void setQuizInstruct(String quizInstruct) {
 		this.quizInstruct = quizInstruct;
 	}
 
