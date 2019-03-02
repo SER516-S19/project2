@@ -38,23 +38,32 @@ Statistics
 	<br>
 	<br>
 	
-	<table id = "students">	
-	<tr>
-		<th>Number Of Students In Class</th>
-		<th>Number Of Students who took Quiz</th>
-	</tr>
-	<tr>
-		<td> ${professorStatistics.students} </td>
-		<td>${professorStatistics.studentsGaveQuiz}</td>
-	</tr>	
-	</table>
+	<p> Total number of students in the class : ${professorStatistics.students}</p>
+	<p>Total number of students took the quiz  : ${professorStatistics.studentsGaveQuiz}</p>
 	
-	<c:forEach items="${professorStatistics.studentCalculatedScores}" var="scoreList">
-			<tr scope="row">
-			<c:out value="${scoreList}"></c:out>
+	<c:if test="${professorStatistics.studentsGaveQuiz > 0}">
+		<table id = "students">	
+			<tr>
+				<th>User ID</th>
+				<th>User Name</th>
+				<th>Score</th>
 			</tr>
-    </c:forEach>
-	
+	  	
+		<c:forEach items="${professorStatistics.studentCalculatedScores}" var="scoreList">
+			<tr scope="row">
+			<td scope="column">
+			<c:out value="${scoreList.getUser().getEmail()}"></c:out>
+			</td>
+			<td scope="column">
+			<c:out value="${scoreList.getUser().getUser_name()}"></c:out>
+			</td>
+			<td scope="column">
+			<c:out value="${scoreList.getScore()}"></c:out>
+			</td>
+			</tr>
+    	</c:forEach>
+		</table>
+	 </c:if>
 	
 </form>
 

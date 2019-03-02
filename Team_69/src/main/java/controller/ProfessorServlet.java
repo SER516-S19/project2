@@ -122,9 +122,7 @@ public class ProfessorServlet extends HttpServlet {
 			
 			//professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
 			//		questionOption2, questionOption3, questionOption4, correctanswers, points);
-			System.out.println("hello");
 			professorServices.storeQuestion(request);
-
         	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
         	request.setAttribute("profnavigate", addQuestionPageURL); 
         	if("Add Next Question".equals(flag)) {
@@ -133,6 +131,7 @@ public class ProfessorServlet extends HttpServlet {
         		
         		response.sendRedirect("views/professorLanding.jsp");
         	}else if("Verify Questions".equals(flag)) {
+        		
             	response.sendRedirect("views/displayQuestionAnswer.jsp");
             }
 		}
