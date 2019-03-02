@@ -86,7 +86,7 @@ body {font-family: Arial;}
   		<label for="a5">Correct Answer:</label>
   		<input type="text" class="form-control" name="correctanswer" id="a5" placeholder="Enter correct answer">
 	</div>
-	<div class="form-group">
+	<div class="form-group <%= request.getAttribute("visibilty") %>">
   		<label for="a6">Marks:</label>
   		<input type="text" class="form-control" name="marks" id="a6" placeholder="Enter Marks">
 	</div>
