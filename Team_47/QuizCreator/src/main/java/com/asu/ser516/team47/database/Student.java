@@ -11,22 +11,22 @@ public class Student {
     private String username;
     private String firstname;
     private String lastname;
-    private String hashedpass;
     private String sessionid;
+    private String hashedpass;
 
     /**
      * @param username unique key for a student's account
      * @param firstname student's first name
      * @param lastname student's last name
      * @param hashedpass student's password (hashed)
-     * @param session student's session information
+     * @param sessionid student's session information
      */
-    public Student(String username, String firstname, String lastname, String hashedpass, String session) {
+    public Student(String username, String firstname, String lastname, String sessionid, String hashedpass) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.sessionid = sessionid;
         this.hashedpass = hashedpass;
-        this.sessionid = session;
     }
 
     public String getUsername() {
@@ -67,5 +67,20 @@ public class Student {
 
     public void setSession(String session) {
         this.sessionid = session;
+    }
+
+    /**
+     * toString
+     * @return string representation of student object
+     */
+    public String toString() {
+        String result = "Student {" + "\n" +
+                "  username: " + username + "\n" +
+                "  firstname: " + firstname + "\n" +
+                "  lastname: " + lastname + "\n" +
+                "  hashedpass: " + hashedpass + "\n" +
+                "  sessionid: " + sessionid + "\n" +
+                "}";
+        return result;
     }
 }

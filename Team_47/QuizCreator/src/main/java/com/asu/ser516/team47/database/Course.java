@@ -57,4 +57,18 @@ public class Course {
     public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
+
+    /**
+     * toString
+     * @return string representation of course object
+     */
+    public String toString() {
+        String result = "Course {" + "\n" +
+                "  course_id: " + Integer.toString(course_id) + "\n" +
+                "  professor_fk: " + professor_fk + "\n" +
+                "  prefix: " + prefix+ "\n" +
+                "  suffix: " + suffix + "\n" +
+                "}";
+        return result;
+    }
 }
