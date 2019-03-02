@@ -6,11 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d38ecc20-062e-4803-9a06-0d992e174203" name="Default Changelist" comment="merged integration">
+    <list default="true" id="d38ecc20-062e-4803-9a06-0d992e174203" name="Default Changelist" comment="removed print statements">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -55,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmissionServlet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SubmissionServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="183">
-              <caret line="94" column="50" lean-forward="false" selection-start-line="94" selection-start-column="42" selection-end-line="94" selection-end-column="50" />
+              <caret line="100" column="38" lean-forward="false" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,12 +75,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuizCreationServlet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QuizCreationServlet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="-241">
+              <caret line="214" column="94" lean-forward="false" selection-start-line="214" selection-start-column="94" selection-end-line="214" selection-end-column="94" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -594,7 +594,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551499903111</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="merged integration">
+      <created>1551550256494</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1551550256494</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -602,7 +609,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -612,7 +618,7 @@
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.50620615" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.49379385" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.49379385" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.49811116" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -678,7 +684,8 @@
     <MESSAGE value="Merged in from integration" />
     <MESSAGE value="Moved over to a new branch because I foolishly pulled from master.&#10;&#10;Submission Servlet has been updated to accept the json objects &#10;discussed." />
     <MESSAGE value="merged integration" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged integration" />
+    <MESSAGE value="removed print statements" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed print statements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1157,18 +1164,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
-          <caret line="94" column="50" lean-forward="false" selection-start-line="94" selection-start-column="42" selection-end-line="94" selection-end-column="50" />
+          <caret line="100" column="38" lean-forward="false" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-241">
+          <caret line="214" column="94" lean-forward="false" selection-start-line="214" selection-start-column="94" selection-end-line="214" selection-end-column="94" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

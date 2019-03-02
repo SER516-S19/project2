@@ -96,7 +96,6 @@ public class QuizCreationServlet extends HttpServlet {
      * @return whether all required fields are present and valid
      */
     private boolean validateQuizFields(JSONObject jsonQuiz){
-        System.out.println("Quiz");
         try{
             title = (String)jsonQuiz.get("title");
             course_id = ((Number)jsonQuiz.get("course_id")).intValue();
@@ -104,7 +103,6 @@ public class QuizCreationServlet extends HttpServlet {
             shuffle = (Boolean)jsonQuiz.get("shuffle");
             time_limit = ((Number)jsonQuiz.get("time_limit")).intValue();
             quiz_type = (String)jsonQuiz.get("quiz_type");
-            System.out.println("halfway there.");
             if (!(quiz_type.equals("quiz") || quiz_type.equals("survey"))) {
                 return false;
             }
@@ -189,7 +187,6 @@ public class QuizCreationServlet extends HttpServlet {
      */
     public List<Choice> validateAndBuildChoiceList(JSONArray jsonChoices) throws IOException,
             java.text.ParseException {
-        System.out.println("choiceList");
         Iterator<JSONObject> it = jsonChoices.iterator();
         Boolean correct = null;
         String content = null;
@@ -216,7 +213,6 @@ public class QuizCreationServlet extends HttpServlet {
      * @return returns false if questionListFailed to build
      */
     private boolean validateAndBuildQuestionList(JSONArray jsonQuestions) throws IOException {
-        System.out.println("Questions");
         Iterator<JSONObject> it = jsonQuestions.iterator();
         String quesType = null;
         Float points = null;
