@@ -29,7 +29,7 @@
     </style>
 </head>
 <body>
-<a href="./list">Back</a>
+
 <h2> <%="Quiz Details"%></h2>
 
 <table>
@@ -42,6 +42,7 @@
     <%
         Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
         Map<Integer, Map<String, String>> questionList=(HashMap)request.getAttribute("questions");
+        int quizid = (int) request.getAttribute("quizid");
 
         for(Integer quesId:questionList.keySet()){
     %>
@@ -71,10 +72,16 @@
     %>
 </table>
 
-<form action="delete" method="POST">
-    <input type="hidden" id="quizId" value="${quizId}">
-    <input type="submit" value="Delete">
-</form>
+<a href="./list">Back</a>
+<c:url var="quizstats" value="./quizstats">
+    <c:param name="quizid" value="${quizid}"/>
+</c:url>
+<a href="${quizstats}">Quiz Statistics</a>
+
+<c:url var="delete" value="./delete">
+    <c:param name="quizid" value="${quizid}"/>
+</c:url>
+<a href="${quizstats}">Delete</a>
 
 </body>
 </html>
