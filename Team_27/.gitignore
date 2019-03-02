@@ -1,4 +1,7 @@
-*.class
-*.war
-*.classpath
-*/build/
+**.class
+**.war
+**.classpath
+**.DS_Store
+*/build
+*/bin
+*/classes
