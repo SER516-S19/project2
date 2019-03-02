@@ -3,6 +3,11 @@ import { Link, Route, Redirect } from 'react-router-dom';
 import '../index.css';
 import Routes from '../../../Routes';
 import Home from '../../../pages/Home/Home';
+import axios from "axios";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import '../index.css';
+
 class LogInForm extends Component {
 
 
@@ -12,6 +17,28 @@ class LogInForm extends Component {
     let password = this.refs.password.value;
     this.props.onSignIn(username, password);
   }
+
+  axios.post('http://localhost:8081/login', {
+  userPassword: password,
+  userEmailId: username
+})
+.then((response) => {
+      if (response.data.response != null) {
+        console.log(response);
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+        localStorage.setItem('type', response.data.response.role);
+        const {from} = this.props.location.state || {from: {pathname: "/home"}};
+        this.props.history.push(from)
+      }else{
+        this.setState({ error: response.data.errorMessage , loading: false });
+        const {from} = this.props.location.state || {from: {pathname: "/login"}};
+        this.props.history.push(from)
+      }
+    },
+    error => this.setState({ error, loading: false })
+);
+}
 
   render() {
     return (
@@ -47,65 +74,6 @@ class LogInForm extends Component {
           <div className={'alert alert-danger'}>{error}</div>
           }
         </form>
-    );
-  }
-}
-
-class SignInForm extends Component {
-  constructor() {
-    super();
-    localStorage.clear();
-    this.state = {
-      user: null,
-      type: -1
-    };
-
-  }
-
-
-  signIn(username, password) {
-    // This is where you would call Firebase, an API etc...
-    // calling setState will re-render the entire app (efficiently!)
-    var type = -1;
-    if (username.toString().localeCompare("Prof") === 0) {
-      type = 1;
-      this.setState({
-        type: type,
-        user: {
-          username,
-          password
-        }
-      });
-    } else {
-      type = 0;
-      this.setState({
-        type: type,
-        user: {
-          username,
-          password
-        }
-      });
-    }
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-    localStorage.setItem('type', type);
-  }
-
-  render() {
-    return (
-      <div>
-        {
-          
-            (this.state.user) ?
-                <Redirect to='/home' Component={Home}/>
-                :
-                <LogInForm onSignIn={this.signIn.bind(this)}/>
-
-
-        }
-      </div>
-
-
     );
   }
 }
