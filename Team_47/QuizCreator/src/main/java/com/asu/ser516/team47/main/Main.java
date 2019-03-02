@@ -56,6 +56,10 @@ public class Main {
                 "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                 "firstname NVARCHAR(50) NOT NULL,\n" +
                 "lastname NVARCHAR(50) NOT NULL,\n" +
+<<<<<<< HEAD
+=======
+                "session CHAR(16),\n" +
+>>>>>>> f3ae326
                 "hashedpass NVARCHAR(60) NOT NULL\n" +
                 ");",
                 "CREATE TABLE IF NOT EXISTS courses (\n" +
@@ -99,6 +103,10 @@ public class Main {
                         "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                         "firstname NVARCHAR(50) NOT NULL,\n" +
                         "lastname NVARCHAR(50) NOT NULL,\n" +
+<<<<<<< HEAD
+=======
+                        "session CHAR(16),\n" +
+>>>>>>> f3ae326
                         "hashedpass NVARCHAR(60) NOT NULL\n" +
                         ");",
                 "CREATE TABLE IF NOT EXISTS enrolled (\n" +

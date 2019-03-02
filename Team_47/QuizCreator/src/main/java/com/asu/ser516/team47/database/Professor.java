@@ -12,18 +12,32 @@ public class Professor {
     private String firstname;
     private String lastname;
     private String hashedpass;
+<<<<<<< HEAD
+=======
+    private String session;
+>>>>>>> f3ae326
 
     /**
      * @param username unique key for a professor's account
      * @param firstname professor's first name
      * @param lastname professor's last name
      * @param hashedpass professor's password (hashed)
+<<<<<<< HEAD
      */
     public Professor(String username, String firstname, String lastname, String hashedpass) {
+=======
+     * @param session professor's session information
+     */
+    public Professor(String username, String firstname, String lastname, String hashedpass, String session) {
+>>>>>>> f3ae326
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.hashedpass = hashedpass;
+<<<<<<< HEAD
+=======
+        this.session = session;
+>>>>>>> f3ae326
     }
 
     public String getUsername() {
@@ -57,4 +71,15 @@ public class Professor {
     public void setHashedpass(String hashedpass) {
         this.hashedpass = hashedpass;
     }
+<<<<<<< HEAD
+=======
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
+    }
+>>>>>>> f3ae326
 }

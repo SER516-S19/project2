@@ -12,18 +12,32 @@ public class Student {
     private String firstname;
     private String lastname;
     private String hashedpass;
+<<<<<<< HEAD
+=======
+    private String session;
+>>>>>>> f3ae326
 
     /**
      * @param username unique key for a student's account
      * @param firstname student's first name
      * @param lastname student's last name
      * @param hashedpass student's password (hashed)
+<<<<<<< HEAD
      */
     public Student(String username, String firstname, String lastname, String hashedpass) {
+=======
+     * @param session student's session information
+     */
+    public Student(String username, String firstname, String lastname, String hashedpass, String session) {
+>>>>>>> f3ae326
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.hashedpass = hashedpass;
+<<<<<<< HEAD
+=======
+        this.session = session;
+>>>>>>> f3ae326
     }
 
     public String getUsername() {
@@ -57,4 +71,15 @@ public class Student {
     public void setHashedpass(String hashedpass) {
         this.hashedpass = hashedpass;
     }
+<<<<<<< HEAD
+=======
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
+    }
+>>>>>>> f3ae326
 }
