@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Team76.Entity.GradeEntity;
 import Team76.Entity.QuizEntity;
+import Team76.Utilities.GradeModel;
 import Team76.Utilities.QuizInstructModel;
 import Team76.Utilities.StudentQuizModel;
 
@@ -43,6 +45,9 @@ public class StudentController extends HttpServlet {
 			request.getSession().setAttribute("quizzes", quizzes);
 			response.sendRedirect("StudentsQuiz.jsp");
 		} else if (action.equalsIgnoreCase("StartQuiz")) {
+			
+		}
+		else if (action.equalsIgnoreCase("AttemptQuiz")) {
 			System.out.println("**** start quiz");
 			String quizId = request.getParameter("quizId");
 			System.out.println("**** quiz id: " + quizId);
@@ -50,12 +55,29 @@ public class StudentController extends HttpServlet {
 			QuizInstructModel quizInstruct = null;
 			try {
 				quizInstruct = new QuizInstructModel();
+				
 				quiztaken = quizInstruct.getQuiz(quizId);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}			
 			request.getSession().setAttribute("quiztaken", quiztaken);
 			response.sendRedirect("QuizInstruct.jsp");	
+			}
+			else if (action.equalsIgnoreCase("grade")) {
+				System.out.println("**** show grade");
+				String studentGrade = request.getParameter("grade");
+				System.out.println("**** grade: " + studentGrade);
+				GradeEntity grade = null;
+				GradeModel showGrade = null;
+				try {
+					showGrade = new GradeModel();
+					grade = showGrade.getGrade(studentGrade);
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}			
+				request.getSession().setAttribute("grade", grade);
+				response.sendRedirect("Grade.jsp");	
 		} else {
 			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
