@@ -1,14 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
-  User: amankaushik
-  Date: 18/2/19
-  Time: 2:03 PM
-  To change this template use File | Settings | File Templates.
+  Modified by: Archana Madhavan
+  Date: 28/2/19
+  Description: Displays the quiz details for quiz selected.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
 <html>
 <head>
-    <title>view-details</title>
+    <title>Quiz details</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -28,66 +32,36 @@
     </style>
 </head>
 <body>
-<h2> <%="Quiz"%></h2>
+<h2> <%="Quiz Details"%></h2>
+
 <table>
     <tr>
+        <th>Question Number</th>
         <th>Questions</th>
-        <th>Options</th>
         <th>Score</th>
     </tr>
+
+    <%
+        Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
+        Map<Integer, Map<String, String>> questionList=(HashMap)request.getAttribute("questions");
+
+        for(Integer quesId:questionList.keySet()){
+    %>
     <tr>
-        <td>Static Data</td>
-        <td>Static Data</td>
-        <td>Static Data</td>
-    </tr>
-    <tr>
-        <td><span>Question #1<span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>10</td>
-    </tr>
-    <tr>
-        <td><span>Question #2 </span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>5</td>
-    </tr>
-    <tr>
-        <td><span > Question #3 </span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>15</td>
-    </tr>
-    <tr>
-        <td><span > Question #4 </span></td>
-        <td>
-            <ol type = 'a'>
-                <li>First</li>
-                <li>Second</li>
-                <li>Third</li>
-                <li>Fourth</li>
-            </ol>
-        </td>
-        <td>10</td>
-    </tr>
+
+        <td><%=quesId%></td>
+        <td><%=questionList.get(quesId).get("desc")%></td>
+        <td><%=questionList.get(quesId).get("score")%></td></tr>
+
+      <%
+        for(String answer: answers.get(quesId)) {
+      %>
+            <tr><td><%=answer%></td></tr>
+      <%
+      }
+    }
+    %>
 </table>
+<a href="./list">Back</a>
 </body>
 </html>
