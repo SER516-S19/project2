@@ -100,21 +100,36 @@
     
     
 
-    var header = $('<table><tr><th><div align="left">Question ' + (index + 1) + ':</th></tr><br>');
+   var header = $('<table><tr><th><div align="left">Question ' + (index + 1) + ':</th></tr><br>');
     qElement.append(header);
-    
+
     var question = $('<tr><br>').append(questions[index].question);
     qElement.append(question);
-    
-    var radioButtons = createRadios(index);
-    qElement.append(radioButtons);
-    
+
+    if(questions[index].ismultipleattempt){
+        var checkBox = createCheck(index);
+    }
+    else{
+        var radioButtons = createRadios(index);
+        qElement.append(radioButtons);
+    }
     return qElement;
+    }
 
-
-
-
-  }
+      // Creating a list of the Check Boxes for answer choices
+    function createCheck(index) {
+    var radioList = $('<ul>');
+    var item;
+    var input = '';
+    for (var i = 0; i < questions[index].choices.length; i++) {
+      item = $('<li>');
+      input = '<input type="checkbox" id="answer" value=' + i + ' />';
+      input += questions[index].choices[i];
+      item.append(input);
+      radioList.append(item);
+    }
+    return radioList;
+    }
   
   // Creating a list of the radio buttons for answer choices
   function createRadios(index) {
