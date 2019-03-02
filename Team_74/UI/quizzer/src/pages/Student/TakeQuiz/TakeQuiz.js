@@ -4,10 +4,12 @@ import Result from '../../../components/Result';
 import Quiz from '../../../components/Quiz';
 import Timer from "react-compound-timer";
 import axios from "axios";
+import jsonfile from'jsonfile';
 
+var file = 'data.json'
+var obj = {name: 'JP'}
 
 class TakeQuiz extends Component {
-
     /**Constructor for the main TakeQuiz Class*/
     constructor(props) {
         super(props);
@@ -67,13 +69,11 @@ class TakeQuiz extends Component {
     /**
      * shuffleArray would randomise the order of questions*/
     shuffleArray(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-        
+        var currentIndex = array.length, temporaryValue, randomIndex; 
         while (0 !== currentIndex) {
             // Pick a remaining element...
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
-
             // And swap it with the current element.
             temporaryValue = array[currentIndex];
             array[currentIndex] = array[randomIndex];
@@ -101,7 +101,6 @@ class TakeQuiz extends Component {
     setNextQuestion() {
         const counter = this.state.counter + 1;
         const questionSerial = this.state.questionSerial + 1;
-
         this.setState({
             counter: counter,
             questionId: this.state.quizQuestions[counter].id,
@@ -115,9 +114,7 @@ class TakeQuiz extends Component {
     }
 
     setPreviousQuestion() {
-
-        console.log(this.state.counter);
-        
+        console.log(this.state.counter); 
         if(this.state.questionSerial > 1) {
             const counter = this.state.counter - 1;
             const questionSerial = this.state.questionSerial - 1;
@@ -139,13 +136,16 @@ class TakeQuiz extends Component {
         const answersCountKeys = Object.keys(answersCount);
         const answersCountValues = answersCountKeys.map((key) => answersCount[key]);
         const maxAnswerCount = Math.max.apply(null, answersCountValues);
-
         return answersCountKeys.filter((key) => answersCount[key] === maxAnswerCount);
     }
 
     setResults (result) {
         console.log(this.state.answer)
-
+        function jsonfile(file){
+                jsonfile.writeFile(file, obj, function (err) {
+                    console.error(err);
+                  });
+        };
         if (result.length === 1) {
             this.setState({ result: result[0] });
         } else {
@@ -169,12 +169,10 @@ class TakeQuiz extends Component {
             <div>
                 <div className="Timer">
                     <Timer
-
                         checkpoints={[
                             {
                                 time: 1000,
                                 callback: () => {
-
                                     window.onbeforeunload = function() {
                                         return "Data will be lost if you leave the page, are you sure?";
                                     };

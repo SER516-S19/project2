@@ -1,20 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import './Toolbar.css'
 import { Container, Row, Col, Label, Button } from 'reactstrap';
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Link, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import App from '../../App';
 
 
-const Toolbar = props => {
-  const handleClick = () => {
+class Toolbar extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirect : false
+    }
+  }
+
+  state = {
+    redirect: false
+  }
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
       localStorage.clear();
-      return(
-        <Redirect to = '/login'/>
-      );
-  };
+      return <Redirect to='/' />
+    }
+  }
 
-  return(
-    <Container>
+  render(){
+    return(
+      <Container>
       <Row>
       <header className="toolbar">
       <nav className="toolbar__navigation">
@@ -24,7 +42,7 @@ const Toolbar = props => {
       </div>
       <div className="space"></div>
       <div className="toolbar__logo">
-      <a href="/home">{props.title}</a>
+      <a href="/home">{this.props.title}</a>
       </div>
 
       <div className="spacer" />
@@ -36,8 +54,9 @@ const Toolbar = props => {
           <li>
             <a href="/dash">Dashboard</a>
           </li>
+          {this.renderRedirect()}
           <li>
-            <button onClick={handleClick}> Sign Out </button>>
+            <button onClick={this.setRedirect}> Sign Out </button>>
           </li>
         </ul>
       </div>
@@ -47,7 +66,9 @@ const Toolbar = props => {
       </Row>
     </Container>
 
-  );
+    )
   }
+
+}
 
 export default Toolbar

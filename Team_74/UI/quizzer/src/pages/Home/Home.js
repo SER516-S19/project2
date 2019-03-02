@@ -94,9 +94,11 @@ class Home extends Component {
                             :
 
                             <div>
+                                <Toolbar title="Student's Portal"/>
+
                                 <CardBody>
                                     <center>
-                                    <h3>Student Portal</h3>
+                                    <h3>Welcome Student</h3>
                                     <h5>Click on the Quiz to be completed</h5>
                                     <br></br></center>
 
