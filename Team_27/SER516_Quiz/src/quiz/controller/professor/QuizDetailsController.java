@@ -83,6 +83,7 @@ public class QuizDetailsController extends HttpServlet {
 						
 						String quizId = quizDetailsDao.getQuizId(title);
 						req.getSession().setAttribute("quizId", quizId);
+						req.getSession().setAttribute("quizTitle", title);
 						req.getRequestDispatcher("/updateQuestions").forward(req, res);
 					}
 
