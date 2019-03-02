@@ -45,11 +45,7 @@
 <div align="center" >
 	<H2>Please Edit the question</H2>
 </div>
-
-
-
-		
-		
+				
 	 <c:set var="quesId" value="${requestScope.quesId}"/>
   	<c:forEach items="${requestScope.queAnsData}" var="questionAnsList">
  	

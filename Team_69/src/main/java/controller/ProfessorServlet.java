@@ -60,10 +60,12 @@ public class ProfessorServlet extends HttpServlet {
 			String id = request.getParameter("id");
 			String quizName = request.getParameter("quizName");
 			int quizId = Integer.parseInt(id);
+			List<Quiz> quizList = professorServices.getAllQuizzes();
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
 			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
 			request.setAttribute("quizName", quizName);
+			request.setAttribute("quizList", quizList);
 			request.setAttribute("queAnsData", queAnsData);
 			rd.forward(request, response);	
 		}
