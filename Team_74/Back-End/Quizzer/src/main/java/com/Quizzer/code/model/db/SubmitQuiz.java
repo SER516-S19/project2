@@ -20,7 +20,6 @@ public class SubmitQuiz implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	private String submissionId;
 	private String id;
 	private String studentId;
 	private Quiz quiz;
@@ -30,13 +29,12 @@ public class SubmitQuiz implements Serializable {
 	@CreatedDate
 	private Date date;
 
-	public SubmitQuiz(String id, String studentId, Quiz quiz, String quizId, int marksAchieved, Date date) {
-		super();
+	public SubmitQuiz() {
+
 	}
 
-	public SubmitQuiz(String submissionId, String id, String studentId, Quiz quiz, String quizId, int marksAchieved) {
+	public SubmitQuiz(String id, String studentId, Quiz quiz, String quizId, int marksAchieved) {
 		super();
-		this.submissionId = submissionId;
 
 		this.id = id;
 		this.studentId = studentId;
@@ -45,14 +43,6 @@ public class SubmitQuiz implements Serializable {
 		this.marksAchieved = marksAchieved;
 
 		this.date = date;
-	}
-
-	public String getSubmissionId() {
-		return submissionId;
-	}
-
-	public void setSubmissionId(String submissionId) {
-		this.submissionId = submissionId;
 	}
 
 	public String getId() {
@@ -103,5 +93,4 @@ public class SubmitQuiz implements Serializable {
 		this.date = date;
 	}
 
-	
 }

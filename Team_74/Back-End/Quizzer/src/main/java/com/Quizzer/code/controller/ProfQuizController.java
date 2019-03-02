@@ -44,6 +44,7 @@ public class ProfQuizController {
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 
 		try {
+
 			quizService.addQuiz(quiz);
 			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, null),
 					HttpStatus.ACCEPTED);
@@ -95,6 +96,5 @@ public class ProfQuizController {
 					HttpStatus.ACCEPTED);
 		}
 	}
-	
 
 }

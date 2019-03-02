@@ -41,6 +41,7 @@ public class ProfQuizService {
 	public void addQuiz(Quiz quiz) throws Prof_AddQuiz_Exception {
 
 		if (quiz != null) {
+			quiz.setId(null);
 			List<Question> listQuestion = quiz.getQuestions();
 			try {
 				quizRepo.insert(quiz);
@@ -70,7 +71,7 @@ public class ProfQuizService {
 			int iLengthQuestions = listQuestion.size();
 			if (iLengthQuestions > 0) {
 				for (Question question : listQuestion) {
-
+					question.setId(null);
 					if (question.getMarks() == 0)
 						throw new Prof_AddQuiz_Exception(
 								"The mark for question with text: " + question.getQuestionText() + " is not entered");
