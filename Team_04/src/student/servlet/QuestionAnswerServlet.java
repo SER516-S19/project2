@@ -241,8 +241,6 @@ public class QuestionAnswerServlet extends HttpServlet {
             }
             else if (action.equalsIgnoreCase("login"))
             {
-                //view = "Instructions.jsp";
-                System.out.println("view"+view);
                 if(request.getParameter("userTypeBtn").equalsIgnoreCase("student")) {
                     request.setAttribute("login", "success");
                     view = "Instructions.jsp";
