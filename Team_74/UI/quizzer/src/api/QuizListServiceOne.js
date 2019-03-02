@@ -2,10 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import {NavLink} from "react-router-dom";
 
-class QuizListService extends React.Component {
+class QuizListServiceOne extends React.Component {
     state = {
         quizList: []
     }
+
     componentDidMount() {
         var self = this;
         axios.get("http://localhost:8081/prof/quiz")
@@ -21,6 +22,7 @@ class QuizListService extends React.Component {
                 console.log(self.state.quizList[0].quizName);
             })
     }
+
     render() {
         return (
             <div>
@@ -30,17 +32,17 @@ class QuizListService extends React.Component {
     }
 }
 
-class QuizList extends React.Component{
+class QuizList extends React.Component {
     render() {
         return (
             <div className="container">
                 <ul className="list-group text-center">
                     {
-                        Object.keys(this.props.quizList).map(function(key) {
+                        Object.keys(this.props.quizList).map(function (key) {
                             return <li className="list-group-item list-group-item-info">
-                                <NavLink exact activeClassName="current" to={'/takeQuiz?quizId='+this.props.quizList[key].quizId.toString()}>
-                                    {this.props.quizList[key].quizName}
-                                </NavLink></li>
+
+                                {this.props.quizList[key].quizName}
+                            </li>
                         }.bind(this))
                     }
                 </ul>
@@ -49,4 +51,4 @@ class QuizList extends React.Component{
     }
 }
 
-export default QuizListService;
+export default QuizListServiceOne;
