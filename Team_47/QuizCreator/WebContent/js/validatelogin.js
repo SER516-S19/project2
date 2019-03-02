@@ -1,3 +1,21 @@
+/**
+ * Javascript for login.jsp
+ *
+ * @author  Yu-Ting Tsao
+ * @version 1.0
+ * @since   2019/3/2
+ */
+var params = window.location.search
+.substring(1)
+.split("&")
+.map(v => v.split("="))
+.reduce((map, [key, value]) => map.set(key, decodeURIComponent(value)), new Map())
+
+if (params.get("error") == "true") {
+	document.getElementById("wrong").style.visibility = "visible";
+} else {
+	document.getElementById("wrong").style.visibility = "hidden";
+}
 
 function loginCheck() {
 	
