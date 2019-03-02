@@ -52,17 +52,31 @@
             padding-bottom: 30px;
         }
     </style>
-
+    <%
+        String userName = request.getAttribute("userEntName").toString();
+        String userStatus = request.getAttribute("userStatus").toString();
+    %>
+    <script type="text/javascript">
+        var userStat =  "<%=userStatus%>";
+        if(userStat === "returningUser")
+        {
+                alert("User already exists, please login");
+        }
+    </script>
 </head>
 <body style="background-color: #4a154b">
 <div class="container">
     <div class="col-xs-12 col-sm-8 col-md-4 col-lg-4 col-centered">
         <div class="jumbotron">
             <h3>Please login</h3>
+
+            
+
             <form method = "post">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <input id="email" name="username" class="form-control" placeholder="Enter Username">
+
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -97,5 +111,6 @@
     </div>
 
 </div>
+
 </body>
 </html>

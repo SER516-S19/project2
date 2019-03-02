@@ -49,11 +49,13 @@ public class InputValidation {
             DataManager.getInstance().
                     executeUpdateQuery(updateQuery, userName, passWord, userType, true);
             System.out.println("Username not exists");
+            return "newUser";
         }
         else
         {
             System.out.println("Username exists");
+            return "returningUser";
         }
-        return "success";
+
     }
 }
