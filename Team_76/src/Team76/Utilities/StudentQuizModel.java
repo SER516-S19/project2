@@ -35,7 +35,7 @@ public class StudentQuizModel {
 
 	public List<QuizEntity> list() {
 		Date today=new Date();
-		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 		String simpleToday = dateFormat.format(today);		
 		ResultSet resultSet = null;
 		List<QuizEntity> quizzes= new LinkedList<>();		
@@ -44,7 +44,6 @@ public class StudentQuizModel {
 			stmt.executeUpdate("use " + dbname);
 			String sql ="SELECT * FROM quiz WHERE status = 'valid' AND DueDate >= "+ simpleToday;
 			resultSet = stmt.executeQuery(sql);
-
 			while (resultSet.next()) {
 				QuizEntity quiz = new QuizEntity();
 				quiz.setProfessorId(resultSet.getInt("ProfId"));
@@ -68,7 +67,6 @@ public class StudentQuizModel {
 		    }
 		}
 		return quizzes;
-
 	}
 
 }

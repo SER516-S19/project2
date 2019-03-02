@@ -55,7 +55,11 @@
         studentResponseJSON = '<%=session.getAttribute("studentResponseJSON")%>';
         var studentResponseObj = JSON.parse(studentResponseJSON);
         if(!studentResponseObj.isPublished){
-            alert("This quiz is not published yet.");
+            if (confirm("This quiz has not been published yet. Go back")) {
+                history.go(-1);
+            } else {
+                history.go(-1);
+            }
             return;
         }
         var hms = studentResponseObj.quizTimeLimit;
