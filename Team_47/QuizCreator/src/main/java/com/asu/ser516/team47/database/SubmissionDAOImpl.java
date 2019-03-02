@@ -117,6 +117,43 @@ public class SubmissionDAOImpl implements SubmissionDAO {
     }
 
     /**
+     * Gets all submissions for an enrollment for a quiz
+     *
+     * @param enrolled_fk enrolled_id
+     * @param quiz_fk     quiz_id
+     * @return all submissions for an enrollment for a quiz
+     */
+    public List<Submission> getEnrolledQuizSubmissions(int enrolled_fk, int quiz_fk) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Submission> rval = new ArrayList<>();
+
+        try {
+            conn = DriverManager.getConnection(__jdbcUrl);
+
+            stmt = conn.prepareStatement("select * from submissions where enrolled_fk = ? and quiz_fk = ?");
+            stmt.setInt(1, enrolled_fk);
+            stmt.setInt(2,quiz_fk);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4), rs.getDate(5), rs.getFloat(6),
+                        rs.getInt(7)));
+            }
+        }
+        catch (Exception se) {
+            se.printStackTrace();
+            return null;
+        }
+        finally {
+            DbUtils.closeConnections(rs, stmt, conn);
+        }
+
+        return rval;
+    }
+
+    /**
      * Gets a submission based on it's submission_id
      * @param submission_id the id of the submission_id
      * @return a submission with the submission_id
