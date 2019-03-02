@@ -14,35 +14,34 @@ import Team76.Entity.QuizEntity;
 
 /**
  * retrieve quiz data from mysql database
- * author: Hongfei Ju
- * version: 1.1
+ * author: Hongfei Ju version: 1.1
  */
 public class StudentQuizModel {
 	private DatabaseConnection connect = null;
-	private Connection conn = null;	
+	private Connection conn = null;
 	private Statement stmt = null;
-	private String dbname = "ser516p2";	
-	
-	public StudentQuizModel(){
+	private String dbname = "ser516p2";
+
+	public StudentQuizModel() {
 		try {
 			connect = new DatabaseConnection();
 			conn = connect.establishConnection();
-		    dbname = "ser516p2";   
+			dbname = "ser516p2";
 		} catch (Throwable t) {
-		    t.printStackTrace();
+			t.printStackTrace();
 		}
 	}
 
 	public List<QuizEntity> list() {
-		Date today=new Date();
+		Date today = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		String simpleToday = dateFormat.format(today);		
+		String simpleToday = dateFormat.format(today);
 		ResultSet resultSet = null;
-		List<QuizEntity> quizzes= new LinkedList<>();		
-		try {			
+		List<QuizEntity> quizzes = new LinkedList<>();
+		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate("use " + dbname);
-			String sql ="SELECT * FROM quiz WHERE status = 'valid' AND DueDate >= "+ simpleToday;
+			String sql = "SELECT * FROM quiz WHERE status = 'valid' AND DueDate >= " + simpleToday;
 			resultSet = stmt.executeQuery(sql);
 			while (resultSet.next()) {
 				QuizEntity quiz = new QuizEntity();
@@ -58,13 +57,14 @@ public class StudentQuizModel {
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}  finally {
-		    try {
-		    	if (stmt != null) stmt.close();
-		    } catch (SQLException se2) {
-		    	se2.printStackTrace();
-		    	System.out.println("Not all DB resources freed!");
-		    }
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+				se2.printStackTrace();
+				System.out.println("Not all DB resources freed!");
+			}
 		}
 		return quizzes;
 	}

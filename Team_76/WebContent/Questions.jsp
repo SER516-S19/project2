@@ -55,16 +55,21 @@ body {
 </head>
 <body>
 	<%
-        String uName = (String) session.getAttribute("uName");
-        String isSessionValid = (String) session.getAttribute("validSession");
-        if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
-                || uName == null || uName.isEmpty()) {
-            response.sendRedirect("Login.jsp");
-        }
-    %>
+		String uName = (String) session.getAttribute("uName");
+		String isSessionValid = (String) session.getAttribute("validSession");
+		if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
+				|| uName == null || uName.isEmpty()) {
+			response.setHeader("Cache-Control", "no-cache");
+			response.setHeader("Cache-Control", "no-store");
+			response.setHeader("Pragma", "no-cache");
+			response.setDateHeader("Expires", 0);
+			session.invalidate();
+			response.sendRedirect("Login.jsp");
+		}
+	%>
 	<ul>
 		<li><a href="ProfessorDash.jsp">DASHBOARD</a></li>
-		<li style="float:right">
+		<li style="float: right">
 			<div style="float: center">
 				<form action="LoginController" method="post">
 					<input type="hidden" name="action" value="logoff"> <input
@@ -113,10 +118,10 @@ body {
 				class="btn btn-primary" type="submit" name="Continue"
 				value="Continue">
 		</form>
-		<br/>
+		<br />
 		<form action="ProfessorController" method="post">
-			<input type="hidden" name="action" value="Submit"> 
-			<input class="btn btn-primary" type="submit" name="Submit" value="Submit">
+			<input type="hidden" name="action" value="Submit"> <input
+				class="btn btn-primary" type="submit" name="Submit" value="Submit">
 		</form>
 	</form>
 </body>

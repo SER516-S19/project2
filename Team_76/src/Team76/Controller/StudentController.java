@@ -15,19 +15,19 @@ import Team76.Utilities.StudentQuizModel;
 
 /**
  * Servlet implementation class StudentController
- * author: Hongfei Ju, Xiangwei Zheng
- * version: 1.2
+ * author: Hongfei Ju, Xiangwei
+ * Zheng version: 1.2
  */
 @WebServlet("/StudentController")
 public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public StudentController() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public StudentController() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if (action == null || action.isEmpty()) {
 			response.sendRedirect("login.jsp");
@@ -37,9 +37,9 @@ public class StudentController extends HttpServlet {
 			try {
 				AttemptQuiz = new StudentQuizModel();
 				quizzes = AttemptQuiz.list();
-			}catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			}			
+			}
 			request.getSession().setAttribute("quizzes", quizzes);
 			response.sendRedirect("StudentsQuiz.jsp");
 		} else if (action.equalsIgnoreCase("StartQuiz")) {
@@ -49,18 +49,19 @@ public class StudentController extends HttpServlet {
 			try {
 				quizInstruct = new QuizInstructModel();
 				quiztaken = quizInstruct.getQuiz(quizId);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			}			
+			}
 			request.getSession().setAttribute("quiztaken", quiztaken);
-			response.sendRedirect("QuizInstruct.jsp");	
+			response.sendRedirect("QuizInstruct.jsp");
 		} else {
 			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -3,9 +3,8 @@ package Team76.Entity;
 import java.util.Date;
 
 /**
- * Quiz object 
- * author: Hongfei Ju 
- * version: 2.0
+ * Quiz object
+ * author: Hongfei Ju version: 2.0
  */
 public class QuizEntity {
 	private int professorId = 0;
@@ -15,12 +14,12 @@ public class QuizEntity {
 	private int timeLimit = 0;
 	private String quizType = "";
 	private String quizTitle = null;
-	private String quizInstruct= null;
-	
+	private String quizInstruct = null;
+
 	public String getQuizInstruct() {
 		return quizInstruct;
 	}
-	
+
 	public void setQuizInstruct(String quizInstruct) {
 		this.quizInstruct = quizInstruct;
 	}

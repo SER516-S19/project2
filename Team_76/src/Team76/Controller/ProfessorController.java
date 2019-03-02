@@ -84,8 +84,7 @@ public class ProfessorController extends HttpServlet {
 			response.sendRedirect("ProfessorDash.jsp");
 		}
 		if (action.equals("Continue1")) {
-			if (request.getParameter("qtype").equals("NonGraded")
-					|| request.getParameter("qtype").equals("Practice")) {
+			if (request.getParameter("qtype").equals("NonGraded") || request.getParameter("qtype").equals("Practice")) {
 				request.setAttribute("visibilty", "invisible");
 			}
 			try {

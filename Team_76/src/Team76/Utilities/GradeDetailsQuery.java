@@ -20,6 +20,7 @@ public class GradeDetailsQuery {
 	 * The database connection to our JSP page
 	 * 
 	 * @param1 quiztitle holds the title of the quiz
+	 * 
 	 * @param2 studentName holds the name of the student
 	 */
 	DatabaseConnection connect = new DatabaseConnection();
