@@ -1,6 +1,6 @@
 package com.asu.ser516.team47.servlet;
 
-import com.asu.ser516.team47.database.Question;
+import com.asu.ser516.team47.database.*;
 import com.asu.ser516.team47.utils.JSONRequestParser;
 import com.asu.ser516.team47.utils.ServletValidation;
 import org.json.simple.JSONArray;
@@ -23,6 +23,8 @@ import java.util.*;
  */
 @WebServlet(name = "QuizCreationServlet")
 public class QuizCreationServlet extends HttpServlet {
+    //Garbage value is used where needed for constructors where the value doesn't matter.
+    final private int GARBAGE_VALUE = -1;
     private String title = null;
     private Integer course_id = null;
     private String instructions = null;
@@ -35,9 +37,16 @@ public class QuizCreationServlet extends HttpServlet {
     private String quiz_group = null;
     private Double total_points = null;
     private JSONArray jsonQuestions = null;
-    private List<Question> questions = new ArrayList<>();
-    private Map<Question, List<JSONObject>> choiceJsonsForQuestions = new HashMap<>();
+    private List<Question> questionList = null;
+    private List<List<Choice>> choiceTable = null;
 
+    /**
+     * Take newly submitted quiz from professor and insert into database.
+     *
+     * @param req HttpRequest containing json form of quiz data
+     * @param res HttpResponse
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         JSONObject jsonQuiz = null;
@@ -45,8 +54,12 @@ public class QuizCreationServlet extends HttpServlet {
         //Validate all required fields are present
         try {
             jsonQuiz = JSONRequestParser.getJsonFromRequest(req);
-        } catch (ParseException pe){
+        } catch (ParseException pe) {
             res.sendError(400, "Could not parse form");
+            return;
+        }
+        if (!validateQuizFields(jsonQuiz)){
+            res.sendError(400, "Invalid fields.");
             return;
         }
         //as close date is optional, verify separately
@@ -57,12 +70,24 @@ public class QuizCreationServlet extends HttpServlet {
             dateStr = (String) jsonQuiz.get("date_close");
             cal = javax.xml.bind.DatatypeConverter.parseDateTime(dateStr);
             date_close = cal.getTime();
+            if (date_open.after(date_close)) {
+                res.sendError(400, "Nice try, you monster.");
+                return;
+            }
         } catch (ClassCastException ex) {
             res.sendError(400, "Invalid format for dates.");
+            return;
         } catch (NullPointerException npe) {
-            //Date not included.
+            //Date not included: open immediately and use no close date.
         }
         if (date_open == null) date_open = new Date();
+        Quiz qz = new Quiz(GARBAGE_VALUE, title, course_id, instructions, shuffle, time_limit, date_open, date_close,
+                quiz_type, attempts, quiz_group, total_points);
+        if (submitQuiz(qz, questionList, choiceTable)) {
+            res.setStatus(204);
+        } else {
+            res.sendError(500, "problem entering quiz into db.");
+        }
     }
 
     /**
@@ -90,14 +115,138 @@ public class QuizCreationServlet extends HttpServlet {
             return false;
         }
         if (title == null || course_id == null || instructions == null || shuffle == null ||
-                quiz_group == null || total_points == null || questions == null){
+                quiz_group == null || total_points == null || jsonQuestions == null){
             return false;
         }
         try {
-            return ServletValidation.validateQuestionArray(jsonQuestions);
+            return validateAndBuildQuestionList(jsonQuestions);
         } catch (IOException ioe) {
             return false;
         }
+    }
+
+    /**
+     * Submits a quiz to the database with foreign key linked questions
+     * and foreign key linked choices to the questions.
+     *
+     * @param quiz          Quiz business object
+     *                      (quiz_id will be assigned)
+     * @param questions     List of question business objects.
+     *                      Index order must match choices.
+     *                      (question_id and quiz_fk will be assigned)
+     * @param choices       List of lists of choice business objects.
+     *                      First axis index order must match questions.
+     *                      (choice_id and question_fk will be assigned)
+     * @return true if everything submitted has been enetered into database.
+     */
+    private boolean submitQuiz(Quiz quiz, List<Question> questions,
+                               List<List<Choice>> choices) {
+        if (choices.size() != questions.size()) {
+            throw new InputMismatchException("Number of questions " +
+                    "does not match number of sets of choices");
+        }
+        QuizDAOImpl quizDAO = new QuizDAOImpl();
+        QuestionDAOImpl questionDAO = new QuestionDAOImpl();
+        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
+        int quiz_id;
+        int question_id;
+        boolean hasSucceeded = true;
+        if(quizDAO.insertQuiz(quiz)) {
+            quiz_id = quiz.getQuiz_id();
+            for (int i = 0; i < questions.size(); i++) {
+                Question question = questions.get(i);
+                question.setQuiz_fk(quiz_id);
+                if(questionDAO.insertQuestion(question)) {
+                    question_id = question.getQuestion_id();
+                    List<Choice> questionChoices = choices.get(i);
+                    for (Choice choice : questionChoices) {
+                        choice.setQuestion_fk(question_id);
+                        if (!choiceDAO.insertChoice(choice)) {
+                            hasSucceeded = false;
+                            break;
+                        }
+                    }
+                    if(!hasSucceeded) {
+                        break;
+                    }
+                } else {
+                    hasSucceeded = false;
+                    break;
+                }
+            }
+        } else {
+            hasSucceeded = false;
+        }
+        return hasSucceeded;
+    }
+
+    /**
+     * validates that JSONArray of choices have all necessary info for choice creation
+     *
+     * @param jsonChoices json array containing info needed to build a list of choices for a question.
+     * @return returns null if failed to build choice list for a question.
+     */
+    public List<Choice> validateAndBuildChoiceList(JSONArray jsonChoices) throws IOException,
+            java.text.ParseException {
+        Iterator<JSONObject> it = jsonChoices.iterator();
+        Boolean correct = null;
+        String content = null;
+        List<Choice> choices = new ArrayList<>();
+        try {
+            while (it.hasNext()){
+                JSONObject choice = it.next();
+                correct = (Boolean) choice.get("correct");
+                content = (String) choice.get("content");
+                if (correct == null || content == null) return null;
+                Choice ch = new Choice(GARBAGE_VALUE, GARBAGE_VALUE, correct, content);
+                choices.add(ch);
+            }
+        } catch (ClassCastException ex) {
+            return null;
+        }
+        return choices;
+    }
+
+    /**
+     * validates that JSONArray of questions have all necessary info for question creation
+     *
+     * @param jsonQuestions json array containing info needed to build quizzes
+     * @return returns false if questionListFailed to build
+     */
+    private boolean validateAndBuildQuestionList(JSONArray jsonQuestions) throws IOException {
+        Iterator<JSONObject> it = jsonQuestions.iterator();
+        String quesType = null;
+        Float points = null;
+        String content = null;
+        try {
+            while (it.hasNext()) {
+                JSONObject jsonQuestion = it.next();
+                quesType = (String) jsonQuestion.get("quesType");
+                if (!(quesType.equals("MC") || quesType.equals("MA"))) {
+                    return false;
+                }
+                points = ((Number) jsonQuestion.get("points")).floatValue();
+                content = (String) jsonQuestion.get("content");
+                JSONArray choicesJson = (JSONArray) jsonQuestion.get("choices");
+                if (choicesJson == null || choicesJson.isEmpty()){
+                    return false;
+                }
+                List<Choice> choices = validateAndBuildChoiceList(choicesJson);
+                if (choices == null) {
+                    return false;
+                }
+                choiceTable.add(choices);
+                Question q = new Question(GARBAGE_VALUE, GARBAGE_VALUE, quesType, points, content);
+                questionList.add(q);
+            }
+        } catch (java.text.ParseException | IOException | ClassCastException ex){
+            return false;
+        }
+
+        if (quesType == null || points == null || content == null){
+            return false;
+        }
+        return true;
     }
 }
 

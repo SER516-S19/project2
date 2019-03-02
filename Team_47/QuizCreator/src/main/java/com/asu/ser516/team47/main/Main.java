@@ -23,9 +23,11 @@ public class Main {
         Context context = tomcat.addWebapp(context_Path, base_path);
 
         String servletName = "SubmissionServlet";
+        String quizCreationServletName = "QuizCreationServlet";
 
         tomcat.addServlet(context_Path, servletName, new SubmissionServlet());
         context.addServletMappingDecoded("/submit", servletName);
+        context.addServletMappingDecoded("/createQuiz", quizCreationServletName);
 
         Connection conn = null;
         try {
