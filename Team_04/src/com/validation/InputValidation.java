@@ -7,29 +7,11 @@ import student.dto.UserData;
 import java.util.List;
 
 public class InputValidation {
-    public void loginValidation(String username, String password)
-    {
-        if (username.equalsIgnoreCase("") || (password.equalsIgnoreCase(""))
-        ) {
-            System.out.println("Username");
-
-        }
-        else
-        {
-            System.out.println("Password set");
-        }
-    }
-
-
 
     public String loginValidation(String userName, String passWord, String userType)
     {
         List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
-                "SELECT udername,password  from userDetails where userName='"+userName+"'");
-
-
-
-        //String updateQuery = "INSERT INTO userDetails(userName,password,userType,isActive) VALUES(?,?,?,?)";
+                "SELECT userName,password  from userDetails where userName='"+userName+"' and password = '"+passWord+"'");
 
         if (userExists != null || !userExists.isEmpty()){
 
@@ -67,11 +49,13 @@ public class InputValidation {
             DataManager.getInstance().
                     executeUpdateQuery(updateQuery, userName, passWord, userType, true);
             System.out.println("Username not exists");
+            return "newUser";
         }
         else
         {
             System.out.println("Username exists");
+            return "returningUser";
         }
-        return "success";
+
     }
 }
