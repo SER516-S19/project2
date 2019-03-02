@@ -3,8 +3,10 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.query.NativeQuery;
 import bean.CalculatedScores;
 import bean.HibernateUtil;
+
 
 /**
  * This is a helper for implementing DAO pattern
@@ -36,5 +38,25 @@ public class CalculatedScoresDAO {
 		}
 		return score;
 	}
-	
+
+	public void insertCalculatedScore(CalculatedScores calculatedScores){
+		Transaction transaction = null;
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			session.saveOrUpdate(calculatedScores);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		finally {
+			session.close();
+		}
+
+	}
+
 }
