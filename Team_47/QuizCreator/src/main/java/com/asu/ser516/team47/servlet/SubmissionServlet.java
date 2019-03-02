@@ -35,7 +35,6 @@ import org.json.simple.parser.ParseException;
  * @version 1.1
  * @since 2019-28-02
  */
-@WebServlet(name = "SubmissionServlet")
 public class SubmissionServlet extends HttpServlet {
 
     private int submissionID = 0;
@@ -72,7 +71,23 @@ public class SubmissionServlet extends HttpServlet {
         httpErrorMessage = "";
         JSONObject requestForm;
         ServletValidation validation = new ServletValidation();
-
+        
+        String radioBox = request.getParameter("identity");
+    	String username = request.getParameter("username");
+    	String password = request.getParameter("password");
+    	System.out.print("value: ");
+    	System.out.println(radioBox);
+    	System.out.println(username);
+    	System.out.println(password);
+    	request.getRequestDispatcher("/myquizzes.jsp").forward(request,response);
+//        if(radioBox.equals("student")) {
+//        	StudentDAOImpl studentDAO = new StudentDAOImpl();
+//        	Student student = studentDAO.getStudent(username);
+//        	if(student!=null) {
+//        		
+//        	}
+//        }
+        
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
