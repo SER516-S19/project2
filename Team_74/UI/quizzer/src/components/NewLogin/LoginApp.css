@@ -144,3 +144,19 @@
   padding-bottom: 2px;
   margin-left: 5px;
 }
+
+.FormRadioGroup{
+  display: flex;
+  margin-bottom: 10%;
+
+}
+
+.FormRadioProfessor{
+  float: left;
+  display:inline-flex;
+}
+
+.FormRadioStudent{
+  margin-left: 20%;
+  display:inline-flex;
+}
