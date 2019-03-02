@@ -8,10 +8,8 @@ import java.util.List;
 import bean.*;
 import com.google.gson.Gson;
 
-import dao.CalculatedScoresDAO;
 import dao.QuizDAO;
 import dao.StatisticsDAO;
-import dao.UserDAO;
 
 /**
  * A class to get the JSON string to the student controller
@@ -37,14 +35,12 @@ public class StudentServices {
 	 * success if the response has been recorded.
 	 * 
 	 * @param studentResponse
-	 * @param userId 
 	 * @return view
 	 */
-	public String feedAnswers(String studentResponse, int userId) {
+	public String feedAnswers(String studentResponse) {
 
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
-		UserDAO userDao = new UserDAO();
-		User user = userDao.getUserById(userId);
+		User user = new User(5,"abc", "student", "abc.com", "1234");
 		int quizId = jsonResponse.getQuizId();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		ResponseStatistics stats;
@@ -118,14 +114,6 @@ public class StudentServices {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String dateTime = simpleDateFormat.format(new Date());
 		return dateTime; 
-	}
-
-	public int getGrade(String studentResponse, int userId) {
-		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
-		int quizId = jsonResponse.getQuizId();
-		CalculatedScoresDAO dao = new CalculatedScoresDAO();
-		int score = dao.getStudentScoreByQuizId(quizId, userId);
-		return score;
 	}
 
 }
