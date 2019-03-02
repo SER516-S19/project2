@@ -2,12 +2,14 @@ package Team76.Utilities;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Team76.Entity.QuestionEntity;
+import Team76.Entity.QuizEntity;
 
 /**
  * SER516-Project2 File content- Captures the Quiz Questions Information from UI
@@ -42,10 +44,14 @@ public class QuestionModel {
 		entity.setAnswer(request.getParameter("correctanswer"));
 		entity.setMarks(request.getParameter("marks"));
 
-		questionsList.add(entity);
-		request.getSession().setAttribute("question", questionsList);
 		
-		database.databaseConnect(entity.getQuestion(), concatoptions, entity.getAnswer());
+		QuizEntity quizDetails = (QuizEntity) request.getSession().getAttribute("quiz");
+		quizDetails.setQuestionsList(entity);
+		request.getSession().setAttribute("quiz", quizDetails);
+		System.out.println("List is " + request.getSession().getAttribute("quiz").toString());
+	
+		
+		//database.databaseConnect(entity.getQuestion(), concatoptions, entity.getAnswer());
 
 	}
 
