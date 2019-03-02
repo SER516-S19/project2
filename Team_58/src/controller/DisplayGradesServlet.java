@@ -20,13 +20,20 @@ import java.util.logging.Logger;
 /**
  * Display grades of the quiz
  * @author Dhruv Patel
- * @version 1.0
- * @date 02/26/2019
+ * @version 1.1
+ * @date 03/1/2019
  **/
 
 @WebServlet(name = "DisplayGradesServlet", urlPatterns = "/displayGrades")
 public class DisplayGradesServlet extends HttpServlet {
 	
+	/**
+	 * This method is to get Grades
+	 *@param request  req made to server
+	 *@param response  res from server
+	 *
+	 * @throws IOException
+	 */
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException{
         try {

@@ -6,11 +6,18 @@ Freemarker page to display the Grades
  -->
 <html>
  	<head align="center">
- 		<h1>GRADES</h1>
+ 		<#include "style.css">
+ 		<form action="studentHome.ftl" method="GET">
+			<input type="submit" value="Student Home Page"/>
+		</form>
+
  	</head>
  	<body>
+ 		<div align="center">
+ 			<h1>GRADES</h1>
+ 		</div>
  		<form action="DisplayGradesServlet" method="GET">
- 			<table>
+ 			<table width="500" border="2px solid black">
  			<#list Session.Grades as grade>
                 <tr>
     				<th>Course Name</th>
