@@ -83,7 +83,7 @@ public class QuizDetailsController extends HttpServlet {
 						
 						String quizId = quizDetailsDao.getQuizId(title);
 						req.getSession().setAttribute("quizId", quizId);
-						req.getRequestDispatcher("addQuestions.html").forward(req, res);
+						req.getRequestDispatcher("/updateQuestions").forward(req, res);
 					}
 
 				} else {
@@ -102,6 +102,8 @@ public class QuizDetailsController extends HttpServlet {
 						isMultipleAttempt = true;
 
 					QuizModel quizModel = quizDetailsDao.findByPrimaryKey(title);
+					String quizId = quizDetailsDao.getQuizId(title);
+					req.getSession().setAttribute("quizId", quizId);
 
 					if (quizModel == null)
 						res.sendError(HttpServletResponse.SC_BAD_REQUEST, "This Quiz doesn't Exist!");
@@ -109,13 +111,19 @@ public class QuizDetailsController extends HttpServlet {
 						quizModel = new QuizModel(title, instructions, assignmentGroup, isShuffled, isGraded, timeLimit,
 								isMultipleAttempt);
 						quizDetailsDao.update(quizModel);
-						req.getRequestDispatcher("Success.html").forward(req, res);
+						req.getRequestDispatcher("/updateQuestions").forward(req, res);
 					}
 
 				} else {
 					res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Wrong Parameters Sent!");
 				}
-			} else {
+			}
+			else if (action.equals("View Questions")) {
+				String quizId = quizDetailsDao.getQuizId(title);
+				req.getSession().setAttribute("quizId", quizId);
+				req.getRequestDispatcher("/viewQuestions").forward(req, res);
+			}
+			else {
 				req.getRequestDispatcher("index.html").forward(req, res);
 			}
 		} catch (Exception exc) {

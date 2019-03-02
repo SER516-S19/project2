@@ -8,13 +8,14 @@
  --%>
 
 <html>
+
 <head>
-<title>Quiz!</title>
-<link rel="stylesheet" type="text/css" href="css/styles.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto"
-	rel="stylesheet">
+	<title>Quiz!</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 </head>
+
 <body>
 	<div class="form_div">
 		<div id="quizheadbaner">
@@ -24,7 +25,7 @@
 			<table>
 				<tr>
 					<td>
-						<%
+					<%
         			QuizModel mod = (QuizModel)request.getAttribute("model"); 
         		        		
         		        		String html_tags = "</td>\r\n" + 
@@ -75,7 +76,8 @@
         		        			out.print(html_tags);
         		%> <input type="submit" name="Action" value="View Questions" />
 						<input type="submit" name="Action" value="Cancel" />
-						</form>
-						</div>
+		</form>
+	</div>
 </body>
+
 </html>

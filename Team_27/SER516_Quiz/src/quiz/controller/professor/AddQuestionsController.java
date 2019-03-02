@@ -32,6 +32,8 @@ public class AddQuestionsController extends HttpServlet {
 
 		try {
 			String quizId = request.getSession().getAttribute("quizId").toString();
+			
+			QuestionsDao.removeAllQuestionsFromQuiz(Integer.parseInt(quizId));
 
 			while (paramNames.hasMoreElements()) {
 				String paramName = (String) paramNames.nextElement();
@@ -67,7 +69,7 @@ public class AddQuestionsController extends HttpServlet {
 
 				}
 			}
-			request.getRequestDispatcher("Success.html").forward(request, response);
+			request.getRequestDispatcher("/getQuiz").forward(request, response);
 		} catch (Exception exc) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
 			exc.printStackTrace();
