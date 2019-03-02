@@ -37,23 +37,6 @@ class Home extends Component {
             isViewMounted: true
         })
     }
-    // componentDidMount() {
-    //     var self = this;
-    //     axios.get("http://localhost:8081/prof/quiz")
-    //         // .then(response => response.json())
-    //         .then(response =>{
-    //             console.log(response);
-    //             this.setState({
-    //                 quizList: response.data.response
-    //             })
-    //         })
-    //
-    //         .then(function(response){
-    //             console.log(self.state.quizList[0].quizName);
-    //
-    //
-    //         })
-    // }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -66,7 +49,7 @@ class Home extends Component {
         // console.log(this.state.quizList[0].quizName);
         return (
                 
-                <div className="Home">
+                <div>
                     {
                         (this.state.isProfessorType)?
                             <div style = {{width:"100%"}}>
@@ -82,8 +65,16 @@ class Home extends Component {
                                 (this.state.isCreatingQuiz)?
                                 <h5>Create Quiz for your students</h5>
                                 : 
-                                // <></>
-                                <h5>Welcome to your home page</h5>
+                               <div>
+                                    <h5>Welcome to your home page</h5>
+                                <CardBody>
+                               <ListGroup>
+                                    <Card>
+                                        <QuizListService/>
+                                    </Card>
+                                </ListGroup>
+                            </CardBody>
+                               </div>
                             }
                             </center>
                             {
