@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
 <%--
  - Author(s): Bhavana Vakkalagadda
  - Date: 2019/2/20
