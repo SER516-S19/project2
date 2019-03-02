@@ -3,9 +3,9 @@ package com.asu.ser516.team47.main;
 import java.io.File;
 import java.sql.*;
 
+import com.asu.ser516.team47.servlet.QuizCreationServlet;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
-import com.asu.ser516.team47.utils.SQLScriptRunner;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
@@ -26,6 +26,7 @@ public class Main {
         String quizCreationServletName = "QuizCreationServlet";
 
         tomcat.addServlet(context_Path, servletName, new SubmissionServlet());
+        tomcat.addServlet(context_Path, quizCreationServletName, new QuizCreationServlet());
         context.addServletMappingDecoded("/submit", servletName);
         context.addServletMappingDecoded("/createQuiz", quizCreationServletName);
 

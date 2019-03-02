@@ -2,7 +2,6 @@ package com.asu.ser516.team47.servlet;
 
 import com.asu.ser516.team47.database.*;
 import com.asu.ser516.team47.utils.JSONRequestParser;
-import com.asu.ser516.team47.utils.ServletValidation;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -37,8 +36,8 @@ public class QuizCreationServlet extends HttpServlet {
     private String quiz_group = null;
     private Double total_points = null;
     private JSONArray jsonQuestions = null;
-    private List<Question> questionList = null;
-    private List<List<Choice>> choiceTable = null;
+    private List<Question> questionList = new ArrayList<>();
+    private List<List<Choice>> choiceTable = new ArrayList<>();
 
     /**
      * Take newly submitted quiz from professor and insert into database.
@@ -97,19 +96,21 @@ public class QuizCreationServlet extends HttpServlet {
      * @return whether all required fields are present and valid
      */
     private boolean validateQuizFields(JSONObject jsonQuiz){
+        System.out.println("Quiz");
         try{
             title = (String)jsonQuiz.get("title");
-            course_id = ((Long)jsonQuiz.get("course_id")).intValue();
+            course_id = ((Number)jsonQuiz.get("course_id")).intValue();
             instructions = (String)jsonQuiz.get("instructions");
             shuffle = (Boolean)jsonQuiz.get("shuffle");
-            time_limit = ((Long)jsonQuiz.get("time_limit")).intValue();
+            time_limit = ((Number)jsonQuiz.get("time_limit")).intValue();
             quiz_type = (String)jsonQuiz.get("quiz_type");
+            System.out.println("halfway there.");
             if (!(quiz_type.equals("quiz") || quiz_type.equals("survey"))) {
                 return false;
             }
             attempts = ((Long)jsonQuiz.get("attempts")).intValue();
             quiz_group = (String)jsonQuiz.get("quiz_group");
-            total_points = (Double)jsonQuiz.get("totalPoints");
+            total_points = ((Number)jsonQuiz.get("total_points")).doubleValue();
             jsonQuestions = (JSONArray)jsonQuiz.get("questions");
         } catch (ClassCastException ex) {
             return false;
@@ -188,6 +189,7 @@ public class QuizCreationServlet extends HttpServlet {
      */
     public List<Choice> validateAndBuildChoiceList(JSONArray jsonChoices) throws IOException,
             java.text.ParseException {
+        System.out.println("choiceList");
         Iterator<JSONObject> it = jsonChoices.iterator();
         Boolean correct = null;
         String content = null;
@@ -214,6 +216,7 @@ public class QuizCreationServlet extends HttpServlet {
      * @return returns false if questionListFailed to build
      */
     private boolean validateAndBuildQuestionList(JSONArray jsonQuestions) throws IOException {
+        System.out.println("Questions");
         Iterator<JSONObject> it = jsonQuestions.iterator();
         String quesType = null;
         Float points = null;

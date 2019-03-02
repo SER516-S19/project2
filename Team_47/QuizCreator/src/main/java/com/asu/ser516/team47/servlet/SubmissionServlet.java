@@ -81,12 +81,12 @@ public class SubmissionServlet extends HttpServlet {
 
         //Validate that all necessary fields are present and build ChoiceId array
         try {
-            quizId =  ((Long)requestForm.get("quiz_id")).intValue();
+            quizId =  ((Number)requestForm.get("quiz_id")).intValue();
             quiz = new QuizDAOImpl().getQuiz(quizId);
             if (quiz == null) {
                 httpCode = 500;
             }
-            enrollId = ((Long)requestForm.get("enrolled_id")).intValue();
+            enrollId = ((Number)requestForm.get("enrolled_id")).intValue();
             enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
             if (enrollment == null) {
                 httpCode = 500;
