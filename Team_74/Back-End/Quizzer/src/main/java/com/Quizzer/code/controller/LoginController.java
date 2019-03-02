@@ -31,12 +31,5 @@ public class LoginController {
         return loginService.addUser(userDefine);
     }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/login")
-//    public @ResponseBody
-//    ResponseEntity<ResponseVO> register(@RequestBody User userDefine) {
-//
-//        return loginService.autheticateUser(userDefine,operationType);
-//    }
-
 
 }
