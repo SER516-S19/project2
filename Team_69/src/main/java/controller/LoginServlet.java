@@ -30,11 +30,15 @@ public class LoginServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
+
         response.setContentType("text/html");
         response.setStatus(200);
         String action = request.getParameter("action");
         if(action.equals("Logout")) {
             request.getSession().invalidate();
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        }
+        else if(action.equals("Login")){
             getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
         }
     }
