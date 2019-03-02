@@ -1,16 +1,17 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.hibernate.query.NativeQuery;
 import bean.CalculatedScores;
 import bean.HibernateUtil;
 
-
 /**
- * This is a helper for implementing DAO pattern
- * for accessing student score data from database.
+ * This is a helper for implementing DAO pattern for accessing student score
+ * data from database.
  * 
  * @author : Alsha Samantaray
  * @version : 1.0
@@ -20,29 +21,31 @@ public class CalculatedScoresDAO {
 	public int getStudentScoreByQuizId(int quizId, int userId) {
 		Transaction transaction = null;
 		Session session = null;
+		List<CalculatedScores> studentScores = new ArrayList<CalculatedScores>();
 		int score = -1;
-		try  {
+		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			 Query query = session.createQuery("from  " + CalculatedScores.class.getName() + 
-					 " score where score.quiz.quizId = "+quizId+"AND score.user.user_id = "+userId);
-			 score = Integer.parseInt(query.uniqueResult().toString());
+			Query query = session.createQuery("from  " + CalculatedScores.class.getName()
+					+ " score where score.quiz.quizId = " + quizId + " AND score.user.user_id = " + userId);
+			studentScores = query.list();
+			score = (int) studentScores.get(0).getScore();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 		return score;
 	}
 
-	public void insertCalculatedScore(CalculatedScores calculatedScores){
+	public void insertCalculatedScore(CalculatedScores calculatedScores) {
 		Transaction transaction = null;
 		Session session = null;
-		try  {
+		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(calculatedScores);
@@ -52,8 +55,7 @@ public class CalculatedScoresDAO {
 				transaction.rollback();
 			}
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			session.close();
 		}
 
