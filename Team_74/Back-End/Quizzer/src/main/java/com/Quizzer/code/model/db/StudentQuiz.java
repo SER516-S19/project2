@@ -24,8 +24,7 @@ public class StudentQuiz implements Serializable {
 	private ArrayList<Quiz> quizlist;
 	private HashMap<String, Integer> attemptedQuiz;
 	@CreatedDate
-	private Date date;
-	
+	private Date date;	
 	public StudentQuiz(User studentId, ArrayList<Quiz> quizlist, HashMap<String, Integer> attemptedQuiz, Date date) {
 		super();
 		this.studentId = studentId;

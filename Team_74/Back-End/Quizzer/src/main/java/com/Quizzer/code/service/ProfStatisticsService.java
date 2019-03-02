@@ -1,6 +1,8 @@
 package com.Quizzer.code.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +24,24 @@ public class ProfStatisticsService {
 		List<Quiz> listQuiz = quiz.findAll();
 		List<String> quizNames = new ArrayList<>();
 		List<Double> averageMarks = new ArrayList<>();
+		List<Integer> medians = new ArrayList<>();
 
 		List<SubmitQuiz> listSubmittedQuizzes = null;
 		int i = 0;
 		double avg = 0.0;
+		int median = 0;
 		for (Quiz quizzer : listQuiz) {
 			listSubmittedQuizzes = submitQuiz.findByQuizId(quizzer.getId());
 			avg = calculateAverage(listSubmittedQuizzes);
+			median = calculateMedian(listSubmittedQuizzes);
 			quizNames.set(i, quizzer.getName());
+			medians.set(i, median);
 			averageMarks.set(i, avg);
 			i++;
 
 		}
 
-		return new StatisticsResponseVO(quizNames, averageMarks);
+		return new StatisticsResponseVO(quizNames, averageMarks, medians);
 	}
 
 	private double calculateAverage(List<SubmitQuiz> listSubmittedQuizzes) {
@@ -49,5 +55,16 @@ public class ProfStatisticsService {
 			return sum / length;
 		}
 		return 0;
+	}
+
+	private int calculateMedian(List<SubmitQuiz> listSubmittedQuizzes) {
+		int length = listSubmittedQuizzes.size();
+		List<Integer> listMarks = new ArrayList<>();
+		for (SubmitQuiz submitted : listSubmittedQuizzes) {
+			listMarks.add(submitted.getMarksAchieved());
+		}
+		Collections.sort(listMarks);
+
+		return listMarks.get((length) / 2);
 	}
 }
