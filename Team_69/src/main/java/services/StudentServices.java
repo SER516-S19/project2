@@ -94,7 +94,7 @@ public class StudentServices {
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		for(String quizName : quizNames) {
 			int quizID = fetchQuizId(quizName);
-			long count = statisticsDAO.checkQuizStatus(quizID,userId);
+			int count = statisticsDAO.checkQuizStatus(quizID,userId);
 			if(count>=1){
 				status.add("Answered");
 			}

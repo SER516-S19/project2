@@ -50,22 +50,21 @@ public class StatisticsDAO {
 
     }
 
-    public long checkQuizStatus(int quizId,int userId){
+    public int checkQuizStatus(int quizId,int userId){
         Transaction transaction = null;
         Session session = null;
-        Long count= 0L;
+        int userQuizCount= 0;
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Long> query = builder.createQuery(Long.class);
-            Root<ResponseStatistics> root = query.from(ResponseStatistics.class);
-            Join<ResponseStatistics, Quiz> join = root.join("quiz");
-            query.select((builder.count(root))).where(builder.equal(join.get("quizId"),quizId));
-            Query<Long> userStatusQuery = session.createQuery(query);
-            count = userStatusQuery.getSingleResult();
+            Query query = session.createSQLQuery(
+                    "select count(*) as count FROM `response_stats` WHERE Quiz_id = :quizId and user_id = :userId")
+                    .setParameter("quizId", quizId)
+                    .setParameter("userId",userId);
+            List result = query.list();
+            userQuizCount = Integer.parseInt(result.get(0).toString());
             transaction.commit();
-            session.close();
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -75,7 +74,7 @@ public class StatisticsDAO {
         finally {
             session.close();
         }
-        return count;
+        return userQuizCount;
     }
 
 	public int retrieveStudentsCount() {
@@ -85,7 +84,7 @@ public class StatisticsDAO {
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            
+
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
             Root<User> user = criteriaQuery.from(User.class);

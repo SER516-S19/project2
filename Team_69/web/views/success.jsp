@@ -19,7 +19,8 @@
 	<div class="container">
 		<div class="row">
 			<form class="col-sm-4" method="GET">
-				<input class="button" type="submit" name="action" value="Logout" formaction="Login" />
+				<% String pathWebContent = request.getContextPath();%>
+				<input class="button" type="submit" name="action" value="Logout" formaction="<%=pathWebContent%>/Login" />
 			</form>
 		</div>
 	</div>

@@ -40,7 +40,6 @@
 											 href="student/?id=<%=quizIds.get(i)%>">Click here to start the
 					quiz</a></td>
 				<td id="quizStatus<%=i%>"><%=quizStatus.get(i)%></td>
-				<td>N/A</td>
 			</tr>
 
 			<%
