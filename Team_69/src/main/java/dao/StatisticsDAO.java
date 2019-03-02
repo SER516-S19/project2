@@ -50,7 +50,7 @@ public class StatisticsDAO {
 
     }
 
-    public long checkQuizStatus(int quizId){
+    public long checkQuizStatus(int quizId,int userId){
         Transaction transaction = null;
         Session session = null;
         Long count= 0L;

@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet{
                 StudentServices studentServices = new StudentServices();
                 List<String> quizNames = studentServices.fetchAllQuizNames();
                 List<Integer> quizIds = studentServices.fetchAllQuizIds(quizNames);
-                List<String> quizStatus = studentServices.fetchQuizStatus(quizNames);
+                List<String> quizStatus = studentServices.fetchQuizStatus(quizNames,userId);
                 session.setAttribute("quizNames", quizNames);
                 session.setAttribute("quizStatus", quizStatus);
                 session.setAttribute("quizIds", quizIds);

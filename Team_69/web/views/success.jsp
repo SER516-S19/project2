@@ -19,7 +19,7 @@
 	<div class="container">
 		<div class="row">
 			<form class="col-sm-4" method="GET">
-				<input class="button" type="submit" name="action" value="Logout" formaction="/Login" />
+				<input class="button" type="submit" name="action" value="Logout" formaction="Login" />
 			</form>
 		</div>
 	</div>

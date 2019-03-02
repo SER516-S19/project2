@@ -89,12 +89,12 @@ public class StudentServices {
 		return quizDAO.fetchQuizId(quizName);
 	}
 
-	public List<String> fetchQuizStatus(List<String> quizNames){
+	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
 		List<String> status = new ArrayList<>();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		for(String quizName : quizNames) {
 			int quizID = fetchQuizId(quizName);
-			long count = statisticsDAO.checkQuizStatus(quizID);
+			long count = statisticsDAO.checkQuizStatus(quizID,userId);
 			if(count>=1){
 				status.add("Answered");
 			}
