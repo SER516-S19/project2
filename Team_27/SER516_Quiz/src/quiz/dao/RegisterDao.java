@@ -3,8 +3,9 @@ package quiz.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
+
 import quiz.model.register.Register;
-import quiz.Register.util.DBConnection;
 
 /**
  * A Java class used for storing user details in the database
@@ -16,6 +17,17 @@ import quiz.Register.util.DBConnection;
  */
 
 public class RegisterDao {
+	
+	private static Properties dbProperties = new Properties();
+	static {
+		try {
+			dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("rdbm.properties"));
+			Class.forName(dbProperties.getProperty("mysql_jdbcDriver"));
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+	}
+	
 	 public String registerUser(Register registerBean)
 	 {
 	 String fullName = registerBean.getFullName();
@@ -28,7 +40,7 @@ public class RegisterDao {
 	 
 	 try
 	 {
-	 con = DBConnection.createConnection();
+	con = ConnectionFactory.getConnection();
 	 String query = "insert into login_authentication(fullname,email,username,password,user_type) values (?,?,?,?,?)";
 	 preparedStatement = con.prepareStatement(query); //Making use of prepared statements here to insert bunch of data
 	 preparedStatement.setString(1, fullName);
