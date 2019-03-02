@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './QuizInstruction.css';
 import { Redirect } from 'react-router-dom';
-import { Container, Row, Col, Label, Button } from 'reactstrap';
+import { Button, Col, Container, Label, Row } from 'reactstrap';
 import Routes from '../../../Routes';
+import './QuizInstruction.css';
 
 class QuizInstruction extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class QuizInstruction extends Component {
 
   }
 
+  //updates the state when each field incurs any change
   handleChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -31,13 +32,14 @@ class QuizInstruction extends Component {
     });
   }
 
+  //called on next button click
   handleNext(event) {
     this.setState({ toCreateQuiz: true });
   }
 
   render() {
     return (
-      <div>
+      <div style={{ border: "1px solid grey", marginLeft: "10%", marginRight: "10%", marginTop: "2%" }}>
         {
           (this.state.toCreateQuiz) ?
             <div>
@@ -51,7 +53,7 @@ class QuizInstruction extends Component {
             <Container className="quizInstruction">
               <Row>
                 <Col>
-                  <input name="name" type="text" placeholder="Enter Quiz Title" 
+                  <input name="name" type="text" placeholder="Enter Quiz Title"
                     onChange={this.handleChange} />
                 </Col>
               </Row>
@@ -72,7 +74,7 @@ class QuizInstruction extends Component {
                   <Label > Choose quiz type:</Label>
                 </Col>
                 <Col className="leftAlign" xs>
-                  <select name="quizType"  onChange={this.handleChange}>
+                  <select name="quizType" onChange={this.handleChange}>
                     <option value="mcq">MCQ</option>
                     <option value="survey">Survey</option>
                     <option value="default">Default</option>
@@ -84,7 +86,7 @@ class QuizInstruction extends Component {
                   <label> Assignment Group:</label>
                 </Col>
                 <Col className="leftAlign">
-                  <select name="assignmentGroup"  onChange={this.handleChange}>
+                  <select name="assignmentGroup" onChange={this.handleChange}>
                     <option value="quiz">Quiz</option>
                     <option value="test">Test</option>
                     <option value="default">Default</option>

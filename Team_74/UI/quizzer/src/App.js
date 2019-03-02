@@ -1,40 +1,62 @@
 import React, { Component } from 'react';
 import './App.css';
-import Routes from './Routes';
-import Navigation from './components/Navigation'
-import { NavLink, Route, Router, Redirect } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
+import Toolbar from './components/Nav/Toolbar';
 import LoginApp from './components/NewLogin/LoginApp';
 import Home from './pages/Home/Home';
-import Toolbar from './components/Nav/Toolbar';
 
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            title: ((parseInt(localStorage.getItem('type'),10) === 0)? "Student's Portal" : "Professor's Portal" ),
-
+            title: ((parseInt(localStorage.getItem('type'), 10) === 0) ? "Student's Portal" : "Professor's Portal"),
+            isProfessorType: ((parseInt(localStorage.getItem('type'), 10) === 0) ? false : true),
+            isDashShown: false,
+            isHomeShown: true,
         }
-    }
-    
 
+        this.dashboardHandler = this.dashboardHandler.bind(this);
+        this.homeHandler = this.homeHandler.bind(this);
+
+    }
+
+    dashboardHandler() {
+        this.setState({
+            isDashShown: true,
+            isHomeShown: false
+        })
+    }
+    homeHandler() {
+        this.setState({
+            isDashShown: false,
+            isHomeShown: true
+        })
+    }
     render() {
 
+        let com;
+        if (this.state.isProfessorType && this.state.isDashShown) {
+            com = <Dashboard />
+        } else if (this.state.isHomeShown) {
+            com = <Home />
+        }
+
         return (
-            <div style = {{height:"100vh"}}>
+            <div style={{ height: "100vh" }}>
                 {
                     (localStorage.getItem('username')) ?
                         <div className="App">
                             <div>
-                            <Toolbar title={this.state.title}/>
+                                <Toolbar title={this.state.title} isProfessor={this.state.isProfessorType} dashboardHandler={this.dashboardHandler} homeHandler={this.homeHandler} />
                             </div>
-                            <div style = {{width:"100%",marginTop: "56px"}}>
-                            <Home />                           
+                            <div style={{ width: "100%", marginTop: "56px" }}>
+                                { com }
                             </div>
                         </div>
 
                         :
-                         <div className="App">
+                        <div className="App">
                             <LoginApp />
                         </div>
                 }
