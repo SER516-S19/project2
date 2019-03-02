@@ -26,7 +26,7 @@ Build.properties contains information related to the application: Application Na
 	
 6. Run tomcat and start the application deployed in step 3. The application name would be project2. 
 
-NOTE: The URL to hit the application will be something like (http://localhost:8080//Team_69) but it depends on your port number.
+NOTE: The URL to hit the application will be something like (http://localhost:8080/project2) but it depends on your port number.
 	
 ------------------------	
 II) Steps to execute
@@ -37,7 +37,7 @@ II) Steps to execute
     name: xyz.com
     pass : 67890
     
-3. Come back to the Login page using http://localhost:8080//Team_69 .
+3. Come back to the Login page using http://localhost:8080/project2 .
 
 4. Go to student page to view and take the Quiz. Use the Student's credentials to login. 
     name: abc.com
