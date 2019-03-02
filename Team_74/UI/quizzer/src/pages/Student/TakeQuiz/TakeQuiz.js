@@ -13,6 +13,7 @@ class TakeQuiz extends Component {
     /**Constructor for the main TakeQuiz Class*/
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             quizInstructions:'',
             quizQuestions:[],
@@ -43,8 +44,9 @@ class TakeQuiz extends Component {
      * both on the client and server, immediately before the initial rendering occurs*/
 
     componentWillMount() {
-        const params = new URLSearchParams(this.props.location.search);
-        axios.get("http://localhost:8081/prof/quiz/"+params.get('quizId'))
+        console.log(this.props);
+        //const params = new URLSearchParams(this.props.location.quizId);
+        axios.get("http://localhost:8081/prof/quiz/"+this.props.location.quizId)
             .then(response => {
                 this.setState({
                     quizInstructions: response.data.response.instruction,

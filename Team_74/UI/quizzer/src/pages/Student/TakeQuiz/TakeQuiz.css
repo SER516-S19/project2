@@ -6,8 +6,8 @@
 .TakeQuiz-header {
     /*background-color: #222;*/
     padding: 20px;
-    color: black;
     text-align: center;
+    color: black;
 }
 
 
@@ -58,4 +58,9 @@ span + span {
     position: relative;
     left:    80%;
     bottom:   0%;
+}
+
+.TakeQuiz{
+    text-decoration:none;
+    color: black;
 }
