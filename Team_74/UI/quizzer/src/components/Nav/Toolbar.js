@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import './Toolbar.css'
 import { Container, Row, Col, Label, Button } from 'reactstrap';
-import { Link, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import { Link, Route, Redirect, BrowserRouter, withRouter } from 'react-router-dom';
 import App from '../../App';
 
 
@@ -10,40 +10,57 @@ class Toolbar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      redirectToLoginPage : false,
-      redirectToHome: false,
-      redirectToDashboard: false
-    }
+    // this.state = {
+    //   redirectToLoginPage : false,
+    //   redirectToHome: false,
+    //   redirectToDashboard: false
+    // }
   }
 
-  state = {
-    redirectToLoginPage : false,
-    redirectToHome: false,
-    redirectToDashboard: false
-}
+//   state = {
+//     redirectToLoginPage : false,
+//     redirectToHome: false,
+//     redirectToDashboard: false
+// }
   setRedirect = (event) => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
-  }
-  renderRedirect = () => {
-    if (this.state.redirectToLoginPage) {
+    if (name == "redirectToLoginPage") {
       localStorage.clear();
-      return <Redirect to='/' />
+      this.props.history.push("/");
+      // return <Redirect to='/' />
     }
-    if (this.state.redirectToDashboard) {
-      return <Redirect to='/dash' />
-    }
-    if (this.state.redirectToHome) {
-      return <Redirect to='/home' />
-    }
-  }
+    if (name == "redirectToDashboard") {
+      this.props.history.push("/dash");
 
+      // return <Redirect to='/dash' />
+    }
+    if (name == "redirectToHome") {
+      this.props.history.push("/home");
+
+      // return <Redirect to='/home' />
+    }
+    // this.setState({
+    //   [name]: value
+    // });
+  }
+  // renderRedirect = () => {
+    
+  // }
+
+  // componentDidUpdate(){
+  //   // this.resetState();
+  // }
+
+  // resetState(){
+  //   this.state = {
+  //     redirectToLoginPage : false,
+  //     redirectToHome: false,
+  //     redirectToDashboard: false
+  //   }
+  // }
   render(){
     return(
       <Container>
@@ -63,9 +80,12 @@ class Toolbar extends Component {
       </Col>
 
       <Col className="toolbar__menu">
+              {/* {this.renderRedirect()} */}
+
         <Col>
         {/* <li> */}
             {/* <a href="/home">Home</a> */}
+            {/* <menuitem name="redirectToHome" value = "true" onClick={this.setRedirect}> Home </menuitem> */}
             <button name="redirectToHome" value = "true" onClick={this.setRedirect}> Home </button>
 
           {/* </li> */}
@@ -75,7 +95,6 @@ class Toolbar extends Component {
             <button name="redirectToDashboard" value = "true" onClick={this.setRedirect}> Dashboard </button>
         </Col>
         <Col>
-        {this.renderRedirect()}
             <button name="redirectToLoginPage" value = "true" onClick={this.setRedirect}> Sign Out </button>
         </Col>
       </Col>
@@ -90,4 +109,4 @@ class Toolbar extends Component {
 
 }
 
-export default Toolbar
+export default withRouter(Toolbar)

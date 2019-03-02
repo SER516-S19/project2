@@ -16,9 +16,10 @@
 }
 
 .Home {
-position: fixed;
-margin-top: 56px;
-text-decoration: none;
-color: black;
-width: 100%;
+  padding-top: 156px;
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

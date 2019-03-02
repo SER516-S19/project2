@@ -21,7 +21,8 @@ class Home extends Component {
         this.state = {
             isProfessorType: ((parseInt(localStorage.getItem('type'),10) === 0)? false : true ),
             isCreatingQuiz: false,
-            quizList: []
+            quizList: [],
+            isViewMounted: false
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,6 +32,11 @@ class Home extends Component {
         
     }
 
+    componentDidMount(){
+        this.setState({
+            isViewMounted: true
+        })
+    }
     // componentDidMount() {
     //     var self = this;
     //     axios.get("http://localhost:8081/prof/quiz")
@@ -59,13 +65,11 @@ class Home extends Component {
     render() {
         // console.log(this.state.quizList[0].quizName);
         return (
-            <div>
                 
                 <div className="Home">
                     {
                         (this.state.isProfessorType)?
                             <div>
-                                <Toolbar title="Professor's Portal"/>
                                 {
                                 (this.state.isCreatingQuiz)?
                                 <button type="submit" className="Prof-Button" onClick={this.handleSubmit} value="Submit">Back</button>
@@ -78,10 +82,10 @@ class Home extends Component {
                                 (this.state.isCreatingQuiz)?
                                 <h5>Create Quiz for your students</h5>
                                 : 
-                                <></>
-                                // <h5>Welcome to your home page</h5>
+                                // <></>
+                                <h5>Welcome to your home page</h5>
                             }
-                            <br></br></center>
+                            </center>
                             {
                                 (this.state.isCreatingQuiz)?
                                 <QuizInstruction/>
@@ -94,8 +98,6 @@ class Home extends Component {
                             :
 
                             <div>
-                                <Toolbar title="Student's Portal"/>
-
                                 <CardBody>
                                     <center>
                                     <h3>Welcome Student</h3>
@@ -127,7 +129,6 @@ class Home extends Component {
                             </div>
                     }
                 </div>
-            </div>
         );
     }
 }

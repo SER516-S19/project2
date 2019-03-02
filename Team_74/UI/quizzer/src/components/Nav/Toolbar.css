@@ -91,7 +91,3 @@ align-content: center;
 .toolbar__menu button:focus{
     border: none;
 }
-.toolbar__menu button:hover {
-    background: transparent;
-    border-color: transparent;
-  }
