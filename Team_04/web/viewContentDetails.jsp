@@ -26,12 +26,10 @@
             padding: 8px;
         }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
     </style>
 </head>
 <body>
+<a href="./list">Back</a>
 <h2> <%="Quiz Details"%></h2>
 
 <table>
@@ -48,20 +46,35 @@
         for(Integer quesId:questionList.keySet()){
     %>
     <tr>
-
         <td><%=quesId%></td>
         <td><%=questionList.get(quesId).get("desc")%></td>
-        <td><%=questionList.get(quesId).get("score")%></td></tr>
+        <td><%=questionList.get(quesId).get("score")%></td>
+    </tr>
 
-      <%
-        for(String answer: answers.get(quesId)) {
-      %>
-            <tr><td><%=answer%></td></tr>
+
+    <tr>
+        <%
+            for(String answer: answers.get(quesId)) {
+        %>
+        <td></td>
+        <td>
+            <ul>
+                <li><%=answer%></li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+
       <%
       }
     }
     %>
 </table>
-<a href="./list">Back</a>
+
+<form action="delete" method="POST">
+    <input type="hidden" id="quizId" value="${quizId}">
+    <input type="submit" value="Delete">
+</form>
+
 </body>
 </html>
