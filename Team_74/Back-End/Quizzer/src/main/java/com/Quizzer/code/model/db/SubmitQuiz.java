@@ -33,7 +33,7 @@ public class SubmitQuiz implements Serializable {
 
 	}
 
-	public SubmitQuiz(String id, String studentId, Quiz quiz, String quizId, int marksAchieved) {
+	public SubmitQuiz(String id, String studentId, Quiz quiz, String quizId, int marksAchieved,Date date) {
 		super();
 
 		this.id = id;
@@ -41,7 +41,6 @@ public class SubmitQuiz implements Serializable {
 		this.quiz = quiz;
 		this.quizId = quizId;
 		this.marksAchieved = marksAchieved;
-
 		this.date = date;
 	}
 
