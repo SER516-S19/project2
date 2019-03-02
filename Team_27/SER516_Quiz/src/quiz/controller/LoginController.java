@@ -53,17 +53,10 @@ public class LoginController extends HttpServlet {
 				if ("student".equalsIgnoreCase(user.getUserType())) {
 					response.sendRedirect("./StudentHomePage.html");
 				} else if("professor".equalsIgnoreCase(user.getUserType())){
-					QuizDetailsDao quizDetailsDao = new QuizDetailsDao();
-
-					ArrayList rowValues = new ArrayList();
-					try {
-						rowValues = quizDetailsDao.getAll();
-					}
-					catch(DataAccessException e) {
-						e.printStackTrace();
-					}
-					request.getSession().setAttribute("rowValues", rowValues);
 					response.sendRedirect("showQuizes.jsp");
+				}
+				else {
+					response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "This user doesn't belong to any type!");
 				}
 
 			} else {

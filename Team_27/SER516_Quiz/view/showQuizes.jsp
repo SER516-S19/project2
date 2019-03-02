@@ -1,5 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Arrays"%>
+<%@page import="quiz.dao.professor.QuizDetailsDao"%>
+<%@page import="quiz.exceptions.DataAccessException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	
@@ -77,7 +79,16 @@ body {
 								<td>
 									<%-- Display saved quizes list fetched by controller --%>
 									<%
-										ArrayList rowValues = (ArrayList) session.getAttribute("rowValues");
+										QuizDetailsDao quizDetailsDao = new QuizDetailsDao();
+
+										ArrayList rowValues = new ArrayList();
+										try {
+											rowValues = quizDetailsDao.getAll();
+										}
+										catch(DataAccessException e) {
+											e.printStackTrace();
+										}
+										
 
 										int i = 0;
 									%> <select id="mySelect" name="selectedQuiz" />
