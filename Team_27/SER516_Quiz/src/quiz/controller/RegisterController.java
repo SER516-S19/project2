@@ -55,7 +55,7 @@ public class RegisterController extends HttpServlet {
 		}
 		else   //On Failure, display a meaningful message to the User.
 		{
-			request.setAttribute("errMessage", userRegistered);
+			request.getSession().setAttribute("errMessage", userRegistered);
 			request.getRequestDispatcher("/Register.jsp").forward(request, response);
 
 		}
