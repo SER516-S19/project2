@@ -1,6 +1,7 @@
 <%--
   Created by IntelliJ IDEA.
   Modified By: Archana Madhavan
+  User: amankaushik,saivinayg
   Date: 18/2/19
   Time: 1:53 PM
   Description: Displays List of Quizzes.
@@ -12,22 +13,38 @@
 <head>
     <title>view-list</title>
     <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 40%;
-      }
-      
-      td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-      
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-      </style>
+        h1{
+            padding: 100px 600px 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+        }
+        h2{
+            color: cyan;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            background-color: #191970;
+            border-style: outset;
+            border-width: medium;
+            border-radius: 10px;
+            border-color: cyan;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 40%;
+        }
+        td, th {
+            border: 1px solid cyan;
+            text-align: center;
+            padding: 8px;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: lightblue;
+        }
+    </style>
 </head>
 <body>
 <h1>
@@ -35,7 +52,7 @@
 </h1>
 <div align="center">
     <table border="1" cellpadding="5">
-        <caption><h2>Quiz List</h2></caption>
+        <caption><h2 text-color:cyan>Quiz List</h2></caption>
         <tr>
             <th>Quiz ID</th>
         </tr>
