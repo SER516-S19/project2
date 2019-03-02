@@ -14,12 +14,3 @@
   right: 18px;
 
 }
-
-.Home {
-  padding-top: 156px;
-  height: 100vh;
-  width: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

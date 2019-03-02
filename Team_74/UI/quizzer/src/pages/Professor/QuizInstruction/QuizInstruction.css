@@ -4,6 +4,8 @@
     padding: 3em;
     border-color: rgb(10, 0, 0);
     border-width: 2px;
+    text-decoration: none;
+    color: black;
 
 }
 
@@ -34,5 +36,6 @@
     align-items: flex-start;
     align-content: flex-start;
     padding-left: 1em;
+    padding: 15px;
 }
 
