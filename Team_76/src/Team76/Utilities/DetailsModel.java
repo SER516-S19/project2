@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Team76.Entity.DetailsEntity;
+import Team76.Entity.QuizEntity;
 
 public class DetailsModel {
 
@@ -18,16 +19,18 @@ public class DetailsModel {
 	public void getParameters(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		DetailsPageQuery database = new DetailsPageQuery();
-		DetailsEntity entity = new DetailsEntity();
-		entity.setQuiztitle(request.getParameter("quiztitle"));
-		entity.setQinstruct(request.getParameter("qinstruct"));
-		entity.setQtype(request.getParameter("qtype"));
-		entity.setShuffleAns(request.getParameter("shuffleAns"));
-		entity.setClocktype(request.getParameter("clockType"));
+		QuizEntity entity = new QuizEntity();
+		entity.setQuizTitle(request.getParameter("quiztitle"));
+		entity.setQuizInstruct(request.getParameter("qinstruct"));
+		entity.setQuizType(request.getParameter("qtype"));
+		//entity.setShuffleAns(request.getParameter("shuffleAns"));
+		//entity.setClocktype(request.getParameter("clockType"));
 		System.out.println("Entity is " + entity.toString());
 
-		database.databaseConnect(entity.getQuiztitle(), entity.getQinstruct(), entity.getQtype(), entity.getShuffleAns(), entity.getClocktype());
-		
+		request.getSession().setAttribute("quiz", entity);
+		//database.databaseConnect(entity.getQuiztitle(), entity.getQinstruct(), entity.getQtype(), entity.getShuffleAns(), entity.getClocktype());
+		//database.databaseConnect(entity.getQuizTitle(), entity.getQuizInstruct(), entity.getQuizType());
+
 
 	}
 }

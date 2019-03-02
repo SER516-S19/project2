@@ -1,6 +1,8 @@
 package Team76.Entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Quiz object 
@@ -16,6 +18,22 @@ public class QuizEntity {
 	private String quizType = "";
 	private String quizTitle = null;
 	private String quizInstruct= null;//Xiangwei
+	private List<QuestionEntity> questionsList;
+	
+	public List<QuestionEntity> getQuestionsList() {
+		return questionsList;
+	}
+
+	public void setQuestionsList(List<QuestionEntity> questionsList) {
+		this.questionsList = questionsList;
+	}
+
+	public void setQuestionsList(QuestionEntity question) {
+	if(questionsList==null) {
+		questionsList= new ArrayList<>();
+	}	
+	questionsList.add(question);
+	}
 	
 	public String getQuizInstruct() {//Xiangwei
 		return quizInstruct;
@@ -79,6 +97,13 @@ public class QuizEntity {
 
 	public void setQuizType(String quizType) {
 		this.quizType = quizType;
+	}
+	
+	@Override
+	public String toString() {
+		return "QuizEntity [professorId=" + professorId + ", quizId=" + quizId + ", quizStatus=" + quizStatus
+				+ ", dueDate=" + dueDate + ", timeLimit=" + timeLimit + ", quizType=" + quizType + ", quizTitle="
+				+ quizTitle + ", quizInstruct=" + quizInstruct + ", questionsList=" + questionsList + "]";
 	}
 
 }

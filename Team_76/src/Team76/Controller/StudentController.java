@@ -21,13 +21,13 @@ import Team76.Utilities.StudentQuizModel;
 @WebServlet("/StudentController")
 public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public StudentController() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public StudentController() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		if (action == null || action.isEmpty()) {
 			System.out.println("**** no acton");
@@ -39,15 +39,14 @@ public class StudentController extends HttpServlet {
 			try {
 				AttemptQuiz = new StudentQuizModel();
 				quizzes = AttemptQuiz.list();
-			}catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			}			
+			}
 			request.getSession().setAttribute("quizzes", quizzes);
 			response.sendRedirect("StudentsQuiz.jsp");
 		} else if (action.equalsIgnoreCase("StartQuiz")) {
-			
-		}
-		else if (action.equalsIgnoreCase("AttemptQuiz")) {
+
+		} else if (action.equalsIgnoreCase("AttemptQuiz")) {
 			System.out.println("**** start quiz");
 			String quizId = request.getParameter("quizId");
 			System.out.println("**** quiz id: " + quizId);
@@ -55,36 +54,36 @@ public class StudentController extends HttpServlet {
 			QuizInstructModel quizInstruct = null;
 			try {
 				quizInstruct = new QuizInstructModel();
-				
+
 				quiztaken = quizInstruct.getQuiz(quizId);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			}			
-			request.getSession().setAttribute("quiztaken", quiztaken);
-			response.sendRedirect("QuizInstruct.jsp");	
 			}
-			else if (action.equalsIgnoreCase("grade")) {
-				System.out.println("**** show grade");
-				String studentGrade = request.getParameter("grade");
-				System.out.println("**** grade: " + studentGrade);
-				GradeEntity grade = null;
-				GradeModel showGrade = null;
-				try {
-					showGrade = new GradeModel();
-					grade = showGrade.getGrade(studentGrade);
-					
-				}catch (Exception e) {
-					e.printStackTrace();
-				}			
-				request.getSession().setAttribute("grade", grade);
-				response.sendRedirect("Grade.jsp");	
+			request.getSession().setAttribute("quiztaken", quiztaken);
+			response.sendRedirect("QuizInstruct.jsp");
+		} else if (action.equalsIgnoreCase("grade")) {
+			System.out.println("**** show grade");
+			String studentGrade = request.getParameter("grade");
+			System.out.println("**** grade: " + studentGrade);
+			GradeEntity grade = null;
+			GradeModel showGrade = null;
+			try {
+				showGrade = new GradeModel();
+				grade = showGrade.getGrade(studentGrade);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getSession().setAttribute("grade", grade);
+			response.sendRedirect("Grade.jsp");
 		} else {
 			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
