@@ -16,7 +16,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
 
+            $(".dropdown-menu li a").click(function(){
+
+                $(".btn:first-child").text($(this).text());
+                $(".btn:first-child").val($(this).text());
+
+            });
+
+        });
+    </script>
     <style>
         .col-centered{
             float: none;
@@ -26,10 +37,9 @@
             line-height: 2.0px;
         }
         .wrapper {
-            align-items: center;
-            justify-content: center;
+            padding-top: 10px;
             display: flex;
-            padding-bottom: 30px;
+            --padding-bottom: 2px;
         }
     </style>
 
@@ -48,18 +58,14 @@
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     <input id="password" type="password" name="password" class="form-control" placeholder="Enter password">
                 </div>
-                
-                    <div class="dropdown dropright wrapper">
-                        <button type="button" class="btn btn-default dropdown-toggle" name="userTypeBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select User
-                        </button>
-                        <div class="dropdown-menu" id="size-dropdown">
-                            <a class="dropdown-item" href="#">Student</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Professor</a>
-                        </div>
-                    </div>
-                
+
+                <div class="form-group wrapper">
+                    <select class="form-control" id="exampleFormControlSelect1" name="userTypeBtn">
+                        <option value="" selected disabled>Select User</option>
+                        <option>Professor</option>
+                        <option>Student</option>
+                    </select>
+                </div>
                 <div class="custom-checkbox">
                     <label><input type="checkbox"> Remember me</label>
                 </div>
@@ -67,7 +73,7 @@
 
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account? <a href="#" formaction="./SignUp.jsp" name="action" class="ml-2">Sign Up</a>
+                        Don't have an account? <a href="#" formaction="./signup.jsp" name="action" class="ml-2">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center links">
                         <a href="#">Forgot your password?</a>
