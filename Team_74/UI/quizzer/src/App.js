@@ -14,28 +14,13 @@ class App extends Component {
                 {
                     (localStorage.getItem('username')) ?
                         <div className="App">
-                        <Home />
-                           
-                            {/* <Navigation />
-                            <Routes />
-                            <NavLink to="/login">
-                            <button type="button" className="logout-button" onClick={this.signOut}>
-                                SignOut
-                            </button>
-                            </NavLink> */}
-
+                            <Home />                           
                         </div>
 
                         :
                          <div className="App">
-                         <LoginApp />
-                        
-                             {/* <div className="App-header">
-                                <h1>Demo Canvas</h1>
-                             </div> */}
-                            {/* <div className="Blank-Nav"/>  */}
-
-                            </div>
+                            <LoginApp />
+                        </div>
                 }
 
             </div>

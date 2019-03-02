@@ -4,14 +4,16 @@
     background: #521751;
     top:0;
     left:0;
+    right: 0;
     height: 56px;
 }
 
 .toolbar__logo a {
 color: white;
 text-decoration: none;
-font-size: 2rem;
+font-size: 120%;
 padding: 0 1rem;
+align-content: center;
 
 }
 
@@ -51,10 +53,45 @@ padding: 0 1rem;
    margin-left: 20%;
 }
 
-.toolbar__title{
-color: white;
-text-decoration: none;
-font-size: 2rem;
-padding: 0 1rem;
-margin-left: 20%
+.toolbar__title a{
+    font-size: 120%;
+    text-align: center;
+    -webkit-text-fill-color: white;
+    text-emphasis-color: white;
+    
 }
+
+.toolbar__title {
+    font-size: 150%;
+    text-align: center;
+    -webkit-text-fill-color: white;
+    text-emphasis-color: white;
+    
+}
+
+.toolbar__menu{
+    align-items: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    list-style: none;
+}
+
+.toolbar__menu button{
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    background-image: none;
+
+}
+
+.toolbar__menu button:focus{
+    border: none;
+}
+.toolbar__menu button:hover {
+    background: transparent;
+    border-color: transparent;
+  }

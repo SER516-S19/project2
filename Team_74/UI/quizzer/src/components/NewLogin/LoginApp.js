@@ -10,7 +10,7 @@ class LoginApp extends Component {
   render() {
     return (
       // <Router basename="/react-auth-ui/">
-        <Container className="App">
+        <div className="App">
           <div className="App__Aside"></div>
           <div className="App__Form">
             <div className="PageSwitcher">
@@ -28,7 +28,7 @@ class LoginApp extends Component {
               </Route>
           </div>
 
-        </Container>
+        </div>
       // </Router>
     );
   }

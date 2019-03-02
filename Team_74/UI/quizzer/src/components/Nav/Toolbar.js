@@ -11,22 +11,36 @@ class Toolbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect : false
+      redirectToLoginPage : false,
+      redirectToHome: false,
+      redirectToDashboard: false
     }
   }
 
   state = {
-    redirect: false
-  }
-  setRedirect = () => {
+    redirectToLoginPage : false,
+    redirectToHome: false,
+    redirectToDashboard: false
+}
+  setRedirect = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
     this.setState({
-      redirect: true
-    })
+      [name]: value
+    });
   }
   renderRedirect = () => {
-    if (this.state.redirect) {
+    if (this.state.redirectToLoginPage) {
       localStorage.clear();
       return <Redirect to='/' />
+    }
+    if (this.state.redirectToDashboard) {
+      return <Redirect to='/dash' />
+    }
+    if (this.state.redirectToHome) {
+      return <Redirect to='/home' />
     }
   }
 
@@ -36,30 +50,35 @@ class Toolbar extends Component {
       <Row>
       <header className="toolbar">
       <nav className="toolbar__navigation">
-      <div />
-      <div className="toolbar__logo">
+
+      <Col className="toolbar__logo">
         <a href="/">THE BLACKBORD</a>
-      </div>
-      <div className="space"></div>
-      <div className="toolbar__logo">
+      </Col>
+
+      <Col xs={6}>
+      <div className="toolbar__title">
       <a href="/home">{this.props.title}</a>
       </div>
 
-      <div className="spacer" />
-      <div className="toolbar_navigation-items">
-        <ul>
-          <li>
-            <a href="/home">Home</a>
-          </li>
-          <li>
-            <a href="/dash">Dashboard</a>
-          </li>
-          {this.renderRedirect()}
-          <li>
-            <button onClick={this.setRedirect}> Sign Out </button>>
-          </li>
-        </ul>
-      </div>
+      </Col>
+
+      <Col className="toolbar__menu">
+        <Col>
+        {/* <li> */}
+            {/* <a href="/home">Home</a> */}
+            <button name="redirectToHome" value = "true" onClick={this.setRedirect}> Home </button>
+
+          {/* </li> */}
+        </Col>
+        <Col>
+            {/* <a href="/dash">Dashboard</a> */}
+            <button name="redirectToDashboard" value = "true" onClick={this.setRedirect}> Dashboard </button>
+        </Col>
+        <Col>
+        {this.renderRedirect()}
+            <button name="redirectToLogin" value = "true" onClick={this.setRedirect}> Sign Out </button>
+        </Col>
+      </Col>
     </nav>
   </header>
 
