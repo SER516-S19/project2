@@ -10,11 +10,10 @@ public class InputValidation {
     public String loginValidation(String userName, String passWord, String userType)
     {
         List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
-                "SELECT userName,password from userDetails where userName='"+userName+"' and password = '"+passWord+"'");
+                "SELECT userName,password,userType from userDetails where userName='"+userName+"' and password = '"+passWord+"' and userType = '"+userType+"'");
 
         if (userExists != null && !userExists.isEmpty()){
 
-            System.out.println("Username exists");
             return "success";
 
         }
