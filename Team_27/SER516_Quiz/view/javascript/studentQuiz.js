@@ -182,4 +182,41 @@
                  questions.length + ' right!!!');
     return score;
   }
+  
+  var modal = document.getElementById('myModal');
+  var btn = document.getElementById("submitQuiz");
+  var span = document.getElementsByClassName("close")[0];
+
+
+
+  function clicked()
+  {
+      modal.style.display = "block";    
+  }
+
+  span.onclick = function()
+  {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) 
+  {
+    if (event.target == modal)
+    {
+      modal.style.display = "none";
+    }
+  }
+
+  window.onclick = function(event)
+  {
+    if (event.target == modal)
+    {
+      modal.style.display = "none";
+    }
+  }
+
+  btn.onclick = function()
+  {
+    clicked();
+  }
 })();
