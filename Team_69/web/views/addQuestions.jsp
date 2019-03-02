@@ -105,18 +105,16 @@
 		<table>
 			<tr>
 				<td>
-					<input type="hidden" name="flag" value="addNextQuestion"  />
-					<button type="submit" class="btn btn-primary" 
+					<button type="submit" name="flag" value="addNextQuestion" class="btn btn-primary" 
 						onclick="javascript:valthis()">Add Next Question</button>
 				</td>
 				<td>		
-					<input type="hidden" name="flag" value="saveAndExit"   />
 					<button type="submit"
-						onclick="javascript:valthis()" class="btn btn-primary">Save and Exit</button>
+						onclick="javascript:valthis()" name="flag" value="saveAndExit"   class="btn btn-primary">Save and Exit</button>
 				</td>
 				<td>
 					<%String pathWebcontent=request.getContextPath();%>
-					<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}" class="button btn btn-primary" >View Questions</a>
+					<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuestion&id=${quiz.quizId}&quizName=${quiz.quizName}" class="button btn btn-primary" >View Questions</a>
 				</td>	
 			</tr>
 		</table>

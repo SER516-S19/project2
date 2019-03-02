@@ -42,20 +42,15 @@ public class ProfessorServlet extends HttpServlet {
 		
 		if ("fetchQuizList".equalsIgnoreCase(flag)) {
 			List<Quiz> quizList = professorServices.getAllQuizzes();
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/" + 
-					"displayQuizDetails.jsp");
 			request.setAttribute("quizList", quizList);
-			rd.forward(request, response);
+			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
 		} 
 		else if ("publishQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
 			int quizID = Integer.parseInt(id);
 			professorServices.publishQuiz(quizID);
-			List<Quiz> quizList = professorServices.getAllQuizzes();
-			request.setAttribute("quizList", quizList);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/" + 
-					"displayQuizDetails.jsp");
-			rd.forward(request, response);
+			request.setAttribute("quizList", professorServices.getAllQuizzes());
+			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
 		} 
 		else if ("viewQuiz".equalsIgnoreCase(flag)) {
 			String id = request.getParameter("id");
@@ -63,13 +58,11 @@ public class ProfessorServlet extends HttpServlet {
 			int quizId = Integer.parseInt(id);
 			List<Quiz> quizList = professorServices.getAllQuizzes();
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
-			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
+			List queAnsData = professorServices.getAllAnswersFromQuestionList(questions);
 			request.setAttribute("quizList", quizList);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/" + 
-					"displayQuestionstoProfessor.jsp");
 			request.setAttribute("quizName", quizName);
 			request.setAttribute("queAnsData", queAnsData);
-			rd.forward(request, response);	
+			getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp").forward(request, response);	
 		}
 		else if("addQuestionInQuiz".equalsIgnoreCase(flag)) {
 			String quizID = request.getParameter("id");
@@ -93,23 +86,22 @@ public class ProfessorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
-		if ("InsertQuizDetails".equals(flag)) {		
+		if ("insertQuizDetails".equals(flag)) {		
 			HttpSession sess = request.getSession(true);
 			String quizName = request.getParameter("name");
 	        String quizInstructions = request.getParameter("instructions");
 	        String quizType = request.getParameter("quiz_type");
-	        sess.setAttribute("quizType", quizType);
 	        String isTimeLimitSet = request.getParameter("time_limit");
 	        String shuffle = request.getParameter("shuffle");
 	        String hours = request.getParameter("hours");
         	String minutes = request.getParameter("minutes");
 			Quiz quiz = professorServices.insertQuizDetails(quizName,quizInstructions,quizType,
 					isTimeLimitSet,hours,minutes, shuffle);
+			sess.setAttribute("quizType", quizType);
 			sess.setAttribute("quiz", quiz);
 			List<Quiz> quizList = professorServices.getAllQuizzes();
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
 			request.setAttribute("quizList", quizList);
-			rd.forward(request, response);
+			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
 		} 
 		else if ("deleteQuestion".equals(flag)) {
 			String quesID = request.getParameter("quesId");
@@ -126,13 +118,13 @@ public class ProfessorServlet extends HttpServlet {
 			String quizId = request.getParameter("quizId");
 			int quizid = Integer.parseInt(quizId);
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizid);
-			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
+			List queAnsData = professorServices.getAllAnswersFromQuestionList(questions);
 			request.setAttribute("quesId", quesId);
 			request.setAttribute("queAnsData", queAnsData);
 			request.getRequestDispatcher("views/canEditQuestion.jsp").forward(request, response);
 		}
 		else if ("addNextQuestion".equals(flag) || "saveAndExit".equals(flag) ||
-				"Verify Questions".equals(flag)) {
+				"viewQuestion".equals(flag)) {
 			String question = request.getParameter("question");
 			String[] optionArray = request.getParameterValues("questionOptions");
 			String points;
@@ -153,8 +145,10 @@ public class ProfessorServlet extends HttpServlet {
         	if("addNextQuestion".equals(flag)) {
         		response.sendRedirect("views/addQuestions.jsp");
         	}else if("saveAndExit".equals(flag)) {
-        		response.sendRedirect("views/professorLanding.jsp");
-        	}else if("Verify Questions".equals(flag)) {
+        		List<Quiz> quizList = professorServices.getAllQuizzes();
+    			request.setAttribute("quizList", quizList);
+    			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
+        	}else if("viewQuestion".equals(flag)) {
             	response.sendRedirect("views/displayQuestionAnswer.jsp");
             }
 		}

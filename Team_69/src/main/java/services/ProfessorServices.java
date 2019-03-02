@@ -9,7 +9,6 @@ import dao.ProfessorDAO;
 import dao.QuestionDAO;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * This is the service class for manipulating data models.
@@ -22,6 +21,8 @@ public class ProfessorServices {
 	
 	private final String OPTIONS = "option";
 	private static ProfessorDAO professorDAO = new ProfessorDAO();
+	AnswerDAO answerDAO = new AnswerDAO();
+	QuestionDAO questionDAO = new QuestionDAO();
 	
 	/**
 	 * This method verifies question form data and add question details in Question table
@@ -30,7 +31,6 @@ public class ProfessorServices {
 		boolean isMutiple = false;
 		boolean isCorrectAnswer = false;
 		Answer answer = null;
-		AnswerDAO answerDAO = new AnswerDAO();
 		int point;
 
 		for(String str: optionArray)
@@ -46,13 +46,9 @@ public class ProfessorServices {
 			point = 0;
 		}
 	
-		if(correctanswers.length > 1)
-			isMutiple = true;
-		else
-			isMutiple = false;
+		isMutiple = (correctanswers.length > 1) ? true : false;
 		
 		Question quest = new Question(quiz, question,isMutiple, point);
-		QuestionDAO questionDAO = new QuestionDAO();
 		questionDAO.addQuestion(quest);
 		
 		for(int option=1; option<=optionArray.length; option++) {
@@ -74,28 +70,18 @@ public class ProfessorServices {
 		String questionOption3 = request.getParameter("option3").trim();
 		String questionOption4 = request.getParameter("option4").trim();
 		Integer questionId = Integer.parseInt(request.getParameter("questionId").trim());
-
+		String[] correctanswers = request.getParameterValues("options");
+		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
+		Answer answer;
 		String points;
 		
 		if(request.getParameter("points").trim() ==  null) {
 			points = "0";
-			System.out.println("Inside points - " + points);
 		}else {
 			points = request.getParameter("points").trim();
-			System.out.println("Inside points - " + points);
 		}
-		
-		String[] correctanswers = request.getParameterValues("options");
-		
-		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
-		Answer answer;
-		AnswerDAO answerDAO = new AnswerDAO();
 	
-		if(correctanswers.length > 1)
-			isMultiple = true;
-		else
-			isMultiple = false;
-		
+		isMultiple = (correctanswers.length > 1) ? true : false;
 		int point;
 		if(points ==  null)
 			point = 0;
@@ -106,14 +92,11 @@ public class ProfessorServices {
 				point = 0;
 			}
 
-		QuestionDAO questionDAO = new QuestionDAO();
 		Question questionOld = professorDAO.getQuestionFromID(questionId);
 		questionOld.setQuestion(question);
 		questionOld.setPoints(point);
 		questionOld.setMultiple(isMultiple);
 		questionDAO.updateQuestion(questionOld);
-		
-		
 		answerDAO.deleteAnswer(questionId);
 		for(int option=1; option<=optionArray.length; option++) {
 			if(optionArray[option - 1] != null) {
@@ -128,8 +111,6 @@ public class ProfessorServices {
 	public List<Quiz> getAllQuizzes(){
 		return professorDAO.getAllQuizzes();
 	}
-	
-	
 	
 	public void publishQuiz(int quizId) {
 		professorDAO.publishQuiz(quizId);
@@ -184,12 +165,11 @@ public class ProfessorServices {
 	/**
 	 * This method generates list containing quiz name, question details and related answers
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List getAllAnswersFromQueList(List<Question> questions) {
+	public List getAllAnswersFromQuestionList(List<Question> questions) {
 		List questionData = new ArrayList<>();	
 		for(Question question : questions) {
 			int queID = question.getQuestionId();
-			List questionInfo = new ArrayList<>();
+			List<Object> questionInfo = new ArrayList<>();
 			questionInfo.add(question.getQuestion());
 			questionInfo.add(question.getPoints());
 			List<Answer> answers = professorDAO.getAllAnswersFromQuestionID(queID);
@@ -201,10 +181,11 @@ public class ProfessorServices {
 	}
 
 
+	/**
+	 * This method is used to get quiz details based on the quiz id
+	 */
 	public Quiz getQuizFromID(int quizId) {
-		ProfessorDAO professorDAO = new ProfessorDAO();
 		Quiz quiz = professorDAO.getQuizFromID(quizId);
 		return quiz;
 	}
-
 }
