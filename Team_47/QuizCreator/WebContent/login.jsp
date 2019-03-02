@@ -10,7 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="js/validatelogin.js"></script>
 <link rel="stylesheet" href="CSS/loginstyle.css" />
 <link rel="icon" type="image/png" href="favicon.png" />
 <title>Blackboard Login</title>
@@ -39,5 +38,6 @@
       <h3>username or password is wrong</h3>
     </div>
 </form>
+<script type="text/javascript" src="js/validatelogin.js"></script>
 </body>
 </html>
