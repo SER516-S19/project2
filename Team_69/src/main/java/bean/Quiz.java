@@ -40,9 +40,6 @@ public class Quiz {
     @Column(name="Is_Published")
     private boolean isPublished;
     
-    @OneToMany( orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private List<Question> questionList = new ArrayList<Question>();
-    
     Quiz() {}
 
 
