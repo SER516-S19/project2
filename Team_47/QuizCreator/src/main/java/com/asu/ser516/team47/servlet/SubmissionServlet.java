@@ -150,6 +150,11 @@ public class SubmissionServlet extends HttpServlet {
             }
         }
 
+        if (!isInTime(quizId, startTime, endTime)) {
+            httpCode = 400;
+            httpErrorMessage = "Quiz taken outside of allowed time period";
+        }
+
         if (httpCode != 204 || quizId == null || enrollId == null || startTime == null
                 || attempt == null) {
             if (httpCode == 500) {
@@ -168,8 +173,6 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
         response.setStatus(httpCode);
-
-        //TODO: call autograder, update score on Submission.
     }
 
     /**
@@ -271,6 +274,14 @@ public class SubmissionServlet extends HttpServlet {
         return null;
     }
 
+    /**
+     * Checks whether the date that the student took the quiz is valid, including whether the
+     * form data is invalid or missing, and returns a formatted date.
+     * @param value     form data to be parsed
+     * @param response  servlet response to be sent back
+     * @return a Date object with the correct formatting
+     * @throws IOException
+     */
     private Date validateDate(String value, HttpServletResponse response) throws IOException {
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -284,5 +295,26 @@ public class SubmissionServlet extends HttpServlet {
             httpErrorMessage = "Missing form data";
         }
         return null;
+    }
+
+    /**
+     * Checks whether the student took the quiz within the given time restrictions. They must
+     * start after the quiz is opened and finish before the quiz is closed, and must complete
+     * the quiz within the time limit.
+     * @param quizID    ID of the quiz being taken
+     * @param start     Date and time when the quiz was started
+     * @param end       Date and time when the quiz was finished
+     * @return true if all conditions for a valid quiz time are met, false otherwise.
+     */
+    private boolean isInTime(int quizID, Date start, Date end) {
+        QuizDAOImpl quizDAO = new QuizDAOImpl();
+        Quiz quiz = quizDAO.getQuiz(quizID);
+        Date dateOpen = quiz.getDate_open();
+        Date dateClose = quiz.getDate_close();
+
+        int timeLimit = quiz.getTime_limit() * 60000; //time_limit comes as min
+        int timeTaken = (int)(end.getTime() - start.getTime()); //getTime is in ms
+
+        return start.after(dateOpen) && end.before(dateClose) && (timeTaken < timeLimit);
     }
 }
