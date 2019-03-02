@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import services.StatisticServices;
 import java.io.IOException;
 
+@SuppressWarnings("serial")
 public class StatisticServlet extends HttpServlet {
 
     @Override
@@ -21,15 +22,13 @@ public class StatisticServlet extends HttpServlet {
 			StatisticServices statisticServices = new StatisticServices();
 			request.setAttribute("professorStatistics", statisticServices.getQuizStatistics(quizId));
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/statistics.jsp");
-			rd.forward(request, response);
-			
+			rd.forward(request, response);		
 		}
     }
 
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
         response.sendError(501,"Method not supported yet");
 
