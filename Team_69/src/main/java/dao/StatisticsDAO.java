@@ -12,6 +12,7 @@ import org.hibernate.transform.Transformers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -154,4 +155,47 @@ public class StatisticsDAO {
         }
 		return studentCalculatedScores;
 	}
+	
+	public List<ResponseStatistics> getResponseOfEachQuestion(int quizId) {
+
+		List<ResponseStatistics> lists = new ArrayList<>();
+		 Transaction transaction = null;
+	        try  {
+	            Session session = HibernateUtil.getSessionFactory().openSession();
+	            transaction = session.beginTransaction();
+	            Query query = session.createQuery("from  " + ResponseStatistics.class.getName() + " res where res.quiz.quizId = "+quizId+ " and res.answer.correctAnswer=true");;
+	            lists = query.list();
+	            System.out.println(lists);
+	            transaction.commit();
+	        } catch (Exception sqlException) {
+	            if (transaction != null) {
+	                transaction.rollback();
+	            }
+	            //System.out.println(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", sqlException);
+	        }
+	
+		return lists;
+	}
+	
+	public List<Answer> getCorrectResponseOfEachQuestion(int quizId) {
+
+		List<Answer> lists = new ArrayList<>();
+		 Transaction transaction = null;
+	        try  {
+	            Session session = HibernateUtil.getSessionFactory().openSession();
+	            transaction = session.beginTransaction();
+	            Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.quiz.quizId = "+quizId + " and ans.correctAnswer = true");
+	            lists = query.list();
+	            System.out.println(lists);
+	            transaction.commit();
+	        } catch (Exception sqlException) {
+	            if (transaction != null) {
+	                transaction.rollback();
+	            }
+	            //System.out.println(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", sqlException);
+	        }
+	
+		return lists;
+	}
+	
 }
