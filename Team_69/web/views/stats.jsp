@@ -14,10 +14,18 @@ Statistics
 	<input type="submit" name="flag" value="StudentStats">
 	<c:set var="professorStatistics" value="${requestScope.professorStatistics}"/>
 	<br>
-	No Of Students In Class : - ${requestScope.professorStatistics.students}
+	No Of Students In Class : - ${professorStatistics.students}
 	<br>
-	No Of Students Who Gave Quiz : - ${requestScope.professorStatistics.studentsGaveQuiz}
-
+	No Of Students Who Gave Quiz : - ${professorStatistics.studentsGaveQuiz}
+	<br>
+	
+	<c:forEach items="${professorStatistics.studentCalculatedScores}" var="scoreList">
+			<tr scope="row">
+			<c:out value="${scoreList}"></c:out>
+			</tr>
+    </c:forEach>
+	
+	
 </form>
 
 </body>

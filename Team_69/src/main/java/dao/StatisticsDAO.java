@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
+import org.hibernate.transform.Transformers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,11 +140,8 @@ public class StatisticsDAO {
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            
-            Query query = session.createSQLQuery(
-            		"select * FROM `calculatedscores` WHERE Quiz_id = :quizId")
-            		.setParameter("quizId", quizId);
-    		studentCalculatedScores = query.list();
+            Query query = session.createQuery("from  " + CalculatedScores.class.getName() + " calculatedscores where Quiz_id = "+quizId);	            
+            studentCalculatedScores = query.list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

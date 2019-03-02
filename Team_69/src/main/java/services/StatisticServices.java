@@ -34,6 +34,10 @@ public class StatisticServices {
 		int students = statisticsDAO.retrieveStudentsCount();
 		int studentsGaveQuiz = statisticsDAO.retrieveStudentsQuizCount(quizId);
 		List<CalculatedScores> studentCalculatedScores = statisticsDAO.retrieveStudentsGrades(quizId);
+		for(int i=0; i<studentCalculatedScores.size();i++)
+		{
+			studentCalculatedScores.get(i).toString();
+		}
 		
 		ProfessorStatistics professorStatistics = new ProfessorStatistics(students,studentsGaveQuiz,studentCalculatedScores);
 		return professorStatistics;
