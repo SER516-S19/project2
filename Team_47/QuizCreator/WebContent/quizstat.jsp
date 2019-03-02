@@ -1,8 +1,13 @@
+<!-- 
+  - Author(s): Meng-Ze Chen
+  - Date: 2019/2/23
+  - Description: Display graphic statistic data for specific quiz.
+  -->
 <html>
 
 <head>
-    <% int quizID = 0; %>
-    <title> Quiz <%= quizID %> Statistic </title>
+    <% int quizIdx = Integer.parseInt(request.getParameter("Quiz_number")); %>
+    <title> Quiz <%= quizIdx %> Statistic </title>
     <meta id="request-method" name="request-method" content="GET">
     <meta name="author" content="Meng-Ze Chen">
     <meta name="copyright" content="© 2019 Meng-Ze Chen. All Rights Reserved.">
@@ -12,7 +17,6 @@
 
     <%@ page import="com.asu.ser516.team47.database.*" %>
     <%@ page import="java.util.List" %>
-
 </head>
 
 <body>
@@ -25,31 +29,28 @@
 
                 <%
                 QuizDAO quizDAO = new QuizDAOImpl();
+                int quizID = Integer.parseInt(request.getParameter("Quiz_id"));
                 SubmissionDAO submissionDAO = new SubmissionDAOImpl();
 
-                List<Quiz> quizzes = quizDAO.getAllQuizzes();
-                int scoreRange = quizzes.size();
-                int[] scoreBucket = new int[5];
-                for (int i=0; i<scoreRange; ++i) {
-                    Quiz quiz = quizzes.get(i);
-                    List<Submission> submissionForThisQuiz = submissionDAO.getQuizSubmissions(quiz.getQuiz_id());
-                    for (int submissionIdx=0; submissionIdx<submissionForThisQuiz.size(); submissionIdx++) {
-                        Submission thisSubmission = submissionForThisQuiz.get(submissionIdx);
-                        float score = thisSubmission.getScore();
-                        if (score < 60) {
-                            scoreBucket[0] += 1;
-                        } else if (score < 70) {
-                            scoreBucket[1] += 1;
-                        } else if (score < 80) {
-                            scoreBucket[2] += 1;
-                        } else if (score < 90) {
-                            scoreBucket[3] += 1;
-                        } else if (score <= 100) {
-                            scoreBucket[4] += 1;
-                        }
+                int scoreRange = 5;
+                int[] scoreBucket = new int[scoreRange];
+                Quiz quiz = quizDAO.getQuiz(quizID);
+                List<Submission> submissionForThisQuiz = submissionDAO.getQuizSubmissions(quiz.getQuiz_id());
+                for (int submissionIdx=0; submissionIdx<submissionForThisQuiz.size(); submissionIdx++) {
+                    Submission thisSubmission = submissionForThisQuiz.get(submissionIdx);
+                    float score = thisSubmission.getScore();
+                    if (score < 60) {
+                        scoreBucket[0] += 1;
+                    } else if (score < 70) {
+                        scoreBucket[1] += 1;
+                    } else if (score < 80) {
+                        scoreBucket[2] += 1;
+                    } else if (score < 90) {
+                        scoreBucket[3] += 1;
+                    } else if (score <= 100) {
+                        scoreBucket[4] += 1;
                     }
-                    out.println("Quiz " + i + " has " + submissionForThisQuiz.size() + " submissions.\n");
-                }
+                } 
                 %>
 
                 <div id="area2">
