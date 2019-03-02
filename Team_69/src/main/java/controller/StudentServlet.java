@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Controller class for student page
- * 
+ *
  * @author : Sourabh Siddharth
  * @version : 1.0
  * @since : 02/16/2019
- * 
+ *
  */
 public class StudentServlet extends HttpServlet {
 
@@ -36,12 +36,6 @@ public class StudentServlet extends HttpServlet {
 		StudentServices service = new StudentServices();
 		String questionAnswerJSON = service.getQuestionDetails(Integer.parseInt(quizId));
 		HttpSession session = req.getSession();
-		Enumeration<String> attrNames = session.getAttributeNames();
-		while (attrNames.hasMoreElements()) {
-			if(attrNames.nextElement().equals("studentResponseJSON")){
-				questionAnswerJSON = (String)session.getAttribute("studentResponseJSON");
-			}
-		}
 		session.setAttribute("studentResponseJSON", questionAnswerJSON);
 		session.setAttribute("startTime", service.getCurrentDateTime());
 		resp.setContentType("text/html");
