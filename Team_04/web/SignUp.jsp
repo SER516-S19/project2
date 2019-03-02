@@ -9,23 +9,25 @@
 <html>
 <head>
     <title>Sign Up</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <style>
-    .col-md-8{
+    .col-md-8 {
         background-color: #4a154b;
         height: 100%;
 
     }
-    .col-md-4{
+
+    .col-md-4 {
         padding-top: 100px;
-        align:center;
+        align: center;
         background-color: white;
     }
 
-    h1{
+    h1 {
         align-items: center;
         justify-content: center;
         display: flex;
@@ -33,10 +35,12 @@
         color: white;
         font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
     }
-    body{
-        background-color:rgb(218,219,219);
+
+    body {
+        background-color: rgb(218, 219, 219);
     }
-    .row{
+
+    .row {
         margin: 0px;
     }
 
@@ -68,7 +72,7 @@
         display: flex;
     }
 
-    @media only screen and (max-width: 768px) {
+   @media only screen and (max-width: 768px) {
         .col-md-8
         {
             height: 250px; / height: 60%;
@@ -96,7 +100,7 @@
                 </div>
                 <div class="form-group">
                     <input type="radio" name="userTypeBtn" value="Professor"/> Professor
-                    <input type="radio" name="userTypeBtn" value="Student"/>   Student
+                    <input type="radio" name="userTypeBtn" value="Student"/> Student
                 </div>
 
                 <div class = "btnwrapper">

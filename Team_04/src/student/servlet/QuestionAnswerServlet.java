@@ -110,50 +110,56 @@ public class QuestionAnswerServlet extends HttpServlet {
                 String name = request.getParameter("username");
                 String password = request.getParameter("password");
                 String userType = request.getParameter("userTypeBtn");
-                if (validObj.loginValidation(name, password, userType).equals("success")) {
+                String loginResponse = validObj.loginValidation(name, password, userType);
+                if (loginResponse.equals("success")) {
                     doGet(request, response);
+                } else {
+                    response.setContentType("text/html");
+                    request.getRequestDispatcher("errorHandler.jsp").forward(request, response);
+                }
+            }
+        } else {
+            if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex <= questions.size()) {
+                switch (currentQuestion.getQuesType()) {
+                    case "SA":
+                        String[] radioSelection = {request.getParameter("selectedOptionId")};
+                        currentQuestion.setSelectedAnswers(Arrays.asList(radioSelection));
+                        totalScore += computeScore(currentQuestionIndex - 1,
+                                currentQuestion.getSelectedAnswers());
+                        break;
+                    case "MA":
+                        String[] checkBoxSelection = request.getParameterValues("selectedOptionId");
+                        currentQuestion.setSelectedAnswers(Arrays.asList(checkBoxSelection));
+                        totalScore += computeScore(currentQuestionIndex - 1,
+                                currentQuestion.getSelectedAnswers());
+                        break;
+                    case "TA":
+                        break;
+                }
+            }
+            if (action.equalsIgnoreCase("SignUp")) {
+                String userName = request.getParameter("username");
+                String passWord = request.getParameter("password");
+                String userType = request.getParameter("userTypeBtn");
+                if(validObj.signupValidation(userName, passWord, userType).equals("returningUser"))
+                {
+                    request.setAttribute("userStatus", "returningUser");
+                }
+                else{
+                    request.setAttribute("userStatus", "newUser");
+                }
+                request.setAttribute("userEntName", userName);
+                view = "loginPage.jsp";
+            }
+            else
+            {
+                executeInsertQuery();
+                if (currentQuestionIndex == questions.size()) {
+                    executeSubmitEntry();
                 }
             }
         }
-        if (request.getParameterMap().containsKey("selectedOptionId") && currentQuestionIndex <= questions.size()) {
-            switch (currentQuestion.getQuesType()) {
-                case "SA":
-                    String[] radioSelection = {request.getParameter("selectedOptionId")};
-                    currentQuestion.setSelectedAnswers(Arrays.asList(radioSelection));
-                    totalScore += computeScore(currentQuestionIndex - 1,
-                            currentQuestion.getSelectedAnswers());
-                    break;
-                case "MA":
-                    String[] checkBoxSelection = request.getParameterValues("selectedOptionId");
-                    currentQuestion.setSelectedAnswers(Arrays.asList(checkBoxSelection));
-                    totalScore += computeScore(currentQuestionIndex - 1,
-                            currentQuestion.getSelectedAnswers());
-                    break;
-                case "TA":
-                    break;
-            }
-        }
-        if (action.equalsIgnoreCase("SignUp")) {
-            String userName = request.getParameter("username");
-            String passWord = request.getParameter("password");
-            String userType = request.getParameter("userTypeBtn");
-            if(validObj.signupValidation(userName, passWord, userType).equals("returningUser"))
-            {
-                request.setAttribute("userStatus", "returningUser");
-            }
-            else{
-                request.setAttribute("userStatus", "newUser");
-            }
-            request.setAttribute("userEntName", userName);
-            view = "loginPage.jsp";
-        }
-        else
-        {
-            executeInsertQuery();
-            if (currentQuestionIndex == questions.size()) {
-                executeSubmitEntry();
-            }
-        }
+
         doGet(request, response);
     }
 

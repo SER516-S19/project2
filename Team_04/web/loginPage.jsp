@@ -87,7 +87,7 @@
 
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account? <a href="#" formaction="./signup.jsp" name="action" class="ml-2">Sign Up</a>
+                        Don't have an account? <a href="./signup.jsp" name="action" class="ml-2">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center links">
                         <a href="#">Forgot your password?</a>
