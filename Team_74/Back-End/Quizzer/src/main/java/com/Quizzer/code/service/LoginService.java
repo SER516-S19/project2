@@ -29,7 +29,9 @@ public class LoginService {
         {
             if(ifEmailIdExists(email)){
                 User user = userRepo.findByUserEmailId(email);
-                return user;
+                if (user.getUserPassword().equals(pass)){
+                    return user;
+                }
             }
         }
         catch (Exception e)
