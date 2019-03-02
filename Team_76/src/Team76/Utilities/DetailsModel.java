@@ -22,9 +22,11 @@ public class DetailsModel {
 		entity.setQuiztitle(request.getParameter("quiztitle"));
 		entity.setQinstruct(request.getParameter("qinstruct"));
 		entity.setQtype(request.getParameter("qtype"));
+		entity.setShuffleAns(request.getParameter("shuffleAns"));
+		entity.setClocktype(request.getParameter("clockType"));
 		System.out.println("Entity is " + entity.toString());
 
-		database.databaseConnect(entity.getQuiztitle(), entity.getQinstruct(), entity.getQtype());
+		database.databaseConnect(entity.getQuiztitle(), entity.getQinstruct(), entity.getQtype(), entity.getShuffleAns(), entity.getClocktype());
 		
 
 	}

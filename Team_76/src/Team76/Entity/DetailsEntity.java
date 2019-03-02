@@ -1,7 +1,6 @@
 package Team76.Entity;
 /**
 *  SER516-Project2
-*  File content-
 *  @author Janani Anand,
 *  @since 02/19/2019
 */
@@ -10,7 +9,12 @@ public class DetailsEntity {
 	String quiztitle;
 	String qinstruct;
 	String qtype;
+	String shuffleAns;
+	String clockType;
 
+	public DetailsEntity() {
+	}
+	
 	public String getQuiztitle() {
 		return quiztitle;
 	}
@@ -34,13 +38,25 @@ public class DetailsEntity {
 	public void setQtype(String qtype) {
 		this.qtype = qtype;
 	}
-
-	public DetailsEntity() {
-		// TODO Auto-generated constructor stub
+	
+	public String getShuffleAns() {
+		return shuffleAns;
 	}
 
+	public void setShuffleAns(String shuffleAns) {
+		this.shuffleAns = shuffleAns;
+	}
+
+	public String getClocktype() {
+		return clockType;
+	}
+
+	public void setClocktype(String clockType) {
+		this.clockType = clockType;
+	}
+	
 	public String toString() {
-		return "DetailsEntity [quiztitle=" + quiztitle + ", qinstruct=" + qinstruct + ", qtype=" + qtype + "]";
+		return "DetailsEntity [quiztitle=" + quiztitle + ", qinstruct=" + qinstruct + ", qtype=" + qtype + ", shuffleAns=" + shuffleAns + ",clockType=" + clockType + "]";
 	}
 
 }

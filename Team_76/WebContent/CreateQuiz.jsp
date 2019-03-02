@@ -97,29 +97,28 @@ input[type=submit]:hover {
         </form>
     </div>
 	<ul>
-		<li><a href="#news">DETAILS PAGE</a></li>
+		<li><a>DETAILS PAGE</a></li>
 	</ul>
 	<p>QUIZ TITLE</p>
 	<div>
 		<form action="ProfessorController" method="post">
-			<input type="text" name="quiztitle" placeholder="Takes quiztitle">
+			<input type="text" name="quiztitle" required placeholder="Input quiztitle">
 			<p>QUIZ INSTRUCTIONS</p>
-			<textarea name="qinstruct" rows="20" cols="100"></textarea>
+			<textarea name="qinstruct"  required rows="20" cols="100"></textarea>
 			<p>SELECT THE QUIZ TYPE</p>
 			<div class="dropdown">
-				<select>
-				<option name="qtype" class="dropbtn">MCQ</option>
-				<option name="qtype" class="dropbtn">Subjective</option>
-				<option name="qtype" class="dropbtn">Practice</option>
+				<select name="qtype" required>
+				<option class="dropbtn" value="Graded">MCQ</option>
+				<option class="dropbtn" value="NotGraded">Subjective</option>
 				</select>
-			</div>
-			<br>
+			</div><br><br>
+			<div class ="otherdetails">
+			<input type="radio" name="shuffleAns" required value="Shuffle">Shuffle Answers<br>
 			<p>OPTIONS<p>
-			<form action="/action_page.php">
-			    <input type="checkbox" name="ShuffleAns" value="Shuffle">Shuffle Answers<br>
-  				<input type="checkbox" name="TimeOp1" value="T1">Timed<br>
-  				<input type="checkbox" name="TimeOp2" value="T2">Not Timed (Practice Mode)<br>
-			</form>
+  				<input type="checkbox" name="timeOp1" value="T1">Timed<br>
+  				<input type="checkbox" name="timeOp2" value="T2">Not Timed (Practice Mode)
+  			</div>	
+  			
 			<form action="ProfessorController" method="post">
 				<input type="hidden" name="action" value="Continue1"> 
 				<input type="submit" value="CONTINUE">
