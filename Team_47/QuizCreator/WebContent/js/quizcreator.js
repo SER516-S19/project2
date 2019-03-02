@@ -73,22 +73,14 @@ function selectQuestionType(answerTypeEncoded) {
 
 function submitQuizCreateRequest() {
 	var quizDict = {}
-
 	createQuizDict(idTracingList, quizDict)
-	// var saveData = $.ajax({
-	// 	url: 'createQuiz',
-	// 	type: 'POST',
-	// 	contentType: 'application/json',
 
-	// 	data: JSON.stringify(quizDict),
-	// 	success: function (result) {
-	// 		alert("Request submitted success!");
-	// 	},
-	// 	error: function (err) {
-	// 		alert("Request submission Error!");
-	// 	}
-	// });
-	alert(JSON.stringify(quizDict))
+	xmlHttpManager = new XMLHttpRequest();
+	var url = "/createQuiz";
+	xmlHttpManager.open("POST", url, true);
+	xmlHttpManager.setRequestHeader("Content-type", "application/json");
+	var data = JSON.stringify(quizDict);
+	xmlHttpManager.send(data);
 }
 
 function createQuizDict(idTracingList, quizDict) {

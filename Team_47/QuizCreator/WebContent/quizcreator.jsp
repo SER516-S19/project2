@@ -19,7 +19,7 @@
         Quiz editor
     </title>
     <link rel="stylesheet" href="CSS/quizcreator.css" type="text/css" />
-    <script src="js/quizcreator.js"></script>
+    <script type='text/javascript' src="js/quizcreator.js"></script>
 </head>
 
 <body>
