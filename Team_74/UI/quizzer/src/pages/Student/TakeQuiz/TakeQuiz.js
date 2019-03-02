@@ -4,10 +4,10 @@ import Result from '../../../components/Result';
 import Quiz from '../../../components/Quiz';
 import Timer from "react-compound-timer";
 import axios from "axios";
-import jsonfile from'jsonfile';
-
-var file = 'data.json'
-var obj = {name: 'JP'}
+// import jsonfile from'jsonfile';
+//
+// var file = 'data.json'
+// var obj = {name: 'JP'}
 
 class TakeQuiz extends Component {
     /**Constructor for the main TakeQuiz Class*/
@@ -15,6 +15,7 @@ class TakeQuiz extends Component {
         super(props);
         console.log(props);
         this.state = {
+            quiz: null,
             quizInstructions:'',
             quizQuestions:[],
             counter: 0,
@@ -34,6 +35,7 @@ class TakeQuiz extends Component {
             totalPoints:0,
             totalMarks:0,
             totalTime:1000,
+            response:'',
             result: ''
         };
         this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -50,6 +52,8 @@ class TakeQuiz extends Component {
         axios.get("http://localhost:8081/prof/quiz/"+this.props.quizId)
             .then(response => {
                 this.setState({
+                    quiz: response.data.response,
+                    quizId: response.data.response.quizId,
                     quizInstructions: response.data.response.instruction,
                     quizQuestions: response.data.response.questions,
                      totalMarks: response.data.response.totalMarks,
@@ -71,6 +75,7 @@ class TakeQuiz extends Component {
     }
 
     submitQuiz() {
+        this.sendResults();
         setTimeout(() => this.setResults(this.getResults()), 300);
     }
 
@@ -138,6 +143,21 @@ class TakeQuiz extends Component {
             });
         }
     }
+
+    sendResults() {
+        axios.post("http://localhost:8081/results",{
+            studentId: localStorage.getItem('username'),
+            quiz: this.state.quiz,
+            quizId: this.state.quizId,
+            marksAchieved: this.state.totalPoints
+        })
+            // .then(response =>{
+            //     if(response.status === '202 ACCEPTED')
+            //         this.setState({response:"Posted Successfully"});
+            //     else
+            //         this.setState({response:"not Posted.. Sorry for inconvenience!!"});
+            // })
+    }
     
     getResults() {
         const answersCount = this.state.answersCount;
@@ -150,15 +170,15 @@ class TakeQuiz extends Component {
     setResults (result) {
         console.log(this.state.answer);
         localStorage.removeItem('Time');
-        function jsonfile(file){
-                jsonfile.writeFile(file, obj, function (err) {
-                    console.error(err);
-                  });
-        };
+        // function jsonfile(file){
+        //         jsonfile.writeFile(file, obj, function (err) {
+        //             console.error(err);
+        //           });
+        // };
         if (result.length === 1) {
             this.setState({ result: result[0] });
         } else {
-            this.setState({ result: this.state.totalPoints +" out of "+ this.state.totalMarks });
+            this.setState({ result: this.state.totalPoints+ " out of "+this.state.totalMarks });
         }
     }
 
@@ -169,6 +189,7 @@ class TakeQuiz extends Component {
         if (this.state.questionSerial < this.state.quizQuestions.length) {
             setTimeout(() => this.setNextQuestion(), 300);
         } else {
+            this.sendResults();
             setTimeout(() => this.setResults(this.getResults()), 300);
         }
     }
@@ -251,6 +272,8 @@ class TakeQuiz extends Component {
             </div>
         );
     }
+
+
 }
 
 export default TakeQuiz;
