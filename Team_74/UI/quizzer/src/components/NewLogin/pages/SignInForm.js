@@ -7,7 +7,7 @@ class LogInForm extends Component {
 
 
   handleSignIn(e) {
-    //e.preventDefault();
+    // e.preventDefault();
     let username = this.refs.username.value;
     let password = this.refs.password.value;
     this.props.onSignIn(username, password);
@@ -44,88 +44,50 @@ class SignInForm extends Component {
     localStorage.clear();
     this.state = {
       user: null,
-      type: '0'
+      type: -1
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    let target = e.target;
-    let value = target.type === 'checkbox' ? target.checked : target.value;
-    let name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
 
   signIn(username, password) {
     // This is where you would call Firebase, an API etc...
     // calling setState will re-render the entire app (efficiently!)
-
-    this.setState({
-      user: {
-        username,
-        password
-      }
-    })
-
-    this.setState({
-      type: '1'
-    });
-
-    // if (!this.state.username.toString().localeCompare("Prof") === 0) {
-    //   this.setState({
-    //     type: '1'
-    //   });
-    // } else {
-    //   this.setState({
-    //     type: '0'
-    //   });
-    // }
-
-    localStorage.setItem('username',username);
-    localStorage.setItem('password',password);
-    localStorage.setItem('type',this.state.type);
-  }
-
-
-
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log('yo:');
-
-    if (this.state.email.toString().localeCompare("Prof") === 0) {
+    var type = -1;
+    if (username.toString().localeCompare("Prof") === 0) {
+      type = 1;
       this.setState({
-        type: '1'
+        type: type,
+        user: {
+          username,
+          password
+        }
       });
     } else {
+      type = 0;
       this.setState({
-        type: '0'
+        type: type,
+        user: {
+          username,
+          password
+        }
       });
     }
-    localStorage.setItem('username', this.state.email);
-    localStorage.setItem('password', this.state.password);
-    localStorage.setItem('type', this.state.type);
-
-    // return <Redirect push to="/home" /> ;
-    console.log('The form was submitted with the following data:');
-    console.log(this.state);
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+    localStorage.setItem('type', type);
   }
 
   render() {
     return (
       <div>
         {
-          (this.state.type === '1') ?
-            <div>
-              <Routes/>
-              <Redirect to='/home' Component={Home}/>
-            </div>
-            :
-            <LogInForm onSignIn={this.signIn.bind(this)}/>
+          
+            (this.state.user) ?
+                <Redirect to='/home' Component={Home}/>
+                :
+                <LogInForm onSignIn={this.signIn.bind(this)}/>
+
 
         }
       </div>

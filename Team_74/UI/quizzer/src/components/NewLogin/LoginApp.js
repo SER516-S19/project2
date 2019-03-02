@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import SignUpForm from './pages/SignUpForm';
 import SignInForm from './pages/SignInForm';
+import { Container, Row, Col, Label, Button } from 'reactstrap';
 
-import './App.css';
+import './LoginApp.css';
 import Home from './pages/Home';
 
-class App extends Component {
+class LoginApp extends Component {
   render() {
     return (
       // <Router basename="/react-auth-ui/">
-        <div className="App">
+        <Container className="App">
           <div className="App__Aside"></div>
           <div className="App__Form">
             <div className="PageSwitcher">
@@ -26,14 +27,12 @@ class App extends Component {
               </Route>
               <Route path="/login" component={SignInForm}>
               </Route>
-              <Route path="/home" component={Home}>
-              </Route>
           </div>
 
-        </div>
+        </Container>
       // </Router>
     );
   }
 }
 
-export default App;
+export default LoginApp;

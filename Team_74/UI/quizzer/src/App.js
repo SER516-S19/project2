@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Routes from './Routes';
 import Navigation from './components/Navigation'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route, Router, Redirect } from 'react-router-dom';
+import LoginApp from './components/NewLogin/LoginApp';
+import Home from './pages/Home/Home';
 
 class App extends Component {
     render() {
@@ -12,25 +14,27 @@ class App extends Component {
                 {
                     (localStorage.getItem('username')) ?
                         <div className="App">
-                            <div className="App-header">
-                                <h1>Demo Canvas</h1>
-                            </div>
-                            <Navigation />
+                        <Home />
+                           
+                            {/* <Navigation />
                             <Routes />
                             <NavLink to="/login">
                             <button type="button" className="logout-button" onClick={this.signOut}>
-                            SignOut
+                                SignOut
                             </button>
-                            </NavLink>
+                            </NavLink> */}
+
                         </div>
 
                         :
                          <div className="App">
+                         <LoginApp />
+                        
                              {/* <div className="App-header">
                                 <h1>Demo Canvas</h1>
                              </div> */}
-                            <div className="Blank-Nav"/> 
-                            <Routes />
+                            {/* <div className="Blank-Nav"/>  */}
+
                             </div>
                 }
 
