@@ -2,7 +2,7 @@ package content.creator.dao;
 
 /**
  * This class has getter setter methods for quiz_result database table.
- * @author Pallavi Bahk
+ * @author Pallavi Bahl
  */
 public class QuizResultDAO {
 
