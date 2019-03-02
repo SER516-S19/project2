@@ -17,6 +17,7 @@ public class Quiz implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
+	private String quizId;
 	private String id;
 	private String instruction;
 	private String name;
@@ -29,9 +30,11 @@ public class Quiz implements Serializable {
 	private String assignmnetGroup;
 	@CreatedDate
 	private Date date;
-	public Quiz(String id, String instruction, String name, List<Question> questions, int time, int totalAttempts,
-			int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup, Date date) {
+	public Quiz(String quizId, String id, String instruction, String name, List<Question> questions, int time,
+			int totalAttempts, int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup,
+			Date date) {
 		super();
+		this.quizId = quizId;
 		this.id = id;
 		this.instruction = instruction;
 		this.name = name;
@@ -43,6 +46,12 @@ public class Quiz implements Serializable {
 		this.quizType = quizType;
 		this.assignmnetGroup = assignmnetGroup;
 		this.date = date;
+	}
+	public String getQuizId() {
+		return quizId;
+	}
+	public void setQuizId(String quizId) {
+		this.quizId = quizId;
 	}
 	public String getId() {
 		return id;
@@ -110,6 +119,5 @@ public class Quiz implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
 	
 }
