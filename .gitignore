@@ -3,6 +3,7 @@
 #====================#
 
 # User-specific stuff
+.idea/*
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -159,3 +160,4 @@ target/
 build.properties
 
 /Team_58/dist/
+*.iml

@@ -50,6 +50,7 @@ public class ViewContentDetailsServlet extends HttpServlet {
                 }
             }
             request.setAttribute("questions",quesData);
+            request.setAttribute("quizid",quizNumber);
             request.setAttribute("answers",answerMap);
             request.getRequestDispatcher("viewContentDetails.jsp").forward(request,response);
     }

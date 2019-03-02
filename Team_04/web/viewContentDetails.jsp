@@ -44,6 +44,7 @@
     <%
         Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
         Map<Integer, Map<String, String>> questionList=(HashMap)request.getAttribute("questions");
+        int quizid = (int) request.getAttribute("quizid");
 
         for(Integer quesId:questionList.keySet()){
     %>
@@ -63,5 +64,9 @@
     %>
 </table>
 <a href="./list">Back</a>
+<c:url var="quizstats" value="./quizstats">
+    <c:param name="quizid" value="${quizid}"/>
+</c:url>
+<a href="${quizstats}">Quiz Statistics</a>
 </body>
 </html>

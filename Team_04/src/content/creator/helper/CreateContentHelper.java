@@ -1,5 +1,7 @@
 package content.creator.helper;
 
+import static content.creator.operations.DataOps.getNamesFromProperty;
+
 import content.creator.constants.Constants;
 import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
@@ -40,7 +42,7 @@ public final class CreateContentHelper {
   }
 
   private static String convertToQueryString(QuizContentDAO quizContent) {
-    String tableName = "quiz_content";
+    String tableName = getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
     List<String> colNames = Constants.colNames;
     return String.format(
         "INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s) VALUES (%s, %s, '%s', '%s', %s, '%s', '%s', %s)",
