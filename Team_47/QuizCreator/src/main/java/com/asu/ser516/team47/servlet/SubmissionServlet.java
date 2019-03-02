@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import com.asu.ser516.team47.database.*;
+import com.asu.ser516.team47.utils.AutoGrader;
 
 /**
  * This servlet is called when a student submits a quiz
@@ -34,8 +35,7 @@ public class SubmissionServlet extends HttpServlet {
     private String httpErrorMessage;
     private Quiz quiz;
     private Enrolled enrollment;
-
-    @Override\
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
@@ -140,23 +140,8 @@ public class SubmissionServlet extends HttpServlet {
 
         //TODO: call autograder, update score on Submission.
         AutoGrader ag =  new AutoGrader(submissionID);
-        int points = ag.gradeSubmission();
-        Submission s = new Submission ();
-        s.getSubmission_id();
-        s.setSubmission_id();
-        s.getQuiz_fk();
-        s.setQuiz_fk(int quiz_fk);
-        s.getEnrolled_fk();
-        s.setEnrolled_fk(int enrolled_fk);
-        s.getTime_taken();
-        s.setTime_taken(int time_taken);
-        s.getDate_taken();
-        s.setDate_taken(Date date_taken);
-        s.getScore();
-        s.setScore(float score);
-        s.getAttempt();
-        s.setAttempt(int attempt);
-        insertPointsInDB(s);
+        int points = (int) ag.gradeSubmission();
+        insertPointsInDB(new Submission(submission_id,quiz_fk,enrolled_fk,time_taken,date_taken,score,attempt));
     }
 
     /**
@@ -169,8 +154,7 @@ public class SubmissionServlet extends HttpServlet {
      * @param attempt   number of attempts
      * @return true if the insertion into database succeeds, otherwise false.
      */
-    private boolean sendSubmission(int quizID, int enrollID, int time,
-                                  float score, int attempt) {
+    private boolean sendSubmission(int quizID, int enrollID, int time,float score, int attempt) {
         boolean hasSucceeded;
         Date today = new Date();
 
@@ -266,10 +250,6 @@ public class SubmissionServlet extends HttpServlet {
     private void insertPointsInDB(Submission sub )
     { 	
     	SubmissionDAO subDao = new SubmissionDAOImpl();
-    	subao.insertSubmission(sub);
+    	subDao.insertSubmission(sub);
     }
-    <natures>
-    <nature>org.eclipse.jdt.core.javanature</nature>
-</natures>
-
 }
