@@ -1,5 +1,7 @@
 package content.creator.helper;
 
+import static content.creator.operations.DataOps.getNamesFromProperty;
+
 import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
 
@@ -15,7 +17,7 @@ public final class ViewContentDetailsHelper {
   }
 
   private static String getContentQuery(int quizId) {
-    String COL_NAME = "quizId";
-    return String.format("SELECT * FROM quiz_content WHERE %s = %s", COL_NAME, quizId);
+    String colName = getNamesFromProperty("QUIZ_CONTENT_QUIZ_ID_COL_NAME");
+    return String.format("SELECT * FROM quiz_content WHERE %s = %s", colName, quizId);
   }
 }

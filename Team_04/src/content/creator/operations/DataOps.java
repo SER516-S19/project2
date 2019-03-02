@@ -164,4 +164,18 @@ public final class DataOps {
       return detailsList;
     }
 
+    private static Properties getProperties() {
+    Properties dbProperties = new Properties();
+    try {
+      dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return dbProperties;
+  }
+
+  public static String getNamesFromProperty(String property) {
+    Properties properties = getProperties();
+    return properties.getProperty(property);
+  }
 }
