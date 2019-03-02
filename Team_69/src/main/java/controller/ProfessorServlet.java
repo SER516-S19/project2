@@ -123,8 +123,7 @@ public class ProfessorServlet extends HttpServlet {
 			request.setAttribute("queAnsData", queAnsData);
 			request.getRequestDispatcher("views/canEditQuestion.jsp").forward(request, response);
 		}
-		else if ("addNextQuestion".equals(flag) || "saveAndExit".equals(flag) ||
-				"viewQuestion".equals(flag)) {
+		else if ("addNextQuestion".equals(flag) || "saveAndExit".equals(flag)) {
 			String question = request.getParameter("question");
 			String[] optionArray = request.getParameterValues("questionOptions");
 			String points;
@@ -148,13 +147,14 @@ public class ProfessorServlet extends HttpServlet {
         		List<Quiz> quizList = professorServices.getAllQuizzes();
     			request.setAttribute("quizList", quizList);
     			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
-        	}else if("viewQuestion".equals(flag)) {
-            	response.sendRedirect("views/displayQuestionAnswer.jsp");
-            }
+        	}
 		}
 		else if("saveEdited".equals(flag))
 		{
 			professorServices.saveEdited(request);
+			List<Quiz> quizList = professorServices.getAllQuizzes();
+			request.setAttribute("quizList", quizList);
+			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
 		}
     }
 }
