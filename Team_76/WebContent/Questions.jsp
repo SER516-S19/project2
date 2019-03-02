@@ -74,8 +74,6 @@ body {
 		</li>
 	</ul>
 	<form action="ProfessorController" method="post">
-
-<<<<<<< HEAD
 		<div class="form-group">
 			<label for="q1">Question:</label> <input type="text"
 				class="form-control" name="question" id="q1"
@@ -120,44 +118,6 @@ body {
 			<input type="hidden" name="action" value="Submit"> 
 			<input class="btn btn-primary" type="submit" name="Submit" value="Submit">
 		</form>
-=======
- 	<div class="form-group">
-  		<label for="q1">Question:</label>
-  		<input type="text" class="form-control" name="question" id="q1" placeholder="Enter your question">
-	</div>
-	<div class="form-group">
-  		<label for="a1">Answer1:</label>
-  		<input type="text" class="form-control" name="option1" id="a1" placeholder="Enter option1">
-	</div>
-	<div class="form-group">
-  		<label for="a2">Answer2:</label>
-  		<input type="text" class="form-control" name="option2" id="a2" placeholder="Enter option2">
-	</div>
-	<div class="form-group">
-  		<label for="a3">Answer3:</label>
-  		<input type="text" class="form-control" name="option3" id="a3" placeholder="Enter  option3">
-	</div>
-	<div class="form-group">
-  		<label for="a4">Answer4:</label>
-  		<input type="text" class="form-control" name="option4" id="a4" placeholder="Enter option4">
-	</div>
-	<div class="form-group">
-  		<label for="a5">Correct Answer:</label>
-  		<input type="text" class="form-control" name="correctanswer" id="a5" placeholder="Enter correct answer">
-	</div>
-	<div class="form-group <%= request.getAttribute("visibilty") %>">
-  		<label for="a6">Marks:</label>
-  		<input type="text" class="form-control" name="marks" id="a6" placeholder="Enter Marks">
-	</div>
- 	<form action="ProfessorController" method="post">
-		<input type="hidden" name="action" value="Continue">
-		<input class="btn btn-primary" type="submit" name="Continue" value="Continue">
-	</form>
-	<br/>
- 	<form action="ProfessorController" method="post">
-		<input type="hidden" name="action" value="Submit">
-		<input class="btn btn-primary" type="submit" name="Submit" value="Submit">
->>>>>>> 62e7405ca2862541c90e2dcf902a1573e7d9cdc3
 	</form>
 </body>
 </html>
