@@ -17,23 +17,23 @@
 </head>
 <body>
 <form class="login-form" id="loginForm">
-	<div class="login-page">
-		<div class="form">
-			<h2>Blackboard Login</h2>
-				<input type="text" placeholder="username" id="username" required /> 
-				<input type="password" placeholder="password" id="password" required />
-				<!-- Servlet Version
-				<input id="sub" type="submit" value="LOGIN" formmethod="post" formaction="/login" onsubmit="loginCheck()">
-				-->
-				<button type="submit" id="btnlogin" onclick="loginCheck()">login</button>	
-			</div>
-    	<div class="radio-group">
-    		<input type="radio" name="identity" class="rd2" value="Student" checked>
-			<label for="student">Student </label>
-			<input type="radio" name="identity" class="rd1" value="Professor">
-			<label for="professor">Professor </label>
-    	</div>
-	</div>
+    <div class="login-page">
+        <div class="form">
+            <h2>Blackboard Login</h2>
+            <input type="text" placeholder="Username" name="username" required />
+            <input type="password" placeholder="Password" name="password" required />
+            <input id="sub" type="submit" value="LOGIN" formmethod="post" formaction="/login" onsubmit="loginCheck()">
+        </div>
+        <div class="radio-group">
+            <input type="radio" name="identity" class="rd2" value="student" id="student_radio" checked>
+            <label for="student_radio">Student </label>
+            <input type="radio" name="identity" class="rd1" value="professor" id="professor_radio">
+            <label for="professor_radio">Professor </label>
+        </div>
+    </div>
+    <div id="wrong">
+      <h3>username or password is wrong</h3>
+    </div>
 </form>
 </body>
 </html>
