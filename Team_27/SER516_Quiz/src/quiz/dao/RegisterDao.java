@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import quiz.model.register.Register;
+import quiz.model.User;
 
 /**
  * A Java class used for storing user details in the database
@@ -28,7 +28,7 @@ public class RegisterDao {
 		}
 	}
 	
-	 public String registerUser(Register registerBean)
+	 public String registerUser(User registerBean)
 	 {
 	 String fullName = registerBean.getFullName();
 	 String email = registerBean.getEmail();

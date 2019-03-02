@@ -8,7 +8,7 @@ import java.util.Properties;
 
 import quiz.dao.ConnectionFactory;
 import quiz.exceptions.DataAccessException;
-import quiz.model.login.Login;
+import quiz.model.User;
 
 /**
  * This dao is used to fetch the user login information from the
@@ -36,9 +36,9 @@ public class LoginDao {
 	 * @return the login information
 	 * @throws DataAccessException
 	 */
-	public Login findByUsername(String username) throws DataAccessException {
+	public User findByUsername(String username) throws DataAccessException {
 		String sql = dbProperties.getProperty("SELECT_BY_USERNAME");
-		Login login = new Login();
+		User login = new User();
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement preparedStatement = null;
 		try {
@@ -48,9 +48,9 @@ public class LoginDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				login.setUsername(resultSet.getString("username"));
+				login.setUserName(resultSet.getString("username"));
 				login.setPassword(resultSet.getString("password"));
-				login.setUsertype(resultSet.getString("user_type"));
+				login.setUserType(resultSet.getString("user_type"));
 			}
 
 		} catch (SQLException e) {

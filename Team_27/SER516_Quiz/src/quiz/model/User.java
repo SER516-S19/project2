@@ -1,4 +1,4 @@
-package quiz.model.register;
+package quiz.model;
 
 /**
  * A Java class used for modelling New Users in MySQL
@@ -9,16 +9,16 @@ package quiz.model.register;
  * @createDate (25 Feb 2019)
  */
 
-public class Register {
+public class User {
 	private String fullName;
 	 private String email;
 	 private String userName;
 	 private String user_type;
 	 private String password;
-	 public Register() {}
+	 public User() {}
 	 
 	 /* A constructor that sets all the member variables */
-		public Register(String fullName, String email, String userName,String user_type,String password) {
+		public User(String fullName, String email, String userName,String user_type,String password) {
 			super();
 			this.fullName = fullName;
 			this.email = email;
