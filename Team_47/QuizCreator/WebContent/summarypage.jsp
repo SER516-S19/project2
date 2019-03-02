@@ -1,64 +1,68 @@
+<%@page import="com.asu.ser516.team47.database.*"%>
+<%@page import="java.util.*"%>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="CSS/summary.css">
+<%
+	QuizDAOImpl quizDAO = new QuizDAOImpl();
+	QuestionDAOImpl questionDAO = new QuestionDAOImpl();
+	ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
+	//test-case
+	int quiz_id = 1;
+	//get quiz id from previous page
+	//int quiz_id = Integer.parseInt(request.getParameter("quiz_id"));
+	System.out.println(quiz_id);
+	Quiz quiz = quizDAO.getQuiz(quiz_id);
+	System.out.println(quiz);
+	List<Question> questions = questionDAO.getQuizQuestions(quiz.getQuiz_id());
+%>
 <title>Summary Page</title>
 </head>
-<body style="background-color:Silver;">
-<h5><center>Summary Of Quiz created</centre><h5>
-<label>List of Questions: </label>
-<br>
-<br>
-<label class="Question1">
-1. Quiz question 1
-</label>
+<body style="background-color: Silver;">
+	<h2>
+		<center>Summary Of Quiz created</center>
+	</h2>
+	<div>
+		<%
+			//create information of the quiz
+			out.print("<h7><center> Quiz title: " + quiz.getTitle() + "</center></h7>");
+			out.print("<p><center> Quiz instruction: " + quiz.getInstructions() + "</center></p>");
+			out.print("<p><center> quiz_group: " + quiz.getQuiz_group() + "</center></p>");
+			out.print("<p><center> Shuffled: " + quiz.isShuffle() + "</center></p>");
+			out.print("<p><center> Time_limit: " + quiz.getTime_limit() + "</center></p>");
+			out.print("<p><center> Date_open: " + quiz.getDate_open().toString() + "</center></p>");
+			out.print("<p><center> Date_close: " + quiz.getDate_close().toString() + "</center></p>");
+			out.print("<p><center> Quiz_type: " + quiz.getQuiz_type() + "</center></p>");
+			out.print("<p><center> Attemps: " + quiz.getAttempts() + "</center></p>");
+			out.print("<p><center> total_points: " + quiz.getTotal_points() + "</center></p>");
+			out.print("<br><br>");
+			//create all questions in this quiz
+			for (int i = 0; i < questions.size(); i++) {
+				int num = i + 1;
+				out.print("<div id='questions'>");
+				out.print("<h8><center><b> Question " + num + " : <br>" + questions.get(i).getContent()
+						+ "</b></center></h7>");
+				out.print("<p><center> <b>Question type: <span id='red'>" + questions.get(i).getQuesType()
+						+ "</span></b></center></p>");
+				//get choices based on the question id
+				List<Choice> choices = choiceDAO.getQuestionChoices(questions.get(i).getQuestion_id());
+				out.print("<div id='choices'>");
+				//create all choices of this question.
+				for (int j = 0; j < choices.size(); j++) {
+					char option = (char) (j + '0' + 17);
+					out.print("<p><center>" + option + " :" + choices.get(j).getContent() + " </center></p>");
+				}
+				out.print("</div>");
+				out.print("<p><center><b> Points: <span id='red'>" + questions.get(i).getPoints()
+						+ "</span></b></center></p><br>");
+				out.print("</div>");
+				out.print("<br>");
 
-
-<br>
-<label class="Question2">
-2. Quiz question 2
-</label>
-<br>
-<label class="Question3">
-3. Quiz question 3
-</label>
-<br>
-<label class="Question4">
-4. Quiz question 4
-</label>
-<br>
-<label class="Question5">
-5. Quiz question 5
-</label>
-<br>
-<label class="Question6">
-6. Quiz question 6
-</label>
-<br>
-<label class="Question7">
-7. Quiz question 7
-</label>
-<br>
-<label class="Question8">
-8. Quiz question 8
-</label>
-<br>
-<label class="Question9">
-9. Quiz question 9
-</label>
-<br>
-<label class="Question10">
-10. Quiz question 10
-</label>
-<br>
-
-
-<br>
-
-
-
-
-
-<input id = "beginbtn" type="button" value="Dashbaord" onclick='location.href=("dashboard_professor.jsp")'>
-
-
+			}
+		%>
+		<br> <br>
+	</div>
+	<input id="beginbtn" type="button" value="Dashbaord"
+		onclick='location.href=("dashboard_professor.jsp")'>
 </body>
 </html>
