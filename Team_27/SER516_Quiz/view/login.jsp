@@ -6,7 +6,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet"> 
 		<script type="text/javascript">
 			function showAlert(){
-				alert("registerResponse");
+				alert("User is successfully registered");
 			}
 		</script>
 	</head>
