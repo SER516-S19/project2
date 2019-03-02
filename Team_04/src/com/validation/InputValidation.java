@@ -13,7 +13,7 @@ public class InputValidation {
         List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
                 "SELECT userName,password  from userDetails where userName='"+userName+"' and password = '"+passWord+"'");
 
-        if (userExists != null || !userExists.isEmpty()){
+        if (userExists.size() != 0){
 
             System.out.println("Username exists");
             return "success";
@@ -21,7 +21,7 @@ public class InputValidation {
         }
         else
         {
-            return "signup";
+            return "failed";
         }
 
     }

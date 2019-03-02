@@ -28,6 +28,9 @@
     if(request.getAttribute("errorResponse").toString().equalsIgnoreCase("400")) {
         errorMessage = "BAD REQUEST ...RETRY AGAIN.!";
     }
+    if(request.getAttribute("lginFailed").toString().equalsIgnoreCase("loginFailed")) {
+        errorMessage = "LoginFailed  ...RETRY AGAIN.!";
+    }
 %>
 <h1 class="errMsg"><%=errorMessage%></h1>
 </body>
