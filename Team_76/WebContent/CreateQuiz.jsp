@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <style>
+.logoutonly {
+	margin-left: 350px !important;
+}
+
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -82,7 +85,7 @@ input[type=submit]:hover {
 </head>
 
 <body>
-<%
+	<%
         String uName = (String) session.getAttribute("uName");
         String isSessionValid = (String) session.getAttribute("validSession");
         if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
@@ -90,16 +93,21 @@ input[type=submit]:hover {
             response.sendRedirect("Login.jsp");
         }
 %>
-    <div style="float: right">
-        <form align="right" action="LoginController" method="post">
-            <input type="hidden" name="action" value="logoff"> 
-            <input type="submit" value="LogOut" class="logout">
-        </form>
-    </div>
 	<ul>
 		<li><a>DETAILS PAGE</a></li>
+		<li><a href="ProfessorDash.jsp">DASHBOARD</a></li>
+		<li>
+			<div style="float: center">
+				<form action="LoginController" method="post">
+					<input type="hidden" name="action" value="logoff"> <input
+						class="logoutonly" type="submit" value="LogOut" class="logout">
+				</form>
+			</div>
+		</li>
 	</ul>
+
 	<p>QUIZ TITLE</p>
+
 	<div>
 		<form action="ProfessorController" method="post">
 			<input type="text" name="quiztitle" required placeholder="Input quiztitle">
@@ -107,10 +115,10 @@ input[type=submit]:hover {
 			<textarea name="qinstruct"  required rows="20" cols="100"></textarea>
 			<p>SELECT THE QUIZ TYPE</p>
 			<div class="dropdown">
-				<select name="qtype" required>
-				<option class="dropbtn" value="Graded">MCQ</option>
-				<option class="dropbtn" value="NotGraded">Subjective</option>
-				</select>
+					<select name="qtype">
+					<option class="dropbtn" value="Graded" selected>Graded</option>
+					<option class="dropbtn" value="NonGraded">NonGraded</option>
+			 	   </select>
 			</div><br><br>
 			<div class ="otherdetails">
 			<input type="radio" name="shuffleAns" required value="Shuffle">Shuffle Answers<br>
@@ -118,15 +126,16 @@ input[type=submit]:hover {
   				<input type="checkbox" name="timeOp1" value="T1">Timed<br>
   				<input type="checkbox" name="timeOp2" value="T2">Not Timed (Practice Mode)
   			</div>	
-  			
+			</div>
+			<br>
 			<form action="ProfessorController" method="post">
-				<input type="hidden" name="action" value="Continue1"> 
-				<input type="submit" value="CONTINUE">
+				<input type="hidden" name="action" value="Continue1"> <input
+					type="submit" value="CONTINUE">
 			</form>
-		 	<form action="ProfessorController" method="post">                
-				<input type="hidden" name="action" value="Cancel"> 
-				<input type="submit" value="CANCEL">
-			</form> 
+			<form action="ProfessorController" method="post">
+				<input type="hidden" name="action" value="Cancel"> <input
+					type="submit" value="CANCEL">
+			</form>
 		</form>
 	</div>
 </body>

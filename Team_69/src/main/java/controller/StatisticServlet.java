@@ -1,9 +1,14 @@
 package controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.ProfessorDAO;
+import services.StatisticServices;
+
 import java.io.IOException;
 
 public class StatisticServlet extends HttpServlet {
@@ -16,9 +21,12 @@ public class StatisticServlet extends HttpServlet {
     	if("quizStats".equals(flag)) {
 			String quizID = request.getParameter("id");
 			int quizId = Integer.parseInt(quizID);
-			response.sendRedirect(request.getContextPath()+"/views/stats.jsp");
+			StatisticServices statisticServices = new StatisticServices();
+			request.setAttribute("professorStatistics", statisticServices.getQuizStatistics(quizId));
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/stats.jsp");
+			rd.forward(request, response);
+			
 		}
-    	
     }
 
     protected void doPost(HttpServletRequest request,

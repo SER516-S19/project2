@@ -2,7 +2,6 @@ package Team76.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 
 public class DatabaseConnection {
 
@@ -15,9 +14,9 @@ public class DatabaseConnection {
 			}
 		Connection connection = null;	
 		String connectionUrl = "jdbc:mysql://localhost:3306/ser516p2?allowPublicKeyRetrieval=true&useSSL=false";
-		String database = "ser516p2";
 		String userid = "root";
 		String password = "root";  /*local MSQL pswdJ*/
+		
 		connection = DriverManager.getConnection(connectionUrl, userid, password);
 		return connection;
 	}
