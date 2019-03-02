@@ -115,6 +115,7 @@ public class QuestionAnswerServlet extends HttpServlet {
                     doGet(request, response);
                 } else {
                     response.setContentType("text/html");
+                    request.setAttribute("errorResponse","loginFailed");
                     request.getRequestDispatcher("errorHandler.jsp").forward(request, response);
                 }
             }
