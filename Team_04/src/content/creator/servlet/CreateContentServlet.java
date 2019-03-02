@@ -1,4 +1,4 @@
-package src.content.creator.servlet;
+package content.creator.servlet;
 
 import static content.creator.helper.CreateContentHelper.generateRandom;
 import static content.creator.helper.CreateContentHelper.saveDataToDb;

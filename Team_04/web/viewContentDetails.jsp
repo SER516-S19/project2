@@ -17,7 +17,7 @@
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 100%;
+            width: 80%;
         }
 
         td, th {
@@ -31,6 +31,26 @@
 <body>
 
 <h2> <%="Quiz Details"%></h2>
+
+<form action="list">
+    <input type="submit" value="Back">
+</form>
+
+<c:url var="quizstats" value="./quizstats">
+    <c:param name="quizid" value="${quizid}"/>
+</c:url>
+<!--a href="${quizstats}">Quiz Statistics</a-->
+<form action="quizstats" method="GET">
+    <input type="hidden" name="quizid" value="${quizid}">
+    <input type="submit" value="Quiz Statistics">
+</form>
+
+<form action="delete" method="POST">
+    <input type="hidden" name="quizid" value="${quizid}">
+    <input type="submit" value="Delete">
+</form>
+
+
 
 <table>
     <tr>
@@ -52,6 +72,20 @@
         <td><%=questionList.get(quesId).get("score")%></td>
     </tr>
 
+    <%=quesId%>
+
+    <form action="delQues" method="POST">
+        <input type="hidden" name="quizid" value="${quizId}">
+        <input type="hidden" name="quesid" value="<%=quesId%>">
+        <input type="submit" value=" X ">
+    </form>
+
+    <form action="modQues" method="POST">
+        <input type="hidden" name="quizid" value="${quizId}">
+        <input type="hidden" name="quesid" value="<%=quesId%>">
+        <input type="submit" value=" M ">
+    </form>
+
 
     <tr>
         <%
@@ -71,17 +105,6 @@
     }
     %>
 </table>
-
-<a href="./list">Back</a>
-<c:url var="quizstats" value="./quizstats">
-    <c:param name="quizid" value="${quizid}"/>
-</c:url>
-<a href="${quizstats}">Quiz Statistics</a>
-
-<c:url var="delete" value="./delete">
-    <c:param name="quizid" value="${quizid}"/>
-</c:url>
-<a href="${quizstats}">Delete</a>
 
 </body>
 </html>
