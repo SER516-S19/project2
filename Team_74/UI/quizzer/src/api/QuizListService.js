@@ -1,4 +1,5 @@
 import React from 'react';
+
 import axios from 'axios';
 import {NavLink} from "react-router-dom";
 
@@ -6,22 +7,28 @@ class QuizListService extends React.Component {
     state = {
         quizList: []
     }
-    componentDidMount() {
-            var self = this;
-            axios.get("http://localhost:8081/prof/quiz")
-                .then(response => response.json())
-                .then(response =>{
-                    console.log(response);
-                    this.setState({
-                        quizList: response.data.response
-                    })
-                })
 
-                .then(function(response){
-                    console.log(self.state.quizList[0].quizName);
+    componentDidMount() {
+        var self = this;
+        axios.get("http://localhost:8081/prof/quiz")
+        // .then(response => response.json())
+            .then(response =>{
+                console.log(response);
+                this.setState({
+                    quizList: response.data.response
                 })
+            })
+
+            .then(function(response){
+                console.log(self.state.quizList[0].quizName);
+
+
+            })
     }
+
     render() {
+
+
         return (
             <div>
                 <QuizList quizList={this.state.quizList}/>
@@ -48,5 +55,7 @@ class QuizList extends React.Component{
         );
     }
 }
+
+
 
 export default QuizListService;
