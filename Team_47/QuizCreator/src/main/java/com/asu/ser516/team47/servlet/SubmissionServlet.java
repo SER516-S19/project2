@@ -298,23 +298,19 @@ public class SubmissionServlet extends HttpServlet {
     }
 
     /**
-     * Checks whether the student took the quiz within the given time restrictions. They must
-     * start after the quiz is opened and finish before the quiz is closed, and must complete
-     * the quiz within the time limit.
+     * Checks whether the student took the quiz within the given time limit.
      * @param quizID    ID of the quiz being taken
      * @param start     Date and time when the quiz was started
      * @param end       Date and time when the quiz was finished
-     * @return true if all conditions for a valid quiz time are met, false otherwise.
+     * @return true if the student took less time than the time limit, false otherwise.
      */
     private boolean isInTime(int quizID, Date start, Date end) {
         QuizDAOImpl quizDAO = new QuizDAOImpl();
         Quiz quiz = quizDAO.getQuiz(quizID);
-        Date dateOpen = quiz.getDate_open();
-        Date dateClose = quiz.getDate_close();
 
         int timeLimit = quiz.getTime_limit() * 60000; //time_limit comes as min
         int timeTaken = (int)(end.getTime() - start.getTime()); //getTime is in ms
 
-        return start.after(dateOpen) && end.before(dateClose) && (timeTaken < timeLimit);
+        return timeTaken < timeLimit;
     }
 }
