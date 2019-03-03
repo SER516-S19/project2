@@ -20,6 +20,7 @@ import java.io.IOException;
 public class JSONRequestParser {
 
     /**
+     *  Parses json object from HttpRequest
      *
      * @param req an HTTP request with a JSON form.
      * @return JSONObject of the form.
@@ -30,7 +31,7 @@ public class JSONRequestParser {
         BufferedReader bufReader = req.getReader();
         StringBuilder strBldr = new StringBuilder();
         String line;
-        while ((line = bufReader.readLine()) != null){
+        while ((line = bufReader.readLine()) != null) {
             strBldr.append(line);
         }
 

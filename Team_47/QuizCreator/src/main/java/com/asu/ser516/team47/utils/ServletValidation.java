@@ -1,5 +1,11 @@
 package com.asu.ser516.team47.utils;
 
+import com.asu.ser516.team47.database.Question;
+import com.asu.ser516.team47.database.QuizDAOImpl;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.io.IOException;
 import com.asu.ser516.team47.database.*;
 import org.json.simple.JSONArray;
 
@@ -7,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,6 +29,18 @@ import java.util.List;
 public class ServletValidation {
 
     private static String url = "jdbc:sqlite:schema.db";
+
+    /**
+     * Validates whether the attempt number of the student's current submission is within
+     * the limits of the attempt limit set for the quiz.
+     * @param quizID    quiz ID of current submission
+     * @param attempt   student attempt number
+     * @return true if attempt is within limits, otherwise false.
+     */
+    public static boolean validAttempt(int quizID, int attempt) {
+        QuizDAOImpl quizDAO = new QuizDAOImpl();
+        return attempt <= quizDAO.getQuiz(quizID).getAttempts();
+    }
 
     /**
      * Validates whether the quiz associated with the given choice ID matches
@@ -44,7 +63,7 @@ public class ServletValidation {
      * @param quizId The ID of the quiz that these choices belong to.
      * @return null if invalid. else a list of choices.
      */
-    public static List<Integer> buildAndValidateChoiceList(JSONArray jsonChoices, int quizId){
+    public static List<Integer> buildAndValidateStudentChoiceList(JSONArray jsonChoices, int quizId){
         Iterator<Long> it = jsonChoices.iterator();
         List<Integer> ret = new ArrayList<>();
         while (it.hasNext()) {

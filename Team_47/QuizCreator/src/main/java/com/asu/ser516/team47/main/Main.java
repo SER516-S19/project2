@@ -5,9 +5,8 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.asu.ser516.team47.database.*;
-
 import com.asu.ser516.team47.servlet.LoginServlet;
+import com.asu.ser516.team47.servlet.QuizCreationServlet;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
 import com.asu.ser516.team47.utils.SQLScriptRunner;
@@ -28,13 +27,15 @@ public class Main {
 
         Context context = tomcat.addWebapp(context_Path, base_path);
 
+        String quizCreationServletName = "QuizCreationServlet";
         String submissionservlet_name = "SubmissionServlet";
-        tomcat.addServlet(context_Path, submissionservlet_name, new SubmissionServlet());
-        context.addServletMappingDecoded("/submit", submissionservlet_name);
-
         String login_servlet_name = "LoginServlet";
+        tomcat.addServlet(context_Path, submissionservlet_name, new SubmissionServlet());
         tomcat.addServlet(context_Path, login_servlet_name, new LoginServlet());
+        tomcat.addServlet(context_Path, quizCreationServletName, new QuizCreationServlet());
+        context.addServletMappingDecoded("/submit", submissionservlet_name);
         context.addServletMappingDecoded("/login", login_servlet_name);
+        context.addServletMappingDecoded("/createQuiz", quizCreationServletName);
 
         Connection conn = null;
         try {
