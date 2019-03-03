@@ -47,6 +47,7 @@
         	<form action="StudentController" method="get">
 				<input type="hidden" name="action" value="StartQuiz">
 				<input type="hidden" name="quizId" value="<%=q.getQuizId()%>">
+				<input type="hidden" name="timeLimit" value ="<%=q.getTimeLimit()%>">
 				<input type="submit" value="Start">
 			</form>
     	</td>

@@ -22,11 +22,11 @@
         </form>
     </div>
 	<h1>Student DashBoard</h1>
-	<form class="action" action="StudentController" method="get">
-		<input type="hidden" name="action" value="AttemptQuiz">
-		<input class="option" type="submit" value="Attempt Quiz">
+	<form class="action" action="StudentController" method="post">
+		<input type="hidden" name="action" value="ViewQuiz">
+		<input class="option" type="submit" value="View Quiz">
 	</form>
-	<form class="action" action="StudentController" method="get">
+	<form class="action" action="StudentController" method="post">
 		<input type="hidden" name="action" value="ViewGrade">
 		<input class="option" type="submit" value="View Grade">
 	</form>

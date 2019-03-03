@@ -21,13 +21,11 @@ public class StudentQuizModel {
 	private DatabaseConnection connect = null;
 	private Connection conn = null;	
 	private Statement stmt = null;
-	private String dbname = "ser516p2";	
 	
 	public StudentQuizModel(){
 		try {
 			connect = new DatabaseConnection();
 			conn = connect.establishConnection();
-		    dbname = "ser516p2";   
 		} catch (Throwable t) {
 		    t.printStackTrace();
 		}
@@ -41,8 +39,7 @@ public class StudentQuizModel {
 		List<QuizEntity> quizzes= new LinkedList<>();		
 		try {			
 			stmt = conn.createStatement();
-			stmt.executeUpdate("use " + dbname);
-			String sql ="SELECT * FROM quiz WHERE status = 'valid' AND DueDate >= "+ simpleToday;
+			String sql ="SELECT * FROM quiz WHERE status = 'Active' AND DueDate >= "+ simpleToday;
 			resultSet = stmt.executeQuery(sql);
 
 			while (resultSet.next()) {
@@ -53,7 +50,8 @@ public class StudentQuizModel {
 				quiz.setDueDate(resultSet.getDate("DueDate"));
 				quiz.setTimeLimit(resultSet.getInt("Timelimit"));
 				quiz.setQuizType(resultSet.getString("QuizType"));
-				quiz.setQuizTitle(resultSet.getString("quiztitle"));
+				quiz.setQuizTitle(resultSet.getString("QuizTitle"));
+				quiz.setQuizInstruct(resultSet.getString("Qinstruct"));
 				quizzes.add(quiz);
 			}
 			stmt.close();

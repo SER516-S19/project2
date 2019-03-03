@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Team76.Entity.GradeEntity;
+import Team76.Entity.Questions;
 import Team76.Entity.QuizEntity;
+import Team76.Utilities.FetchQuestionsQuery;
 import Team76.Utilities.GradeModel;
 import Team76.Utilities.QuizInstructModel;
 import Team76.Utilities.StudentQuizModel;
@@ -32,23 +34,24 @@ public class StudentController extends HttpServlet {
 		if (action == null || action.isEmpty()) {
 			System.out.println("**** no acton");
 			response.sendRedirect("login.jsp");
-		} else if (action.equalsIgnoreCase("AttemptQuiz")) {
+		} else if (action.equalsIgnoreCase("ViewQuiz")) {
 			System.out.println("**** attempt quiz");
 			List<QuizEntity> quizzes = null;
-			StudentQuizModel AttemptQuiz;
+			StudentQuizModel viewQuiz;
 			try {
-				AttemptQuiz = new StudentQuizModel();
-				quizzes = AttemptQuiz.list();
+				viewQuiz = new StudentQuizModel();
+				quizzes = viewQuiz.list();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			request.getSession().setAttribute("quizzes", quizzes);
 			response.sendRedirect("StudentsQuiz.jsp");
 		} else if (action.equalsIgnoreCase("StartQuiz")) {
-
-		} else if (action.equalsIgnoreCase("AttemptQuiz")) {
 			System.out.println("**** start quiz");
 			String quizId = request.getParameter("quizId");
+			String timeLimit = request.getParameter("timeLimit");
+			request.getSession().setAttribute("quizId", quizId);
+			request.getSession().setAttribute("timeLimit", timeLimit);
 			System.out.println("**** quiz id: " + quizId);
 			QuizEntity quiztaken = null;
 			QuizInstructModel quizInstruct = null;
@@ -61,6 +64,16 @@ public class StudentController extends HttpServlet {
 			}
 			request.getSession().setAttribute("quiztaken", quiztaken);
 			response.sendRedirect("QuizInstruct.jsp");
+		} else if (action.equalsIgnoreCase("AttemptQuiz")) {
+			String quizId = (String)request.getSession().getAttribute("quizId");
+			try {
+				List<Questions> questions = new FetchQuestionsQuery().fetchQuestions(quizId);
+				request.getSession().setAttribute("Question", questions);
+				response.sendRedirect("Quiz.jsp");
+			} catch (Exception e) {
+				response.getWriter().println("<font color=red>An Exception occured.</font>");
+				response.sendRedirect("Login.jsp");
+			}
 		} else if (action.equalsIgnoreCase("grade")) {
 			System.out.println("**** show grade");
 			String studentGrade = request.getParameter("grade");

@@ -122,7 +122,7 @@ input[type=submit]:hover {
 	      
 	<div>		
 			<form action="StudentController" method="post">
-				<input type="hidden" name="action" value="Start Quiz"> 
+				<input type="hidden" name="action" value="AttemptQuiz"> 
 				<input type="submit" value="START QUIZ">
 			</form>	
 	</div>
