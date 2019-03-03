@@ -50,7 +50,7 @@ class TakeQuiz extends Component {
             .then(response => {
                 this.setState({
                     quiz: response.data.response,
-                    quizId: response.data.response.quizId,
+                    quizId: response.data.response.id,
                     quizInstructions: response.data.response.instruction,
                     quizQuestions: response.data.response.questions,
                     totalMarks: response.data.response.totalMarks,
@@ -141,11 +141,15 @@ class TakeQuiz extends Component {
     }
 
     sendResults() {
+
+        console.log(this.state.quiz,this.state.quizId,this.state.totalPoints)
         axios.post("http://localhost:8081/results",{
             studentId: localStorage.getItem('username'),
             quiz: this.state.quiz,
             quizId: this.state.quizId,
             marksAchieved: this.state.totalPoints
+        }).then(response =>{
+            console.log(response);
         })
 
     }
