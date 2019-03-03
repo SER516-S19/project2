@@ -12,6 +12,7 @@ import java.util.Date;
 
 public class QuizVO {
 	
+	private int courseId;
 	private int quizId;
 	private boolean isGraded;
 	private int assignedTime;
@@ -67,9 +68,10 @@ public class QuizVO {
 	public void setQuizScheduledDate(Date quizScheduledDate) {
 		this.quizScheduledDate = quizScheduledDate;
 	}
-	public QuizVO(int quizId, boolean isGraded, int assignedTime, String quizInstruction, Date quizScheduledDate,
-			boolean isShuffled, String quizTitle) {
+	public QuizVO(int courseId, int quizId, boolean isGraded, int assignedTime, String quizInstruction,
+			Date quizScheduledDate, boolean isShuffled, String quizTitle) {
 		super();
+		this.courseId = courseId;
 		this.quizId = quizId;
 		this.isGraded = isGraded;
 		this.assignedTime = assignedTime;
@@ -97,5 +99,11 @@ public class QuizVO {
 		// TODO Auto-generated constructor stub
 		quizTitle = quizTitle2;
 		quizId = quizId2;
+	}
+	public int getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
 	}
 }

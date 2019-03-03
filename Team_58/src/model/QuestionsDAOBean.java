@@ -18,12 +18,16 @@ import org.json.simple.parser.ParseException;
 
 import controller.DisplayQuizServlet;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
  * 
  * @author trupti khatavkar
- * @version 1.1
- * @date 02/22/2019
+ * @version 1.2
+ * @date 02/26/2019
  **/
 
 public class QuestionsDAOBean implements QuestionsDAO {
@@ -83,25 +87,26 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 		String incorrectAnswers = sb.toString();
 		
-		sb = new StringBuilder();
-		sb.append("{");
-		count = 0;
+
+		StringBuilder sb1 = new StringBuilder();
+		sb1.append("{");
+		int count1 = 0;
 		for (Map.Entry<String, String> entry : correctChoices.entrySet()) {
-			sb.append("\"");
-			sb.append(entry.getKey());
-			sb.append("\"");
-			sb.append(":");
-			sb.append("\"");
-			sb.append(entry.getValue());
-			sb.append("\"");
-			count++;
-			if (correctChoices.size() - 1 != count) {
-				sb.append(",");
+			sb1.append("\"");
+			sb1.append(entry.getKey());
+			sb1.append("\"");
+			sb1.append(":");
+			sb1.append("\"");
+			sb1.append(entry.getValue());
+			sb1.append("\"");
+			count1++;
+			if (correctChoices.size() != count1) {
+				sb1.append(",");
 			}
 		}
-		sb.append("}");
+		sb1.append("}");
 
-		String correctAnswers = sb.toString();
+		String correctAnswers = sb1.toString();
 
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -123,9 +128,9 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query = null;
 			connection = null;
 		}
-
 	}
 
+	
 	@Override
 	public List<QuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
 	{
@@ -180,4 +185,147 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		
 		return list;
 	}
+
+
+	/**
+	 * updateQuestionsTable Update a question entry in the Questions table based on
+	 * info obtained from ViewQuiz page.
+	 * 
+	 * 
+	 * @author Aditya Samant
+	 * @throws SQLException           error occurs during connecting or updating the
+	 *                                information in SQL
+	 * @throws ClassNotFoundException for Connection Factory
+	 * 
+	 * @param question   the question
+	 * @param answer     the solution choice
+	 * @param wrongOne   wrong answer number one
+	 * @param wrongTwo   wrong answer number two
+	 * @param wrongThree wrong answer number three
+	 * @param points points for the question
+	 * @param qId the question ID
+	 * @param mcq whether the question is multiple choices or not
+	 * 
+	 * @see controller/ViewQuizServlet.java
+	 * @version 1.1
+	 * */
+	@SuppressWarnings("unchecked")
+	public void updateQuestionsTable(String question, String answer, String wrongOne,
+			String wrongTwo, String wrongThree, int points, int qId) throws SQLException, ClassNotFoundException{
+		
+		Connection connection = null;
+		PreparedStatement query = null;
+		connection = ConnectionFactory.getConnection();
+		
+		int mcq = 0;
+		
+		try {
+			JSONObject jsonObj = new JSONObject();
+			jsonObj.put("incorrectAnswer1", wrongOne);
+			jsonObj.put("incorrectAnswer2", wrongTwo);
+			jsonObj.put("incorrectAnswer3", wrongThree);
+			
+			JSONObject answerObj = new JSONObject();
+			if(answerObj.size() == 1) {
+				mcq = 1;
+			}
+			String [] arr = answer.split(", ");
+
+			String temp = null;	
+			for (int i = 0; i < arr.length; i++) {
+				temp = "correctAnswer"+ Integer.toString(i+1);
+				System.out.println("temp1 "+ temp);
+				answerObj.put(temp, arr[i]);
+			}
+			
+		    answer = answerObj.toJSONString();
+
+
+
+			query = connection.prepareStatement(dbProperties.getProperty("updateQuestionsTable"));
+			query.setString(1, question);
+			query.setString(2, answer);
+			query.setString(3, jsonObj.toJSONString());
+			query.setInt(4, points);
+			query.setInt(5, mcq);
+			query.setInt(6, qId);
+			
+			query.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * The following method connects with the SQL database via ConnectionFactory and
+	 * retrieves information and parses it to appropriate formats prior to creating
+	 * a list of Question objects.
+	 * 
+	 * @param quizId the id of the quiz whose questions are being retrieved
+	 * @throws SQLException           in case errors exist in the database
+	 *                                connection
+	 * @throws ClassNotFoundException in class referenced is not found
+	 * @throws ParseException         in case string cannot be parsed to JSON
+	 * 
+	 * @return list a list of questions with relevant information used to display on
+	 *         view quiz page.
+	 */
+	@Override
+	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException {
+
+		List<QuestionsVO> list = new ArrayList<QuestionsVO>();
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet result = null;
+
+		connection = ConnectionFactory.getConnection();
+
+		query = connection.prepareStatement(dbProperties.getProperty("getQuestionsInfo"));
+		query.setInt(1, quizId);
+		result = query.executeQuery();
+		try {
+		    while (result.next()) {
+		    	   int questionId = result.getInt("questionId");
+	 			   int points = result.getInt("totalPoints");
+	 			   String question = result.getString("question");
+	 			   
+	 			   
+	 			   String answer = result.getString("actualAnswer"); 
+	 			   String choices = result.getString("totalChoices"); 
+	 			   
+	 			   JSONParser parser = new JSONParser();
+	 			   JSONObject jo = (JSONObject) parser.parse(choices);
+	 			   JSONObject jo2 = (JSONObject)parser.parse(answer);
+	 			   String temp = "correctAnswer";
+	 			 
+	 			   StringBuilder ans = new StringBuilder();
+	 			  
+	 			   for(int i = 1; i <=jo2.size(); i++) {
+	 				   
+	 				  ans.append((String) jo2.get(temp+Integer.toString(i)));
+	 				  
+	 				  if(jo2.size() != i) {
+	 					  ans.append(", ");
+	 				  }
+	 			   }
+	 			   
+	 			   answer = ans.toString();
+	 			   
+	 			   String choice1 = (String) jo.get("incorrectAnswer1");
+	 			   String choice2 = (String) jo.get("incorrectAnswer2");
+	 			   String choice3 = (String) jo.get("incorrectAnswer3");
+	 			   
+	 			   
+	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, choice1, choice2, choice3, question);
+		 			   list.add(quiz);
+			   }
+		}catch(ParseException e) {
+
+			e.printStackTrace();
+		}
+		return list;	
+	}
 }
+

@@ -2,7 +2,6 @@ package model;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import org.json.simple.parser.ParseException;
 
 /**
@@ -16,5 +15,12 @@ import org.json.simple.parser.ParseException;
  */
 public interface QuestionsDAO {
 	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException;
+
 	public List<QuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException;
+
+	public void updateQuestionsTable(String question, String answer, String wrongOne,
+			String wrongTwo, String wrongThree, int points, int qId)throws SQLException, ClassNotFoundException;
+	
+	public List<QuestionsVO> getQuestionsInfo(int quizID) throws SQLException, ClassNotFoundException;
+
 }

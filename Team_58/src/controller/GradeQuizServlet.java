@@ -1,11 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -15,11 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import model.GradeQuizVO;
 import model.GradeQuizVODAOBean;
-import model.QuizVO;
-import model.StudentResponseDAO;
+import model.QuestionsDAOBean;
+import model.QuestionsVO;
 import model.StudentResponseDAOBean;
+import model.StudentResponseVO;
 
 /**
  * Class GradeQuizServlet is a controller 
@@ -34,7 +34,7 @@ public class GradeQuizServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
 
 	@Override
@@ -47,19 +47,29 @@ public class GradeQuizServlet extends HttpServlet{
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		
+
 		int quizId = Integer.parseInt(session.getAttribute("quizId").toString());
 		String quizName = session.getAttribute("quizName").toString();
 
 		try {
-			StudentResponseDAOBean studentResponseDAOBean = new StudentResponseDAOBean();
-		
-			studentResponseDAOBean.updateStudentResponse(quizId);
-			
+			QuestionsDAOBean questionsDAOBean = new QuestionsDAOBean();
+
+			List<QuestionsVO> questionVOList = questionsDAOBean.getQuestionsInfo(quizId);
+
+			for(QuestionsVO question : questionVOList) {
+				StudentResponseDAOBean studentResponseDAOBean = new StudentResponseDAOBean();
+				List<StudentResponseVO> studentResponseVOList = studentResponseDAOBean.getStudentListFromQuizIdQuestionId(quizId,question.getqId());
+				for (StudentResponseVO student : studentResponseVOList) {
+					int score = calculateScore(student,question);
+					System.out.println("score" + score);
+					studentResponseDAOBean.updateStudentResponse(quizId,question.getqId(),student.getUserId(),score);
+				}
+			}
+
 			GradeQuizVODAOBean quizVODAOBean = new GradeQuizVODAOBean();
-			
+
 			List<GradeQuizVO> gradedQuizList = quizVODAOBean.getgradeQuiz(quizId, quizName);
-			
+
 			session.setAttribute("gradeQuiz", gradedQuizList);
 			session.setAttribute("quizName", quizName);
 
@@ -69,6 +79,38 @@ public class GradeQuizServlet extends HttpServlet{
 			log.info(exception.getMessage());
 		}
 
+	}
+
+	private int calculateScore(StudentResponseVO student, QuestionsVO question) {
+		
+		int score = 0;
+		JSONParser parser = new JSONParser(); 
+		try {
+			JSONObject correctAnswersJson = (JSONObject) parser.parse(question.getCorrectAnswers());
+			JSONObject studentSelectedAnswersJson = (JSONObject) parser.parse(student.getAnswerSelected());
+			int countOfWrongAnswers = 0;
+			int countOfCorrectAnswered = 0;
+			int countOfCorrectAnswers = correctAnswersJson.size();
+			if(correctAnswersJson.size() < studentSelectedAnswersJson.size()) {
+				countOfWrongAnswers = studentSelectedAnswersJson.size() - correctAnswersJson.size();
+			}
+			for(Object correctAnswerOption : correctAnswersJson.keySet()) {
+				for(Object selectedAnswerOption : studentSelectedAnswersJson.keySet()) {
+					String selectedAnswerOptionString = (String)selectedAnswerOption;
+					String correctAnswerOptionString = (String)correctAnswerOption;
+					if(selectedAnswerOptionString.equals(correctAnswerOptionString)){
+						countOfCorrectAnswered++;
+					}
+				}
+			}
+			countOfCorrectAnswered = countOfCorrectAnswered - countOfWrongAnswers;
+			score = countOfCorrectAnswered <= 0 ? 0 : (question.getTotalPoints() /  countOfCorrectAnswers)*countOfCorrectAnswered;
+		} catch (ParseException exception) {
+	
+		}
+
+		return score;
+	
 	}
 
 }

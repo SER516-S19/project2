@@ -91,6 +91,17 @@
     <url-pattern>/courseDashboard</url-pattern>
   </servlet-mapping>
 
+   <servlet>
+    <servlet-name>StatisticsServlet</servlet-name>
+    <servlet-class>controller.StatisticsServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 		
+  <servlet-mapping>
+    <servlet-name>StatisticsServlet</servlet-name>
+    <url-pattern>/statistics</url-pattern>
+  </servlet-mapping>
+
     <servlet>
     <servlet-name>CreateQuestionsServlet</servlet-name>
     <servlet-class>controller.CreateQuestionsServlet</servlet-class>
@@ -154,7 +165,6 @@
     	<servlet-name>DisplayGradesServlet</servlet-name>
     	<url-pattern>/displayGrades</url-pattern>
   	</servlet-mapping>    
-
 
 <welcome-file-list>
 <welcome-file>login.jsp</welcome-file>
