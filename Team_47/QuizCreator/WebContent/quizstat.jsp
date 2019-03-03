@@ -6,7 +6,7 @@
 <html>
 
 <head>
-    <% String quizIdx = request.getParameter("quiz_title"); %>
+    <% String quizIdx = request.getParameter("Quiz_title"); %>
     <title> Quiz <%= quizIdx %> Statistic </title>
     <meta id="request-method" name="request-method" content="GET">
     <meta name="author" content="Meng-Ze Chen">
