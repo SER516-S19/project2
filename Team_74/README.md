@@ -1,4 +1,7 @@
 # Team 74
+Web application for Blackboard kind of application
+Front End React
+=======
 Web application for Blackboard kind of application <br />
 Tech Stack(As Discussed with Professor) <br />
 `Frontend: React` <br />

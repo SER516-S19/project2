@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Blackboard</title>
+</head>
+<body>
+Hello <br>
+<br>
+To view the professor page - <a href = "views/professorLanding.jsp"> Professor Page </a>
+<br>
+To view the student page - <a href = "Login"> Student Page </a>
+=======
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -20,5 +33,6 @@
 				value="Login" />
 		</form>
 	</div>
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 </body>
 </html>

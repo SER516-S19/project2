@@ -12,6 +12,10 @@ import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 /**
  * This is a helper for implementing DAO pattern
  * for accessing answer data from database.
@@ -25,9 +29,20 @@ public class AnswerDAO {
 	
 	public void addAnswer(Answer answer) {
 		Transaction transaction = null;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		try  {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+=======
 		Session session = null;
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> Team_58
 			transaction = session.beginTransaction();
 			session.save(answer);
 			transaction.commit();
@@ -36,6 +51,9 @@ public class AnswerDAO {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 		}finally {
 			session.close();
 		}
@@ -57,23 +75,44 @@ public class AnswerDAO {
 			e.printStackTrace();
 		}finally {
 			session.close();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+		}finally {
+			session.close();
+>>>>>>> Team_58
 		}
 	}
 	
 	public List<Answer> getAnswersByQuestionId(int questionId){
 		Transaction transaction = null;
 		List<Answer> answerDetails = null;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		try  {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+=======
 		Session session = null;
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> Team_58
 			transaction = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
 			Root<Answer> root = query.from(Answer.class);
 			Join<Answer, Question> join = root.join("question");
 			query.select(root).where(builder.equal(join.get("questionId"),questionId));
+<<<<<<< HEAD
+			Query<Answer> q = session.createQuery(query);
+			answerDetails = q.getResultList();
+=======
 			Query<Answer> answerQuery = session.createQuery(query);
 			answerDetails = answerQuery.getResultList();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			transaction.commit();
 			session.close();
 			for(Answer ans: answerDetails)
@@ -84,6 +123,14 @@ public class AnswerDAO {
 			}
 			e.printStackTrace();
 			return answerDetails;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		}
+		return answerDetails;
+	}
+=======
+=======
+>>>>>>> Team_58
 		}finally {
 			session.close();
 		}
@@ -107,4 +154,5 @@ public class AnswerDAO {
 			session.close();
 		}
 	}
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 }

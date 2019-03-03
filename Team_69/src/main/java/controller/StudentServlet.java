@@ -1,7 +1,22 @@
 package controller;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+import dao.QuizDAO;
+=======
+>>>>>>> Team_58
 import services.StudentServices;
 import java.io.IOException;
+<<<<<<< HEAD
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+=======
+import services.StudentServices;
+import java.io.IOException;
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +25,26 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Controller class for student page
+<<<<<<< HEAD
+ * 
+ * @author : Sourabh Siddharth
+ * @version : 1.0
+ * @since : 02/16/2019
+ * 
+ */
+public class StudentServlet extends HttpServlet {
+
+	/**
+	 * Handles the get request coming to the student
+	 *
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+<<<<<<< HEAD
+	private static final long serialVersionUID = 1L;
+=======
  *
  * @author : Sourabh Siddharth
  * @version : 1.0
@@ -27,6 +62,9 @@ public class StudentServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,9 +78,22 @@ public class StudentServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
+<<<<<<< HEAD
+<<<<<<< HEAD
+		session.getAttribute("quizName");
+		session.getAttribute("quizInstructions");
 
 	}
 
+=======
+
+	}
+
+=======
+
+	}
+
+>>>>>>> Team_58
 	/**
 	 * Handles the post request going from student
 	 *
@@ -52,10 +103,25 @@ public class StudentServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 
+<<<<<<< HEAD
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String view = "/error";
 		String studentResponse = request.getParameter("data");
+<<<<<<< HEAD
+		StudentServices service = new StudentServices();
+		try {
+			view = service.feedAnswers(studentResponse);
+			response.setContentType("text/html");
+			if ("/success".equals(view))
+				response.setStatus(HttpServletResponse.SC_CREATED);
+			else
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			request.getRequestDispatcher(view).forward(request, response);
+=======
 		String action = request.getParameter("action");
 		StudentServices service = new StudentServices();
 		HttpSession session = request.getSession();
@@ -81,6 +147,7 @@ public class StudentServlet extends HttpServlet {
 				else
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 		} catch (Exception exception) {
 			response.setContentType("text/html");
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -88,4 +155,8 @@ public class StudentServlet extends HttpServlet {
 		}
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba

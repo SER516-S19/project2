@@ -4,16 +4,24 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+<<<<<<< HEAD
+=======
 import java.util.HashMap;
 import java.util.Map;
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 
 import bean.*;
 import com.google.gson.Gson;
 
+<<<<<<< HEAD
+import dao.QuizDAO;
+import dao.StatisticsDAO;
+=======
 import dao.CalculatedScoresDAO;
 import dao.QuizDAO;
 import dao.StatisticsDAO;
 import dao.UserDAO;
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 
 /**
  * A class to get the JSON string to the student controller
@@ -39,6 +47,14 @@ public class StudentServices {
 	 * success if the response has been recorded.
 	 * 
 	 * @param studentResponse
+<<<<<<< HEAD
+	 * @return view
+	 */
+	public String feedAnswers(String studentResponse) {
+
+		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
+		User user = new User(5,"abc", "student", "abc.com", "1234");
+=======
 	 * @param userId 
 	 * @return view
 	 */
@@ -47,6 +63,7 @@ public class StudentServices {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		UserDAO userDao = new UserDAO();
 		User user = userDao.getUserById(userId);
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 		int quizId = jsonResponse.getQuizId();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		ResponseStatistics stats;
@@ -68,7 +85,13 @@ public class StudentServices {
 				}
 			}
 		}
+<<<<<<< HEAD
+
 		return "/success";
+
+=======
+		return "/success";
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 	}
 
 	public static QuizDetails convertStringtoJSON(String studentResponse) {
@@ -87,12 +110,20 @@ public class StudentServices {
 		return quizDAO.fetchQuizId(quizName);
 	}
 
+<<<<<<< HEAD
+	public List<String> fetchQuizStatus(List<String> quizNames){
+=======
 	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 		List<String> status = new ArrayList<>();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		for(String quizName : quizNames) {
 			int quizID = fetchQuizId(quizName);
+<<<<<<< HEAD
+			long count = statisticsDAO.checkQuizStatus(quizID);
+=======
 			int count = statisticsDAO.checkQuizStatus(quizID,userId);
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			if(count>=1){
 				status.add("Answered");
 			}
@@ -100,6 +131,10 @@ public class StudentServices {
 				status.add("Unanswered");
 			}
 		}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 		return status;
 	}
 
@@ -119,6 +154,9 @@ public class StudentServices {
 		return dateTime; 
 	}
 
+<<<<<<< HEAD
+}
+=======
 	public int getGrade(String studentResponse, int userId) {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		int quizId = jsonResponse.getQuizId();
@@ -173,3 +211,4 @@ public class StudentServices {
 		scoresDAO.insertCalculatedScore(calculatedScores);
 	}
 }
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba

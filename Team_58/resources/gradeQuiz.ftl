@@ -17,6 +17,18 @@
 		}
 	</style>
 	<body>
+		<div class="navbar">
+		  <a method="POST" href="viewQuiz.ftl"> < View Quiz</a>
+		  <div class="dropdown">
+		    <button class="dropbtn">v
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		    	<a href="professorHome.ftl">Home</a>
+		    	<a href="login.jsp" name="logoutProfile">Logout</a>
+		    </div>
+		  </div> 
+		</div>
 		
 		<h1 class="fontColor">
 		   Title: ${Session.quizName}
@@ -33,11 +45,5 @@
 	            </tr>
 	        </#list>
         </table>
-        <form action="viewQuiz.ftl" method="POST">
-	        	<button type="submit" class="button quizButton">Return to Quiz Page</button>
-        </form>
-        <script>
-        
-        </script>
 	</body>
 </html>

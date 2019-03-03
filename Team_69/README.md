@@ -1,4 +1,9 @@
 # SER-516_Project2_Quiz
+<<<<<<< HEAD
+SER 516- Project2 
+Team_69
+<<<<<<< HEAD
+=======
 ----------------------------
 SER 516- Project2 
 Team_69
@@ -10,10 +15,20 @@ Build.properties contains information related to the application: Application Na
 1. Inside Build.properties replace Tomcat.home with your Tomcat Home Directory Path
 
 2. To configure the database go to the file
+=======
+
+
+1. Inside Build.properties replace Tomcat.home with your Tomcat Home Directory Path
+
+2. Run build.xml file with deploy command using ANT build
+
+3. To run the database go to the file
+>>>>>>> Team_58
 \src\main\java\bean\HibernateUtil.java and update the following as per you credentials.
 	a. Environment.USER
 	b. Environment.PASS
 	c. Environment.URL
+<<<<<<< HEAD
 	
 3. Run build.xml file with deploy command using ANT build
 
@@ -41,3 +56,6 @@ II) Steps to execute
 4. Go to student page to view and take the Quiz. Use the Student's credentials to login. 
     name: abc.com
     pass : 12345
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
