@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -47,6 +49,7 @@ body {font-family: Arial;}
   border: 1px solid #ccc;
   border-top: none;
 =======
+>>>>>>> origin/master
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -98,11 +101,16 @@ body {
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;
+<<<<<<< HEAD
+=======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
 }
 </style>
 </head>
 <body>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -177,6 +185,7 @@ body {
 </body>
 </html> 
 =======
+>>>>>>> origin/master
 	<%
 		String uName = (String) session.getAttribute("uName");
 		String isSessionValid = (String) session.getAttribute("validSession");
@@ -249,4 +258,7 @@ body {
 	</form>
 </body>
 </html>
+<<<<<<< HEAD
+=======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master

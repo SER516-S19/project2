@@ -21,11 +21,26 @@
         <servlet-name>StudentController</servlet-name>
         <servlet-class>controller.StudentServlet</servlet-class>
     </servlet>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
 	<servlet>
         <display-name>StatisticController</display-name>
         <servlet-name>StatisticController</servlet-name>
         <servlet-class>controller.StatisticServlet</servlet-class>
     </servlet>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
 
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -40,10 +55,25 @@
         <servlet-name>StudentController</servlet-name>
         <url-pattern>/student/</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
         <servlet-mapping>
         <servlet-name>StatisticController</servlet-name>
         <url-pattern>/Statistic</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
     
     <servlet>
 		<servlet-name>success</servlet-name>

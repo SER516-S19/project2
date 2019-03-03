@@ -72,8 +72,23 @@ public class AnswerDAO {
 			Root<Answer> root = query.from(Answer.class);
 			Join<Answer, Question> join = root.join("question");
 			query.select(root).where(builder.equal(join.get("questionId"),questionId));
+<<<<<<< HEAD
+<<<<<<< HEAD
 			Query<Answer> answerQuery = session.createQuery(query);
 			answerDetails = answerQuery.getResultList();
+=======
+<<<<<<< HEAD
+			Query<Answer> q = session.createQuery(query);
+			answerDetails = q.getResultList();
+=======
+			Query<Answer> answerQuery = session.createQuery(query);
+			answerDetails = answerQuery.getResultList();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+			Query<Answer> answerQuery = session.createQuery(query);
+			answerDetails = answerQuery.getResultList();
+>>>>>>> origin/master
 			transaction.commit();
 			session.close();
 			for(Answer ans: answerDetails)
@@ -107,4 +122,11 @@ public class AnswerDAO {
 			session.close();
 		}
 	}
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
 }

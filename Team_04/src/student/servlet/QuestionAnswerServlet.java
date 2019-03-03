@@ -200,6 +200,7 @@ public class QuestionAnswerServlet extends HttpServlet {
         }
         currentQuestion.setScore(result);
         return result;
+
         }
 
         /**

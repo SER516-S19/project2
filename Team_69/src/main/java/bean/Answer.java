@@ -15,11 +15,31 @@ import javax.persistence.*;
 public class Answer {
 
 	@Id
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Answer_id",nullable = false)
+    private int answerId;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+=======
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Answer_id",nullable = false)
     private int answerId;
 
 	@ManyToOne(cascade = {CascadeType.REFRESH})
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+>>>>>>> origin/master
     @JoinColumn(name = "Question_id")
     private Question question;
 
