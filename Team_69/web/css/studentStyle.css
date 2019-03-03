@@ -9,10 +9,6 @@ body {
 	background-color: rgb(201, 206, 229);
 }
 
-h1, h2 {
-	font-family: 'Abel', sans-serif;
-}
-
 .container {
 	min-height: 400px;
 	margin-top: 80px;
@@ -20,6 +16,7 @@ h1, h2 {
 }
 
 h1, h2, h4, h6 {
+	font-family: 'Abel', sans-serif;
 	text-align: center;
 	color: #3f3f85;
 }
@@ -157,6 +154,10 @@ form {
 	text-align: left;
 	margin-left: 30px;
 	margin-right: 30px;
+}
+
+#logoutBtn{
+	margin-left:510px;
 }
 
 form>label {
