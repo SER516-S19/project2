@@ -215,6 +215,7 @@ public class SubmissionServlet extends HttpServlet {
 
         for (Submission s : submissions) {
             if(s.getAttempt() == attempt){
+                submissionID = s.getSubmission_id();
                 s.setEnd_time(endTime);
                 hasSucceeded = submitter.updateSubmission(s);
             }
