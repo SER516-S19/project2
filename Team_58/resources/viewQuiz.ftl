@@ -103,7 +103,7 @@
 				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer2()}</td>
 				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer3()}</td>
 				   <td contenteditable="false" value=${qId}>${questions.getTotalPoints()}</td>
-				   <#if Session.Grade == false && Session.isAfter == true>
+				   <#if Session.Grade == false>
 					   <td><button name="editButton" value=${qId} onclick="editRow(this.value)">Edit</button></td>
 				   </#if>
 		        </tr>
