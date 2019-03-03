@@ -1,14 +1,5 @@
 package dao;
 
-<<<<<<< HEAD
-import bean.*;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-=======
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -21,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 import javax.persistence.criteria.Root;
 
 /**
@@ -35,12 +25,9 @@ import javax.persistence.criteria.Root;
 
 public class StatisticsDAO {
 
-<<<<<<< HEAD
-=======
 	/**
 	 * This method adds the student response to the database
 	 */
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
     public void insertStudentResponse(ResponseStatistics responseStatistics){
         Transaction transaction = null;
         Session session = null;
@@ -61,24 +48,6 @@ public class StatisticsDAO {
 
     }
 
-<<<<<<< HEAD
-    public long checkQuizStatus(int quizId){
-        Transaction transaction = null;
-        Session session = null;
-        Long count= 0L;
-        try  {
-            session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Long> query = builder.createQuery(Long.class);
-            Root<ResponseStatistics> root = query.from(ResponseStatistics.class);
-            Join<ResponseStatistics, Quiz> join = root.join("quiz");
-            query.select((builder.count(root))).where(builder.equal(join.get("quizId"),quizId));
-            Query<Long> q = session.createQuery(query);
-            count = q.getSingleResult();
-            transaction.commit();
-            session.close();
-=======
     /**
 	 * This method checks whether the student has given a particular quiz
 	 */
@@ -97,7 +66,6 @@ public class StatisticsDAO {
             userQuizCount = Integer.parseInt(result.get(0).toString());
             transaction.commit();
 
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -107,14 +75,6 @@ public class StatisticsDAO {
         finally {
             session.close();
         }
-<<<<<<< HEAD
-        return count;
-    }
-
-
-
-}
-=======
         return userQuizCount;
     }
 
@@ -246,4 +206,3 @@ public class StatisticsDAO {
 		return lists;
 	}
 }
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba

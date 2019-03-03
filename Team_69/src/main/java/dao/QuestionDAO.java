@@ -15,38 +15,18 @@ import bean.Quiz;
 public class QuestionDAO {
 
 	public void addQuestion(Question question) {
-
 		Transaction transaction = null;
-<<<<<<< HEAD
-		try  {
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			transaction = session.beginTransaction();
-			session.save(question);
-=======
 		Session session = null;
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(question);
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
-<<<<<<< HEAD
-		}
-	}
-
-	public List<Question> getQuestionsByQuizId(int quizId){
-
-		Transaction transaction = null;
-		List<Question> quesList = new ArrayList<Question>();
-
-		try  {
-			Session session = HibernateUtil.getSessionFactory().openSession();
-=======
 		}finally {
 			session.close();
 		}
@@ -82,20 +62,14 @@ public class QuestionDAO {
 		
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			transaction = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Question> query = builder.createQuery(Question.class);
 			Root<Question> root = query.from(Question.class);
 			Join<Question,Quiz> join = root.join("quiz");
 			query.select(root).where(builder.equal(join.get("quizId"),quizId));
-<<<<<<< HEAD
-			Query<Question> q = session.createQuery(query);
-			quesList = q.getResultList();
-=======
 			Query<Question> questionByIdQuery = session.createQuery(query);
 			quesList = questionByIdQuery.getResultList();
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			for(Question qu: quesList)
 				System.out.println(qu.toString());
 			transaction.commit();
@@ -105,21 +79,6 @@ public class QuestionDAO {
 			}
 			e.printStackTrace();
 			return quesList;
-<<<<<<< HEAD
-		}
-		return quesList;
-	}
-	
-	/**
-	 * This method will delete questions from the quiz.
-	 */
-	public void deleteQuestionByQuestionId(String quesId){
-		Transaction transaction = null;
-		Question quesList = null;
-		try  {
-			int qId = Integer.parseInt(quesId);
-			Session session = HibernateUtil.getSessionFactory().openSession();
-=======
 		}finally {
 			session.close();
 		}
@@ -136,7 +95,6 @@ public class QuestionDAO {
 		try  {
 			int qId = Integer.parseInt(quesId);
 			session = HibernateUtil.getSessionFactory().openSession();
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			transaction = session.beginTransaction();
 			quesList = (Question) session.get(Question.class, qId);
 			session.delete(quesList);
@@ -147,20 +105,6 @@ public class QuestionDAO {
 			}
 			e.printStackTrace();
 			return ;
-<<<<<<< HEAD
-		}
-		return ;
-	}
-		
-	/**
-	 * Joins the question and answer table in Database.
-	 */
-	public List<Answer> getQuestionsAndAnswers(int quizId) {
-		Transaction transaction = null;
-	       List<Answer> quesList = new ArrayList<Answer>();
-	       try  {
-	           Session session = HibernateUtil.getSessionFactory().openSession();
-=======
 		}finally {
 			session.close();
 		}
@@ -176,7 +120,6 @@ public class QuestionDAO {
 	       Session session = null;
 	       try  {
 	           session = HibernateUtil.getSessionFactory().openSession();
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 	           transaction = session.beginTransaction();
 	           CriteriaBuilder builder = session.getCriteriaBuilder();
 	           CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
@@ -185,28 +128,12 @@ public class QuestionDAO {
 	           query.select(root).where(root.get("quiz").in(quizId));
 	           Query<Answer> q=session.createQuery(query);
 	           quesList= q.getResultList();
-<<<<<<< HEAD
-<<<<<<< HEAD
-	           for (Answer name : quesList) {
-	               System.out.println(name);
-	           }
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 	           transaction.commit();
 	       } catch (HibernateException e) {
 	           e.printStackTrace();
 	           if (transaction != null) {
 	               transaction.rollback();
 	           }
-<<<<<<< HEAD
-	       }
-	       return quesList;
-	}
-	
-}
-=======
 	       }finally {
 				session.close();
 			}
@@ -258,4 +185,3 @@ public class QuestionDAO {
 		return ;	
 	}	
 }
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba

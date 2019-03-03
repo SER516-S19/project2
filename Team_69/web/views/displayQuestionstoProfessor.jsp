@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-=======
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,47 +15,7 @@
 </head>
 <body>
 	<div id="accordion">
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-		<div> 
-		<center><h1>${requestScope.quizName}</h1></center>
-		</div>
-		
-		<c:forEach items="${requestScope.queAnsData}" var="question">
-			<div class="card">
-				<div class="card-header" id="heading${question[3]}">
-					<h5 class="mb-0">
-						<button class="btn btn-link" data-toggle="collapse"
-							data-target="#collapse${question[3]}" aria-expanded="true"
-							aria-controls="collapse${question[3]}">
-						<c:out value="${question[0]}"></c:out>	
-						</button>
-					</h5>
-				</div>
-	
-				<div id="collapse${question[3]}" class="collapse show"
-					aria-labelledby="heading${question[3]}" data-parent="#accordion">
-					<div class="card-body">
-					<c:forEach items="${question[2]}" var="answer">
-						<c:choose>
-				   			<c:when test="${answer.correctAnswer}">
-				   				<p style="color:green"><c:out value="${answer.answer}"></c:out></p>
-				   			</c:when>
-				   			<c:otherwise>
-				     			<p style="color:red"><c:out value="${answer.answer}"></c:out></p>
-				   			</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
-
-=======
-=======
 		<%String pathWebcontent = request.getContextPath();%> 
->>>>>>> e816bd85c7f60d681167d6025f653246953cb63e
 		<div>
 			<center>
 				<h3>${requestScope.quizName}</h3>
@@ -134,12 +90,6 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-<<<<<<< HEAD
-		
-		
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> e816bd85c7f60d681167d6025f653246953cb63e
 	</div>
 </body>
 </html>

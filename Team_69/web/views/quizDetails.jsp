@@ -29,13 +29,8 @@
 				<tr>
 					<td width="200px">Quiz Type :</td>
 					<td width="800px"><select name="quiz_type" required>
-<<<<<<< HEAD
 						<option value="graded">Graded Quiz</option>
 						<option value="ungraded">Ungraded Quiz</option>
-=======
-						<option value="G">Graded Quiz</option>
-						<option value="U">Ungraded Quiz</option>
->>>>>>> Team_58
 					</select></td>
 				</tr>
 				<tr>
@@ -64,11 +59,7 @@
 				</tr>
 			</table>
 		</div>
-<<<<<<< HEAD
 		<input type="hidden" id="flag" name="flag" value="insertQuizDetails">
-=======
-		<input type="hidden" id="flag" name="flag" value="InsertQuizDetails">
->>>>>>> Team_58
 		<button type="submit" class="btn btn-primary"
 			onclick="javascript:checkBoxStatus(myCheckBox)">Submit</button>
 	</form>

@@ -21,14 +21,11 @@
         <servlet-name>StudentController</servlet-name>
         <servlet-class>controller.StudentServlet</servlet-class>
     </servlet>
-<<<<<<< HEAD
-=======
 	<servlet>
         <display-name>StatisticController</display-name>
         <servlet-name>StatisticController</servlet-name>
         <servlet-class>controller.StatisticServlet</servlet-class>
     </servlet>
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -43,13 +40,10 @@
         <servlet-name>StudentController</servlet-name>
         <url-pattern>/student/</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
-=======
         <servlet-mapping>
         <servlet-name>StatisticController</servlet-name>
         <url-pattern>/Statistic</url-pattern>
     </servlet-mapping>
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
     
     <servlet>
 		<servlet-name>success</servlet-name>

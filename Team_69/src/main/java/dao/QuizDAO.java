@@ -33,13 +33,8 @@ public class QuizDAO {
            CriteriaQuery<String> query = builder.createQuery(String.class);
            Root<Quiz> root = query.from(Quiz.class);
            query.select(root.<String>get("quizName"));
-<<<<<<< HEAD
-           Query<String> q=session.createQuery(query);
-           quizNames=q.getResultList();
-=======
            Query<String> quizNamwQuery=session.createQuery(query);
            quizNames=quizNamwQuery.getResultList();
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
            transaction.commit();
        } catch (HibernateException e) {
            e.printStackTrace();
@@ -64,13 +59,8 @@ public class QuizDAO {
            CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
            Root<Quiz> root = query.from(Quiz.class);
            query.select(root.<Integer>get("quizId")).where(root.get("quizName").in(quizName));
-<<<<<<< HEAD
-           Query<Integer> q=session.createQuery(query);
-           quizId=q.getSingleResult();
-=======
            Query<Integer> quizIdQuery=session.createQuery(query);
            quizId=quizIdQuery.getSingleResult();
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
            transaction.commit();
        } catch (HibernateException e) {
            e.printStackTrace();
