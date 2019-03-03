@@ -101,17 +101,17 @@ public class SubmissionServlet extends HttpServlet {
             if (enrollment == null) {
                 httpCode = 500;
             }
-            startTime = validateDate(request.getParameter("start_time"), response);
+            startTime = validateDate((String)requestForm.get("start_time"), response);
             if (startTime == null) {
                 httpCode = 400;
             }
             if (!isInitial){
-                endTime = validateDate(request.getParameter("end_time"), response);
+                endTime = validateDate((String)requestForm.get("end_time"), response);
                 if (endTime == null) {
                     httpCode = 400;
                 }
             }
-            if (!isInTime(quizId, startTime, endTime) && !isInitial) {
+            if (!isInitial && !isInTime(quizId, startTime, endTime)) {
                 httpCode = 400;
                 httpErrorMessage = "Quiz taken outside of allowed time period";
             }
@@ -122,6 +122,7 @@ public class SubmissionServlet extends HttpServlet {
             cce.printStackTrace();
             return;
         } catch (NullPointerException npe){
+            npe.printStackTrace();
             response.sendError(400, "Some field is missing.");
             return;
         }
@@ -294,14 +295,19 @@ public class SubmissionServlet extends HttpServlet {
      * @throws IOException
      */
     private Date validateDate(String value, HttpServletResponse response) throws IOException {
-        try{
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        try {
+            System.out.println(value);
+            /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             Date dt = (Date) formatter.parse(value);
+            */
+            Date dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(value);
             return dt;
-        } catch (NumberFormatException nfe) {
+            //return dt;
+        } catch(java.text.ParseException pe){
             httpCode = 400;
-            httpErrorMessage = "Invalid form data";
+            httpErrorMessage = "Invalid Date data";
         } catch(NullPointerException npe) {
+            npe.printStackTrace();
             httpCode = 400;
             httpErrorMessage = "Missing form data";
         }
