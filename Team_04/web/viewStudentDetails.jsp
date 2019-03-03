@@ -20,7 +20,7 @@
             font-family: Arial, sans-serif;
         }
         body{
-            background-color: #191970;
+            background-color: #4a154b;
             border-style: outset;
             border-width: medium;
             border-radius: 10px;
