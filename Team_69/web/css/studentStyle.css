@@ -46,15 +46,13 @@ h1, h2, h4, h6 {
 	background: rgb(201, 206, 229);
 	border-radius: 3px;
 	text-align: center;
-	/*border: 3px solid #000;
-	background: #B0FFD3;
-	height: 100px;
-	text-align: center;
-	margin-left: 110px;
-	width: 400px;*/
+	margin-left:355px;
+	padding:10px;
 }
 
 .popup-overlay.active {
+	margin-left:355px;
+	padding:10px;
 	visibility: visible;
 }
 
@@ -66,48 +64,7 @@ h1, h2, h4, h6 {
 	text-indent: 10px;
 	display: none;
 }
-/*
-.button {
-	border: 4px solid;
-	border-radius: 5px;
-	width: 40px;
-	padding-left: 5px;
-	padding-right: 5px;
-	position: relative;
-	float: right;
-	background-color: #DCDCDC;
-	color: black;
-	margin: 0 2px 0 2px;
-}
 
-.button.active {
-	background-color: #F8F8FF;
-	color: #525252;
-}
-
-button {
-	position: relative;
-	float: right;
-}
-
-.button a {
-	text-decoration: none;
-	color: black;
-	width: 80px;
-	height: 40%;
-}
-
-.button{
-	text-decoration: none;
-	color: black;
-	width: 80px;
-	height: 40%;
-}
-
-input.button {
-	width: 50%;
-}
-*/
 #container {
 	width: 50%;
 	margin: auto;
