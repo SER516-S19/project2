@@ -94,23 +94,6 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
 
-        // No guarantee of parameter order, specifically looking for initial field
-        while(paramNames.hasMoreElements()) {
-            try{
-                String paramName = (String) paramNames.nextElement();
-                if (paramName.equals("initial")) {
-                    isInitial = validateInitial(request.getParameter("initial"), response);
-                    if (isInitial == null) {
-                        httpCode = 400;
-                        return;
-                    }
-                }
-            } catch (NullPointerException npe){
-                httpCode = 400;
-                return;
-            }
-        }
-
         //Validate that all necessary fields are present and build ChoiceId array
         try {
             isInitial = ((Boolean)requestForm.get("initial")).booleanValue();
@@ -140,7 +123,7 @@ public class SubmissionServlet extends HttpServlet {
             }
             JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
             choiceIds = ServletValidation.buildAndValidateStudentChoiceList(jsonChoices, quizId);
-        } catch (ClassCastException cce){
+        } catch (ClassCastException cce) {
             response.sendError(400, "Some field is wrong data type.");
             cce.printStackTrace();
             return;
@@ -260,16 +243,6 @@ public class SubmissionServlet extends HttpServlet {
             return true;
         }
         return false;
-    }
-
-    private Boolean validateInitial(String value, HttpServletResponse response) throws IOException {
-        try {
-            return Boolean.parseBoolean(value);
-        } catch (NullPointerException npe) {
-            httpCode = 400;
-            httpErrorMessage = "Missing form data";
-        }
-        return null;
     }
 
     /**
