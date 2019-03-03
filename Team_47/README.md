@@ -35,6 +35,8 @@ Make sure maven is installed
 macOS and linux:
 `brew install maven`
 
+To run:
+
 macOS and linux:  
 `cd QuizCreator`  
 `./build.sh`  
@@ -43,16 +45,9 @@ macOS and linux:
 windows
 `cd QuizCreator`  
 `./build.bat`
-<<<<<<< HEAD
-`./run.bat`
 
-After successfully building and running, you can view the project by going to:
-http://localhost:8080
-
-
-=======
 `./run.bat`  
 
 After successfully building and running, you can view the project by going to:
 http://localhost:8080
->>>>>>> Team_58
+
