@@ -64,37 +64,4 @@ public final class CreateContentHelper {
         quizContent.getCorrect(),
         quizContent.getMaxScore());
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 72b2cc1f... Revert.
-
-  public static List<QuizFormDAO> processPayload(List<QuizQuestionsDAO> quizQuestionsList) {
-       List<QuizFormDAO> quizFormList = new ArrayList<>();
-      int quizId = generateRandom(100, 999);
-      for (QuizQuestionsDAO question: quizQuestionsList) {
-        QuizFormDAO quizForm = new QuizFormDAO();
-        quizForm.setScore(question.getScore());
-        int choice = question.getChoice();
-        quizForm.setQuestionText(question.getQuestion());
-        quizForm.setQuizId(quizId);
-        quizForm.setQuestionId(generateRandom(1000, 9999));
-        Map<Integer, ArrayList<String>> answerBundle = new HashMap<>();
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionA(), choice == 1 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionB(), choice == 2 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionC(), choice == 3 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionD(), choice == 4 ? "true" : "false")));
-        quizForm.setAnswerBundle(answerBundle);
-        quizFormList.add(quizForm);
-      }
-      return quizFormList;
-  }
-<<<<<<< HEAD
->>>>>>> parent of 72b2cc1f... Revert.
-=======
->>>>>>> parent of b2a3da62... Temp.
-=======
->>>>>>> parent of 72b2cc1f... Revert.
 }
