@@ -124,6 +124,7 @@
             </ol>
         </div>
     </div>
+    <input id="beginbtn" type="button" value="Dashbaord" onclick='location.href=("dashboard_professor.jsp")'>
 
 </body>
 
