@@ -73,6 +73,13 @@ public class ProfessorServlet extends HttpServlet {
 			session.setAttribute("quiz", quiz);
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
 		}
+		else if ("professorLanding".equalsIgnoreCase(flag)) {
+			getServletContext().getRequestDispatcher("/views/professorLanding.jsp").forward(request, response);
+		}
+		else if ("logout".equalsIgnoreCase(flag)) {
+			request.getSession().invalidate();
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+		}
 	}
 
 	/**
