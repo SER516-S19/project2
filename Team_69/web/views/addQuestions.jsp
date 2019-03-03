@@ -16,9 +16,30 @@
 .borderexample
 {
   width: auto;
-  padding: 25px;
-  margin: 25px;
+  padding: 20px;
+  margin: 20px;
 
+}
+
+.container {
+	min-height: 200px;
+	margin-top: 20px;
+	background-color: rgb(240, 241, 243);
+}
+
+#container {
+	width: 45%;
+	margin: auto;
+	padding: 0 40px 40px 10px;
+	border: 4px solid #B0E0E6;
+	border-radius: 5px;
+	color: #0;
+	font-weight: bold;
+	box-shadow: 5px 5px 5px #888;
+}
+
+form {
+	text-align: left;
 }
 
 </style>
@@ -93,41 +114,38 @@
 </script>
 
 <div align="center" >
-	<H2>Please add the question</H2>
+	<H3>Please add the question</H3>
 </div>
 
+<div class="container">
 <form method="Post" action="../ProfessorController">
 	<div class="borderexample" class="form-group">   
 			
 		<label for="question" >Question:</label>
-		<textarea name="question" id="question" rows="6" cols="50"  class="form-control"  required></textarea>	
+		<textarea name="question" id="question" rows="3" cols="50"  class="form-control"  required></textarea>	
 		<br>
 		
 		
 		<label for="option1">Option 1: </label>
-		<br>
     	<input type="checkbox" name="options" value="option1">
-    	<textarea type="text" id="questionOptions1" name="questionOptions1" rows="2" cols="50" class="form-control" ></textarea>
+    	<textarea type="text" id="questionOptions1" name="questionOptions1" rows="1" cols="50" class="form-control" ></textarea>
 		<br>
 
 
     	<label for="option2">Option 2: </label>
-    	<br>
 		<input type="checkbox" name="options" value="option2">	
-    	<textarea type="text" id="questionOptions2" name="questionOptions2" rows="2" cols="50" class="form-control" ></textarea>
+    	<textarea type="text" id="questionOptions2" name="questionOptions2" rows="1" cols="50" class="form-control" ></textarea>
     	<br>
     
     	
     	<label for="option3">Option 3: </label>
-    	<br>
     	<input type="checkbox" name="options" value="option3">
-    	<textarea type="text" id="questionOptions3" name="questionOptions3" rows="2" cols="50" class="form-control" ></textarea>
+    	<textarea type="text" id="questionOptions3" name="questionOptions3" rows="1" cols="50" class="form-control" ></textarea>
     	<br>
     
     	<label for="option4">Option 4: </label>
-		<br>
     	<input type="checkbox" name="options" value="option4">
-    	<textarea type="text" id="questionOptions4" name="questionOptions4" rows="2" cols="50" class="form-control" ></textarea>
+    	<textarea type="text" id="questionOptions4" name="questionOptions4" rows="1" cols="50" class="form-control" ></textarea>
 		<br>
 		<br>
 		
@@ -151,11 +169,8 @@
 		</table>
 	</div>	
 	
-	<br>
-	<br>
-	<br>
-		
 </form>
+</div>
 
 </body>
 </html>
