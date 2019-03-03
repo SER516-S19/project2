@@ -78,5 +78,4 @@ public class LoginController extends HttpServlet {
 			response.sendRedirect("Login.jsp");
 		}
 	}
-
 }
