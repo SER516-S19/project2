@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Team76.Database.ProfInsertQuerry;
 import Team76.Entity.DetailsEntity;
 import Team76.Entity.QuestionEntity;
+import Team76.Entity.QuizEntity;
 import Team76.Utilities.DetailsModel;
 import Team76.Utilities.QuestionModel;
 import Team76.Utilities.ViewGradesModel;
@@ -27,7 +29,7 @@ public class ProfessorController extends HttpServlet {
 	DetailsEntity ent1 = new DetailsEntity();
 	DetailsModel q = new DetailsModel(); // object of quiz class used for calling fetch method
 	ViewGradesModel vc = new ViewGradesModel();
-
+	
 	public ProfessorController() {
 		super();
 	}
@@ -76,12 +78,11 @@ public class ProfessorController extends HttpServlet {
 		}
 
 		if (action.equals("Submit")) {
-			try {
-				quiz.getParameters(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			response.sendRedirect("ProfessorDash.jsp");
+			
+			  try { quiz.getParameters(request, response); } catch (Exception e) {
+			  e.printStackTrace(); }
+			 
+			response.sendRedirect("ReviewProfQuiz.jsp");
 		}
 		if (action.equals("Continue1")) {
 			if (request.getParameter("qtype").equals("NonGraded")
@@ -106,6 +107,21 @@ public class ProfessorController extends HttpServlet {
 		if (action.equals("Logout")) {
 			response.sendRedirect("ProfessorDash.jsp");
 		}
+		if (action.equals("ReviewSubmit")) {
+			QuizEntity entity=(QuizEntity)request.getSession().getAttribute("quiz");
+			try {
+				ProfInsertQuerry prof= new ProfInsertQuerry();
+				prof.QuestionDetailPage(entity);
+				prof.QuestionPage(entity);
+				prof.connectionClose();
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			response.sendRedirect("ProfessorDash.jsp");
+		}
+		//	ReviewSubmit
 
 	}
 

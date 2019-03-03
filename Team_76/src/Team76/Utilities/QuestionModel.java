@@ -40,6 +40,7 @@ public class QuestionModel {
 		String concatoptions = entity.getOption1();
 		concatoptions = concatoptions.concat("$$@").concat(entity.getOption2()).concat("$$@").concat(entity.getOption3())
 				.concat("$$@").concat(entity.getOption4());
+		System.out.println(" concat string is "+concatoptions);
 
 		entity.setAnswer(request.getParameter("correctanswer"));
 		entity.setMarks(request.getParameter("marks"));
