@@ -30,6 +30,7 @@ public class AnswerDAO {
 	public void addAnswer(Answer answer) {
 		Transaction transaction = null;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 =======
@@ -37,6 +38,11 @@ public class AnswerDAO {
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> Team_58
 			transaction = session.beginTransaction();
 			session.save(answer);
 			transaction.commit();
@@ -45,6 +51,7 @@ public class AnswerDAO {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 		}finally {
@@ -69,12 +76,17 @@ public class AnswerDAO {
 		}finally {
 			session.close();
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+		}finally {
+			session.close();
+>>>>>>> Team_58
 		}
 	}
 	
 	public List<Answer> getAnswersByQuestionId(int questionId){
 		Transaction transaction = null;
 		List<Answer> answerDetails = null;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
@@ -83,6 +95,11 @@ public class AnswerDAO {
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> Team_58
 			transaction = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
@@ -107,10 +124,13 @@ public class AnswerDAO {
 			e.printStackTrace();
 			return answerDetails;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 		return answerDetails;
 	}
 =======
+=======
+>>>>>>> Team_58
 		}finally {
 			session.close();
 		}

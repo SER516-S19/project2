@@ -104,60 +104,75 @@ body {
 </head>
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<%
+        String uName = (String) session.getAttribute("uName");
+        String isSessionValid = (String) session.getAttribute("validSession");
+        if (isSessionValid == null || isSessionValid.isEmpty() || !isSessionValid.equalsIgnoreCase("True")
+                || uName == null || uName.isEmpty()) {
+            response.sendRedirect("Login.jsp");
+        }
+    %>
+    <div style="float: right">
+        <form align="right" action="LoginController" method="post">
+            <input type="hidden" name="action" value="logoff"> <input
+                type="submit" value="LogOut" class="logout">
+        </form>
+    </div>
+>>>>>>> Team_58
 
-<div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Questions')">Questions</button>
-</div>
-
-
-
-<div id="Questions" class="tabcontent">
   <h3>Questions</h3>
-  <form action="ProfessorQuestions" method="POST">
- <%= request.getAttribute("Questions") %>
-  
-  <div class="form-group">
+  <form action="ProfessorController" method="post">
+
+ <div class="form-group">
   <label for="q1">Question:</label>
-  <input type="text" class="form-control" name="Question" id="q1" placeholder="Enter your question">
+  <input type="text" class="form-control" name="question" id="q1" placeholder="Enter your question">
 </div>
+	
 <div class="form-group">
   <label for="a1">Answer1:</label>
-  <input type="text" class="form-control" name="Option1" id="a1" placeholder="Enter option1">
+  <input type="text" class="form-control" name="option1" id="a1" placeholder="Enter option1">
 </div>
+
 <div class="form-group">
   <label for="a2">Answer2:</label>
-  <input type="text" class="form-control" name="Option2" id="a2" placeholder="Enter option2">
+  <input type="text" class="form-control" name="option2" id="a2" placeholder="Enter option2">
 </div>
+
 <div class="form-group">
   <label for="a3">Answer3:</label>
-  <input type="text" class="form-control" name="Option3" id="a3" placeholder="Enter  option3">
+  <input type="text" class="form-control" name="option3" id="a3" placeholder="Enter  option3">
 </div>
+
 <div class="form-group">
   <label for="a4">Answer4:</label>
-  <input type="text" class="form-control" name="Option4" id="a4" placeholder="Enter option4">
-</div>
-<button class="btn btn-primary" > Continue </button>
- <input class="btn btn-primary" type="submit" name="submit"></input>
-  </form>
+  <input type="text" class="form-control" name="option4" id="a4" placeholder="Enter option4">
 </div>
 
+<div class="form-group">
+  <label for="a5">Correct Answer:</label>
+  <input type="text" class="form-control" name="correctanswer" id="a5" placeholder="Enter correct answer">
+</div>
 
+<div class="form-group">
+  <label for="a6">Marks:</label>
+  <input type="text" class="form-control" name="marks" id="a6" placeholder="Enter Marks">
+</div>
+ 
+ <form action="ProfessorController" method="post">
+<input type="hidden" name="action" value="Continue">
+<input class="btn btn-primary" type="submit" name="Continue" value="Continue">
+</form>
 
-<script>
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>
+<br/>
+
+ <form action="ProfessorController" method="post">
+<input type="hidden" name="action" value="Submit">
+<input class="btn btn-primary" type="submit" name="Submit" value="Submit">
+</form>
+
+</form>
    
 </body>
 </html> 

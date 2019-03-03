@@ -34,9 +34,12 @@ CREATE TABLE quiz (
  DueDate date NOT NULL,
  Timelimit INT NOT NULL,
  QuizType VARCHAR(30),
+<<<<<<< HEAD
  quiztitle VARCHAR(30) NOT NULL,
  qinstruct VARCHAR(1000) NOT NULL,
  qtype VARCHAR(20) NOT NULL,
+=======
+>>>>>>> Team_58
  PRIMARY KEY (ProfId, QuizId)
  ); 
  
@@ -50,7 +53,11 @@ DueDate,
 Timelimit,
 QuizType)
 values
+<<<<<<< HEAD
 (1,1,'EXPIRE','2020-01-11',20,'DeepScale','title','instructions','multiple');
+=======
+(1,1,'EXPIRE','2020-01-11',20,'DeepScale');
+>>>>>>> Team_58
 
 
  
@@ -106,8 +113,11 @@ VALUES
  CREATE TABLE grade(
  studentID INT NOT NULL,
  QuizId INT NOT NULL,
+<<<<<<< HEAD
  quiztitle VARCHAR(30) NOT NULL,
  studentName varchar(30) NOT NULL,
+=======
+>>>>>>> Team_58
  grade VARCHAR(3));
  
 
@@ -115,8 +125,19 @@ VALUES
  insert into grade(
  studentID,
 QuizId,
+<<<<<<< HEAD
 quiztitle,
 studentName,
 grade)
  values
  (1,1,'title','John','A');
+=======
+grade)
+ values
+ (1,1,'A');
+ 
+
+ 
+
+ 
+>>>>>>> Team_58

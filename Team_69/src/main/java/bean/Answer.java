@@ -3,7 +3,10 @@ package bean;
 import javax.persistence.*;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> Team_58
 /**
  * This class reprsents the Answer table
  *
@@ -12,7 +15,10 @@ import javax.persistence.*;
  * @since : 02/20/2019
  */
 
+<<<<<<< HEAD
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 @Entity
 @Table(name = "Answer")
 public class Answer {

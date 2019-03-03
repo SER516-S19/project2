@@ -1,10 +1,13 @@
 package controller;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import dao.QuizDAO;
+=======
+>>>>>>> Team_58
 import services.StudentServices;
-
 import java.io.IOException;
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,6 +15,8 @@ import java.util.Date;
 import services.StudentServices;
 import java.io.IOException;
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +35,14 @@ import javax.servlet.http.HttpSession;
 public class StudentServlet extends HttpServlet {
 
 	/**
-	 * 
+	 * Handles the get request coming to the student
+	 *
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
 	 */
+<<<<<<< HEAD
 	private static final long serialVersionUID = 1L;
 =======
  *
@@ -52,6 +63,8 @@ public class StudentServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -66,6 +79,7 @@ public class StudentServlet extends HttpServlet {
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		session.getAttribute("quizName");
 		session.getAttribute("quizInstructions");
 
@@ -75,6 +89,11 @@ public class StudentServlet extends HttpServlet {
 
 	}
 
+=======
+
+	}
+
+>>>>>>> Team_58
 	/**
 	 * Handles the post request going from student
 	 *
@@ -84,7 +103,10 @@ public class StudentServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 
+<<<<<<< HEAD
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String view = "/error";

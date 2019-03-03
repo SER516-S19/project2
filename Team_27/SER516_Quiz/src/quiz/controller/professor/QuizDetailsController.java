@@ -60,7 +60,11 @@ public class QuizDetailsController extends HttpServlet {
 		// perform processing and aggregate response payload
 		try {
 			if (action.equals("Add Questions")) {
+<<<<<<< HEAD
 				if (title!=null) {
+=======
+				if (Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9]*", title) && Pattern.matches("[0-9][0-9]*", time)) {
+>>>>>>> Team_58
 
 					if (shuffled != null && shuffled.equals("true"))
 						isShuffled = true;

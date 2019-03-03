@@ -8,7 +8,10 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> Team_58
 /**
  * This class consists of database configuration properties 
  * 
@@ -17,7 +20,10 @@ import org.hibernate.service.ServiceRegistry;
  * @version 1.0.0
  *
  */
+<<<<<<< HEAD
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
     public static SessionFactory getSessionFactory() {
@@ -30,6 +36,7 @@ public class HibernateUtil {
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/quizdb");
                 settings.put(Environment.USER, "root");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 settings.put(Environment.PASS, "root");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
@@ -40,6 +47,12 @@ public class HibernateUtil {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+=======
+                settings.put(Environment.PASS, "root123");
+                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+                settings.put(Environment.SHOW_SQL, "true");
+                settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+>>>>>>> Team_58
                 /*
                  * 1.) uncomment line at 40 if you are running project for the first time
                  * 			it will create all database tables which are configured in this file 
@@ -47,8 +60,12 @@ public class HibernateUtil {
                  * 			This line will drop all existing tables/data and create new tables with
                  * 			no records.
                  */
+<<<<<<< HEAD
                 settings.put(Environment.HBM2DDL_AUTO, "update");
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+>>>>>>> Team_58
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Quiz.class);

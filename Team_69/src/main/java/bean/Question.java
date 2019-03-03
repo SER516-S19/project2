@@ -2,12 +2,15 @@ package bean;
 
 <<<<<<< HEAD
 import javax.persistence.*;
+<<<<<<< HEAD
 
 =======
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+=======
+>>>>>>> Team_58
 /**
  * This class represents the Question table
  *  
@@ -16,7 +19,10 @@ import javax.persistence.*;
  * @version 1.0.0
  *
  */
+<<<<<<< HEAD
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 @Entity
 @Table(name = "Question")
 public class Question {

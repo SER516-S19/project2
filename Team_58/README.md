@@ -9,7 +9,6 @@ Build Project
  
  Database Information
  - database is hosted on Microsoft Azure
-
 To log in as Student, Use the below credentials:
 Username : jkdrumm
 Password: 1234
