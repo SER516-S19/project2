@@ -2,10 +2,12 @@ package Team76.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
+
 import Team76.Entity.QuizEntity;
 
 /**
@@ -46,11 +48,10 @@ public class ProfInsertQuerry
 				marks = entity.getQuestionsList().get(loopVar).getMarks();
 				quizid = entity.getQuizId();
 				questionid = (quizid * 100) + 1;
-
 				String query = "INSERT INTO Question (QuizId,QuestionId,Questions,Options,"
 						+ "CORRECT_ANSWER,marks) VALUES ("
 						+ quizid + "," + questionid + ",'" + question + " ' , '" + options + 
-						" ' , ' " + answer + ","+ marks + ") ";
+						" ' , ' " + answer + "',"+ marks + ") ";
 				PreparedStatement pstmt = connect.prepareStatement(query);
 				pstmt.executeUpdate();
 
@@ -65,7 +66,7 @@ public class ProfInsertQuerry
 
 	public void QuestionDetailPage(QuizEntity entity) throws Exception 
 	{
-		int quizid;
+		int quizid = 0;
 		String quiztitle, qinstruct, qtype, clockTyp;
 		int timelimit;
 
@@ -81,8 +82,14 @@ public class ProfInsertQuerry
 		}
 		// because PreparedStatement#setDate(..) expects a java.sql.Date argument
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
-		
-		quizid = entity.getQuizId();
+		Statement statement = connect.createStatement();
+        String selectQuery= "select count(*) AS rowcount from quiz";
+        ResultSet rs = statement.executeQuery(selectQuery);
+        if(rs.next()) {
+        quizid=rs.getInt("rowcount");
+        }
+         quizid++;
+         entity.setQuizId(quizid);
 		quiztitle = entity.getQuizTitle();
 		qinstruct = entity.getQuizInstruct();
 		qtype = entity.getQuizType();
@@ -96,7 +103,6 @@ public class ProfInsertQuerry
 					+ quizid + " ,'Active','" + sqlDate + "', " + timelimit + " ,' " + quiztitle +
 					" '  , ' " + qinstruct+ " ' , ' " + qtype + " ', ' " + clockTyp + " '  )";
 			PreparedStatement pstmt = connect.prepareStatement(query);
-			System.out.println(query);
 			pstmt.executeUpdate();
 			
 			

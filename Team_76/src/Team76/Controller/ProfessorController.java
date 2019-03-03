@@ -84,8 +84,6 @@ public class ProfessorController extends HttpServlet {
 		}
 		
 		if (action.equals("Submit")) {
-			  try { quiz.getParameters(request, response); } catch (Exception e) {
-			  e.printStackTrace(); }
 			 
 			response.sendRedirect("ReviewProfQuiz.jsp");
 		}
