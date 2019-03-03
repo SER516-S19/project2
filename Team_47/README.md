@@ -54,17 +54,17 @@ http://localhost:8080
 ## Login As A Student
 To login as a student, you can use the following accounts...
 
-username: boywholived
-password: butter
+username: `boywholived`
+password: `butter`
 
-username: studently
-password: password
+username: `studently`
+password: `password`
 
 ## Login As A Professor
 To login as a professor, you can use the following accounts...
 
-username: professorly
-password: password
+username: `professorly`
+password: `password`
 
-username: xXKitten_OwnerXx
-password: cats
+username: `xXKitten_OwnerXx`
+password: `cats`
