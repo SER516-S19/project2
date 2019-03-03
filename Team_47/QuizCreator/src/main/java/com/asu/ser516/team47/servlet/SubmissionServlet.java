@@ -71,7 +71,7 @@ public class SubmissionServlet extends HttpServlet {
         Integer quizId = null;
         Integer enrollId = null;
         Date startTime = null;
-        Integer attempt = null;
+        Integer attempt = 1;
 
         //Mandatory field to update a submission entry
         Date endTime = null;
@@ -137,6 +137,7 @@ public class SubmissionServlet extends HttpServlet {
         }
 
         //determine action to create new submission if initial entry, or update submission if final entry
+        System.out.println(isInitial);
         if(isInitial) {
             if (!sendSubmission(quizId, enrollId, startTime, endTime, 0, attempt)) {
                 response.sendError(500);
@@ -168,6 +169,7 @@ public class SubmissionServlet extends HttpServlet {
                 response.sendError(500);
                 return;
             }
+            System.out.println(submission.toString());
         }
 
         response.setStatus(httpCode);
@@ -197,6 +199,7 @@ public class SubmissionServlet extends HttpServlet {
         hasSucceeded = submitter.insertSubmission(studentSubmission);
         submissionID = studentSubmission.getSubmission_id();
 
+        System.out.println(submitter.toString());
         return hasSucceeded;
     }
 
