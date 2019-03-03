@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 create database quizdb;
 
 use quizdb;
 
+<<<<<<< HEAD
+=======
+create DATABASE quizdb;
+
+use quizdb;
+=======
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -11,6 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+>>>>>>> Team_58
 --
 -- Database: `quizdb`
 --
@@ -31,11 +39,22 @@ CREATE TABLE `answer` (
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
+-- Table structure for table `calculatedscores`
+--
+
+CREATE TABLE `calculatedscores` (
+  `id` int(11) NOT NULL,
+  `scores` float DEFAULT NULL,
+  `quiz_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
+=======
 -- Table structure for table `hibernate_sequence`
 --
 
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
+>>>>>>> Team_58
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,6 +87,10 @@ CREATE TABLE `quiz` (
   `Type` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> Team_58
 -- --------------------------------------------------------
 
 --
@@ -90,12 +113,21 @@ CREATE TABLE `response_stats` (
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `user_email` varchar(255) DEFAULT NULL,
+<<<<<<< HEAD
   `password` varchar(255) DEFAULT NULL,
+  `user_email` varchar(255) DEFAULT NULL,
+=======
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+>>>>>>> Team_58
   `user_name` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> Team_58
 --
 -- Indexes for dumped tables
 --
@@ -108,6 +140,17 @@ ALTER TABLE `answer`
   ADD KEY `FK4gqkoeudft33t02p6hese58kd` (`Question_id`);
 
 --
+<<<<<<< HEAD
+-- Indexes for table `calculatedscores`
+--
+ALTER TABLE `calculatedscores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKambcuh0dk2rtmg1vrfa70o9kq` (`quiz_id`),
+  ADD KEY `FK2buby660ff44i5x4hi03vs7kn` (`user_id`);
+
+--
+=======
+>>>>>>> Team_58
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
@@ -135,3 +178,42 @@ ALTER TABLE `response_stats`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
+<<<<<<< HEAD
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `answer`
+--
+ALTER TABLE `answer`
+  MODIFY `Answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `calculatedscores`
+--
+ALTER TABLE `calculatedscores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `question`
+--
+ALTER TABLE `question`
+  MODIFY `Question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `quiz`
+--
+ALTER TABLE `quiz`
+  MODIFY `Quiz_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `response_stats`
+--
+ALTER TABLE `response_stats`
+  MODIFY `Response_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58

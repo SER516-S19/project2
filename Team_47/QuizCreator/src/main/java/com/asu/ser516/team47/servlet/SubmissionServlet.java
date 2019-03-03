@@ -169,7 +169,6 @@ public class SubmissionServlet extends HttpServlet {
                 response.sendError(500);
                 return;
             }
-            System.out.println(submission.toString());
         }
 
         response.setStatus(httpCode);
@@ -199,7 +198,6 @@ public class SubmissionServlet extends HttpServlet {
         hasSucceeded = submitter.insertSubmission(studentSubmission);
         submissionID = studentSubmission.getSubmission_id();
 
-        System.out.println(submitter.toString());
         return hasSucceeded;
     }
 

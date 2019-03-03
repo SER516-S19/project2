@@ -1,4 +1,3 @@
-
 Project SetUp
 -	download tomcat here https://tomcat.apache.org/download-80.cgi#8.5.38
 - 	checkout the project 
@@ -10,7 +9,6 @@ Build Project
  
  Database Information
  - database is hosted on Microsoft Azure
-
 To log in as Student, Use the below credentials:
 Username : jkdrumm
 Password: 1234

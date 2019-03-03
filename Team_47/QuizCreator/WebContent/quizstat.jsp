@@ -6,7 +6,7 @@
 <html>
 
 <head>
-    <% int quizIdx = Integer.parseInt(request.getParameter("Quiz_number")); %>
+    <% String quizIdx = request.getParameter("Quiz_title"); %>
     <title> Quiz <%= quizIdx %> Statistic </title>
     <meta id="request-method" name="request-method" content="GET">
     <meta name="author" content="Meng-Ze Chen">
@@ -124,6 +124,7 @@
             </ol>
         </div>
     </div>
+    <input id="beginbtn" type="button" value="Dashbaord" onclick='location.href=("dashboard_professor.jsp")'>
 
 </body>
 

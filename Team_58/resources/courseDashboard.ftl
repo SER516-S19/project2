@@ -1,17 +1,26 @@
 <!-- 
 Freemarker page to display CourseDashboard 
-@authour narenkumarKonchada
-@version 1.2
-@date 02/22/2019
+@authour narenkumarKonchada / @author Carnic
+@version 1.3
+@date 02/25/2019
  -->
 <html>
 	<head>
 		<#include "stylesheet.css">
 	</head>
-	<form action="professorHome.ftl" method="POST">
-		<button type="submit"> <- Professor Home Page</button>
-	</form>
 	<body>
+		<div class="navbar">
+		  <a method="POST" href="professorHome.ftl"> < Professor Home </a>
+		  <div class="dropdown">
+		    <button class="dropbtn">v
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		    	<a href="professorHome.ftl">Home</a>
+		    	<a href="login.jsp" name="logoutProfile">Logout</a>
+		    </div>
+		  </div> 
+		</div>
 		<h2 class="fontColor" style="text-transform: uppercase;">Course Dashboard</h2>
          <div class="box">
 	      	<p class="smallFontColor" style="text-align : center;"> <b>${Session.courseName} </b></p>
@@ -26,6 +35,9 @@ Freemarker page to display CourseDashboard
 	         	<form action="createQuiz" method="GET">
          			<input class="buttonLarge" type ="submit" value="Create New Quiz"/>
          		</form>
+         		<form action="statistics" method="POST">
+        			<input class="buttonLarge" type ="submit" value="Statistics"/>
+        			</form>
 	     	</div>
 	</body>
 </html>

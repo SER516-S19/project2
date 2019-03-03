@@ -1,15 +1,12 @@
 package com.Quizzer.code.model.db;
 
 import java.io.Serializable;
-
-import javax.crypto.SecretKey;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * This class is the model for User data.
- * 
+ *
  * @author Kumar Prabhu Kalyan
  *
  */
@@ -22,22 +19,19 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String role;
-	private String userName;
-	private SecretKey userPassword;
+	private String userPassword;
 	private String userEmailId;
 
 	public User() {
 
 	}
 
-	public User(String id, String firstName, String lastName, String role, String userName, SecretKey userPassword,
-			String userEmailId) {
+	public User(String id, String firstName, String lastName, String role, String userPassword, String userEmailId) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
-		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userEmailId = userEmailId;
 	}
@@ -74,19 +68,11 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public SecretKey getUserPassword() {
+	public String getUserPassword() {
 		return userPassword;
 	}
 
-	public void setUserPassword(SecretKey userPassword) {
+	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
 

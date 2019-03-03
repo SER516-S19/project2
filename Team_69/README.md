@@ -1,4 +1,9 @@
 # SER-516_Project2_Quiz
+<<<<<<< HEAD
+SER 516- Project2 
+Team_69
+<<<<<<< HEAD
+=======
 ----------------------------
 SER 516- Project2 
 Team_69
@@ -9,22 +14,31 @@ Build.properties contains information related to the application: Application Na
 
 1. Inside Build.properties replace Tomcat.home with your Tomcat Home Directory Path
 
+2. To configure the database go to the file
+=======
+
+
+1. Inside Build.properties replace Tomcat.home with your Tomcat Home Directory Path
+
 2. Run build.xml file with deploy command using ANT build
 
-3. This will deploy the application under the webapps folder of your tomcat directory.
-
-4. To run the database go to the file
+3. To run the database go to the file
+>>>>>>> Team_58
 \src\main\java\bean\HibernateUtil.java and update the following as per you credentials.
 	a. Environment.USER
 	b. Environment.PASS
 	c. Environment.URL
+<<<<<<< HEAD
 	
-5. Add Users in the User table by using the below queries in mysql:
-	insert into User values(1,"12345","abc.com","ABC","student");
-	insert into User values(2,"67890","xyz.com","XYZ","professor");
-	insert into User values(3,"33333","def.com","DEF","student");
+3. Run build.xml file with deploy command using ANT build
+
+4. This will deploy the application under the webapps folder of your tomcat directory.
+
+5. Run the DB_creation.sql script, to create the database schema
+
+6. Run the Insert_script.sql script, to insert the values in the database
 	
-6. Run tomcat and start the application deployed in step 3. The application name would be project2. 
+7. Run tomcat and start the application deployed in step 3. The application name would be project2. 
 
 NOTE: The URL to hit the application will be something like (http://localhost:8080/project2) but it depends on your port number.
 	
@@ -42,3 +56,6 @@ II) Steps to execute
 4. Go to student page to view and take the Quiz. Use the Student's credentials to login. 
     name: abc.com
     pass : 12345
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
