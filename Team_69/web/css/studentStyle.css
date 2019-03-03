@@ -3,17 +3,37 @@
 }
 
 body {
+<<<<<<< HEAD
 	font-family: Open Sans;
 }
 
 h1 {
 	text-align: center;
+=======
+	font-color: #191987;
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 14pt;
+	background-color: rgb(201, 206, 229);
+}
+
+.container {
+	min-height: 400px;
+	margin-top: 80px;
+	background-color: rgb(240, 241, 243);
+}
+
+h1, h2, h4, h6 {
+	font-family: 'Abel', sans-serif;
+	text-align: center;
+	color: #3f3f85;
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 }
 
 #title {
 	text-decoration: underline;
 }
 
+<<<<<<< HEAD
 #quiz {
 	text-indent: 10px;
 	display: none;
@@ -45,6 +65,46 @@ button {
 .button a {
 	text-decoration: none;
 	color: black;
+=======
+.popup-content>input[value="Yes"] {
+	float: left;
+	padding: 5px;	
+}
+
+.popup-content>input[value="No"] {
+	float: right;
+	padding: 5px;	
+}
+
+.popup-overlay {
+	visibility: hidden;
+	position: absolute;
+}
+
+.popup-content {
+	visibility: hidden;
+	position: absolute;
+	background: rgb(201, 206, 229);
+	border-radius: 3px;
+	text-align: center;
+	margin-left:355px;
+	padding:10px;
+}
+
+.popup-overlay.active {
+	margin-left:355px;
+	padding:10px;
+	visibility: visible;
+}
+
+.popup-content.active {
+	visibility: visible;
+}
+
+#quiz {
+	text-indent: 10px;
+	display: none;
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 }
 
 #container {
@@ -69,12 +129,84 @@ ul {
 	display: none;
 }
 
+<<<<<<< HEAD
+=======
+table {
+	background-color: #fff;
+}
+
+#questionDiv {
+	background-color: #fff;
+	margin-bottom: 40px;
+	padding:10px;
+	padding-top:2px;
+}
+
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 #start {
 	display: none;
 	width: 90px;
 }
 
+<<<<<<< HEAD
 #ridge {
 	padding: 5px ;
 	border-style: none;
 }
+=======
+form {
+	text-align: center;
+}
+
+#innerContainer {
+	text-align: left;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+#logoutBtn{
+	margin-left:510px;
+}
+
+form>label {
+	float: left;
+}
+
+form .#loginForm {
+	top: 50%;
+	left: 50%;
+	margin-top: 200px;
+	margin-left: 150px;
+	margin-right: 150px;
+	text-align: center;
+	border: 3px solid #f1f1f1;
+	vertical-align: middle;
+}
+
+#next>input {
+	float: right;
+	margin-top:30px;
+	width: 20%;
+}
+
+#prev>input {
+	float: left;
+	margin-top:30px;
+	width: 20%;
+}
+
+#submitBtn {
+	float: right;
+	margin-top: 30px;
+	width: 20%;
+}
+
+#quizHead>div>h1 {
+	text-align:left;
+}
+
+#quizHead>div>h4 {
+	text-align:right;
+	margin-top:32px;
+}
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba

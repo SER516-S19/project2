@@ -16,16 +16,25 @@ public class QuestionDAO {
 
 	public void addQuestion(Question question) {
 		Transaction transaction = null;
+<<<<<<< HEAD
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.save(question);
+=======
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			session.saveOrUpdate(question);
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+<<<<<<< HEAD
 		}
 	}
 
@@ -35,14 +44,56 @@ public class QuestionDAO {
 
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
+=======
+		}finally {
+			session.close();
+		}
+	}
+
+	public void updateQuestion(Question question) {
+
+		Transaction transaction = null;
+		try  {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			/*Question question =  session.get(Question.class,questionNew.getQuestionId());
+			
+			System.out.println(question);
+			System.out.println(questionNew.getQuestionId());
+			System.out.println(questionNew.getQuestion());
+			question.setQuestion(questionNew.getQuestion());*/
+			session.saveOrUpdate(question);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Question> getQuestionsByQuizId(int quizId){
+
+		Transaction transaction = null;
+		List<Question> quesList = new ArrayList<Question>();
+		Session session = null;
+		
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			transaction = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			CriteriaQuery<Question> query = builder.createQuery(Question.class);
 			Root<Question> root = query.from(Question.class);
 			Join<Question,Quiz> join = root.join("quiz");
 			query.select(root).where(builder.equal(join.get("quizId"),quizId));
+<<<<<<< HEAD
 			Query<Question> q = session.createQuery(query);
 			quesList = q.getResultList();
+=======
+			Query<Question> questionByIdQuery = session.createQuery(query);
+			quesList = questionByIdQuery.getResultList();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			for(Question qu: quesList)
 				System.out.println(qu.toString());
 			transaction.commit();
@@ -52,6 +103,7 @@ public class QuestionDAO {
 			}
 			e.printStackTrace();
 			return quesList;
+<<<<<<< HEAD
 		}
 		return quesList;
 	}
@@ -62,6 +114,24 @@ public class QuestionDAO {
 		try  {
 			int qId = Integer.parseInt(quesId);
 			Session session = HibernateUtil.getSessionFactory().openSession();
+=======
+		}finally {
+			session.close();
+		}
+		return quesList;
+	}
+	
+	/**
+	 * This method will delete questions from the quiz.
+	 */
+	public void deleteQuestionByQuestionId(String quesId){
+		Transaction transaction = null;
+		Question quesList = null;
+		Session session = null;
+		try  {
+			int qId = Integer.parseInt(quesId);
+			session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 			transaction = session.beginTransaction();
 			quesList = (Question) session.get(Question.class, qId);
 			session.delete(quesList);
@@ -72,6 +142,7 @@ public class QuestionDAO {
 			}
 			e.printStackTrace();
 			return ;
+<<<<<<< HEAD
 		}
 		return ;
 	}
@@ -82,6 +153,23 @@ public class QuestionDAO {
 	       List<Answer> quesList = new ArrayList<Answer>();
 	       try  {
 	           Session session = HibernateUtil.getSessionFactory().openSession();
+=======
+		}finally {
+			session.close();
+		}
+		return ;
+	}
+		
+	/**
+	 * Joins the question and answer table in Database.
+	 */
+	public List<Answer> getQuestionsAndAnswers(int quizId) {
+		Transaction transaction = null;
+	       List<Answer> quesList = new ArrayList<Answer>();
+	       Session session = null;
+	       try  {
+	           session = HibernateUtil.getSessionFactory().openSession();
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 	           transaction = session.beginTransaction();
 	           CriteriaBuilder builder = session.getCriteriaBuilder();
 	           CriteriaQuery<Answer> query = builder.createQuery(Answer.class);
@@ -90,17 +178,74 @@ public class QuestionDAO {
 	           query.select(root).where(root.get("quiz").in(quizId));
 	           Query<Answer> q=session.createQuery(query);
 	           quesList= q.getResultList();
+<<<<<<< HEAD
 	           for (Answer name : quesList) {
 	               System.out.println(name);
 	           }
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 	           transaction.commit();
 	       } catch (HibernateException e) {
 	           e.printStackTrace();
 	           if (transaction != null) {
 	               transaction.rollback();
 	           }
+<<<<<<< HEAD
 	       }
 	       return quesList;
 	}
 	
 }
+=======
+	       }finally {
+				session.close();
+			}
+       return quesList;
+	}
+
+	public List<Answer> getDataByQuestionId(String quesId) {
+		Transaction transaction = null;
+		Question quesList = null;
+		Session session = null;
+		List<Answer> lists = new ArrayList<>();
+		try  {
+			int qId = Integer.parseInt(quesId);
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from  " + Answer.class.getName() + 
+					" ans where ans.question.questionId = "+qId);	            
+            lists = query.list();
+            transaction.commit();
+		} catch (Exception sqlException) {
+            if (transaction != null)
+                transaction.rollback();
+        }finally {
+			session.close();
+		}
+	return lists;
+}
+
+	public void editQuestionByQuestionId(String quesId) {
+		Transaction transaction = null;
+		Question quesList = null;
+		Session session = null;
+		try  {
+			int qId = Integer.parseInt(quesId);
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			quesList = (Question) session.get(Question.class, qId);
+			session.save(quesList);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return ;
+		}finally {
+			session.close();
+		}
+		return ;	
+	}	
+}
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba

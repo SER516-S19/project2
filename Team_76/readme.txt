@@ -1,3 +1,6 @@
-SER-516 Project2 Team 76
+How to run the code--
 
-Web application for online Quiz (similar to Blackboard).
+1. Run the SQL Script
+2. Change line no 20 in MySQL.java according to your DB credentials
+3. Import as an existing project into eclipse
+4. Right click on Project-"QuizAssignment" and choose option "run on server"  
