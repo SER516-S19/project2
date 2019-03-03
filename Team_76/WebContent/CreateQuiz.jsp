@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -49,6 +51,8 @@
 			.note {
     			font-size: .8em;
 			} 
+			
+			
 					
 		</style>
 	</head>
@@ -81,7 +85,12 @@
 		<form action="ProfessorController" method="post">
 			<input type="text" name="quiztitle" required placeholder="Input quiztitle">
 			<p>QUIZ INSTRUCTIONS</p>
-			<textarea name="qinstruct"  required rows="20" cols="100"></textarea>
+			
+			<div>
+    		<textarea rows=20 name="qinstruct" style="width:100%; height:500%;"></textarea>
+			</div>
+						
+			<!-- <textarea name="qinstruct"  required rows="20" cols="300"></textarea> -->
 			<p>SELECT THE QUIZ TYPE</p>
 			<div class="dropdown">
 					<select name="qtype">
@@ -90,10 +99,10 @@
 			 	   </select>
 			</div><br><br>
 			<div class ="otherdetails">
-			<input type="radio" name="shuffleAns" value="Shuffle">Shuffle Answers<br>
+	
 			<p>OPTIONS<p>
-  				<input type="checkbox" name="timeOp1" value="T1">Timed<br>
-  				<input type="checkbox" name="timeOp2" value="T2">Not Timed (Practice Mode)
+  				<input type="radio" name="time" value="T1">Timed<br>
+  				<input type="radio" name="time" value="T2">Practice Mode
   			</div>	
 			</div>
 			<a>TIME LIMIT:</a>
@@ -107,8 +116,8 @@
 				<input type="submit" value="CONTINUE">
 			</form>
 			<form action="ProfessorController" method="post">
-				<input type="hidden" name="action" value="Cancel"> <input
-					type="submit" value="CANCEL">
+				<input type="hidden" name="action" value="Cancel"> 
+				<input type="submit" value="CANCEL">
 			</form>
 		</form>
 	</div>

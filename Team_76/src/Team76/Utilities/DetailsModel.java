@@ -8,7 +8,8 @@ import Team76.Entity.QuizEntity;
 public class DetailsModel {
 
 	/**
-	 * The method fetches fetches request and response objects from UI and sends
+	 * @author Janani Anand
+	 * The method fetches request and response objects from UI and sends
 	 * parameters for quering in DB
 	 **/
 
