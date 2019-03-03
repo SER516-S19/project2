@@ -1,5 +1,7 @@
 package com.asu.ser516.team47.database;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -11,8 +13,8 @@ import java.util.Date;
  */
 public class Quiz {
     private int quiz_id;
-    private String title;
     private int course_fk;
+    private String title;
     private String instructions;
     private boolean shuffle;
     private int time_limit;
@@ -36,12 +38,12 @@ public class Quiz {
      * @param attempts max number of attempts
      * @param quiz_group quiz grouping for professor
      */
-    public Quiz(int quiz_id, String title, int course_fk, String instructions,
+    public Quiz(int quiz_id, int course_fk, String title,  String instructions,
                 boolean shuffle, int time_limit, Date date_open, Date date_close,
                 String quiz_type, int attempts, String quiz_group, double total_points) {
         this.quiz_id = quiz_id;
-        this.title = title;
         this.course_fk = course_fk;
+        this.title = title;
         this.instructions = instructions;
         this.shuffle = shuffle;
         this.time_limit = time_limit;
@@ -61,20 +63,20 @@ public class Quiz {
         this.quiz_id = quiz_id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getCourse_fk() {
         return course_fk;
     }
 
     public void setCourse_fk(int course_fk) {
         this.course_fk = course_fk;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getInstructions() {
@@ -144,4 +146,27 @@ public class Quiz {
     public double getTotal_points() { return total_points; }
 
     public void setTotal_points(double newTotal) { this.total_points = newTotal; }
+
+    /**
+     * toString
+     * @return string representation of quiz object
+     */
+    public String toString() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String result = "Quiz {" + "\n" +
+                "  quiz_id: " + Integer.toString(quiz_id) + "\n" +
+                "  course_fk: " + Integer.toString(course_fk) + "\n" +
+                "  title: " + title + "\n" +
+                "  instructions: " + instructions + "\n" +
+                "  shuffle: " + Boolean.toString(shuffle) + "\n" +
+                "  time_limit: " + Integer.toString(time_limit) + "\n" +
+                "  date_open: " + dateFormat.format(date_open) + "\n" +
+                "  date_close: " + dateFormat.format(date_close) + "\n" +
+                "  quiz_type: " + quiz_type + "\n" +
+                "  attempts: " + Integer.toString(attempts) + "\n" +
+                "  quiz_group: " + quiz_group + "\n" +
+                "  total_points: " + Double.toString(total_points) + "\n" +
+                "}";
+        return result;
+    }
 }
