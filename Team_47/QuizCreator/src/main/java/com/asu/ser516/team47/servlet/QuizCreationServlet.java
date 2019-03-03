@@ -17,6 +17,7 @@ import java.util.*;
  * Endpoint for professor to create a quiz.
  *
  * @author David Lahtinen
+ * @author Paul Horton
  * @version 1.0
  * @since 02/28/19
  */
