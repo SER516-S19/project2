@@ -70,12 +70,12 @@
             <form method = "post">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="email" name="username" class="form-control" placeholder="Enter Username">
+                    <input id="email" name="username" class="form-control" placeholder="Enter Username" required="true">
 
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" type="password" name="password" class="form-control" placeholder="Enter password">
+                    <input id="password" type="password" name="password" class="form-control" placeholder="Enter password" required="true">
                 </div>
 
                 <div class="form-group wrapper">
