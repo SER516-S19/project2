@@ -24,12 +24,12 @@
 			</center>
 		</div>
 		
-		<%
-		String ref = request.getHeader("Referer");
-		out.write("<a class=\"btn btn-primary\" href=" +ref +">View Quizes</a>");
-		out.write("<br>");
-		out.write("<br>");
-		%>
+			<form action="ProfessorController" method="get">
+				<input type="hidden" id="flag" name="flag" value="fetchQuizList">
+				<input type="submit" value="Go Back"
+					class="btn btn-primary" />
+			</form>
+			<br>
 
 		<c:choose>
 			<c:when test="${empty requestScope.queAnsData}">

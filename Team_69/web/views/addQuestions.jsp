@@ -117,6 +117,13 @@ form {
 	<H3>Please add the question</H3>
 </div>
 
+<form action="../ProfessorController" method="get">
+		<input type="hidden" id="flag" name="flag" value="fetchQuizList">
+		<input type="submit" value="Display Quiz List"
+		class="btn btn-primary" />
+</form>
+<br>
+
 <div class="container">
 <form method="Post" action="../ProfessorController">
 	<div class="borderexample" class="form-group">   

@@ -61,7 +61,6 @@ form {
 			count = count + 1;
 		}	
 		else {
-			alert('Inside first else');
 			if(checkBoxes[0].checked){
 				alert('Sorry you have checked a empty option!');
 				return false;
