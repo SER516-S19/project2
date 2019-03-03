@@ -30,14 +30,12 @@ Tech Stack(As Discussed with Professor) <br />
 - Harshita Kajal
 - Sakshi Chaudhary 
 
-
 ## Getting started and Running Project
   - Clone the project
   - Go to project2 directory in your terminal( cd `path_to_project2_directory`)
   - Run ``` java -jar Team_74/Quizzer-0.0.1-SNAPSHOT.jar ```
   - Navigate to http://localhost:8081/ on a browser to view running application
 
-## Navigate to http://localhost:8081/ on a browser to view running application
 **Note:** <br />
   - To Login as Professor, please use username as "**Dummy.Professor@gmail.com**" and password as "**password**"
   - To Login as Student please use username as "**Dummy.Student@gmail.com**" and password as "**password**"
