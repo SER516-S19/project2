@@ -1,16 +1,6 @@
-create database quizdb;
+create DATABASE quizdb;
 
 use quizdb;
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `quizdb`
 --
@@ -31,11 +21,14 @@ CREATE TABLE `answer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hibernate_sequence`
+-- Table structure for table `calculatedscores`
 --
 
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
+CREATE TABLE `calculatedscores` (
+  `id` int(11) NOT NULL,
+  `scores` float DEFAULT NULL,
+  `quiz_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,6 +61,7 @@ CREATE TABLE `quiz` (
   `Type` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -90,11 +84,12 @@ CREATE TABLE `response_stats` (
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `user_email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `user_email` varchar(255) DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 
 --
 -- Indexes for dumped tables
@@ -106,6 +101,14 @@ CREATE TABLE `user` (
 ALTER TABLE `answer`
   ADD PRIMARY KEY (`Answer_id`),
   ADD KEY `FK4gqkoeudft33t02p6hese58kd` (`Question_id`);
+
+--
+-- Indexes for table `calculatedscores`
+--
+ALTER TABLE `calculatedscores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKambcuh0dk2rtmg1vrfa70o9kq` (`quiz_id`),
+  ADD KEY `FK2buby660ff44i5x4hi03vs7kn` (`user_id`);
 
 --
 -- Indexes for table `question`
@@ -135,3 +138,38 @@ ALTER TABLE `response_stats`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `answer`
+--
+ALTER TABLE `answer`
+  MODIFY `Answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `calculatedscores`
+--
+ALTER TABLE `calculatedscores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `question`
+--
+ALTER TABLE `question`
+  MODIFY `Question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `quiz`
+--
+ALTER TABLE `quiz`
+  MODIFY `Quiz_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `response_stats`
+--
+ALTER TABLE `response_stats`
+  MODIFY `Response_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

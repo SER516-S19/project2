@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int user_id;
 
@@ -40,6 +40,9 @@ public class User {
         this.password = password;
         this.userEmail = email;
         this.user_id = user_id;
+    }
+
+    public User() {
     }
 
     public int getUser_id() {

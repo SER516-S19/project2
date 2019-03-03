@@ -29,19 +29,29 @@
 	<script type="text/javascript">
 	function valthis() {
 		var checkBoxes = document.getElementsByName('options');
+		var questionOptions = document.getElementsByName('questionOptions');
 		var isChecked = false;
-
-		console.log("I am here checking for check boxes");
-		    for (var i = 0; i < checkBoxes.length; i++) {
-		        if ( checkBoxes[i].checked ) {
-		        	console.log("I am here Again inside");
-		        	isChecked = true;
-		        };
-		    };
-		    if ( !isChecked ){
-		            alert( 'Please, check at least one checkbox!' );
-		        }   
+		
+		if(questionOptions.length > 1){
+			for (var i = 0; i < checkBoxes.length; i++) {
+			      if ( checkBoxes[i].checked ) {
+			      	if(questionOptions[i] =! null){	
+			    	  isChecked = true;
+			      	}else if (questionOptions[i] == null){
+			      		alert( 'Sorry! you have checked an empty option.' );
+			      		isChecked = true;
+			      	}
+			      };
+			};
+			    if ( !isChecked ){
+			            alert( 'Please, check at least one checkbox!' );
+			        }   
+			}
+		}else{
+			alert( 'Please, enter atleast 2 options' );
 		}
+		
+		
 </script>
 
 <div align="center" >
@@ -60,27 +70,27 @@
 		<label for="option1">Option 1: </label>
 		<br>
     	<input type="checkbox" name="options" value="option1">
-    	<textarea type="text" name="option1" rows="2" cols="50" class="form-control"  required></textarea>
+    	<textarea type="text" name="questionOptions" rows="2" cols="50" class="form-control"  required></textarea>
 		<br>
 
 
     	<label for="option2">Option 2: </label>
     	<br>
 		<input type="checkbox" name="options" value="option2">	
-    	<textarea type="text" name="option2" rows="2" cols="50" class="form-control"  required></textarea>
+    	<textarea type="text" name="questionOptions" rows="2" cols="50" class="form-control"  required></textarea>
     	<br>
     
     	
     	<label for="option3">Option 3: </label>
     	<br>
     	<input type="checkbox" name="options" value="option3">
-    	<textarea type="text" name="option3" rows="2" cols="50" class="form-control" ></textarea>
+    	<textarea type="text" name="questionOptions" rows="2" cols="50" class="form-control" ></textarea>
     	<br>
     
     	<label for="option4">Option 4: </label>
 		<br>
     	<input type="checkbox" name="options" value="option4">
-    	<textarea type="text" name="option4" rows="2" cols="50" class="form-control" ></textarea>
+    	<textarea type="text" name="questionOptions" rows="2" cols="50" class="form-control" ></textarea>
 		<br>
 		<br>
 		
@@ -95,18 +105,12 @@
 		<table>
 			<tr>
 				<td>
-					<input type="hidden" name="flag" value="Add Next Question"  />
-					<button type="submit" class="btn btn-primary" 
+					<button type="submit" name="flag" value="addNextQuestion" class="btn btn-primary" 
 						onclick="javascript:valthis()">Add Next Question</button>
 				</td>
 				<td>		
-					<input type="hidden" name="flag" value="Save and Exit"   />
 					<button type="submit"
-						onclick="javascript:valthis()" class="btn btn-primary">Save and Exit</button>
-				</td>
-				<td>
-					<%String pathWebcontent=request.getContextPath();%>
-					<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}" class="button btn btn-primary" >View Questions</a>
+						onclick="javascript:valthis()" name="flag" value="saveAndExit"   class="btn btn-primary">Save and Exit</button>
 				</td>	
 			</tr>
 		</table>
