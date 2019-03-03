@@ -30,6 +30,9 @@ import javax.persistence.criteria.Root;
 
 public class StatisticsDAO {
 
+	/**
+	 * This method adds the student response to the database
+	 */
     public void insertStudentResponse(ResponseStatistics responseStatistics){
         Transaction transaction = null;
         Session session = null;
@@ -50,6 +53,9 @@ public class StatisticsDAO {
 
     }
 
+    /**
+	 * This method checks whether the student has given a particular quiz
+	 */
     public int checkQuizStatus(int quizId,int userId){
         Transaction transaction = null;
         Session session = null;
@@ -77,6 +83,9 @@ public class StatisticsDAO {
         return userQuizCount;
     }
 
+    /**
+	 * This method returns the list of students in the system
+	 */
 	public int retrieveStudentsCount() {
         int studentCount = 0;
 		Transaction transaction = null;
@@ -106,6 +115,9 @@ public class StatisticsDAO {
 		return studentCount;
 	}
 
+	/**
+	 * This method based on the quiz id returns the unique students who have given the quiz
+	 */
 	public int retrieveStudentsQuizCount(int quizId) {
         int studentQuizCount = 0;
 		Transaction transaction = null;
@@ -131,6 +143,9 @@ public class StatisticsDAO {
 		return studentQuizCount;
 	}
 
+	/**
+	 * This method based on the quiz id returns each students grades
+	 */
 	public List<CalculatedScores> retrieveStudentsGrades(int quizId) {
         List<CalculatedScores> studentCalculatedScores = new ArrayList<CalculatedScores>();
 		Transaction transaction = null;
@@ -154,6 +169,9 @@ public class StatisticsDAO {
 		return studentCalculatedScores;
 	}
 	
+	/**
+	 * This method based on the quiz id returns the student responses
+	 */
 	public List<ResponseStatistics> getResponseOfEachQuestion(int quizId) {
 		List<ResponseStatistics> lists = new ArrayList<>();
 		 Transaction transaction = null;
@@ -161,7 +179,7 @@ public class StatisticsDAO {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();
 	            Query query = session.createQuery("from  " + ResponseStatistics.class.getName() +
-	            		" res where res.quiz.quizId = "+quizId+ " and res.answer.correctAnswer=true");;
+	            		" res where res.quiz.quizId = "+quizId+ " and res.answer.correctAnswer=true");
 	            lists = query.list();
 	            transaction.commit();
 	        } catch (Exception sqlException) {
@@ -171,7 +189,10 @@ public class StatisticsDAO {
 	        }
 		return lists;
 	}
-	
+
+	/**
+	 * This method based on the quiz id returns the correct answer list
+	 */
 	public List<Answer> getCorrectResponseOfEachQuestion(int quizId) {
 		List<Answer> lists = new ArrayList<>();
 		 Transaction transaction = null;

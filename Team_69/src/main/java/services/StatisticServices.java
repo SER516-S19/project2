@@ -53,6 +53,10 @@ public class StatisticServices {
 		return professorStatistics;
 	}
 	
+	/**
+	 * This method compares the students correct response count to the correct answer count.
+	 * If they match the count is incremented, otherwise defaults to 0
+	 */
 	private Map<Integer, Integer> getCompareResult(HashMap<String, Integer> questionStats,
 			HashMap<Integer, Integer> correctAns) {
 		Map<Integer, Integer> resultantData = new HashMap<Integer, Integer>();
