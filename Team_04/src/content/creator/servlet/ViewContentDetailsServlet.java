@@ -61,4 +61,3 @@ public class ViewContentDetailsServlet extends HttpServlet {
         }
    }
 }
-

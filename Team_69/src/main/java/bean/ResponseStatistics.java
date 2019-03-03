@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class ResponseStatistics {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Response_id", nullable = false)
     private int id;
 
