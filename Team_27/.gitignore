@@ -1,3 +1,7 @@
-/DatabaseConnectionFactory.class
-/SearchServ.class
-/UpdateDB.class
+**.class
+**.war
+**.classpath
+**.DS_Store
+*/build
+*/bin
+*/classes
