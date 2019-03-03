@@ -25,7 +25,6 @@
             text-align: left;
             padding: 8px;
         }
-
     </style>
 </head>
 <body>
@@ -108,6 +107,5 @@
     }
     %>
 </table>
-
 </body>
 </html>

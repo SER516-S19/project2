@@ -17,7 +17,6 @@ import javax.servlet.http.*;
 
 @WebServlet(urlPatterns = "/list")
 public class ViewContentListServlet extends HttpServlet {
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<Integer> quizId = ViewContentListHelper.getQuizList();

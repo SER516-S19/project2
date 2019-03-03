@@ -1,6 +1,5 @@
 package content.creator.servlet;
 
-import static content.creator.helper.CreateContentHelper.generateRandom;
 import static content.creator.helper.CreateContentHelper.processPayload;
 import static content.creator.helper.CreateContentHelper.saveDataToDb;
 
@@ -12,6 +11,7 @@ import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
