@@ -70,27 +70,6 @@ public class SubmissionServlet extends HttpServlet {
         httpCode = 204;
         httpErrorMessage = "";
         JSONObject requestForm;
-        ServletValidation validation = new ServletValidation();
-        
-        String radioBox = request.getParameter("identity");
-    	String username = request.getParameter("username");
-    	String password = request.getParameter("password");
-    	System.out.print("value: ");
-    	System.out.println(radioBox);
-    	System.out.println(username);
-    	System.out.println(password);
-    	if(radioBox.equals("student")) {
-    		request.getRequestDispatcher("/myquizzes.jsp").forward(request,response);
-    	} else {
-    		request.getRequestDispatcher("/dashboard_professor.jsp").forward(request,response);
-    	}
-//        if(radioBox.equals("student")) {
-//        	StudentDAOImpl studentDAO = new StudentDAOImpl();
-//        	Student student = studentDAO.getStudent(username);
-//        	if(student!=null) {
-//        		
-//        	}
-//        }
         
         //Mandatory fields to create a submission entry
         Integer quizId = null;
