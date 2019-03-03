@@ -5,11 +5,15 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.asu.ser516.team47.database.*;
-
+import com.asu.ser516.team47.database.Professor;
+import com.asu.ser516.team47.database.ProfessorDAOImpl;
+import com.asu.ser516.team47.database.Student;
+import com.asu.ser516.team47.database.StudentDAOImpl;
 import com.asu.ser516.team47.servlet.LoginServlet;
+import com.asu.ser516.team47.servlet.QuizCreationServlet;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
+import com.asu.ser516.team47.utils.PasswordStorage;
 import com.asu.ser516.team47.utils.SQLScriptRunner;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
@@ -28,13 +32,15 @@ public class Main {
 
         Context context = tomcat.addWebapp(context_Path, base_path);
 
+        String quizCreationServletName = "QuizCreationServlet";
         String submissionservlet_name = "SubmissionServlet";
-        tomcat.addServlet(context_Path, submissionservlet_name, new SubmissionServlet());
-        context.addServletMappingDecoded("/submit", submissionservlet_name);
-
         String login_servlet_name = "LoginServlet";
+        tomcat.addServlet(context_Path, submissionservlet_name, new SubmissionServlet());
         tomcat.addServlet(context_Path, login_servlet_name, new LoginServlet());
+        tomcat.addServlet(context_Path, quizCreationServletName, new QuizCreationServlet());
+        context.addServletMappingDecoded("/submit", submissionservlet_name);
         context.addServletMappingDecoded("/login", login_servlet_name);
+        context.addServletMappingDecoded("/createQuiz", quizCreationServletName);
 
         Connection conn = null;
         try {
@@ -42,10 +48,28 @@ public class Main {
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
             initialize(conn);
+
+            // initialize the database
+            SQLScriptRunner.run("./exampleQuiz.sql");
             //}
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+        // PLEASE DONT REMOVE. THIS IS FOR FRONTEND TEAM TO TEST RIGHT NOW - Trevor
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        Student harryPotter = studentDAO.getStudent("boywholived");
+        String newPassword = PasswordStorage.createHash("butter");
+        harryPotter.setHashedpass(newPassword);
+        studentDAO.updateStudent(harryPotter);
+        System.out.println(harryPotter.toString());
+
+        ProfessorDAOImpl professorDAO = new ProfessorDAOImpl();
+        Professor professor = professorDAO.getProfessor("xXKitten_OwnerXx");
+        String newProfPassword = PasswordStorage.createHash("cats");
+        professor.setHashedpass(newProfPassword);
+        professorDAO.updateProfessor(professor);
+        System.out.println(professor.toString());
 
         tomcat.start();
         tomcat.getServer().await();
@@ -108,7 +132,7 @@ public class Main {
                         "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                         "firstname NVARCHAR(50) NOT NULL,\n" +
                         "lastname NVARCHAR(50) NOT NULL,\n" +
-                        "sessionid CHAR(16),\n" +
+                          "sessionid CHAR(16),\n" +
                         "hashedpass NVARCHAR(60) NOT NULL\n" +
                         ");",
                 "CREATE TABLE IF NOT EXISTS enrolled (\n" +

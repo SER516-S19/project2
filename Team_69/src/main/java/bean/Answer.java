@@ -2,16 +2,24 @@ package bean;
 
 import javax.persistence.*;
 
+/**
+ * This class reprsents the Answer table
+ *
+ * @author : Alsha Samantaray
+ * @version : 1.0
+ * @since : 02/20/2019
+ */
+
 @Entity
 @Table(name = "Answer")
 public class Answer {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Answer_id",nullable = false)
     private int answerId;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "Question_id")
     private Question question;
 

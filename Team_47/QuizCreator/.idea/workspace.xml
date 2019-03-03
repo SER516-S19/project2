@@ -6,16 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d38ecc20-062e-4803-9a06-0d992e174203" name="Default Changelist" comment="Submission Servlet has been updated to accept the json objects &#10;discussed. Still needs to be tested, and attempts and time limits&#10;still need to be changed to be enforced server-side.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java" />
+    <list default="true" id="d38ecc20-062e-4803-9a06-0d992e174203" name="Default Changelist" comment="removed garbage code from submissionservlet">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuizCreator.iml" afterPath="$PROJECT_DIR$/QuizCreator.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exampleQuiz.sql" afterPath="$PROJECT_DIR$/exampleQuiz.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,43 +21,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
+      <file leaf-file-name="exampleQuiz.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/exampleQuiz.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="142" column="1" lean-forward="false" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1551407129674" expanded="true" signature="1883:1920" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="2237:2271" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="2634:2648" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="2701:2735" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="3515:3529" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="3582:3618" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="4008:4022" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="4075:4109" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="4467:4481" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="4534:4569" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="4934:4969" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="5267:5281" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="5371:5385" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="5438:5476" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="5952:5966" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="6060:6074" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="6127:6161" ph=" CREATE statement" />
-                <marker date="1551407129674" expanded="true" signature="6527:6541" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="6636:6650" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551407129674" expanded="true" signature="6739:6753" ph=" DELETE statement (CASCADE)" />
-              </folding>
+            <state relative-caret-position="144">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmissionServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+            <state relative-caret-position="493">
+              <caret line="69" column="21" lean-forward="false" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SQLScriptRunner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -73,60 +64,8 @@
       <file leaf-file-name="JSONRequestParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exampleQuiz.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/exampleQuiz.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2340">
-              <caret line="130" column="26" lean-forward="false" selection-start-line="130" selection-start-column="26" selection-end-line="130" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="106" column="10" lean-forward="false" selection-start-line="106" selection-start-column="10" selection-end-line="106" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnswerDAOImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/AnswerDAOImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3870">
-              <caret line="220" column="47" lean-forward="false" selection-start-line="220" selection-start-column="47" selection-end-line="220" selection-end-column="47" />
-              <folding>
-                <marker date="1551318415720" expanded="true" signature="845:866" ph=" SELECT statement (ANSWERS)" />
-                <marker date="1551318415720" expanded="true" signature="1944:1989" ph=" SELECT statement (ANSWERS)" />
-                <marker date="1551318415720" expanded="true" signature="3109:3152" ph=" SELECT statement (ANSWERS)" />
-                <marker date="1551318415720" expanded="true" signature="4258:4299" ph=" SELECT statement (ANSWERS)" />
-                <marker date="1551318415720" expanded="true" signature="5386:5427" ph=" SELECT statement (ANSWERS)" />
-                <marker date="1551318415720" expanded="true" signature="6499:6598" ph=" INSERT statement (ANSWERS)" />
-                <marker date="1551318415720" expanded="true" signature="6996:7022" ph=" SELECT statement" />
-                <marker date="1551318415720" expanded="true" signature="7981:8087" ph=" UPDATE statement (ANSWERS)" />
-                <marker date="1551318415720" expanded="true" signature="9222:9259" ph=" DELETE statement (ANSWERS)" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SQLScriptRunner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+            <state relative-caret-position="324">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,8 +74,28 @@
       <file leaf-file-name="ServletValidation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="691">
-              <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+            <state relative-caret-position="324">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuizCreationServlet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SubmissionServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2315">
+              <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -144,20 +103,54 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="LoginServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/LoginServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding>
+                <marker date="1551573719076" expanded="true" signature="2298:2335" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="2652:2686" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="3049:3063" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="3116:3150" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="3930:3944" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="3997:4033" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="4423:4437" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="4490:4524" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="4882:4896" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="4949:4984" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="5353:5388" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="5686:5700" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="5790:5804" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="5857:5895" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="6371:6385" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="6479:6493" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="6546:6580" ph=" CREATE statement" />
+                <marker date="1551573719076" expanded="true" signature="6946:6960" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="7055:7069" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551573719076" expanded="true" signature="7158:7172" ph=" DELETE statement (CASCADE)" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="team_47_integration" />
+        <entry key="$PROJECT_DIR$/../.." value="team47_quiz_creation" />
       </map>
     </option>
   </component>
@@ -173,13 +166,10 @@
         <option value="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/com/asu/ser516/main/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/JSONRequestParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java" />
-        <option value="$PROJECT_DIR$/exampleQuiz.sql" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" />
       </list>
     </option>
   </component>
@@ -203,7 +193,9 @@
     <option name="width" value="950" />
     <option name="height" value="1044" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -219,7 +211,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,17 +287,105 @@
               <item name="team47" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="Tomcat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="Tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="localhost" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="Tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="localhost" type="462c0819:PsiDirectoryNode" />
+              <item name="ROOT" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="Tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="localhost" type="462c0819:PsiDirectoryNode" />
+              <item name="ROOT" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="Tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="localhost" type="462c0819:PsiDirectoryNode" />
+              <item name="ROOT" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="apache" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
+              <item name="work" type="462c0819:PsiDirectoryNode" />
+              <item name="Tomcat" type="462c0819:PsiDirectoryNode" />
+              <item name="localhost" type="462c0819:PsiDirectoryNode" />
+              <item name="ROOT" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="apache" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Capstone-DeepSpace/S19-Team2" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550805588782" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.254023" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -448,35 +529,28 @@
       <workItem from="1550874192629" duration="3176000" />
       <workItem from="1550884024381" duration="94000" />
     </task>
-    <task id="LOCAL-00001" summary="Created a class which parses json encoded form data into a json object.">
-      <created>1551251634495</created>
+    <task id="LOCAL-00001" summary="Moving over some stuff">
+      <created>1551563252860</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1551251634495</updated>
+      <updated>1551563252860</updated>
     </task>
-    <task id="LOCAL-00002" summary="partway through modifying for json acceptance. committing to pull Ruby's changes.">
-      <created>1551252042151</created>
+    <task id="LOCAL-00002" summary="merging integration in">
+      <created>1551574763285</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1551252042151</updated>
+      <updated>1551574763285</updated>
     </task>
-    <task id="LOCAL-00003" summary="Merged in some of Ruby's changes">
-      <created>1551254611214</created>
+    <task id="LOCAL-00003" summary="removed garbage code from submissionservlet">
+      <created>1551575877933</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1551254611214</updated>
+      <updated>1551575877933</updated>
     </task>
-    <task id="LOCAL-00004" summary="Merged in from integration">
-      <created>1551375142895</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1551375142895</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -489,12 +563,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.4851592" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5040475" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.51268214" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33039647" sideWeight="0.49810094" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.49811116" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.48731786" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.49595252" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24932542" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -511,7 +586,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.49595252" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -553,12 +627,11 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created a class which parses json encoded form data into a json object." />
-    <MESSAGE value="partway through modifying for json acceptance. committing to pull Ruby's changes." />
-    <MESSAGE value="Merged in some of Ruby's changes" />
-    <MESSAGE value="Submission Servlet has been updated to accept the json objects &#10;discussed. Still needs to be tested, and attempts and time limits&#10;still need to be changed to be enforced server-side." />
-    <MESSAGE value="Merged in from integration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged in from integration" />
+    <MESSAGE value="Moving over some stuff" />
+    <MESSAGE value="merging new_integ" />
+    <MESSAGE value="merging integration in" />
+    <MESSAGE value="removed garbage code from submissionservlet" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed garbage code from submissionservlet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -569,6 +642,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -577,304 +653,26 @@
         <state relative-caret-position="666">
           <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551407129674" expanded="true" signature="1883:1920" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2237:2271" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2634:2648" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="2701:2735" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="3515:3529" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="3582:3618" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4008:4022" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4075:4109" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4467:4481" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4534:4569" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4934:4969" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5267:5281" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5371:5385" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5438:5476" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5952:5966" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6060:6074" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6127:6161" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="6527:6541" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6636:6650" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6739:6753" ph=" DELETE statement (CASCADE)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551407129674" expanded="true" signature="1883:1920" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2237:2271" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2634:2648" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="2701:2735" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="3515:3529" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="3582:3618" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4008:4022" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4075:4109" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4467:4481" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4534:4569" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4934:4969" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5267:5281" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5371:5385" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5438:5476" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5952:5966" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6060:6074" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6127:6161" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="6527:6541" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6636:6650" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6739:6753" ph=" DELETE statement (CASCADE)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/dbnavigator.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1728">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuizCreator.eml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/CreationServlet.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="108" column="62" lean-forward="true" selection-start-line="108" selection-start-column="62" selection-end-line="108" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551407129674" expanded="true" signature="1883:1920" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2237:2271" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2634:2648" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="2701:2735" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="3515:3529" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="3582:3618" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4008:4022" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4075:4109" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4467:4481" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4534:4569" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4934:4969" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5267:5281" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5371:5385" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5438:5476" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5952:5966" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6060:6074" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6127:6161" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="6527:6541" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6636:6650" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6739:6753" ph=" DELETE statement (CASCADE)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/AnswerDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3870">
-          <caret line="220" column="47" lean-forward="false" selection-start-line="220" selection-start-column="47" selection-end-line="220" selection-end-column="47" />
-          <folding>
-            <marker date="1551318415720" expanded="true" signature="845:866" ph=" SELECT statement (ANSWERS)" />
-            <marker date="1551318415720" expanded="true" signature="1944:1989" ph=" SELECT statement (ANSWERS)" />
-            <marker date="1551318415720" expanded="true" signature="3109:3152" ph=" SELECT statement (ANSWERS)" />
-            <marker date="1551318415720" expanded="true" signature="4258:4299" ph=" SELECT statement (ANSWERS)" />
-            <marker date="1551318415720" expanded="true" signature="5386:5427" ph=" SELECT statement (ANSWERS)" />
-            <marker date="1551318415720" expanded="true" signature="6499:6598" ph=" INSERT statement (ANSWERS)" />
-            <marker date="1551318415720" expanded="true" signature="6996:7022" ph=" SELECT statement" />
-            <marker date="1551318415720" expanded="true" signature="7981:8087" ph=" UPDATE statement (ANSWERS)" />
-            <marker date="1551318415720" expanded="true" signature="9222:9259" ph=" DELETE statement (ANSWERS)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Answer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-155">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="25" column="45" lean-forward="false" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="58" column="46" lean-forward="false" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551407129674" expanded="true" signature="1883:1920" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2237:2271" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2634:2648" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="2701:2735" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="3515:3529" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="3582:3618" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4008:4022" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4075:4109" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4467:4481" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4534:4569" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4934:4969" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5267:5281" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5371:5385" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5438:5476" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5952:5966" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6060:6074" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6127:6161" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="6527:6541" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6636:6650" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6739:6753" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="2298:2335" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="2652:2686" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3049:3063" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3116:3150" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3930:3944" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3997:4033" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4423:4437" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4490:4524" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4882:4896" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4949:4984" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5353:5388" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5686:5700" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5790:5804" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5857:5895" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6371:6385" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6479:6493" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6546:6580" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6946:6960" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7055:7069" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7158:7172" ph=" DELETE statement (CASCADE)" />
           </folding>
         </state>
       </provider>
@@ -915,7 +713,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -924,27 +724,26 @@
         <state relative-caret-position="666">
           <caret line="37" column="15" lean-forward="false" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551407129674" expanded="true" signature="1883:1920" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2237:2271" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2634:2648" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="2701:2735" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="3515:3529" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="3582:3618" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4008:4022" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4075:4109" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4467:4481" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4534:4569" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4934:4969" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5267:5281" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5371:5385" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5438:5476" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5952:5966" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6060:6074" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6127:6161" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="6527:6541" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6636:6650" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6739:6753" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="2298:2335" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="2652:2686" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3049:3063" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3116:3150" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3930:3944" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3997:4033" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4423:4437" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4490:4524" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4882:4896" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4949:4984" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5353:5388" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5686:5700" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5790:5804" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5857:5895" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6371:6385" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6479:6493" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6546:6580" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6946:6960" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7055:7069" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7158:7172" ph=" DELETE statement (CASCADE)" />
           </folding>
         </state>
       </provider>
@@ -994,13 +793,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuizCreator.eml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1008,90 +800,285 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="39" column="5" lean-forward="false" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="142" column="1" lean-forward="false" selection-start-line="142" selection-start-column="1" selection-end-line="142" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551407129674" expanded="true" signature="1883:1920" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2237:2271" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="2634:2648" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="2701:2735" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="3515:3529" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="3582:3618" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4008:4022" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4075:4109" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4467:4481" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="4534:4569" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="4934:4969" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5267:5281" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5371:5385" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="5438:5476" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="5952:5966" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6060:6074" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6127:6161" ph=" CREATE statement" />
-            <marker date="1551407129674" expanded="true" signature="6527:6541" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6636:6650" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551407129674" expanded="true" signature="6739:6753" ph=" DELETE statement (CASCADE)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="691">
-          <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exampleQuiz.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2340">
-          <caret line="130" column="26" lean-forward="false" selection-start-line="130" selection-start-column="26" selection-end-line="130" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
+        <state relative-caret-position="1908">
           <caret line="106" column="10" lean-forward="false" selection-start-line="106" selection-start-column="10" selection-end-line="106" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/CreationServlet.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/QuizList.java" />
+    <entry file="file://$PROJECT_DIR$/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuizCreator.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuizCreator.eml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/work/Tomcat/localhost/ROOT/org/apache/jsp/quizcreator_jsp.java" />
+    <entry file="file://$PROJECT_DIR$/WebContent/work/Tomcat/localhost/ROOT/org/apache/jsp/submit_jsp.class" />
+    <entry file="file://$PROJECT_DIR$/WebContent/work/Tomcat/localhost/ROOT/org/apache/jsp/login_jsp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#5578#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/work/Tomcat/localhost/ROOT/org/apache/jsp/login_jsp.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="100" column="38" lean-forward="false" selection-start-line="100" selection-start-column="37" selection-end-line="100" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/QuizDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Quiz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-720">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/QuestionDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Choice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="95" column="49" lean-forward="false" selection-start-line="95" selection-start-column="49" selection-end-line="95" selection-end-column="49" />
+          <folding>
+            <marker date="1551573719076" expanded="true" signature="2298:2335" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="2652:2686" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3049:3063" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3116:3150" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3930:3944" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3997:4033" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4423:4437" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4490:4524" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4882:4896" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4949:4984" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5353:5388" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5686:5700" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5790:5804" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5857:5895" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6371:6385" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6479:6493" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6546:6580" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6946:6960" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7055:7069" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7158:7172" ph=" DELETE statement (CASCADE)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/StringUtils.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/Validate.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/ServletHelper.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="41" column="14" lean-forward="false" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/ServletValidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exampleQuiz.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/SQLScriptRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="69" column="21" lean-forward="false" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <marker date="1551573719076" expanded="true" signature="2298:2335" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="2652:2686" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3049:3063" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3116:3150" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="3930:3944" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="3997:4033" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4423:4437" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4490:4524" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="4882:4896" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="4949:4984" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5353:5388" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="5686:5700" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5790:5804" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="5857:5895" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6371:6385" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6479:6493" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="6546:6580" ph=" CREATE statement" />
+            <marker date="1551573719076" expanded="true" signature="6946:6960" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7055:7069" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551573719076" expanded="true" signature="7158:7172" ph=" DELETE statement (CASCADE)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2315">
+          <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/LoginServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
           <folding />
         </state>
       </provider>

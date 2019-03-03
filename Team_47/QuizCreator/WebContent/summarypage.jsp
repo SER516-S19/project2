@@ -13,7 +13,6 @@
 	QuestionDAOImpl questionDAO = new QuestionDAOImpl();
 	ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
 	//test-case
-	//int quiz_id = 2;
 	//get quiz id from previous page
 	int quiz_id = Integer.parseInt(request.getParameter("quizId"));
 	System.out.println(quiz_id);
@@ -25,14 +24,13 @@
 <title>Summary Page</title>
 </head>
 <body style="background-color: White;">
+
 	<h2>
 		<center>Summary Of Quiz created</center>
 	</h2>
 	<form action="quizstat.jsp" method="POST">
 		<input type="text" name="Quiz_title" value=<%=quiz_title%> hidden=true>
 		<input type="text" name="Quiz_id" value=<%=quiz_id%> hidden=true>
-		<input type="submit" name="Submit" value="QuizStats">
-	</form>	
 	<div>
 		<%
 			//create information of the quiz
@@ -77,7 +75,6 @@
 		%>
 		<br> <br>
 	</div>
-	<input id="beginbtn" type="button" value="Dashbaord"
-		onclick='location.href=("dashboard_professor.jsp")'>
+	<input id="beginbtn" type="button" value="Dashbaord" onclick='location.href=("dashboard_professor.jsp")'>
 </body>
 </html>
