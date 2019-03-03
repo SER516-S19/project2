@@ -15,7 +15,7 @@
 	//test-case
 	//int quiz_id = 2;
 	//get quiz id from previous page
-	int quiz_id = Integer.parseInt(request.getParameter("quiz_id"));
+	int quiz_id = Integer.parseInt(request.getParameter("quizId"));
 	System.out.println(quiz_id);
 	Quiz quiz = quizDAO.getQuiz(quiz_id);
 	String quiz_title = quiz.getTitle();
