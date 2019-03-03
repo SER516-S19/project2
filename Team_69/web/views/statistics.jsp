@@ -34,8 +34,8 @@
 <form method="GET" action="../ProfessorController">
 
 
-<H2>Question Stats</H2>
 <c:if test="${professorStatistics.statOfEachQuestion.size() > 0}">
+<H2>Question Stats</H2>
 <table id = "students">	
 			<tr>
 				<th>Question Number</th>
@@ -53,7 +53,10 @@
   				</c:forEach>
  </table>	
  </c:if>
-	
+
+<br>
+
+<H2>Students Stats</H2>	
 	<p> Total number of students in the class : ${professorStatistics.students}</p>
 	<p>Total number of students took the quiz  : ${professorStatistics.studentsGaveQuiz}</p>
 	
