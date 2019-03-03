@@ -17,7 +17,12 @@ import Team76.Utilities.ViewGradesModel;
 
 /**
  * Servlet implementation class ProfessorController
+ *
+ * @author : Vaibhav Singhal
+ * @version : 1.0
+ * @since : 02/20/2019
  */
+
 @WebServlet("/ProfessorController")
 public class ProfessorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
