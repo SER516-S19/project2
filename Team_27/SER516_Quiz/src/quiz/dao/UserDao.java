@@ -33,7 +33,7 @@ public class UserDao {
 	/**
 	 * Find login information by username.
 	 * 
-	 * @param username the username
+	 * @param username enter in the textbox
 	 * @return the login information
 	 * @throws DataAccessException
 	 */
@@ -79,6 +79,8 @@ public class UserDao {
 		return login;
 	}
 
+	/* Function used to insert details of registered user in the database
+	 */
 	public String registerUser(User registerBean)
 	{
 		String fullName = registerBean.getFullName();
