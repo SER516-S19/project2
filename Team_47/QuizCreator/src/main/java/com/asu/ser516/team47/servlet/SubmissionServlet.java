@@ -1,8 +1,13 @@
 package com.asu.ser516.team47.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -11,10 +16,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
-import java.util.List;
+
 import com.asu.ser516.team47.database.*;
 import com.asu.ser516.team47.utils.AutoGrader;
+import com.asu.ser516.team47.utils.ServletValidation;
+import com.asu.ser516.team47.utils.JSONRequestParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 /**
  * This servlet is called when a student submits a quiz
@@ -24,15 +33,15 @@ import com.asu.ser516.team47.utils.AutoGrader;
  * @author David Lahtinen
  * @author John Alden
  *
- * @version 1.0
- * @since 2019-22-02
+ * @version 1.1
+ * @since 2019-28-02
  */
-@WebServlet(name = "SubmissionServlet")
 public class SubmissionServlet extends HttpServlet {
 
     private int submissionID = 0;
     private int httpCode = 204;
     private String httpErrorMessage;
+    private String url = "jdbc:sqlite:schema.db";
     private Quiz quiz;
     private Enrolled enrollment;
     @Override
@@ -47,6 +56,8 @@ public class SubmissionServlet extends HttpServlet {
     /**
      * The endpoint for a quiz submission
      * requires the presence of quiz_id, enroll_id, timeTaken, and attempt fields in the form. all integers.
+     * created with manouti's answer on
+     * https://stackoverflow.com/questions/24371957/iterate-through-jsonobject-from-root-in-json-simple as a reference.
      *
      * @param request
      * @param response
@@ -55,80 +66,60 @@ public class SubmissionServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         httpCode = 204;
         httpErrorMessage = "";
-
+        JSONObject requestForm;
+        
         //Mandatory fields to create a submission entry
         Integer quizId = null;
         Integer enrollId = null;
-        Integer timeTaken = null;
-        Integer attempt = null;
 
-        List<Integer> choiceIds = new ArrayList<>();
+        List<Integer> choiceIds;
 
-        Enumeration paramNames = request.getParameterNames();
-        if (paramNames == null){
-            response.sendError(400, "no parameters");
+        //Check if json form can be read.
+        try {
+            requestForm = JSONRequestParser.getJsonFromRequest(request);
+        } catch (IOException | ParseException | ClassCastException ex){
+            response.sendError(400, "Problem reading form.");
             return;
         }
-        //Validate that all necessary fields are present and build ChoiceIds
-        while (paramNames.hasMoreElements()) {
-            try{
-                String paramName = (String) paramNames.nextElement();
-                if (paramName.equals("quiz_id")) {
-                    quizId = validateInteger(request.getParameter("quiz_id"), response);
-                    quiz = new QuizDAOImpl().getQuiz(quizId);
-                    if (quiz == null){
-                        httpCode = 500;
-                        break;
-                    }
-                } else if (paramName.equals("enroll_id")) {
-                    enrollId = validateInteger(request.getParameter("enroll_id"), response);
-                    enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
-                    if (enrollment == null){
-                        httpCode = 500;
-                        break;
-                    }
-                } else if (paramName.equals("attempt")) {
-                    attempt = validateInteger(request.getParameter("attempt"), response);
-                    if (attempt <= 0){
-                        httpCode = 400;
-                        break;
-                    }
-                } else if (paramName.equals("timeTaken")) {
-                    timeTaken = validateInteger(request.getParameter("timeTaken"), response);
-                    if (timeTaken <= 0) {
-                        httpCode = 400;
-                        break;
-                    }
-                } else if (paramName.length() >= "choice_fk".length() &&
-                        paramName.substring(0, "choice_fk".length()).equals("choice_fk")) {
-                    int choiceId = validateInteger(request.getParameter(paramName), response);
-                    Choice choice = new ChoiceDAOImpl().getChoice(choiceId);
-                    if (choice == null) {
-                        httpCode = 500;
-                        break;
-                    } else {
-                        choiceIds.add(choiceId);
-                    }
-                }
-            } catch (NullPointerException npe){
-                httpCode = 400;
-                return;
+
+        //Validate that all necessary fields are present and build ChoiceId array
+        try {
+            quizId =  ((Number)requestForm.get("quiz_id")).intValue();
+            quiz = new QuizDAOImpl().getQuiz(quizId);
+            if (quiz == null) {
+                httpCode = 500;
             }
+            enrollId = ((Number)requestForm.get("enrolled_id")).intValue();
+            enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
+            if (enrollment == null) {
+                httpCode = 500;
+            }
+            JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
+            choiceIds = ServletValidation.buildAndValidateStudentChoiceList(jsonChoices, quizId);
+        } catch (ClassCastException cce){
+            response.sendError(400, "Some field is wrong data type.");
+            cce.printStackTrace();
+            return;
+        } catch (NullPointerException npe){
+            response.sendError(400, "Some field is missing.");
+            return;
         }
 
-        if (httpCode != 204 || quizId == null || enrollId == null || timeTaken == null
-                || attempt == null) {
+        //check that all fields are present and no error has occurred
+        if (httpCode != 204 || quizId == null || enrollId == null) {
             if (httpCode == 500) {
-                httpErrorMessage = "Server Error";
+                httpErrorMessage = "Error Loading parameters";
             }
             response.sendError(httpCode, httpErrorMessage);
             return;
         }
 
-        if (!sendSubmission(quizId, enrollId, timeTaken, 0, attempt)){
+        //TODO: Call function to check if time limit is passed.
+        //TODO: Call function to increment submission.
+        if (!sendSubmission(quizId, enrollId, 1, 0, 1)){
             response.sendError(500);
             return;
         }
@@ -136,6 +127,11 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(500);
             return;
         }
+
+        if(isLateSubmission(quizId)) {
+            response.sendError(401, "Your submission was past the due date");
+        }
+
         response.setStatus(httpCode);
 
         //Okay so there are really only 4 steps that need to be done to grade an exam.
@@ -166,7 +162,8 @@ public class SubmissionServlet extends HttpServlet {
      * @param attempt   number of attempts
      * @return true if the insertion into database succeeds, otherwise false.
      */
-    private boolean sendSubmission(int quizID, int enrollID, int time,float score, int attempt) {
+    private boolean sendSubmission(int quizID, int enrollID, int time,
+                                   float score, int attempt) {
         boolean hasSucceeded;
         Date today = new Date();
 
@@ -195,8 +192,7 @@ public class SubmissionServlet extends HttpServlet {
             int choiceID = choiceList.get(i).intValue();
             int questionID = getQuestionID(choiceID);
 
-            boolean wasSubmitted = submitter.insertAnswer(new Answer(0,
-                    submissionID, questionID, choiceID));
+            boolean wasSubmitted = submitter.insertAnswer(new Answer(0, submissionID, questionID, choiceID));
 
             if(!wasSubmitted)
                 hasSucceeded = false;
@@ -212,52 +208,36 @@ public class SubmissionServlet extends HttpServlet {
      * @return int ID of the question associated with the choice ID
      */
     private int getQuestionID(int choiceID) {
-        String url = "jdbc:sqlite:schema.db";
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        int result;
-
-        try {
-            conn = DriverManager.getConnection(url);
-            stmt = conn.prepareStatement("select question_fk from choices where choice_id = ?");
-            stmt.setInt(1, choiceID);
-            rs = stmt.executeQuery();
-            result = rs.getInt("question_fk");
-        }
-        catch (Exception se) {
-            se.printStackTrace();
-            return 0;
-        }
-        finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
-        }
-
-        return result;
+        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
+        return choiceDAO.getChoice(choiceID).getQuestion_fk();
     }
 
     /**
-     * Checks if parameter can be converted to integer. If not, sends an error.
-     * @param value the value to be validated
-     * @param response http response through which to send errors
-     * @return null if invalid input, a valid int otherwise
-     * @throws IOException sends an error if parameter cannot be reported
+     * isLateSubmission
+     * Checks if submission for a quiz is overdue
+     * @param quizId the id of the quiz the submission is for
+     * @return true if late, false if submission is not late
      */
-    private Integer validateInteger(String value, HttpServletResponse response) throws IOException {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException nfe) {
-            httpCode = 400;
-            httpErrorMessage = "Invalid form data";
-        } catch (NullPointerException npe) {
-            httpCode = 400;
-            httpErrorMessage = "Missing form data";
+    private boolean isLateSubmission(int quizId) {
+        // Get due date of the quiz
+        QuizDAOImpl quizDAO = new QuizDAOImpl();
+        Quiz quizInfo = quizDAO.getQuiz(quizId);
+        Date quizSubmissionDate = quizInfo.getDate_close();
+
+        // Get current date
+        Calendar cal = Calendar.getInstance();
+        Date currentDate = cal.getTime();
+
+        // Format current date to same format as java.sql.Date
+        String dateFormat = "yyyy-MM-dd";
+        SimpleDateFormat dbDateFormat = new SimpleDateFormat(dateFormat);
+        String todayDate = dbDateFormat.format(currentDate);
+
+        // If the current date is > the quiz submission date, the quiz was submitted late
+        if (todayDate.compareTo(quizSubmissionDate.toString()) > 0) {
+            return true;
         }
-        return null;
+        return false;
     }
     private void insertPointsInDB(Submission sub )
     { 	

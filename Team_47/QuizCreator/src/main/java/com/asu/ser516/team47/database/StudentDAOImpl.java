@@ -33,7 +33,9 @@ public class StudentDAOImpl implements StudentDAO {
             stmt = conn.prepareStatement("select * from students");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                rval.add(new Student(rs.getString(1),
+                        rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5)));
             }
         }
         catch (Exception se) {
@@ -41,11 +43,7 @@ public class StudentDAOImpl implements StudentDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -68,7 +66,9 @@ public class StudentDAOImpl implements StudentDAO {
             stmt.setString(1, username);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval = new Student(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                rval = new Student(rs.getString(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4),
+                        rs.getString(5));
             }
         }
         catch (Exception se) {
@@ -76,11 +76,7 @@ public class StudentDAOImpl implements StudentDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -99,11 +95,13 @@ public class StudentDAOImpl implements StudentDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into students (username, firstname, lastname, hashedpass) VALUES (?,?,?,?)");
+            stmt = conn.prepareStatement("insert into students (username, firstname, " +
+                    "lastname, hashedpass, sessionid) VALUES (?,?,?,?,?)");
             stmt.setString(1, student.getUsername());
             stmt.setString(2, student.getFirstname());
             stmt.setString(3, student.getLastname());
             stmt.setString(4, student.getHashedpass());
+            stmt.setString(5, student.getSession());
             int updatedRows = stmt.executeUpdate();
             return updatedRows > 0;
         }
@@ -112,10 +110,7 @@ public class StudentDAOImpl implements StudentDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 
@@ -132,10 +127,12 @@ public class StudentDAOImpl implements StudentDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update students set firstname=? lastname=? where username=?");
+            stmt = conn.prepareStatement("update students set firstname=?, lastname=?, " +
+                    "sessionid=? where username=?");
             stmt.setString(1, student.getFirstname());
             stmt.setString(2, student.getLastname());
-            stmt.setString(3, student.getUsername());
+            stmt.setString(3, student.getSession());
+            stmt.setString(4, student.getUsername());
             int updatedRows = stmt.executeUpdate();
             return updatedRows > 0;
         }
@@ -144,10 +141,7 @@ public class StudentDAOImpl implements StudentDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 
@@ -176,10 +170,7 @@ public class StudentDAOImpl implements StudentDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 }
