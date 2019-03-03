@@ -128,11 +128,12 @@ public class StudentDAOImpl implements StudentDAO {
             conn = DriverManager.getConnection(__jdbcUrl);
 
             stmt = conn.prepareStatement("update students set firstname=?, lastname=?, " +
-                    "sessionid=? where username=?");
+                    "sessionid=?, hashedpass=? where username=?");
             stmt.setString(1, student.getFirstname());
             stmt.setString(2, student.getLastname());
             stmt.setString(3, student.getSession());
-            stmt.setString(4, student.getUsername());
+            stmt.setString(4, student.getHashedpass());
+            stmt.setString(5, student.getUsername());
             int updatedRows = stmt.executeUpdate();
             return updatedRows > 0;
         }
