@@ -124,6 +124,7 @@ public class ProfessorServlet extends HttpServlet {
 			request.getRequestDispatcher("views/canEditQuestion.jsp").forward(request, response);
 		}
 		else if ("addNextQuestion".equals(flag) || "saveAndExit".equals(flag)) {
+			
 			String question = request.getParameter("question");
 			String questionOptions1 = request.getParameter("questionOptions1");
 			String questionOptions2 = request.getParameter("questionOptions2");

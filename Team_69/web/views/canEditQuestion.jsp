@@ -127,7 +127,7 @@
 						<br>
 						<input type="hidden" name="flag" value="saveEdited" />
 						<input type="hidden" name="questionId" value="${requestScope.quesId}" />
-							<button type="submit" onclick="javascript:valthis()"
+							<button type="submit" onclick="javascript:return valthis()"
 								class="btn btn-primary">Save and Exit</button>
 					</div>
 				</form>

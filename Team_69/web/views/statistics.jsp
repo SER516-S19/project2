@@ -29,14 +29,30 @@
 </head>
 <body>
 
-Statistics
-<form method="GET" action="../ProfessorController">
-	<input type="submit" name="flag" value="StudentStats">
-	<c:set var="professorStatistics" value="${requestScope.professorStatistics}"/>
+<H1 align = center> Statictics</H1>
 
-	<br>
-	<br>
-	<br>
+<form method="GET" action="../ProfessorController">
+
+
+<H2>Question Stats</H2>
+<c:if test="${professorStatistics.statOfEachQuestion.size() > 0}">
+<table id = "students">	
+			<tr>
+				<th>Question Number</th>
+				<th>Number of students who gave correct answer</th>
+			</tr>
+				<c:forEach var="entry" items="${professorStatistics.statOfEachQuestion}">
+  					<tr scope="row">
+					<td scope="column">
+						<c:out value="${entry.key}"></c:out>
+					</td>
+					<td scope="column">
+						<c:out value="${entry.value}"></c:out>
+					</td>
+					</tr>	
+  				</c:forEach>
+ </table>	
+ </c:if>
 	
 	<p> Total number of students in the class : ${professorStatistics.students}</p>
 	<p>Total number of students took the quiz  : ${professorStatistics.studentsGaveQuiz}</p>

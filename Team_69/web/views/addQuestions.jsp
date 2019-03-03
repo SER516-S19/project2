@@ -86,7 +86,7 @@
 		    if ( !isChecked ){
 		            alert( 'Please, check at least one checkbox!' );
 		            return false;
-		        }   
+		    }   
 		
 		return true;	
 	}
@@ -95,7 +95,6 @@
 <div align="center" >
 	<H2>Please add the question</H2>
 </div>
-
 
 <form method="Post" action="../ProfessorController">
 	<div class="borderexample" class="form-group">   
@@ -142,12 +141,12 @@
 			<tr>
 				<td>
 					<button type="submit" name="flag" value="addNextQuestion" class="btn btn-primary" 
-						onclick="javascript:valthis()">Add Next Question</button>
+						onclick="javascript:return valthis()">Add Next Question</button>
 				</td>
 				<td>		
 					<button type="submit"
-						 onclick="javascript:valthis()" name="flag" value="saveAndExit"   class="btn btn-primary">Save and Exit</button>
-				</td>	
+						 onclick="javascript:return valthis()" name="flag" value="saveAndExit"   class="btn btn-primary">Save and Exit</button>
+				</td>
 			</tr>
 		</table>
 	</div>	
