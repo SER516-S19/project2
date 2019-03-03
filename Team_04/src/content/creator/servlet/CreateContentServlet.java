@@ -1,12 +1,17 @@
 package content.creator.servlet;
 
-import static content.creator.helper.CreateContentHelper.generateRandom;
+import static content.creator.helper.CreateContentHelper.processPayload;
 import static content.creator.helper.CreateContentHelper.saveDataToDb;
 
+import com.google.gson.Gson;
 import content.creator.dao.QuizFormDAO;
+import content.creator.dao.QuizQuestionsDAO;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,43 +26,26 @@ public class CreateContentServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    String responseRedirect = "./list";
-    List<QuizFormDAO> quizFormList = new ArrayList<>();
-    int FORM_LENGTH = 3;
-    int NUM_ANS = 4;
-    int quizId = generateRandom(100, 999);
-    for (int p = 1; p <= FORM_LENGTH; p++) {
-      QuizFormDAO quizForm = new QuizFormDAO();
-      quizForm.setScore(request.getParameter(String.format("score_%s", p)));
-      String isCorrect = request.getParameter(String.format("choice_%s", p));
-      quizForm.setQuestionText(request.getParameter(String.format("question_text_%s", p)));
-      quizForm.setQuizId(quizId);
-      quizForm.setQuestionId(generateRandom(1000, 9999));
-      Map<Integer, ArrayList<String>> answerBundle = new HashMap<>();
-      for (int i = 1; i <= NUM_ANS; i++) {
-        ArrayList<String> ansList = new ArrayList<>();
-        String ansChoice = request.getParameter(String.format("%s_%s", i, p));
-        ansList.add(ansChoice);
-        if (isCorrect.equals(Integer.toString(i))) {
-          ansList.add("true");
-        } else {
-          ansList.add("false");
-        }
-        int ansId = generateRandom(10000, 99999);
-        answerBundle.put(ansId, ansList);
-      }
-      quizForm.setAnswerBundle(answerBundle);
-      quizFormList.add(quizForm);
-    }
 
+
+
+  }
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    String responseRedirect = "./list";
+    Gson gson = new Gson();
+    String json = request.getParameter("data");
+    QuizQuestionsDAO[] quizQuestions = gson.fromJson(json, QuizQuestionsDAO[].class);
+    List<QuizFormDAO> quizFormList = processPayload(Arrays.asList(quizQuestions));
     try {
-      for (int p = 0; p < FORM_LENGTH; p++) {
+      for(QuizFormDAO quizForm: quizFormList) {
         saveDataToDb(
-            quizFormList.get(p).getQuizId(),
-            quizFormList.get(p).getQuestionId(),
-            quizFormList.get(p).getQuestionText(),
-            quizFormList.get(p).getAnswerBundle(),
-            quizFormList.get(p).getScore());
+            quizForm.getQuizId(),
+            quizForm.getQuestionId(),
+            quizForm.getQuestionText(),
+            quizForm.getAnswerBundle(),
+            quizForm.getScore());
       }
     } catch (SQLException sqlEx) {
       System.out.println(sqlEx.getMessage());
@@ -66,7 +54,4 @@ public class CreateContentServlet extends HttpServlet {
       response.sendRedirect(responseRedirect);
     }
   }
-
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {}
 }

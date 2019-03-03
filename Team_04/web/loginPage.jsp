@@ -68,7 +68,7 @@
 
             
 
-            <form method = "post">
+            <form method = "POST">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                     <input id="email" name="username" class="form-control" placeholder="Enter Username" required="true">
