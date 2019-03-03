@@ -64,7 +64,7 @@ class SignUpForm extends Component {
         this.setState({ submitted: true });
         const { email, password,firstName,lastName,role, dob , hasAgreed } = this.state;
 
-        // stop here if form is invalid
+        // stop here if form is invalid (if not agreed to the terms and conditions)
         if (!(hasAgreed)) {
             return;
         }
