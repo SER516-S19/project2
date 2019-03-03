@@ -52,6 +52,10 @@ form {
 	text-align: left;
 }
 
+.rightSide { 
+float:right;
+ }
+
 </style>
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 =======
@@ -210,8 +214,8 @@ form {
 			}
 		}
 			
-		if(count < 2){
-			alert('Please, enter at least 2 options!');
+		if(count < 4){
+			alert('All the options are mandatory, Please enter all four!');
 			return false;
 		}
 		
@@ -252,23 +256,27 @@ form {
 		
 		<label for="option1">Option 1: </label>
     	<input type="checkbox" name="options" value="option1">
+    	<span class="rightSide">Please select the checkbox if Option 1 is a right answer</span>
     	<textarea type="text" id="questionOptions1" name="questionOptions1" rows="1" cols="50" class="form-control" ></textarea>
 		<br>
 
 
     	<label for="option2">Option 2: </label>
 		<input type="checkbox" name="options" value="option2">	
+		<span class="rightSide">Please select the checkbox if Option 2 is a right answer</span>
     	<textarea type="text" id="questionOptions2" name="questionOptions2" rows="1" cols="50" class="form-control" ></textarea>
     	<br>
     
     	
     	<label for="option3">Option 3: </label>
     	<input type="checkbox" name="options" value="option3">
+    	<span class="rightSide">Please select the checkbox if Option 3 is a right answer</span>
     	<textarea type="text" id="questionOptions3" name="questionOptions3" rows="1" cols="50" class="form-control" ></textarea>
     	<br>
     
     	<label for="option4">Option 4: </label>
     	<input type="checkbox" name="options" value="option4">
+    	<span class="rightSide">Please select the checkbox if Option 4 is a right answer</span>
     	<textarea type="text" id="questionOptions4" name="questionOptions4" rows="1" cols="50" class="form-control" ></textarea>
 		<br>
 		<br>
