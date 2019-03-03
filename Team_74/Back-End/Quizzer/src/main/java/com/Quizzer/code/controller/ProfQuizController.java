@@ -9,15 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
 import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
 import com.Quizzer.code.model.db.Quiz;
 import com.Quizzer.code.model.response.ResponseListVO;
 import com.Quizzer.code.model.response.ResponseVO;
-import com.Quizzer.code.model.response.StatisticsResponseVO;
 import com.Quizzer.code.service.ProfQuizService;
-import com.Quizzer.code.service.ProfStatisticsService;
+
 
 /**
  * This class is the controller that handles requests for : 1.Adding the quiz.
@@ -44,6 +42,7 @@ public class ProfQuizController {
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 
 		try {
+
 			quizService.addQuiz(quiz);
 			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, null),
 					HttpStatus.ACCEPTED);
@@ -95,6 +94,5 @@ public class ProfQuizController {
 					HttpStatus.ACCEPTED);
 		}
 	}
-	
 
 }

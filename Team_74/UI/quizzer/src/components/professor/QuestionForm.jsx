@@ -1,8 +1,9 @@
 import React from "react";
-import Question from "../../models/Question";
-import ListController from "../../controllers/ListController";
+import { FaAngleDown, FaAngleUp, FaCheck, FaPlus, FaTrash } from 'react-icons/fa';
 import styled from "styled-components";
-import { FaCheck, FaPlus, FaTrash, FaAngleUp, FaAngleDown } from 'react-icons/fa';
+import CorrectOptionController from '../../controllers/CorrectAnswerController';
+import ListController from "../../controllers/ListController";
+import Question from "../../models/Question";
 import './Questions.css';
 
 export default function QuestionForm({ question, setQuestion }) {
@@ -21,7 +22,13 @@ export default function QuestionForm({ question, setQuestion }) {
     setQuestion(question.merge({ options }));
   }
 
+  function setCorrectAnswer(option) {
+    setQuestion(question.merge({ correctAnswer: option }));
+  }
+
+
   const listController = new ListController(question.options, setOptions);
+  const correctAnswerController = new CorrectOptionController(question, setCorrectAnswer);
 
   return (
     <div>
@@ -58,17 +65,17 @@ export default function QuestionForm({ question, setQuestion }) {
               <Buttons>
                 <Button onClick={() => listController.moveUp(i)}>
                   <FaAngleUp />
-                  </Button>
-                
-                
+                </Button>
+
+
                 <Button onClick={() => listController.moveDown(i)}>
-                <FaAngleDown />
+                  <FaAngleDown />
                 </Button>
                 <Button onClick={() => listController.remove(i)}>
                   <FaTrash />
                 </Button>
 
-                <Button onClick={() => listController.remove(i)}>
+                <Button onClick={() => correctAnswerController.setCorrectAnswer(option)}>
                   <FaCheck />
                 </Button>
 
@@ -86,6 +93,7 @@ export default function QuestionForm({ question, setQuestion }) {
     </div>
   );
 }
+
 
 const Option = styled.div`
   display: flex;
