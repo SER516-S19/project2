@@ -2,14 +2,11 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
 import javax.persistence.criteria.*;
 import bean.Question;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
@@ -18,7 +15,6 @@ import bean.Quiz;
 public class QuestionDAO {
 
 	public void addQuestion(Question question) {
-
 		Transaction transaction = null;
 		Session session = null;
 		try  {
@@ -34,7 +30,6 @@ public class QuestionDAO {
 		}finally {
 			session.close();
 		}
-		
 	}
 
 	public void updateQuestion(Question question) {
@@ -142,9 +137,8 @@ public class QuestionDAO {
 	       }finally {
 				session.close();
 			}
-	       return quesList;
+       return quesList;
 	}
-
 
 	public List<Answer> getDataByQuestionId(String quesId) {
 		Transaction transaction = null;
@@ -162,14 +156,11 @@ public class QuestionDAO {
 		} catch (Exception sqlException) {
             if (transaction != null)
                 transaction.rollback();
-            //logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", sqlException);
         }finally {
 			session.close();
 		}
 	return lists;
-		
-		
-	}
+}
 
 	public void editQuestionByQuestionId(String quesId) {
 		Transaction transaction = null;
@@ -191,9 +182,6 @@ public class QuestionDAO {
 		}finally {
 			session.close();
 		}
-		return ;
-		
-	}
-
-	
+		return ;	
+	}	
 }

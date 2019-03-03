@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import services.LoginServices;
 import services.StudentServices;
 
@@ -19,6 +18,7 @@ import services.StudentServices;
  * @since : 02/19/2019
  */
 
+@SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet{
     /**
      * Handles the get request to the login page

@@ -1,22 +1,17 @@
 package dao;
 
-import bean.*;
-
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
-import org.hibernate.transform.Transformers;
-
+import bean.Answer;
+import bean.CalculatedScores;
+import bean.HibernateUtil;
+import bean.ResponseStatistics;
+import bean.User;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 
 /**

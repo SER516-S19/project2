@@ -206,4 +206,9 @@ public class ProfessorServices {
 		Quiz quiz = professorDAO.getQuizFromID(quizId);
 		return quiz;
 	}
+
+	public void deleteQuestionByQuestionId(String quesID) {
+		QuestionDAO questionDAO = new QuestionDAO();
+		questionDAO.deleteQuestionByQuestionId(quesID);
+	}
 }

@@ -8,11 +8,9 @@ import javax.persistence.criteria.Root;
 import bean.Question;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
-
 
 /**
  * This is a helper for implementing DAO pattern
@@ -92,17 +90,14 @@ public class AnswerDAO {
 		return answerDetails;
 	}
 
-
 	public void deleteAnswer(Integer questionId) {
 		Transaction transaction = null;
 		Session session = null;
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
-			transaction = session.beginTransaction();
-			
+			transaction = session.beginTransaction();		
 			String hql = "delete from Answer where question_id= :questionId";
 			session.createQuery(hql).setInteger("questionId", questionId).executeUpdate();
-			
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -112,5 +107,4 @@ public class AnswerDAO {
 			session.close();
 		}
 	}
-
 }

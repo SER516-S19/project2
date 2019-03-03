@@ -71,6 +71,5 @@ public class UserDAO {
             session.close();
         }
         return user;
-    	
     }
 }

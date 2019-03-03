@@ -2,19 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import bean.Answer;
 import bean.Question;
 import bean.Quiz;
-import dao.ProfessorDAO;
-import dao.QuestionDAO;
-import dao.QuizDAO;
 import services.ProfessorServices;
 
 /**
@@ -115,8 +109,7 @@ public class ProfessorServlet extends HttpServlet {
 			String flag1 = request.getParameter("flagOld");
 			String id = request.getParameter("quizId");
 			String quizName = request.getParameter("quizName");
-			QuestionDAO questionDAO = new QuestionDAO();
-			questionDAO.deleteQuestionByQuestionId(quesID);
+			professorServices.deleteQuestionByQuestionId(quesID);
 			response.sendRedirect("ProfessorController?" + "flag="+ flag1 + 
 					"&id="+id + "&quizName=" + quizName);
 		}  

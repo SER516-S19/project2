@@ -1,25 +1,14 @@
 package services;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import bean.Answer;
 import bean.CalculatedScores;
 import bean.ProfessorStatistics;
-import bean.Question;
-import bean.Quiz;
 import bean.ResponseStatistics;
-import dao.AnswerDAO;
-import dao.ProfessorDAO;
-import dao.QuestionDAO;
 import dao.StatisticsDAO;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * This is the service class for manipulating data models.
@@ -79,7 +68,6 @@ public class StatisticServices {
 		return resultantData;
 	}
 
-
 	/**
 	 * A question can have multiple answers, so based on the answer list for the questions
 	 *  the function calculates and returns a map of question id : answer count
@@ -107,9 +95,7 @@ public class StatisticServices {
 		for(ResponseStatistics response : statisticList) {	
 			int userId = response.getUser().getUser_id();
 			int questionId = response.getQuestion().getQuestionId();
-			
-			String mapKey = userId + "/"+ questionId;
-			
+			String mapKey = userId + "/"+ questionId;		
 			if (resultMap.containsKey(mapKey))
 				resultMap.put(mapKey, resultMap.get(mapKey)+1);
 			else 
