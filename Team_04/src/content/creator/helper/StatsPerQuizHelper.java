@@ -34,7 +34,6 @@
     public static float getClassAverage(int quizId) throws SQLException {
       List<QuizResultDAO> scoreOfAllStudents = getScoreOfAllStudents(quizId);
       int studentCount = scoreOfAllStudents.size();
-      System.out.println(" Size "+ studentCount);
       int totScoreOfAllStudents = 0;
       for (QuizResultDAO studentScore : scoreOfAllStudents) {
         totScoreOfAllStudents += studentScore.getFinalScore();
@@ -48,21 +47,36 @@
       return averageQuizScore;
     }
 
+    /**
+     * This method returns the strength of students for the quiz passed as a parameter
+     * @param quizId
+     * @return
+     * @throws SQLException
+     */
     public static int getStudentStrengthForQuiz(int quizId) throws SQLException {
       List<QuizResultDAO> scoreOfAllStudents = getScoreOfAllStudents(quizId);
       return scoreOfAllStudents.size();
     }
 
+    /**
+     * This method returns the highest score for the quiz passed as a parameter
+     * @param quizId
+     * @return
+     * @throws SQLException
+     */
     public static float getHighestScoreForQuiz(int quizId) throws SQLException {
       List<QuizResultDAO> quizResultDAO = getScoreOfAllStudents(quizId);
-      float maxScore = quizResultDAO.get(0).getFinalScore();
-         for(QuizResultDAO quizResultRow : quizResultDAO)
-         {
+      if(quizResultDAO.isEmpty())
+        return 0;
+      else {
+        float maxScore = quizResultDAO.get(0).getFinalScore();
+        for (QuizResultDAO quizResultRow : quizResultDAO) {
           float score = quizResultRow.getFinalScore();
-          if(score > maxScore)
+          if (score > maxScore)
             maxScore = score;
-         }
-         return maxScore;
+        }
+        return maxScore;
+      }
     }
     private static List<QuizResultDAO> getScoreOfAllStudents(int quizId) throws SQLException {
       String queryString = getQueryForStudentScore(quizId);
