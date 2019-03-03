@@ -43,6 +43,7 @@ public class AutoGrader {
         List<Answer> answers = answerDAO.getSubmissionAnswers(
                 submission.getSubmission_id(), question.getQuestion_id());
         if (answers.size() != 1) {
+
             return false;
         }
         Answer answer = answers.get(0);
