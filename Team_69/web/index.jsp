@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Login</title>
-<%@ include file="../header.jsp"%>
+<%@ include file="/header.jsp"%>
 </head>
 <body>
 	<div class="container">
