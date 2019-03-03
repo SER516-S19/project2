@@ -43,6 +43,9 @@ public class Main {
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
             initialize(conn);
+
+            // initialize the database
+            SQLScriptRunner.run("./exampleQuiz.sql");
             //}
         } catch (SQLException e) {
             System.out.println(e.getMessage());
