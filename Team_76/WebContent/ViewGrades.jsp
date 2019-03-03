@@ -42,14 +42,14 @@
 		
 		<h3>Grades</h3>
 		<div>
-			<form action="ProfessorController" method="POST">
+			<form action="ProfessorController" method="GET">
 				<label for="qTitle">Quiz Title</label> 
 	            <div>
-	            	<input type="text" id="qTitle" name="quizTitle" placeholder="quiz title..."> 
-						<select id="qtitle" name="quizDrop">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
+	            	<input type="text" id="qTitle" name="quiztitle" placeholder="quiz title..."> 
+						<select id="qtitle" name="quiztitle">
+							<option value="q1">Quiz-1</option>
+							<option value="q2">Quiz-2</option>
+							<option value="q3">Quiz-3</option>
 				    	</select> 
 	            </div>
 	            <div>
@@ -59,14 +59,12 @@
 	            <label for="grade">Grade</label>
 				<textarea rows="1" cols="4"></textarea>
 	            <div>
-	                <input type="hidden" name="action" value="Ok"> 
-	                <input type="submit" value="Ok">                 
+				    <input type="hidden" name="action" value="ProfessorDash">
+				    <input type="submit" value="Back"> 
+	                <input type="hidden" name="action" value="ViewGrades"> 
+	                <input type="submit" value="Ok"> 
 	            </div>
 			</form>
-			     	<form action="ProfessorController" method="POST">
-				    <input type="hidden" name="action" value="Cancel">
-				    <input type="submit" value="Back">
-				    </form>
 		</div>
 	</body>
 </html>

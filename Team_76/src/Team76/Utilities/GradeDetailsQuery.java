@@ -24,15 +24,14 @@ public class GradeDetailsQuery {
 	 */
 	DatabaseConnection connect = new DatabaseConnection();
 
-	public void databaseConnect(String quiztitle, String studentName, String quizDrop) throws Exception {
+	public void connection(String quiztitle, String studentName) throws Exception {
 		Connection con = connect.establishConnection();
-
+		String query = "SELECT * FROM grade WHERE studentName= '" + studentName + " ' and quiztitle = ' " + quiztitle
+				+ " ' ";
 		Statement statement = con.createStatement();
-		String selectQuery= "select * from grade where studentName= '"+studentName + "' and quiztitle = '" +quiztitle + "'";
-		ResultSet rs = statement.executeQuery(selectQuery);
+		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
-			String grade = rs.getString("grade");
-			System.out.println(grade);
+			rs.getString("grade");
 		}
 		con.close();
 	}

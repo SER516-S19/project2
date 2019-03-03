@@ -38,6 +38,19 @@ public class ProfessorController extends HttpServlet {
 			throws ServletException, IOException {
 
 		doPost(request, response);
+		String action = request.getParameter("action");
+
+		if (action.equals("ProfessorDash")) {
+			response.sendRedirect("ProfessorDash.jsp");
+		}
+		if (action.equals("ViewGrades")) {
+			try {
+				vc.getParameters(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			response.sendRedirect("ViewGrades.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -66,14 +79,6 @@ public class ProfessorController extends HttpServlet {
 			}
 			response.sendRedirect("Options.jsp");
 		}
-		if (action.equals("Ok")) {
-			try {
-				vc.getParameters(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			response.sendRedirect("ViewGrades.jsp");
-		}
 		if (action.equals("AddQuestion")) {
 			response.sendRedirect("Questions.jsp");
 		}
@@ -83,7 +88,9 @@ public class ProfessorController extends HttpServlet {
 			  e.printStackTrace(); }
 			 
 			response.sendRedirect("ReviewProfQuiz.jsp");
-		}	
+		}
+		
+		
 		if (action.equals("Continue1")) {
 			if (request.getParameter("qtype").equals("NonGraded")
 					|| request.getParameter("qtype").equals("Practice")) {
@@ -121,5 +128,8 @@ public class ProfessorController extends HttpServlet {
 				}
 			response.sendRedirect("ProfessorDash.jsp");
 		}
+		//	ReviewSubmit
+
 	}
+
 }
