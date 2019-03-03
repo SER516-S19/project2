@@ -63,12 +63,12 @@
 					if(choices.get(j).isCorrect()){
 						checked = "checked";
 					}
-					out.print("<p><center>");
+					out.print("<p>");
 					out.print("<label>");
-					out.print("<input id ='check_box_option' type='checkbox' "+ checked +"  onclick='return false' >");
+					out.print("<input type='checkbox' "+ checked +"  onclick='return false' >");
 					out.print("<span>" + option + " :" + choices.get(j).getContent()+"</span>");
 					out.print("</label>");
-					out.print("</center></p>");
+					out.print("</p>");
 					//out.print("<input type='checkbox' "+ checked +"><label><center>"
 					//+ option + " :" + choices.get(j).getContent() + " </center></label>");
 				}
