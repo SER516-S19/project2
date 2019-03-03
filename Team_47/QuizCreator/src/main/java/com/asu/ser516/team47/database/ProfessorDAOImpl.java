@@ -64,7 +64,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("select * from professors");
+            stmt = conn.prepareStatement("select * from professors where username = ?");
+            stmt.setString(1, username);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval = new Professor(rs.getString(1), rs.getString(2),
