@@ -48,6 +48,7 @@
             <fileset dir = "web/css" includes="*.css"/>
         </copy>
         <copy file="web/index.jsp" tofile="${build.home}/index.jsp"/>
+        <copy file="web/header.jsp" tofile="${build.home}/header.jsp"/>
     </target>
 
     <target name="dist" depends="build">
