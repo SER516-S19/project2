@@ -42,7 +42,7 @@ public class Question implements Serializable {
 		super();
 
 		this.id = id;
-		this.date = date;
+		this.date = new Date();
 		this.questionText = questionText;
 		this.options = options;
 		this.quizId = quizId;

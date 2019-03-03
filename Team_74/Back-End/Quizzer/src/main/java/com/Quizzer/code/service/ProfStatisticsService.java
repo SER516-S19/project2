@@ -13,6 +13,12 @@ import com.Quizzer.code.model.db.Quiz;
 import com.Quizzer.code.model.db.SubmitQuiz;
 import com.Quizzer.code.model.response.StatisticsResponseVO;
 
+/**
+ * This is the service for Statistics.
+ * 
+ * @author kumar
+ *
+ */
 @Service
 public class ProfStatisticsService {
 
@@ -21,6 +27,11 @@ public class ProfStatisticsService {
 	@Autowired
 	private QuizRepo quiz;
 
+	/**
+	 * This method calculates the statistics for quizzes.
+	 * 
+	 * @return
+	 */
 	public StatisticsResponseVO calculateStats() {
 		List<Quiz> listQuiz = quiz.findAll();
 		List<String> quizNames = new ArrayList<>();
@@ -47,6 +58,12 @@ public class ProfStatisticsService {
 		return new StatisticsResponseVO(quizNames, averageMarks, medians);
 	}
 
+	/**
+	 * This is the helper method for average calculation.
+	 * 
+	 * @param listSubmittedQuizzes
+	 * @return
+	 */
 	private double calculateAverage(List<SubmitQuiz> listSubmittedQuizzes) {
 
 		int length = listSubmittedQuizzes.size();
@@ -60,6 +77,12 @@ public class ProfStatisticsService {
 		return 0;
 	}
 
+	/**
+	 * This is the helper method for median calculation.
+	 * 
+	 * @param listSubmittedQuizzes
+	 * @return
+	 */
 	private int calculateMedian(List<SubmitQuiz> listSubmittedQuizzes) {
 		int length = listSubmittedQuizzes.size();
 		if (length > 0) {

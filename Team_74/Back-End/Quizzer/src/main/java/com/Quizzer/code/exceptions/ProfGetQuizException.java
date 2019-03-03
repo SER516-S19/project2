@@ -6,11 +6,11 @@ package com.Quizzer.code.exceptions;
  * @author Kirti Jha
  *
  */
-public class Prof_GetQuiz_Exception extends Exception {
+public class ProfGetQuizException extends Exception {
 	private static final long serialVersionUID = 1L;
 	private final String errorMessage;
 
-	public Prof_GetQuiz_Exception(String errorMessage) {
+	public ProfGetQuizException(String errorMessage) {
 		super();
 		this.errorMessage = errorMessage;
 	}

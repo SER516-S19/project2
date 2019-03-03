@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * This class is the model class for Quiz item.
+ * 
  * @author Kumar Prabhu Kalyan
  */
 @Document(collection = "Quiz")
@@ -29,16 +30,15 @@ public class Quiz implements Serializable {
 	private String assignmnetGroup;
 	@CreatedDate
 	private Date date;
-	
-	public Quiz(){
-		
+
+	public Quiz() {
+
 	}
-	
-	public Quiz( String id, String instruction, String name, List<Question> questions, int time,
-			int totalAttempts, int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup,
-			Date date) {
+
+	public Quiz(String id, String instruction, String name, List<Question> questions, int time, int totalAttempts,
+			int totalMarks, boolean shouldShuffle, String quizType, String assignmnetGroup) {
 		super();
-		
+
 		this.id = id;
 		this.instruction = instruction;
 		this.name = name;
@@ -49,74 +49,95 @@ public class Quiz implements Serializable {
 		this.shouldShuffle = shouldShuffle;
 		this.quizType = quizType;
 		this.assignmnetGroup = assignmnetGroup;
-		this.date = date;
+		this.date = new Date();
 	}
 
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getInstruction() {
 		return instruction;
 	}
+
 	public void setInstruction(String instruction) {
 		this.instruction = instruction;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public List<Question> getQuestions() {
 		return questions;
 	}
+
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
+
 	public int getTime() {
 		return time;
 	}
+
 	public void setTime(int time) {
 		this.time = time;
 	}
+
 	public int getTotalAttempts() {
 		return totalAttempts;
 	}
+
 	public void setTotalAttempts(int totalAttempts) {
 		this.totalAttempts = totalAttempts;
 	}
+
 	public int getTotalMarks() {
 		return totalMarks;
 	}
+
 	public void setTotalMarks(int totalMarks) {
 		this.totalMarks = totalMarks;
 	}
+
 	public boolean isShouldShuffle() {
 		return shouldShuffle;
 	}
+
 	public void setShouldShuffle(boolean shouldShuffle) {
 		this.shouldShuffle = shouldShuffle;
 	}
+
 	public String getQuizType() {
 		return quizType;
 	}
+
 	public void setQuizType(String quizType) {
 		this.quizType = quizType;
 	}
+
 	public String getAssignmnetGroup() {
 		return assignmnetGroup;
 	}
+
 	public void setAssignmnetGroup(String assignmnetGroup) {
 		this.assignmnetGroup = assignmnetGroup;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 }

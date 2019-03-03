@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.Quizzer.code.dao.QuestionRepo;
 import com.Quizzer.code.dao.QuizRepo;
-import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
-import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
+import com.Quizzer.code.exceptions.ProfAddQuizException;
+import com.Quizzer.code.exceptions.ProfGetQuizException;
 import com.Quizzer.code.model.db.Question;
 import com.Quizzer.code.model.db.Quiz;
 import com.Quizzer.code.model.response.ResponseQuizListVO;
@@ -36,9 +36,9 @@ public class ProfQuizService {
 	 * This method adds the quiz to the database and sends a appropriate response.
 	 * 
 	 * @param quiz
-	 * @throws Prof_AddQuiz_Exception
+	 * @throws ProfAddQuizException
 	 */
-	public void addQuiz(Quiz quiz) throws Prof_AddQuiz_Exception {
+	public void addQuiz(Quiz quiz) throws ProfAddQuizException {
 
 		if (quiz != null) {
 			quiz.setId(null);
@@ -48,12 +48,12 @@ public class ProfQuizService {
 				quiz.setTotalMarks(addQuestions(listQuestion, quiz.getId()));
 				quizRepo.save(quiz);
 			} catch (MongoWriteException e) {
-				throw new Prof_AddQuiz_Exception("Error while writing the object to database." + e.getMessage());
+				throw new ProfAddQuizException("Error while writing the object to database." + e.getMessage());
 
 			}
 
 		} else {
-			throw new Prof_AddQuiz_Exception("The quiz object is null");
+			throw new ProfAddQuizException("The quiz object is null");
 		}
 
 	}
@@ -63,9 +63,9 @@ public class ProfQuizService {
 	 * the DB in Question table.
 	 * 
 	 * @param listQuestion
-	 * @throws Prof_AddQuiz_Exception
+	 * @throws ProfAddQuizException
 	 */
-	private int addQuestions(List<Question> listQuestion, String id) throws Prof_AddQuiz_Exception {
+	private int addQuestions(List<Question> listQuestion, String id) throws ProfAddQuizException {
 		int totalMarks = 0;
 		if (listQuestion != null) {
 			int iLengthQuestions = listQuestion.size();
@@ -73,7 +73,7 @@ public class ProfQuizService {
 				for (Question question : listQuestion) {
 					question.setId(null);
 					if (question.getMarks() == 0)
-						throw new Prof_AddQuiz_Exception(
+						throw new ProfAddQuizException(
 								"The mark for question with text: " + question.getQuestionText() + " is not entered");
 					else
 						totalMarks = totalMarks + question.getMarks();
@@ -85,7 +85,7 @@ public class ProfQuizService {
 				}
 			}
 		} else {
-			throw new Prof_AddQuiz_Exception(
+			throw new ProfAddQuizException(
 					"No questions to add in the quiz," + " Please add questions before adding quiz");
 		}
 		return totalMarks;
@@ -95,9 +95,9 @@ public class ProfQuizService {
 	 * This method returns the list of quizzes for the professor.
 	 * 
 	 * @return
-	 * @throws Prof_GetQuiz_Exception
+	 * @throws ProfGetQuizException
 	 */
-	public List<ResponseQuizListVO> getQuiz() throws Prof_GetQuiz_Exception {
+	public List<ResponseQuizListVO> getQuiz() throws ProfGetQuizException {
 		try {
 
 			List<ResponseQuizListVO> response_list = new ArrayList<ResponseQuizListVO>();
@@ -108,7 +108,7 @@ public class ProfQuizService {
 			return response_list;
 
 		} catch (Exception e) {
-			throw new Prof_GetQuiz_Exception(e.getMessage());
+			throw new ProfGetQuizException(e.getMessage());
 		}
 	}
 
@@ -117,9 +117,9 @@ public class ProfQuizService {
 	 * 
 	 * @param quizId
 	 * @return
-	 * @throws Prof_GetQuiz_Exception
+	 * @throws ProfGetQuizException
 	 */
-	public Quiz getQuiz(String quizId) throws Prof_GetQuiz_Exception {
+	public Quiz getQuiz(String quizId) throws ProfGetQuizException {
 		if (quizId != null && !StringUtils.isEmpty(quizId)) {
 			Optional<Quiz> quiz = quizRepo.findById(quizId);
 			if (quiz != null)

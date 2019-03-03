@@ -31,14 +31,13 @@ public class StudentQuiz implements Serializable {
 
 	}
 
-	public StudentQuiz(String id, String studentId, ArrayList<Quiz> quizlist, HashMap<String, Integer> attemptedQuiz,
-			Date date) {
+	public StudentQuiz(String id, String studentId, ArrayList<Quiz> quizlist, HashMap<String, Integer> attemptedQuiz) {
 		super();
 		this.id = id;
 		this.studentId = studentId;
 		this.quizlist = quizlist;
 		this.attemptedQuiz = attemptedQuiz;
-		this.date = date;
+		this.date = new Date();
 	}
 
 	public String getId() {

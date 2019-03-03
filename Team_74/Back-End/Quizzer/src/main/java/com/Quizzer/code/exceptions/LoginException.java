@@ -1,6 +1,5 @@
 package com.Quizzer.code.exceptions;
 
-
 /**
  * This class is the exception class for User data.
  *
@@ -10,16 +9,16 @@ package com.Quizzer.code.exceptions;
  */
 
 public class LoginException extends Exception {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private final String errorMessage;
+	private final String errorMessage;
 
-    public LoginException(String errorMessage) {
-        super();
-        this.errorMessage = errorMessage;
-    }
+	public LoginException(String errorMessage) {
+		super();
+		this.errorMessage = errorMessage;
+	}
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
+	public String getErrorMessage() {
+		return errorMessage;
+	}
 }

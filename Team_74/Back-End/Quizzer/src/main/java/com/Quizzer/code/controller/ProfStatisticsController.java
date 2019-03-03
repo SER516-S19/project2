@@ -24,7 +24,8 @@ public class ProfStatisticsController {
 	ProfStatisticsService profStatisticsService;
 
 	/**
-	 * This method handles the fetching of statistics.
+	 * This method handles the fetching of statistics and returns the median and
+	 * average of quiz scores.
 	 * 
 	 * @return
 	 */
