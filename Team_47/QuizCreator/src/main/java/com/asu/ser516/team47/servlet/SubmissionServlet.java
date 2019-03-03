@@ -138,11 +138,23 @@ public class SubmissionServlet extends HttpServlet {
         }
         response.setStatus(httpCode);
 
-        //TODO: call autograder, update score on Submission.
-        AutoGrader ag =  new AutoGrader(submissionID);
-        int points = (int) ag.gradeSubmission();
-        insertPointsInDB(new Submission(submission_id,quiz_fk,enrolled_fk,time_taken,date_taken,score,attempt));
+        //Okay so there are really only 4 steps that need to be done to grade an exam.
+        //1. Using the `submission_id` and an instance of the `SubmissionDAOImpl`, obtain a business object for a `Submission` using `getSubmission(submission_id)`
+        SubmissionDAOImpl submissionDAO = new SubmissionDAO();
+        Submission sub = getSubmission(submission_id);
+        //2. Create an instance of `AutoGrader` using the `submission_id` and obtain the points for the submission using `gradeSubmission()`
+        AutoGrader ag =  new AutoGrader(submission_id);
+        float points = ag.gradeSubmission();
+        //3. Using the `Submission` object from step one, set the value of `score` using `setScore(score)`
+        sub.setScore(points);
+        //4. Using the `SubmissionDAOImpl` instance from step 1, update the submission in the database using `updateSubmission(submission)`
+        if(!submissionDAO.updateSubmission(sub))
+        {
+            response.sendError(500);
+            return;
+        }
     }
+
 
     /**
      * Creates a Submission object based on the data from the parameters and
