@@ -1,5 +1,7 @@
 package com.asu.ser516.team47.database;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -90,5 +92,23 @@ public class Submission {
 
     public void setAttempt(int attempt) {
         this.attempt = attempt;
+    }
+
+    /**
+     * toString
+     * @return string representation of submission object
+     */
+    public String toString() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String result = "Quiz {" + "\n" +
+                "  submission_id: " + Integer.toString(submission_id) + "\n" +
+                "  quiz_fk: " + Integer.toString(quiz_fk) + "\n" +
+                "  enrolled_fk: " + Integer.toString(enrolled_fk) + "\n" +
+                "  start_time: " + dateFormat.format(start_time) + "\n" +
+                "  end_time: " + dateFormat.format(end_time) + "\n" +
+                "  score: " + Float.toString(score) + "\n" +
+                "  attempt: " + Integer.toString(attempt) + "\n" +
+                "}";
+        return result;
     }
 }

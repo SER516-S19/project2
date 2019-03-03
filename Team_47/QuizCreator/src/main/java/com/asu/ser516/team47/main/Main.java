@@ -2,7 +2,11 @@ package com.asu.ser516.team47.main;
 
 import java.io.File;
 import java.sql.*;
+import java.util.Calendar;
+import java.util.Date;
 
+import com.asu.ser516.team47.servlet.LoginServlet;
+import com.asu.ser516.team47.servlet.QuizCreationServlet;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
 import com.asu.ser516.team47.utils.SQLScriptRunner;
@@ -14,6 +18,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String context_Path = "";
         String base_path = new File("WebContent").getAbsolutePath();
+        String url = "jdbc:sqlite:schema.db";
 
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(base_path);
@@ -22,23 +27,30 @@ public class Main {
 
         Context context = tomcat.addWebapp(context_Path, base_path);
 
-        String servletName = "SubmissionServlet";
-
-        tomcat.addServlet(context_Path, servletName, new SubmissionServlet());
-        context.addServletMappingDecoded("/submit", servletName);
+        String quizCreationServletName = "QuizCreationServlet";
+        String submissionservlet_name = "SubmissionServlet";
+        String login_servlet_name = "LoginServlet";
+        tomcat.addServlet(context_Path, submissionservlet_name, new SubmissionServlet());
+        tomcat.addServlet(context_Path, login_servlet_name, new LoginServlet());
+        tomcat.addServlet(context_Path, quizCreationServletName, new QuizCreationServlet());
+        context.addServletMappingDecoded("/submit", submissionservlet_name);
+        context.addServletMappingDecoded("/login", login_servlet_name);
+        context.addServletMappingDecoded("/createQuiz", quizCreationServletName);
 
         Connection conn = null;
         try {
-            // db parameters
-            String url = "jdbc:sqlite:schema.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
             initialize(conn);
+
+            // initialize the database
+            SQLScriptRunner.run("./exampleQuiz.sql");
             //}
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
         tomcat.start();
         tomcat.getServer().await();
         conn.close();
@@ -100,7 +112,7 @@ public class Main {
                         "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                         "firstname NVARCHAR(50) NOT NULL,\n" +
                         "lastname NVARCHAR(50) NOT NULL,\n" +
-                        "session CHAR(16),\n" +
+                          "sessionid CHAR(16),\n" +
                         "hashedpass NVARCHAR(60) NOT NULL\n" +
                         ");",
                 "CREATE TABLE IF NOT EXISTS enrolled (\n" +

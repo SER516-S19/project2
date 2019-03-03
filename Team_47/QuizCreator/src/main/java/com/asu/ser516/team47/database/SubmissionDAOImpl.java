@@ -43,11 +43,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -80,11 +76,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -118,11 +110,44 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
+        }
+
+        return rval;
+    }
+
+    /**
+     * Gets all submissions for an enrollment for a quiz
+     *
+     * @param enrolled_fk enrolled_id
+     * @param quiz_fk     quiz_id
+     * @return all submissions for an enrollment for a quiz
+     */
+    public List<Submission> getEnrolledQuizSubmissions(int enrolled_fk, int quiz_fk) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Submission> rval = new ArrayList<>();
+
+        try {
+            conn = DriverManager.getConnection(__jdbcUrl);
+
+            stmt = conn.prepareStatement("select * from submissions where enrolled_fk = ? and quiz_fk = ?");
+            stmt.setInt(1, enrolled_fk);
+            stmt.setInt(2,quiz_fk);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                rval.add(new Submission(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getDate(4), rs.getDate(5), rs.getFloat(6),
+                        rs.getInt(7)));
+            }
+        }
+        catch (Exception se) {
+            se.printStackTrace();
+            return null;
+        }
+        finally {
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -156,11 +181,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -209,11 +230,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return false;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
     }
 
@@ -247,10 +264,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 
@@ -279,10 +293,7 @@ public class SubmissionDAOImpl implements SubmissionDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 }

@@ -11,22 +11,22 @@ public class Professor {
     private String username;
     private String firstname;
     private String lastname;
+    private String sessionid;
     private String hashedpass;
-    private String session;
 
     /**
      * @param username unique key for a professor's account
      * @param firstname professor's first name
      * @param lastname professor's last name
+     * @param sessionid professor's session information
      * @param hashedpass professor's password (hashed)
-     * @param session professor's session information
      */
-    public Professor(String username, String firstname, String lastname, String hashedpass, String session) {
+    public Professor(String username, String firstname, String lastname, String sessionid, String hashedpass) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.sessionid = sessionid;
         this.hashedpass = hashedpass;
-        this.session = session;
     }
 
     public String getUsername() {
@@ -62,10 +62,25 @@ public class Professor {
     }
 
     public String getSession() {
-        return session;
+        return sessionid;
     }
 
     public void setSession(String session) {
-        this.session = session;
+        this.sessionid = session;
+    }
+
+    /**
+     * toString
+     * @return string representation of professor object
+     */
+    public String toString() {
+        String result = "Professor {" + "\n" +
+                "  username: " + username + "\n" +
+                "  firstname: " + firstname + "\n" +
+                "  lastname: " + lastname + "\n" +
+                "  hashedpass: " + hashedpass + "\n" +
+                "  sessionid: " + sessionid + "\n" +
+                "}";
+        return result;
     }
 }
