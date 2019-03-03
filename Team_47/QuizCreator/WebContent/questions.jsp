@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="CSS/questions.css" type="text/css"/>
 <title>Sample Question Style</title>
 </head>
-<form method="POST">
+<form>
 <body style="background-color:#FFF8DC">
 	<div class="head-section">
 	<h2>Quiz 1</h2>
@@ -75,8 +75,7 @@
 	<div style="top:100px;height:60px; display: flex; align-items: left; justify-content:right;">
 		<a href="#" class="rainbow-button" alt="Previous" id="prevQ1"></a>  -->
 	</div>
-
-		<button type="button" onClick="execAjax(<%= quizid1%>,<%=enrolled_id1 %>)" class="nextQ" style="width:200px;bottom:300px;left:300px">Submit</button>
+		<button  type="button" onClick="execAjax(<%= quizid1%>,<%=enrolled_id1 %>)" class="nextQ" style="background-color:#13110;margin:0 0 0 700px;height:50px;width:200px;bottom:300px;left:300px">Submit</button>
 	</form>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="js/question.js"></script>
