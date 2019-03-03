@@ -70,27 +70,6 @@ public class SubmissionServlet extends HttpServlet {
         httpCode = 204;
         httpErrorMessage = "";
         JSONObject requestForm;
-        ServletValidation validation = new ServletValidation();
-        
-        String radioBox = request.getParameter("identity");
-    	String username = request.getParameter("username");
-    	String password = request.getParameter("password");
-    	System.out.print("value: ");
-    	System.out.println(radioBox);
-    	System.out.println(username);
-    	System.out.println(password);
-    	if(radioBox.equals("student")) {
-    		request.getRequestDispatcher("/myquizzes.jsp").forward(request,response);
-    	} else {
-    		request.getRequestDispatcher("/dashboard_professor.jsp").forward(request,response);
-    	}
-//        if(radioBox.equals("student")) {
-//        	StudentDAOImpl studentDAO = new StudentDAOImpl();
-//        	Student student = studentDAO.getStudent(username);
-//        	if(student!=null) {
-//        		
-//        	}
-//        }
         
         //Mandatory fields to create a submission entry
         Integer quizId = null;
@@ -101,30 +80,25 @@ public class SubmissionServlet extends HttpServlet {
         //Check if json form can be read.
         try {
             requestForm = JSONRequestParser.getJsonFromRequest(request);
-        } catch (IOException ioe){
+        } catch (IOException | ParseException | ClassCastException ex){
             response.sendError(400, "Problem reading form.");
             return;
-        } catch (ParseException pe){
-            response.sendError(400, "Problem parsing form.");
-            return;
-        } catch (ClassCastException cce){
-            response.sendError(400, "Problem parsing form. Are you sure you sent an object and not an array?");
-            return;
         }
+
         //Validate that all necessary fields are present and build ChoiceId array
         try {
-            quizId =  ((Long)requestForm.get("quiz_id")).intValue();
+            quizId =  ((Number)requestForm.get("quiz_id")).intValue();
             quiz = new QuizDAOImpl().getQuiz(quizId);
             if (quiz == null) {
                 httpCode = 500;
             }
-            enrollId = ((Long)requestForm.get("enrolled_id")).intValue();
+            enrollId = ((Number)requestForm.get("enrolled_id")).intValue();
             enrollment = new EnrolledDAOImpl().getEnrolled(enrollId);
             if (enrollment == null) {
                 httpCode = 500;
             }
             JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
-            choiceIds = ServletValidation.buildAndValidateChoiceList(jsonChoices, quizId);
+            choiceIds = ServletValidation.buildAndValidateStudentChoiceList(jsonChoices, quizId);
         } catch (ClassCastException cce){
             response.sendError(400, "Some field is wrong data type.");
             cce.printStackTrace();

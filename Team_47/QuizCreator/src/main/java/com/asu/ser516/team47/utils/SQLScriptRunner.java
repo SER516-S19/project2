@@ -24,7 +24,6 @@ public class SQLScriptRunner {
         Scanner scriptReader = new Scanner(script).useDelimiter(";");
         while (scriptReader.hasNext()) {
             String sql = scriptReader.next();
-            System.out.println(sql);
             Statement stmt = conn.createStatement();
             stmt.addBatch(sql);
             stmt.execute(sql);

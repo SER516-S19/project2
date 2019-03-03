@@ -136,6 +136,8 @@ public class ProfessorDAOImpl implements ProfessorDAO{
             stmt.setString(3, professor.getLastname());
             stmt.setString(4, professor.getHashedpass());
             stmt.setString(5, professor.getSession());
+            stmt.setString(6, professor.getUsername());
+
 
             int updatedRows = stmt.executeUpdate();
             return updatedRows > 0;
