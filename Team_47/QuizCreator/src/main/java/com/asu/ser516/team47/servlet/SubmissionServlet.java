@@ -4,20 +4,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import com.asu.ser516.team47.database.*;
+import com.asu.ser516.team47.utils.AutoGrader;
 import com.asu.ser516.team47.utils.ServletValidation;
 import com.asu.ser516.team47.utils.JSONRequestParser;
 import org.json.simple.JSONArray;
@@ -43,7 +36,6 @@ public class SubmissionServlet extends HttpServlet {
     private String url = "jdbc:sqlite:schema.db";
     private Quiz quiz;
     private Enrolled enrollment;
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -132,10 +124,23 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(401, "Your submission was past the due date");
         }
 
+        // Grade quiz submission
+        SubmissionDAOImpl submissionDAO = new SubmissionDAOImpl();
+        Submission submission = submissionDAO.getSubmission(submissionID);
+
+        AutoGrader grader =  new AutoGrader(submissionID);
+        float points = grader.gradeSubmission();
+
+        submission.setScore(points);
+
+        if(!submissionDAO.updateSubmission(submission)) {
+            response.sendError(500);
+            return;
+        }
         response.setStatus(httpCode);
 
-        //TODO: call autograder, update score on Submission.
     }
+
 
     /**
      * Creates a Submission object based on the data from the parameters and

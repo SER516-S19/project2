@@ -1,5 +1,10 @@
 <%@page import="com.asu.ser516.team47.database.*"%>
 <%@page import="java.util.*"%>
+<%--
+ - Author(s): Jiayan Wang
+ - Date: 2019/3/1
+ - Description: Show all quiz information.
+ --%>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="CSS/summary.css">
@@ -8,26 +13,21 @@
 	QuestionDAOImpl questionDAO = new QuestionDAOImpl();
 	ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
 	//test-case
-	//int quiz_id = 1;
 	//get quiz id from previous page
 	int quiz_id = Integer.parseInt(request.getParameter("quizId"));
-	System.out.println(quiz_id);
 	Quiz quiz = quizDAO.getQuiz(quiz_id);
 	String quiz_title = quiz.getTitle();
-	System.out.println(quiz);
 	List<Question> questions = questionDAO.getQuizQuestions(quiz.getQuiz_id());
 %>
 <title>Summary Page</title>
 </head>
-<body style="background-color: Silver;">
+<body style="background-color: White;">
 
-	<h2>
-		<center>Summary Of Quiz created</center>
-	</h2>
+	<h2><center>Summary Of Quiz created</center></h2>
 	<form action="quizstat.jsp" method="POST">
 		<input type="text" name="Quiz_title" value=<%=quiz_title%> hidden=true>
-		<input type="text" name="Quiz_id" value=<%=quiz_id%> hidden=true>
-		<input type="submit" id = "stats" name="Submit" value="QuizStats">
+		<input type="text" name="Quiz_id" value=<%=quiz_id%> hidden=true>	
+		<center><input type="submit" name="Submit" value="<%= quiz_title%> Stat"></center>
 	</form>
 	<div>
 		<%
@@ -61,7 +61,14 @@
 					if(choices.get(j).isCorrect()){
 						checked = "checked";
 					}
-					out.print("<p><input type='checkbox '"+ checked +"</input><center>" + option + " :" + choices.get(j).getContent() + " </center></p>");
+					out.print("<p>");
+					out.print("<label>");
+					out.print("<input type='checkbox' "+ checked +"  onclick='return false' >");
+					out.print("<span>" + option + " :" + choices.get(j).getContent()+"</span>");
+					out.print("</label>");
+					out.print("</p>");
+					//out.print("<input type='checkbox' "+ checked +"><label><center>"
+					//+ option + " :" + choices.get(j).getContent() + " </center></label>");
 				}
 				out.print("</div>");
 				out.print("<p><center><b> Points: <span id='red'>" + questions.get(i).getPoints()
@@ -73,7 +80,6 @@
 		%>
 		<br> <br>
 	</div>
-	<input id="beginbtn" type="button" value="Dashbaord"
-		onclick='location.href=("dashboard_professor.jsp")'>
+	<input id="beginbtn" type="button" value="Dashbaord" onclick='location.href=("dashboard_professor.jsp")'>
 </body>
 </html>

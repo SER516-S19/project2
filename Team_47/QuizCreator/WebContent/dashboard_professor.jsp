@@ -50,7 +50,7 @@
             String title = quizzes.get(i).getTitle();
             String instruction = quizzes.get(i).getInstructions();
             buf.append(String.format(
-                    "<tr onclick=\"window.location.href = '/allquiz.jsp?quizId=%d';\">" +
+                    "<tr onclick=\"window.location.href = '/summarypage.jsp?quizId=%d';\">" +
                     "<td id=\"quizId\">%d</td>" +
                     "<td class=\"text-left\">" +
                     "%s</td>" +
