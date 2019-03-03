@@ -26,16 +26,16 @@ class HoriChart extends Component {
     getRandomColor(length) {
         var colors = [];
         while (colors.length < length) {
-                colors.push("#"+((1<<24)*Math.random()|0).toString(16));
+            colors.push("#" + ((1 << 24) * Math.random() | 0).toString(16));
         }
         return colors;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         fetch('http://localhost:8081/prof/stats')
             .then(response => response.json())
             .then(response_json => {
-                this.setState( {
+                this.setState({
                     data: {
                         labels: response_json.quizNames,
                         datasets: [
@@ -54,11 +54,11 @@ class HoriChart extends Component {
             });
     }
 
-    
+
     render() {
         return (
-            <div>
-                <h2>Horizontal Bar Example</h2>
+            <div style={{ marginBottom: "3em" }}>
+                <h3 style={{ textAlign: "center" }}>Mean marks of quizes</h3>
                 <HorizontalBar data={this.state.data} />
             </div>
         );

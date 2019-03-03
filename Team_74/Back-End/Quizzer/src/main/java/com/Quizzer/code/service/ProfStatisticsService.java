@@ -37,9 +37,9 @@ public class ProfStatisticsService {
 				if (listSubmittedQuizzes.size() > 0) {
 					avg = calculateAverage(listSubmittedQuizzes);
 					median = calculateMedian(listSubmittedQuizzes);
-					quizNames.set(i, quizzer.getName());
-					medians.set(i, median);
-					averageMarks.set(i, avg);
+					quizNames.add(i, quizzer.getName());
+					medians.add(i, median);
+					averageMarks.add(i, avg);
 					i++;
 				}
 			}

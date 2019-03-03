@@ -53,8 +53,8 @@ class PiChart extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Pie Example</h2>
+            <div style={{marginBottom:"3em"}}>
+                <h3 style={{textAlign:"center"}}>Median per quiz</h3>
                 <Pie data={this.state.data} />
             </div>
         );

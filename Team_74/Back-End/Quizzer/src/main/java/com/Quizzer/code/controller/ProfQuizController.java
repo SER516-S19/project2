@@ -16,7 +16,6 @@ import com.Quizzer.code.model.response.ResponseListVO;
 import com.Quizzer.code.model.response.ResponseVO;
 import com.Quizzer.code.service.ProfQuizService;
 
-
 /**
  * This class is the controller that handles requests for : 1.Adding the quiz.
  * 2.Get list of quizzes. 3.Get a quiz based of id.
