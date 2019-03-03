@@ -23,7 +23,11 @@ public class LoginServices {
         if(storedPassword.equals(userPassword))
             return true;
         else return false;
-
     }
 
+	public String fetchUserName(String userEmail) {
+		UserDAO userDAO = new UserDAO();
+		String userName = userDAO.fetchUserDetails(userEmail).getUser_name();
+        return userName;
+	}
 }

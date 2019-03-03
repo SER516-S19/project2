@@ -1,8 +1,8 @@
 <!-- 
 Freemarker page to display CreateQuestions Page 
-@authour Trupti Khatavkar / @author Aditya Vikram
-@version 1.4
-@date 02/22/2019
+@authour Trupti Khatavkar / @author Aditya Vikram / @author Carnic
+@version 1.6
+@date 02/27/2019
  -->
 
 <html>
@@ -33,10 +33,19 @@ Freemarker page to display CreateQuestions Page
       });
     });
   </script>
-	<form action="createQuiz.ftl" method="POST">
-		<button type="submit"> <- Create Quiz</button>
-	</form>
-	<body>	
+	<body>
+		<div class="navbar">
+		  <a method="POST" href="createQuiz.ftl"> < Create Quiz </a>
+		  <div class="dropdown">
+		    <button class="dropbtn">v
+		      <i class="fa fa-caret-down"></i>
+		    </button>
+		    <div class="dropdown-content">
+		    	<a href="professorHome.ftl">Home</a>
+		    	<a href="login.jsp" name="logoutProfile">Logout</a>
+		    </div>
+		  </div> 
+		</div>
 	<h1 class="fontColor">Enter your questions and answers</h1>
 	<div class="box">
 		<form action="createQuestions" id="questionForm" method="POST">
@@ -58,9 +67,9 @@ Freemarker page to display CreateQuestions Page
   			Total Points:<br>
   			<input class="smallInputLeft" type="text" name="totalPoints">
   			<br><br>
-  			<input type="radio" name="isMCQ" checked>Multiple Answers
+  			<input type="radio" name="isMCQ" value="1" checked>Multiple Answers
   			<br><br>
-  			<input type="radio" name="isMCQ">Single Answer
+  			<input type="radio" name="isMCQ" value="0">Single Answer
   			<br><br>
   			<input class="button" type="submit" value="Add more Questions/ Submit">
 		</form>

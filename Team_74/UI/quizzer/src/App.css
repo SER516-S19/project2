@@ -88,3 +88,7 @@ h1 {
 p {
   margin-bottom: 15px;
 }
+
+html, body, #app, #app>div {
+  height: 100%;
+}

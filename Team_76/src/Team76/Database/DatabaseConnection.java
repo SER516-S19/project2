@@ -22,9 +22,8 @@ public class DatabaseConnection {
 		}
 		Connection connection = null;
 		String connectionUrl = "jdbc:mysql://127.0.0.1:3306/ser516p2v2?allowPublicKeyRetrieval=true&useSSL=false";
-		// jdbc:mysql://127.0.0.1:3306/?user=root
 		String userid = "root";
-		String password = "root"; /* local MSQL pswdJ */
+		String password = "root";
 
 		connection = DriverManager.getConnection(connectionUrl, userid, password);
 		return connection;

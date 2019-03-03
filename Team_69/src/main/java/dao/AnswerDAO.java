@@ -12,7 +12,6 @@ import org.hibernate.query.Query;
 import bean.Answer;
 import bean.HibernateUtil;
 
-
 /**
  * This is a helper for implementing DAO pattern
  * for accessing answer data from database.
@@ -31,6 +30,25 @@ public class AnswerDAO {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.save(answer);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+	}
+	
+
+	public void updateQuestion(Answer answer) {
+		Transaction transaction = null;
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			session.update(answer);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -70,5 +88,23 @@ public class AnswerDAO {
 			session.close();
 		}
 		return answerDetails;
+	}
+
+	public void deleteAnswer(Integer questionId) {
+		Transaction transaction = null;
+		Session session = null;
+		try  {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();		
+			String hql = "delete from Answer where question_id= :questionId";
+			session.createQuery(hql).setInteger("questionId", questionId).executeUpdate();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
 	}
 }

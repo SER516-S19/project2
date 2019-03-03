@@ -57,6 +57,14 @@ public class CreateQuestionsServlet extends HttpServlet {
 			qdb.insertingQuestions(questionsVO);
 
 			res.sendRedirect(req.getContextPath() + "/createQuestions.ftl");
+
+			
+			if (req.getParameter("logoutProfile") != null) {  
+			    session.invalidate();
+			    res.sendRedirect("login.jsp");
+			    return; 
+			}
+			
 		} catch (Exception e) {
 			log.info(e.getMessage());
 		}

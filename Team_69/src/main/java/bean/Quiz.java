@@ -1,8 +1,5 @@
 package bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
 /**
@@ -17,8 +14,9 @@ import javax.persistence.*;
 @Table(name = "Quiz")
 public class Quiz {
 
+	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Quiz_Id", nullable = false)
     private int quizId;
 

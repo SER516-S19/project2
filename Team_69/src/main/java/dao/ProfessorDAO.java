@@ -53,14 +53,16 @@ public class ProfessorDAO {
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();
-	            Query query = session.createQuery("from  " + Question.class.getName() + " que where que.quiz.quizId = "+quizID);
+	            Query query = session.createQuery("from  " + Question.class.getName() +
+	            		" que where que.quiz.quizId = "+quizID);
 	            lists = query.list();
 	            transaction.commit();
 	        } catch (Exception sqlException) {
 	            if (transaction != null) {
 	                transaction.rollback();
 	            }
-	            logger.log(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", sqlException);
+	            logger.log(Level.SEVERE, "getAllQuestionFromQuizID - exception in connecting to database", 
+	            		sqlException);
 	        }
 		return lists;
 	}
@@ -112,8 +114,9 @@ public class ProfessorDAO {
 	public Quiz getQuizFromID(int quizID) {
 		 Quiz quizObj = null;
 		 Transaction transaction = null;
+		 Session session = null;
 	        try  {
-	            Session session = HibernateUtil.getSessionFactory().openSession();
+	            session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();
 	            quizObj = session.get(Quiz.class, quizID);
 	            transaction.commit();
@@ -123,6 +126,10 @@ public class ProfessorDAO {
 	            }
 	            logger.log(Level.SEVERE, "getQuizFromID - exception in connecting to database", sqlException);
 	        }
+	        finally {
+	        	if(session!=null)
+	        		session.close();
+			}
 		return quizObj;
 	}
 	
@@ -135,14 +142,41 @@ public class ProfessorDAO {
 	        try  {
 	            Session session = HibernateUtil.getSessionFactory().openSession();
 	            transaction = session.beginTransaction();	            
-	            Query query = session.createQuery("from  " + Answer.class.getName() + " ans where ans.question.questionId = "+questionID);	            
+	            Query query = session.createQuery("from  " + Answer.class.getName() + 
+	            		" ans where ans.question.questionId = "+questionID);	            
 	            lists = query.list();
 	            transaction.commit();
 	        } catch (Exception sqlException) {
 	            if (transaction != null)
 	                transaction.rollback();
-	            logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", sqlException);
+	            logger.log(Level.SEVERE, "getAllAnswersFromQuestionID - exception in connecting to database", 
+	            		sqlException);
 	        }
 		return lists;
+	}
+
+	/**
+	 * This method is used to retrieve Question data with provided question ID from Question Table.
+	 */
+	public Question getQuestionFromID(Integer questionId) {
+		Question questionObj = null;
+		 Transaction transaction = null;
+		 Session session = null;
+	        try  {
+	            session = HibernateUtil.getSessionFactory().openSession();
+	            transaction = session.beginTransaction();
+	            questionObj = session.get(Question.class, questionId);
+	            transaction.commit();
+	        } catch (Exception sqlException) {
+	            if (transaction != null) {
+	                transaction.rollback();
+	            }
+	            logger.log(Level.SEVERE, "getQuestionFromID - exception in connecting to database", sqlException);
+	        }
+	        finally {
+	        	if(session!=null)
+	        		session.close();
+			}
+		return questionObj;
 	}
 }

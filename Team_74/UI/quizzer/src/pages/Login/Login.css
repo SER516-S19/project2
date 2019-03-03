@@ -1,4 +1,4 @@
-.LoginForm{
+/* .LoginForm{
     padding-left: 30%;
     padding-right: 30%;
     align-content: center;
@@ -6,7 +6,7 @@
 
 .Login-formheader{
     text-align: center;
-}
+} */
 
 input[type=text], input[type=password] {
     width: 100%;

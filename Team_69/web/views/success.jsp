@@ -5,23 +5,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Quiz Submitted</title>
-<link type='text/css' rel='stylesheet' href='../css/studentStyle.css' />
+<%@ include file="../header.jsp"%>
 <link type='text/css' rel='stylesheet' href='../css/bootstrap.min.css' />
-<script type='text/javascript'
-	src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<link type='text/css' rel='stylesheet' href='../css/studentStyle.css' />
 <script type='text/javascript' src='../js/bootstrap.min.js'></script>
-<script type='text/javascript' src='../js/student.js'></script>
 </head>
 <body>
-	Your response has been successfully recorded!!
+
+
 	<div class="container">
-		<div class="row">
-			<form class="col-sm-4" action="/Team_69" method="get">
-				<input class="button" type="submit" value="Go to homepage" />
-			</form>
-			<form class="col-sm-4" action="../Login" method="get">
-				<input class="button" type="submit" value="Logout" />
-			</form>
+		<h2>Your response has been successfully recorded!!</h2>
+		<div class="innerContainer">
+			<%
+					int score = (int) session.getAttribute("grade");
+					if (score == -1)
+						out.println("<h4>We are currently processing your grades. Check back later!!</h4>");
+					else
+						out.println("<h4>Your score is : <b>" + score + "</b></h4>");
+			%>
+				<form class="col-sm-4" method="GET">
+					<%
+						String pathWebContent = request.getContextPath();
+					%>
+					<input id="logoutBtn" class="btn btn-primary" type="submit" name="action"
+						value="Logout" formaction="<%=pathWebContent%>/Login" />
+				</form>
 		</div>
 	</div>
 </body>

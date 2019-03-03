@@ -1,9 +1,11 @@
 package Team76.Entity;
+
 /**
-*  SER516-Project2
-*  @author Janani Anand,
-*  @since 02/19/2019
-*/
+ * SER516-Project2
+ * 
+ * @author Janani Anand,
+ * @since 02/19/2019
+ */
 public class DetailsEntity {
 
 	String quiztitle;
@@ -14,7 +16,7 @@ public class DetailsEntity {
 
 	public DetailsEntity() {
 	}
-	
+
 	public String getQuiztitle() {
 		return quiztitle;
 	}
@@ -38,7 +40,7 @@ public class DetailsEntity {
 	public void setQtype(String qtype) {
 		this.qtype = qtype;
 	}
-	
+
 	public String getShuffleAns() {
 		return shuffleAns;
 	}
@@ -54,9 +56,10 @@ public class DetailsEntity {
 	public void setClocktype(String clockType) {
 		this.clockType = clockType;
 	}
-	
+
 	public String toString() {
-		return "DetailsEntity [quiztitle=" + quiztitle + ", qinstruct=" + qinstruct + ", qtype=" + qtype + ", shuffleAns=" + shuffleAns + ",clockType=" + clockType + "]";
+		return "DetailsEntity [quiztitle=" + quiztitle + ", qinstruct=" + qinstruct + ", qtype=" + qtype
+				+ ", shuffleAns=" + shuffleAns + ",clockType=" + clockType + "]";
 	}
 
 }

@@ -1,12 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.CourseDAOBean;
-import model.CourseVO;
+
 import model.QuizDAOBean;
 import model.QuizVO;
-import model.UserVO;
+
 /**
  * Class CourseDashboardServlet is a controller 
  * that routes the User to Course Dashboard Page from Professor Home Page.
@@ -79,7 +72,13 @@ public class CourseDashboardServlet extends HttpServlet {
 			for(int i=0;i<quizList.size();i++)
 				quiz.put(quizList.get(i).getQuizId(), quizList.get(i).getQuizTitle());
 			session.setAttribute("QuizHashMap", quiz);
-			response.sendRedirect(request.getContextPath()+"/courseDashboard.ftl");  
+			response.sendRedirect(request.getContextPath()+"/courseDashboard.ftl"); 
+			
+			if (request.getParameter("logoutProfile") != null) {  
+			    session.invalidate();
+			    response.sendRedirect("login.jsp");
+			    return; 
+			}
 		}
 		catch(Exception e) {
 			log.info(e.getMessage());

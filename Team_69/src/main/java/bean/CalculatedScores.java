@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class CalculatedScores {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
@@ -28,9 +28,9 @@ public class CalculatedScores {
     private User user;
 
     @Column(name = "scores")
-    private int score;
+    private float score;
 
-    public CalculatedScores( int id, User user, Quiz quiz, int score) {
+    public CalculatedScores( int id, User user, Quiz quiz, float score) {
         this.id = id;
         this.quiz = quiz;
         this.user = user;
@@ -65,11 +65,11 @@ public class CalculatedScores {
         this.user = user;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }
 

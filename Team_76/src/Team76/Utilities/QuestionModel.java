@@ -48,10 +48,8 @@ public class QuestionModel {
 		QuizEntity quizDetails = (QuizEntity) request.getSession().getAttribute("quiz");
 		quizDetails.setQuestionsList(entity);
 		request.getSession().setAttribute("quiz", quizDetails);
-		System.out.println("List is " + request.getSession().getAttribute("quiz").toString());
 	
 		
-		//database.databaseConnect(entity.getQuestion(), concatoptions, entity.getAnswer());
 
 	}
 
