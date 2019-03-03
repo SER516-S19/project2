@@ -8,6 +8,86 @@ import dao.AnswerDAO;
 import dao.ProfessorDAO;
 import dao.QuestionDAO;
 import java.util.List;
+<<<<<<< HEAD
+<<<<<<< HEAD
+import java.util.TimeZone;
+
+=======
+>>>>>>> Team_58
+import javax.servlet.http.HttpServletRequest;
+<<<<<<< HEAD
+=======
+import javax.servlet.http.HttpSession;
+>>>>>>> origin/master
+
+/**
+ * This is the service class for manipulating data models.
+ *
+ * @version 1.0
+ * @since 02-16-2019
+ * @authors Aneesh, Gangadhar,  Viraj
+ */
+public class ProfessorServices {
+	
+	private final String OPTIONS = "option";
+	private static ProfessorDAO professorDAO = new ProfessorDAO();
+<<<<<<< HEAD
+=======
+	
+	/**
+	 * This method verifies question form data and add question details in Question table
+	 */
+	public void storeQuestion(HttpServletRequest request) {
+		boolean isMutiple = false;
+		boolean isCorrectAnswer = false;
+		String question = request.getParameter("question");
+		String questionOption1 = request.getParameter("option1").trim();
+		String questionOption2 = request.getParameter("option2").trim();
+		String questionOption3 = request.getParameter("option3").trim();
+		String questionOption4 = request.getParameter("option4").trim();
+		String points;
+		
+		if(request.getParameter("points").trim() ==  null) {
+			points = "0";
+			System.out.println("Inside points - " + points);
+		}else {
+			points = request.getParameter("points").trim();
+			System.out.println("Inside points - " + points);
+		}
+		
+		String[] correctanswers = request.getParameterValues("options");
+		HttpSession session = request.getSession(true);
+		Quiz quiz = (Quiz)session.getAttribute("quiz");
+		
+		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
+		Answer answer;
+		AnswerDAO answerDAO = new AnswerDAO();
+	
+		if(correctanswers.length > 1)
+			isMutiple = true;
+		else
+			isMutiple = false;
+		
+		int point;
+		if(points ==  null)
+			point = 0;
+		else
+			try {
+				point = Integer.parseInt(points);
+			}catch(NumberFormatException e) {
+				point = 0;
+			}
+		
+		Question quest = new Question(quiz, question,isMutiple, point);
+		QuestionDAO questionDAO = new QuestionDAO();
+		questionDAO.addQuestion(quest);
+		
+<<<<<<< HEAD
+		for(int i=1; i<=optionArray.length; i++) {
+			if(optionArray[i - 1] != null) {
+			isCorrectAnswer = checkAnswerExist(i,correctanswers);
+			answer = new Answer(quest, optionArray[i - 1], isCorrectAnswer);
+=======
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -21,6 +101,7 @@ public class ProfessorServices {
 	
 	private final String OPTIONS = "option";
 	private static ProfessorDAO professorDAO = new ProfessorDAO();
+>>>>>>> origin/master
 	AnswerDAO answerDAO = new AnswerDAO();
 	QuestionDAO questionDAO = new QuestionDAO();
 	
@@ -51,6 +132,8 @@ public class ProfessorServices {
 		Question quest = new Question(quiz, question,isMutiple, point);
 		questionDAO.addQuestion(quest);
 		
+=======
+>>>>>>> Team_58
 		for(int option=1; option<=optionArray.length; option++) {
 			if(optionArray[option - 1] != null) {
 			isCorrectAnswer = checkAnswerExist(option,correctanswers);
@@ -109,11 +192,64 @@ public class ProfessorServices {
 			if(optionArray[option - 1] != null) {
 			isCorrectAnswer = checkAnswerExist(option,correctanswers);
 			answer = new Answer(questionOld, optionArray[option - 1], isCorrectAnswer);
+<<<<<<< HEAD
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
 			answerDAO.addAnswer(answer);
 			}
 		}
 	}
 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	public List<Quiz> getAllQuizzes(){
+		return professorDAO.getAllQuizzes();
+	}
+	
+	public void publishQuiz(int quizId) {
+		professorDAO.publishQuiz(quizId);
+	}
+	
+	/**
+	 * This method checks if correct answer exists in correctAnswers array.
+	 */
+	private boolean checkAnswerExist(int i, String[] correctAnswers) {
+		if(correctAnswers ==  null)
+			return false;
+		for(String s: correctAnswers)
+			if((OPTIONS+i).equals(s))
+				return true;
+		return false;
+	}
+
+	/**
+	 * This method validates provided input from quiz form and insert data into Quiz table.
+	 */
+	public void insertQuizDetails(HttpServletRequest request) {
+		HttpSession sess = request.getSession(true);
+		String quizName = request.getParameter("name");
+        String quizInstructions = request.getParameter("instructions");
+        String quizType = request.getParameter("quiz_type");
+        sess.setAttribute("quizType", quizType);
+        String isTimeLimitSet = request.getParameter("time_limit");
+        String quizTimeLimit = "00:00:00";
+        boolean isShuffled = false;
+        boolean isPublished = false;
+
+        if(isTimeLimitSet!=null)
+        {
+        	String hours = request.getParameter("hours");
+        	String minutes = request.getParameter("minutes");
+        	if(hours.length() == 0)
+        		hours = "0";        	
+        	if(minutes.length() == 0)
+        		minutes = "0";
+<<<<<<< HEAD
+        	
+=======
+>>>>>>> origin/master
 
 	private String fetchValue(HttpServletRequest request, String option) {
 		String questionOption = null;
@@ -163,10 +299,53 @@ public class ProfessorServices {
         		hours = "00";        	
         	if(minutes.length() == 0)
         		minutes = "00";
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
         	if (hours.length() == 1)
         			hours = "0" + hours;
         	if (minutes.length() == 1)
         		minutes = "0" + minutes;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    	
+=======
+>>>>>>> Team_58
+        	quizTimeLimit = hours+":"+minutes+":00";
+        }
+<<<<<<< HEAD
+        if(shuffle !=null)
+        	isShuffled = true;
+        
+		Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
+		professorDAO.insertQuizDetails(quiz);
+		return quiz;
+=======
+        if(request.getParameter("shuffle")!=null)
+        	isShuffled = true;
+        
+		Quiz quiz = new Quiz(quizName, quizInstructions, quizType, quizTimeLimit, isShuffled, isPublished);
+		sess.setAttribute("quiz", quiz);
+		professorDAO.insertQuizDetails(quiz);
+>>>>>>> origin/master
+	}
+
+	public List<Question> getAllQuestionFromQuizID(int quizid){
+		return professorDAO.getAllQuestionFromQuizID(quizid);
+	}
+	
+	/**
+	 * This method generates list containing quiz name, question details and related answers
+	 */
+<<<<<<< HEAD
+=======
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List getAllAnswersFromQueList(List<Question> questions) {
+		List questionData = new ArrayList<>();	
+		for(Question question : questions) {
+			int queID = question.getQuestionId();
+			List questionInfo = new ArrayList<>();
+=======
         	quizTimeLimit = hours+":"+minutes+":00";
         }
         if(shuffle !=null)
@@ -184,11 +363,16 @@ public class ProfessorServices {
 	/**
 	 * This method generates list containing quiz name, question details and related answers
 	 */
+>>>>>>> origin/master
 	public List getAllAnswersFromQuestionList(List<Question> questions) {
 		List questionData = new ArrayList<>();	
 		for(Question question : questions) {
 			int queID = question.getQuestionId();
 			List<Object> questionInfo = new ArrayList<>();
+<<<<<<< HEAD
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
 			questionInfo.add(question.getQuestion());
 			questionInfo.add(question.getPoints());
 			List<Answer> answers = professorDAO.getAllAnswersFromQuestionID(queID);
@@ -196,9 +380,30 @@ public class ProfessorServices {
 			questionInfo.add(question.getQuestionId());
 			questionData.add(questionInfo);
 		}
+<<<<<<< HEAD
+<<<<<<< HEAD
+		
+		
+=======
+>>>>>>> Team_58
 		return questionData;	
 	}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+        
+
+
+}
+	
+
+=======
+		return questionData;	
+	}
+
+>>>>>>> origin/master
 	/**
 	 * This method is used to get quiz details based on the quiz id
 	 */
@@ -211,4 +416,12 @@ public class ProfessorServices {
 		QuestionDAO questionDAO = new QuestionDAO();
 		questionDAO.deleteQuestionByQuestionId(quesID);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+}
+>>>>>>> Team_58
+>>>>>>> origin/master

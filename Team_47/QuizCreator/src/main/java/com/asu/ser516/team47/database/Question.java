@@ -68,4 +68,19 @@ public class Question {
     public void setContent(String content) {
         this.content = content;
     }
+
+    /**
+     * toString
+     * @return string representation of question object
+     */
+    public String toString() {
+        String result = "Question {" + "\n" +
+                "  question_id: " + Integer.toString(question_id) + "\n" +
+                "  quiz_fk: " + Integer.toString(quiz_fk) + "\n" +
+                "  quesType: " + quesType + "\n" +
+                "  points: " + Float.toString(points) + "\n" +
+                "  content: " + content + "\n" +
+                "}";
+        return result;
+    }
 }

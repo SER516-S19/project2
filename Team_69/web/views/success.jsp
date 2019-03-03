@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
+=======
+<<<<<<< HEAD
+    pageEncoding="UTF-8"%>
+=======
+	pageEncoding="UTF-8"%>
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<title>Insert title here</title>
+</head>
+<body>
+Your response has been successfully recorded!!
+=======
+>>>>>>> origin/master
 <title>Quiz Submitted</title>
 <%@ include file="../header.jsp"%>
 <link type='text/css' rel='stylesheet' href='../css/bootstrap.min.css' />
@@ -32,5 +49,9 @@
 				</form>
 		</div>
 	</div>
+<<<<<<< HEAD
+=======
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
 </body>
 </html>

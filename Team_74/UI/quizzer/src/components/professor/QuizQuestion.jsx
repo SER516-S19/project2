@@ -24,7 +24,7 @@ export default function QuizQuestion({
         <QuestionForm question={question} setQuestion={setQuestion} />
       ) : (
         <>
-          <p><div>{question.questionText} <Right>Marks: {question.marks}</Right> </div></p>
+          <div>{question.questionText} <Right>Marks: {question.marks}</Right> </div>
           {question.hasOptions ? (
             question.options.map((option, i) => (
               <label key={i}>

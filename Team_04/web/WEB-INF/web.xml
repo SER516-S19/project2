@@ -3,10 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/team04Integration
     <servlet>
         <servlet-name>QuestionAnswerServlet</servlet-name>
         <servlet-class>student.servlet.QuestionAnswerServlet</servlet-class>
@@ -16,10 +13,6 @@
         <url-pattern>/quiz</url-pattern>
     </servlet-mapping>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/team04Integration
     <servlet>
         <servlet-name>QuizInstructionsServlet</servlet-name>
         <servlet-class>student.servlet.QuizInstructionsServlet</servlet-class>
@@ -37,34 +30,9 @@
         <servlet-name>ViewContentDetailsServlet</servlet-name>
         <url-pattern>/details</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
-    <!--<servlet>-->
-        <!--<servlet-name>CreateContentServlet</servlet-name>-->
-        <!--<servlet-class>content.creator.CreateContentServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>CreateContentServlet</servlet-name>-->
-        <!--<url-pattern>/create</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <!--<servlet>-->
-        <!--<servlet-name>ViewContentDetailsServlet</servlet-name>-->
-        <!--<servlet-class>content.creator.ViewContentDetailsServlet</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>ViewContentDetailsServlet</servlet-name>-->
-        <!--<url-pattern>/details</url-pattern>-->
-    <!--</servlet-mapping>-->
-    <welcome-file-list>
-        <welcome-file>dashboard.jsp</welcome-file>
-    </welcome-file-list>
-
-
-=======
 
     <welcome-file-list>
         <welcome-file>/welcomePage.jsp</welcome-file>
     </welcome-file-list>
 
->>>>>>> origin/team04Integration
 </web-app>

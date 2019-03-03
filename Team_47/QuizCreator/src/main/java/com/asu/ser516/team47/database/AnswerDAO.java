@@ -27,6 +27,15 @@ public interface AnswerDAO {
     List<Answer> getSubmissionAnswers(int submission_fk);
 
     /**
+     * Gets all answers for a submission for a question
+     *
+     * @param submission_fk submission_id
+     * @param question_fk question_id
+     * @return all answers for a submission for a given question
+     */
+    List<Answer> getSubmissionAnswers(int submission_fk, int question_fk);
+
+    /**
      * Gets all answered responses for a question
      *
      * @param question_fk question_id

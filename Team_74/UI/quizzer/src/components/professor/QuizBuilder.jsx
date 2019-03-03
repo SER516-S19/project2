@@ -1,31 +1,32 @@
 import React, { useState } from "react";
-import QuizTitle from "./QuizTitle";
-import QuizQuestion from "./QuizQuestion";
-import { useInputValue } from "../../hooks";
-import Question from "../../models/Question";
-import ListController from "../../controllers/ListController";
 import { FaPlus, FaSave } from 'react-icons/fa';
+import { Col, Row } from 'reactstrap';
+import ListController from "../../controllers/ListController";
+import Question from "../../models/Question";
 import './Questions.css';
+import QuizQuestion from "./QuizQuestion";
 
-export default function QuizBuilder() {
-  const [title, handleChangeTitle] = useInputValue("Enter Quiz Title Here");
+export default function QuizBuilder(props) {
 
   const [questions, setQuestions] = useState([
-     new Question({
+    new Question({
       questionText: "What's your favorite color?",
-       marks:5,
-       options: ["Blue", "Orange", "White", "Purple"]
-     })
-    
+      marks: 5,
+      options: ["Blue", "Orange", "White", "Purple"]
+    })
   ]);
 
   const listController = new ListController(questions, setQuestions);
 
-  return (
-    <div className="small-container">
-      <QuizTitle title={title} handleChangeTitle={handleChangeTitle} />
+  const myHandler = (e, props) => {
+    listController.setInstructions(props.location.state.data);
+    listController.submit();
+  }
 
-      <ol>
+  return (
+
+    <div className="small-container">
+      <ol className="spacer">
         {questions.map((question, i) => (
           <QuizQuestion
             key={question.id}
@@ -38,18 +39,21 @@ export default function QuizBuilder() {
         ))}
       </ol>
 
-      <div>
-      <button onClick={() => listController.add(new Question())}>
-        <span><FaPlus /></span>
-        Add Question
+      <Row>
+        <Col>
+          <button onClick={() => listController.add(new Question())}>
+            <span><FaPlus /></span>
+            Add Question
       </button>
+        </Col>
 
-      <span>   </span>
-     <button onClick={() => listController.submit()}>
-        <span><FaSave /></span>
-         Create Quiz
+        <Col>
+          <button onClick={(e) => myHandler(e, props)}>
+            <span><FaSave /></span>
+            Create Quiz
       </button>
-     </div>
+        </Col>
+      </Row>
     </div>
   );
 }

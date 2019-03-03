@@ -15,7 +15,15 @@ import javax.persistence.*;
 public class ResponseStatistics {
 
     @Id
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+<<<<<<< HEAD
+    @GeneratedValue(strategy = GenerationType.AUTO)
+=======
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
     @Column(name = "Response_id", nullable = false)
     private int id;
 

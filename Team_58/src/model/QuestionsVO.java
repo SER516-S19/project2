@@ -45,7 +45,9 @@ public class QuestionsVO {
 	 */
 	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
 			String incorrectAnswer3, String question) {
-		this.questionId = questionId;
+
+		this.questionId = qId;
+
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.incorrectAnswer1 = incorrectAnswer1;
@@ -53,6 +55,18 @@ public class QuestionsVO {
 		this.incorrectAnswer3 = incorrectAnswer3;
 		this.totalPoints = totalPoints;
 	}
+
+	
+	/**
+	 * Constructor for rendering multiple answer questions.
+	 * 
+	 * Takes the jsonObj answers as individual strings.
+	 * @author Aditya Samant
+	 * @version 1.0
+	 * @date 02/27/2019
+	 * */
+	 
+	
 
 	public int getQuizId() {
 		return quizId;

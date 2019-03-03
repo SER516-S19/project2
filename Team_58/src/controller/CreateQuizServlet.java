@@ -1,11 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -14,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.CreateQuizVO;
 import model.QuizDAOBean;
 import model.QuizVO;
 
@@ -23,6 +18,7 @@ import model.QuizVO;
  * after Course Dashboard.
  * 
  * @author carnic
+ * @author narenkumarKonchada
  * @version 1.1
  * @date 02/21/2019
  **/
@@ -59,25 +55,35 @@ public class CreateQuizServlet extends HttpServlet {
 		try {
         	String quizTitle = request.getParameter("quizTitle");
         	String quizInstructions = request.getParameter("quizInstructions");
-        	String quizScheduledDate = request.getParameter("quizScheduledDate");
+
+        	/**
+        	 * Convert from string to Date object 
+        	 * 
+        	 */
+        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        	java.util.Date util_quizScheduledDate = sdf.parse( request.getParameter("quizScheduledDate") );
+        	java.sql.Date quizScheduledDate = new java.sql.Date(util_quizScheduledDate.getTime());
         	int assignedTime = Integer.parseInt(request.getParameter("assignedTime"));
         	boolean isShuffled = Boolean.valueOf(request.getParameter("isShuffled"));
         	
     		HttpSession session = request.getSession();
     		int courseId = (int) session.getAttribute("courseId");
-    		
-
-    		CreateQuizVO createQuizVO = new CreateQuizVO(courseId, quizTitle, quizInstructions, quizScheduledDate, 0, isShuffled, assignedTime, false);
-    		
-    		QuizDAOBean obj = new QuizDAOBean();
-    		obj.insertingQuizDetails(createQuizVO);
+    		QuizVO createQuizVO = new QuizVO(courseId, 0, false, assignedTime, quizInstructions, quizScheduledDate, isShuffled, quizTitle);
+    		QuizDAOBean quizDAOBean = new QuizDAOBean();
+    		quizDAOBean.insertingQuizDetails(createQuizVO);
     		
     		System.out.println(request.getContextPath()+"/creatQuiz.ftl");
     		
-    		int quizId = obj.gettingQuizId(createQuizVO);
+    		int quizId = quizDAOBean.gettingQuizId(createQuizVO);
     		
 			session.setAttribute("quizId", quizId);
 			response.sendRedirect(request.getContextPath() + "/createQuestions.ftl");
+			
+			if (request.getParameter("logoutProfile") != null) {  
+			    session.invalidate();
+			    response.sendRedirect("login.jsp");
+			    return; 
+			}
     		
 		} catch (Exception e) {
 			log.info(e.getMessage());

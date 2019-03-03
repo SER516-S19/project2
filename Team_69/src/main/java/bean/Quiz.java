@@ -14,9 +14,20 @@ import javax.persistence.*;
 @Table(name = "Quiz")
 public class Quiz {
 
+<<<<<<< HEAD
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+<<<<<<< HEAD
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+=======
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
     @Column(name = "Quiz_Id", nullable = false)
     private int quizId;
 
