@@ -27,10 +27,31 @@
 	</div>
 	<%
 
-
+    Cookie[] cookies = request.getCookies();
+    Cookie cookie = null;
+    String 	enrolled_id = "";
+    String user_name ="";
+    for (int i = 0; i < cookies.length; i++) {
+        cookie = cookies[i];
+        if(cookie.getName().equals("session-user")){
+        	user_name = cookie.getValue();
+        	break;
+        }
+        
+     }
+    if(user_name.length()>0){
+     List<Enrolled> enrolled=new EnrolledDAOImpl().getStudentEnrollment(user_name);
+     if(enrolled.size()>0)
+     enrolled_id=String.valueOf(enrolled.get(0).getEnrolled_id());
+     else
+     	enrolled_id = "1";
+    }
+    else{
+    	enrolled_id = "1";
+    }
   	Object quizid =  request.getSession().getAttribute("quizid");
 	String quizid1= String.valueOf(quizid);
-  	Object enrolled_id =  request.getSession().getAttribute("enrolled_id");
+  	
 	String 	enrolled_id1  = String.valueOf(enrolled_id);
 	String HTMLContent = "";
 	String content="";
@@ -81,7 +102,7 @@
 	<div style="top:100px;height:60px; display: flex; align-items: left; justify-content:right;">
 		<a href="#" class="rainbow-button" alt="Previous" id="prevQ1"></a>  -->
 	</div>
-		<button  type="button" onClick="execAjax(<%= quizid1%>,<%=enrolled_id1 %>)" class="nextQ" style="background-color:#13110;margin:0 0 0 700px;height:50px;width:200px;bottom:300px;left:300px">Submit</button>
+		<button  type="button" onClick="execAjax(<%= quizid1%>,<%=enrolled_id %>)" class="nextQ" style="background-color:#13110;margin:0 0 0 700px;height:50px;width:200px;bottom:300px;left:300px">Submit</button>
 	</form>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="js/question.js"></script>

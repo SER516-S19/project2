@@ -34,7 +34,7 @@
 	 					"<h3 class=\"question_num\">Attempt- "+"%s"+"</h3>"+
 				"<h3> Score: %s pts</h4>"+
 			"</div>"+
-				"</div>",String.valueOf(submission.getAttempt()),String.valueOf(submission.getScore())));
+				"</div>",String.valueOf(i),String.valueOf(submission.getScore())));
 		
 	 	
 	}
