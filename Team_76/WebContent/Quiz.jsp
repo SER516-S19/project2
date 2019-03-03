@@ -38,19 +38,19 @@
 						<h3><%=que.getQuestions()%></h3>
 						<label for="<%=que.getQuestionId() + "a"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="1" name="<%="options"+ que.getQuestionId()%>"
+							type="radio" value="1" name="<%="options" + que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "a"%>" required> <%=options[0]%></label>
 						<label for="<%=que.getQuestionId() + "b"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="2" name="<%="options"+ que.getQuestionId()%>"
+							type="radio" value="2" name="<%="options" + que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "b"%>" required> <%=options[1]%></label>
 						<label for="<%=que.getQuestionId() + "c"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="3" name="<%="options"+ que.getQuestionId()%>"
+							type="radio" value="3" name="<%="options" + que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "c"%>" required> <%=options[2]%></label>
 						<label for="<%=que.getQuestionId() + "d"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="4" name="<%="options"+ que.getQuestionId()%>"
+							type="radio" value="4" name="<%="options" + que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "d"%>" required> <%=options[3]%></label>
 						<%
 							}
@@ -58,9 +58,9 @@
 					</div>
 					<div class="row" style="margin: 15px;">
 						<div class="col">
-						<input type ="hidden" name = "action" value = "SubmitQuiz">
 							<input type="submit" style="margin-left: 20px"
-								class="btn btn-success btn-block">Submit</button>
+								class="btn btn-success btn-block" value="Submit Quiz"></input> <input
+								type="hidden" name="action" value="SubmitQuiz">
 						</div>
 					</div>
 				</div>

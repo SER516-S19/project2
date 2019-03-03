@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import Team76.Entity.GradeEntity;
 import Team76.Entity.Questions;
 import Team76.Entity.QuizEntity;
+import Team76.Entity.UserEntity;
 import Team76.Utilities.FetchQuestionsQuery;
 import Team76.Utilities.GradeModel;
 import Team76.Utilities.QuizInstructModel;
@@ -34,6 +35,13 @@ public class StudentController extends HttpServlet {
 		if (action == null || action.isEmpty()) {
 			System.out.println("**** no acton");
 			response.sendRedirect("login.jsp");
+		} else if (action.equalsIgnoreCase("ViewGrade")) {
+			UserEntity user = (UserEntity) request.getSession().getAttribute("user");
+			List<GradeEntity> grades = new GradeModel().getGrade(user.getUserId());
+			request.getSession().setAttribute("grades", grades);
+			response.sendRedirect("StudentViewGrade.jsp");
+		} else if (action.equalsIgnoreCase("DashBoard")) {
+			response.sendRedirect("StudentDash.jsp");
 		} else if (action.equalsIgnoreCase("ViewQuiz")) {
 			System.out.println("**** attempt quiz");
 			List<QuizEntity> quizzes = null;
@@ -65,7 +73,7 @@ public class StudentController extends HttpServlet {
 			request.getSession().setAttribute("quiztaken", quiztaken);
 			response.sendRedirect("QuizInstruct.jsp");
 		} else if (action.equalsIgnoreCase("AttemptQuiz")) {
-			String quizId = (String)request.getSession().getAttribute("quizId");
+			String quizId = (String) request.getSession().getAttribute("quizId");
 			try {
 				List<Questions> questions = new FetchQuestionsQuery().fetchQuestions(quizId);
 				request.getSession().setAttribute("Question", questions);
@@ -74,25 +82,10 @@ public class StudentController extends HttpServlet {
 				response.getWriter().println("<font color=red>An Exception occured.</font>");
 				response.sendRedirect("Login.jsp");
 			}
-		} else if (action.equalsIgnoreCase("grade")) {
-			System.out.println("**** show grade");
-			String studentGrade = request.getParameter("grade");
-			System.out.println("**** grade: " + studentGrade);
-			GradeEntity grade = null;
-			GradeModel showGrade = null;
-			try {
-				showGrade = new GradeModel();
-				grade = showGrade.getGrade(studentGrade);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			request.getSession().setAttribute("grade", grade);
-			response.sendRedirect("Grade.jsp");
-		}else if(action.equalsIgnoreCase("SubmitQuiz")) {
+		} else if (action.equalsIgnoreCase("SubmitQuiz")) {
 			response.getWriter().println("<font color=red>Quiz submitted.</font>");
 			response.sendRedirect("StudentDash.jsp");
-		}else {
+		} else {
 			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
 		}
