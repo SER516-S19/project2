@@ -5,10 +5,15 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.asu.ser516.team47.database.Professor;
+import com.asu.ser516.team47.database.ProfessorDAOImpl;
+import com.asu.ser516.team47.database.Student;
+import com.asu.ser516.team47.database.StudentDAOImpl;
 import com.asu.ser516.team47.servlet.LoginServlet;
 import com.asu.ser516.team47.servlet.QuizCreationServlet;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
+import com.asu.ser516.team47.utils.PasswordStorage;
 import com.asu.ser516.team47.utils.SQLScriptRunner;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
@@ -50,6 +55,21 @@ public class Main {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+        // PLEASE DONT REMOVE. THIS IS FOR FRONTEND TEAM TO TEST RIGHT NOW - Trevor
+        StudentDAOImpl studentDAO = new StudentDAOImpl();
+        Student harryPotter = studentDAO.getStudent("boywholived");
+        String newPassword = PasswordStorage.createHash("butter");
+        harryPotter.setHashedpass(newPassword);
+        studentDAO.updateStudent(harryPotter);
+        System.out.println(harryPotter.toString());
+
+        ProfessorDAOImpl professorDAO = new ProfessorDAOImpl();
+        Professor professor = professorDAO.getProfessor("xXKitten_OwnerXx");
+        String newProfPassword = PasswordStorage.createHash("cats");
+        professor.setHashedpass(newProfPassword);
+        professorDAO.updateProfessor(professor);
+        System.out.println(professor.toString());
 
         tomcat.start();
         tomcat.getServer().await();
