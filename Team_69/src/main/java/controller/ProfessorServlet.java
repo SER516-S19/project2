@@ -125,7 +125,12 @@ public class ProfessorServlet extends HttpServlet {
 		}
 		else if ("addNextQuestion".equals(flag) || "saveAndExit".equals(flag)) {
 			String question = request.getParameter("question");
-			String[] optionArray = request.getParameterValues("questionOptions");
+			String questionOptions1 = request.getParameter("questionOptions1");
+			String questionOptions2 = request.getParameter("questionOptions2");
+			String questionOptions3 = request.getParameter("questionOptions3");
+			String questionOptions4 = request.getParameter("questionOptions4");
+			
+			String[] optionArray = {questionOptions1, questionOptions2, questionOptions3,questionOptions4};
 			String points;
 			if(request.getParameter("points") == null) 
 				points = "0";
