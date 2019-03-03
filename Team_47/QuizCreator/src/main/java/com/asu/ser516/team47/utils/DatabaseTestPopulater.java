@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Uses DAOs to populate the db. Meant to eventually replace SQLScriptRunner and exampleQuiz.sql
@@ -58,6 +59,18 @@ public class DatabaseTestPopulater {
             new ChoiceDAOImpl().insertChoice(choiceB);
             new ChoiceDAOImpl().insertChoice(choiceC);
             new ChoiceDAOImpl().insertChoice(choiceD);
+
+            //Creating example submission and answers
+            Submission sub = new Submission(-1, quiz.getQuiz_id(), enrollment.getEnrolled_id(), 30,
+                    new Date(), 45, 1);
+            new SubmissionDAOImpl().insertSubmission(sub);
+            Answer answerToQues1 = new Answer(-1, sub.getSubmission_id(), multiChoice.getQuestion_id(),
+                    trueChoice.getChoice_id());
+            Answer choseAOnQues2 = new Answer(-1, sub.getSubmission_id(), multiAnswer.getQuestion_id(),
+                    choiceA.getChoice_id());
+            Answer choseBOnQues2 = new Answer(-1, sub.getSubmission_id(), multiAnswer.getQuestion_id(),
+                    choiceB.getChoice_id());
+
         }  catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("[ERROR] problem hashing password");
         }
@@ -83,4 +96,6 @@ public class DatabaseTestPopulater {
             System.out.println("Error hashing password!");
         }
     }
+
+
 }

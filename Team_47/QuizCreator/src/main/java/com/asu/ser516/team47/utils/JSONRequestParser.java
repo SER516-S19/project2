@@ -33,6 +33,7 @@ public class JSONRequestParser {
         String line;
         while ((line = bufReader.readLine()) != null) {
             strBldr.append(line);
+            System.out.println(line);
         }
 
         return (JSONObject) new JSONParser().parse(strBldr.toString());
