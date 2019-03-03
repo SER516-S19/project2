@@ -15,10 +15,7 @@
 <h1>
     <%=request.getAttribute("action")%> Question
 </h1>
-<script>
-    var a = ${choice}-1;
-    document.getElementsByName('choice')[a].checked = "true";
-</script>
+
 <p class="error"><b> Points to be noted:</b> Make sure you fill out all fields & the score should be a number.
 </p>
 <div class="container">
@@ -42,7 +39,7 @@
                 <label for="lname" name="option_a">Answer text A: </label>
             </div>
             <div class="col-75">
-                <input type="radio" id="choice_1" name="choice" value="1">
+                <input type="radio" id="choice_1" name="choice" value="1" checked>
                 <input type="text" id="1" name="1" class="formtext"
                        value="${option_a}">
             </div>
@@ -91,7 +88,9 @@
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/validation.js" type="text/javascript"></script>
+<script src="js/validation.js" type="text/javascript">
+    document.getElementById("choice_${choice}").setAttribute("checked","true");
+</script>
 
 </body>
 </html>

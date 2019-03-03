@@ -99,11 +99,12 @@ input[type=submit] {
         
         .btn{
             background-color: #0336FF;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
         }
         
         .btn-disabled{
