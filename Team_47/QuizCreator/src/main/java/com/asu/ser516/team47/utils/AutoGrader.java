@@ -28,7 +28,7 @@ public class AutoGrader {
 
         for (Question question : questions) {
             try {
-                if (question.getQuesType().equals("MC")) {
+                if (question.getQuesType().toUpperCase().equals("MC")) {
                     points += gradeMultipleChoice(question) ? question.getPoints() : 0;
                 } else {
                     points += gradeMultipleAnswer(question) ? question.getPoints() : 0;
@@ -51,7 +51,8 @@ public class AutoGrader {
                     "a multiple choice question");
         }
         Answer answer = answers.get(0);
-        return choiceDAO.getChoice(answer.getChoice_fk()).isCorrect();
+        Choice choice = choiceDAO.getChoice(answer.getChoice_fk());
+        return choice.isCorrect();
     }
 
     public boolean gradeMultipleAnswer(Question question) {

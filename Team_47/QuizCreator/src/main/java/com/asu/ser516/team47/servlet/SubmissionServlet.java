@@ -124,19 +124,16 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(401, "Your submission was past the due date");
         }
 
-
-        //Okay so there are really only 4 steps that need to be done to grade an exam.
-        //1. Using the `submission_id` and an instance of the `SubmissionDAOImpl`, obtain a business object for a `Submission` using `getSubmission(submission_id)`
+        // Grade quiz submission
         SubmissionDAOImpl submissionDAO = new SubmissionDAOImpl();
-        Submission sub = submissionDAO.getSubmission(submissionID);
-        //2. Create an instance of `AutoGrader` using the `submission_id` and obtain the points for the submission using `gradeSubmission()`
-        AutoGrader ag =  new AutoGrader(submissionID);
-        float points = ag.gradeSubmission();
-        //3. Using the `Submission` object from step one, set the value of `score` using `setScore(score)`
-        sub.setScore(points);
-        //4. Using the `SubmissionDAOImpl` instance from step 1, update the submission in the database using `updateSubmission(submission)`
-        if(!submissionDAO.updateSubmission(sub))
-        {
+        Submission submission = submissionDAO.getSubmission(submissionID);
+
+        AutoGrader grader =  new AutoGrader(submissionID);
+        float points = grader.gradeSubmission();
+
+        submission.setScore(points);
+
+        if(!submissionDAO.updateSubmission(submission)) {
             response.sendError(500);
             return;
         }
