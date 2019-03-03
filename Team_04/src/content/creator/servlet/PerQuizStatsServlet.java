@@ -30,6 +30,7 @@ public class PerQuizStatsServlet extends HttpServlet {
       request.setAttribute("classavg", classAvg);
       request.setAttribute("studentStrength", studentStrength);
       request.setAttribute("highestScore", highestScore);
+      request.setAttribute("quizId",quizId);
       request.getRequestDispatcher("viewPerQuizStats.jsp").forward(request,response);
     } catch (IOException e) {
       e.printStackTrace();
