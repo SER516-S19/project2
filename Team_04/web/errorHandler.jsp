@@ -11,7 +11,8 @@
     <title>Error</title>
     <style>
         body{
-            background: #4a154b;
+            background: #8C1D40
+        ;
         }
 
         .errMsg
@@ -26,10 +27,10 @@
 <%
     String errorMessage = "";
     if(request.getAttribute("errorResponse").toString().equalsIgnoreCase("400")) {
-        errorMessage = "BAD REQUEST ...RETRY AGAIN.!";
+        errorMessage = "Bad Request... Retry Again...!";
     }
     if(request.getAttribute("errorResponse").toString().equalsIgnoreCase("loginFailed")) {
-        errorMessage = "LoginFailed  ...RETRY AGAIN.!";
+        errorMessage = "Login Failed  ...Retry Again...!";
     }
 
 

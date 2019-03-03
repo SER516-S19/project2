@@ -59,7 +59,8 @@
         }
     </script>
 </head>
-<body style="background-color: #4a154b">
+<body style="background-color:#8C1D40">
+">
 <div class="container">
     <div class="col-xs-12 col-sm-8 col-md-4 col-lg-4 col-centered">
         <div class="jumbotron">

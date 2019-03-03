@@ -16,7 +16,8 @@
 </head>
 <style>
     .col-md-8 {
-        background-color: #4a154b;
+        background-color: #8C1D40
+    ;
         height: 100%;
 
     }
@@ -37,7 +38,8 @@
     }
 
     body {
-        background-color: rgb(218, 219, 219);
+        background-color: #8C1D40
+
     }
 
     .row {
