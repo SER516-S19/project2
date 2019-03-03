@@ -184,6 +184,29 @@ public class SubmissionServlet extends HttpServlet {
     }
 
     /**
+     * Updates a submission found in the database based on quizID, enrollID, and attempt
+     * with a new endtime
+     * @param quizID    quiz ID
+     * @param enrollID  enrollment ID
+     * @param attempt   attempt number
+     * @param endTime   date quiz ended
+     * @return
+     */
+    private boolean updateSubmission(int quizID, int enrollID, int attempt, Date endTime) {
+        boolean hasSucceeded = false;
+        SubmissionDAOImpl submitter = new SubmissionDAOImpl();
+        List<Submission> submissions = submitter.getEnrolledQuizSubmissions(enrollID, quizID);
+
+        for (Submission s : submissions) {
+            if(s.getAttempt() == attempt){
+                s.setEnd_time(endTime);
+                hasSucceeded = submitter.updateSubmission(s);
+            }
+        }
+        return hasSucceeded;
+    }
+
+    /**
      * Retrieves a list of choice IDs from the servlet and creates Answer objects
      * that are passed into the database.
      * @param choiceList    list of choice IDs
