@@ -17,6 +17,9 @@ import java.util.List;
  * @since 03/02/2019
  */
 public class DatabaseTestPopulater {
+    /**
+     * populates the database with test entries
+     */
     public static void populateDB() {
         try {
             //Create student, professor, and course
@@ -70,12 +73,19 @@ public class DatabaseTestPopulater {
                     choiceA.getChoice_id());
             Answer choseBOnQues2 = new Answer(-1, sub.getSubmission_id(), multiAnswer.getQuestion_id(),
                     choiceB.getChoice_id());
+            AnswerDAOImpl aDAO = new AnswerDAOImpl();
+            aDAO.insertAnswer(answerToQues1);
+            aDAO.insertAnswer(choseAOnQues2);
+            aDAO.insertAnswer(choseBOnQues2);
 
         }  catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("[ERROR] problem hashing password");
         }
     }
 
+    /**
+     * Updates legacy test entries to have valid hashed passwords
+     */
     public static void updateExampleUsersToValidPasswords(){
         try {
             // PLEASE DONT REMOVE. THIS IS FOR FRONTEND TEAM TO TEST RIGHT NOW - Trevor
@@ -94,6 +104,48 @@ public class DatabaseTestPopulater {
             System.out.println(professor.toString());
         } catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("Error hashing password!");
+        }
+    }
+
+    /**
+     * prints everything in the db.
+     */
+    public static void printEverything(){
+        List<Professor> profs = new ProfessorDAOImpl().getAllProfessors();
+        for (Professor prof : profs){
+            System.out.println(profs.toString());
+        }
+        List<Course> courses = new CourseDAOImpl().getAllCourses();
+        for (Course course : courses){
+            System.out.println(course.toString());
+        }
+        List<Student> studs = new StudentDAOImpl().getAllStudents();
+        for (Student stud : studs){
+            System.out.println(stud.toString());
+        }
+        List<Enrolled> enrolls = new EnrolledDAOImpl().getAllEnrollment();
+        for (Enrolled enr : enrolls){
+            System.out.println(enr.toString());
+        }
+        List<Quiz> quizzes = new QuizDAOImpl().getAllQuizzes();
+        for (Quiz qz : quizzes){
+            System.out.println(qz.toString());
+        }
+        List<Question> quests = new QuestionDAOImpl().getAllQuestions();
+        for (Question q : quests){
+            System.out.println(q.toString());
+        }
+        List<Choice> choices = new ChoiceDAOImpl().getAllChoices();
+        for (Choice c : choices){
+            System.out.println(c.toString());
+        }
+        List<Submission> subs = new SubmissionDAOImpl().getAllSubmissions();
+        for (Submission sub : subs){
+            System.out.println(sub.toString());
+        }
+        List<Answer> as = new AnswerDAOImpl().getAllAnswers();
+        for (Answer a : as){
+            System.out.println(a.toString());
         }
     }
 

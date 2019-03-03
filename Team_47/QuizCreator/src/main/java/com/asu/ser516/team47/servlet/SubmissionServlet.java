@@ -138,9 +138,7 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
         response.setStatus(httpCode);
-
     }
-
 
     /**
      * Creates a Submission object based on the data from the parameters and

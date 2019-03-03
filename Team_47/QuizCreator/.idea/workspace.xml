@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79a92360-f596-40f0-87ae-abc82d591358" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuizCreator.iml" afterPath="$PROJECT_DIR$/QuizCreator.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/DatabaseTestPopulater.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/DatabaseTestPopulater.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java" afterPath="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,59 +15,43 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/QuizCreator$Main.coverage" NAME="Main Coverage Results" MODIFIED="1551594473251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.asu.ser516.team47.main.*</FILTER>
+    </SUITE>
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1152">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-              <folding>
-                <marker date="1551590208563" expanded="true" signature="2680:4178" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="2741:4165" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="2762:3139" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3002:3117" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3160:4146" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3315:3840" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3352:3467" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3622:3807" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3657:3776" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3869:4124" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3901:4094" ph="..." />
-                <marker date="1551590208563" expanded="true" signature="3980:4061" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SubmissionServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="101" column="41" lean-forward="false" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+            <state relative-caret-position="540">
+              <caret line="139" column="37" lean-forward="false" selection-start-line="139" selection-start-column="37" selection-end-line="139" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-                <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-                <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-                <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-                <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-                <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-                <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-                <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JSONRequestParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java">
+      <file leaf-file-name="quizstat.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/quizstat.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,7 +60,7 @@
       <file leaf-file-name="QuizCreationServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1749">
+            <state relative-caret-position="2142">
               <caret line="130" column="44" lean-forward="false" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="44" />
               <folding />
             </state>
@@ -89,8 +70,8 @@
       <file leaf-file-name="DatabaseTestPopulater.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/DatabaseTestPopulater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="71" column="44" lean-forward="false" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
+            <state relative-caret-position="1854">
+              <caret line="110" column="35" lean-forward="false" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -99,30 +80,31 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-677">
-              <caret line="71" column="7" lean-forward="false" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
+            <state relative-caret-position="385">
+              <caret line="65" column="43" lean-forward="false" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1551592232794" expanded="true" signature="3169:7987" ph="{...}" />
-                <marker date="1551592232794" expanded="true" signature="3279:3313" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="3743:3777" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="4624:4660" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="5117:5151" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="5576:5611" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="5980:6015" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="6484:6522" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="7173:7207" ph=" CREATE statement" />
-                <marker date="1551592232794" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
-                <marker date="1551592232794" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="2923:2960" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="3169:7987" ph="{...}" />
+                <marker date="1551594381154" expanded="true" signature="3279:3313" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="3743:3777" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="4624:4660" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="5117:5151" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="5576:5611" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="5980:6015" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="6484:6522" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="7173:7207" ph=" CREATE statement" />
+                <marker date="1551594381154" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
+                <marker date="1551594381154" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
               </folding>
             </state>
           </provider>
@@ -131,7 +113,7 @@
       <file leaf-file-name="Professor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Professor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-173">
+            <state relative-caret-position="162">
               <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding />
             </state>
@@ -141,34 +123,24 @@
       <file leaf-file-name="ProfessorDAOImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/ProfessorDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="1098">
               <caret line="66" column="69" lean-forward="false" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
-              <folding>
-                <marker date="1551590208579" expanded="true" signature="866:890" ph=" SELECT statement (PROFESSORS)" />
-                <marker date="1551590208579" expanded="true" signature="1812:1836" ph=" SELECT statement (PROFESSORS)" />
-                <marker date="1551590208579" expanded="true" signature="2761:2907" ph=" INSERT statement (PROFESSORS)" />
-                <marker date="1551590208579" expanded="true" signature="3969:4095" ph=" UPDATE statement (PROFESSORS)" />
-                <marker date="1551590208579" expanded="true" signature="5239:5278" ph=" DELETE statement (PROFESSORS)" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmissionDAOImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/SubmissionDAOImpl.java">
+      <file leaf-file-name="StudentDAOImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/StudentDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2236">
-              <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
+            <state relative-caret-position="202">
+              <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
               <folding>
-                <marker date="1551573595909" expanded="true" signature="872:897" ph=" SELECT statement (SUBMISSIONS)" />
-                <marker date="1551573595909" expanded="true" signature="1853:1896" ph=" SELECT statement (SUBMISSIONS)" />
-                <marker date="1551573595909" expanded="true" signature="2920:2967" ph=" SELECT statement (SUBMISSIONS)" />
-                <marker date="1551573595909" expanded="true" signature="4075:4138" ph=" SELECT statement (SUBMISSIONS)" />
-                <marker date="1551573595909" expanded="true" signature="5197:5246" ph=" SELECT statement (SUBMISSIONS)" />
-                <marker date="1551573595909" expanded="true" signature="6283:6415" ph=" INSERT statement (SUBMISSIONS)" />
-                <marker date="1551573595909" expanded="true" signature="7012:7038" ph=" SELECT statement" />
-                <marker date="1551573595909" expanded="true" signature="7896:8038" ph=" UPDATE statement (SUBMISSIONS)" />
-                <marker date="1551573595909" expanded="true" signature="9277:9322" ph=" DELETE statement (SUBMISSIONS)" />
+                <marker date="1551593295830" expanded="true" signature="844:866" ph=" SELECT statement (STUDENTS)" />
+                <marker date="1551593295830" expanded="true" signature="1790:1831" ph=" SELECT statement (STUDENTS)" />
+                <marker date="1551593295830" expanded="true" signature="2800:2919" ph=" INSERT statement (STUDENTS)" />
+                <marker date="1551593295830" expanded="true" signature="3953:4065" ph=" UPDATE statement (STUDENTS)" />
+                <marker date="1551593295830" expanded="true" signature="5123:5154" ph=" DELETE statement (STUDENTS)" />
               </folding>
             </state>
           </provider>
@@ -177,7 +149,7 @@
       <file leaf-file-name="Submission.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Submission.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
+            <state relative-caret-position="594">
               <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
               <folding />
             </state>
@@ -211,20 +183,21 @@
         <option value="$PROJECT_DIR$/src/SubmissionServlet.java" />
         <option value="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/com/asu/ser516/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/AutoGrader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/DatabaseTestPopulater.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="732" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="67" />
+    <option name="y" value="25" />
+    <option name="width" value="1853" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -244,7 +217,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -295,6 +268,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="team47" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="QuizCreator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QuizCreator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="team47" type="462c0819:PsiDirectoryNode" />
               <item name="servlet" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -310,7 +292,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -584,59 +566,54 @@
       <workItem from="1550874192629" duration="3176000" />
       <workItem from="1550884024381" duration="94000" />
     </task>
+    <task id="LOCAL-00001" summary="Created an example of everything in the db with the new&#10;DatabaseTestPopulator class.">
+      <created>1551594433852</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1551594433852</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="819" y="34" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.4786832" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5083648" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.47652456" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.49163517" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24932542" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32973558" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23097679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Project Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Job Explorer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5550661" sideWeight="0.49810094" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -672,6 +649,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created an example of everything in the db with the new&#10;DatabaseTestPopulator class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created an example of everything in the db with the new&#10;DatabaseTestPopulator class." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -681,8 +662,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/StringUtils.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/Validate.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/ServletHelper.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -690,14 +669,6 @@
           <caret line="41" column="14" lean-forward="false" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -740,20 +711,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="69" column="21" lean-forward="false" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
-          <folding>
-            <marker date="1551590208563" expanded="true" signature="2680:4178" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="2741:4165" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="2762:3139" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3002:3117" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3160:4146" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3315:3840" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3352:3467" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3622:3807" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3657:3776" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3869:4124" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3901:4094" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3980:4061" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -771,14 +729,6 @@
           <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -797,26 +747,27 @@
           <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232794" expanded="true" signature="3169:7987" ph="{...}" />
-            <marker date="1551592232794" expanded="true" signature="3279:3313" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="3743:3777" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="4624:4660" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="5117:5151" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="5576:5611" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5980:6015" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="6484:6522" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7173:7207" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="2923:2960" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="3169:7987" ph="{...}" />
+            <marker date="1551594381154" expanded="true" signature="3279:3313" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="3743:3777" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="4624:4660" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="5117:5151" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="5576:5611" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5980:6015" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="6484:6522" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7173:7207" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
           </folding>
         </state>
       </provider>
@@ -827,14 +778,6 @@
           <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -851,20 +794,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1152">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <marker date="1551590208563" expanded="true" signature="2680:4178" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="2741:4165" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="2762:3139" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3002:3117" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3160:4146" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3315:3840" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3352:3467" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3622:3807" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3657:3776" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3869:4124" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3901:4094" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3980:4061" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -873,22 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/StudentDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding>
-            <marker date="1551592232762" expanded="true" signature="844:866" ph=" SELECT statement (STUDENTS)" />
-            <marker date="1551592232762" expanded="true" signature="1790:1831" ph=" SELECT statement (STUDENTS)" />
-            <marker date="1551592232762" expanded="true" signature="2800:2919" ph=" INSERT statement (STUDENTS)" />
-            <marker date="1551592232762" expanded="true" signature="3953:4034" ph=" UPDATE statement (STUDENTS)" />
-            <marker date="1551592232762" expanded="true" signature="4565:4773" ph="/**...*/" />
-            <marker date="1551592232762" expanded="true" signature="4824:5428" ph="{...}" />
-            <marker date="1551592232762" expanded="true" signature="5053:5084" ph=" DELETE statement (STUDENTS)" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -904,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,26 +827,27 @@
           <caret line="54" column="7" lean-forward="false" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232794" expanded="true" signature="3169:7987" ph="{...}" />
-            <marker date="1551592232794" expanded="true" signature="3279:3313" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="3743:3777" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="4624:4660" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="5117:5151" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="5576:5611" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5980:6015" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="6484:6522" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7173:7207" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="2923:2960" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="3169:7987" ph="{...}" />
+            <marker date="1551594381154" expanded="true" signature="3279:3313" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="3743:3777" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="4624:4660" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="5117:5151" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="5576:5611" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5980:6015" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="6484:6522" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7173:7207" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
           </folding>
         </state>
       </provider>
@@ -944,14 +858,6 @@
           <caret line="71" column="31" lean-forward="false" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -962,14 +868,6 @@
           <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1001,14 +899,6 @@
           <caret line="57" column="46" lean-forward="false" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1027,14 +917,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1045,14 +927,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1063,14 +937,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1091,14 +957,6 @@
           <caret line="41" column="14" lean-forward="false" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1114,20 +972,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1152">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <marker date="1551590208563" expanded="true" signature="2680:4178" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="2741:4165" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="2762:3139" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3002:3117" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3160:4146" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3315:3840" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3352:3467" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3622:3807" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3657:3776" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3869:4124" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3901:4094" ph="..." />
-            <marker date="1551590208563" expanded="true" signature="3980:4061" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1136,54 +981,6 @@
         <state relative-caret-position="300">
           <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="101" column="41" lean-forward="false" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551592232798" expanded="true" signature="4627:5055" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5188:5605" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="5611:5878" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="5936:6451" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6457:6705" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="6750:6875" ph="{...}" />
-            <marker date="1551592232798" expanded="true" signature="6881:7089" ph="/**...*/" />
-            <marker date="1551592232798" expanded="true" signature="7139:7917" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-677">
-          <caret line="71" column="7" lean-forward="false" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1551592232794" expanded="true" signature="3169:7987" ph="{...}" />
-            <marker date="1551592232794" expanded="true" signature="3279:3313" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="3743:3777" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="4624:4660" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="5117:5151" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="5576:5611" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="5980:6015" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="6484:6522" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7173:7207" ph=" CREATE statement" />
-            <marker date="1551592232794" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
-            <marker date="1551592232794" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,7 +994,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/SubmissionDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2236">
+        <state relative-caret-position="1062">
           <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
           <folding>
             <marker date="1551573595909" expanded="true" signature="872:897" ph=" SELECT statement (SUBMISSIONS)" />
@@ -1215,7 +1012,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/JSONRequestParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
+        <state relative-caret-position="558">
           <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
@@ -1223,7 +1020,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/QuizCreationServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1749">
+        <state relative-caret-position="2142">
           <caret line="130" column="44" lean-forward="false" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="44" />
           <folding />
         </state>
@@ -1231,7 +1028,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Professor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-173">
+        <state relative-caret-position="162">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
         </state>
@@ -1239,30 +1036,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/ProfessorDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
+        <state relative-caret-position="1098">
           <caret line="66" column="69" lean-forward="false" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
-          <folding>
-            <marker date="1551590208579" expanded="true" signature="866:890" ph=" SELECT statement (PROFESSORS)" />
-            <marker date="1551590208579" expanded="true" signature="1812:1836" ph=" SELECT statement (PROFESSORS)" />
-            <marker date="1551590208579" expanded="true" signature="2761:2907" ph=" INSERT statement (PROFESSORS)" />
-            <marker date="1551590208579" expanded="true" signature="3969:4095" ph=" UPDATE statement (PROFESSORS)" />
-            <marker date="1551590208579" expanded="true" signature="5239:5278" ph=" DELETE statement (PROFESSORS)" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/Submission.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
+        <state relative-caret-position="594">
           <caret line="35" column="39" lean-forward="false" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/database/StudentDAOImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding>
+            <marker date="1551593295830" expanded="true" signature="844:866" ph=" SELECT statement (STUDENTS)" />
+            <marker date="1551593295830" expanded="true" signature="1790:1831" ph=" SELECT statement (STUDENTS)" />
+            <marker date="1551593295830" expanded="true" signature="2800:2919" ph=" INSERT statement (STUDENTS)" />
+            <marker date="1551593295830" expanded="true" signature="3953:4065" ph=" UPDATE statement (STUDENTS)" />
+            <marker date="1551593295830" expanded="true" signature="5123:5154" ph=" DELETE statement (STUDENTS)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="65" column="43" lean-forward="false" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1551594381154" expanded="true" signature="2923:2960" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="3169:7987" ph="{...}" />
+            <marker date="1551594381154" expanded="true" signature="3279:3313" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="3676:3690" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="3743:3777" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="4557:4571" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="4624:4660" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5050:5064" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="5117:5151" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5509:5523" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="5576:5611" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="5980:6015" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="6313:6327" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="6417:6431" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="6484:6522" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="6998:7012" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7106:7120" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7173:7207" ph=" CREATE statement" />
+            <marker date="1551594381154" expanded="true" signature="7573:7587" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7682:7696" ph=" DELETE statement (CASCADE)" />
+            <marker date="1551594381154" expanded="true" signature="7785:7799" ph=" DELETE statement (CASCADE)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/servlet/SubmissionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="139" column="37" lean-forward="false" selection-start-line="139" selection-start-column="37" selection-end-line="139" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/quizstat.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asu/ser516/team47/utils/DatabaseTestPopulater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="71" column="44" lean-forward="false" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
+        <state relative-caret-position="1854">
+          <caret line="110" column="35" lean-forward="false" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
           <folding />
         </state>
       </provider>
