@@ -111,7 +111,7 @@ function createQuizDict(idTracingList, quizDict) {
 	quizDict['questions'] = []
 	quizDict['title'] = document.getElementById('title_id').value
 	quizDict['course_id'] = 1 // No such field
-	quizDict['instruction'] = document.getElementById('instruction_id').value
+	quizDict['instructions'] = document.getElementById('instruction_id').value
 	quizDict['shuffle'] = true// No such field
 
 	var hrs = document.getElementById('hrs_id').value
