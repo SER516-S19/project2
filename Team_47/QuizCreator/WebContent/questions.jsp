@@ -1,3 +1,9 @@
+
+<%--
+ - Author(s): Krishna Chandu Akula
+ - Description: Displays questions and answers of quiz.
+ - 				student can answer the questions and submit the quiz.
+ --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import="com.asu.ser516.team47.database.*"%>

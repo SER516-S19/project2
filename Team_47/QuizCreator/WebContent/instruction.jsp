@@ -1,4 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+<%--
+ - Author(s): Bhavana vakkalagadda
+ - Description: Displays instruction page and quiz info before start of quiz .
+ --%>
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <%@ page import="com.asu.ser516.team47.database.*"%>
 <%@ page import="java.util.List"%>
