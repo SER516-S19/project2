@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-import static content.creator.operations.DataOps.getNamesFromProperty;
+//import static content.creator.operations.DataOps.getNamesFromProperty;
 import static java.lang.System.getProperties;
 
 import DBUtil.DbHelper;
@@ -45,6 +45,7 @@ public class StatsPerQuizHelper {
     return averageQuizScore;
   }
 
+<<<<<<< HEAD
   public static int getStudentStrengthForQuiz(int quizId) throws SQLException {
     List<QuizResultDAO> scoreOfAllStudents = getScoreOfAllStudents(quizId);
     return scoreOfAllStudents.size();
@@ -70,5 +71,37 @@ public class StatsPerQuizHelper {
     String colName = getNamesFromProperty("QUES_RESPONSE_QUIZ_ID_COL_NAME");
     String tableName = getNamesFromProperty("QUES_RESPONSE_TABLE_NAME");
     return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
+=======
+    /**
+     * This method returns the highest score for the quiz passed as a parameter
+     * @param quizId
+     * @return
+     * @throws SQLException
+     */
+    public static float getHighestScoreForQuiz(int quizId) throws SQLException {
+      List<QuizResultDAO> quizResultDAO = getScoreOfAllStudents(quizId);
+      if(quizResultDAO.isEmpty())
+        return 0;
+      else {
+        float maxScore = quizResultDAO.get(0).getFinalScore();
+        for (QuizResultDAO quizResultRow : quizResultDAO) {
+          float score = quizResultRow.getFinalScore();
+          if (score > maxScore)
+            maxScore = score;
+        }
+        return maxScore;
+      }
+    }
+    private static List<QuizResultDAO> getScoreOfAllStudents(int quizId) throws SQLException {
+      String queryString = "quizId";//getQueryForStudentScore(quizId);
+      return DataOps.getDataQuizResult(queryString);
+    }
+
+    private static String getQueryForStudentScore(int quizId) {
+      String colName = "ques_response";//getNamesFromProperty("QUIZ_RESULT_QUIZ_ID_COL_NAME");
+      String tableName = "ques_response";//getNamesFromProperty("QUIZ_RESULT_TABLE_NAME");
+      return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
+    }
+>>>>>>> parent of 72b2cc1f... Revert.
   }
 }

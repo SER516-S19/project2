@@ -29,14 +29,13 @@ public class ModifyQuestionServlet extends HttpServlet {
             int quesId = Integer.parseInt(request.getParameter("quesid"));
             List<QuizContentDAO> result = FetchQuestionHelper.fetchQues(quizId, quesId);
             String question_text = result.get(0).getQuesDesc();
-            System.out.print(result);
             int score = result.get(0).getMaxScore();
             List<String> option = new ArrayList<>();
             int choice = 0;
             for(int i = 0; i < 4; i++) {
                 option.add(result.get(i).getAnsDesc());
                 if(result.get(i).getCorrect()) {
-                    choice = i;
+                    choice = i + 1;
                 }
             }
             request.setAttribute("action", "Modify");

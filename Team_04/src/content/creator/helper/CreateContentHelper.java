@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-import static content.creator.operations.DataOps.getNamesFromProperty;
+//import static content.creator.operations.DataOps.getNamesFromProperty;
 
 import content.creator.constants.Constants;
 import content.creator.dao.QuizContentDAO;
@@ -42,7 +42,7 @@ public final class CreateContentHelper {
   }
 
   private static String convertToQueryString(QuizContentDAO quizContent) {
-    String tableName = getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
+    String tableName = "quiz_content";//getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
     List<String> colNames = Constants.colNames;
     return String.format(
         "INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s) VALUES (%s, %s, '%s', '%s', %s, '%s', '%s', %s)",
@@ -64,4 +64,28 @@ public final class CreateContentHelper {
         quizContent.getCorrect(),
         quizContent.getMaxScore());
   }
+<<<<<<< HEAD
+=======
+
+  public static List<QuizFormDAO> processPayload(List<QuizQuestionsDAO> quizQuestionsList) {
+       List<QuizFormDAO> quizFormList = new ArrayList<>();
+      int quizId = generateRandom(100, 999);
+      for (QuizQuestionsDAO question: quizQuestionsList) {
+        QuizFormDAO quizForm = new QuizFormDAO();
+        quizForm.setScore(question.getScore());
+        int choice = question.getChoice();
+        quizForm.setQuestionText(question.getQuestion());
+        quizForm.setQuizId(quizId);
+        quizForm.setQuestionId(generateRandom(1000, 9999));
+        Map<Integer, ArrayList<String>> answerBundle = new HashMap<>();
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionA(), choice == 1 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionB(), choice == 2 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionC(), choice == 3 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionD(), choice == 4 ? "true" : "false")));
+        quizForm.setAnswerBundle(answerBundle);
+        quizFormList.add(quizForm);
+      }
+      return quizFormList;
+  }
+>>>>>>> parent of 72b2cc1f... Revert.
 }
