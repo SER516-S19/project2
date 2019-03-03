@@ -1,6 +1,7 @@
 package Team76.Utilities;
 
 import javax.servlet.http.HttpServletRequest;
+import Team76.Entity.ViewGradesEntity;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -12,15 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 */
 
 public class ViewGradesModel {
-	GradeDetailsQuery obj = new GradeDetailsQuery();
 	/* This retrieves the request and response parameters from the UI.
 	 */
 	public void getParameters(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("request is " + request.toString());
-		String quiztitle = (String) request.getParameter("quiztitle");
-		String studentName = (String) request.getParameter("studentName");
-		System.out.println("This is my title"+ request.getParameter("quiztitle"));
-		System.out.println("This is my name"+ request.getParameter("studentName"));
-		obj.connection(quiztitle,studentName);
+		GradeDetailsQuery database = new GradeDetailsQuery();
+		ViewGradesEntity entity = new ViewGradesEntity();
+		entity.setQuizTitle(request.getParameter("quizTitle"));
+		System.out.println("Title is " + entity.getQuizTitle());
+		entity.setStudentName(request.getParameter("studentName"));
+		entity.setQuizDrop(request.getParameter("quizDrop"));
+		
+		System.out.println("Entity is " + entity.toString());
+
+		database.databaseConnect(entity.getQuizTitle(), entity.getStudentName(), entity.getQuizDrop());
 	}
 }
