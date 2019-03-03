@@ -46,7 +46,7 @@ class PiChart extends Component {
     getRandomColor(length) {
         var colors = [];
         while (colors.length < length) {
-                colors.push("#"+((1<<24)*Math.random()|0).toString(16));
+            colors.push("#" + ((1 << 24) * Math.random() | 0).toString(16));
         }
         return colors;
     }
