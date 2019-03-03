@@ -13,20 +13,26 @@
 	QuestionDAOImpl questionDAO = new QuestionDAOImpl();
 	ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
 	//test-case
-	int quiz_id = 1;
+	//int quiz_id = 2;
 	//get quiz id from previous page
-	//int quiz_id = Integer.parseInt(request.getParameter("quiz_id"));
+	int quiz_id = Integer.parseInt(request.getParameter("quiz_id"));
 	System.out.println(quiz_id);
 	Quiz quiz = quizDAO.getQuiz(quiz_id);
+	String quiz_title = quiz.getTitle();
 	System.out.println(quiz);
 	List<Question> questions = questionDAO.getQuizQuestions(quiz.getQuiz_id());
 %>
 <title>Summary Page</title>
 </head>
-<body style="background-color: Silver;">
+<body style="background-color: White;">
 	<h2>
 		<center>Summary Of Quiz created</center>
 	</h2>
+	<form action="quizstat.jsp" method="POST">
+		<input type="text" name="Quiz_title" value=<%=quiz_title%> hidden=true>
+		<input type="text" name="Quiz_id" value=<%=quiz_id%> hidden=true>
+		<input type="submit" name="Submit" value="QuizStats">
+	</form>	
 	<div>
 		<%
 			//create information of the quiz
@@ -55,7 +61,11 @@
 				//create all choices of this question.
 				for (int j = 0; j < choices.size(); j++) {
 					char option = (char) (j + '0' + 17);
-					out.print("<p><center>" + option + " :" + choices.get(j).getContent() + " </center></p>");
+					String checked = "";
+					if(choices.get(j).isCorrect()){
+						checked = "checked";
+					}
+					out.print("<p><input type='checkbox'"+ checked +"</input><center>" + option + " :" + choices.get(j).getContent() + " </center></p>");
 				}
 				out.print("</div>");
 				out.print("<p><center><b> Points: <span id='red'>" + questions.get(i).getPoints()
