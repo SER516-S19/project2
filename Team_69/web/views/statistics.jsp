@@ -53,6 +53,10 @@
   				</c:forEach>
  </table>	
  </c:if>
+ <c:if test="${professorStatistics.statOfEachQuestion.size() <= 0}">
+ <H2>Question Stats</H2>
+ <p>No student has taken the quiz yet!</p>
+ </c:if>
 
 <br>
 
