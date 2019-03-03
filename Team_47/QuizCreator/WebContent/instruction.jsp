@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
+<%@ page import="com.asu.ser516.team47.database.*"%>
+<%@ page import="java.util.List"%>
 <%--
  - Author(s): Bhavana Vakkalagadda
  - Date: 2019/2/20
@@ -31,16 +33,17 @@
 
 	
 	<%
+	String quizId=request.getParameter("quizId");
 Object quizid =  request.getSession().getAttribute("quizid");	
 	String quizid1= String.valueOf(quizid) ;  
 	
-  	Object enrolled_id =  request.getSession().getAttribute("enrolled_id");	
-	String enrolled_id1  =  String.valueOf(enrolled_id);
+  	//Object enrolled_id =  request.getSession().getAttribute("quizId");	
+	//String enrolled_id1  =  String.valueOf(enrolled_id);
 	String HTMLContent = "";
 	String content="";
  	StringBuilder buf = new StringBuilder();
  	
- 	Quiz quiz=new QuizDAOImpl().getQuiz(Integer.valueOf(enrolled_id1));
+ 	Quiz quiz=new QuizDAOImpl().getQuiz(Integer.valueOf(quizId));
  	buf.append(String.format( 	
  			"<div class=\"question-top-area\">"+
  		 			"<div class=\"question-title\""+
@@ -76,8 +79,8 @@ Object quizid =  request.getSession().getAttribute("quizid");
 	
 
 <% 
-request.getSession().setAttribute("quizid",quizid1);
-request.getSession().setAttribute("enrolled_id",enrolled_id1);
+request.getSession().setAttribute("quizid",quizId);
+request.getSession().setAttribute("enrolled_id","1");
 %>   
 <%=html%>
  <div >
