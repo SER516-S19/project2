@@ -89,7 +89,10 @@ public class StudentController extends HttpServlet {
 			}
 			request.getSession().setAttribute("grade", grade);
 			response.sendRedirect("Grade.jsp");
-		} else {
+		}else if(action.equalsIgnoreCase("SubmitQuiz")) {
+			response.getWriter().println("<font color=red>Quiz submitted.</font>");
+			response.sendRedirect("StudentDash.jsp");
+		}else {
 			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
 		}

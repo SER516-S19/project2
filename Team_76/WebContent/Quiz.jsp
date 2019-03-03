@@ -25,7 +25,7 @@
 				class="logout" type="submit" value="LogOut" class="logout">
 		</form>
 	</div>
-	<form action="quiz" method="GET">
+	<form action="StudentController" method="GET">
 		<div class="container">
 			<div class="row" align="center">
 				<div class="col-md"></div>
@@ -58,10 +58,8 @@
 					</div>
 					<div class="row" style="margin: 15px;">
 						<div class="col">
-							<button type="reset" class="btn btn-danger  btn-block">Cancel</button>
-						</div>
-						<div class="col">
-							<button type="submit" style="margin-left: 20px"
+						<input type ="hidden" name = "action" value = "SubmitQuiz">
+							<input type="submit" style="margin-left: 20px"
 								class="btn btn-success btn-block">Submit</button>
 						</div>
 					</div>
