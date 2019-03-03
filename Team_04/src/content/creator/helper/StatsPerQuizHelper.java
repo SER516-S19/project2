@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-import static content.creator.operations.DataOps.getNamesFromProperty;
+//import static content.creator.operations.DataOps.getNamesFromProperty;
 import static java.lang.System.getProperties;
 
 import DBUtil.DbHelper;
@@ -46,6 +46,7 @@ public class StatsPerQuizHelper {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   public static int getStudentStrengthForQuiz(int quizId) throws SQLException {
     List<QuizResultDAO> scoreOfAllStudents = getScoreOfAllStudents(quizId);
     return scoreOfAllStudents.size();
@@ -72,6 +73,8 @@ public class StatsPerQuizHelper {
     String tableName = getNamesFromProperty("QUES_RESPONSE_TABLE_NAME");
     return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
 =======
+=======
+>>>>>>> parent of 72b2cc1f... Revert.
     /**
      * This method returns the highest score for the quiz passed as a parameter
      * @param quizId
@@ -102,6 +105,9 @@ public class StatsPerQuizHelper {
       String tableName = "ques_response";//getNamesFromProperty("QUIZ_RESULT_TABLE_NAME");
       return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
     }
+<<<<<<< HEAD
+>>>>>>> parent of 72b2cc1f... Revert.
+=======
 >>>>>>> parent of 72b2cc1f... Revert.
   }
 }
