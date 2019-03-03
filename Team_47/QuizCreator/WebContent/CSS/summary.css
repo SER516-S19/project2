@@ -19,7 +19,7 @@ div {
 }
 
 #choices {
-	border:2px solid #ff0;
+	background:#ff0;
 	margin:0 auto;
 	width:60%;
 	height: auto;
@@ -37,4 +37,8 @@ div {
     word-wrap:break-word;
     word-break:break-all;
     overflow: hidden;
+}
+
+#check_box_option {
+	float:left;
 }
