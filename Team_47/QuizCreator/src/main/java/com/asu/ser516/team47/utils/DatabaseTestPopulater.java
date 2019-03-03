@@ -64,8 +64,8 @@ public class DatabaseTestPopulater {
             new ChoiceDAOImpl().insertChoice(choiceD);
 
             //Creating example submission and answers
-            Submission sub = new Submission(-1, quiz.getQuiz_id(), enrollment.getEnrolled_id(), 30,
-                    new Date(), 45, 1);
+            Submission sub = new Submission(-1, quiz.getQuiz_id(), enrollment.getEnrolled_id(),
+                    new Date(), new Date(), 45, 1);
             new SubmissionDAOImpl().insertSubmission(sub);
             Answer answerToQues1 = new Answer(-1, sub.getSubmission_id(), multiChoice.getQuestion_id(),
                     trueChoice.getChoice_id());
