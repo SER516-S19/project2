@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-import content.creator.dao.QuizResultsDAO;
+import content.creator.dao.QuizResultDAO;
 import content.creator.operations.DataOps;
 
 import java.sql.SQLException;
@@ -15,8 +15,8 @@ public final class ViewStudentListHelper {
             String colName = "studentId";
             List<Integer> studentList = new ArrayList<>();
             String queryString = getQueryString(tableName, colName);
-            List<QuizResultsDAO> data = DataOps.getDataQuizResult(queryString);
-            for (QuizResultsDAO content: data) {
+            List<QuizResultDAO> data = DataOps.getDataQuizResult(queryString);
+            for (QuizResultDAO content: data) {
                 studentList.add(content.getStudentId());
             }
             return studentList;

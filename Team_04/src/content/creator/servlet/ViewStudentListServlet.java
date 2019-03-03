@@ -21,8 +21,8 @@ public class ViewStudentListServlet extends HttpServlet {
 
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             try {
-                List<Integer> studentId = ViewStudentListHelper.getStudentList();
-                request.setAttribute("studentIds", studentId);
+                List<Integer> studentIdList = ViewStudentListHelper.getStudentList();
+                request.setAttribute("studentIds", studentIdList);
                 request.getRequestDispatcher("viewStudentList.jsp").forward(request,response);
             }
             catch (SQLException e) {
@@ -31,4 +31,4 @@ public class ViewStudentListServlet extends HttpServlet {
         }
     }
 
-}
+
