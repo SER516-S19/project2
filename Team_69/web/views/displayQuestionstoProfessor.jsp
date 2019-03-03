@@ -19,7 +19,7 @@
 		<div>
 			<center>
 				<h3>${requestScope.quizName}</h3>
-				<a href="<%=pathWebcontent %>/ProfessorController?flag=fetchQuizList" class="btn btn-primary">View Quizes</a>
+				<a href="<%=pathWebcontent %>/ProfessorController?flag=fetchQuizList" class="btn btn-primary">View Quizzes</a>
 			</center>
 		</div>
 
@@ -47,10 +47,9 @@
 							
 							<c:choose>
 							<c:when test="${question[2][1].question.quiz.isPublished eq false}">
-								<form action="../Team_69/ProfessorController" method="post">
+								<form action="<%=pathWebcontent %>/ProfessorController" method="post">
 									<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
 									<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
-									<!-- <input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden"> -->
 									<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
 									<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
 									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-danger" >Delete</button>
