@@ -13,7 +13,8 @@ public class UserValidation {
 	public static Boolean validateUser(final UserEntity user) throws Exception {
 		Boolean userValidated = Boolean.FALSE;
 		Connection con = new DatabaseConnection().establishConnection();
-		String query = "SELECT * FROM user WHERE username= '" + user.getUserName();
+		String query = "SELECT * FROM user WHERE username like '" + user.getUserName()+"'";
+		System.out.println(query);
 		Statement statement = con.createStatement();
 		ResultSet rs = statement.executeQuery(query);
 		String password = "";

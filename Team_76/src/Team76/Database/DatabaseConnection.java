@@ -13,7 +13,7 @@ public class DatabaseConnection {
 			e.printStackTrace();
 			}
 		Connection connection = null;	
-		String connectionUrl = "jdbc:mysql://localhost:3306/ser516p2?allowPublicKeyRetrieval=true&useSSL=false";
+		String connectionUrl = "jdbc:mysql://localhost:3306/ser516p2v2?allowPublicKeyRetrieval=true&useSSL=false";
 		String userid = "root";
 		String password = "pass123";  /*local MSQL pswdJ*/
 		
