@@ -1,6 +1,7 @@
 package com.asu.ser516.team47.main;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 
 import java.util.Calendar;
@@ -55,21 +56,13 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        // PLEASE DONT REMOVE. THIS IS FOR FRONTEND TEAM TO TEST RIGHT NOW - Trevor
-        StudentDAOImpl studentDAO = new StudentDAOImpl();
-        Student harryPotter = studentDAO.getStudent("boywholived");
-        String newPassword = PasswordStorage.createHash("butter");
-        harryPotter.setHashedpass(newPassword);
-        studentDAO.updateStudent(harryPotter);
-        System.out.println(harryPotter.toString());
+        try{
+            SQLScriptRunner.run("exampleQuiz.sql");
+        } catch (SQLException | IOException ex) {
+            //Script has already been run
+        }
 
-        ProfessorDAOImpl professorDAO = new ProfessorDAOImpl();
-        Professor professor = professorDAO.getProfessor("xXKitten_OwnerXx");
-        String newProfPassword = PasswordStorage.createHash("cats");
-        professor.setHashedpass(newProfPassword);
-        professorDAO.updateProfessor(professor);
-        System.out.println(professor.toString());
-
+        DatabaseTestPopulater.updateExampleUsersToValidPasswords();
         DatabaseTestPopulater.populateDB();
         tomcat.start();
         tomcat.getServer().await();

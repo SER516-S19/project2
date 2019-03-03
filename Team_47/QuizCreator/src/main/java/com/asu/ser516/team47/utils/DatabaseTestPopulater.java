@@ -1,6 +1,7 @@
 package com.asu.ser516.team47.utils;
 
 import com.asu.ser516.team47.database.*;
+import org.sqlite.SQLiteException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -59,6 +60,27 @@ public class DatabaseTestPopulater {
             new ChoiceDAOImpl().insertChoice(choiceD);
         }  catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("[ERROR] problem hashing password");
+        }
+    }
+
+    public static void updateExampleUsersToValidPasswords(){
+        try {
+            // PLEASE DONT REMOVE. THIS IS FOR FRONTEND TEAM TO TEST RIGHT NOW - Trevor
+            StudentDAOImpl studentDAO = new StudentDAOImpl();
+            Student harryPotter = studentDAO.getStudent("boywholived");
+            String newPassword = PasswordStorage.createHash("butter");
+            harryPotter.setHashedpass(newPassword);
+            studentDAO.updateStudent(harryPotter);
+            System.out.println(harryPotter.toString());
+
+            ProfessorDAOImpl professorDAO = new ProfessorDAOImpl();
+            Professor professor = professorDAO.getProfessor("xXKitten_OwnerXx");
+            String newProfPassword = PasswordStorage.createHash("cats");
+            professor.setHashedpass(newProfPassword);
+            professorDAO.updateProfessor(professor);
+            System.out.println(professor.toString());
+        } catch (PasswordStorage.CannotPerformOperationException cpoe){
+            System.out.println("Error hashing password!");
         }
     }
 }
