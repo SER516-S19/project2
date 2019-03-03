@@ -33,7 +33,7 @@ public class QuizDAOImpl implements QuizDAO {
             stmt = conn.prepareStatement("select * from quizzes");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Quiz(rs.getInt(1), rs.getString(2), rs.getInt(3),
+                rval.add(new Quiz(rs.getInt(1), rs.getInt(2), rs.getString(3),
                         rs.getString(4), rs.getBoolean(5), rs.getInt(6),
                         rs.getDate(7), rs.getDate(8), rs.getString(9),
                         rs.getInt(10), rs.getString(11), rs.getDouble(12)));
@@ -44,11 +44,7 @@ public class QuizDAOImpl implements QuizDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -71,7 +67,7 @@ public class QuizDAOImpl implements QuizDAO {
             stmt.setInt(1, course_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval.add(new Quiz(rs.getInt(1), rs.getString(2), rs.getInt(3),
+                rval.add(new Quiz(rs.getInt(1), rs.getInt(2), rs.getString(3),
                         rs.getString(4), rs.getBoolean(5), rs.getInt(6),
                         rs.getDate(7), rs.getDate(8), rs.getString(9),
                         rs.getInt(10), rs.getString(11), rs.getDouble(12)));
@@ -82,11 +78,7 @@ public class QuizDAOImpl implements QuizDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -110,7 +102,7 @@ public class QuizDAOImpl implements QuizDAO {
             stmt.setInt(1, quiz_id);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                rval = new Quiz(rs.getInt(1), rs.getString(2), rs.getInt(3),
+                rval = new Quiz(rs.getInt(1), rs.getInt(2), rs.getString(3),
                         rs.getString(4), rs.getBoolean(5), rs.getInt(6),
                         rs.getDate(7), rs.getDate(8), rs.getString(9),
                         rs.getInt(10), rs.getString(11), rs.getDouble(12));
@@ -121,11 +113,7 @@ public class QuizDAOImpl implements QuizDAO {
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -145,11 +133,11 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("insert into quizzes (title, course_fk, instructions, shuffle," +
+            stmt = conn.prepareStatement("insert into quizzes (course_fk, title, instructions, shuffle," +
                     " time_limit, date_open, date_close, quiz_type, attempts," +
                     " quiz_group, total_points) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1, quiz.getTitle());
-            stmt.setInt(2, quiz.getCourse_fk());
+            stmt.setInt(1, quiz.getCourse_fk());
+            stmt.setString(2, quiz.getTitle());
             stmt.setString(3, quiz.getInstructions());
             stmt.setBoolean(4, quiz.isShuffle());
             stmt.setInt(5, quiz.getTime_limit());
@@ -177,11 +165,7 @@ public class QuizDAOImpl implements QuizDAO {
             return false;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
     }
 
@@ -198,11 +182,11 @@ public class QuizDAOImpl implements QuizDAO {
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
 
-            stmt = conn.prepareStatement("update quizzes set title=?, course_fk=?, instructions=?," +
+            stmt = conn.prepareStatement("update quizzes set course_fk=?, title=?, instructions=?," +
                     "shuffle=?, time_limit=?, date_open=?, date_close=?, quiz_type=?, attempts=?," +
                     " quiz_group=?, total_points=? where quiz_id=?");
-            stmt.setString(1, quiz.getTitle());
-            stmt.setInt(2, quiz.getCourse_fk());
+            stmt.setInt(1, quiz.getCourse_fk());
+            stmt.setString(2, quiz.getTitle());
             stmt.setString(3, quiz.getInstructions());
             stmt.setBoolean(4, quiz.isShuffle());
             stmt.setInt(5, quiz.getTime_limit());
@@ -221,10 +205,7 @@ public class QuizDAOImpl implements QuizDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 
@@ -253,10 +234,7 @@ public class QuizDAOImpl implements QuizDAO {
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 }

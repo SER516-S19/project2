@@ -44,15 +44,13 @@ public class AnswerDAOImpl implements AnswerDAO{
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
     }
+
+
 
     /**
      * Gets all answers for a submission
@@ -70,6 +68,42 @@ public class AnswerDAOImpl implements AnswerDAO{
             conn = DriverManager.getConnection(__jdbcUrl);
             stmt = conn.prepareStatement("select * from answers where submission_fk = ?");
             stmt.setInt(1, submission_fk);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                rval.add(new Answer(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4)));
+            }
+        }
+        catch (Exception se) {
+            se.printStackTrace();
+            return null;
+        }
+        finally {
+            DbUtils.closeConnections(rs, stmt, conn);
+        }
+
+        return rval;
+    }
+
+    /**
+     * Gets all answers for a submission for a question
+     *
+     * @param submission_fk submission_id
+     * @param question_fk   question_id
+     * @return all answers for a submission for a given question
+     */
+    public List<Answer> getSubmissionAnswers(int submission_fk, int question_fk) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Answer> rval = new ArrayList<>();
+
+        try {
+            conn = DriverManager.getConnection(__jdbcUrl);
+            stmt = conn.prepareStatement("select * from answers where submission_fk = ?" +
+                    " and question_fk = ?");
+            stmt.setInt(1, submission_fk);
+            stmt.setInt(2, question_fk);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 rval.add(new Answer(rs.getInt(1), rs.getInt(2), rs.getInt(3),
@@ -118,11 +152,7 @@ public class AnswerDAOImpl implements AnswerDAO{
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -155,11 +185,7 @@ public class AnswerDAOImpl implements AnswerDAO{
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -192,11 +218,7 @@ public class AnswerDAOImpl implements AnswerDAO{
             return null;
         }
         finally {
-            try {
-                if (rs != null) { rs.close();}
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
 
         return rval;
@@ -211,7 +233,7 @@ public class AnswerDAOImpl implements AnswerDAO{
     public boolean insertAnswer(Answer answer) {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs;
+        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(__jdbcUrl);
@@ -239,10 +261,7 @@ public class AnswerDAOImpl implements AnswerDAO{
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(rs, stmt, conn);
         }
     }
 
@@ -274,10 +293,7 @@ public class AnswerDAOImpl implements AnswerDAO{
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 
@@ -307,10 +323,7 @@ public class AnswerDAOImpl implements AnswerDAO{
             return false;
         }
         finally {
-            try {
-                if (stmt != null) { stmt.close();}
-                if (conn != null) { conn.close();}
-            } catch (Exception e) { e.printStackTrace(); }
+            DbUtils.closeConnections(null, stmt, conn);
         }
     }
 }
