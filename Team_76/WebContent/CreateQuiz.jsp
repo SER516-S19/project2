@@ -36,6 +36,20 @@
 			.dropdown:hover .dropdown-content { display: block; }
 		
 			.dropdown:hover .dropbtn { background-color: #961212; }
+			
+		    label {
+    			display: block;
+    			font: 1rem 'Fira Sans', sans-serif;
+			}
+
+			input,label {
+    			margin: .4rem 0;
+			}
+
+			.note {
+    			font-size: .8em;
+			} 
+					
 		</style>
 	</head>
 	
@@ -76,16 +90,21 @@
 			 	   </select>
 			</div><br><br>
 			<div class ="otherdetails">
-			<input type="radio" name="shuffleAns" required value="Shuffle">Shuffle Answers<br>
+			<input type="radio" name="shuffleAns" value="Shuffle">Shuffle Answers<br>
 			<p>OPTIONS<p>
   				<input type="checkbox" name="timeOp1" value="T1">Timed<br>
   				<input type="checkbox" name="timeOp2" value="T2">Not Timed (Practice Mode)
   			</div>	
 			</div>
+			<a>TIME LIMIT:</a>
+			<input type="text" name="timelimit" placeholder="Enter duration"><br>
+			<a>DUE DATE:</a>
+			<input type="date" id="D1" name="duedate" value="2019-03-01" min="2019-03-03" max="2019-03-31">		
 			<br>
+			
 			<form action="ProfessorController" method="post">
-				<input type="hidden" name="action" value="Continue1"> <input
-					type="submit" value="CONTINUE">
+				<input type="hidden" name="action" value="Continue1"> 
+				<input type="submit" value="CONTINUE">
 			</form>
 			<form action="ProfessorController" method="post">
 				<input type="hidden" name="action" value="Cancel"> <input
