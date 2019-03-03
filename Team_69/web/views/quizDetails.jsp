@@ -20,13 +20,11 @@
 	<form action="../ProfessorController" method="post">
 		<div class="form-group">
 			<label for="FormQuizName">Enter Quiz Name:</label>
-			<textarea class="form-control" id="name" name="name" rows="1"
-				required></textarea>
+			<textarea class="form-control" id="name" name="name" rows="1" required></textarea>
 			<br> 
 			<label for="FormQuizName">Enter Quiz Instructions:</label>
 			<textarea class="form-control" name="instructions" id="instructions" rows="3"></textarea>
 			<br>
-
 			<table border="0">
 				<tr>
 					<td width="200px">Quiz Type :</td>
