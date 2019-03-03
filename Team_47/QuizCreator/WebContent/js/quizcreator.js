@@ -38,7 +38,7 @@ function addAnswerFields(divID, idTracingList) {
 		idTracingList.push(choiceDescID)
 	}
 	var creditBoxID = `pointBox-${questionChoiceIterator}`
-	divID.innerHTML = divID.innerHTML + `credits:<input type='text' id='${creditBoxID}' name='points-${questionChoiceIterator}' value='0.0' size=2>`
+	divID.innerHTML = divID.innerHTML + `credits:<input type='text' id='${creditBoxID}' name='points-${questionChoiceIterator}' value='1.0' size=2>`
 	idTracingList.push(creditBoxID)
 	divID.innerHTML = divID.innerHTML + "<br><br>"
 }
@@ -74,15 +74,21 @@ function selectQuestionType(answerTypeEncoded) {
 function submitQuizCreateRequest() {
 	var quizDict = {}
 	createQuizDict(idTracingList, quizDict)
+	var jsondata = JSON.stringify(quizDict);
+	var saveData = $.ajax({
+		url: 'createQuiz',
+		type: 'POST',
 
-	xmlHttpManager = new XMLHttpRequest();
-	var url = "http://localhost:8080/createQuiz";
-	xmlHttpManager.open("POST", url, true);
-	xmlHttpManager.setRequestHeader("Content-type", "application/json");
-	var data = JSON.stringify(quizDict);
-	xmlHttpManager.send(data);
-
-	window.location = 'http://localhost:8080/dashboard_professor.jsp'
+		contentType: 'application/json',
+		data: jsondata,
+		success: function (result) {
+			var successUrl = "dashboard_professor.jsp";
+			window.location.href = successUrl;
+		},
+		error: function (err) {
+			alert("Error when submit quiz creating request");
+		}
+	});
 }
 
 function createQuizDict(idTracingList, quizDict) {
@@ -104,8 +110,8 @@ function createQuizDict(idTracingList, quizDict) {
 	createQuestionsDict(idTracingList, questionDict)
 	quizDict['questions'] = []
 	quizDict['title'] = document.getElementById('title_id').value
-	quizDict['course_id'] = 0 // No such field
-	quizDict['instruction'] = document.getElementById('instruction_id').value
+	quizDict['course_id'] = 1 // No such field
+	quizDict['instructions'] = document.getElementById('instruction_id').value
 	quizDict['shuffle'] = true// No such field
 
 	var hrs = document.getElementById('hrs_id').value
@@ -145,7 +151,7 @@ function createQuestionsDict(idTracingList, questionDict) {
 				var tmpQuestionDict = {}
 				tmpQuestionDict['quesType'] = 'MA'
 				tmpQuestionDict['points'] = 0.0
-				tmpQuestionDict['content'] = 'placeholderStr'
+				tmpQuestionDict['content'] = `question-${questionChoiceIterator}`
 				tmpQuestionDict['choices'] = []
 				questionDict[keyword] = tmpQuestionDict
 				break

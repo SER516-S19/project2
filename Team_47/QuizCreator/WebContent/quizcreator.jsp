@@ -19,6 +19,7 @@
         Quiz editor
     </title>
     <link rel="stylesheet" href="CSS/quizcreator.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type='text/javascript' src="js/quizcreator.js"></script>
 </head>
 
@@ -46,11 +47,11 @@
                 Start time:</br>
                 <input type='time' id='start_clock_id' name='start_clock' value='13:30' min='00:00' max='23:59'><br>
                 End date:</br>
-                <input type='date' id='end_id' name='end_date' value='2019-03-01' min='2019-01-01' max='2019-05-30'><br>
+                <input type='date' id='end_id' name='end_date' value='2019-03-05' min='2019-01-01' max='2019-05-30'><br>
                 End time:</br>
                 <input type='time' id='end_clock_id' name='end_clock' value='13:30' min='00:00' max='23:59'><br>
                 Duration of the quiz:</br>
-                <input type='text' id='hrs_id' value='0' min='0' max='3'>hrs
+                <input type='text' id='hrs_id' value='2' min='0' max='3'>hrs
                 <input type='text' id='min_id' value='0' min='0' max='59'>mins
 
                 <br> <br>
