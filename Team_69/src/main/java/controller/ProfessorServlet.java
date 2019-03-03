@@ -1,21 +1,13 @@
 package controller;
 
 import java.io.IOException;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import java.sql.Time;
-=======
->>>>>>> Team_58
 import java.util.List;
-import javax.servlet.RequestDispatcher;
-=======
-import java.util.List;
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+<<<<<<< HEAD
 <<<<<<< HEAD
 import bean.Question;
 import bean.Quiz;
@@ -35,6 +27,10 @@ import bean.Question;
 import bean.Quiz;
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+import bean.Question;
+import bean.Quiz;
+>>>>>>> origin/master
 import services.ProfessorServices;
 
 /**
@@ -42,33 +38,12 @@ import services.ProfessorServices;
  *
  * @version 1.0
  * @since 02-16-2019
-<<<<<<< HEAD
-<<<<<<< HEAD
- * @authors Aneesh, Gangadhar, Janice, Jinal, Viraj
- */
-public class ProfessorServlet extends HttpServlet {
-
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-
-	/** The professor services. */
-	private ProfessorServices professorServices = new ProfessorServices();
-
-=======
  * @authors  Gangadhar, Janice, Jinal
  */
 @SuppressWarnings("serial")
 public class ProfessorServlet extends HttpServlet {
 
 	ProfessorServices professorServices = new ProfessorServices();
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
- * @authors  Gangadhar, Janice, Jinal
- */
-public class ProfessorServlet extends HttpServlet {
-
-	ProfessorServices professorServices = new ProfessorServices();
->>>>>>> Team_58
 	/**
 	 * This method will handle the get requests. Each request will have a flag that
 	 * determines the service
@@ -80,6 +55,7 @@ public class ProfessorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
+<<<<<<< HEAD
 <<<<<<< HEAD
 		
 		if ("fetchQuizList".equalsIgnoreCase(flag)) {
@@ -134,6 +110,8 @@ public class ProfessorServlet extends HttpServlet {
 <<<<<<< HEAD
 
 =======
+=======
+>>>>>>> origin/master
 		
 		if ("fetchQuizList".equalsIgnoreCase(flag)) {
 			List<Quiz> quizList = professorServices.getAllQuizzes();
@@ -175,9 +153,6 @@ public class ProfessorServlet extends HttpServlet {
 		else if ("logout".equalsIgnoreCase(flag)) {
 			request.getSession().invalidate();
             getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 		}
 	}
 
@@ -188,6 +163,7 @@ public class ProfessorServlet extends HttpServlet {
 	 * @param request  request object from the jsp page
 	 * @param response response to be sent to the jsp page
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -234,6 +210,8 @@ public class ProfessorServlet extends HttpServlet {
 
 		
 =======
+=======
+>>>>>>> origin/master
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -315,7 +293,4 @@ public class ProfessorServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
 		}
     }
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 }

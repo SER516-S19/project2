@@ -12,6 +12,7 @@ public class User {
 
     @Id
 <<<<<<< HEAD
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 =======
 <<<<<<< HEAD
@@ -19,6 +20,9 @@ public class User {
 =======
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 >>>>>>> origin/master
     @Column(name = "user_id")
     private int user_id;
@@ -29,6 +33,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     @Column(name = "user_email")
     private String userEmail;
@@ -41,6 +46,10 @@ public class User {
     private String userEmail;
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+    @Column(name = "user_email")
+    private String userEmail;
+>>>>>>> origin/master
 
     @Column(name = "user_type")
     private String user_type;
@@ -50,6 +59,7 @@ public class User {
         this.user_name = userName;
         this.password = password;
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.userEmail = email;
 =======
 <<<<<<< HEAD
@@ -58,6 +68,9 @@ public class User {
         this.userEmail = email;
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+        this.userEmail = email;
+>>>>>>> origin/master
     }
     
     public User(int user_id, String userName, String userType, String email,String password) {
@@ -65,12 +78,15 @@ public class User {
         this.user_name = userName;
         this.password = password;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
         this.email = email;
         this.user_id = user_id;
     }
 
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
         this.userEmail = email;
@@ -81,8 +97,11 @@ public class User {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
     public int getUser_id() {
         return user_id;
@@ -110,6 +129,7 @@ public class User {
     }
     public String getEmail() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
         return email;
@@ -118,13 +138,18 @@ public class User {
         this.email = email;
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
         return userEmail;
     }
     public void setEmail(String email) {
         this.userEmail = email;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
     }
 
@@ -133,6 +158,7 @@ public class User {
 
         return "User [ id= "+user_id+" , user_name= "+user_name+" , "
 <<<<<<< HEAD
+<<<<<<< HEAD
                 + " email= "+userEmail+" , user_type = "+user_type+" ]";
 =======
 <<<<<<< HEAD
@@ -140,6 +166,9 @@ public class User {
 =======
                 + " email= "+userEmail+" , user_type = "+user_type+" ]";
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+                + " email= "+userEmail+" , user_type = "+user_type+" ]";
 >>>>>>> origin/master
     }
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 =======
@@ -11,10 +12,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+>>>>>>> origin/master
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <title>Quiz Details</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -70,6 +76,10 @@
 <title>Quiz Details</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 >>>>>>> e816bd85c7f60d681167d6025f653246953cb63e
+>>>>>>> origin/master
+=======
+<title>Quiz Details</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 >>>>>>> origin/master
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="js/getQuizList.js" type="text/javascript"></script>
@@ -153,8 +163,11 @@
 		</c:otherwise>
 	</c:choose>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 </body>
 </html>

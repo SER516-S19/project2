@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
 =======
 <<<<<<< HEAD
@@ -8,10 +9,14 @@
 	pageEncoding="UTF-8"%>
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+	pageEncoding="UTF-8"%>
+>>>>>>> origin/master
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -19,6 +24,8 @@
 </head>
 <body>
 Your response has been successfully recorded!!
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 <title>Quiz Submitted</title>
@@ -50,8 +57,11 @@ Your response has been successfully recorded!!
 		</div>
 	</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 </body>
 </html>

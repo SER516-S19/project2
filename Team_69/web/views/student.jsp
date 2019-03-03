@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 	pageEncoding="UTF-8"%>
@@ -69,6 +69,8 @@
 </body>
 </html>
 <<<<<<< HEAD
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 <!DOCTYPE html>
@@ -187,8 +189,11 @@
 </html>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 =======
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master

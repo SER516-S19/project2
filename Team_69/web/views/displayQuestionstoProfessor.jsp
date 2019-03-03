@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 =======
 <<<<<<< HEAD
@@ -8,6 +9,9 @@
 =======
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 >>>>>>> origin/master
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,6 +27,7 @@
 </head>
 <body>
 	<div id="accordion">
+<<<<<<< HEAD
 <<<<<<< HEAD
 		<%String pathWebcontent = request.getContextPath();%> 
 =======
@@ -67,6 +72,9 @@
 =======
 		<%String pathWebcontent = request.getContextPath();%> 
 >>>>>>> e816bd85c7f60d681167d6025f653246953cb63e
+>>>>>>> origin/master
+=======
+		<%String pathWebcontent = request.getContextPath();%> 
 >>>>>>> origin/master
 		<div>
 			<center>
@@ -143,6 +151,7 @@
 			</c:otherwise>
 		</c:choose>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 		
@@ -150,6 +159,8 @@
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 =======
 >>>>>>> e816bd85c7f60d681167d6025f653246953cb63e
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 	</div>
 </body>

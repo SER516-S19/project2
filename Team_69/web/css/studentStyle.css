@@ -4,6 +4,7 @@
 
 body {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 	font-family: Open Sans;
@@ -11,6 +12,8 @@ body {
 
 h1 {
 	text-align: center;
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 	font-color: #191987;
@@ -30,8 +33,11 @@ h1, h2, h4, h6 {
 	text-align: center;
 	color: #3f3f85;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 }
 
@@ -39,6 +45,7 @@ h1, h2, h4, h6 {
 	text-decoration: underline;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -73,6 +80,8 @@ button {
 .button a {
 	text-decoration: none;
 	color: black;
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 .popup-content>input[value="Yes"] {
@@ -113,7 +122,6 @@ button {
 #quiz {
 	text-indent: 10px;
 	display: none;
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 }
 
 #container {
@@ -139,8 +147,11 @@ ul {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 table {
@@ -155,8 +166,11 @@ table {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 #start {
 	display: none;
@@ -164,12 +178,15 @@ table {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 #ridge {
 	padding: 5px ;
 	border-style: none;
 }
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 form {
@@ -227,8 +244,12 @@ form .#loginForm {
 	text-align:right;
 	margin-top:32px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+}
 >>>>>>> origin/master

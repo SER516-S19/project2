@@ -1,12 +1,8 @@
 package controller;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-import dao.QuizDAO;
-=======
->>>>>>> Team_58
 import services.StudentServices;
 import java.io.IOException;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -20,6 +16,8 @@ import java.io.IOException;
 =======
 >>>>>>> Team_58
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +26,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Controller class for student page
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -51,6 +50,8 @@ public class StudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
  *
  * @author : Sourabh Siddharth
  * @version : 1.0
@@ -68,9 +69,6 @@ public class StudentServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -84,22 +82,9 @@ public class StudentServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		session.getAttribute("quizName");
-		session.getAttribute("quizInstructions");
 
 	}
 
-=======
-
-	}
-
-=======
-
-	}
-
->>>>>>> Team_58
 	/**
 	 * Handles the post request going from student
 	 *
@@ -109,14 +94,11 @@ public class StudentServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 
-<<<<<<< HEAD
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String view = "/error";
 		String studentResponse = request.getParameter("data");
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -129,6 +111,8 @@ public class StudentServlet extends HttpServlet {
 			else
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			request.getRequestDispatcher(view).forward(request, response);
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 		String action = request.getParameter("action");
@@ -157,8 +141,11 @@ public class StudentServlet extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 		} catch (Exception exception) {
 			response.setContentType("text/html");
@@ -168,6 +155,7 @@ public class StudentServlet extends HttpServlet {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 <<<<<<< HEAD
@@ -175,4 +163,7 @@ public class StudentServlet extends HttpServlet {
 =======
 }
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+}
 >>>>>>> origin/master

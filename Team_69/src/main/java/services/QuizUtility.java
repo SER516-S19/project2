@@ -24,13 +24,6 @@ public class QuizUtility {
 	public QuizDetails generator(int quizId) {
 		QuestionDAO questionDao = new QuestionDAO();
 		AnswerDAO answerDao = new AnswerDAO();
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 		QuizDetails questionAnswers = new QuizDetails();
 		List<Question> questionList = questionDao.getQuestionsByQuizId(quizId);
 		if(questionList.size()!= 0) {

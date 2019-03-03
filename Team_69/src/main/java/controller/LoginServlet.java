@@ -2,17 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -34,6 +28,8 @@ import services.StudentServices;
     private static final long serialVersionUID = 1L;
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
 import javax.servlet.http.HttpSession;
 import services.LoginServices;
 import services.StudentServices;
@@ -51,6 +47,7 @@ public class LoginServlet extends HttpServlet{
     /**
      * Handles the get request to the login page
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 public class LoginServlet extends HttpServlet{
@@ -59,18 +56,17 @@ public class LoginServlet extends HttpServlet{
      * page
 >>>>>>> Team_58
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
      *
      * @param request
      * @param response
      */
-<<<<<<< HEAD
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -92,6 +88,8 @@ public class LoginServlet extends HttpServlet{
 
         response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
         response.sendError(501,"Method not supported yet");
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 
@@ -147,8 +145,11 @@ public class LoginServlet extends HttpServlet{
             getServletContext().getRequestDispatcher("/views/loginError.jsp").forward(request,response);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
     }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +10,17 @@
 <<<<<<< HEAD
 <meta charset="ISO-8859-1">
 =======
+=======
+>>>>>>> origin/master
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 =======
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,7 +34,6 @@
 .borderexample
 {
   width: auto;
-<<<<<<< HEAD
   padding: 20px;
   margin: 20px;
 
@@ -61,6 +66,7 @@ float:right;
 
 </style>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 =======
@@ -72,10 +78,13 @@ float:right;
 </style>
 >>>>>>> Team_58
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
 <title>Add Questions</title>
 </head>
 <body>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -175,6 +184,8 @@ float:right;
 		
 </form>
 <<<<<<< HEAD
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 <body>
@@ -314,11 +325,14 @@ float:right;
 </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 =======
 
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 </body>
 </html>

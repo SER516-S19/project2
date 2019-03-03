@@ -1,6 +1,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <%--
@@ -56,6 +57,8 @@
 	</form>
 </body>
 </html>
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -140,6 +143,9 @@
 </script>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master

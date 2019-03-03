@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,6 +13,8 @@ Hello <br>
 To view the professor page - <a href = "views/professorLanding.jsp"> Professor Page </a>
 <br>
 To view the student page - <a href = "Login"> Student Page </a>
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -37,8 +40,11 @@ To view the student page - <a href = "Login"> Student Page </a>
 		</form>
 	</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 </body>
 </html>

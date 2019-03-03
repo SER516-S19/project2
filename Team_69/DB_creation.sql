@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 create DATABASE quizdb;
 
 use quizdb;
@@ -25,6 +26,11 @@ SET time_zone = "+00:00";
 
 >>>>>>> Team_58
 >>>>>>> origin/master
+=======
+create DATABASE quizdb;
+
+use quizdb;
+>>>>>>> origin/master
 --
 -- Database: `quizdb`
 --
@@ -46,8 +52,11 @@ CREATE TABLE `answer` (
 
 --
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 -- Table structure for table `calculatedscores`
 --
@@ -58,6 +67,7 @@ CREATE TABLE `calculatedscores` (
   `quiz_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 -- Table structure for table `hibernate_sequence`
@@ -66,6 +76,8 @@ CREATE TABLE `calculatedscores` (
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -99,13 +111,15 @@ CREATE TABLE `quiz` (
   `Type` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-<<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 -- --------------------------------------------------------
 
@@ -129,9 +143,9 @@ CREATE TABLE `response_stats` (
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-<<<<<<< HEAD
   `password` varchar(255) DEFAULT NULL,
   `user_email` varchar(255) DEFAULT NULL,
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
   `password` varchar(255) DEFAULT NULL,
@@ -141,17 +155,21 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
 >>>>>>> Team_58
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
   `user_name` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-<<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 --
 -- Indexes for dumped tables
@@ -166,8 +184,11 @@ ALTER TABLE `answer`
 
 --
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 -- Indexes for table `calculatedscores`
 --
@@ -178,9 +199,12 @@ ALTER TABLE `calculatedscores`
 
 --
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 -- Indexes for table `question`
 --
@@ -210,8 +234,11 @@ ALTER TABLE `response_stats`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 --
@@ -249,8 +276,11 @@ ALTER TABLE `response_stats`
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 =======
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master

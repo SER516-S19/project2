@@ -10,6 +10,7 @@ import dao.QuestionDAO;
 import java.util.List;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.TimeZone;
 
 =======
@@ -88,6 +89,8 @@ public class ProfessorServices {
 			isCorrectAnswer = checkAnswerExist(i,correctanswers);
 			answer = new Answer(quest, optionArray[i - 1], isCorrectAnswer);
 =======
+=======
+>>>>>>> origin/master
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -132,8 +135,6 @@ public class ProfessorServices {
 		Question quest = new Question(quiz, question,isMutiple, point);
 		questionDAO.addQuestion(quest);
 		
-=======
->>>>>>> Team_58
 		for(int option=1; option<=optionArray.length; option++) {
 			if(optionArray[option - 1] != null) {
 			isCorrectAnswer = checkAnswerExist(option,correctanswers);
@@ -193,14 +194,18 @@ public class ProfessorServices {
 			isCorrectAnswer = checkAnswerExist(option,correctanswers);
 			answer = new Answer(questionOld, optionArray[option - 1], isCorrectAnswer);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			answerDAO.addAnswer(answer);
 			}
 		}
 	}
 	
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -248,6 +253,8 @@ public class ProfessorServices {
         		minutes = "0";
 <<<<<<< HEAD
         	
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 
@@ -299,13 +306,11 @@ public class ProfessorServices {
         		hours = "00";        	
         	if(minutes.length() == 0)
         		minutes = "00";
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
         	if (hours.length() == 1)
         			hours = "0" + hours;
         	if (minutes.length() == 1)
         		minutes = "0" + minutes;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     	
@@ -346,6 +351,8 @@ public class ProfessorServices {
 			int queID = question.getQuestionId();
 			List questionInfo = new ArrayList<>();
 =======
+=======
+>>>>>>> origin/master
         	quizTimeLimit = hours+":"+minutes+":00";
         }
         if(shuffle !=null)
@@ -370,8 +377,11 @@ public class ProfessorServices {
 			int queID = question.getQuestionId();
 			List<Object> questionInfo = new ArrayList<>();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			questionInfo.add(question.getQuestion());
 			questionInfo.add(question.getPoints());
@@ -380,6 +390,7 @@ public class ProfessorServices {
 			questionInfo.add(question.getQuestionId());
 			questionData.add(questionInfo);
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 		
@@ -400,6 +411,8 @@ public class ProfessorServices {
 	
 
 =======
+=======
+>>>>>>> origin/master
 		return questionData;	
 	}
 
@@ -417,6 +430,7 @@ public class ProfessorServices {
 		questionDAO.deleteQuestionByQuestionId(quesID);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -424,4 +438,7 @@ public class ProfessorServices {
 =======
 }
 >>>>>>> Team_58
+>>>>>>> origin/master
+=======
+}
 >>>>>>> origin/master

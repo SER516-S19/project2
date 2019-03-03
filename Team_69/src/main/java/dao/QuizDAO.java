@@ -34,6 +34,7 @@ public class QuizDAO {
            Root<Quiz> root = query.from(Quiz.class);
            query.select(root.<String>get("quizName"));
 <<<<<<< HEAD
+<<<<<<< HEAD
            Query<String> quizNamwQuery=session.createQuery(query);
            quizNames=quizNamwQuery.getResultList();
 =======
@@ -44,6 +45,10 @@ public class QuizDAO {
            Query<String> quizNamwQuery=session.createQuery(query);
            quizNames=quizNamwQuery.getResultList();
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+           Query<String> quizNamwQuery=session.createQuery(query);
+           quizNames=quizNamwQuery.getResultList();
 >>>>>>> origin/master
            transaction.commit();
        } catch (HibernateException e) {
@@ -70,6 +75,7 @@ public class QuizDAO {
            Root<Quiz> root = query.from(Quiz.class);
            query.select(root.<Integer>get("quizId")).where(root.get("quizName").in(quizName));
 <<<<<<< HEAD
+<<<<<<< HEAD
            Query<Integer> quizIdQuery=session.createQuery(query);
            quizId=quizIdQuery.getSingleResult();
 =======
@@ -80,6 +86,10 @@ public class QuizDAO {
            Query<Integer> quizIdQuery=session.createQuery(query);
            quizId=quizIdQuery.getSingleResult();
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+           Query<Integer> quizIdQuery=session.createQuery(query);
+           quizId=quizIdQuery.getSingleResult();
 >>>>>>> origin/master
            transaction.commit();
        } catch (HibernateException e) {

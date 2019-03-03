@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
 =======
@@ -14,15 +15,22 @@ import java.util.HashMap;
 import java.util.Map;
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+import java.util.HashMap;
+import java.util.Map;
+>>>>>>> origin/master
 
 import bean.*;
 import com.google.gson.Gson;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 import dao.QuizDAO;
 import dao.StatisticsDAO;
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 import dao.CalculatedScoresDAO;
@@ -30,8 +38,11 @@ import dao.QuizDAO;
 import dao.StatisticsDAO;
 import dao.UserDAO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 /**
@@ -59,6 +70,7 @@ public class StudentServices {
 	 * 
 	 * @param studentResponse
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 	 * @return view
@@ -67,6 +79,8 @@ public class StudentServices {
 
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		User user = new User(5,"abc", "student", "abc.com", "1234");
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 	 * @param userId 
@@ -78,8 +92,11 @@ public class StudentServices {
 		UserDAO userDao = new UserDAO();
 		User user = userDao.getUserById(userId);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 		int quizId = jsonResponse.getQuizId();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
@@ -102,13 +119,7 @@ public class StudentServices {
 				}
 			}
 		}
-<<<<<<< HEAD
-
 		return "/success";
-
-=======
-		return "/success";
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 	}
 
 	public static QuizDetails convertStringtoJSON(String studentResponse) {
@@ -128,6 +139,7 @@ public class StudentServices {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
 =======
 <<<<<<< HEAD
@@ -136,10 +148,14 @@ public class StudentServices {
 	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
+>>>>>>> origin/master
 		List<String> status = new ArrayList<>();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		for(String quizName : quizNames) {
 			int quizID = fetchQuizId(quizName);
+<<<<<<< HEAD
 <<<<<<< HEAD
 			int count = statisticsDAO.checkQuizStatus(quizID,userId);
 =======
@@ -149,6 +165,9 @@ public class StudentServices {
 			int count = statisticsDAO.checkQuizStatus(quizID,userId);
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+			int count = statisticsDAO.checkQuizStatus(quizID,userId);
+>>>>>>> origin/master
 			if(count>=1){
 				status.add("Answered");
 			}
@@ -156,10 +175,6 @@ public class StudentServices {
 				status.add("Unanswered");
 			}
 		}
-<<<<<<< HEAD
-
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 		return status;
 	}
 
@@ -180,9 +195,12 @@ public class StudentServices {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 }
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 	public int getGrade(String studentResponse, int userId) {
@@ -239,8 +257,12 @@ public class StudentServices {
 		scoresDAO.insertCalculatedScore(calculatedScores);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+}
 >>>>>>> origin/master

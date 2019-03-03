@@ -1,6 +1,7 @@
 package dao;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 import bean.*;
@@ -10,6 +11,8 @@ import org.hibernate.query.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 import org.hibernate.Session;
@@ -24,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 import javax.persistence.criteria.Root;
 
 /**
@@ -38,12 +40,9 @@ import javax.persistence.criteria.Root;
 
 public class StatisticsDAO {
 
-<<<<<<< HEAD
-=======
 	/**
 	 * This method adds the student response to the database
 	 */
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
     public void insertStudentResponse(ResponseStatistics responseStatistics){
         Transaction transaction = null;
         Session session = null;
@@ -65,6 +64,7 @@ public class StatisticsDAO {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     public long checkQuizStatus(int quizId){
@@ -83,6 +83,8 @@ public class StatisticsDAO {
             count = q.getSingleResult();
             transaction.commit();
             session.close();
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
     /**
@@ -104,8 +106,11 @@ public class StatisticsDAO {
             transaction.commit();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
         } catch (Exception e) {
             if (transaction != null) {
@@ -117,6 +122,7 @@ public class StatisticsDAO {
             session.close();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
         return count;
@@ -125,6 +131,8 @@ public class StatisticsDAO {
 
 
 }
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
         return userQuizCount;
@@ -258,8 +266,12 @@ public class StatisticsDAO {
 		return lists;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+}
 >>>>>>> origin/master

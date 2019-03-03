@@ -16,6 +16,7 @@ public class ResponseStatistics {
 
     @Id
 <<<<<<< HEAD
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 =======
 <<<<<<< HEAD
@@ -23,6 +24,9 @@ public class ResponseStatistics {
 =======
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 >>>>>>> origin/master
     @Column(name = "Response_id", nullable = false)
     private int id;

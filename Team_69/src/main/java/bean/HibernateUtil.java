@@ -7,11 +7,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> Team_58
 /**
  * This class consists of database configuration properties 
  * 
@@ -20,10 +15,6 @@ import org.hibernate.service.ServiceRegistry;
  * @version 1.0.0
  *
  */
-<<<<<<< HEAD
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
     public static SessionFactory getSessionFactory() {
@@ -35,6 +26,7 @@ public class HibernateUtil {
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/quizdb");
                 settings.put(Environment.USER, "root");
+<<<<<<< HEAD
 <<<<<<< HEAD
                 settings.put(Environment.PASS, "root123");
 =======
@@ -51,12 +43,13 @@ public class HibernateUtil {
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 =======
+=======
+>>>>>>> origin/master
                 settings.put(Environment.PASS, "root123");
 >>>>>>> origin/master
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
->>>>>>> Team_58
                 /*
                  * 1.) uncomment line at 40 if you are running project for the first time
                  * 			it will create all database tables which are configured in this file 
@@ -64,8 +57,8 @@ public class HibernateUtil {
                  * 			This line will drop all existing tables/data and create new tables with
                  * 			no records.
                  */
-<<<<<<< HEAD
                 settings.put(Environment.HBM2DDL_AUTO, "update");
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
                 settings.put(Environment.HBM2DDL_AUTO, "update");
@@ -74,6 +67,8 @@ public class HibernateUtil {
                 settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 >>>>>>> Team_58
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Quiz.class);
@@ -81,12 +76,16 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Question.class);
                 configuration.addAnnotatedClass(ResponseStatistics.class);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 configuration.addAnnotatedClass(CalculatedScores.class);
 =======
 <<<<<<< HEAD
 =======
                 configuration.addAnnotatedClass(CalculatedScores.class);
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+                configuration.addAnnotatedClass(CalculatedScores.class);
 >>>>>>> origin/master
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

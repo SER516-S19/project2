@@ -22,8 +22,11 @@
         <servlet-class>controller.StudentServlet</servlet-class>
     </servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 	<servlet>
@@ -32,8 +35,11 @@
         <servlet-class>controller.StatisticServlet</servlet-class>
     </servlet>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
     <servlet-mapping>
@@ -50,8 +56,11 @@
         <url-pattern>/student/</url-pattern>
     </servlet-mapping>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
         <servlet-mapping>
@@ -59,8 +68,11 @@
         <url-pattern>/Statistic</url-pattern>
     </servlet-mapping>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
     
     <servlet>

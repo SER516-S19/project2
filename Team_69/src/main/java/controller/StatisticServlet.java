@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class StatisticServlet extends HttpServlet {
 
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
 import services.StatisticServices;
 import java.io.IOException;
 
@@ -52,7 +55,10 @@ public class StatisticServlet extends HttpServlet {
 		}
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 }

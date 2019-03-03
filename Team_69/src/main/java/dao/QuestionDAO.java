@@ -15,8 +15,8 @@ import bean.Quiz;
 public class QuestionDAO {
 
 	public void addQuestion(Question question) {
-
 		Transaction transaction = null;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -26,14 +26,19 @@ public class QuestionDAO {
 			session.save(question);
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> origin/master
 		Session session = null;
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(question);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			transaction.commit();
 		} catch (Exception e) {
@@ -41,6 +46,7 @@ public class QuestionDAO {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -54,6 +60,8 @@ public class QuestionDAO {
 
 		try  {
 			Session session = HibernateUtil.getSessionFactory().openSession();
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 		}finally {
@@ -92,8 +100,11 @@ public class QuestionDAO {
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			transaction = session.beginTransaction();
 			CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -101,6 +112,7 @@ public class QuestionDAO {
 			Root<Question> root = query.from(Question.class);
 			Join<Question,Quiz> join = root.join("quiz");
 			query.select(root).where(builder.equal(join.get("quizId"),quizId));
+<<<<<<< HEAD
 <<<<<<< HEAD
 			Query<Question> questionByIdQuery = session.createQuery(query);
 			quesList = questionByIdQuery.getResultList();
@@ -113,6 +125,10 @@ public class QuestionDAO {
 			quesList = questionByIdQuery.getResultList();
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+			Query<Question> questionByIdQuery = session.createQuery(query);
+			quesList = questionByIdQuery.getResultList();
+>>>>>>> origin/master
 			for(Question qu: quesList)
 				System.out.println(qu.toString());
 			transaction.commit();
@@ -122,6 +138,7 @@ public class QuestionDAO {
 			}
 			e.printStackTrace();
 			return quesList;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}finally {
 			session.close();
@@ -144,6 +161,8 @@ public class QuestionDAO {
 			int qId = Integer.parseInt(quesId);
 			Session session = HibernateUtil.getSessionFactory().openSession();
 =======
+=======
+>>>>>>> origin/master
 		}finally {
 			session.close();
 		}
@@ -162,8 +181,11 @@ public class QuestionDAO {
 			int qId = Integer.parseInt(quesId);
 			session = HibernateUtil.getSessionFactory().openSession();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 			transaction = session.beginTransaction();
 			quesList = (Question) session.get(Question.class, qId);
@@ -175,6 +197,7 @@ public class QuestionDAO {
 			}
 			e.printStackTrace();
 			return ;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}finally {
 			session.close();
@@ -199,6 +222,8 @@ public class QuestionDAO {
 	       try  {
 	           Session session = HibernateUtil.getSessionFactory().openSession();
 =======
+=======
+>>>>>>> origin/master
 		}finally {
 			session.close();
 		}
@@ -214,7 +239,10 @@ public class QuestionDAO {
 	       Session session = null;
 	       try  {
 	           session = HibernateUtil.getSessionFactory().openSession();
+<<<<<<< HEAD
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 	           transaction = session.beginTransaction();
 	           CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -224,21 +252,13 @@ public class QuestionDAO {
 	           query.select(root).where(root.get("quiz").in(quizId));
 	           Query<Answer> q=session.createQuery(query);
 	           quesList= q.getResultList();
-<<<<<<< HEAD
-<<<<<<< HEAD
-	           for (Answer name : quesList) {
-	               System.out.println(name);
-	           }
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
 	           transaction.commit();
 	       } catch (HibernateException e) {
 	           e.printStackTrace();
 	           if (transaction != null) {
 	               transaction.rollback();
 	           }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -247,6 +267,8 @@ public class QuestionDAO {
 	}
 	
 }
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 	       }finally {
@@ -300,8 +322,12 @@ public class QuestionDAO {
 		return ;	
 	}	
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+}
 >>>>>>> origin/master

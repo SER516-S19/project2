@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pageEncoding="ISO-8859-1"%>
 =======
 <<<<<<< HEAD
@@ -8,11 +9,15 @@
 	pageEncoding="ISO-8859-1"%>
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 >>>>>>> origin/master
+=======
+	pageEncoding="ISO-8859-1"%>
+>>>>>>> origin/master
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Quizzes Posted</title>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -32,6 +37,8 @@
 	<a href="quizDetails.jsp">Create New Quiz </a>
 
 
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -88,8 +95,11 @@
 		</div>
 	</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 </body>
 </html>

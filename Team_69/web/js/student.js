@@ -1,5 +1,6 @@
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Javascript file to render questions for the student and autosave functionality.
  *
 =======
@@ -8,6 +9,10 @@
  * Javascript file to render questions for the student and autosave functionality.
  *
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
+ * Javascript file to render questions for the student and autosave functionality.
+ *
 >>>>>>> origin/master
  * @author - amanjotsingh
  * @version - 1.0
@@ -20,6 +25,7 @@ var selections = [];
 var questionCounter = 0;
 var quiz = $('#quiz');
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -168,6 +174,8 @@ function updateResponseJSON() {
 function autoSave() {
 	updateResponseJSON();
 	console.log("Saved!");
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 //Displays all questions with answers
@@ -337,7 +345,10 @@ function displayNext() {
 function autoSave() {
     updateResponseJSON(studentResponseObj, selections);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 }
