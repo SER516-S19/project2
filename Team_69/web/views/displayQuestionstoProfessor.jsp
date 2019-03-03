@@ -23,6 +23,13 @@
 				<h3>${requestScope.quizName}</h3>
 			</center>
 		</div>
+		
+		<%
+		String ref = request.getHeader("Referer");
+		out.write("<a class=\"btn btn-primary\" href=" +ref +">View Quizes</a>");
+		out.write("<br>");
+		out.write("<br>");
+		%>
 
 		<c:choose>
 			<c:when test="${empty requestScope.queAnsData}">
@@ -59,8 +66,8 @@
 									<!-- <input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden"> -->
 									<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
 									<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
-									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" >Delete</button>
-									<button type="submit" value="editQuestion" name="flag" class="btn btn-primary">Edit</button>
+									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-danger" >Delete</button>
+									<button type="submit" value="editQuestion" name="flag" class="btn btn-info">Edit</button>
 								</form>	
 							</c:when>
 							<c:otherwise>
@@ -91,6 +98,8 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+		
+		
 	</div>
 
 
