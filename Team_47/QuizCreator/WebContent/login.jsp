@@ -4,15 +4,15 @@
   - Description: Login page for both the professor and students.
   --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="CSS/loginstyle.css" />
-<link rel="icon" type="image/png" href="favicon.png" />
-<title>Blackboard Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="CSS/loginstyle.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>Blackboard Login</title>
 </head>
 <body>
 <form class="login-form" id="loginForm">
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div id="wrong">
-      <h3>username or password is wrong</h3>
+        <h3>username or password is wrong</h3>
     </div>
 </form>
 <script type="text/javascript" src="js/validatelogin.js"></script>
