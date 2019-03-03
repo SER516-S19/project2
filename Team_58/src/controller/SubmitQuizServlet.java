@@ -4,26 +4,16 @@ package controller;
 import java.io.IOException;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ConnectionFactory;
-import model.QuestionsVO;
-import model.QuestionsVO;
-import model.UserVO;
+import model.displayQuestionsVO;
 import model.StudentResponseDAOBean;
 import java.util.logging.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import java.sql.PreparedStatement;
-import javax.servlet.annotation.WebServlet;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONObject;
 
 
 
@@ -56,9 +46,9 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 			int userId = Integer.parseInt(session.getAttribute("userIdN").toString());
 			
 	
-			List<QuestionsVO> list = new ArrayList<QuestionsVO>();
+			List<displayQuestionsVO> list = new ArrayList<displayQuestionsVO>();
 		
-			list = (List<QuestionsVO>) req.getSession().getAttribute("list");
+			list = (List<displayQuestionsVO>) req.getSession().getAttribute("list");
 
 			
 			String answerSelected = req.getParameter("jsonData");

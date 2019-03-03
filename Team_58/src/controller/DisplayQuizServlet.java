@@ -1,7 +1,7 @@
 package controller;
 
 import java.util.List;
-import java.util.logging.Logger;
+
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.QuestionsDAOBean;
-import model.QuestionsVO;
+import model.displayQuestionsVO;
 
 /*
  *  @Author: Jainish Soni
@@ -20,7 +20,7 @@ import model.QuestionsVO;
  */
 public class DisplayQuizServlet extends HttpServlet {
 	
-	private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName());
+
 	
 	/*
 	 * This method will establish the connection with the database and will fetch
@@ -34,9 +34,9 @@ public class DisplayQuizServlet extends HttpServlet {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
 			QuestionsDAOBean questionBean = new QuestionsDAOBean();
-			List<QuestionsVO> questions = questionBean.getQuestionsForQuiz(quizID);
+			List<displayQuestionsVO> questions = questionBean.getQuestionsForQuiz(quizID);
 			
-			session.setAttribute("QuestionsVO", questions);
+			session.setAttribute("displayQuestionsVO", questions);
 			
 			res.sendRedirect(req.getContextPath() + "/displayQuiz.ftl");
 			

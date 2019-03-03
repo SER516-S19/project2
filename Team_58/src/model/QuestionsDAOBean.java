@@ -10,17 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Logger;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import controller.DisplayQuizServlet;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
@@ -52,25 +46,17 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	@Override
 	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException {
 
-		Map<String, String> incorrectChoices = new HashMap<>();
-		Map<String, String> correctChoices = new HashMap<>();
+		Map<String, String> totalChoices = new HashMap<>();
 
-		for(int i = 0; i < questionsVO.getIncorrectAnswers().size(); i++)
-		{
-			String wrongAnswer = questionsVO.getIncorrectAnswers().get(i);
-			incorrectChoices.put("incorrectAnswer" + (i + 1), wrongAnswer);
-		}
-		
-		for(int i = 0; i < questionsVO.getCorrectAnswers().size(); i++)
-		{
-			String rightAnswer = questionsVO.getCorrectAnswers().get(i);
-			correctChoices.put("correctAnswer" + (i + 1), rightAnswer);
-		}
+		totalChoices.put("incorrectAnswer1", questionsVO.getIncorrectAnswer1());
+		totalChoices.put("incorrectAnswer2", questionsVO.getIncorrectAnswer2());
+		totalChoices.put("incorrectAnswer3", questionsVO.getIncorrectAnswer3());
+
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		int count = 0;
-		for (Map.Entry<String, String> entry : incorrectChoices.entrySet()) {
+		for (Map.Entry<String, String> entry : totalChoices.entrySet()) {
 			sb.append("\"");
 			sb.append(entry.getKey());
 			sb.append("\"");
@@ -79,7 +65,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb.append(entry.getValue());
 			sb.append("\"");
 			count++;
-			if (incorrectChoices.size() - 1 != count) {
+			if (totalChoices.size() - 1 != count) {
 				sb.append(",");
 			}
 		}
@@ -87,20 +73,21 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 		String incorrectAnswers = sb.toString();
 		
+		Map<String, String> answerChoices = new HashMap<>();
 
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append("{");
 		int count1 = 0;
-		for (Map.Entry<String, String> entry : correctChoices.entrySet()) {
+		for (Map.Entry<String, String> entry1 : answerChoices.entrySet()) {
 			sb1.append("\"");
-			sb1.append(entry.getKey());
+			sb1.append(entry1.getKey());
 			sb1.append("\"");
 			sb1.append(":");
 			sb1.append("\"");
-			sb1.append(entry.getValue());
+			sb1.append(entry1.getValue());
 			sb1.append("\"");
 			count1++;
-			if (correctChoices.size() != count1) {
+			if (answerChoices.size() != count1) {
 				sb1.append(",");
 			}
 		}
@@ -132,7 +119,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 	
 	@Override
-	public List<QuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
+	public List<displayQuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
 	{
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -145,7 +132,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 		resultData = query.executeQuery();
 		
-		List<QuestionsVO> list = new ArrayList<>();
+		List<displayQuestionsVO> list = new ArrayList<>();
 		
 		while(resultData.next())
 		{
@@ -179,8 +166,8 @@ public class QuestionsDAOBean implements QuestionsDAO {
 				choice = (String) correctJO.get("correctAnswer" + i);
 			}
 			
-			QuestionsVO questionVO = new QuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
-			list.add(questionVO);
+			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
+			list.add(displayquestionVO);
 		}
 		
 		return list;
