@@ -69,6 +69,7 @@ public final class CreateContentHelper {
         quizContent.getMaxScore());
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   public static List<QuizFormDAO> processPayload(List<QuizQuestionsDAO> quizQuestionsList) {
        List<QuizFormDAO> quizFormList = new ArrayList<>();
@@ -92,4 +93,6 @@ public final class CreateContentHelper {
   }
 =======
 >>>>>>> parent of b2a3da6... Temp.
+=======
+>>>>>>> parent of b2a3da62... Temp.
 }
