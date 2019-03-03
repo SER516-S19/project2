@@ -60,20 +60,9 @@ public class ProfessorServices {
 		}
 	}
 	
-	private String fetchValue(HttpServletRequest request, String option) {
-		String questionOption1 = null;
-		
-		try {
-		if(request.getParameter(option).trim() != null)
-			questionOption1 = request.getParameter(option).trim();
-		}catch(NullPointerException e) {
-			e.printStackTrace();
-		}
-		
-		return questionOption1;
-	}
-	
-	
+	/**
+	 * The method takes the edited question data and saves it to the database 
+	 */
 	public void saveEdited(HttpServletRequest request) {
 		boolean isMultiple = false;
 		boolean isCorrectAnswer = false;
@@ -82,23 +71,22 @@ public class ProfessorServices {
 		String questionOption2 = fetchValue(request, "option2");
 		String questionOption3 = fetchValue(request, "option3");
 		String questionOption4 = fetchValue(request, "option4");
-		
+		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
+		Answer answer;
+		String points;
 		Integer questionId = Integer.parseInt(request.getParameter("questionId").trim());
 		String[] correctanswers = null;
+		
 		try {
 			correctanswers = request.getParameterValues("options");
 		}catch(NullPointerException e) {
 			correctanswers = null;
 		}
-		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
-		Answer answer;
-		String points;
 		
-		if(request.getParameter("points").trim() ==  null) {
+		if(request.getParameter("points").trim() ==  null)
 			points = "0";
-		}else {
+		else
 			points = request.getParameter("points").trim();
-		}
 	
 		isMultiple = (correctanswers.length > 1) ? true : false;
 		int point;
@@ -126,6 +114,18 @@ public class ProfessorServices {
 		}
 	}
 	
+
+	private String fetchValue(HttpServletRequest request, String option) {
+		String questionOption = null;
+		try {
+			if(request.getParameter(option).trim() != null)
+				questionOption = request.getParameter(option).trim();
+		}
+		catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+		return questionOption;
+	}
 	
 	public List<Quiz> getAllQuizzes(){
 		return professorDAO.getAllQuizzes();
@@ -160,9 +160,9 @@ public class ProfessorServices {
         if(isTimeLimitSet!=null)
         {
         	if(hours.length() == 0)
-        		hours = "0";        	
+        		hours = "00";        	
         	if(minutes.length() == 0)
-        		minutes = "0";
+        		minutes = "00";
         	if (hours.length() == 1)
         			hours = "0" + hours;
         	if (minutes.length() == 1)
@@ -198,7 +198,6 @@ public class ProfessorServices {
 		}
 		return questionData;	
 	}
-
 
 	/**
 	 * This method is used to get quiz details based on the quiz id
