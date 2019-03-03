@@ -10,66 +10,94 @@
 <head>
     <title>hacky-blackboard</title>
     <style>
-        body{
-            background-color: #191970;
-            border-style: outset;
-            border-width: medium;
-            border-radius: 10px;
-            border-color: cyan;
-        }
-        h1{
-            color: white;
-            font-size: 40px;
-            padding: 200px 450px 10px;
-            font-family: Arial, sans-serif;
+        .panel {
+            align: center;
+            background-color: #4a154b;
+            margin-right: -15px;
+            margin-left: -15px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            position: absolute;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
         }
 
-        .buttn1 {
-            background-color: cyan;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-weight: 600;
-            font-size: 15px;
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            line-height: 1.2;
-            letter-spacing: .7px;
-            padding: 19px 40px 20px;
-            margin-left: 450px;
-            margin-right: 15px;
+        .wrapper {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding-bottom: 30px;
         }
-        .buttn2 {
-            background-color: cyan;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            font-weight: 600;
-            font-size: 15px;
+
+        body {
+            background-color: #4a154b;
+        }
+
+        .btn1 {
             display: inline-block;
             white-space: nowrap;
             flex-basis: auto;
             width: auto;
-            border-radius: 8px;
+            font-size: .875rem;
+            background-color: white;
             border: none;
             cursor: pointer;
-            line-height: 1.2;
-            letter-spacing: .7px;
+            border-radius: 4px;
+            text-align: center;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.28571429;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            text-decoration: none;
             padding: 19px 40px 20px;
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            color: #4a154b;
+        }
+
+        .btn2 {
+            display: inline-block;
+            white-space: nowrap;
+            flex-basis: auto;
+            width: auto;
+            font-size: .875rem;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.28571429;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 19px 40px 20px;
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            color: #4a154b;
             margin-left: 15px;
             margin-right: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 64px;
+            padding-left: 20px;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
         }
     </style>
 </head>
 <body>
-<h1>Available Functionality</h1>
-<form method="get">
-    <div>
-        <input type="submit" class="buttn1" formaction="./createContent.jsp" name="action" value="CREATE QUIZ"/>
-        <input type="submit" class="buttn2" formaction="./list" name="action" value="VIEW QUIZ LIST"/>
+
+<form class="panel" method="get">
+    <h1>Available Functionality</h1>
+    <div class="wrapper">
+        <input type="submit" class="btn1" formaction="./createContent.jsp" name="action" value="CREATE QUIZ"/>
+        <input type="submit" class="btn2" formaction="./list" name="action" value="VIEW QUIZ LIST"/>
     </div>
 </form>
 </body>
