@@ -113,6 +113,7 @@ public class SubmissionServlet extends HttpServlet {
 
         //Validate that all necessary fields are present and build ChoiceId array
         try {
+            isInitial = ((Boolean)requestForm.get("initial")).booleanValue();
             quizId =  ((Number)requestForm.get("quiz_id")).intValue();
             quiz = new QuizDAOImpl().getQuiz(quizId);
             if (quiz == null) {
@@ -127,11 +128,13 @@ public class SubmissionServlet extends HttpServlet {
             if (startTime == null) {
                 httpCode = 400;
             }
-            endTime = validateDate(request.getParameter("end_time"), response);
-            if (endTime == null) {
-                httpCode = 400;
+            if (!isInitial){
+                endTime = validateDate(request.getParameter("end_time"), response);
+                if (endTime == null) {
+                    httpCode = 400;
+                }
             }
-            if (!isInTime(quizId, startTime, endTime)) {
+            if (!isInTime(quizId, startTime, endTime) && !isInitial) {
                 httpCode = 400;
                 httpErrorMessage = "Quiz taken outside of allowed time period";
             }
