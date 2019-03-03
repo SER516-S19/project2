@@ -15,10 +15,8 @@
 	//test-case
 	//get quiz id from previous page
 	int quiz_id = Integer.parseInt(request.getParameter("quizId"));
-	System.out.println(quiz_id);
 	Quiz quiz = quizDAO.getQuiz(quiz_id);
 	String quiz_title = quiz.getTitle();
-	System.out.println(quiz);
 	List<Question> questions = questionDAO.getQuizQuestions(quiz.getQuiz_id());
 %>
 <title>Summary Page</title>
