@@ -1,1 +1,10 @@
 @import url("https://taniarascia.github.io/primitive/css/main.css");
+.spacer{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-decoration: none;
+    color: black;
+    padding: 5%;
+    display: table-row;
+    margin-left: 1em;
+}

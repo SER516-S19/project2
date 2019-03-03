@@ -39,6 +39,10 @@ public class QuizActionController extends HttpServlet {
 	@SuppressWarnings("static-access")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
+=======
+
+>>>>>>> Team_58
 		// perform processing and selects the action based on the button click
 		try {
 			String strActionToPerform = request.getParameter("actonToPerform");
@@ -48,10 +52,15 @@ public class QuizActionController extends HttpServlet {
 			if (strActionToPerform.equalsIgnoreCase("delete")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
 				if (quizModel != null) {
+<<<<<<< HEAD
 					
 					
 					if (quizDetailsDao.delete(quizModel)) {
 						request.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
+=======
+					if (quizDetailsDao.delete(quizModel)) {
+						request.getSession().getAttribute("rowValues");
+>>>>>>> Team_58
 						response.sendRedirect("showQuizes.jsp");
 					} else {
 						response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, " Couldn't delete");
@@ -75,6 +84,10 @@ public class QuizActionController extends HttpServlet {
 			// Block for updating the details of the selected quiz.
 			else if (strActionToPerform.equalsIgnoreCase("update")) {
 				QuizModel quizModel = quizDetailsDao.findByPrimaryKey(selectedQuiz);
+<<<<<<< HEAD
+=======
+
+>>>>>>> Team_58
 				if (quizModel != null) {
 					request.setAttribute("model", quizModel);
 					request.getRequestDispatcher("EditQuiz.jsp").forward(request, response);

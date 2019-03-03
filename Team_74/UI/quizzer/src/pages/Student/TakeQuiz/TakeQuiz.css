@@ -1,0 +1,66 @@
+.TakeQuiz-logo {
+    animation: spin infinite 20s linear;
+    height: 80px;
+}
+
+.TakeQuiz-header {
+    /*background-color: #222;*/
+    padding: 20px;
+    text-align: center;
+    color: black;
+}
+
+
+.Timer{
+    margin-left: 10px;
+    text-align: center;
+}
+
+
+span + span {
+    margin-left: 10px;
+}
+
+.TakeQuiz-intro {
+    font-size: large;
+}
+
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.previous-question{
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    position: relative;
+    left:    120px;
+    bottom:   10%;
+}
+
+.previous-question:hover{
+    background-color: #ddd;
+    color: black;
+}
+
+.submit-quiz{
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    /*background-color: #4CAF50;*/
+    /*color: #4CAF50;*/
+    position: relative;
+    left:    80%;
+    bottom:   0%;
+}
+
+.TakeQuiz{
+    text-decoration:none;
+    color: black;
+}

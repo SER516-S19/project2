@@ -1,5 +1,6 @@
 package quiz.controller;
 
+<<<<<<< HEAD
 import java.io.IOException;
 
 import javax.servlet.ServletConfig;
@@ -62,5 +63,8 @@ public class LoginController extends HttpServlet {
 			exc.printStackTrace();
 		}
 	}
+=======
+public class LoginController {
+>>>>>>> Team_58
 
 }

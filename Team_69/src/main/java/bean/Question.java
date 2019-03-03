@@ -1,9 +1,16 @@
 package bean;
 
+<<<<<<< HEAD
+import javax.persistence.*;
+<<<<<<< HEAD
+
+=======
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+=======
+>>>>>>> Team_58
 /**
  * This class represents the Question table
  *  
@@ -12,15 +19,27 @@ import javax.persistence.*;
  * @version 1.0.0
  *
  */
+<<<<<<< HEAD
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> Team_58
 @Entity
 @Table(name = "Question")
 public class Question {
 	@Id
+<<<<<<< HEAD
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Question_id")
+    private int questionId;
+
+	@ManyToOne(cascade = {CascadeType.ALL})
+=======
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Question_id")
     private int questionId;
 
 	@ManyToOne(cascade = {CascadeType.REFRESH})
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 	@JoinColumn(name = "Quiz_Id")
 	private Quiz quiz;
 
@@ -33,11 +52,14 @@ public class Question {
     @Column(name = "Points")
     private int points;
 
+<<<<<<< HEAD
+=======
     
     //For the answer side
     @OneToMany(mappedBy = "question",orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private List<Answer> answerList = new ArrayList<Answer>();
     
+>>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
 
 	public Question(Quiz quiz, String question, boolean isMultiple, int points) {
 		super();
