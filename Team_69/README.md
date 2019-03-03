@@ -38,6 +38,6 @@ II) Steps to execute
     
 3. Come back to the Login page using http://localhost:8080/project2 .
 
-4. Go to student page to view and take the Quiz. Use the Student's credentials to login. 
+4. Go to student page to view and take the Quiz. Use the Student's credentials to login.. 
     name: abc.com
     pass : 12345
