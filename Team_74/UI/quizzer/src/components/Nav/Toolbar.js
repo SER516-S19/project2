@@ -46,7 +46,7 @@ class Toolbar extends Component {
 
               <Col xs={6}>
                 <div className="toolbar__title">
-                  <a href="/home">{this.props.title}</a>
+                  <a href="/">{this.props.title}</a>
                 </div>
 
               </Col>
