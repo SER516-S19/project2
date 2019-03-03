@@ -2,15 +2,11 @@ package com.asu.ser516.team47.main;
 
 import java.io.File;
 import java.sql.*;
-import java.util.Calendar;
-import java.util.Date;
-
-import com.asu.ser516.team47.database.*;
 
 import com.asu.ser516.team47.servlet.LoginServlet;
 import com.asu.ser516.team47.servlet.SubmissionServlet;
 
-import com.asu.ser516.team47.utils.SQLScriptRunner;
+import com.asu.ser516.team47.utils.DatabaseTestPopulater;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
@@ -47,6 +43,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        DatabaseTestPopulater.populateDB();
         tomcat.start();
         tomcat.getServer().await();
         conn.close();
