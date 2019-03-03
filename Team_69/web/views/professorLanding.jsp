@@ -53,8 +53,7 @@
 		<div class="col-md-12 details">
 			<form action="ProfessorController" method="get">
 				<input type="hidden" id="flag" name="flag" value="fetchQuizList">
-				<input type="submit" value="Display Quiz List"
-					class="btn btn-primary" style="width: 60%;" />
+				<input type="submit" value="Display Quiz List" class="btn btn-primary" style="width: 60%;" />
 			</form>
 			<br> <br> <a href="views/quizDetails.jsp"	class="btn btn-primary" style="width: 60%;">Create New Quiz </a>
 		</div>

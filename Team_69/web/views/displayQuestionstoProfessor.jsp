@@ -17,19 +17,13 @@
 </head>
 <body>
 	<div id="accordion">
-
+		<%String pathWebcontent = request.getContextPath();%> 
 		<div>
 			<center>
 				<h3>${requestScope.quizName}</h3>
+				<a href="<%=pathWebcontent %>/ProfessorController?flag=fetchQuizList" class="btn btn-primary">View Quizes</a>
 			</center>
 		</div>
-		
-		<%
-		String ref = request.getHeader("Referer");
-		out.write("<a class=\"btn btn-primary\" href=" +ref +">View Quizes</a>");
-		out.write("<br>");
-		out.write("<br>");
-		%>
 
 		<c:choose>
 			<c:when test="${empty requestScope.queAnsData}">
@@ -38,15 +32,10 @@
 				</blockquote>
 				<div></div>
 				<blockquote class="blockquote text-center">
-				<%
-									String pathWebcontent = request.getContextPath();
-								%> 
-					<a href="<%=pathWebcontent %>/views/professorLanding.jsp">Home Page </a>
+					<a href="<%=pathWebcontent %>/ProfessorController?flag=professorLanding" class="btn btn-primary">Home</a>
 				</blockquote>
-
 			</c:when>
 			<c:otherwise>
-
 				<c:forEach items="${requestScope.queAnsData}" var="question">
 					<div class="card">
 						<div class="card-header" id="heading${question[3]}">
@@ -98,10 +87,6 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		
-		
 	</div>
-
-
 </body>
 </html>
