@@ -1,13 +1,13 @@
-package Team76.Controller;
+package Team76.Entity;
 
 public class Grade {
-
+	
 	private String studentID;
 	private String QuizId;
 	private String quiztitle;
 	private String studentName;
 	private String grade;
-
+	
 	public Grade(String studentID, String quizId, String quiztitle, String studentName, String grade) {
 		this.studentID = studentID;
 		QuizId = quizId;
@@ -65,7 +65,8 @@ public class Grade {
 
 	@Override
 	public String toString() {
-		return "Grade [studentID=" + studentID + ", QuizId=" + QuizId + ", quiztitle=" + quiztitle + ", studentName="
+		return "Grade [studentID=" + studentID + ", QuizId=" + QuizId
+				+ ", quiztitle=" + quiztitle + ", studentName="
 				+ studentName + ", grade=" + grade + "]";
 	}
 }
