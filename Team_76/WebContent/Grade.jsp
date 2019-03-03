@@ -1,4 +1,4 @@
-<%@ page import = "java.util.*, Team76.Controller.*"  %>
+<%-- <%@ page import = "java.util.*, Team76.Controller.*"  %>
 
 <!DOCTYPE html>
 <html>
@@ -34,14 +34,14 @@
 
 				</tr>
 
-				//<c:forEach var="tempGrade" items="${Grade }">
+				<c:forEach var="tempGrade" items="${Grade }">
 				<% for (Grade tempGrade : theGrades) { %>
 					<tr>
-						<%-- <td>${tempGrade.studentId }</td>
+						<td>${tempGrade.studentId }</td>
 						<td>${tempGrade.quizId }</td>
 						<td>${tempGrade.quizTitle}</td>
 						<td>${tempGrade.studentName }</td>
-						<td>${tempGrade.grade }</td> --%>
+						<td>${tempGrade.grade }</td>
 						
 						<td><%= tempGrade.getStudentID() %></td>
 						<td><%= tempGrade.getQuizId() %></td>
@@ -60,4 +60,4 @@
 
 	</div>
 </body>
-</html>
+</html> --%>
