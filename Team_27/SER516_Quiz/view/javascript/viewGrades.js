@@ -2,6 +2,10 @@
  * Author: Sumanth Paranjape
  */
 
+var url_string = window.location.href;
+var url = new URL(url_string);
+var quizName = url.searchParams.get("quiz");
+
 $(document).ready(function() {
 	$("#finalMarksDiv").hide();
 	$("#generateResult").on('click', function(){

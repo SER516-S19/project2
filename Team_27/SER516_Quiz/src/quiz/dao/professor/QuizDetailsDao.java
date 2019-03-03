@@ -288,5 +288,46 @@ public class QuizDetailsDao {
 
 		return quizId;
 	}
+	
+	public static String getTimeLimit(String quiz_title) {
+
+		String sql = dbProperties.getProperty("SELECT_TIMELIMIT_IN_QUIZ");
+		Connection conn = ConnectionFactory.getConnection();
+		PreparedStatement preparedStatement = null;
+		String timeLimit = "";
+		try {
+
+			preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setString(1, quiz_title);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				timeLimit = rs.getString("time_limit");
+			}
+
+		} catch (SQLException e) {
+			// Aborting the transaction
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+
+		} finally {
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				System.out.println("Unable to close resultset, database connection " + "or statement in delete()");
+			}
+
+		}
+
+		return timeLimit;
+	
+		
+	}
 
 }

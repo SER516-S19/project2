@@ -120,7 +120,6 @@
   <p><div style="background-color: #F5DEB3 ; padding: 10px; border: 1px white;">
     <label><strong>Time Remaining : </strong></label>
     <span id="countdown" class="timer"></span>
-    <script type='text/javascript' src='javascript/timerjs.js'></script>
   </div></p>
   <p>
     <strong>Started:</strong>
@@ -139,16 +138,17 @@
   <footer>
     <div align="right">
     <label for="notSaved">Not Saved</label>
-    <button id="submitQuiz" class="submit" onclick="clicked()">SUBMIT</button>
-      <div id="myModal" class="modal">
+    <button id="submitQuiz" class="submit" disabled>SUBMIT</button>
+      <!--  <div id="myModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
           <p id="SubmitMessage">Are you sure you want to submit?</p>
-        </div>
-      </div>
+        </div> 
+      </div> -->
   </footer>
 
   <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
   <script type='text/javascript' src='javascript/studentQuiz.js'></script>
+  <script type='text/javascript' src='javascript/timerjs.js'></script>
 </body>
 </html>

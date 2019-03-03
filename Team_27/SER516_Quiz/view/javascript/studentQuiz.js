@@ -44,8 +44,8 @@ var quizName = url.searchParams.get("quiz");
 
 
 function renderQuestions(resp){
-	var questions = resp;
-	var questionCounter = 0; //for Tracking question count
+	  var questions = resp;
+	  var questionCounter = 0; //for Tracking question count
 	  var selections = []; //Array to store user choices
 	  var quiz = $('#quiz'); //div object for quiz
 	  
@@ -61,15 +61,18 @@ function renderQuestions(resp){
 	    if(quiz.is(':animated')) {        
 	      return false;
 	    }
-	    choose();
 	    
+	    choose();
+
 	    // Progress is stopped if the user does not select anything
-	    if (isNaN(selections[questionCounter])) {
+	    if (undefined === selections[questionCounter]) {
 	      alert('Please make a selection!');
 	    } else {
 	      questionCounter++;
 	      displayNext();
 	    }
+	    
+
 	  });
 	  
 	  // Handler for the 'prev' button click
@@ -114,19 +117,20 @@ function renderQuestions(resp){
 	    
 	    
 
-    var header = $('<table><tr><th><div align="left">Question ' + (index + 1) + ':</th></tr><br>');
-    qElement.append(header);
-    
-    var question = $('<tr><br>').append(questions[index].question);
-    qElement.append(question);
-
-    if(questions[index].ismultipleattempt){
-        var checkBox = createCheck(index);
-    }
-    else{
-        var radioButtons = createRadios(index);
-        qElement.append(radioButtons);
-    }
+	    var header = $('<table><tr><th><div align="left">Question ' + (index + 1) + ':</th></tr><br>');
+	    qElement.append(header);
+	    
+	    var question = $('<tr><br>').append(questions[index].question);
+	    qElement.append(question);
+	
+	    if(questions[index].isMultipleAnswer){
+	        var checkBox = createCheck(index);
+	        qElement.append(checkBox);
+	    }
+	    else{
+	        var radioButtons = createRadios(index);
+	        qElement.append(radioButtons);
+	    }
     return qElement;
     }
 
@@ -137,7 +141,7 @@ function renderQuestions(resp){
     var input = '';
     for (var i = 0; i < questions[index].choices.length; i++) {
       item = $('<li>');
-      input = '<input type="checkbox" id="answer" value=' + i + ' />';
+      input = '<input type="checkbox" id="answer'+questionCounter+i+'"value=' + i + ' />';
       input += questions[index].choices[i];
       item.append(input);
       radioList.append(item);
@@ -162,7 +166,20 @@ function renderQuestions(resp){
   
   // Pushes the value read from the user into an array
   function choose() {
-    selections[questionCounter] = +$('input[name="answer"]:checked').val();
+	if(questions[questionCounter].isMultipleAnswer){
+		selections[questionCounter] = undefined;
+		for(var i=0;i<4;i++){
+			if($('#answer'+questionCounter+i).prop("checked")){
+				if(undefined === selections[questionCounter])
+					selections[questionCounter] = "";
+				selections[questionCounter] += i + "|"; 
+			}
+		}
+		if(undefined != selections[questionCounter])
+			selections[questionCounter] = selections[questionCounter].substring(0,selections[questionCounter].length-1);
+	}else{
+	    selections[questionCounter] = +($('input[name="answer"]:checked').val() === undefined) ? undefined : $('input[name="answer"]:checked').val();
+	}
   }
   
   // Requested next element is displayed
@@ -182,6 +199,7 @@ function renderQuestions(resp){
         
         if(questionCounter == questions.length-1){
         	  $('#next').hide();
+        	  $('#submitQuiz').attr('disabled',false);
         	  if(questions.length === 1){
                   $('#prev').hide();
         	  }
@@ -227,13 +245,13 @@ function renderQuestions(resp){
   var btn = document.getElementById("submitQuiz");
   var span = document.getElementsByClassName("close")[0];
 
-  $("#submitQuiz").on('click',function(){
-	  var answers = convertToJSON(selections);
-	  
+  $("#submitQuiz").on('click',function(){	  
 	  //Choose the last answer.
 	  choose();
+	  var answers = convertToJSON(selections);
+
 	  
-	  if (isNaN(selections[questionCounter])) {
+	  if (undefined === selections[questionCounter]) {
 	      alert('Please make a selection to submit!');
 	      return;
 	  } 
@@ -248,8 +266,10 @@ function renderQuestions(resp){
 		  },
 		  success : function(responseText) {
 					console.log("Successfully posted to database!");
+					window.location.href = "ViewGrades.html?quiz="+quizName;
 		  },error: function(){
 			  //Handle Error scenario here.
+				window.location.href = "ViewGrades.html?quiz="+quizName;
 			  console.log("Error occured while posting to database!")
 		  	}
 		}); 

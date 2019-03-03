@@ -38,6 +38,17 @@
     <servlet-name>RegisterController</servlet-name>
     <servlet-class>quiz.controller.RegisterController</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>StudentGrades</servlet-name>
+    <servlet-class>quiz.controller.student.StudentGrades</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>QuizTimeLimit</servlet-name>
+    <servlet-class>quiz.controller.student.QuizTimeLimit</servlet-class>
+  </servlet>
+  
+  
+  
 	<servlet-mapping>
 		<servlet-name>QuizDetailsController</servlet-name>
 		<url-pattern>/createQuiz</url-pattern>
@@ -74,6 +85,17 @@
 		<servlet-name>RegisterController</servlet-name>
 		<url-pattern>/RegisterController</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>StudentGrades</servlet-name>
+		<url-pattern>/StudentGrades</url-pattern> 
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>QuizTimeLimit</servlet-name>
+		<url-pattern>/QuizTimeLimit</url-pattern> 
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>login.html</welcome-file>
 	</welcome-file-list>

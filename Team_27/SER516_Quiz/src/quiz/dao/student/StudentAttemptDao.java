@@ -51,7 +51,7 @@ public class StudentAttemptDao {
 			        for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
 			        	columnsValues.add(rs.getString(i));
 			         }
-			        quizAttempt = new QuizAttempt(Integer.parseInt(columnsValues.get(0)), Integer.parseInt(columnsValues.get(1)), Integer.parseInt(columnsValues.get(2)), columnsValues.get(4));
+			        quizAttempt = new QuizAttempt(Integer.parseInt(columnsValues.get(0)), Integer.parseInt(columnsValues.get(1)), Integer.parseInt(columnsValues.get(2)), columnsValues.get(3));
 			        //allRows.add(quizAttempt);
 			}
 			
@@ -78,30 +78,36 @@ public class StudentAttemptDao {
 		int correctAnswers = 0 , i=0;
 		ArrayList<String> extractedAnswers = new ArrayList<String>();
 		for(Question answer : answers) {
+			extractedAnswers.add(null);
+		}
+
+		i=0;
+		for(Question answer : answers) {
 			for(int j=0;j<4;j++) {
 				switch(j) {
-					case 0: setIntoExtractedList(answer.getIsOptionACorrect(),j,extractedAnswers,0);break;
-					case 1: setIntoExtractedList(answer.getIsOptionBCorrect(),j,extractedAnswers,1);break;
-					case 2: setIntoExtractedList(answer.getIsOptionCCorrect(),j,extractedAnswers,2);break;
-					case 3: setIntoExtractedList(answer.getIsOptionDCorrect(),j,extractedAnswers,3);break;
-					default: continue;
+					case 0: setIntoExtractedList(answer.getIsOptionACorrect(),i,extractedAnswers,0);break;
+					case 1: setIntoExtractedList(answer.getIsOptionBCorrect(),i,extractedAnswers,1);break;
+					case 2: setIntoExtractedList(answer.getIsOptionCCorrect(),i,extractedAnswers,2);break;
+					case 3: setIntoExtractedList(answer.getIsOptionDCorrect(),i,extractedAnswers,3);break;
 				}
 			}		
+			i++;
 		}
 		
 		String[] attemptedAns;
-		if(null != attempt.split("|"))
-			attemptedAns = attempt.split("|");
-		else {
+		try {
+			attemptedAns = attempt.split(",");
+		}catch(Exception e) {
+			System.out.println("There only exists a single element");
 			attemptedAns = new String[1];
 			attemptedAns[0] = attempt;
 		}
 			
-		
-		for(String extAns :  extractedAnswers ) { 
-			if(extAns.equals(attemptedAns[i].split(":")[1].trim()))
-				correctAnswers++;
-			i++;
+		i=0;
+		for(;i<extractedAnswers.size();i++) { 
+			System.out.println("Extracted Answers="+extractedAnswers.get(i));
+			if(extractedAnswers.get(i).equals(attemptedAns[i].split(":")[1].trim()))
+				correctAnswers++; 
 		} 
 		
 		result = correctAnswers +"/"+ answers.size();
@@ -111,7 +117,7 @@ public class StudentAttemptDao {
 	public void setIntoExtractedList(Boolean option, int index, ArrayList<String> extAns,int newAns) {
 		if(option) {
 			if(extAns.get(index) != null) {
-				extAns.set(index,extAns.get(index)+","+newAns);
+				extAns.set(index,extAns.get(index)+"|"+newAns);
 			}else {
 				extAns.set(index, ""+newAns);
 			}

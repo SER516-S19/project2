@@ -52,5 +52,7 @@ public class StudentQuestionsAndOptions extends HttpServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		resp.setStatus(200);
 	}
 }

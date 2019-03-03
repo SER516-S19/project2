@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,11 +14,12 @@ import quiz.dao.student.StudentAttemptDao;
 import quiz.model.professor.Question;
 import quiz.model.student.QuizAttempt;
 
-public class StudentGrades {
+public class StudentGrades extends HttpServlet{
 
 
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// set Content-Type and other response headers
 		//response.setHeader("Cache-Control", "no-cache");

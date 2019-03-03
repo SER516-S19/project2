@@ -1,6 +1,20 @@
-
-var requiredTime = 3000;
-var seconds = requiredTime;
+var seconds;
+$(document).ready(function() {
+	 $.ajax({
+			url : 'QuizTimeLimit',
+			type: 'GET',
+			data: {
+				quiz_title: quizName
+			},
+			success : function(minutes) {
+				console.log("Response text="+minutes);
+				seconds = minutes*60;
+				timer(seconds);
+			},error: function(){
+				console.log("Error occured while fetching data!")
+			}
+		}); 
+});
 
 function timer() {
   var requiredDays        = Math.floor(seconds/24/60/60);
@@ -18,7 +32,7 @@ function timer() {
     clearInterval(Countdown);
     document.getElementById('countdown').innerHTML = "done";
   } else {
-    seconds--;
+	  seconds = seconds-1;
   }
 }
 var Countdown = setInterval('timer()', 1000);
