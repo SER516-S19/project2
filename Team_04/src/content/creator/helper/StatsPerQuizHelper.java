@@ -22,7 +22,6 @@
    */
   public class StatsPerQuizHelper {
 
-    private StatsPerQuizHelper() {}
 
     /**
      * This method returns the average score of the quiz passed as a parameter.

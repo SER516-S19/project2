@@ -1,17 +1,21 @@
 package content.creator.helper;
-
-import content.creator.dao.QuizResultsDAO;
+import content.creator.dao.QuizResultDAO;
 import content.creator.operations.DataOps;
 import java.util.List;
 import java.sql.SQLException;
-
+/*
+ *Modified by :Sakshi Gautam
+ * Description: fetches the student details for every student id.
+ */
 
 public class ViewStudentDetailsHelper {
 
-    public static List<QuizResultsDAO> getStudentDetails(int studentId) throws SQLException {
+    public static List<QuizResultDAO> getStudentDetails(int studentId) throws SQLException {
         String queryString = getStudentContentQuery(studentId);
-        return DataOps.getDataQuesResponse(queryString);
+        return DataOps.getDataQuizResult(queryString);
     }
+
+
 
     private static String getStudentContentQuery(int studentId) {
         String COL_NAME = "studentId";

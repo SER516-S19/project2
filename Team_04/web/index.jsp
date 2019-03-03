@@ -65,6 +65,8 @@
             margin-right: 15px;
         }
         .buttn3 {
+            display: flex;
+            align-items: center;
             background-color: cyan;
             text-align: center;
             font-family: Arial, sans-serif;
@@ -90,12 +92,14 @@
 <div>
 <form method="get">
 
-
+<table>
+    <tr>
         <input type="submit" class="buttn1" formaction="./createContent.jsp" name="action" value="CREATE QUIZ"/>
         <input type="submit" class="buttn2" formaction="/list" name="action" value="VIEW QUIZ LIST"/>
 </form>
         <form action="./studentList" method="GET">
         <input type="submit" class="buttn3" value="VIEW STUDENT LIST"/>
+        </form><tr>
         </form>
     </div>
 

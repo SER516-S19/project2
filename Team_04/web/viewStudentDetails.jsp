@@ -7,11 +7,47 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        h1{
+            padding: 100px 600px 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+        }
+        h2{
+            text-align: center;
+            color: cyan;
+            font-family: Arial, sans-serif;
+        }
+        body{
+            background-color: #191970;
+            border-style: outset;
+            border-width: medium;
+            border-radius: 10px;
+            border-color: cyan;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 40%;
+        }
+        td, th {
+            border: 1px solid cyan;
+            text-align: center;
+            padding: 8px;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: lightblue;
+        }
+
+    </style>
 </head>
 <body>
 <h2> <%="Student Details"%></h2>
 
-<table>
+<table align="center">
     <tr>
         <th>Quiz ID</th>
         <th>Attempt ID</th>
@@ -40,9 +76,9 @@
         }
     %>
     <tr>
-        <td>Total No of Quizzes</td>
-        <td>${totalQuizzes}</td>
-        <td>TotalScore ${score}</td>
+        <td>Total No of Quizzes: ${totalQuizzes}</td>
+        <td></td>
+        <td>TotalScore: ${score}</td>
     </tr>
 </table>
 <a href="./studentList">Back</a>
