@@ -21,11 +21,8 @@
             <h2>Blackboard Login</h2>
             <input type="text" placeholder="Username" id ="username" name="username" required />
             <input type="password" placeholder="Password" id="password" name="password" required />
-            <!-- Use this comment code if the servlet is done, the servlet should redirect 
-            you to the following page. Also comment the below "button" tag.
             <input id="sub" type="submit" value="LOGIN" formmethod="post" formaction="/login">
-            -->
-            <button id="btnlogin" onclick="loginCheck()">login</button> 
+            <%--<button id="btnlogin" onclick="loginCheck()">login</button> --%>
         </div>
         <div class="radio-group">
             <input type="radio" name="identity" class="rd2" value="student" id="student_radio" checked>
