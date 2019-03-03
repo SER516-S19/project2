@@ -1,41 +1,47 @@
+/**
+ * Javascript for login.jsp
+ *
+ * @author  Yu-Ting Tsao
+ * @version 1.0
+ * @since   2019/3/2
+ */
+var params = window.location.search
+.substring(1)
+.split("&")
+.map(v => v.split("="))
+.reduce((map, [key, value]) => map.set(key, decodeURIComponent(value)), new Map())
 
-function onBtnClick() {
+if (params.get("error") == "true") {
+	document.getElementById("wrong").style.visibility = "visible";
+} else {
+	document.getElementById("wrong").style.visibility = "hidden";
+}
+
+function loginCheck() {
 	
 	var visitor = { };
 	
-	visitor["username"] = document.getElementById("email").value;
+	visitor["username"] = document.getElementById("username").value;
 	visitor["password"] = document.getElementById("password").value;
 	
 	if (visitor["username"] && visitor["password"]) {
 		//Now transmit this information to backend.
 		var visitorJson = JSON.stringify(visitor);
 		
-		document.querySelector(".login-form").action = pageDirection();
+		var userId = "878712345";
+		var userName = "Harry Potter";	
 		
-//		//Do calls and use call back
-//		$.ajax({
-//	        type: $form.attr('method'),
-//	        url:  $form.attr('action'),
-//	        data: visitorJson,
-//	        success: function (data) {
-//	            console.log("Data received: ");
-//	            console.log(data);
-//	            if(data === "SUCCESS") {
-//	            	alert ("Login SUCCESS");
-//	            	window.location = pageDirection();
-//	            } else {
-//	            	alert ("Login FAILED");
-//	            }
-//	        }
-//	    });
+		document.querySelector(".login-form").action = pageDirection(userId, userName);
 	}
 }
 
-function pageDirection() {
+function pageDirection(id, name) {
+	var queryString = "?userId=" + id + "&userName=" + name;
+	
 	if(document.querySelectorAll(".rd2")[0].checked) {
-		return "myquizzes.jsp";
+		 return "myquizzes.jsp" + queryString;
 	} else {
-		return "dashboard_professor.jsp";
+		return "dashboard_professor.jsp" + queryString;
 	}
 }
 

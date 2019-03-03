@@ -65,7 +65,7 @@ public class Main {
                 "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                 "firstname NVARCHAR(50) NOT NULL,\n" +
                 "lastname NVARCHAR(50) NOT NULL,\n" +
-                "sessionid CHAR(16),\n" +
+                "session CHAR(16),\n" +
                 "hashedpass NVARCHAR(60) NOT NULL\n" +
                 ");",
                 "CREATE TABLE IF NOT EXISTS courses (\n" +
@@ -109,7 +109,7 @@ public class Main {
                         "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                         "firstname NVARCHAR(50) NOT NULL,\n" +
                         "lastname NVARCHAR(50) NOT NULL,\n" +
-                        "sessionid CHAR(16),\n" +
+                          "sessionid CHAR(16),\n" +
                         "hashedpass NVARCHAR(60) NOT NULL\n" +
                         ");",
                 "CREATE TABLE IF NOT EXISTS enrolled (\n" +
