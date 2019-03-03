@@ -3,6 +3,14 @@ package Team76.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * SER516-Project2 File content - Connection to MySQL Database
+ * 
+ * @author Nikhila Saini,nsaini3@asu.edu
+ * @since 02/19/2019
+ *
+ **/
+
 public class DatabaseConnection {
 
 	public Connection establishConnection() throws Exception {
