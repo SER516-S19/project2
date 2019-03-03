@@ -33,22 +33,19 @@ public class AutoGrader {
                 } else {
                     points += gradeMultipleAnswer(question) ? question.getPoints() : 0;
                 }
-            } catch (IOException io) {
-                io.printStackTrace();
             }
         }
         return points;
     }
 
-    public boolean gradeMultipleChoice(Question question) throws IOException {
+    public boolean gradeMultipleChoice(Question question) {
         AnswerDAOImpl answerDAO = new AnswerDAOImpl();
         ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
 
         List<Answer> answers = answerDAO.getSubmissionAnswers(
                 submission.getSubmission_id(), question.getQuestion_id());
         if (answers.size() != 1) {
-            throw new IOException("Found multiple answers for " +
-                    "a multiple choice question");
+            return false;
         }
         Answer answer = answers.get(0);
         Choice choice = choiceDAO.getChoice(answer.getChoice_fk());
