@@ -100,7 +100,7 @@ public class Submission {
      */
     public String toString() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String result = "Quiz {" + "\n" +
+        String result = "Submission {" + "\n" +
                 "  submission_id: " + Integer.toString(submission_id) + "\n" +
                 "  quiz_fk: " + Integer.toString(quiz_fk) + "\n" +
                 "  enrolled_fk: " + Integer.toString(enrolled_fk) + "\n" +
