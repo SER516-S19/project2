@@ -74,8 +74,8 @@ public class LoginServlet extends HttpServlet{
                 getServletContext().getRequestDispatcher("/views/studentLanding.jsp").forward(request, response);
             } else {
             	String userName = loginServices.fetchUserName(userEmail);
-            	request.setAttribute("userName", userName);
-            	request.setAttribute("userEmail", userEmail);
+            	session.setAttribute("userName", userName);
+            	session.setAttribute("userEmail", userEmail);
                 getServletContext().getRequestDispatcher("/views/professorLanding.jsp").forward(request, response);
             }
         }
