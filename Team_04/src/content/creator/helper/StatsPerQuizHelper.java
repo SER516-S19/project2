@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-//import static content.creator.operations.DataOps.getNamesFromProperty;
+import static content.creator.operations.DataOps.getNamesFromProperty;
 import static java.lang.System.getProperties;
 
 import DBUtil.DbHelper;
