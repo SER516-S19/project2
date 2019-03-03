@@ -76,11 +76,13 @@ function submitQuizCreateRequest() {
 	createQuizDict(idTracingList, quizDict)
 
 	xmlHttpManager = new XMLHttpRequest();
-	var url = "/createQuiz";
+	var url = "http://localhost:8080/createQuiz";
 	xmlHttpManager.open("POST", url, true);
 	xmlHttpManager.setRequestHeader("Content-type", "application/json");
 	var data = JSON.stringify(quizDict);
 	xmlHttpManager.send(data);
+
+	window.location = 'http://localhost:8080/dashboard_professor.jsp'
 }
 
 function createQuizDict(idTracingList, quizDict) {
