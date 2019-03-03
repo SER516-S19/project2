@@ -4,10 +4,7 @@ import Result from '../../../components/Result';
 import Quiz from '../../../components/Quiz';
 import Timer from "react-compound-timer";
 import axios from "axios";
-// import jsonfile from'jsonfile';
-//
-// var file = 'data.json'
-// var obj = {name: 'JP'}
+
 
 class TakeQuiz extends Component {
     /**Constructor for the main TakeQuiz Class*/
@@ -56,9 +53,9 @@ class TakeQuiz extends Component {
                     quizId: response.data.response.quizId,
                     quizInstructions: response.data.response.instruction,
                     quizQuestions: response.data.response.questions,
-                     totalMarks: response.data.response.totalMarks,
-                      totalTime: response.data.response.time * 60 * 1000
-                    // totalTime: 5 * 60 * 1000
+                    totalMarks: response.data.response.totalMarks,
+                    totalTime: response.data.response.time * 60 * 1000
+
                 });
                 const shuffledAnswerOptions = this.state.quizQuestions.map((question) => this.shuffleArray(question.options));
                 this.setState({
@@ -103,7 +100,6 @@ class TakeQuiz extends Component {
                 [answer]: state.answersCount[answer] + 1
             },
             answer: answer,
-            // totalMarks: state.totalMarks + state.point,
             totalPoints: (answer.toString().localeCompare(this.state.correctAnswer) === 0) ? state.totalPoints + state.point: state.totalPoints
         }));
 
@@ -151,12 +147,7 @@ class TakeQuiz extends Component {
             quizId: this.state.quizId,
             marksAchieved: this.state.totalPoints
         })
-            // .then(response =>{
-            //     if(response.status === '202 ACCEPTED')
-            //         this.setState({response:"Posted Successfully"});
-            //     else
-            //         this.setState({response:"not Posted.. Sorry for inconvenience!!"});
-            // })
+
     }
     
     getResults() {
@@ -170,11 +161,6 @@ class TakeQuiz extends Component {
     setResults (result) {
         console.log(this.state.answer);
         localStorage.removeItem('Time');
-        // function jsonfile(file){
-        //         jsonfile.writeFile(file, obj, function (err) {
-        //             console.error(err);
-        //           });
-        // };
         if (result.length === 1) {
             this.setState({ result: result[0] });
         } else {
@@ -201,24 +187,15 @@ class TakeQuiz extends Component {
                     <Timer
                         checkpoints={[
                             {
-                                time: 1000,
+                                time: 60000,
                                 callback: () => {
-                                    window.onbeforeunload = function() {
-                                        const time = this.state.totalTime;
-                                        return "Data will be lost if you leave the page, are you sure?";
-                                    };
+                                    alert ("Half-Time over Warning Message!! Quiz will submit automatically on time completion");
                                 }
                             },{
-                                time: localStorage.getItem('Time') / 2,
+                                time: 120000,
                                 callback: () => {
-                                    alert ("Half-Time over Warning Message!! Quiz will submit automatically on time completion")
+                                    this.submitQuiz();
                                 }
-                            },
-                            {
-                                time: localStorage.getItem('Time'),
-                                callback: () => {
-                                    alert("Your Quiz is being submitted!! Thanks for taking the Test");
-                                    this.submitQuiz()},
                             }
                         ]}
                     >
