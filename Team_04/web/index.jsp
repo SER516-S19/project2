@@ -10,7 +10,7 @@
 <head>
     <title>hacky-blackboard</title>
     <style>
-        body{
+        body {
             background-color: #191970;
             border-style: outset;
             border-width: medium;
@@ -19,7 +19,7 @@
 
         }
 
-        h1{
+        h1 {
             color: white;
             font-size: 40px;
             padding: 200px 450px 10px;
@@ -45,6 +45,7 @@
             margin-left: 450px;
             margin-right: 15px;
         }
+
         .buttn2 {
             background-color: cyan;
             text-align: center;
@@ -64,6 +65,7 @@
             margin-left: 15px;
             margin-right: 15px;
         }
+
         .buttn3 {
             display: flex;
             align-items: center;
@@ -90,18 +92,19 @@
 <body>
 <h1>Available Functionality</h1>
 <div>
-<form method="get">
-
-<table>
-    <tr>
-        <input type="submit" class="buttn1" formaction="./createContent.jsp" name="action" value="CREATE QUIZ"/>
-        <input type="submit" class="buttn2" formaction="/list" name="action" value="VIEW QUIZ LIST"/>
-</form>
-        <form action="./studentList" method="GET">
-        <input type="submit" class="buttn3" value="VIEW STUDENT LIST"/>
-        </form><tr>
-        </form>
-    </div>
-
+    <form method="get">
+        <table>
+            <tr>
+                <input type="submit" class="buttn1" formaction="./createContent.jsp" name="action"
+                       value="CREATE QUIZ"/>
+                <input type="submit" class="buttn2" formaction="./list" name="action"
+                       value="VIEW QUIZ LIST"/>
+                <form action="./studentList" method="GET">
+                    <input type="submit" class="buttn3" value="VIEW STUDENT LIST"/>
+                </form>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>
