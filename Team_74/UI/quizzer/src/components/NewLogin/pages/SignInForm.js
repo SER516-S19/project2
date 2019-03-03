@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { Link, Route, Redirect } from 'react-router-dom';
-import '../index.css';
-import Routes from '../../../Routes';
-import Home from '../../../pages/Home/Home';
 import axios from "axios";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import '../index.css';
 
 class SignInForm extends Component {
   constructor(props) {
@@ -19,7 +17,6 @@ class SignInForm extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
   }
 
@@ -80,7 +77,7 @@ class SignInForm extends Component {
             }
           </div>
           <div className="FormField">
-            <button className="FormField__Button mr-20" disabled={loading}>Login</button>
+            <button className="FormField__Button mr-20" disabled={loading}>
             {loading &&
             <img src="data:images/loading.gif;base64,
             R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/
@@ -90,6 +87,7 @@ class SignInForm extends Component {
             GCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/
             jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             }
+               Login   </button>
             <Link to="/" className="FormField__Link">Create an account</Link>
           </div>
           {error &&

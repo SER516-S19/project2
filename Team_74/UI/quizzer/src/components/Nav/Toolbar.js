@@ -19,14 +19,17 @@ class Toolbar extends Component {
 
     if (name == "redirectToLoginPage") {
       localStorage.clear();
+      this.setState(this.getInitialState);
       this.props.history.push("/");
 
     }
     if (name == "redirectToDashboard") {
       { this.props.dashboardHandler() };
+      this.setState(this.getInitialState);
     }
     if (name == "redirectToHome") {
       { this.props.homeHandler() };
+      this.setState(this.getInitialState);
     }
   }
 
@@ -49,21 +52,14 @@ class Toolbar extends Component {
               </Col>
 
               <Col className="toolbar__menu">
-
                 <Col>
                   <button name="redirectToHome" value="true" onClick={this.setRedirect}> Home </button>
                 </Col>
-                {
-                  (this.props.isProfessor) ?
-                    <Col hidden={this.props.isProfessor}>
-                      <button name="redirectToDashboard" value="true" onClick={this.setRedirect}> Dashboard </button>
-                    </Col>
-                    :
-                    ""
-                }
-
+                <Col hidden={!this.props.isProfessor}>
+                  <button name="redirectToDashboard" value="true" onClick={this.setRedirect}> Dashboard </button>
+                </Col>
                 <Col>
-                  <button name="redirectToLoginPage" value="true" onClick={this.setRedirect}> Sign Out </button>
+                  <button name="redirectToLoginPage" value="true" onClick={this.setRedirect}>Sign Out</button>
                 </Col>
               </Col>
             </nav>

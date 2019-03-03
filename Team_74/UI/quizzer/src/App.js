@@ -10,10 +10,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: ((parseInt(localStorage.getItem('type'), 10) === 0) ? "Student's Portal" : "Professor's Portal"),
-            isProfessorType: ((parseInt(localStorage.getItem('type'), 10) === 0) ? false : true),
             isDashShown: false,
-            isHomeShown: true,
+            isHomeShown: true
         }
 
         this.dashboardHandler = this.dashboardHandler.bind(this);
@@ -34,9 +32,11 @@ class App extends Component {
         })
     }
     render() {
+        let title = ((parseInt(localStorage.getItem('type'), 10) === 0) ? "Student's Portal" : "Professor's Portal");
+        let isProfessorType = ((parseInt(localStorage.getItem('type'), 10) === 0) ? false : true);
 
         let com;
-        if (this.state.isProfessorType && this.state.isDashShown) {
+        if (isProfessorType && this.state.isDashShown) {
             com = <Dashboard />
         } else if (this.state.isHomeShown) {
             com = <Home />
@@ -48,10 +48,10 @@ class App extends Component {
                     (localStorage.getItem('username')) ?
                         <div className="App">
                             <div>
-                                <Toolbar title={this.state.title} isProfessor={this.state.isProfessorType} dashboardHandler={this.dashboardHandler} homeHandler={this.homeHandler} />
+                                <Toolbar title={title} isProfessor={isProfessorType} dashboardHandler={this.dashboardHandler} homeHandler={this.homeHandler} />
                             </div>
                             <div style={{ width: "100%", marginTop: "56px" }}>
-                                { com }
+                                {com}
                             </div>
                         </div>
 

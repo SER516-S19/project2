@@ -1,10 +1,10 @@
 import React from "react";
-import Question from "../../models/Question";
-import ListController from "../../controllers/ListController";
+import { FaAngleDown, FaAngleUp, FaCheck, FaPlus, FaTrash } from 'react-icons/fa';
 import styled from "styled-components";
-import { FaCheck, FaPlus, FaTrash, FaAngleUp, FaAngleDown } from 'react-icons/fa';
-import './Questions.css';
 import CorrectOptionController from '../../controllers/CorrectAnswerController';
+import ListController from "../../controllers/ListController";
+import Question from "../../models/Question";
+import './Questions.css';
 
 export default function QuestionForm({ question, setQuestion }) {
   function handleChangeText(e) {
@@ -65,11 +65,11 @@ export default function QuestionForm({ question, setQuestion }) {
               <Buttons>
                 <Button onClick={() => listController.moveUp(i)}>
                   <FaAngleUp />
-                  </Button>
-                
-                
+                </Button>
+
+
                 <Button onClick={() => listController.moveDown(i)}>
-                <FaAngleDown />
+                  <FaAngleDown />
                 </Button>
                 <Button onClick={() => listController.remove(i)}>
                   <FaTrash />

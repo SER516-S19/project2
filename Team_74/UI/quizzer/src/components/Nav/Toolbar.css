@@ -64,6 +64,7 @@ align-content: center;
 .toolbar__title {
     font-size: 150%;
     text-align: center;
+    justify-content: flex-start;
     -webkit-text-fill-color: white;
     text-emphasis-color: white;
     
@@ -86,4 +87,5 @@ align-content: center;
 
 .toolbar__menu button:focus{
     border: none;
+    background-color: transparent;
 }
