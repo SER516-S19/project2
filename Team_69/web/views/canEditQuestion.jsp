@@ -21,25 +21,74 @@
 </style>
 <title>Edit Question</title>
 </head>
-<body>
+<body>	
 	<script type="text/javascript">
-		function valthis() {
-			var checkBoxes = document.getElementsByName('options');
-			var isChecked = false;
-			for (var i = 0; i < checkBoxes.length; i++) {
-				if (checkBoxes[i].checked) {
-					console.log("I am here Again inside");
-					isChecked = true;
-				}
-				;
-			}
-			;
-			if (!isChecked) {
-				alert('Please, check at least one checkbox!');
+	function valthis() {
+		var questionOptions1 = document.getElementById('option1').value;
+		var questionOptions2 = document.getElementById('option2').value;
+		var questionOptions3 = document.getElementById('option3').value;
+		var questionOptions4 = document.getElementById('option4').value;
+		var checkBoxes = document.getElementsByName('options');
+		var count = 0;
+		
+		if(questionOptions1){
+			count = count + 1;
+		}	
+		else {
+			alert('Inside first else');
+			if(checkBoxes[0].checked){
+				alert('Sorry you have checked a empty option!');
+				return false;
 			}
 		}
-	</script>
-
+			
+		if(questionOptions2)
+			count = count + 1;
+		else {
+			if(checkBoxes[1].checked){
+				alert('Sorry you have checked a empty option!');
+				return false;
+			}
+		}
+		
+		if(questionOptions3)
+			count = count + 1;
+		else{
+			if(checkBoxes[2].checked){
+				alert('Sorry you have checked a empty option!')
+				return false;
+			}
+		}	
+		
+		if(questionOptions4)
+			count = count + 1;
+		else{
+			if(checkBoxes[3].checked){
+				alert('Sorry you have checked a empty option!')
+				return false;
+			}
+		}
+			
+		if(count < 2){
+			alert('Please, enter at least 2 options!');
+			return false;
+		}
+		
+		var isChecked = false;
+		    for (var i = 0; i < checkBoxes.length; i++) {
+		        if ( checkBoxes[i].checked ) {
+		        	isChecked = true;
+		        };
+		    };
+		    if ( !isChecked ){
+		            alert( 'Please, check at least one checkbox!' );
+		            return false;
+		        }   
+		
+		return true;	
+	}
+</script>
+	
 	<div align="center">
 		<H2>Please Edit the question</H2>
 	</div>
@@ -68,7 +117,7 @@
 									<input type="checkbox" name="options" value="option${theCount.count}">
 								</c:otherwise>
 							</c:choose>
-							<textarea name="option${theCount.count}" rows="2" cols="50"
+							<textarea name="option${theCount.count}" id="option${theCount.count}" rows="2" cols="50"
 								class="form-control">${answer.answer}</textarea>
 							<br>
 						</c:forEach>

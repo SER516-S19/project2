@@ -60,17 +60,36 @@ public class ProfessorServices {
 		}
 	}
 	
+	private String fetchValue(HttpServletRequest request, String option) {
+		String questionOption1 = null;
+		
+		try {
+		if(request.getParameter(option).trim() != null)
+			questionOption1 = request.getParameter(option).trim();
+		}catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+		
+		return questionOption1;
+	}
+	
 	
 	public void saveEdited(HttpServletRequest request) {
 		boolean isMultiple = false;
 		boolean isCorrectAnswer = false;
 		String question = request.getParameter("question");
-		String questionOption1 = request.getParameter("option1").trim();
-		String questionOption2 = request.getParameter("option2").trim();
-		String questionOption3 = request.getParameter("option3").trim();
-		String questionOption4 = request.getParameter("option4").trim();
+		String questionOption1 = fetchValue(request, "option1");
+		String questionOption2 = fetchValue(request, "option2");
+		String questionOption3 = fetchValue(request, "option3");
+		String questionOption4 = fetchValue(request, "option4");
+		
 		Integer questionId = Integer.parseInt(request.getParameter("questionId").trim());
-		String[] correctanswers = request.getParameterValues("options");
+		String[] correctanswers = null;
+		try {
+			correctanswers = request.getParameterValues("options");
+		}catch(NullPointerException e) {
+			correctanswers = null;
+		}
 		String[] optionArray = {questionOption1, questionOption2, questionOption3, questionOption4};
 		Answer answer;
 		String points;
