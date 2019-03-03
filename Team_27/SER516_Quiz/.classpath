@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/palak/Desktop/516/project2/project2/Team_27/SER516_Quiz/lib/mysql-connector-java-5.1.23-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/palak/Desktop/516/project2/project2/Team_27/SER516_Quiz/lib/servlet-api.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>

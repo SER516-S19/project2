@@ -19,7 +19,6 @@ import java.util.Properties;
 
 import content.creator.dao.QuesResponseDAO;
 import content.creator.dao.QuizResultDAO;
-
 import org.sqlite.JDBC;
 
 /** @author Hari Krishnan Puthiya Veetil, Aman Kaushik */
@@ -31,13 +30,14 @@ public final class DataOps {
   private static Connection getConnection() throws SQLException {
     DriverManager.registerDriver(new JDBC());
     String dbUrl = null;
-    try {
+    /*try {
     Properties dbProperties = new Properties();
-    dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
+    dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("/Users/devstation/Github/project2/Team_04/resources/DBDetails.properties"));
     dbUrl = dbProperties.getProperty("jdbcUrl");
     } catch (IOException ioExp) {
       System.out.println(ioExp.getMessage());
-    }
+    }*/
+    dbUrl = "jdbc:sqlite:/Users/devstation/Github/project2/Team_04/resources/quizDatabase.db"; //Remove
     return DriverManager.getConnection(dbUrl);
   }
 
@@ -152,31 +152,31 @@ public final class DataOps {
     }
     private static List<QuizResultDAO> processQuizResultSet(ResultSet rs)
       throws SQLException {
-      List<String> colNames = Constants.colNamesQuizResult;
+      List<String> colNames = Constants.colNames;
       List<QuizResultDAO> detailsList = new ArrayList<>();
       while (rs.next()) {
         QuizResultDAO quizResultDAO = new QuizResultDAO();
         quizResultDAO.setQuizId(Integer.parseInt(getColumnValue(rs, colNames.get(0))));
         quizResultDAO.setAttemptId(Integer.parseInt(getColumnValue(rs, colNames.get(1))));
         quizResultDAO.setStudentId(Integer.parseInt(getColumnValue(rs, colNames.get(2))));
-        quizResultDAO.setFinalScore((int)Float.parseFloat(getColumnValue(rs, colNames.get(3))));
+        quizResultDAO.setFinalScore(Integer.parseInt(getColumnValue(rs, colNames.get(3))));
         detailsList.add(quizResultDAO);
       }
       return detailsList;
     }
 
     private static Properties getProperties() {
-    Properties dbProperties = new Properties();
-    try {
-      dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
-    } catch (IOException e) {
-      e.printStackTrace();
+      Properties dbProperties = new Properties();
+      try {
+        dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      return dbProperties;
     }
-    return dbProperties;
-  }
 
-  public static String getNamesFromProperty(String property) {
-    Properties properties = getProperties();
-    return properties.getProperty(property);
-  }
+    public static String getNamesFromProperty(String property) {
+      Properties properties = getProperties();
+      return properties.getProperty(property);
+    }
 }

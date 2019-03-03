@@ -2,8 +2,6 @@ package controller;
 
 import services.StudentServices;
 import java.io.IOException;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +10,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Controller class for student page
- *
+ * 
  * @author : Sourabh Siddharth
  * @version : 1.0
  * @since : 02/16/2019
- *
+ * 
  */
 public class StudentServlet extends HttpServlet {
 
@@ -57,31 +55,15 @@ public class StudentServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String view = "/error";
 		String studentResponse = request.getParameter("data");
-		String action = request.getParameter("action");
 		StudentServices service = new StudentServices();
-		HttpSession session = request.getSession();
-		int userId = (Integer) session.getAttribute("userId");
 		try {
-			if(action.equals("submit")) {
-				response.setContentType("text/html");
-				view = service.feedAnswers(studentResponse, userId);
-				if ("/success".equals(view)) {
-					service.calculateScores(studentResponse,userId);
-					int score = service.getGrade(studentResponse, userId);
-					session.setAttribute("grade", score);
-					response.setStatus(HttpServletResponse.SC_CREATED);
-				}
-				else
-					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-				session.removeAttribute("data");
-				request.getRequestDispatcher(view).forward(request, response);
-			}else if(action.equals("save")) {
-				session.setAttribute("data", studentResponse);
-				if ("/success".equals(view))
-					response.setStatus(HttpServletResponse.SC_OK);
-				else
-					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			}
+			view = service.feedAnswers(studentResponse);
+			response.setContentType("text/html");
+			if ("/success".equals(view))
+				response.setStatus(HttpServletResponse.SC_CREATED);
+			else
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			request.getRequestDispatcher(view).forward(request, response);
 		} catch (Exception exception) {
 			response.setContentType("text/html");
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

@@ -1,8 +1,5 @@
 package bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 /**
  * This class represents the Question table
@@ -16,11 +13,11 @@ import javax.persistence.*;
 @Table(name = "Question")
 public class Question {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Question_id")
     private int questionId;
 
-	@ManyToOne(cascade = {CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "Quiz_Id")
 	private Quiz quiz;
 
@@ -33,11 +30,6 @@ public class Question {
     @Column(name = "Points")
     private int points;
 
-    
-    //For the answer side
-    @OneToMany(mappedBy = "question",orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private List<Answer> answerList = new ArrayList<Answer>();
-    
 
 	public Question(Quiz quiz, String question, boolean isMultiple, int points) {
 		super();

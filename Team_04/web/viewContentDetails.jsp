@@ -15,51 +15,139 @@
     <title>Quiz details</title>
     <style>
         table {
-            font-family: arial, sans-serif;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
             border-collapse: collapse;
-            width: 80%;
+            width: 100%;
+            background-color: dimgrey;
+            color: whitesmoke;
+            vertical-align: baseline;
         }
 
-        td, th {
-            border: 1px solid #dddddd;
+        tr:nth-child(even) {
+            background-color: #8a154b;
+            color: white;
+        }
+
+        td {
             text-align: left;
+            padding: 1%;
+        }
+
+        th {
+            text-align: center;
             padding: 8px;
+        }
+
+        .wrapper {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding-bottom: 30px;
+        }
+
+        .inTable {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding-top: 10px;
+        }
+
+        body {
+            background-color: #4a154b;
+        }
+
+        .btn1 {
+            display: inline-block;
+            white-space: nowrap;
+            flex-basis: auto;
+            width: auto;
+            font-size: .875rem;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.28571429;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 19px 40px 20px;
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            color: #4a154b;
+        }
+
+        .btn2 {
+            display: inline-block;
+            white-space: nowrap;
+            flex-basis: auto;
+            width: auto;
+            font-size: .875rem;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.28571429;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 19px 40px 20px;
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            color: #4a154b;
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 64px;
+            padding-left: 20px;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
         }
 
     </style>
 </head>
 <body>
 
-<h2> <%="Quiz Details"%></h2>
+<h1> <%="Quiz Details"%></h1>
 
-<form action="list">
-    <input type="submit" value="Back">
-</form>
+<div class="wrapper">
+    <form action="list">
+        <input type="submit" class="btn2" value="Back">
+    </form>
 
-<c:url var="quizstats" value="./quizstats">
-    <c:param name="quizid" value="${quizid}"/>
-</c:url>
-<!--a href="${quizstats}">Quiz Statistics</a-->
-<form action="quizstats" method="GET">
-    <input type="hidden" name="quizid" value="${quizid}">
-    <input type="submit" value="Quiz Statistics">
-</form>
+    <c:url var="quizstats" value="./quizstats">
+        <c:param name="quizid" value="${quizid}"/>
+    </c:url>
+    <!--a href="${quizstats}">Quiz Statistics</a-->
+    <form action="quizstats" method="GET">
+        <input type="hidden" name="quizid" value="${quizid}">
+        <input type="submit" class="btn2" value="Quiz Statistics">
+    </form>
 
-<form action="delete" method="POST">
-    <input type="hidden" name="quizid" value="${quizid}">
-    <input type="submit" value="Delete Quiz">
-</form>
+    <form action="delete" method="POST">
+        <input type="hidden" name="quizid" value="${quizid}">
+        <input type="submit" class="btn2" value="Delete Quiz">
+    </form>
 
-<form action="addQues" method="POST">
-    <input type="hidden" name="quizid" value="${quizId}">
-    <input type="submit" value=" Add Question ">
-</form>
+    <form action="addQues" method="POST">
+        <input type="hidden" name="quizid" value="${quizId}">
+        <input type="submit" class="btn2" value=" Add Question ">
+    </form>
+</div>
 
 <table>
     <tr>
         <th>Question Number</th>
         <th>Questions</th>
         <th>Score</th>
+        <th>Modify</th>
+        <th>Delete</th>
     </tr>
 
     <%
@@ -70,25 +158,24 @@
         for(Integer quesId:questionList.keySet()){
     %>
     <tr>
-        <td><%=quesId%></td>
+        <th><%=quesId%></th>
         <td><%=questionList.get(quesId).get("desc")%></td>
-        <td><%=questionList.get(quesId).get("score")%></td>
+        <th><%=questionList.get(quesId).get("score")%></th>
+        <td>
+            <form action="modQues" class="inTable" method="POST">
+                <input type="hidden" name="quizid" value="${quizId}">
+                <input type="hidden" name="quesid" value="<%=quesId%>">
+                <input type="submit" class="btn2" value=" Modify ">
+            </form>
+        </td>
+        <td>
+            <form action="delQues" class="inTable" method="POST">
+                <input type="hidden" name="quizid" value="${quizId}">
+                <input type="hidden" name="quesid" value="<%=quesId%>">
+                <input type="submit" class="btn2" value=" Delete ">
+            </form>
+        </td>
     </tr>
-
-    <%=quesId%>
-
-    <form action="delQues" method="POST">
-        <input type="hidden" name="quizid" value="${quizId}">
-        <input type="hidden" name="quesid" value="<%=quesId%>">
-        <input type="submit" value=" X ">
-    </form>
-
-    <form action="modQues" method="POST">
-        <input type="hidden" name="quizid" value="${quizId}">
-        <input type="hidden" name="quesid" value="<%=quesId%>">
-        <input type="submit" value=" M ">
-    </form>
-
 
     <tr>
         <%
@@ -101,6 +188,8 @@
             </ul>
         </td>
         <td></td>
+        <td></td>
+        <td></td>
     </tr>
 
       <%
@@ -108,5 +197,6 @@
     }
     %>
 </table>
+
 </body>
 </html>

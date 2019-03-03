@@ -1,9 +1,0 @@
-CREATE TABLE userDetails (
-    userName STRING  UNIQUE
-                     NOT NULL,
-    password STRING  NOT NULL,
-    userType STRING  NOT NULL,
-    userId   INTEGER PRIMARY KEY
-                     NOT NULL,
-    isActive BOOLEAN NOT NULL
-);

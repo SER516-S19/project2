@@ -17,10 +17,4 @@ public final class Constants {
           "ansDesc",
           "isCorrect",
           "maxScore");
-  public static final List<String> colNamesQuizResult =
-          Arrays.asList(
-           "quizId",
-           "attemptId",
-           "studentId",
-           "finalScore");
 }

@@ -21,11 +21,6 @@
         <servlet-name>StudentController</servlet-name>
         <servlet-class>controller.StudentServlet</servlet-class>
     </servlet>
-	<servlet>
-        <display-name>StatisticController</display-name>
-        <servlet-name>StatisticController</servlet-name>
-        <servlet-class>controller.StatisticServlet</servlet-class>
-    </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -39,10 +34,6 @@
     <servlet-mapping>
         <servlet-name>StudentController</servlet-name>
         <url-pattern>/student/</url-pattern>
-    </servlet-mapping>
-        <servlet-mapping>
-        <servlet-name>StatisticController</servlet-name>
-        <url-pattern>/Statistic</url-pattern>
     </servlet-mapping>
     
     <servlet>
