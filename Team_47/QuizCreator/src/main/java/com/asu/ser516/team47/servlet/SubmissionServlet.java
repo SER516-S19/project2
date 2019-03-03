@@ -4,18 +4,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import com.asu.ser516.team47.database.*;
 import com.asu.ser516.team47.utils.AutoGrader;
@@ -132,14 +124,13 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(401, "Your submission was past the due date");
         }
 
-        response.setStatus(httpCode);
 
         //Okay so there are really only 4 steps that need to be done to grade an exam.
         //1. Using the `submission_id` and an instance of the `SubmissionDAOImpl`, obtain a business object for a `Submission` using `getSubmission(submission_id)`
-        SubmissionDAOImpl submissionDAO = new SubmissionDAO();
-        Submission sub = getSubmission(submission_id);
+        SubmissionDAOImpl submissionDAO = new SubmissionDAOImpl();
+        Submission sub = submissionDAO.getSubmission(submissionID);
         //2. Create an instance of `AutoGrader` using the `submission_id` and obtain the points for the submission using `gradeSubmission()`
-        AutoGrader ag =  new AutoGrader(submission_id);
+        AutoGrader ag =  new AutoGrader(submissionID);
         float points = ag.gradeSubmission();
         //3. Using the `Submission` object from step one, set the value of `score` using `setScore(score)`
         sub.setScore(points);
@@ -149,6 +140,8 @@ public class SubmissionServlet extends HttpServlet {
             response.sendError(500);
             return;
         }
+        response.setStatus(httpCode);
+
     }
 
 
@@ -238,10 +231,5 @@ public class SubmissionServlet extends HttpServlet {
             return true;
         }
         return false;
-    }
-    private void insertPointsInDB(Submission sub )
-    { 	
-    	SubmissionDAO subDao = new SubmissionDAOImpl();
-    	subDao.insertSubmission(sub);
     }
 }

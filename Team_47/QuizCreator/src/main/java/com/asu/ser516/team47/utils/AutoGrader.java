@@ -16,7 +16,7 @@ public class AutoGrader {
     private Submission submission;
     private float points;
 
-    AutoGrader(int submission_id){
+    public AutoGrader(int submission_id){
         submission = new SubmissionDAOImpl().getSubmission(submission_id);
         points = 0;
     }
