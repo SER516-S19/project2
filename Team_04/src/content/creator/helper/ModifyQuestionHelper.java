@@ -37,25 +37,24 @@ public final class ModifyQuestionHelper {
         String tableName = getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
         List<String> colNames = content.creator.constants.Constants.colNames;
         return String.format(
-                "UPDATE %s " +
-                        "SET %s = %s, %s = %s, %s = %s, %s = %s, %s = %s, %s = %s, %s = %s " +
-                        "WHERE quizId = %s AND quesId = %s",
+                "UPDATE %s" +
+                        " SET %s = '%s'," + //quesType
+                        " %s = '%s'," +    //quesDesc
+                        " %s = '%s'," +    //isCorrect
+                        " %s = %s," +      //maxScore
+                        " %s = '%s'" +     //ansDesc
+                        " WHERE quizId = %s" +
+                        " AND quesId = %s" +
+                        " AND ansId = %s;",
                 tableName,
-                colNames.get(0),
+                colNames.get(2), quizContent.getQuesType(),
+                colNames.get(3), quizContent.getQuesDesc(),
+                colNames.get(6), quizContent.getCorrect(),
+                colNames.get(7), quizContent.getMaxScore(),
+                colNames.get(5), quizContent.getAnsDesc(),
                 quizContent.getQuizId(),
-                colNames.get(1),
                 quizContent.getQuesId(),
-                colNames.get(2),
-                quizContent.getQuesType(),
-                colNames.get(3),
-                quizContent.getQuesDesc(),
-                colNames.get(4),
-                quizContent.getAnsId(),
-                colNames.get(5),
-                quizContent.getAnsDesc(),
-                colNames.get(6),
-                quizContent.getCorrect(),
-                colNames.get(7),
-                quizContent.getMaxScore());
+                quizContent.getAnsId()
+        );
     }
 }

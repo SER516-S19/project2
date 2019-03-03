@@ -17,10 +17,11 @@
         table {
             font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
             border-collapse: collapse;
-            width: 100%;
+            width: 80%;
             background-color: dimgrey;
             color: whitesmoke;
             vertical-align: baseline;
+            margin: auto;
         }
         tr:nth-child(even) {
             background-color: #8a154b;
@@ -43,7 +44,6 @@
         .inTable {
             align-items: center;
             justify-content: center;
-            display: flex;
             padding-top: 10px;
         }
         body {
@@ -98,6 +98,7 @@
             color: white;
             font-size: 64px;
             padding-left: 20px;
+            margin-top: auto;
             font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
         }
     </style>
@@ -131,61 +132,62 @@
     </form>
 </div>
 
-<table>
-    <tr>
-        <th>Question Number</th>
-        <th>Questions</th>
-        <th>Score</th>
-        <th>Modify</th>
-        <th>Delete</th>
-    </tr>
+<div class="inTable">
+    <table>
+        <tr>
+            <th>Question Number</th>
+            <th>Questions</th>
+            <th>Score</th>
+            <th>Modify</th>
+            <th>Delete</th>
+        </tr>
 
-    <%
-        Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
-        Map<Integer, Map<String, String>> questionList=(HashMap)request.getAttribute("questions");
-        int quizid = (int) request.getAttribute("quizid");
-        for(Integer quesId:questionList.keySet()){
-    %>
-    <tr>
-        <th><%=quesId%></th>
-        <td><%=questionList.get(quesId).get("desc")%></td>
-        <th><%=questionList.get(quesId).get("score")%></th>
-        <td>
-            <form action="modQues" class="inTable" method="POST">
-                <input type="hidden" name="quizid" value="${quizId}">
-                <input type="hidden" name="quesid" value="<%=quesId%>">
-                <input type="submit" class="btn2" value=" Modify ">
-            </form>
-        </td>
-        <td>
-            <form action="delQues" class="inTable" method="POST">
-                <input type="hidden" name="quizid" value="${quizId}">
-                <input type="hidden" name="quesid" value="<%=quesId%>">
-                <input type="submit" class="btn2" value=" Delete ">
-            </form>
-        </td>
-    </tr>
-
-    <tr>
         <%
-            for(String answer: answers.get(quesId)) {
+            Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
+            Map<Integer, Map<String, String>> questionList=(HashMap)request.getAttribute("questions");
+            int quizid = (int) request.getAttribute("quizid");
+            for(Integer quesId:questionList.keySet()){
         %>
-        <td></td>
-        <td>
-            <ul>
-                <li><%=answer%></li>
-            </ul>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+        <tr>
+            <th><%=quesId%></th>
+            <td><%=questionList.get(quesId).get("desc")%></td>
+            <th><%=questionList.get(quesId).get("score")%></th>
+            <td>
+                <form action="modQues" class="inTable" method="POST">
+                    <input type="hidden" name="quizid" value="${quizId}">
+                    <input type="hidden" name="quesid" value="<%=quesId%>">
+                    <input type="submit" class="btn2" value=" Modify ">
+                </form>
+            </td>
+            <td>
+                <form action="delQues" class="inTable" method="POST">
+                    <input type="hidden" name="quizid" value="${quizId}">
+                    <input type="hidden" name="quesid" value="<%=quesId%>">
+                    <input type="submit" class="btn2" value=" Delete ">
+                </form>
+            </td>
+        </tr>
 
-    <%
+        <tr>
+            <%
+                for(String answer: answers.get(quesId)) {
+            %>
+            <td></td>
+            <td>
+                <ul>
+                    <li><%=answer%></li>
+                </ul>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <%
+                }
             }
-        }
-    %>
-</table>
-
+        %>
+    </table>
+</div>
 </body>
 </html>

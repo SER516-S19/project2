@@ -20,6 +20,7 @@
 </p>
 <div class="container">
     <form name="quizForm" id="form" method="post" action="ques">
+        <input type="hidden" name="action" value="<%=request.getAttribute("action")%>">
         <input type="hidden" name="quizid" value="<%=request.getAttribute("quizid")%>">
         <input type="hidden" name="quesid" value="<%=request.getAttribute("quesid")%>">
         <div class="row">
@@ -39,7 +40,7 @@
                 <label for="lname" name="option_a">Answer text A: </label>
             </div>
             <div class="col-75">
-                <input type="radio" id="choice_1" name="choice" value="1" checked>
+                <input type="radio" id="choice_1" name="choice" value="1">
                 <input type="text" id="1" name="1" class="formtext"
                        value="${option_a}">
             </div>
@@ -88,9 +89,17 @@
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/validation.js" type="text/javascript">
-    document.getElementById("choice_${choice}").setAttribute("checked","true");
+<script>
+    $(document).ready(function(){
+        console.log(${choice});
+        $(":radio[value='${choice}']").prop('checked', true);
+        if("${action}" !== "Add"){
+            $("input[type='submit']").prop('value', 'Update');
+            $("input[value='Update']").removeClass('btn-disabled');
+        }
+    });
 </script>
+<script src="js/validation.js" type="text/javascript"></script>
 
 </body>
 </html>

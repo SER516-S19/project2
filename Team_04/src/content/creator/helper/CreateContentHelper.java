@@ -41,6 +41,7 @@ public final class CreateContentHelper {
       quizContent.setCorrect(Boolean.parseBoolean(answerBundle.get(answerKey).get(1)));
       quizContent.setMaxScore(Integer.parseInt(score));
       String queryString = convertToQueryString(quizContent);
+      System.out.println(queryString);
       DataOps.saveData(queryString);
     }
   }
@@ -80,10 +81,14 @@ public final class CreateContentHelper {
         quizForm.setQuizId(quizId);
         quizForm.setQuestionId(generateRandom(1000, 9999));
         Map<Integer, ArrayList<String>> answerBundle = new HashMap<>();
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionA(), choice == 1 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionB(), choice == 2 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionC(), choice == 3 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionD(), choice == 4 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionA(),
+                choice == 1 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionB(),
+                choice == 2 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionC(),
+                choice == 3 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionD(),
+                choice == 4 ? "true" : "false")));
         quizForm.setAnswerBundle(answerBundle);
         quizFormList.add(quizForm);
       }

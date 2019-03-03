@@ -43,7 +43,7 @@ public class QuestionStreamServlet extends HttpServlet {
         }
         quiz.setAnswerBundle(answerSet);
 
-        if(action == add){
+        if(action.equals(add)){
             try {
                 saveDataToDb(
                         quiz.getQuizId(),
