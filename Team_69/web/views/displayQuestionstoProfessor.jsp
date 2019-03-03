@@ -15,6 +15,13 @@
 </head>
 <body>
 	<div id="accordion">
+		<%String pathWebcontent = request.getContextPath();%> 
+		<div>
+			<center>
+				<h3>${requestScope.quizName}</h3>
+			</center>
+		</div>
+		
 			<form action="ProfessorController" method="get">
 				<input type="hidden" id="flag" name="flag" value="fetchQuizList">
 				<input type="submit" value="Go Back"
