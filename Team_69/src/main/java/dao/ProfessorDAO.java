@@ -155,6 +155,9 @@ public class ProfessorDAO {
 		return lists;
 	}
 
+	/**
+	 * This method is used to retrieve Question data with provided question ID from Question Table.
+	 */
 	public Question getQuestionFromID(Integer questionId) {
 		Question questionObj = null;
 		 Transaction transaction = null;

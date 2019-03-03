@@ -5,21 +5,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<title>Quiz Details</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="js/getQuizList.js" type="text/javascript"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	<div class="row" align="center">
-		<div class="col-md-12 details">
+	<%String pathWebcontent = request.getContextPath();%> 
+	
+	<div class="row" align="center" style="padding-top: 25px;">
+		<div class="col-md-10 details">
 			<h2>Quiz Details</h2>
+			<br>
+		</div>
+		<div class="col-md-2 details">
+			<a href="<%=pathWebcontent %>/ProfessorController?flag=professorLanding" class="btn btn-primary">Home</a>
 			<br>
 		</div>
 	</div>
@@ -30,7 +32,6 @@
 				<p class="mb-0" style="color: red">No Quiz added.</p>
 			</blockquote>
 			<blockquote class="blockquote text-center">
-				<%String pathWebcontent = request.getContextPath();%> 
 				<a href="<%=pathWebcontent %>/views/quizDetails.jsp">Create New Quiz </a>
 			</blockquote>
 		</c:when>
@@ -49,7 +50,6 @@
 					<tr scope="row">
 						<td><c:out value="${quiz.quizName}"></c:out></td>	
 						<td>
-						<%String pathWebcontent=request.getContextPath();%>
 							<a href="<%=pathWebcontent %>/ProfessorController?flag=viewQuiz&id=${quiz.quizId}&quizName=${quiz.quizName}">View Quiz</a>			
 						</td>
 						<td>

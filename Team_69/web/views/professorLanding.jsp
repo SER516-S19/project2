@@ -28,15 +28,18 @@
 		<div class="col-md-3 details">
 			<blockquote>
 				<br>
-				<h5>Professor ${requestScope.userName}</h5>
+				<h5>Professor ${sessionScope.userName}</h5>
 				<small><cite title="Source Title">Arizona State	University<i class="icon-map-marker"></i>
 				</cite></small>
 			</blockquote>
 			<p>
-				${requestScope.userEmail}<br> www.asu.edu.com <br>
+				${sessionScope.userEmail}<br> www.asu.edu.com <br>
 			</p>
 		</div>
-		<div class="col-md-3 img"></div>
+		<div class="col-md-3 details">
+			<a href="<%=request.getContextPath() %>/ProfessorController?flag=logout" class="btn btn-primary">Logout</a>
+			<br>
+		</div>
 	</div>
 
 	<div class="row" align="center">
@@ -50,8 +53,7 @@
 		<div class="col-md-12 details">
 			<form action="ProfessorController" method="get">
 				<input type="hidden" id="flag" name="flag" value="fetchQuizList">
-				<input type="submit" value="Display Quiz List"
-					class="btn btn-primary" style="width: 60%;" />
+				<input type="submit" value="Display Quiz List" class="btn btn-primary" style="width: 60%;" />
 			</form>
 			<br> <br> <a href="views/quizDetails.jsp"	class="btn btn-primary" style="width: 60%;">Create New Quiz </a>
 		</div>

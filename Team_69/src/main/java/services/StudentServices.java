@@ -68,9 +68,7 @@ public class StudentServices {
 				}
 			}
 		}
-
 		return "/success";
-
 	}
 
 	public static QuizDetails convertStringtoJSON(String studentResponse) {
@@ -102,7 +100,6 @@ public class StudentServices {
 				status.add("Unanswered");
 			}
 		}
-
 		return status;
 	}
 
@@ -175,6 +172,4 @@ public class StudentServices {
 		calculatedScores.setScore(sumPoints);
 		scoresDAO.insertCalculatedScore(calculatedScores);
 	}
-
-
 }

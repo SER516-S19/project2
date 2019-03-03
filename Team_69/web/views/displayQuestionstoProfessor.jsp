@@ -10,19 +10,24 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="js/getQuizList.js" type="text/javascript"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div id="accordion">
-
+		<%String pathWebcontent = request.getContextPath();%> 
 		<div>
 			<center>
 				<h3>${requestScope.quizName}</h3>
 			</center>
 		</div>
+		
+			<form action="ProfessorController" method="get">
+				<input type="hidden" id="flag" name="flag" value="fetchQuizList">
+				<input type="submit" value="Go Back"
+					class="btn btn-primary" />
+			</form>
+			<br>
 
 		<c:choose>
 			<c:when test="${empty requestScope.queAnsData}">
@@ -31,15 +36,10 @@
 				</blockquote>
 				<div></div>
 				<blockquote class="blockquote text-center">
-				<%
-									String pathWebcontent = request.getContextPath();
-								%> 
-					<a href="<%=pathWebcontent %>/views/professorLanding.jsp">Home Page </a>
+					<a href="<%=pathWebcontent %>/ProfessorController?flag=professorLanding" class="btn btn-primary">Home</a>
 				</blockquote>
-
 			</c:when>
 			<c:otherwise>
-
 				<c:forEach items="${requestScope.queAnsData}" var="question">
 					<div class="card">
 						<div class="card-header" id="heading${question[3]}">
@@ -53,14 +53,13 @@
 							
 							<c:choose>
 							<c:when test="${question[2][1].question.quiz.isPublished eq false}">
-								<form action="../Team_69/ProfessorController" method="post">
+								<form action="<%=pathWebcontent %>/ProfessorController" method="post">
 									<input id="quesId" name="quesId" value="${question[2][1].question.questionId}" type="hidden">
 									<input id="flagOld" name="flagOld" value="<%= request.getParameter("flag") %>" type="hidden">
-									<!-- <input id="quizId" name="quizId" value="<%= request.getParameter("id") %>" type="hidden"> -->
 									<input id="quizName" name="quizName" value="<%= request.getParameter("quizName") %>" type="hidden">
 									<input id="quizId" name="quizId" value="${question[2][1].question.quiz.quizId}" type="hidden">
-									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-primary" >Delete</button>
-									<button type="submit" value="editQuestion" name="flag" class="btn btn-primary">Edit</button>
+									<button type="submit" value="deleteQuestion" name="flag" class="btn btn-danger" >Delete</button>
+									<button type="submit" value="editQuestion" name="flag" class="btn btn-info">Edit</button>
 								</form>	
 							</c:when>
 							<c:otherwise>
@@ -92,7 +91,5 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-
-
 </body>
 </html>

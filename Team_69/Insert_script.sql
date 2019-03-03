@@ -1,3 +1,5 @@
+use quizdb;
+
 insert into quiz values(1,1,0,"You are not allowed to take this quiz again!!", "Midterm1",'00:00:30','graded');
 insert into quiz values(2,1,0,"You are not allowed to take this quiz again!!", "Midterm2",'00:00:30','graded');
 insert into quiz values(3,0,1,"You are not allowed to take this quiz again!!", "Midterm3",'00:00:30','graded');

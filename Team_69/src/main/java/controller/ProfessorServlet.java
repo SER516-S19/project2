@@ -2,19 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import bean.Answer;
 import bean.Question;
 import bean.Quiz;
-import dao.ProfessorDAO;
-import dao.QuestionDAO;
-import dao.QuizDAO;
 import services.ProfessorServices;
 
 /**
@@ -73,6 +67,13 @@ public class ProfessorServlet extends HttpServlet {
 			session.setAttribute("quiz", quiz);
 			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
 		}
+		else if ("professorLanding".equalsIgnoreCase(flag)) {
+			getServletContext().getRequestDispatcher("/views/professorLanding.jsp").forward(request, response);
+		}
+		else if ("logout".equalsIgnoreCase(flag)) {
+			request.getSession().invalidate();
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+		}
 	}
 
 	/**
@@ -108,8 +109,7 @@ public class ProfessorServlet extends HttpServlet {
 			String flag1 = request.getParameter("flagOld");
 			String id = request.getParameter("quizId");
 			String quizName = request.getParameter("quizName");
-			QuestionDAO questionDAO = new QuestionDAO();
-			questionDAO.deleteQuestionByQuestionId(quesID);
+			professorServices.deleteQuestionByQuestionId(quesID);
 			response.sendRedirect("ProfessorController?" + "flag="+ flag1 + 
 					"&id="+id + "&quizName=" + quizName);
 		}  
@@ -124,8 +124,14 @@ public class ProfessorServlet extends HttpServlet {
 			request.getRequestDispatcher("views/canEditQuestion.jsp").forward(request, response);
 		}
 		else if ("addNextQuestion".equals(flag) || "saveAndExit".equals(flag)) {
+			
 			String question = request.getParameter("question");
-			String[] optionArray = request.getParameterValues("questionOptions");
+			String questionOptions1 = request.getParameter("questionOptions1");
+			String questionOptions2 = request.getParameter("questionOptions2");
+			String questionOptions3 = request.getParameter("questionOptions3");
+			String questionOptions4 = request.getParameter("questionOptions4");
+			
+			String[] optionArray = {questionOptions1, questionOptions2, questionOptions3,questionOptions4};
 			String points;
 			if(request.getParameter("points") == null) 
 				points = "0";
