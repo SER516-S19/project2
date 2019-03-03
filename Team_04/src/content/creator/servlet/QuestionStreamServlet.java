@@ -12,10 +12,13 @@ import java.util.Map;
 import content.creator.dao.QuizFormDAO;
 import static content.creator.helper.CreateContentHelper.generateRandom;
 import static content.creator.helper.CreateContentHelper.saveDataToDb;
+import content.creator.helper.ModifyQuestionHelper;
 
 @WebServlet(urlPatterns = "/ques")
 public class QuestionStreamServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String action = request.getParameter("action");
+        String add = "Add";
         int quizId = Integer.parseInt(request.getParameter("quizid"));
         int quesId = Integer.parseInt(request.getParameter("quesid"));
         QuizFormDAO quiz = new QuizFormDAO();
@@ -40,18 +43,34 @@ public class QuestionStreamServlet extends HttpServlet {
         }
         quiz.setAnswerBundle(answerSet);
 
-        try {
-            saveDataToDb(
-                    quiz.getQuizId(),
-                    quiz.getQuestionId(),
-                    quiz.getQuestionText(),
-                    quiz.getAnswerBundle(),
-                    quiz.getScore()
-            );
-        } catch (SQLException sqlEx) {
-            System.out.println(sqlEx.getMessage());
-        } finally {
-            response.sendRedirect("./viewContentDetails?quizId=" + quizId);
+        if(action == add){
+            try {
+                saveDataToDb(
+                        quiz.getQuizId(),
+                        quiz.getQuestionId(),
+                        quiz.getQuestionText(),
+                        quiz.getAnswerBundle(),
+                        quiz.getScore()
+                );
+            } catch (SQLException sqlEx) {
+                System.out.println(sqlEx.getMessage());
+            } finally {
+                response.sendRedirect("./viewContentDetails?quizId=" + quizId);
+            }
+        } else {
+            try {
+                ModifyQuestionHelper.updateDataInDb(
+                        quiz.getQuizId(),
+                        quiz.getQuestionId(),
+                        quiz.getQuestionText(),
+                        quiz.getAnswerBundle(),
+                        quiz.getScore()
+                );
+            } catch (SQLException sqlEx) {
+                System.out.println(sqlEx.getMessage());
+            } finally {
+                response.sendRedirect("./viewContentDetails?quizId=" + quizId);
+            }
         }
     }
 }

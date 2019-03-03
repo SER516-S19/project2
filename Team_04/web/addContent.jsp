@@ -13,8 +13,9 @@
 
 <body>
 <h1>
-    <%=request.getAttribute("action")%>
+    <%=request.getAttribute("action")%> Question
 </h1>
+
 <p class="error"><b> Points to be noted:</b> Make sure you fill out all fields & the score should be a number.
 </p>
 <div class="container">
@@ -26,7 +27,7 @@
                 <label for="fname">Question text:</label>
             </div>
             <div class="col-75">
-                <input type="text" id="question" name="question_text" class="formtext">
+                <input type="text" id="question" name="question_text" class="formtext" value="${question_text}">
             </div>
         </div>
         <div class="row">
@@ -38,8 +39,9 @@
                 <label for="lname" name="option_a">Answer text A: </label>
             </div>
             <div class="col-75">
-                <input type="radio" id="choice_1" name="choice" value="1" checked="true">
-                <input type="text" id="1" name="1" class="formtext">
+                <input type="radio" id="choice_1" name="choice" value="1" checked>
+                <input type="text" id="1" name="1" class="formtext"
+                       value="${option_a}">
             </div>
         </div>
         <div class="row">
@@ -48,7 +50,8 @@
             </div>
             <div class="col-75">
                 <input type="radio" id="choice_2" name="choice" value="2">
-                <input type="text" id="2" name="2" class="formtext">
+                <input type="text" id="2" name="2" class="formtext"
+                       value="${option_b}">
             </div>
         </div>
         <div class="row">
@@ -57,7 +60,8 @@
             </div>
             <div class="col-75">
                 <input type="radio" id="choice_3" name="choice" value="3">
-                <input type="text" id="3" name="3" class="formtext">
+                <input type="text" id="3" name="3" class="formtext"
+                       value="${option_c}">
             </div>
         </div>
         <div class="row">
@@ -66,14 +70,15 @@
             </div>
             <div class="col-75">
                 <input type="radio" id="choice_4" name="choice" value="4">
-                <input type="text" id="4" name="4" class="formtext">
+                <input type="text" id="4" name="4" class="formtext"
+                       value="${option_d}">
             </div>
         </div>
         <div class="row">
         <div class=" col-25">
             <label name="score">Score:</label></div>
         <div class="col-75">
-            <input type="text" id="score" name="score"><br>
+            <input type="text" id="score" name="score" value="${score}"><br>
         </div>
 </div>
 <div class="row" style="margin-right:24px;">
@@ -84,6 +89,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/validation.js" type="text/javascript">
+    document.getElementById("choice_${choice}").setAttribute("checked","true");
 </script>
 
 </body>

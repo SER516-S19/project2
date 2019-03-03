@@ -22,9 +22,16 @@ public class AddQuestionServlet extends HttpServlet {
             throws ServletException, IOException {
         int quizId = Integer.parseInt(request.getParameter("quizid"));
         int quesId = generateRandom(1000, 9999);
-        request.setAttribute("action", "Add Question");
+        request.setAttribute("action", "Add");
         request.setAttribute("quizid", quizId);
         request.setAttribute("quesid", quesId);
+        request.setAttribute("question_text", "");
+        request.setAttribute("choice", "1");
+        request.setAttribute("option_a", "");
+        request.setAttribute("option_b", "");
+        request.setAttribute("option_c", "");
+        request.setAttribute("option_d", "");
+        request.setAttribute("score", "");
         request.getRequestDispatcher("./addContent.jsp").forward(request,response);
     }
 }

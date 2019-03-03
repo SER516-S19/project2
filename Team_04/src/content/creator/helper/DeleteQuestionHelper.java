@@ -10,12 +10,12 @@ public final class DeleteQuestionHelper {
     public static void removeQues(int quizId, int quesId) throws SQLException {
         String tabName = "quiz_content";//getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
         int colName = quizId;
-        int col2Name = quesId;
-        String queryString = delQuesQueryString(tabName, colName, col2Name);
+        int row1Name = quesId;
+        String queryString = delQuesQueryString(tabName, colName, row1Name);
         DataOps.saveData(queryString);
     }
 
-    private static String delQuesQueryString(String tableName, int colName, int col2Name) {
-        return String.format("DELETE FROM %s WHERE quizId = %d AND quesId = %d", tableName, colName, col2Name);
+    private static String delQuesQueryString(String tableName, int colName, int row1Name) {
+        return String.format("DELETE FROM %s WHERE quizId = %d AND quesId = %d", tableName, colName, row1Name);
     }
 }
