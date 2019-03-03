@@ -50,7 +50,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 *
 	 */
 	@Override
-	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException {
+	public void insertingQuestions(QuestionVO questionsVO) throws SQLException, ClassNotFoundException {
 
 		Map<String, String> incorrectChoices = new HashMap<>();
 		Map<String, String> correctChoices = new HashMap<>();
@@ -132,7 +132,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 	
 	@Override
-	public List<QuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
+	public List<QuestionVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
 	{
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -145,7 +145,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 		resultData = query.executeQuery();
 		
-		List<QuestionsVO> list = new ArrayList<>();
+		List<QuestionVO> list = new ArrayList<>();
 		
 		while(resultData.next())
 		{
@@ -179,7 +179,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 				choice = (String) correctJO.get("correctAnswer" + i);
 			}
 			
-			QuestionsVO questionVO = new QuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
+			QuestionVO questionVO = new QuestionVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(questionVO);
 		}
 		

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 /**
  * QuestionVO is the plain old java file for CreateQuestions and ViewQiz pages
  * 
@@ -15,8 +13,10 @@ public class QuestionsVO {
 	private int quizId;
 	private int questionId;
 	private String question;
-	private List<String> correctAnswers;
-	private List<String> incorrectAnswers;
+	private String correctAnswer;
+	private String incorrectAnswer1;
+	private String incorrectAnswer2;
+	private String incorrectAnswer3;
 	private int totalPoints;
 	private boolean isMCQ;
 
@@ -25,12 +25,15 @@ public class QuestionsVO {
 	 * 
 	 * @date 02/22/2019
 	 */
-	public QuestionsVO(int quizId, String question, List<String> correctAnswers, List<String> incorrectAnswers, int totalPoints, boolean isMCQ) {
+	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
+			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
 		super();
 		this.quizId = quizId;
 		this.question = question;
-		this.correctAnswers = correctAnswers;
-		this.incorrectAnswers = incorrectAnswers;
+		this.correctAnswer = correctAnswer;
+		this.incorrectAnswer1 = incorrectAnswer1;
+		this.incorrectAnswer2 = incorrectAnswer2;
+		this.incorrectAnswer3 = incorrectAnswer3;
 		this.totalPoints = totalPoints;
 		this.isMCQ = isMCQ;
 	}
@@ -40,13 +43,14 @@ public class QuestionsVO {
 	 * 
 	 * @date 02/22/2019
 	 */
-
-	public QuestionsVO(int qId, int totalPoints, List<String> correctAnswers, List<String> incorrectAnswers, String question) {
-
+	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
+			String incorrectAnswer3, String question) {
 		this.questionId = qId;
 		this.question = question;
-		this.correctAnswers = correctAnswers;
-		this.incorrectAnswers = incorrectAnswers;
+		this.correctAnswer = correctAnswer;
+		this.incorrectAnswer1 = incorrectAnswer1;
+		this.incorrectAnswer2 = incorrectAnswer2;
+		this.incorrectAnswer3 = incorrectAnswer3;
 		this.totalPoints = totalPoints;
 	}
 	
@@ -84,20 +88,36 @@ public class QuestionsVO {
 		this.question = question;
 	}
 
-	public List<String> getCorrectAnswers() {
-		return correctAnswers;
+	public String getCorrectAnswer() {
+		return correctAnswer;
 	}
 
-	public void setCorrectAnswers(List<String> correctAnswers) {
-		this.correctAnswers = correctAnswers;
+	public void setCorrectAnswer(String correctAnswer) {
+		this.correctAnswer = correctAnswer;
 	}
 
-	public List<String> getIncorrectAnswers() {
-		return incorrectAnswers;
+	public String getIncorrectAnswer1() {
+		return incorrectAnswer1;
 	}
 
-	public void setIncorrectAnswers(List<String> incorrectAnswers) {
-		this.incorrectAnswers = incorrectAnswers;
+	public void setIncorrectAnswer1(String incorrectAnswer1) {
+		this.incorrectAnswer1 = incorrectAnswer1;
+	}
+
+	public String getIncorrectAnswer2() {
+		return incorrectAnswer2;
+	}
+
+	public void setIncorrectAnswer2(String incorrectAnswer2) {
+		this.incorrectAnswer2 = incorrectAnswer2;
+	}
+
+	public String getIncorrectAnswer3() {
+		return incorrectAnswer3;
+	}
+
+	public void setIncorrectAnswer3(String incorrectAnswer3) {
+		this.incorrectAnswer3 = incorrectAnswer3;
 	}
 
 	public int getTotalPoints() {
@@ -115,4 +135,5 @@ public class QuestionsVO {
 	public void setMCQ(boolean isMCQ) {
 		this.isMCQ = isMCQ;
 	}
+
 }

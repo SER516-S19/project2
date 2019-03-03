@@ -86,7 +86,7 @@ public class GradeQuizServlet extends HttpServlet{
 		int score = 0;
 		JSONParser parser = new JSONParser(); 
 		try {
-			JSONObject correctAnswersJson = (JSONObject) parser.parse(question.getCorrectAnswers());
+			JSONObject correctAnswersJson = (JSONObject) parser.parse(question.getCorrectAnswer());
 			JSONObject studentSelectedAnswersJson = (JSONObject) parser.parse(student.getAnswerSelected());
 			int countOfWrongAnswers = 0;
 			int countOfCorrectAnswered = 0;
