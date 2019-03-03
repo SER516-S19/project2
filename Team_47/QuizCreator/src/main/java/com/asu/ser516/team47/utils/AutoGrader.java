@@ -27,12 +27,10 @@ public class AutoGrader {
         List<Question> questions = questionDAO.getQuizQuestions(submission.getQuiz_fk());
 
         for (Question question : questions) {
-            try {
-                if (question.getQuesType().toUpperCase().equals("MC")) {
-                    points += gradeMultipleChoice(question) ? question.getPoints() : 0;
-                } else {
-                    points += gradeMultipleAnswer(question) ? question.getPoints() : 0;
-                }
+            if (question.getQuesType().toUpperCase().equals("MC")) {
+                points += gradeMultipleChoice(question) ? question.getPoints() : 0;
+            } else {
+                points += gradeMultipleAnswer(question) ? question.getPoints() : 0;
             }
         }
         return points;
