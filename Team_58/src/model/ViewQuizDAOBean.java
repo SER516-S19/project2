@@ -93,7 +93,10 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 * @return list a list of questions with relevant information used to display on view quiz page.
 	 * */
 	@Override
-	public List<displayQuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException{
+
+	public List<displayQuestionsVO> getStudentQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException{
+
+
 		
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -106,7 +109,11 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 
 		resultData = query.executeQuery();
 		
+
 		List<displayQuestionsVO> list = new ArrayList<>();
+
+
+
 		
 		while(resultData.next())
 		{
@@ -140,11 +147,19 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 				choice = (String) correctJO.get("correctAnswer" + i);
 			}
 			
+
 			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizId, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(displayquestionVO);
+
 		}
 		
 		return list;
+	}
+
+	@Override
+	public List<QuestionVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

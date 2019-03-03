@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import model.QuestionsDAOBean;
 import model.displayQuestionsVO;
 
@@ -34,7 +33,9 @@ public class DisplayQuizServlet extends HttpServlet {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
 			QuestionsDAOBean questionBean = new QuestionsDAOBean();
+
 			List<displayQuestionsVO> questions = questionBean.getQuestionsForQuiz(quizID);
+
 			
 			session.setAttribute("displayQuestionsVO", questions);
 			

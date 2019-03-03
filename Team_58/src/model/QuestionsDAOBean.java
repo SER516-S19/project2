@@ -120,6 +120,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	
 	@Override
 	public List<displayQuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
+
 	{
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -145,8 +146,8 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			JSONObject incorrectJO = (JSONObject) parser.parse(choices);
 			JSONObject correctJO = (JSONObject) parser.parse(answers);
 			
-			List<String> incorrectAnswers = new ArrayList(3);
-			List<String> correctAnswers = new ArrayList(3);
+			List<String> incorrectAnswers = new ArrayList();
+			List<String> correctAnswers = new ArrayList();
 			
 			int i = 1;
 			String choice = (String) incorrectJO.get("incorrectAnswer" + i);
@@ -168,6 +169,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			
 			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(displayquestionVO);
+
 		}
 		
 		return list;
@@ -314,5 +316,14 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		}
 		return list;	
 	}
+
+	@Override
+	public List<displayQuestionsVO> getStudentQuestionsForInfo(int quizID)
+			throws SQLException, ClassNotFoundException, ParseException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
 

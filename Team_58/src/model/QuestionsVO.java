@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 /**
  * QuestionVO is the plain old java file for CreateQuestions and ViewQiz pages
  * 
@@ -27,7 +25,8 @@ public class QuestionsVO {
 	 * 
 	 * @date 02/22/2019
 	 */
-	public QuestionsVO(int quizId, String question, List<String> correctAnswers, List<String> incorrectAnswers, int totalPoints, boolean isMCQ) {
+	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
+			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
 		super();
 		this.quizId = quizId;
 		this.question = question;
@@ -44,6 +43,7 @@ public class QuestionsVO {
 	 * 
 	 * @date 02/22/2019
 	 */
+
 
 	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
 			String incorrectAnswer3, String question) {
@@ -93,6 +93,7 @@ public class QuestionsVO {
 
 	public String getCorrectAnswer() {
 		return correctAnswer;
+
 	}
 
 	public void setCorrectAnswer(String correctAnswer) {
@@ -138,6 +139,7 @@ public class QuestionsVO {
 	public void setMCQ(boolean isMCQ) {
 		this.isMCQ = isMCQ;
 	}
+
 }
 	
 

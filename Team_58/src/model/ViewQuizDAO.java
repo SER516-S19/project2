@@ -16,6 +16,8 @@ import org.json.simple.parser.ParseException;
 
 public interface ViewQuizDAO {
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException;
-	public List<displayQuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException;
+	public List<displayQuestionsVO> getStudentQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException;
+
+	public List<QuestionVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException;
 		
 }
