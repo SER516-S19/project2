@@ -141,17 +141,25 @@ public class SubmissionServlet extends HttpServlet {
             return;
         }
 
-        if (!sendSubmission(quizId, enrollId, startTime, endTime, 0, attempt)){
-            response.sendError(500);
-            return;
+        //determine action to create new submission if initial entry, or update submission if final entry
+        if(isInitial) {
+            if (!sendSubmission(quizId, enrollId, startTime, endTime, 0, attempt)) {
+                response.sendError(500);
+                return;
+            }
         }
-        if (!sendAnswer(choiceIds)){
-            response.sendError(500);
-            return;
-        }
-
-        if(isLateSubmission(quizId)) {
-            response.sendError(401, "Your submission was past the due date");
+        else {
+            if (!updateSubmission(quizId, enrollId, attempt, endTime)) {
+                response.sendError(500);
+                return;
+            }
+            if (!sendAnswer(choiceIds)) {
+                response.sendError(500);
+                return;
+            }
+            if (isLateSubmission(quizId)) {
+                response.sendError(401, "Your submission was past the due date");
+            }
         }
 
         response.setStatus(httpCode);
