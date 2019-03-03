@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 insert into quiz values(1,1,0,"You are not allowed to take this quiz again!!", "Midterm1",'00:00:30','graded');
 insert into quiz values(2,1,0,"You are not allowed to take this quiz again!!", "Midterm2",'00:00:30','graded');
@@ -12,6 +13,10 @@ insert into answer values(2,"Barack Obama",1,1);
 insert into answer values(3,"Modi",1,1);
 insert into answer values(4,"Beyonce",1,1);
 =======
+=======
+use quizdb;
+
+>>>>>>> 4bbeaf52dad6342568e8e58db64e23cffdec974c
 insert into quiz values(1,1,0,"You are not allowed to take this quiz again!!", "Midterm1",'00:00:30','graded');
 insert into quiz values(2,1,0,"You are not allowed to take this quiz again!!", "Midterm2",'00:00:30','graded');
 insert into quiz values(3,0,1,"You are not allowed to take this quiz again!!", "Midterm3",'00:00:30','graded');
@@ -70,4 +75,7 @@ VALUES ('10', '9', '3', '1', '3');
 
 INSERT INTO `calculatedscores` (`id`, `scores`, `quiz_id`, `user_id`) VALUES ('1', '25', '1', '1');
 INSERT INTO `calculatedscores` (`id`, `scores`, `quiz_id`, `user_id`) VALUES ('2', '30', '1', '3');
+<<<<<<< HEAD
 >>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
+=======
+>>>>>>> 4bbeaf52dad6342568e8e58db64e23cffdec974c
