@@ -60,11 +60,8 @@ public class QuizDetailsController extends HttpServlet {
 		// perform processing and aggregate response payload
 		try {
 			if (action.equals("Add Questions")) {
-<<<<<<< HEAD
-				if (title!=null) {
-=======
-				if (Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9]*", title) && Pattern.matches("[0-9][0-9]*", time)) {
->>>>>>> Team_58
+					if (title != null && Pattern.matches("[0-9][0-9]*", time)) {
+
 
 					if (shuffled != null && shuffled.equals("true"))
 						isShuffled = true;
@@ -95,7 +92,7 @@ public class QuizDetailsController extends HttpServlet {
 					res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Wrong Parameters Sent!");
 				}
 			} else if (action.equals("Update Questions")) {
-				if (Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9]*", title) && Pattern.matches("[0-9][0-9]*", time)) {
+				if (title != null && Pattern.matches("[0-9][0-9]*", time)) {
 
 					if (shuffled != null && shuffled.equals("true"))
 						isShuffled = true;
