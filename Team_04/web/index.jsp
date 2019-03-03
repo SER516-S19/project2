@@ -16,7 +16,9 @@
             border-width: medium;
             border-radius: 10px;
             border-color: cyan;
+
         }
+
         h1{
             color: white;
             font-size: 40px;
@@ -62,15 +64,44 @@
             margin-left: 15px;
             margin-right: 15px;
         }
+        .buttn3 {
+            display: flex;
+            align-items: center;
+            background-color: cyan;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-block;
+            white-space: nowrap;
+            flex-basis: auto;
+            width: auto;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            line-height: 1.2;
+            letter-spacing: .7px;
+            padding: 19px 40px 20px;
+            margin-left: 15px;
+            margin-right: 15px;
+        }
     </style>
 </head>
 <body>
 <h1>Available Functionality</h1>
+<div>
 <form method="get">
-    <div>
+
+<table>
+    <tr>
         <input type="submit" class="buttn1" formaction="./createContent.jsp" name="action" value="CREATE QUIZ"/>
-        <input type="submit" class="buttn2" formaction="./list" name="action" value="VIEW QUIZ LIST"/>
-    </div>
+        <input type="submit" class="buttn2" formaction="/list" name="action" value="VIEW QUIZ LIST"/>
 </form>
+        <form action="./studentList" method="GET">
+        <input type="submit" class="buttn3" value="VIEW STUDENT LIST"/>
+        </form><tr>
+        </form>
+    </div>
+
 </body>
 </html>
