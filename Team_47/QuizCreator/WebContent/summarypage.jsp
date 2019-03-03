@@ -25,12 +25,12 @@
 </head>
 <body style="background-color: White;">
 
-	<h2>
-		<center>Summary Of Quiz created</center>
-	</h2>
+	<h2><center>Summary Of Quiz created</center></h2>
 	<form action="quizstat.jsp" method="POST">
 		<input type="text" name="Quiz_title" value=<%=quiz_title%> hidden=true>
-		<input type="text" name="Quiz_id" value=<%=quiz_id%> hidden=true>
+		<input type="text" name="Quiz_id" value=<%=quiz_id%> hidden=true>	
+		<center><input type="submit" name="Submit" value="<%= quiz_title%> Stat"></center>
+	</form>
 	<div>
 		<%
 			//create information of the quiz
@@ -63,7 +63,14 @@
 					if(choices.get(j).isCorrect()){
 						checked = "checked";
 					}
-					out.print("<p><input type='checkbox'"+ checked +"</input><center>" + option + " :" + choices.get(j).getContent() + " </center></p>");
+					out.print("<p><center>");
+					out.print("<label>");
+					out.print("<input id ='check_box_option' type='checkbox' "+ checked +"  onclick='return false' >");
+					out.print("<span>" + option + " :" + choices.get(j).getContent()+"</span>");
+					out.print("</label>");
+					out.print("</center></p>");
+					//out.print("<input type='checkbox' "+ checked +"><label><center>"
+					//+ option + " :" + choices.get(j).getContent() + " </center></label>");
 				}
 				out.print("</div>");
 				out.print("<p><center><b> Points: <span id='red'>" + questions.get(i).getPoints()
