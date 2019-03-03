@@ -1,6 +1,6 @@
   package content.creator.helper;
 
-//import static content.creator.operations.DataOps.getNamesFromProperty;
+import static content.creator.operations.DataOps.getNamesFromProperty;
 import static java.lang.System.getProperties;
 
   import DBUtil.DbHelper;
@@ -57,6 +57,7 @@ import static java.lang.System.getProperties;
       return scoreOfAllStudents.size();
     }
 
+<<<<<<< HEAD
     /**
      * This method returns the highest score for the quiz passed as a parameter
      * @param quizId
@@ -87,4 +88,16 @@ import static java.lang.System.getProperties;
       String tableName = "ques_response";//getNamesFromProperty("QUIZ_RESULT_TABLE_NAME");
       return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
     }
+=======
+  private static String getQueryForStudentScore(int quizId) {
+    String colName = getNamesFromProperty("QUIZ_RESULT_QUIZ_ID_COL_NAME");
+    String tableName = getNamesFromProperty("QUIZ_RESULT_TABLE_NAME");
+    return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
+  }
+
+  private static String getQueryForQuesAttempted(int quizId) {
+    String colName = getNamesFromProperty("QUES_RESPONSE_QUIZ_ID_COL_NAME");
+    String tableName = getNamesFromProperty("QUES_RESPONSE_TABLE_NAME");
+    return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
+>>>>>>> parent of b2a3da6... Temp.
   }
