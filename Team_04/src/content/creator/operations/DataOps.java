@@ -30,13 +30,14 @@ public final class DataOps {
   private static Connection getConnection() throws SQLException {
     DriverManager.registerDriver(new JDBC());
     String dbUrl = null;
-    try {
+    /*try {
     Properties dbProperties = new Properties();
-    dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
+    dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("/Users/devstation/Github/project2/Team_04/resources/DBDetails.properties"));
     dbUrl = dbProperties.getProperty("jdbcUrl");
     } catch (IOException ioExp) {
       System.out.println(ioExp.getMessage());
-    }
+    }*/
+    dbUrl = "jdbc:sqlite:/Users/devstation/Github/project2/Team_04/resources/quizDatabase.db"; //Remove
     return DriverManager.getConnection(dbUrl);
   }
 
