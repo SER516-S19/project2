@@ -10,6 +10,8 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script type='text/javascript' src='javascript/viewGrades.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>StudentHomePage</title>
 <style>
@@ -96,21 +98,16 @@
 <div class="page-wrapper">
 <h1 align= "CENTER"> GRADES </h1>
   <p align="CENTER"> </br> </br>
-    <button onclick="myFunction()">Generate My Grades</button>
+    <button id="generateResult" >Generate My Grades</button>
   </p>
 </div>
-<p id="demo"></p>
-<script>
-function myFunction() {
-  var score = 10; //it should be the json result generated from the Quiz 
-  var greeting;
-  if (score < 5) {
-    greeting = "Better luck next Time";
-  } else {
-    greeting = "Congratulations!! You scored";
-  }
-  document.getElementById("demo").innerHTML = greeting+score+" marks";
-}
-</script>
+<div id="finalMarksDiv" style="background-color: #F5DEB3 ; padding: 10px; border: 1px white;">
+		<span>
+			<strong>
+				<center id="finalMarks"></center>
+			</strong>
+		</span>
+</div>
+
 </body>	
 </html>
