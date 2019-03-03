@@ -65,9 +65,6 @@ public class ProfessorController extends HttpServlet {
 		if (action.equals("ViewGrades")) {
 			response.sendRedirect("ViewGrades.jsp");
 		}
-		if (action.equals("Options")) {
-			response.sendRedirect("Options.jsp");
-		}
 		if (action.equals("Statistics")) {
 			response.sendRedirect("Statistics.jsp");
 		}
@@ -77,20 +74,16 @@ public class ProfessorController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("Options.jsp");
-		}
-		if (action.equals("AddQuestion")) {
 			response.sendRedirect("Questions.jsp");
 		}
-		
+
 		if (action.equals("Submit")) {
+			
 			  try { quiz.getParameters(request, response); } catch (Exception e) {
 			  e.printStackTrace(); }
 			 
 			response.sendRedirect("ReviewProfQuiz.jsp");
 		}
-		
-		
 		if (action.equals("Continue1")) {
 			if (request.getParameter("qtype").equals("NonGraded")
 					|| request.getParameter("qtype").equals("Practice")) {

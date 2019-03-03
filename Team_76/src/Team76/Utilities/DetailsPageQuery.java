@@ -31,7 +31,7 @@ public class DetailsPageQuery {
 			PreparedStatement pstmt = con.prepareStatement(query);
 			System.out.println(query);
 			pstmt.executeUpdate();
-
+			
 		}
 		
 		con.close();

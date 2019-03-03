@@ -1,5 +1,7 @@
 package Team76.Utilities;
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,17 +12,17 @@ import java.sql.Statement;
 import Team76.Database.DatabaseConnection;
 import Team76.Entity.QuizEntity;
 
-/*
+/**
  * retrieve quiz info from mysql database
- * author: Janani Anand
- * version: 3.1
+ * author: Xiangwei Zheng
+ * version: 1.1
  */
 
 public class QuizInstructModel {
 	private DatabaseConnection connect = null;
 	private Connection conn = null;	
 	private Statement stmt = null;
-	private String dbname = "ser516p2";	 
+	private String dbname = "ser516p2";	
 	
 	public QuizInstructModel(){
 		try {

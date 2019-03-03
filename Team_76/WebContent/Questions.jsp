@@ -16,8 +16,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="Style.css">
 <style>
-
-
 body {
 	font-family: Arial;
 }
@@ -110,10 +108,16 @@ body {
 			<label for="a6">Marks:</label> <input type="text"
 				class="form-control" name="marks" id="a6" placeholder="Enter Marks">
 		</div>
+			<form action="ProfessorController" method="post">
 			<input type="hidden" name="action" value="Continue"> <input
 				class="btn btn-primary" type="submit" name="Continue"
 				value="Continue">
+				</form>
 		<br/>
+			<form action="ProfessorController" method="post">
+			<input type="hidden" name="action" value="Submit"> 
+			<input class="btn btn-primary" type="submit" name="Submit" value="Submit">
+			</form>
 	</form>
 
 </body>
