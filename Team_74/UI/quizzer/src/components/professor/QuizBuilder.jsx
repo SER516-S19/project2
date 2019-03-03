@@ -53,16 +53,6 @@ export default function QuizBuilder(props) {
             Create Quiz
       </button>
         </Col>
-
-        <Col>
-          <button onClick={() => {
-            console.log(props.location.state.data);
-          }}>
-            <span><FaSave /></span>
-            Check
-      </button>
-        </Col>
-
       </Row>
     </div>
   );
