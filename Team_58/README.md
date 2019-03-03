@@ -6,6 +6,8 @@ Build Project
  - update 'tomcat.home' property in build.properties to your local tomcat folder path
  - run build.xml via Ant build
  - the application is hosted at http://localhost:8080/Team_58/
+
+..
  
  Database Information
  - database is hosted on Microsoft Azure
