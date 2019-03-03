@@ -166,17 +166,17 @@ public final class DataOps {
     }
 
     private static Properties getProperties() {
-      Properties dbProperties = new Properties();
-      try {
-        dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-      return dbProperties;
+    Properties dbProperties = new Properties();
+    try {
+      dbProperties.load(DbHelper.class.getClassLoader().getResourceAsStream("DBDetails.properties"));
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+    return dbProperties;
+  }
 
-    public static String getNamesFromProperty(String property) {
-      Properties properties = getProperties();
-      return properties.getProperty(property);
-    }
+  public static String getNamesFromProperty(String property) {
+    Properties properties = getProperties();
+    return properties.getProperty(property);
+  }
 }

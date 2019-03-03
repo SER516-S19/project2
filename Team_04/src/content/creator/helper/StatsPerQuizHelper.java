@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-//import static content.creator.operations.DataOps.getNamesFromProperty;
+import static content.creator.operations.DataOps.getNamesFromProperty;
 import static java.lang.System.getProperties;
 
 import DBUtil.DbHelper;
@@ -61,14 +61,14 @@ public class StatsPerQuizHelper {
   }
 
   private static String getQueryForStudentScore(int quizId) {
-    String colName = "quizId";//getNamesFromProperty("QUIZ_RESULT_QUIZ_ID_COL_NAME");
-    String tableName = "quiz_result";//getNamesFromProperty("QUIZ_RESULT_TABLE_NAME");
+    String colName = getNamesFromProperty("QUIZ_RESULT_QUIZ_ID_COL_NAME");
+    String tableName = getNamesFromProperty("QUIZ_RESULT_TABLE_NAME");
     return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
   }
 
   private static String getQueryForQuesAttempted(int quizId) {
-    String colName = "ques_response";//getNamesFromProperty("QUES_RESPONSE_QUIZ_ID_COL_NAME");
-    String tableName = "ques_response";//getNamesFromProperty("QUES_RESPONSE_TABLE_NAME");
+    String colName = getNamesFromProperty("QUES_RESPONSE_QUIZ_ID_COL_NAME");
+    String tableName = getNamesFromProperty("QUES_RESPONSE_TABLE_NAME");
     return String.format("SELECT * FROM %s WHERE %s = %s", tableName, colName, quizId);
   }
 }
