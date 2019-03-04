@@ -17,3 +17,12 @@ INSTRUCTIONS TO EXECUTE THE PROJECT
 - start the tomcat server
 -Go to the browser and request for http://localhost:8080/Team_04/
 (need not be 8080 , it is your Local tomcat port)
+
+
+To log in use the below credentials: 
+    As student:
+      Username : pradeep@gmail.com 
+      Password: 12345
+    As Professor: 
+      Username: akaush13@asu.edu 
+      Password : hello
