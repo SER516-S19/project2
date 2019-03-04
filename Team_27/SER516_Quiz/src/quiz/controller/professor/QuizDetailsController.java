@@ -126,7 +126,7 @@ public class QuizDetailsController extends HttpServlet {
 				req.getRequestDispatcher("/viewQuestions").forward(req, res);
 			}
 			else {
-				req.getRequestDispatcher("index.html").forward(req, res);
+				req.getRequestDispatcher("showQuizes.jsp").forward(req, res);
 			}
 		} catch (Exception exc) {
 			res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
