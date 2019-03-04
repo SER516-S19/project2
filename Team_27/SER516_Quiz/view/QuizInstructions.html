@@ -7,8 +7,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="stylesheet.css"> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
 <script type="text/javascript" src="javascript/quizInstructions.js"></script>
 
 <style>
@@ -74,7 +75,7 @@
 <body>
 
 	<h1>
-		<center>QUIZ</center>
+		<center id="quizName">QUIZ</center>
 	</h1>
 	<br><br><br>
 	<p><div style="background-color: #F5DEB3 ; padding: 10px; border: 1px white;">
@@ -85,11 +86,11 @@
 	<hr width="99%">
 	<ul>
 		<li>
-			<strong>This quiz contains 15 Questions </strong>
+			<strong id="quizInstruction1">This quiz contains 15 Questions </strong>
 		</li>
 		<br>
 		<li>
-			<strong>Each question carries 10 marks.</strong>
+			<strong id="quizInstruction2">Each question carries 10 marks.</strong>
 		</li>
 	</ul>
 	  
@@ -99,6 +100,5 @@
 	  <div align="right">
 	  <input type="button" class="button" id="startQuiz" value="NEXT">
 	</footer>
-
 </body>
 </html>

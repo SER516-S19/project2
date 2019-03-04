@@ -1,6 +1,6 @@
 var seconds;
 $(document).ready(function() {
-	 $.ajax({
+		$.ajax({
 			url : 'QuizTimeLimit',
 			type: 'GET',
 			data: {

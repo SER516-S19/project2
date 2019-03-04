@@ -22,17 +22,16 @@ import quiz.model.student.QuizAttempt;
 public class StudentAttemptDao {
 
 	private static Properties dbProperties = new Properties();
-		static {
-			try {
-				dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("rdbm.properties"));
-				Class.forName(dbProperties.getProperty("mysql_jdbcDriver"));
-			} catch (Throwable t) {
-				t.printStackTrace();
-			}
+	static {
+		try {
+			dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("rdbm.properties"));
+			Class.forName(dbProperties.getProperty("mysql_jdbcDriver"));
+		} catch (Throwable t) {
+			t.printStackTrace();
 		}
+	}
+	
 	public static QuizAttempt getQuizAttempt(int quiz_id, int student_id) throws DataAccessException {
-	// @SuppressWarnings("rawtypes") 
-		//ArrayList<QuizAttempt> allRows = new ArrayList<QuizAttempt>();
 		QuizAttempt quizAttempt = null;
 		ResultSetMetaData resultSetMetaData;
 		ArrayList<String> columnsValues = new ArrayList<String>(); 
@@ -47,12 +46,11 @@ public class StudentAttemptDao {
 			preparedStatement.setInt(2,student_id);
 			rs = preparedStatement.executeQuery();
 			while (rs.next()) {
-				 	resultSetMetaData = rs.getMetaData();
-			        for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
-			        	columnsValues.add(rs.getString(i));
-			         }
-			        quizAttempt = new QuizAttempt(Integer.parseInt(columnsValues.get(0)), Integer.parseInt(columnsValues.get(1)), Integer.parseInt(columnsValues.get(2)), columnsValues.get(3));
-			        //allRows.add(quizAttempt);
+				 resultSetMetaData = rs.getMetaData();
+			     for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
+			        columnsValues.add(rs.getString(i));
+			     }
+			     quizAttempt = new QuizAttempt(Integer.parseInt(columnsValues.get(0)), Integer.parseInt(columnsValues.get(1)), Integer.parseInt(columnsValues.get(2)), columnsValues.get(3));
 			}
 			
 			return quizAttempt;
@@ -76,13 +74,17 @@ public class StudentAttemptDao {
 	public String getResult(ArrayList<Question> answers, String attempt) {
 		String result = null;
 		int correctAnswers = 0 , i=0;
+		int finalPoints = 0, totalPoints = 0 ;
 		ArrayList<String> extractedAnswers = new ArrayList<String>();
+		ArrayList<Integer> points = new ArrayList<Integer>();
 		for(Question answer : answers) {
 			extractedAnswers.add(null);
 		}
 
 		i=0;
 		for(Question answer : answers) {
+			points.add(answer.getPoints());
+			totalPoints += answer.getPoints();
 			for(int j=0;j<4;j++) {
 				switch(j) {
 					case 0: setIntoExtractedList(answer.getIsOptionACorrect(),i,extractedAnswers,0);break;
@@ -95,6 +97,8 @@ public class StudentAttemptDao {
 		}
 		
 		String[] attemptedAns;
+		attempt = attempt.substring(1,attempt.length()-1);
+		System.out.println("Value of attempt="+attempt);
 		try {
 			attemptedAns = attempt.split(",");
 		}catch(Exception e) {
@@ -106,11 +110,16 @@ public class StudentAttemptDao {
 		i=0;
 		for(;i<extractedAnswers.size();i++) { 
 			System.out.println("Extracted Answers="+extractedAnswers.get(i));
-			if(extractedAnswers.get(i).equals(attemptedAns[i].split(":")[1].trim()))
+			String extAns = "\"" + extractedAnswers.get(i) + "\"";
+			String splitString = attemptedAns[i].split(":")[1];
+			System.out.println(splitString+"xxxx");
+			if(extAns.equals(splitString)) {
 				correctAnswers++; 
+				finalPoints += points.get(i);
+			}
 		} 
 		
-		result = correctAnswers +"/"+ answers.size();
+		result = correctAnswers +"/"+ answers.size() + "|" + "Points obtained is "+finalPoints+" out of "+totalPoints;
 		return result;
 	}
 

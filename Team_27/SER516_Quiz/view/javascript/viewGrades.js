@@ -9,8 +9,10 @@ var quizName = url.searchParams.get("quiz");
 $(document).ready(function() {
 	$("#finalMarksDiv").hide();
 	$("#generateResult").on('click', function(){
-		  var score = 10; //it should be the json result generated from the Quiz 
 		  var greeting = "Your score is ";
+		  $("#finalMarksDiv").show();
+		  document.getElementById("finalMarks").innerHTML = "Loading Results...";
+		  
 		  $.ajax({
 				url : 'StudentGrades',
 				type: 'GET',
@@ -20,10 +22,9 @@ $(document).ready(function() {
 				},
 				success : function(responseText) {
 					console.log("Response text="+responseText);
-					$("#finalMarksDiv").show();
-					document.getElementById("finalMarks").innerHTML = greeting + responseText;
-					/*var response = $.parseJSON(responseText);
-					renderQuestions(response); */
+					var result = responseText.split("|");
+					document.getElementById("finalMarks").innerHTML = greeting + result[0];
+					document.getElementById("finalPoints").innerHTML = result[1];
 				},error: function(){
 					//Handle Error scenario here.
 					console.log("Error occured while fetching data!")

@@ -16,13 +16,10 @@ import quiz.model.student.QuizAttempt;
 
 public class StudentGrades extends HttpServlet{
 
-
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// set Content-Type and other response headers
-		//response.setHeader("Cache-Control", "no-cache");
 		String resultString = "";
 		QuizDetailsDao quizDetails = new QuizDetailsDao();
 		int quizId = Integer.parseInt(quizDetails.getQuizId(request.getParameter("quiz_title")));
@@ -33,17 +30,13 @@ public class StudentGrades extends HttpServlet{
 			StudentAttemptDao studentAttemptDao = new StudentAttemptDao();
 			QuestionsDao questionsDao = new QuestionsDao();
 			QuizAttempt quizAttempt = studentAttemptDao.getQuizAttempt(quizId, studentId);
-			ArrayList<Question> answers = questionsDao.getQuestions(quizId);
-			//JSONObject studentAnswer = new JSONObject(quizAttempt.getResponse());
-			
+			ArrayList<Question> answers = questionsDao.getQuestions(quizId);			
 			result = studentAttemptDao.getResult(answers,quizAttempt.getResponse());
-			
 		}
 		catch (Exception exc) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");
 			exc.printStackTrace();
 		}	
-		
 		response.setContentType("text/plain");
 		response.getWriter().write(result);
 	}
