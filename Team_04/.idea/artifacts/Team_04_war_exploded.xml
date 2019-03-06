@@ -11,6 +11,9 @@
           <element id="library" level="project" name="lib1" />
           <element id="library" level="project" name="lib2" />
           <element id="library" level="project" name="lib3" />
+          <element id="library" level="project" name="jstl-1.2" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/sqlite-jdbc-3.23.1.jar" />
+          <element id="library" level="application" name="javax.servlet.jsp.jstl" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Team_04/web/Web" />
