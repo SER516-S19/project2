@@ -7,30 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import bean.Question;
 import bean.Quiz;
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-import bean.Answer;
-=======
->>>>>>> Team_58
-import bean.Question;
-import bean.Quiz;
-import dao.ProfessorDAO;
-import dao.QuestionDAO;
-=======
-import bean.Question;
-import bean.Quiz;
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
-import bean.Question;
-import bean.Quiz;
->>>>>>> origin/master
 import services.ProfessorServices;
 
 /**
@@ -55,63 +33,6 @@ public class ProfessorServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
-		if ("fetchQuizList".equalsIgnoreCase(flag)) {
-			List<Quiz> quizList = professorServices.getAllQuizzes();
-			request.setAttribute("quizList", quizList);
-			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
-=======
-<<<<<<< HEAD
-		if ("fetchQuizList".equalsIgnoreCase(flag)) {
-			List<Quiz> quizList = professorServices.getAllQuizzes();
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
-			request.setAttribute("quizList", quizList);
-			rd.forward(request, response);
->>>>>>> origin/master
-		} 
-		else if ("publishQuiz".equalsIgnoreCase(flag)) {
-			String id = request.getParameter("id");
-			int quizID = Integer.parseInt(id);
-			professorServices.publishQuiz(quizID);
-<<<<<<< HEAD
-			request.setAttribute("quizList", professorServices.getAllQuizzes());
-			getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp").forward(request, response);
-=======
-			List<Quiz> quizList = professorServices.getAllQuizzes();
-			request.setAttribute("quizList", quizList);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
-			rd.forward(request, response);
->>>>>>> origin/master
-		} 
-		else if ("viewQuiz".equalsIgnoreCase(flag)) {
-			String id = request.getParameter("id");
-			String quizName = request.getParameter("quizName");
-			int quizId = Integer.parseInt(id);
-<<<<<<< HEAD
-=======
-			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
-			List queAnsData = professorServices.getAllAnswersFromQueList(questions);
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuestionstoProfessor.jsp");
-			request.setAttribute("quizName", quizName);
-			request.setAttribute("queAnsData", queAnsData);
-			rd.forward(request, response);	
-		}
-		else if("addQueInQuiz".equalsIgnoreCase(flag)) {
-			String quizID = request.getParameter("id");
-			int quizId = Integer.parseInt(quizID);
-			ProfessorDAO professorDAO = new ProfessorDAO();
-			Quiz quiz = professorDAO.getQuizFromID(quizId);
-			HttpSession session = request.getSession(true);
-			session.setAttribute("quiz", quiz);
-			session.setAttribute("quiz", quiz);
-			response.sendRedirect(request.getContextPath()+"/views/addQuestions.jsp");
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> origin/master
 		
 		if ("fetchQuizList".equalsIgnoreCase(flag)) {
 			List<Quiz> quizList = professorServices.getAllQuizzes();
@@ -129,7 +50,6 @@ public class ProfessorServlet extends HttpServlet {
 			String id = request.getParameter("id");
 			String quizName = request.getParameter("quizName");
 			int quizId = Integer.parseInt(id);
->>>>>>> origin/master
 			List<Quiz> quizList = professorServices.getAllQuizzes();
 			List<Question> questions = professorServices.getAllQuestionFromQuizID(quizId);
 			List queAnsData = professorServices.getAllAnswersFromQuestionList(questions);
@@ -163,60 +83,10 @@ public class ProfessorServlet extends HttpServlet {
 	 * @param request  request object from the jsp page
 	 * @param response response to be sent to the jsp page
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	@Override
->>>>>>> Team_58
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String flag = request.getParameter("flag");
-<<<<<<< HEAD
-=======
-		if ("InsertQuizDetails".equals(flag)) {
-			professorServices.insertQuizDetails(request);
-			List<Quiz> quizList = professorServices.getAllQuizzes();
-			RequestDispatcher rd = getServletContext().getRequestDispatcher("/views/displayQuizDetails.jsp");
-			request.setAttribute("quizList", quizList);
-			rd.forward(request, response);
-		} 
-		else if ("DeleteQuestion".equals(flag)) {
-			String quesId = request.getParameter("box1");
-			QuestionDAO questionDAO = new QuestionDAO();
-			questionDAO.deleteQuestionByQuestionId(quesId);
-			response.sendRedirect("views/removeQuestionPage.jsp");
-		} 
-		else if ("Add Next Question".equals(flag) || "Save and Exit".equals(flag) || "Verify Questions".equals(flag)) {
-			
-			//professorServices.storeQuestion((Quiz)session.getAttribute("quiz"), question, questionOption1,
-			//		questionOption2, questionOption3, questionOption4, correctanswers, points);
-			
-			professorServices.storeQuestion(request);
-
-        	String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
-        	request.setAttribute("profnavigate", addQuestionPageURL); 
-        	if("Add Next Question".equals(flag)) {
-        		response.sendRedirect("views/addQuestions.jsp");
-        	}else if("Save and Exit".equals(flag)) {
-        		response.sendRedirect("views/professorLanding.jsp");
-        	}
-		}else if("Verify Questions".equals(flag)) {
-        	response.sendRedirect("views/displayQuestionAnswer.jsp");
-        }
-    }
-<<<<<<< HEAD
-
-
-		
-=======
-=======
->>>>>>> origin/master
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String flag = request.getParameter("flag");
->>>>>>> origin/master
 		if ("insertQuizDetails".equals(flag)) {		
 			HttpSession sess = request.getSession(true);
 			String quizName = request.getParameter("name");

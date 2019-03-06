@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /.metadata/
 /.recommenders/
 =======
@@ -164,3 +165,6 @@ build.properties
 
 /Team_58/dist/
 >>>>>>> f3ae326
+=======
+build
+>>>>>>> ab73de174aa046ddc7e4b855006a5799cbf301fb

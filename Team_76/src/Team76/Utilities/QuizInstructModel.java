@@ -8,35 +8,33 @@ import java.sql.Statement;
 import Team76.Database.DatabaseConnection;
 import Team76.Entity.QuizEntity;
 
-/**
+/*
  * retrieve quiz info from mysql database
- * author: Xiangwei Zheng version: 1.1
+ * author: Janani Anand
+ * version: 3.1
  */
 
 public class QuizInstructModel {
 	private DatabaseConnection connect = null;
-	private Connection conn = null;
+	private Connection conn = null;	
 	private Statement stmt = null;
-	private String dbname = "ser516p2";
-
-	public QuizInstructModel() {
+	
+	public QuizInstructModel(){
 		try {
 			connect = new DatabaseConnection();
 			conn = connect.establishConnection();
-			dbname = "ser516p2";
 		} catch (Throwable t) {
-			t.printStackTrace();
+		    t.printStackTrace();
 		}
 	}
 
-	public QuizEntity getQuiz(String quizId) {
-		ResultSet resultSet = null;
+	public QuizEntity getQuiz(String quizId) {	
+		ResultSet resultSet = null;		
 		QuizEntity quiztaken = new QuizEntity();
 		try {
 			stmt = conn.createStatement();
-			stmt.executeUpdate("use " + dbname);
-			String sql = "SELECT * FROM quiz WHERE QuizId=" + quizId;
-			resultSet = stmt.executeQuery(sql);
+			String sql ="SELECT * FROM quiz WHERE QuizId="+quizId;
+			resultSet = stmt.executeQuery(sql);		
 			while (resultSet.next()) {
 				quiztaken.setProfessorId(resultSet.getInt("ProfId"));
 				quiztaken.setQuizId(resultSet.getInt("QuizId"));
@@ -51,14 +49,13 @@ public class QuizInstructModel {
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-				se2.printStackTrace();
-				System.out.println("Not all DB resources freed!");
-			}
+		}  finally {
+		    try {
+		    	if (stmt != null) stmt.close();
+		    } catch (SQLException se2) {
+		    	se2.printStackTrace();
+		    	System.out.println("Not all DB resources freed!");
+		    }
 		}
 		return quiztaken;
 

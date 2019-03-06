@@ -4,46 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
-=======
-<<<<<<< HEAD
-=======
-import java.util.HashMap;
-import java.util.Map;
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
-import java.util.HashMap;
-import java.util.Map;
->>>>>>> origin/master
 
 import bean.*;
 import com.google.gson.Gson;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import dao.QuizDAO;
-import dao.StatisticsDAO;
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 import dao.CalculatedScoresDAO;
 import dao.QuizDAO;
 import dao.StatisticsDAO;
 import dao.UserDAO;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 
 /**
  * A class to get the JSON string to the student controller
@@ -69,20 +39,6 @@ public class StudentServices {
 	 * success if the response has been recorded.
 	 * 
 	 * @param studentResponse
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	 * @return view
-	 */
-	public String feedAnswers(String studentResponse) {
-
-		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
-		User user = new User(5,"abc", "student", "abc.com", "1234");
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 	 * @param userId 
 	 * @return view
 	 */
@@ -91,13 +47,6 @@ public class StudentServices {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		UserDAO userDao = new UserDAO();
 		User user = userDao.getUserById(userId);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 		int quizId = jsonResponse.getQuizId();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		ResponseStatistics stats;
@@ -138,36 +87,12 @@ public class StudentServices {
 		return quizDAO.fetchQuizId(quizName);
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
-=======
-<<<<<<< HEAD
-	public List<String> fetchQuizStatus(List<String> quizNames){
-=======
-	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
-	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
->>>>>>> origin/master
 		List<String> status = new ArrayList<>();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
 		for(String quizName : quizNames) {
 			int quizID = fetchQuizId(quizName);
-<<<<<<< HEAD
-<<<<<<< HEAD
 			int count = statisticsDAO.checkQuizStatus(quizID,userId);
-=======
-<<<<<<< HEAD
-			long count = statisticsDAO.checkQuizStatus(quizID);
-=======
-			int count = statisticsDAO.checkQuizStatus(quizID,userId);
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
-			int count = statisticsDAO.checkQuizStatus(quizID,userId);
->>>>>>> origin/master
 			if(count>=1){
 				status.add("Answered");
 			}
@@ -194,15 +119,6 @@ public class StudentServices {
 		return dateTime; 
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-}
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 	public int getGrade(String studentResponse, int userId) {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		int quizId = jsonResponse.getQuizId();
@@ -256,13 +172,4 @@ public class StudentServices {
 		calculatedScores.setScore(sumPoints);
 		scoresDAO.insertCalculatedScore(calculatedScores);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
-}
->>>>>>> origin/master

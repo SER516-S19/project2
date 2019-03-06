@@ -26,27 +26,7 @@ public class HibernateUtil {
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/quizdb");
                 settings.put(Environment.USER, "root");
-<<<<<<< HEAD
-<<<<<<< HEAD
                 settings.put(Environment.PASS, "root123");
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-                settings.put(Environment.PASS, "root");
-                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-                settings.put(Environment.SHOW_SQL, "true");
-                settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
-=======
-                settings.put(Environment.PASS, "root123");
-                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-                settings.put(Environment.SHOW_SQL, "true");
-                settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-=======
-=======
->>>>>>> origin/master
-                settings.put(Environment.PASS, "root123");
->>>>>>> origin/master
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
@@ -58,35 +38,13 @@ public class HibernateUtil {
                  * 			no records.
                  */
                 settings.put(Environment.HBM2DDL_AUTO, "update");
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                settings.put(Environment.HBM2DDL_AUTO, "update");
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
->>>>>>> Team_58
->>>>>>> origin/master
-=======
->>>>>>> origin/master
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Quiz.class);
                 configuration.addAnnotatedClass(Answer.class);
                 configuration.addAnnotatedClass(Question.class);
                 configuration.addAnnotatedClass(ResponseStatistics.class);
-<<<<<<< HEAD
-<<<<<<< HEAD
                 configuration.addAnnotatedClass(CalculatedScores.class);
-=======
-<<<<<<< HEAD
-=======
-                configuration.addAnnotatedClass(CalculatedScores.class);
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
-                configuration.addAnnotatedClass(CalculatedScores.class);
->>>>>>> origin/master
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
