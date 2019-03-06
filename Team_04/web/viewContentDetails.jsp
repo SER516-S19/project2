@@ -49,27 +49,6 @@
         body {
             background-color: #4a154b;
         }
-        .btn1 {
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
-        }
         .btn2 {
             display: inline-block;
             white-space: nowrap;
@@ -112,10 +91,6 @@
         <input type="submit" class="btn2" value="Back">
     </form>
 
-    <c:url var="quizstats" value="./quizstats">
-        <c:param name="quizid" value="${quizid}"/>
-    </c:url>
-    <!--a href="${quizstats}">Quiz Statistics</a-->
     <form action="quizstats" method="GET">
         <input type="hidden" name="quizid" value="${quizid}">
         <input type="submit" class="btn2" value="Quiz Statistics">
@@ -145,7 +120,6 @@
         <%
             Map<Integer, List<String>> answers= (Map<Integer, List<String>>) request.getAttribute("answers");
             Map<Integer, Map<String, String>> questionList=(HashMap)request.getAttribute("questions");
-            int quizid = (int) request.getAttribute("quizid");
             for(Integer quesId:questionList.keySet()){
         %>
         <tr>

@@ -63,9 +63,7 @@ public class QuizContentDAO {
 
   public boolean getCorrect() { return isCorrect; }
 
-  public void setCorrect(boolean correct) {
-    isCorrect = correct;
-  }
+  public void setCorrect(boolean correct) { isCorrect = correct; }
 
   public int getMaxScore() {
     return maxScore;

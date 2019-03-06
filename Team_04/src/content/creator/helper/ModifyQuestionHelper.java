@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-import static content.creator.operations.DataOps.getNamesFromProperty;
+//import static content.creator.operations.DataOps.getNamesFromProperty;
 import content.creator.operations.DataOps;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,8 +33,8 @@ public final class ModifyQuestionHelper {
         }
     }
 
-    private static String queryString(content.creator.dao.QuizContentDAO quizContent) {
-        String tableName = getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
+    private static String queryString(QuizContentDAO quizContent) {
+        String tableName = "quiz_content";//getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
         List<String> colNames = content.creator.constants.Constants.colNames;
         return String.format(
                 "UPDATE %s" +

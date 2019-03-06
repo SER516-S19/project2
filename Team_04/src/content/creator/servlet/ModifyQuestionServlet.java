@@ -35,7 +35,7 @@ public class ModifyQuestionServlet extends HttpServlet {
             for(int i = 0; i < 4; i++) {
                 option.add(result.get(i).getAnsDesc());
                 if(result.get(i).getCorrect()) {
-                    choice = i;
+                    choice = i + 1;
                 }
             }
             request.setAttribute("action", "Modify");

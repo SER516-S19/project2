@@ -71,7 +71,7 @@
         </div>
         <form>
             <div class="wrapper">
-                <input type="submit" class="btn2" formaction="./loginPage.jsp" name="action" value="Blackboard"/>
+                <input type="submit" class="btn2" formaction="./dashboard.jsp" name="action" value="Blackboard"/>
             </div>
         </form>
     </body>

@@ -1,6 +1,6 @@
 package content.creator.helper;
 
-import static content.creator.operations.DataOps.getNamesFromProperty;
+//import static content.creator.operations.DataOps.getNamesFromProperty;
 
 import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
@@ -15,8 +15,8 @@ public final class ViewContentListHelper {
     }
 
     public static List<Integer> getQuizList() throws SQLException {
-        String tableName = getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
-        String colName = getNamesFromProperty("QUIZ_CONTENT_QUIZ_ID_COL_NAME");
+        String tableName = "quiz_content";//getNamesFromProperty("QUIZ_CONTENT_TABLE_NAME");
+        String colName = "quizId";//getNamesFromProperty("QUIZ_CONTENT_QUIZ_ID_COL_NAME");
         List<Integer> list = new ArrayList<>();
         String queryString = getQueryString(tableName, colName);
         List<QuizContentDAO> data = DataOps.getDataCreateContent(queryString);
