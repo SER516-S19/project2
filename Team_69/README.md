@@ -11,11 +11,15 @@ Build.properties contains information related to the application: Application Na
 
 2. To configure the database go to the file
 \src\main\java\bean\HibernateUtil.java and update the following as per you credentials.
-	a. Environment.USER
-	b. Environment.PASS
-	c. Environment.URL
+	a. Environment.USER - SQL Username
+	b. Environment.PASS - SQL Password
+	c. Environment.URL - jdbc:mysql://localhost:3306/<name of the database>
 	
 3. Run build.xml file with deploy command using ANT build
+   3.1 Open command line 
+   3.2 Go to the folder where you have cloned the project
+   3.3 Go to Team_69
+   3.4 Run the command "ant deploy"
 
 4. This will deploy the application under the webapps folder of your tomcat directory.
 
