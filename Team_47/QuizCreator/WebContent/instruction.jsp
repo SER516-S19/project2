@@ -5,7 +5,7 @@
  --%>
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-<%@ page import="com.asu.ser516.team47.database.*"%>
+<%@ page import="org.team47database.*"%>
 <%@ page import="java.util.List"%>
 <%--
  - Author(s): Bhavana Vakkalagadda
@@ -32,7 +32,7 @@
 </head>
 <body style="background-color:#FFF8DC">
 <div class = "content">
-<%@ page import="com.asu.ser516.team47.database.*"%>
+<%@ page import="org.team47database.*"%>
     <%@ page import="java.util.List"%>
 
 

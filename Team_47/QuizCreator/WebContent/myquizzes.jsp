@@ -5,7 +5,7 @@
   --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.asu.ser516.team47.database.*"%>
+<%@ page import="org.team47database.*"%>
 <%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>

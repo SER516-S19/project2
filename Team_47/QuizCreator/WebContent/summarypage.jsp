@@ -1,4 +1,4 @@
-<%@page import="com.asu.ser516.team47.database.*"%>
+<%@page import="org.team47database.*"%>
 <%@page import="java.util.*"%>
 <%--
  - Author(s): Jiayan Wang

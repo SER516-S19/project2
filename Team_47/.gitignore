@@ -1,0 +1,12 @@
+# compilation targets
+QuizCreator/WebContent/work/
+QuizCreator/target/
+QuizCreator/bin/
+*.class
+
+# IDE Files
+QuizCreator/.idea/
+QuizCreator/.settings/
+QuizCreator/.classpath
+QuizCreator/.project
+

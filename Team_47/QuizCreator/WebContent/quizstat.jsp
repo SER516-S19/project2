@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 
-    <%@ page import="com.asu.ser516.team47.database.*" %>
+    <%@ page import="org.team47database.*" %>
     <%@ page import="java.util.List" %>
 </head>
 
