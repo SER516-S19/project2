@@ -138,6 +138,15 @@ input[type=submit]:hover {
 					class="btn btn-primary" type="submit" name="ReviewSubmit"
 					value="Submit Button">
 			</form>
+		<form action="ProfessorController" method="post">
+            <div>
+                <div class="BTN">
+                    <input type="hidden" name="action" value="CreateQuiz">
+                    <input style="margin-left:auto;margin-right:auto" type="submit" name="CreateQuiz" value="Edit Quiz">
+                </div>
+            </div>
+        </form>
+			
 		</div>
 </body>
 </html>
