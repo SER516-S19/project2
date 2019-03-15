@@ -122,14 +122,28 @@ public class ViewQuizServlet extends HttpServlet {
 	    	   		   bean2.updateQuestionsTable(question, answer, one, two, three, pts, questId);
 	    	   	   }
 	    	   	   
-	    	   	   quizQuestions = bean2.getQuestionsInfo2(quizId);
+	    	   	   quizQuestions = bean2.getQuestionsInfo(quizId);
 	    	   	   
 	    	   	   JSONParser parser = new JSONParser();
-	    	   	   
+	    	   	   JSONObject jo = new JSONObject();
 	    	   	   for (int i = 0; i < quizQuestions.size(); i++) {
 	    	   		 int points = quizQuestions.get(i).getTotalPoints();
 	    	   		 total += points;
 	    	   		 
+	    	   		 StringBuilder temp = new StringBuilder();
+	    	   		 String temp2 = "correctAnswer";
+	    	   		 String ans = quizQuestions.get(i).getCorrectAnswer();
+	    	   		 jo = (JSONObject) parser.parse(ans);
+	    	   		 for (int j = 1; j <=jo.size(); j++) {
+	    	   			temp.append((String) jo.get(temp2+Integer.toString(j)));
+		 				  if(jo.size() != j) {
+		 					  temp.append(", ");
+		 				  }
+	    	   		 }
+	    	   		 ans = temp.toString();
+	    	   		 quizQuestions.get(i).setCorrectAnswer(ans);
+	    	   		 //System.out.println("ANSWER");
+	    	   		 //System.out.println(ans);
 	    	   	   }
 	    	   	   
 	    	   	   Date scheduledDate = quiz.getQuizScheduledDate();
