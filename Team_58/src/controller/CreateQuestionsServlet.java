@@ -16,9 +16,9 @@ import model.QuestionsVO;
  * Create Questions after Create Quiz.
  * 
  * @author trupti khatavkar
- * @version 1.3
- * @date 02/22/2019
- **/
+ * @version 1.4
+ * @date 03/14/2019
+ */
 public class CreateQuestionsServlet extends HttpServlet {
 	private static Logger log = Logger.getLogger(CreateQuestionsServlet.class.getName());
 
@@ -39,7 +39,6 @@ public class CreateQuestionsServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		try {
-
 			String question = req.getParameter("question");
 			String correctAnswer = req.getParameter("correctAnswer");
 			String incorrectAnswer1 = req.getParameter("incorrectAnswer1");
