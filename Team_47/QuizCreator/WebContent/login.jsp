@@ -4,7 +4,7 @@
   - Description: Login page for both the professor and students.
   --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,6 @@
             <input type="text" placeholder="Username" id ="username" name="username" required />
             <input type="password" placeholder="Password" id="password" name="password" required />
             <input id="sub" type="submit" value="LOGIN" formmethod="post" formaction="/login">
-            <%--<button id="btnlogin" onclick="loginCheck()">login</button> --%>
         </div>
         <div class="radio-group">
             <input type="radio" name="identity" class="rd2" value="student" id="student_radio" checked>
