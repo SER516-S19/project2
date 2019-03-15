@@ -14,9 +14,9 @@ import java.util.Properties;
  * Home after login.
  * 
  * @author shivamverma
- * @version 1.1
+ * @version 1.2
  * @date 03/14/2019
- **/
+ */
 public class CourseDAOBean implements CourseDAO{
 	
 	private static Properties dbProperties = new Properties();
