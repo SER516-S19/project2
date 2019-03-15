@@ -7,7 +7,7 @@
  --%>
 <title>Result Page</title>
 </head>
- <%@ page import="org.team47database.*"%>
+ <%@ page import="org.team47.database.*"%>
     <%@ page import="java.util.List"%>
     
 <body style="background-color:#FFF8DC">

@@ -5,7 +5,7 @@
  --%>
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-<%@ page import="org.team47database.*"%>
+<%@ page import="org.team47.database.*"%>
 <%@ page import="java.util.List"%>
 <%--
  - Author(s): Bhavana Vakkalagadda
