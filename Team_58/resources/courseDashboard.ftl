@@ -1,9 +1,11 @@
 <!-- 
 Freemarker page to display CourseDashboard 
-@authour narenkumarKonchada / @author Carnic
-@version 1.3
-@date 02/25/2019
+@authour narenkumarKonchada  
+@author Carnic
+@version 1.4
+@date 03/14/2019
  -->
+ 
 <html>
 	<head>
 		<#include "stylesheet.css">
@@ -22,22 +24,22 @@ Freemarker page to display CourseDashboard
 		  </div> 
 		</div>
 		<h2 class="fontColor" style="text-transform: uppercase;">Course Dashboard</h2>
-         <div class="box">
-	      	<p class="smallFontColor" style="text-align : center;"> <b>${Session.courseName} </b></p>
-	        <form action="viewQuiz" method="POST">
-	         	<select class="options" name="Quiz">
-	         		<#list Session.QuizHashMap as quizId, quizTitle>
-	          			<option value=${quizId}> ${quizTitle}</option>
-	           		</#list>
-	         	</select>
-	         	<input class="button" type ="submit" value="ViewQuiz"/>
-	         </form>
-	         	<form action="createQuiz" method="GET">
-         			<input class="buttonLarge" type ="submit" value="Create New Quiz"/>
+         	<div class="box">
+	      		<p class="smallFontColor" style="text-align : center;"> <b>${Session.courseName} </b></p>
+		        <form action="viewQuiz" method="POST">
+		         	<select class="options" name="Quiz">
+	        	 		<#list Session.QuizHashMap as quizId, quizTitle>
+	          				<option value=${quizId}> ${quizTitle}</option>
+	           			</#list>
+		         	</select>
+		         	<input class="button" type ="submit" value="ViewQuiz"/>
+	        	 </form>
+		         <form action="createQuiz" method="GET">
+        	 		<input class="buttonLarge" type ="submit" value="Create New Quiz"/>
          		</form>
-         		<form action="statistics" method="POST">
+	         	<form action="statistics" method="POST">
         			<input class="buttonLarge" type ="submit" value="Statistics"/>
-        			</form>
+        		</form>
 	     	</div>
 	</body>
 </html>

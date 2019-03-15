@@ -10,15 +10,22 @@ public class GradeQuizVO {
 	String firstName;
 	String lastName;
 	String quizName;
+	String courseName;
 	
 	
 	public GradeQuizVO(int score, String firstName, String lastName, String quizName) {
-		super();
 		this.score = score;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.quizName = quizName;
 	}
+	
+	public GradeQuizVO(int score, String quizName, String courseName) {
+		this.score = score;
+		this.quizName = quizName;
+		this.courseName = courseName;
+	}
+	
 	public int getScore() {
 		return score;
 	}
@@ -27,6 +34,9 @@ public class GradeQuizVO {
 	}
 	public String getFirstName() {
 		return firstName;
+	}
+	public String getCourseName() {
+		return courseName;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -43,7 +53,9 @@ public class GradeQuizVO {
 	public void setQuizName(String quizName) {
 		this.quizName = quizName;
 	}
-	
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 	
 	
 	

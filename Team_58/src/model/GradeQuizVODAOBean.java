@@ -62,4 +62,30 @@ private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName(
 	
 	}
 
+	@Override
+	public List<GradeQuizVO> getQuizGradesForStudent(int userId) throws SQLException, ClassNotFoundException
+	{
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		List<GradeQuizVO> list = new ArrayList<>();
+		query = connection.prepareStatement(dbProperties.getProperty("getStudentGrades"));
+		query.setInt(1, userId);
+
+		resultData = query.executeQuery();
+
+		while(resultData.next()) {
+			int score = resultData.getInt("score");
+			String quizTitle = resultData.getString("quizTitle");
+			String courseName = resultData.getString("courseName");
+			GradeQuizVO gradeQuiz = new GradeQuizVO(score, quizTitle, courseName);
+			list.add(gradeQuiz);
+		}
+		
+		return list;
+	}
+
 }

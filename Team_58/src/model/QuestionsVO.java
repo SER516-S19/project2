@@ -43,8 +43,11 @@ public class QuestionsVO {
 	 * 
 	 * @date 02/22/2019
 	 */
+
+
 	public QuestionsVO(int qId, int totalPoints, String correctAnswer, String incorrectAnswer1, String incorrectAnswer2,
 			String incorrectAnswer3, String question) {
+
 		this.questionId = qId;
 		this.question = question;
 		this.correctAnswer = correctAnswer;
@@ -90,6 +93,7 @@ public class QuestionsVO {
 
 	public String getCorrectAnswer() {
 		return correctAnswer;
+
 	}
 
 	public void setCorrectAnswer(String correctAnswer) {
@@ -137,3 +141,7 @@ public class QuestionsVO {
 	}
 
 }
+	
+
+
+

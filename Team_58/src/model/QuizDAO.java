@@ -19,5 +19,6 @@ public interface QuizDAO {
 	public void insertingQuizDetails (QuizVO quizVO) throws  SQLException, ClassNotFoundException;
 	public int gettingQuizId (QuizVO quizVO) throws  SQLException, ClassNotFoundException;
 	public List<QuizVO> getQuizzesForStudent(UserVO student) throws SQLException, ClassNotFoundException;
+	public QuizVO getQuiz(int quizID) throws SQLException, ClassNotFoundException;
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException;
 }

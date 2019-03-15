@@ -10,10 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+
 
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
@@ -51,6 +52,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		totalChoices.put("incorrectAnswer2", questionsVO.getIncorrectAnswer2());
 		totalChoices.put("incorrectAnswer3", questionsVO.getIncorrectAnswer3());
 
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		int count = 0;
@@ -63,21 +65,15 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb.append(entry.getValue());
 			sb.append("\"");
 			count++;
-			if (totalChoices.size() != count) {
+			if (totalChoices.size() - 1 != count) {
 				sb.append(",");
 			}
 		}
 		sb.append("}");
 
-		String incorrectAnswer = sb.toString();
-
+		String incorrectAnswers = sb.toString();
+		
 		Map<String, String> answerChoices = new HashMap<>();
-
-		String str = questionsVO.getCorrectAnswer();
-		String arrOfStr[] = str.split(",");
-		for (int i = 0; i < arrOfStr.length; i++) {
-			answerChoices.put("correctAnswer" + (i + 1), arrOfStr[i]);
-		}
 
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append("{");
@@ -108,7 +104,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query.setInt(1, questionsVO.getQuizId());
 			query.setString(2, questionsVO.getQuestion());
 			query.setString(3, correctAnswers);
-			query.setString(4, incorrectAnswer);
+			query.setString(4, incorrectAnswers);
 			query.setInt(5, questionsVO.getTotalPoints());
 			query.setBoolean(6, questionsVO.isMCQ());
 
@@ -119,8 +115,66 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query = null;
 			connection = null;
 		}
-
 	}
+
+	
+	@Override
+	public List<displayQuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
+
+	{
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		
+		connection = ConnectionFactory.getConnection();
+		
+		query = connection.prepareStatement(dbProperties.getProperty("getQuizQuestions"));
+		query.setInt(1, quizID);
+
+		resultData = query.executeQuery();
+		
+		List<displayQuestionsVO> list = new ArrayList<>();
+		
+		while(resultData.next())
+		{
+			int totalPoints = resultData.getInt("totalPoints");
+			String question = resultData.getString("question");
+			String answers = resultData.getString("actualAnswer");
+			String choices = resultData.getString("totalChoices");
+			
+			JSONParser parser = new JSONParser();
+			JSONObject incorrectJO = (JSONObject) parser.parse(choices);
+			JSONObject correctJO = (JSONObject) parser.parse(answers);
+			
+			List<String> incorrectAnswers = new ArrayList();
+			List<String> correctAnswers = new ArrayList();
+			
+			int i = 1;
+			String choice = (String) incorrectJO.get("incorrectAnswer" + i);
+			while(choice != null)
+			{
+				incorrectAnswers.add(choice);
+				i++;
+				choice = (String) incorrectJO.get("incorrectAnswer" + i);
+			}
+			
+			i = 1;
+			choice = (String) correctJO.get("correctAnswer" + i);
+			while(choice != null)
+			{
+				correctAnswers.add(choice);
+				i++;
+				choice = (String) correctJO.get("correctAnswer" + i);
+			}
+			
+			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
+			list.add(displayquestionVO);
+
+		}
+		
+		return list;
+	}
+
 
 	/**
 	 * updateQuestionsTable Update a question entry in the Questions table based on
@@ -253,14 +307,23 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
 	 			   
 	 			   
-	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, 
-		 					   						choice1, choice2, choice3, question);
+	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, choice1, choice2, choice3, question);
 		 			   list.add(quiz);
 			   }
 		}catch(ParseException e) {
 
 			e.printStackTrace();
 		}
-		return list;
+		return list;	
 	}
+
+	@Override
+	public List<displayQuestionsVO> getStudentQuestionsForInfo(int quizID)
+			throws SQLException, ClassNotFoundException, ParseException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
+
