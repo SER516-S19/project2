@@ -77,16 +77,30 @@ public class StudentController extends HttpServlet {
 			try {
 				List<Questions> questions = new FetchQuestionsQuery().fetchQuestions(quizId);
 				request.getSession().setAttribute("Question", questions);
+				request.getSession().setAttribute("quizId", quizId);
 				response.sendRedirect("Quiz.jsp");
 			} catch (Exception e) {
 				response.getWriter().println("<font color=red>An Exception occured.</font>");
 				response.sendRedirect("Login.jsp");
 			}
 		} else if (action.equalsIgnoreCase("SubmitQuiz")) {
-			response.getWriter().println("<font color=red>Quiz submitted.</font>");
-			response.sendRedirect("StudentDash.jsp");
+			List<Questions> questionArray = (List) request.getSession().getAttribute("questions");
+			
+			System.out.println("==============");
+			GradeEntity Answer = new GradeEntity();
+			for (Questions que : questionArray) { 
+				Answer.setQuizId(Integer.parseInt(request.getSession().getAttribute("quizId").toString()));
+				Answer.setQuizTitle("XYZ");
+				Answer.setStudentId(((UserEntity) request.getSession().getAttribute("user")).getUserId());
+				
+				System.out.println("Question ID : "+que.getQuestionId());
+				System.out.println("Answer : "+request.getParameter(que.getQuestionId()));
+				System.out.println("Quiz Id :"+Answer.getQuizId());
+				System.out.println("User ID : "+Answer.getStudentId());
+			}
+			//response.sendRedirect("StudentDash.jsp");
 		} else {
-			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
+			response.getWriter().println("<font color=red>Somethng went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
 		}
 	}

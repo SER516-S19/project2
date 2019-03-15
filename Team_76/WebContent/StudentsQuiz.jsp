@@ -32,6 +32,7 @@
 		<td><b>Due Date</b></td>
 		<td><b>Time Limit</b></td>
 		<td><b>Quiz Type</b></td>
+		<td><b>Action</b></td>
 	</tr>
 	<%
 		List<QuizEntity> quizzes = (List) session.getAttribute("quizzes");
@@ -43,6 +44,7 @@
 		<td><%=q.getDueDate() %></td>
 		<td><%=q.getTimeLimit() %></td>
 		<td><%=q.getQuizType() %></td>
+		
 		<td>
         	<form action="StudentController" method="get">
 				<input type="hidden" name="action" value="StartQuiz">
