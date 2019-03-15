@@ -1,8 +1,8 @@
 <!-- 
-Freemarker page to display the Grades
+Freemarker page to display Grades to student
 @authour Dhruv Patel
-@version 1.3
-@date 02/26/2019
+@version 1.4
+@date 03/14/2019
  -->
 <html>
  	<head align="center">
