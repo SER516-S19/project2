@@ -264,6 +264,40 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 			   
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
+	 			   
+	 			   String choice1 = (String) jo.get("incorrectAnswer1");
+	 			   String choice2 = (String) jo.get("incorrectAnswer2");
+	 			   String choice3 = (String) jo.get("incorrectAnswer3");
+	 			   
+	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, choice1, choice2, choice3, question);
+		 		   list.add(quiz);
+			   }
+		}catch(ParseException e) {
+			e.printStackTrace();
+		}
+		return list;	
+	}
+	public List<QuestionsVO> getQuestionsInfo2(int quizId) throws SQLException, ClassNotFoundException {
+
+		List<QuestionsVO> list = new ArrayList<QuestionsVO>();
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet result = null;
+		connection = ConnectionFactory.getConnection();
+		query = connection.prepareStatement(dbProperties.getProperty("getQuestionsInfo"));
+		query.setInt(1, quizId);
+		result = query.executeQuery();
+		try {
+		    while (result.next()) {
+		    	   int questionId = result.getInt("questionId");
+	 			   int points = result.getInt("totalPoints");
+	 			   String question = result.getString("question");
+	 			   String answer = result.getString("actualAnswer"); 
+	 			   String choices = result.getString("totalChoices"); 
+	 			   
+	 			   JSONParser parser = new JSONParser();
+	 			   JSONObject jo = (JSONObject) parser.parse(choices);
 	 			   JSONObject jo2 = (JSONObject)parser.parse(answer);
 	 			   String temp = "correctAnswer";
 	 			   StringBuilder ans = new StringBuilder();
