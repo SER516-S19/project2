@@ -52,7 +52,6 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		totalChoices.put("incorrectAnswer2", questionsVO.getIncorrectAnswer2());
 		totalChoices.put("incorrectAnswer3", questionsVO.getIncorrectAnswer3());
 
-
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		int count = 0;
@@ -65,15 +64,21 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			sb.append(entry.getValue());
 			sb.append("\"");
 			count++;
-			if (totalChoices.size() - 1 != count) {
+			if (totalChoices.size() != count) {
 				sb.append(",");
 			}
 		}
 		sb.append("}");
 
-		String incorrectAnswers = sb.toString();
-		
+		String incorrectAnswer = sb.toString();
+
 		Map<String, String> answerChoices = new HashMap<>();
+
+		String str = questionsVO.getCorrectAnswer();
+		String arrOfStr[] = str.split(",");
+		for (int i = 0; i < arrOfStr.length; i++) {
+			answerChoices.put("correctAnswer" + (i + 1), arrOfStr[i]);
+		}
 
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append("{");
@@ -103,8 +108,10 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query = connection.prepareStatement(dbProperties.getProperty("postQuestions"));
 			query.setInt(1, questionsVO.getQuizId());
 			query.setString(2, questionsVO.getQuestion());
+
 			query.setString(3, correctAnswers);
-			query.setString(4, incorrectAnswers);
+
+			query.setString(4, incorrectAnswer);
 			query.setInt(5, questionsVO.getTotalPoints());
 			query.setBoolean(6, questionsVO.isMCQ());
 
@@ -115,6 +122,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query = null;
 			connection = null;
 		}
+
 	}
 
 	

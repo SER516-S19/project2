@@ -51,10 +51,10 @@ public class CreateQuestionsServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			int quizId = (int) session.getAttribute("quizId");
 
-			QuestionsVO questionsVO = null;//new QuestionsVO(quizId, question, correctAnswer, incorrectAnswer1,
-			//		incorrectAnswer2, incorrectAnswer3, totalPoints, isMCQ);
-			//QuestionsDAOBean qdb = new QuestionsDAOBean();
-			//qdb.insertingQuestions(questionsVO);
+			QuestionsVO questionsVO = new QuestionsVO(quizId, question, correctAnswer, incorrectAnswer1,
+					incorrectAnswer2, incorrectAnswer3, totalPoints, isMCQ);
+			QuestionsDAOBean qdb = new QuestionsDAOBean();
+			qdb.insertingQuestions(questionsVO);
 
 			res.sendRedirect(req.getContextPath() + "/createQuestions.ftl");
 			
