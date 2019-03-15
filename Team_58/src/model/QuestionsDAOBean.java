@@ -14,8 +14,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
-
 /**
  * Class QuestionsDAOBean is a class that comes after create quiz Page
  * 
@@ -23,7 +21,6 @@ import org.json.simple.parser.ParseException;
  * @version 1.2
  * @date 02/26/2019
  **/
-
 public class QuestionsDAOBean implements QuestionsDAO {
 
 	private static Properties dbProperties = new Properties();
@@ -47,11 +44,9 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException {
 
 		Map<String, String> totalChoices = new HashMap<>();
-
 		totalChoices.put("incorrectAnswer1", questionsVO.getIncorrectAnswer1());
 		totalChoices.put("incorrectAnswer2", questionsVO.getIncorrectAnswer2());
 		totalChoices.put("incorrectAnswer3", questionsVO.getIncorrectAnswer3());
-
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
@@ -72,9 +67,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		sb.append("}");
 
 		String incorrectAnswers = sb.toString();
-		
 		Map<String, String> answerChoices = new HashMap<>();
-
 		StringBuilder sb1 = new StringBuilder();
 		sb1.append("{");
 		int count1 = 0;
@@ -94,10 +87,8 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		sb1.append("}");
 
 		String correctAnswers = sb1.toString();
-
 		Connection connection = null;
 		PreparedStatement query = null;
-
 		connection = ConnectionFactory.getConnection();
 		try {
 			query = connection.prepareStatement(dbProperties.getProperty("postQuestions"));
@@ -107,7 +98,6 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query.setString(4, incorrectAnswers);
 			query.setInt(5, questionsVO.getTotalPoints());
 			query.setBoolean(6, questionsVO.isMCQ());
-
 			query.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,26 +107,20 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		}
 	}
 
-	
 	@Override
-	public List<displayQuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException
-
-	{
+	public List<displayQuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException{
+		
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet resultData = null;
 		
 		connection = ConnectionFactory.getConnection();
-		
 		query = connection.prepareStatement(dbProperties.getProperty("getQuizQuestions"));
 		query.setInt(1, quizID);
-
 		resultData = query.executeQuery();
-		
 		List<displayQuestionsVO> list = new ArrayList<>();
 		
-		while(resultData.next())
-		{
+		while(resultData.next()){
 			int totalPoints = resultData.getInt("totalPoints");
 			String question = resultData.getString("question");
 			String answers = resultData.getString("actualAnswer");
@@ -151,8 +135,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			
 			int i = 1;
 			String choice = (String) incorrectJO.get("incorrectAnswer" + i);
-			while(choice != null)
-			{
+			while(choice != null){
 				incorrectAnswers.add(choice);
 				i++;
 				choice = (String) incorrectJO.get("incorrectAnswer" + i);
@@ -160,21 +143,16 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			
 			i = 1;
 			choice = (String) correctJO.get("correctAnswer" + i);
-			while(choice != null)
-			{
+			while(choice != null){
 				correctAnswers.add(choice);
 				i++;
 				choice = (String) correctJO.get("correctAnswer" + i);
 			}
-			
 			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(displayquestionVO);
-
 		}
-		
 		return list;
 	}
-
 
 	/**
 	 * updateQuestionsTable Update a question entry in the Questions table based on
@@ -205,7 +183,6 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		Connection connection = null;
 		PreparedStatement query = null;
 		connection = ConnectionFactory.getConnection();
-		
 		int mcq = 0;
 		
 		try {
@@ -213,13 +190,12 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			jsonObj.put("incorrectAnswer1", wrongOne);
 			jsonObj.put("incorrectAnswer2", wrongTwo);
 			jsonObj.put("incorrectAnswer3", wrongThree);
-			
 			JSONObject answerObj = new JSONObject();
 			if(answerObj.size() == 1) {
 				mcq = 1;
 			}
+			
 			String [] arr = answer.split(", ");
-
 			String temp = null;	
 			for (int i = 0; i < arr.length; i++) {
 				temp = "correctAnswer"+ Integer.toString(i+1);
@@ -227,10 +203,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 				answerObj.put(temp, arr[i]);
 			}
 			
-		    answer = answerObj.toJSONString();
-
-
-
+		    	answer = answerObj.toJSONString();
 			query = connection.prepareStatement(dbProperties.getProperty("updateQuestionsTable"));
 			query.setString(1, question);
 			query.setString(2, answer);
@@ -238,9 +211,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			query.setInt(4, points);
 			query.setInt(5, mcq);
 			query.setInt(6, qId);
-			
 			query.executeUpdate();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -268,9 +239,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet result = null;
-
 		connection = ConnectionFactory.getConnection();
-
 		query = connection.prepareStatement(dbProperties.getProperty("getQuestionsInfo"));
 		query.setInt(1, quizId);
 		result = query.executeQuery();
@@ -279,8 +248,6 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		    	   int questionId = result.getInt("questionId");
 	 			   int points = result.getInt("totalPoints");
 	 			   String question = result.getString("question");
-	 			   
-	 			   
 	 			   String answer = result.getString("actualAnswer"); 
 	 			   String choices = result.getString("totalChoices"); 
 	 			   
@@ -288,30 +255,23 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
 	 			   JSONObject jo2 = (JSONObject)parser.parse(answer);
 	 			   String temp = "correctAnswer";
-	 			 
 	 			   StringBuilder ans = new StringBuilder();
 	 			  
 	 			   for(int i = 1; i <=jo2.size(); i++) {
-	 				   
 	 				  ans.append((String) jo2.get(temp+Integer.toString(i)));
-	 				  
 	 				  if(jo2.size() != i) {
 	 					  ans.append(", ");
 	 				  }
 	 			   }
-	 			   
 	 			   answer = ans.toString();
-	 			   
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
 	 			   
-	 			   
 	 			   QuestionsVO quiz = new QuestionsVO(questionId, points, answer, choice1, choice2, choice3, question);
-		 			   list.add(quiz);
+		 		   list.add(quiz);
 			   }
 		}catch(ParseException e) {
-
 			e.printStackTrace();
 		}
 		return list;	
@@ -322,8 +282,6 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			throws SQLException, ClassNotFoundException, ParseException {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	
+	}	
 }
 
