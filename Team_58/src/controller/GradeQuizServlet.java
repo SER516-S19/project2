@@ -27,21 +27,24 @@ import model.StudentResponseVO;
  * 
  * @author akashkadam
  * @version 1.3
- **/
+ * @date 03/14/2019
+ */
 public class GradeQuizServlet extends HttpServlet{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
 	}
-
+	
+	/**
+	 * This method is to get GradeQuiz 
+	 *@param request  Request made to server
+	 *@param response  Responses from server
+	 *
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -53,9 +56,7 @@ public class GradeQuizServlet extends HttpServlet{
 
 		try {
 			QuestionsDAOBean questionsDAOBean = new QuestionsDAOBean();
-
 			List<QuestionsVO> questionVOList = questionsDAOBean.getQuestionsInfo(quizId);
-
 			for(QuestionsVO question : questionVOList) {
 				StudentResponseDAOBean studentResponseDAOBean = new StudentResponseDAOBean();
 				List<StudentResponseVO> studentResponseVOList = studentResponseDAOBean.getStudentListFromQuizIdQuestionId(quizId,question.getqId());
@@ -65,22 +66,27 @@ public class GradeQuizServlet extends HttpServlet{
 					studentResponseDAOBean.updateStudentResponse(quizId,question.getqId(),student.getUserId(),score);
 				}
 			}
-
+			
 			GradeQuizVODAOBean quizVODAOBean = new GradeQuizVODAOBean();
-
 			List<GradeQuizVO> gradedQuizList = quizVODAOBean.getgradeQuiz(quizId, quizName);
 
 			session.setAttribute("gradeQuiz", gradedQuizList);
 			session.setAttribute("quizName", quizName);
-
+			
 			response.sendRedirect(request.getContextPath()+"/gradeQuiz.ftl");  
-		}
-		catch(Exception exception) {
+		}catch(Exception exception) {
 			log.info(exception.getMessage());
 		}
 
 	}
-
+	
+	/**
+	 * This method is to get CalculateScore 
+	 *@param student  Student Object
+	 *@param question  Question Object
+	 *
+	 * @return score 
+	 */
 	private int calculateScore(StudentResponseVO student, QuestionsVO question) {
 		
 		int score = 0;
@@ -106,11 +112,8 @@ public class GradeQuizServlet extends HttpServlet{
 			countOfCorrectAnswered = countOfCorrectAnswered - countOfWrongAnswers;
 			score = countOfCorrectAnswered <= 0 ? 0 : (question.getTotalPoints() /  countOfCorrectAnswers)*countOfCorrectAnswered;
 		} catch (ParseException exception) {
-	
+			log.info(e.getMessage());
 		}
-
 		return score;
-	
 	}
-
 }
