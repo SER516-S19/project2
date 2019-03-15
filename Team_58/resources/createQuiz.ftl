@@ -1,9 +1,9 @@
 <!-- 
 Freemarker page to display createquiz page
-<<<<<<< HEAD
-@authour Carnic / @author Aditya Vikram
-@version 1.3
-@date 02/25/2019
+@authour Carnic
+@author Aditya Vikram
+@version 1.4
+@date 03/14/2019
  -->
 
 <html>
@@ -16,7 +16,6 @@ Freemarker page to display createquiz page
     $(document).ready(function() {
       $("#quizForm").validate({
         messages: {
-
             quizTitle: "Please add quiz title",
             assignedTime: {required: "Please input quiz length", number:"Please enter a number"},
             quizScheduledDate: "Please enter the quiz schedule date",
