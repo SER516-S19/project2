@@ -10,13 +10,11 @@ import java.util.Properties;
  * Home after login.
  * 
  * @author shivamverma
- * @version 1.0
- * @date 02/21/2019
+ * @version 1.1
+ * @date 03/14/2019
  */
-
-
 public class ConnectionFactory {
-
+	
 	/**
 	 * Get database connection after reading values from database.properties file
 	 */
@@ -36,14 +34,14 @@ public class ConnectionFactory {
 		
 		System.out.println("in getconnection");
 		
-        String hostName = dbProperties.getProperty("hostname");
-        String dbName = dbProperties.getProperty("dbName");
-        String user = dbProperties.getProperty("userName");
-        String password = dbProperties.getProperty("password"); 
-        String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
-            + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
+        	String hostName = dbProperties.getProperty("hostname");
+	        String dbName = dbProperties.getProperty("dbName");
+        	String user = dbProperties.getProperty("userName");
+	        String password = dbProperties.getProperty("password"); 
+        	String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
+            		+ "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
         
-        Connection connection = null;
+	        Connection connection = null;
 		connection = DriverManager.getConnection(url);
 		return connection;
 	}
