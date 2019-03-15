@@ -18,18 +18,18 @@ Freemarker page to display the Grades
  		</div>
  		<form action="DisplayGradesServlet" method="GET">
  			<table width="500" border="2px solid black">
- 			<#list Session.Grades as grade>
-                <tr>
-    				<th>Course Name</th>
-    				<th>Quiz Name</th>
-    				<th>Score</th>
-  				</tr>
-                <tr>
- 					<td>${grade.getCourseName()}</td>
- 					<td>${grade.getQuizName()}</td>
- 					<td>${grade.getScore()}</td>
- 				</tr>
-             </#list>				
+				<#list Session.Grades as grade>
+				<tr>
+					<th>Course Name</th>
+					<th>Quiz Name</th>
+					<th>Score</th>
+				</tr>
+				<tr>
+					<td>${grade.getCourseName()}</td>
+					<td>${grade.getQuizName()}</td>
+					<td>${grade.getScore()}</td>
+				</tr>
+				</#list>				
  			</table>
  		</form>	
  	</body>
