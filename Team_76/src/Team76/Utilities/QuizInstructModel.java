@@ -10,7 +10,7 @@ import Team76.Entity.QuizEntity;
 
 /*
  * retrieve quiz info from mysql database
- * author: Janani Anand
+ * author: Janani Anand, Xiangwei Zheng
  * version: 3.1
  */
 
