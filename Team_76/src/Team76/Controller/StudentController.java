@@ -1,6 +1,7 @@
 package Team76.Controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Team76.Database.StudentInsertQuery;
 import Team76.Entity.GradeEntity;
 import Team76.Entity.Questions;
 import Team76.Entity.QuizEntity;
@@ -84,21 +86,47 @@ public class StudentController extends HttpServlet {
 				response.sendRedirect("Login.jsp");
 			}
 		} else if (action.equalsIgnoreCase("SubmitQuiz")) {
+			int quizId, studentId, questionId, marks = 0;
+			String answer;
 			List<Questions> questionArray = (List) request.getSession().getAttribute("questions");
-			
+
 			System.out.println("==============");
-			GradeEntity Answer = new GradeEntity();
-			for (Questions que : questionArray) { 
-				Answer.setQuizId(Integer.parseInt(request.getSession().getAttribute("quizId").toString()));
-				Answer.setQuizTitle("XYZ");
-				Answer.setStudentId(((UserEntity) request.getSession().getAttribute("user")).getUserId());
-				
-				System.out.println("Question ID : "+que.getQuestionId());
-				System.out.println("Answer : "+request.getParameter(que.getQuestionId()));
-				System.out.println("Quiz Id :"+Answer.getQuizId());
-				System.out.println("User ID : "+Answer.getStudentId());
+			StudentInsertQuery row = null;
+			try {
+				row = new StudentInsertQuery();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			//response.sendRedirect("StudentDash.jsp");
+			String solution[] = null;
+			for (Questions que : questionArray) {
+				marks = 0;
+				quizId = Integer.parseInt(request.getSession().getAttribute("quizId").toString());
+				studentId = ((UserEntity) request.getSession().getAttribute("user")).getUserId();
+				questionId = Integer.parseInt(que.getQuestionId());
+				answer = request.getParameter(que.getQuestionId());
+				try {
+					solution = row.getSolution(questionId);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				if (solution[1].equalsIgnoreCase(answer)) {
+					marks = Integer.parseInt(solution[0]);
+				}
+				
+				try {
+					row.answerEntry(studentId, questionId, quizId, marks, answer);
+					// row.connectionClose();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+			 response.sendRedirect("StudentDash.jsp");
 		} else {
 			response.getWriter().println("<font color=red>Somethng went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
