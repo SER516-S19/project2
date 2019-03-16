@@ -17,17 +17,20 @@ import model.QuizDAOBean;
 import model.QuestionsVO;
 import model.QuizVO;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * Servlet code takes quizId from courseDashboard.ftl  and renders a page displaying
  * information about the quiz and it's questions.
- * Database connections and retrievals are all conducted via the DAO interface.
+ * 
  * @author Aditya Samant / @author akashkadam
  * @version 1.2
- * @see resources/courseDashboard.ftl for the initial info pass
- * @see model/ViewQuizDAOBean.java for Data Access methods used
- * @see model/QuestionsDAOBean.java for update Quiz method
- * @see resources/viewQuiz.ftl for the rendering of the page
+ * @see resources/courseDashboard.ftl 
+ * @see model/ViewQuizDAOBean.java 
+ * @see model/QuestionsDAOBean.java 
+ * @see resources/viewQuiz.ftl 
  */
 public class ViewQuizServlet extends HttpServlet {
 	private static final long serialVersionUID = -1008363826217594704L;
@@ -40,13 +43,9 @@ public class ViewQuizServlet extends HttpServlet {
 
 	/**
 	 * Grabs quizId from courseDashboard and renders viewQuiz page
-	 *
-	 * The viewQuiz page displays what the selected quiz name is, its scheduled date
-	 * whether it is graded or not graded and displays the question, the correct
-	 * answer, the total points each question is worth and
 	 * 
-	 * @param req Request made to server
-	 * @param res Responses from server
+	 *@param req Request made to server
+	 *@param res Responses from server
 	 *
 	 *@throws IOException
 	 *@throws ServletException
@@ -124,10 +123,27 @@ public class ViewQuizServlet extends HttpServlet {
 	    	   	   }
 	    	   	   
 	    	   	   quizQuestions = bean2.getQuestionsInfo(quizId);
-	    	   	  
+	    	   	   
+	    	   	   JSONParser parser = new JSONParser();
+	    	   	   JSONObject jo = new JSONObject();
 	    	   	   for (int i = 0; i < quizQuestions.size(); i++) {
 	    	   		 int points = quizQuestions.get(i).getTotalPoints();
 	    	   		 total += points;
+	    	   		 
+	    	   		 StringBuilder temp = new StringBuilder();
+	    	   		 String temp2 = "correctAnswer";
+	    	   		 String ans = quizQuestions.get(i).getCorrectAnswer();
+	    	   		 jo = (JSONObject) parser.parse(ans);
+	    	   		 for (int j = 1; j <=jo.size(); j++) {
+	    	   			temp.append((String) jo.get(temp2+Integer.toString(j)));
+		 				  if(jo.size() != j) {
+		 					  temp.append(", ");
+		 				  }
+	    	   		 }
+	    	   		 ans = temp.toString();
+	    	   		 quizQuestions.get(i).setCorrectAnswer(ans);
+	    	   		 //System.out.println("ANSWER");
+	    	   		 //System.out.println(ans);
 	    	   	   }
 	    	   	   
 	    	   	   Date scheduledDate = quiz.getQuizScheduledDate();

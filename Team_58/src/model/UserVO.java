@@ -4,10 +4,18 @@ package model;
  * Class UserVO is Java Model for User Details
  * 
  * @author Aditya Vikram
- * @version 1.1
- * @date 02/22/2019
+ * @version 1.2
+ * @date 03/14/2019
  */
 public class UserVO {
+	
+	private String firstname;
+	private String lastname; 
+	private int phonenumber;
+	private boolean isStudent;
+	private String email;
+	private String username;
+	private int userId;
 	
 	public String getFirstname() {
 		return firstname;
@@ -53,6 +61,7 @@ public class UserVO {
 	}
 	public UserVO(String firstname, String lastname, int phonenumber, boolean isStudent, String email, String username,
 			int userId) {
+		
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -61,15 +70,5 @@ public class UserVO {
 		this.email = email;
 		this.username = username;
 		this.userId = userId;
-	}
-	private String firstname;
-	private String lastname; 
-	private int phonenumber;
-	private boolean isStudent;
-	private String email;
-	private String username;
-	private int userId;
-	
-		
-		
+	}	
 }

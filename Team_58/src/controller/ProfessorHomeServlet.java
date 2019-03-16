@@ -19,9 +19,9 @@ import model.UserVO;
  * Home after login.
  * 
  * @author shivamverma
- * @version 1.2
- * @date 02/21/2019
- **/
+ * @version 1.3
+ * @date 03/14/2019
+ */
 
 public class ProfessorHomeServlet extends HttpServlet{
 	
@@ -47,15 +47,12 @@ public class ProfessorHomeServlet extends HttpServlet{
 		UserVO userVO = (UserVO) req.getAttribute("UserVO");
 		
 		HttpSession session = req.getSession();
-		
 		session.setAttribute("userVO", userVO);
 		
 		try {
 			CourseDAOBean courseBean = new CourseDAOBean();
 			if(courseBean.equals(null)) {
-				
 			}
-			
 			List<CourseVO> courseVO = courseBean.getCourseAssignedToProfessor(userVO);
       
 			if(courseVO.isEmpty()) {

@@ -6,8 +6,8 @@ import java.util.List;
  * @author Jainish Soni
  * @date Created - 03/02/2019
  */
-
 public class displayQuestionsVO {
+	
 	private int quizId;
 	private int questionId;
 	private String question;
@@ -19,17 +19,15 @@ public class displayQuestionsVO {
 	public int getQuizId() {
 		return quizId;
 	}
-	
 	public int getqId() {
 		return questionId;
 	}
-	
 	public String getQuestion() {
 		return question;
 	}
-
-
+	
 	public displayQuestionsVO(int quizId, String question, List<String> correctAnswers, List<String> incorrectAnswers, int totalPoints, boolean isMCQ) {
+		
 		super();
 		this.quizId = quizId;
 		this.question = question;
@@ -40,6 +38,7 @@ public class displayQuestionsVO {
 	}
 
 	public displayQuestionsVO(int qId, int totalPoints, List<String> correctAnswers, List<String> incorrectAnswers, String question) {
+		
 		this.questionId = qId;
 		this.question = question;
 		this.correctAnswers = correctAnswers;
@@ -50,17 +49,13 @@ public class displayQuestionsVO {
 	public int getTotalPoints() {
 		return totalPoints;
 	}
-	
 	public List<String> getCorrectAnswers() {
 		return correctAnswers;
 	}
-
 	public List<String> getIncorrectAnswers() {
 		return incorrectAnswers;
 	}
-	
 	public boolean isMCQ() {
 		return isMCQ;
 	}
-
 }

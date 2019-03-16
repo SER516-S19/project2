@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
-
 import controller.ProfessorHomeServlet;
 
 /**
  * Class GradeQuizVODAOBean with the following method:
- * 	a. get GradeVO list
+ * a. get GradeVO list
+ *
  * @author akashkadam
  * @version 1.0
- * 
+ * GradeQuizVODAO
  */
 public class GradeQuizVODAOBean implements GradeQuizVODAO {
 
-private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
+	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
 	
 	private static Properties dbProperties = new Properties();
 
@@ -32,19 +32,16 @@ private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName(
 	@Override
 	public List<GradeQuizVO> getgradeQuiz(int quizId,String quizName) {
 
-		
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet resultData = null;
 		List<GradeQuizVO> list = new ArrayList<>();
 		try {
 			connection = ConnectionFactory.getConnection();
-			
 			query = connection.prepareStatement(dbProperties.getProperty("getgradeQuizQuery"));
 			query.setInt(1,quizId);
-
 			resultData = query.executeQuery();
-
+			
 			while(resultData.next()) {
 				int score = resultData.getInt("score");
 				String firstName = resultData.getString("firstname");
@@ -52,14 +49,10 @@ private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName(
 				GradeQuizVO gradeQuiz = new GradeQuizVO(score,firstName,lastName,quizName);
 				list.add(gradeQuiz);
 			}
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			log.info(e.getMessage());
 		}
-		
-		
 		return list;
-	
 	}
 
 	@Override
@@ -74,7 +67,6 @@ private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName(
 		List<GradeQuizVO> list = new ArrayList<>();
 		query = connection.prepareStatement(dbProperties.getProperty("getStudentGrades"));
 		query.setInt(1, userId);
-
 		resultData = query.executeQuery();
 
 		while(resultData.next()) {
@@ -84,8 +76,6 @@ private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName(
 			GradeQuizVO gradeQuiz = new GradeQuizVO(score, quizTitle, courseName);
 			list.add(gradeQuiz);
 		}
-		
 		return list;
 	}
-
 }

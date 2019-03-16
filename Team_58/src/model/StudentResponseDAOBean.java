@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
-
 import controller.ProfessorHomeServlet;
+
 /**
  * Class StudentResponseDAOBean with the following method:
- * 	a. update studentResponse score based on quizId after grade quiz command
+ *  a. update studentResponse score based on quizId after grade quiz command
  * @author akashkadam
- * @version 1.0
- * 
+ * @version 1.1
+ * @date 03/14/2019
  */
 public class StudentResponseDAOBean implements StudentResponseDAO {
 
@@ -32,17 +32,13 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 	@Override
 	public void updateStudentResponse(int quizId) {
 
-
 		Connection connection = null;
 		PreparedStatement query = null;
-
 		try {
-			
 			connection = ConnectionFactory.getConnection();
 			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponse"));
 			query.setInt(1,quizId);
 			query.executeUpdate();
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			log.info(e.getMessage());
 		}
@@ -50,25 +46,23 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 	
 	@Override
 	public void InsertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score)   {
+		
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet resultData = null;
 		
-		
 		try {
-		connection = ConnectionFactory.getConnection();
-		query = connection.prepareStatement(dbProperties.getProperty("inserStudentResponse"));
-		
-		query.setInt(1, courseId);
-		query.setInt(2, quizId);
-		query.setInt(3, userId);
-		query.setInt(4, questionId);
-		query.setString(5, answerSelected);
-		query.setInt(6, score);
-		query.executeUpdate();
-	}
-	catch (ClassNotFoundException | SQLException e) {
-		log.info(e.getMessage());
+			connection = ConnectionFactory.getConnection();
+			query = connection.prepareStatement(dbProperties.getProperty("inserStudentResponse"));	
+			query.setInt(1, courseId);
+			query.setInt(2, quizId);
+			query.setInt(3, userId);
+			query.setInt(4, questionId);
+			query.setString(5, answerSelected);
+			query.setInt(6, score);
+			query.executeUpdate();
+		}catch (ClassNotFoundException | SQLException e) {
+			log.info(e.getMessage());
 		}
 	}
 
@@ -80,11 +74,9 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 		List<StudentResponseVO> list = new ArrayList<>();
 		try {
 			connection = ConnectionFactory.getConnection();
-			
 			query = connection.prepareStatement(dbProperties.getProperty("getStudentQuery"));
 			query.setInt(1,quizId);
 			query.setInt(2, questionId);
-
 			resultData = query.executeQuery();
 
 			while(resultData.next()) {
@@ -93,15 +85,10 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 				StudentResponseVO student = new StudentResponseVO(userId,answerSelected);
 				list.add(student);
 			}
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			log.info(e.getMessage());
 		}
-		
-		
 		return list;
-	
-	
 	}
 	
 	@Override
@@ -109,7 +96,6 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 
 		Connection connection = null;
 		PreparedStatement query = null;
-
 		try {
 			connection = ConnectionFactory.getConnection();
 			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponseForScore"));
@@ -118,7 +104,6 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 			query.setInt(3,userId );
 			query.setInt(4,questionId);
 			query.executeUpdate();
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			log.info(e.getMessage());
 		}
