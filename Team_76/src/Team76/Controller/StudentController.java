@@ -90,43 +90,34 @@ public class StudentController extends HttpServlet {
 			String answer;
 			List<Questions> questionArray = (List) request.getSession().getAttribute("questions");
 
-			System.out.println("==============");
 			StudentInsertQuery row = null;
 			try {
 				row = new StudentInsertQuery();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			String solution[] = null;
-			for (Questions que : questionArray) {
-				marks = 0;
+				String solution[] = null;
+				String quizTitle, studentName;
+				int grade = 0;
 				quizId = Integer.parseInt(request.getSession().getAttribute("quizId").toString());
 				studentId = ((UserEntity) request.getSession().getAttribute("user")).getUserId();
-				questionId = Integer.parseInt(que.getQuestionId());
-				answer = request.getParameter(que.getQuestionId());
-				try {
+				for (Questions que : questionArray) {
+					marks = 0;
+					questionId = Integer.parseInt(que.getQuestionId());
+					answer = request.getParameter(que.getQuestionId());
 					solution = row.getSolution(questionId);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				if (solution[1].equalsIgnoreCase(answer)) {
-					marks = Integer.parseInt(solution[0]);
-				}
-				
-				try {
+					if (solution[1].equalsIgnoreCase(answer)) {
+						marks = Integer.parseInt(solution[0]);
+					}
 					row.answerEntry(studentId, questionId, quizId, marks, answer);
-					// row.connectionClose();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
+				quizTitle = row.getQuizName(quizId);
+				studentName = row.getStudentName(studentId);
+				grade = row.getGrade(quizId, studentId);
+				row.gradeEntry(studentId, quizId, quizTitle, studentName, grade);
+				row.connectionClose();
+			} catch (Exception e) {
 
+				e.printStackTrace();
 			}
-
-			 response.sendRedirect("StudentDash.jsp");
+			response.sendRedirect("StudentDash.jsp");
 		} else {
 			response.getWriter().println("<font color=red>Somethng went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");

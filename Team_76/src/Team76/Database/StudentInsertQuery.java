@@ -15,93 +15,90 @@ public class StudentInsertQuery {
 	private DatabaseConnection con;
 	private Connection connect;
 
-	public StudentInsertQuery() throws Exception 
-	{
+	public StudentInsertQuery() throws Exception {
 		con = new DatabaseConnection();
 		connect = con.establishConnection();
 	}
 
-	public void answerEntry(int studentId, int questionId, int quizId, int marks, String answer) throws Exception 
-	{
-		System.out.println(studentId + " " + questionId + " "+ quizId + " " + marks + " "+ answer);
+	public void answerEntry(int studentId, int questionId, int quizId, int marks, String answer) throws Exception {
+
 		String query = "INSERT INTO answer_table VALUES(?,?,?,?,?)";
 		PreparedStatement statement = connect.prepareStatement(query);
-		statement.setInt(1,studentId);
-		statement.setInt(2,quizId);
-		statement.setInt(3,questionId);
+		statement.setInt(1, studentId);
+		statement.setInt(2, quizId);
+		statement.setInt(3, questionId);
 		statement.setString(4, answer);
-		statement.setInt(5,marks);
-		statement.executeUpdate();    
+		statement.setInt(5, marks);
+		statement.executeUpdate();
 	}
 
 	public String[] getSolution(int questionId) throws SQLException {
 		String solution[] = new String[2];
 		String query = "Select marks,CORRECT_ANSWER from question where questionId=?";
 		PreparedStatement statement = connect.prepareStatement(query);
-		statement.setInt(1,questionId);
+		statement.setInt(1, questionId);
 		ResultSet rs = statement.executeQuery();
-		while(rs.next()) {
+		while (rs.next()) {
 			solution[0] = Integer.toString(rs.getInt(1));
 			solution[1] = rs.getString(2);
 		}
-		//System.out.println("Marks : "+marks);
-		 //connect.close();
 		return solution;
 	}
-	public void QuestionDetailPage(QuizEntity entity) throws Exception 
-	{
-		int quizid = 0;
-		String quiztitle, qinstruct, qtype, clockTyp;
-		int timelimit;
 
-		Date date;
-		
-		date = entity.getDueDate();
+	public String getQuizName(int quizId) throws SQLException {
 
-		if (date==null) 
-		{
-			
-			String lastCrawlDate = "2019-04-03";
-			date = new SimpleDateFormat("yyyy-MM-dd").parse(lastCrawlDate);
+		String query = "Select QuizTitle from quiz where QuizId=?";
+		String quizTitle = "";
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, quizId);
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			quizTitle = rs.getString(1);
 		}
-		// because PreparedStatement#setDate(..) expects a java.sql.Date argument
-		java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
-		Statement statement = connect.createStatement();
-        String selectQuery= "select count(*) AS rowcount from quiz";
-        ResultSet rs = statement.executeQuery(selectQuery);
-        if(rs.next()) {
-        quizid=rs.getInt("rowcount");
-        }
-         quizid++;
-         entity.setQuizId(quizid);
-		quiztitle = entity.getQuizTitle();
-		qinstruct = entity.getQuizInstruct();
-		qtype = entity.getQuizType();
-		clockTyp = entity.getClockType();
-		timelimit = entity.getTimeLimit();
-
-		if (connect != null) 
-		{
-			String query = "INSERT INTO quiz ( ProfId, QuizId, Status, DueDate,Timelimit,"
-					+ " QuizTitle, Qinstruct, Quiztype, OptionSelected) VALUES ( 1 , "
-					+ quizid + " ,'Active','" + sqlDate + "', " + timelimit + " ,' " + quiztitle +
-					" '  , ' " + qinstruct+ " ' , ' " + qtype + " ', ' " + clockTyp + " '  )";
-			PreparedStatement pstmt = connect.prepareStatement(query);
-			pstmt.executeUpdate();
-			
-			
-		}
-		else 
-		{
-			System.out.println("Database Connection not Successful");
-		}
+		return quizTitle;
 
 	}
-	
-	public void connectionClose() throws SQLException
-	{
+
+	public String getStudentName(int studentId) throws SQLException {
+		String query = "Select name from user where id=?";
+		String studentName = "";
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, studentId);
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			studentName = rs.getString(1);
+		}
+		return studentName;
+	}
+
+	public int getGrade(int quizId, int studentId) throws SQLException {
+		String query = "Select sum(marks) as total from answer_table where studentId=? and quizId=?";
+		int grade = 0;
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, studentId);
+		statement.setInt(2, quizId);
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			grade = rs.getInt(1);
+		}
+		return grade;
+	}
+
+	public void gradeEntry(int studentId, int quizId, String quizTitle, String studentName, int grade)
+			throws SQLException {
+
+		String query = "INSERT INTO grade VALUES(?,?,?,?,?)";
+		PreparedStatement statement = connect.prepareStatement(query);
+		statement.setInt(1, studentId);
+		statement.setInt(2, quizId);
+		statement.setString(3, quizTitle);
+		statement.setString(4, studentName);
+		statement.setInt(5, grade);
+		statement.executeUpdate();
+	}
+
+	public void connectionClose() throws SQLException {
 		connect.close();
 
 	}
-	
 }
