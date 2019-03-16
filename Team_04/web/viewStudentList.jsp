@@ -131,28 +131,20 @@
             <tr>
                 <th><h3>Student ID</h3></th>
             </tr>
-            <tr>
-                <td>
-                    <div class="wrapper">
-                        <c:forEach items="${studentIds}" var="studentId">
+            <c:forEach items="${studentIds}" var="studentId">
+                <tr>
+                    <td>
+                        <div class="wrapper">
                             <form action="viewStudentDetails" method="GET">
                                 <input type="hidden" name="studentId" value="${studentId}">
                                 <input type="submit" value="Student ${studentId}" class="btn1">
                             </form>
-                        </c:forEach>
-                    </div>
-                </td>
-            </tr>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
 </div>
-<%--<table>
-  <tr><th>Quizzes</th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #1</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #2</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #3</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #4</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #5</a></th></tr>
-</table>--%>
 </body>
 </html>
