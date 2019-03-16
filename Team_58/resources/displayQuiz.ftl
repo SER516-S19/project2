@@ -1,10 +1,22 @@
+<!-- 
+Freemarker page for Quiz, Timer, Quiz Submission
+@authour Subhradeep Biswas & Jainish Soni
+@version 1.4
+@date 03/14/2019
+ -->
+
 <html>
 	<head>
 	    <title>QUIZ</title>
+	    
+	    
 	</head>
 	<body>
+
+		<h1 align="center" id="timer"></h1>	
+		<p id="qPage">
 		<table>
-		    <form action="DisplayQuizSubmit" method="POST">
+		    <form action="SubmitQuizServlet" onsubmit="return SaveSubmit();" method="POST">
 			    <#list Session.displayQuestionsVO as question>
 				    <h3 align="center">
 				        Question: ${question.getQuestion()}
@@ -15,73 +27,65 @@
 					
 					<h3 align="center">
 						<#list question.getCorrectAnswers() as correctAnswer>
-								<input type="checkbox" name="" value="">${correctAnswer}<br>
+								<input type="checkbox" name=${question.getqId()}  value="">${correctAnswer}<br>
 						</#list>
 						<#list question.getIncorrectAnswers() as incorrectAnswer>
-							<input type="checkbox" name="" value="">${incorrectAnswer}<br>
+							<input type="checkbox" name=${question.getqId()}  value="">${incorrectAnswer}<br>
 						</#list>
 					</h3>
 			    </#list>
+			    
+			    
 			
-			<input type="button" value="Save and Submit"  onClick="SaveSubmit();"/>
+				<input type="submit" value="Save and Submit"/>
 			
-			<#-- 
-			<script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js">
-		
-			function SaveSubmit() { 
-				var sessionList = [<#list Session.list as user>${user.getqId()},</#list>] ;           
-				
-				var jsonData = {};
-				
-				var listLength = sessionList.length;
-    			
-    			for (var j = 0; j < listLength; j++) {
-        			var radio_q1_val = "";
-
-					for (i = 0; i < document.getElementsByName(sessionList[j]).length; i++) {
-						if (document.getElementsByName(sessionList[j])[i].checked) {
-							radio_q1_val = document.getElementsByName(sessionList[j])[i].value; 
-							jsonData[sessionList[j]] = radio_q1_val;  
-							
-						}        
+			
+				<script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js">
+			
+				function SaveSubmit() { 
+					var sessionList = [<#list Session.displayQuestionsVO as question>${question.getqId()},</#list>] ;           
+					
+					//var jsonData = {};
+					var checkd;
+					
+					var listLength = sessionList.length;
+	    			
+	    			for (var j = 0; j < listLength; j++) {
+	        			//var radio_q1_val = "";
+	        			checkd = 0;
+	        			
+	        			//alert(document.getElementsByName(sessionList[j]).length);
+	        			//alert(document.getElementsByName(sessionList[j]));
+	
+						for (i = 0; i < document.getElementsByName(sessionList[j]).length; i++) {
+							if (document.getElementsByName(sessionList[j])[i].checked) {
+								//radio_q1_val = document.getElementsByName(sessionList[j])[i].value; 
+								//jsonData[sessionList[j]] = radio_q1_val;  
+								checkd = 1;
+								
+							}        
+						}
+						
+						if (checkd === 0)
+						{
+							alert("You have not answered all the question");
+							return false;
+						}
+						
 					}
 					
-					if (radio_q1_val === "")
-					{
-						alert("You have not answered all the question");
-						return;
-					}
-					
+					return true;
+									
 				}
 				
-		    $.ajax({
-        		type: 'POST', 
-        		url: 'SubmitQuizServlet',
-        		dataType: 'JSON',
-        		data: { 
-          		loadProds: 1,
-          		parsed: JSON.stringify(parsed)
-        		},
-        		success: function(data) {
-          		// PROCESS your RESPONSE here!!! It is in "data"!!!!
-        		},
-        		error: function(data) {
-            	// This is called when the request failed, what happend is in the "data"!!!
-       			 alert('fail');
-            }
-    });
-  return false;
-}
-				
-			}
-			
-			</script>
-		-->
-      
+				</script>
+		
 	    	</form>
+	    	
 	    </table>
-
-		<#-- 				
+	    </p>
+	    
+	    	    		 				
 		<script>
 
 		var countDownDate = new Date().getTime() + (30 * 60 * 1000);
@@ -102,7 +106,7 @@
 		  }
 		}, 1000);
 		</script>
-		 -->
+		 
 		 
 	</body>
 </html>
