@@ -6,7 +6,6 @@ import student.dto.AnswerOption;
 import student.dto.QuizContent;
 import com.validation.InputValidation;
 import sun.security.util.Password;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,38 +43,33 @@ public class QuestionAnswerServlet extends HttpServlet {
 
     /**
      * Inserts the question response to the database
+     * by executing INSERT query
      */
     private void executeInsertQuery() {
-
         for (String selectedOption : currentQuestion.getSelectedAnswers()) {
             String updateQuery = "INSERT INTO ques_response(quesId," +
-                    "quizId,ansId,attemptId,studentId,totalScore, attemptedOn," +
-                    " timeTaken, isFinal) VALUES(?,?,?,?,?,?,?,?,?)";
-            int numOfRowsAffected = DataManager.getInstance().
-                    executeUpdateQuery(updateQuery,
-                            currentQuestion.getQuesId(),
-                            currentQuestion.getQuizId(),
-                            selectedOption, attemptId, studentId,
-                            currentQuestion.getScore(), dates, time, true);
+                    "quizId,ansId,attemptId,studentId,totalScore, attemptedOn, timeTaken, isFinal) VALUES(?,?,?,?,?,?,?,?,?)";
+            int numOfRowsAffected = DataManager.getInstance().executeUpdateQuery(updateQuery,
+                    currentQuestion.getQuesId(),
+                    currentQuestion.getQuizId(),
+                    selectedOption, attemptId, studentId,
+                    currentQuestion.getScore(), dates, time, true);
         }
-
     }
 
     /**
      * @return the current question number
      */
-    private int getQuestionNumber() {
-        return currentQuestionIndex + 1;
+    private int getQuestionNumber() { return currentQuestionIndex + 1;
     }
 
     /**
-     * Function to load the quiz details from DB
+     * Loads the quiz questions and options from Database
+     * by executing the SELECT query
      */
     private void loadQuestionsAnswers() {
-
         List<QuizContent> questions = DataManager.getInstance().executeGetQuery(QuizContent.class,
                 "SELECT * FROM quiz_content where quizId='1' group by quesId");
-
         for (QuizContent question : questions) {
             List<QuizContent> options = DataManager.getInstance().executeGetQuery(QuizContent.class,
                     "SELECT * FROM quiz_content where quizId='1' and quesId=" +
@@ -89,7 +83,8 @@ public class QuestionAnswerServlet extends HttpServlet {
     }
 
     /**
-     * Function to submit the quiz results to DB
+     * Submits the quiz responses to DataBase
+     * by executing INSERT query
      */
     private void executeSubmitEntry() {
 
@@ -100,7 +95,7 @@ public class QuestionAnswerServlet extends HttpServlet {
     }
 
     /**
-     * Method to post the quiz results
+     * Servlet method to post the quiz results
      *
      * @param request  the request from Client
      * @param response the response from Server
@@ -167,44 +162,53 @@ public class QuestionAnswerServlet extends HttpServlet {
             }
             doGet(request, response);
         }
-
-
     }
 
     /**
-     * Method to calculate the score
+     * Computes the score for each question by checking if
+     * selected answer is equal to actual answer,also computes
+     * score for multi select questions and assigning partial scores
+     * selected options
      *
      * @param currentQuestionIndex index of the current question
      * @param selectedOptions      list of selected options
-     * @return
+     * @return the score for the currentQuestion by checking
+     *         if the {@code isSelected} equal to {@code isCorrectAns},
+     *         also for multi-select questions where in computing the
+     *         score by checking {@code totalCorrectAnsCount} and
+     *         {@code actualCorrectAnsCount}, if its equal full score
+     *         is given else partial score is given
      */
-    private int computeScore(int currentQuestionIndex, List<String> selectedOptions) {
-        int actualCorrectAnsCount = 0, totalCorrectAnsCount = 0;
+    private int computeScore(int currentQuestionIndex, List<String> selectedOptions){
+        int actualCorrectAnsCount = 0;
+        int totalCorrectAnsCount = 0;
         int result;
         QuizContent currentQuestion = questions.get(currentQuestionIndex);
-        for (AnswerOption answerOption : currentQuestion.getAnswerOptions()) {
+        for (AnswerOption answerOption : currentQuestion.getAnswerOptions())
+        {
             boolean isCorrectAns = answerOption.getIsCorrect();
             boolean isSelected = selectedOptions.contains(Long.toString(answerOption.getAnsId()));
-            if (isCorrectAns) {
+            if (isCorrectAns)
+            {
                 totalCorrectAnsCount += 1;
                 actualCorrectAnsCount = isSelected ? actualCorrectAnsCount + 1 : actualCorrectAnsCount - 1;
-            } else if (isSelected) {
+            }
+            else if (isSelected) {
                 actualCorrectAnsCount -= 1;
             }
         }
-        if (totalCorrectAnsCount != 0 && actualCorrectAnsCount > 0) {
-            result = (int) ((actualCorrectAnsCount / totalCorrectAnsCount) *
-                    currentQuestion.getMaxScore());
-        } else {
+        if ( totalCorrectAnsCount != 0 && actualCorrectAnsCount > 0) {
+            result = (int) ((actualCorrectAnsCount / totalCorrectAnsCount) * currentQuestion.getMaxScore());
+        }
+        else {
             result = 0;
         }
         currentQuestion.setScore(result);
         return result;
-
         }
-
+        
         /**
-         * Method to get the quiz results
+         * Servlet method to get the quiz results
          *
          * @param request  the request from Client
          * @param response the response from Server
