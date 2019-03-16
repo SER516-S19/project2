@@ -135,10 +135,11 @@ public class QuizCreationServlet extends HttpServlet {
      * @return true if entered successfully, false otherwise.
      */
     private boolean submitChoice(int question_id, Choice choice){
+        boolean hasSucceeded = true;
+        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
         choice.setQuestion_fk(question_id);
         if (!choiceDAO.insertChoice(choice)) {
             hasSucceeded = false;
-            break;
         }
         return hasSucceeded;
     }
@@ -152,19 +153,19 @@ public class QuizCreationServlet extends HttpServlet {
      * @return true if entered properly into the database. false otherwise.
      */
     private boolean submitQuestion(int quiz_id, Question question, List<Choice> choices){
+        boolean hasSucceeded = true;
+        QuestionDAOImpl questionDAO = new QuestionDAOImpl();
         question.setQuiz_fk(quiz_id);
         if(questionDAO.insertQuestion(question)) {
-            question_id = question.getQuestion_id();
-            List<Choice> questionChoices = choices.get(i);
-            for (Choice choice : questionChoices) {
-                hasSucceeded = submitChoice(question_id, question, choice);
-            }
-            if(!hasSucceeded) {
-                break;
+            int question_id = question.getQuestion_id();
+            for (Choice choice : choices) {
+                hasSucceeded = submitChoice(question_id, choice);
+                if(!hasSucceeded) {
+                    break;
+                }
             }
         } else {
             hasSucceeded = false;
-            break;
         }
         return hasSucceeded;
     }
@@ -190,10 +191,7 @@ public class QuizCreationServlet extends HttpServlet {
                     "does not match number of sets of choices");
         }
         QuizDAOImpl quizDAO = new QuizDAOImpl();
-        QuestionDAOImpl questionDAO = new QuestionDAOImpl();
-        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
         int quiz_id;
-        int question_id;
         boolean hasSucceeded = true;
         if(quizDAO.insertQuiz(quiz)) {
             quiz_id = quiz.getQuiz_id();
