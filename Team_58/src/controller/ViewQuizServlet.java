@@ -26,7 +26,7 @@ import org.json.simple.parser.ParseException;
  * information about the quiz and it's questions.
  * 
  * @author Aditya Samant / @author akashkadam
- * @version 1.2
+ * @version 1.3
  * @see resources/courseDashboard.ftl 
  * @see model/ViewQuizDAOBean.java 
  * @see model/QuestionsDAOBean.java 
@@ -142,8 +142,6 @@ public class ViewQuizServlet extends HttpServlet {
 	    	   		 }
 	    	   		 ans = temp.toString();
 	    	   		 quizQuestions.get(i).setCorrectAnswer(ans);
-	    	   		 //System.out.println("ANSWER");
-	    	   		 //System.out.println(ans);
 	    	   	   }
 	    	   	   
 	    	   	   Date scheduledDate = quiz.getQuizScheduledDate();
@@ -169,8 +167,10 @@ public class ViewQuizServlet extends HttpServlet {
 					    res.sendRedirect("login.jsp");
 					    return; 
 					}
-	       }catch(Exception e) {
+	       }catch(ParseException e) {
 	    	   	   e.printStackTrace();
+	       }catch(Exception ex) {
+	    	   ex.printStackTrace();
 	       }
 	}
 }

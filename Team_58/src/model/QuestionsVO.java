@@ -5,7 +5,7 @@ package model;
  * 
  * @version 1.2
  * @author trupti khatavkar 
- * @author aditya samant
+ * @author Aditya Samant
  * @date 02/22/2019
  */
 public class QuestionsVO {
@@ -56,14 +56,6 @@ public class QuestionsVO {
 		this.totalPoints = totalPoints;
 	}
 	
-	/**
-	 * Constructor for rendering multiple answer questions.
-	 * 
-	 * Takes the jsonObj answers as individual strings.
-	 * @author Aditya Samant
-	 * @version 1.0
-	 * @date 02/27/2019
-	 * */
 	public int getQuizId() {
 		return quizId;
 	}

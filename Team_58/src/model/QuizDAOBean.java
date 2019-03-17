@@ -15,6 +15,7 @@ import java.util.Properties;
  * and Course Dashboard page 
  * 
  * @author narenkumarkonchada 
+ * @author Aditya Samant
  * @author carnic
  * @version 1.3
  * @date 03/14/2019
@@ -194,13 +195,13 @@ public class QuizDAOBean implements QuizDAO{
 	}
 	
 	/**
-	 * Makes a connection to the database via ConnectionFactory to gain information about quiz
-	 * and returns a custom quiz object to be used by ViewQuizServlet.java
+	 * Returns custom quiz object based on info retrieved from the database
 	 * 
-	 * @param quizId the id of the quiz that is being retrieved, is primary key.
-	 * @throws SQLException in case of database error
-	 * @throws ClassNotFoundException in case referencing class does not exist
-	 * @return quiz A quiz object with necessary information to display on viewQuiz page
+	 * @see controller/ViewQuizServlet.java
+	 * @param quizId primary key
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException
+	 * @return quiz 
 	 * */
 	@Override
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException {

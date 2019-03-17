@@ -6,6 +6,7 @@ import java.util.Date;
  *QuizVO is a model class for a Quiz
  *
  * @author NarenkumarKonchada
+ * @author Aditya Samant
  * @version 1.0
  * @date 02/22/2019
  */
@@ -78,11 +79,11 @@ public class QuizVO {
 	
 	/**
 	 * The following constructor is created to use quiz information in viewQuiz page
-	 * @author Aditya Samant
-	 * @param name name of the quiz
-	 * @param instructions instructions for the quiz
-	 * @param date the date at which the quiz is scheduled to run
-	 * @param graded whether the quiz is graded
+	 * 
+	 * @param name quiz name
+	 * @param instructions 
+	 * @param date 
+	 * @param graded 
 	 * */
 	public QuizVO(String name, String instructions, Date date, boolean graded) {
 		

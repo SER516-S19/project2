@@ -106,12 +106,6 @@
 		        </tr>
 	        </#list>
         </table>
-       
-        
-        <#--
-        	author: Aditya Samant
-        	see src/controller/ViewQuizServlet.java
-        -->
         <script>
         	/**
         	* The following script edits a row of the table and sends info to servlet
