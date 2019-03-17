@@ -1,5 +1,3 @@
-<%@ page import="student.dto.AnswerOption" %>
-<%@ page import="student.dto.QuizContent" %>
 <%--
   Created by IntelliJ IDEA.
   User: yuvan
@@ -7,7 +5,18 @@
   Time: 11:03 AM
   Description: View for displaying questions and answers
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page
+        import="student.dto.AnswerOption"
+%>
+<%@ page
+        import="student.dto.QuizContent"
+%>
+<%@ page
+        contentType="text/html;charset=UTF-8"
+        language="java"
+%>
+
 <html>
 <head>
     <title>Quiz</title>

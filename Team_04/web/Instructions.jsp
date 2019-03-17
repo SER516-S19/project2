@@ -4,15 +4,20 @@
   Date: 2/21/2019
   Time: 6:55 PM
   To change this template use File | Settings | File Templates.
---%>
+  --%>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page
+        contentType="text/html;charset=UTF-8"
+        language="java"
+%>
+
 <html>
 <head>
     <title> QUIZ INSTRUCTIONS </title>
 </head>
 <style>
-    .startQuizBtn {
+    .startQuizBtn
+    {
         display: inline-block;
         white-space: nowrap;
         flex-basis: auto;
@@ -40,7 +45,8 @@
         text-align: center;
     }
 
-    .instructionDiv{
+    .instructionDiv
+    {
         font-family:Sans-serif;
         font-size:100%;
         line-height: 1.0;
@@ -48,9 +54,9 @@
     }
 </style>
 <body>
-<form action="./quiz" method="get">
-    <p class="quizInstruction"> QUIZ INSTRUCTIONS </p>
-    <div class="instructionDiv">
+    <form action="./quiz" method="get">
+        <p class="quizInstruction"> QUIZ INSTRUCTIONS </p>
+        <div class="instructionDiv">
         <p>The following are the instructions related to the quiz : </p> <br>
         <ul>
             <li> Work in teams of 5 or 7</li>
@@ -61,13 +67,13 @@
             </li>
             <li>Due by Wednesday March 27</li>
         </ul>
-    </div>
-    <br>
-    <p align="center">
-        <input type="submit" class="startQuizBtn" name="action" value="Start Quiz">
-    </p>
-</form>
-</body>
+        </div>
+        <br>
+        <p align="center">
+            <input type="submit" class="startQuizBtn" name="action" value="Start Quiz">
+        </p>
+    </form>
+    </body>
 </html>
 
 
