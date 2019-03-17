@@ -16,6 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import javax.servlet.annotation.WebServlet;
+import org.json.simple.JSONObject;
+import model.UserVO;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
+
+
 
 /**
  * Submit Quiz  Servlet is a controller that Submits Quiz
@@ -26,6 +35,8 @@ import java.util.List;
  * @date 03/01/2019
  **/
 
+
+@WebServlet(name = "SubmitQuizServlet", urlPatterns = "/SubmitQuiz")
 public class SubmitQuizServlet extends HttpServlet {
 	
 private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName());
@@ -39,29 +50,69 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 		try {
 
 			
+			log.info("In Submit Quiz Servlet");
+			
 			HttpSession session = req.getSession();
-			
-			int quizId = Integer.parseInt(session.getAttribute("mqid").toString());
-			int courseId = Integer.parseInt(session.getAttribute("courseIdN").toString());		
-			int userId = Integer.parseInt(session.getAttribute("userIdN").toString());
-			
-	
-			List<displayQuestionsVO> list = new ArrayList<displayQuestionsVO>();
-		
-			list = (List<displayQuestionsVO>) req.getSession().getAttribute("list");
-
-			
-			String answerSelected = req.getParameter("jsonData");
-			int questionId = Integer.parseInt(req.getParameter("questionId"));
+			int displayQuestionsVOLength = Integer.parseInt(session.getAttribute("displayQuestionsVOLength").toString());
+			int quizId = Integer.parseInt(session.getAttribute("quizId").toString());
+			int courseId = Integer.parseInt(session.getAttribute("courseId").toString());		
+			int userId = Integer.parseInt(session.getAttribute("userId").toString());
 			int score = 0;
-
-
+			int questionId = 0;
+			
+			log.info("displayQuestionsVOLength"+displayQuestionsVOLength);
+			log.info("quizId"+quizId);
+			log.info("courseId"+courseId);
+			log.info("userId"+userId);
+			
+			
+			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
-			StudentResponseDAOBean studentResponse = new StudentResponseDAOBean();
-			studentResponse.InsertQuizAnswers(courseId, quizId, userId, questionId, answerSelected, score);
+//			String[] answerSelectedtest = req.getParameterValues("1");
+			
+			for(int i=0 ; i< displayQuestionsVOLength ; i++)
+			{
+				
+//				String[] answerSelectedtest = req.getParameterValues("1");
+				String[] answerSelected = req.getParameterValues(Integer.toString(i+1));
+				log.info("answer selected"+answerSelected);
+				questionId = i+1;
+				StringBuilder sb = new StringBuilder();
+				sb.append("{");
+				sb.append("\"");
+				
+				for(int j=0; j < answerSelected.length ; j++)
+				{
+					
+					log.info("Values are  "+answerSelected[j]);
+					sb.append("AnswerSelected"+Integer.toString(j+1));
+					sb.append("\"");
+					sb.append(":");
+					sb.append("\"");
+					sb.append(answerSelected[j]);
+					sb.append("\"");
+					if (j != answerSelected.length-1) {
+						sb.append(",");
+					}
+					
+					
+				}
+				
+				sb.append("}");
+				
+				String selectedAnswers = sb.toString();
+				
+				log.info("String is"+selectedAnswers);
+				
+				StudentResponseDAOBean studentResponse = new StudentResponseDAOBean();
+//				int row = studentResponse.getFromCourseIDQuizIdUserIdQuestionId(courseId, quizId, userId, questionId);
+//				log.info("row exists "+row);
+				studentResponse.InsertQuizAnswers(courseId, quizId, userId, questionId, selectedAnswers, score);
+			}
 
-			res.sendRedirect(req.getContextPath() + "/SubmitQuiz.ftl");
+			res.sendRedirect(req.getContextPath() + "/submitQuizSuccess.ftl");
+			
 			
 
 	} catch (Exception e) {

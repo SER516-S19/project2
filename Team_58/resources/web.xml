@@ -151,6 +151,18 @@
         <servlet-name>DisplayQuizInstructionServlet</servlet-name>
         <url-pattern>/DisplayInst</url-pattern>
     </servlet-mapping>
+    
+    
+     <servlet>
+    	<servlet-name>SubmitQuizServlet</servlet-name>
+    	<servlet-class>controller.SubmitQuizServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+  	</servlet>
+  
+  	<servlet-mapping>
+    	<servlet-name>SubmitQuizServlet</servlet-name>
+    	<url-pattern>/SubmitQuiz</url-pattern>
+  	</servlet-mapping>    
 
 <welcome-file-list>
 <welcome-file>login.jsp</welcome-file>

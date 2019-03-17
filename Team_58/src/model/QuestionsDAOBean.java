@@ -138,6 +138,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			String question = resultData.getString("question");
 			String answers = resultData.getString("actualAnswer");
 			String choices = resultData.getString("totalChoices");
+			int qid = resultData.getInt("questionId");
 			
 			JSONParser parser = new JSONParser();
 			JSONObject incorrectJO = (JSONObject) parser.parse(choices);
@@ -161,7 +162,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 				i++;
 				choice = (String) correctJO.get("correctAnswer" + i);
 			}
-			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
+			displayQuestionsVO displayquestionVO = new displayQuestionsVO(qid, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(displayquestionVO);
 		}
 		return list;

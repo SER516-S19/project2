@@ -35,9 +35,14 @@ public class DisplayQuizServlet extends HttpServlet {
 			QuestionsDAOBean questionBean = new QuestionsDAOBean();
 
 			List<displayQuestionsVO> questions = questionBean.getQuestionsForQuiz(quizID);
+			
+			int displayQuestionsVOLength = questions.size();
+//			log.info("displayQuestionsVOLength in displayquizservlet "+ displayQuestionsVOLength);
 
 			
 			session.setAttribute("displayQuestionsVO", questions);
+			session.setAttribute("displayQuestionsVOLength", displayQuestionsVOLength);
+			session.setAttribute("quizId", quizID);
 			
 			res.sendRedirect(req.getContextPath() + "/displayQuiz.ftl");
 			

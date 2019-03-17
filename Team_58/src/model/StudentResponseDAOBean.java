@@ -53,7 +53,7 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 		
 		try {
 			connection = ConnectionFactory.getConnection();
-			query = connection.prepareStatement(dbProperties.getProperty("inserStudentResponse"));	
+			query = connection.prepareStatement(dbProperties.getProperty("insertStudentResponse"));	
 			query.setInt(1, courseId);
 			query.setInt(2, quizId);
 			query.setInt(3, userId);
