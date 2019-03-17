@@ -12,11 +12,8 @@ import java.util.List;
 public class QuestionAnswerService {
 
     private QuizContent currentQuestion = null;
-    private String view = "";
     private List<QuizContent> questions = new ArrayList<>();
-    private int currentQuestionIndex = 0;
     private int totalScore = 0;
-    private int questionNumber = 0;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd-yyyy");
     private String dates = dateFormat.format(new Date());
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
@@ -40,7 +37,6 @@ public class QuestionAnswerService {
                             selectedOption, attemptId, studentId,
                             currentQuestion.getScore(), dates, time, true);
         }
-
     }
 
     private void loadQuestionsAnswers() {
@@ -79,9 +75,11 @@ public class QuestionAnswerService {
      * @return
      */
     private int computeScore(int currentQuestionIndex, List<String> selectedOptions) {
+
         int actualCorrectAnsCount = 0, totalCorrectAnsCount = 0;
         int result;
         QuizContent currentQuestion = questions.get(currentQuestionIndex);
+
         for (AnswerOption answerOption : currentQuestion.getAnswerOptions()) {
             boolean isCorrectAns = answerOption.getIsCorrect();
             boolean isSelected = selectedOptions.contains(Long.toString(answerOption.getAnsId()));
@@ -92,15 +90,15 @@ public class QuestionAnswerService {
                 actualCorrectAnsCount -= 1;
             }
         }
+
         if (totalCorrectAnsCount != 0 && actualCorrectAnsCount > 0) {
             result = (int) ((actualCorrectAnsCount / totalCorrectAnsCount) *
                     currentQuestion.getMaxScore());
         } else {
             result = 0;
         }
+
         currentQuestion.setScore(result);
         return result;
     }
-    
-
 }
