@@ -1,10 +1,12 @@
 <!-- 
+
 Freemarker page to display Professor details
-@authour Jainish
-@authour Subhradeep 
-@authour Sami
+@author Jainish
+@author Subhradeep 
+@author Sami
 @version 1.1
 @date 03/16/2019
+
  -->
 
 <html>
@@ -16,7 +18,9 @@ Freemarker page to display Professor details
 		<h1 align="center" id="timer"></h1>	
 		<p>
 		<table>
+
 		    <form id="quizForm" action="SubmitQuiz" onsubmit="return SaveSubmit();" method="POST">
+
 			    <#list Session.displayQuestionsVO as question>
 				    <h3 align="center">
 				        Question: ${question.getQuestion()}
@@ -26,25 +30,30 @@ Freemarker page to display Professor details
 				    </h5>	
 					
 					<h3 align="center">
+
 							<#list question.getCorrectAnswers() as correctAnswer>
 								<input type="checkbox" name=${question.getqId()}  value="${correctAnswer}">${correctAnswer}<br>
 						</#list>
 						<#list question.getIncorrectAnswers() as incorrectAnswer>
 							<input type="checkbox" name=${question.getqId()}  value="${incorrectAnswer}">${incorrectAnswer}<br>
+
+	
 						</#list>
 					</h3>
 			    </#list>
 			    
 				<input type="submit" value="Save and Submit"/>
 						
+
 				<script rel="javascript" type="text/javascript" href="js/jquery-1.11.3.min.js">  </script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
 				<script type='text/javascript'>
 			
+
+			
 				function SaveSubmit() { 
 					document.getElementById("timer").innerHTML = "";
-					var sessionList = [<#list Session.displayQuestionsVO as question>${question.getqId()},</#list>] ;     
-					alert(sessionList);      
+					var sessionList = [<#list Session.displayQuestionsVO as question>${question.getqId()},</#list>] ;           
 					var checkd;
 					var listLength = sessionList.length;
 	    			
