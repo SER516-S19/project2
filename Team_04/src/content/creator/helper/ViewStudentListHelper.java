@@ -5,7 +5,10 @@ import content.creator.operations.DataOps;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ *Modified by :Sakshi Gautam
+ *Description: fetches the student list for every student id.
+ */
 public final class ViewStudentListHelper {
 
         public static List<Integer> getStudentList() throws SQLException {
