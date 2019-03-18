@@ -14,14 +14,15 @@ import java.util.List;
 public class QuizDetails {
 	private int quizId;
 	private String quizName;
-    	private String quizInstructions;
-    	private String quizType;
+	private String quizInstructions;
+	private String quizType;
 	private String quizTimeLimit;
-    	private boolean isShuffled;
-    	private boolean isPublished;
-    
-    	private List<QuestionDetails> question;
-    	public String getQuizName() {
+	private boolean isShuffled;
+	private boolean isPublished;
+
+	private List<QuestionDetails> question;
+
+	public String getQuizName() {
 		return quizName;
 	}
 

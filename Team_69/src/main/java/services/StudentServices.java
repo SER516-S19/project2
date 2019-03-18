@@ -25,7 +25,7 @@ import dao.UserDAO;
  */
 
 public class StudentServices {
-	
+
 	public String getQuestionDetails(int quizId) {
 		QuizUtility quizData = new QuizUtility();
 		String jsonString = null;
@@ -39,7 +39,7 @@ public class StudentServices {
 	 * success if the response has been recorded.
 	 * 
 	 * @param studentResponse
-	 * @param userId 
+	 * @param userId
 	 * @return view
 	 */
 	public String feedAnswers(String studentResponse, int userId) {
@@ -77,46 +77,45 @@ public class StudentServices {
 		return quizList;
 	}
 
-	public List<String> fetchAllQuizNames(){
+	public List<String> fetchAllQuizNames() {
 		QuizDAO quizDAO = new QuizDAO();
 		return quizDAO.fetchAllQuizNames();
 	}
 
-	public int fetchQuizId(String quizName){
+	public int fetchQuizId(String quizName) {
 		QuizDAO quizDAO = new QuizDAO();
 		return quizDAO.fetchQuizId(quizName);
 	}
 
-	public List<String> fetchQuizStatus(List<String> quizNames,int userId){
+	public List<String> fetchQuizStatus(List<String> quizNames, int userId) {
 		List<String> status = new ArrayList<>();
 		StatisticsDAO statisticsDAO = new StatisticsDAO();
-		for(String quizName : quizNames) {
+		for (String quizName : quizNames) {
 			int quizID = fetchQuizId(quizName);
-			int count = statisticsDAO.checkQuizStatus(quizID,userId);
-			if(count>=1){
+			int count = statisticsDAO.checkQuizStatus(quizID, userId);
+			if (count >= 1) {
 				status.add("Answered");
-			}
-			else {
+			} else {
 				status.add("Unanswered");
 			}
 		}
 		return status;
 	}
 
-	public List<Integer> fetchAllQuizIds(List<String> quizNames){
+	public List<Integer> fetchAllQuizIds(List<String> quizNames) {
 		List<Integer> quizIds = new ArrayList<>();
-		for(String quizName : quizNames){
+		for (String quizName : quizNames) {
 			int quizId = fetchQuizId(quizName);
 			quizIds.add(quizId);
 		}
 		return quizIds;
 	}
-	
+
 	public String getCurrentDateTime() {
 		String pattern = "MMM dd HH:mm";
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String dateTime = simpleDateFormat.format(new Date());
-		return dateTime; 
+		return dateTime;
 	}
 
 	public int getGrade(String studentResponse, int userId) {
@@ -127,7 +126,7 @@ public class StudentServices {
 		return score;
 	}
 
-	public void calculateScores(String studentResponse, int userID){
+	public void calculateScores(String studentResponse, int userID) {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		int quizID = jsonResponse.getQuizId();
 		Map<Integer, Integer> questionScore = new HashMap<>();
@@ -136,26 +135,26 @@ public class StudentServices {
 		CalculatedScores calculatedScores = new CalculatedScores();
 		CalculatedScoresDAO scoresDAO = new CalculatedScoresDAO();
 
-		for (QuestionDetails ques: questions){
+		for (QuestionDetails ques : questions) {
 			int questionId = ques.getQuestionId();
 			List<AnswerDetails> responseAnswer = ques.getResponseAnswer();
 			List<AnswerDetails> availableAnswer = ques.getAvailableAnswers();
 			int correctAnswer = 0;
 			int correctResponseCount = 0;
 			List<Integer> answerID = new ArrayList<>();
-			for(AnswerDetails responseAns: responseAnswer){
+			for (AnswerDetails responseAns : responseAnswer) {
 				answerID.add(responseAns.getAnswerId());
 			}
-			for(AnswerDetails answers: availableAnswer){
-				if(answers.getCorrectAnswer() == true){
-					if(answerID.contains(answers.getAnswerId())){
+			for (AnswerDetails answers : availableAnswer) {
+				if (answers.getCorrectAnswer() == true) {
+					if (answerID.contains(answers.getAnswerId())) {
 						correctResponseCount++;
 					}
 					correctAnswer++;
 				}
 			}
-			int points = correctResponseCount/correctAnswer * ques.getPoints();
-			questionScore.put(questionId,points);
+			int points = correctResponseCount / correctAnswer * ques.getPoints();
+			questionScore.put(questionId, points);
 		}
 		float sumPoints = 0.0f;
 		for (float questionPoints : questionScore.values()) {
