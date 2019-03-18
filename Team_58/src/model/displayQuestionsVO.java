@@ -24,6 +24,8 @@ public class displayQuestionsVO {
 	private List<String> answers = new ArrayList<String>();
 	private int totalPoints;
 	private boolean isMCQ;
+
+	private String correct;
 	
 	public int getQuizId() {
 		return quizId;
@@ -43,31 +45,29 @@ public class displayQuestionsVO {
 		this.totalPoints = totalPoints;
 		this.isMCQ = isMCQ;
 		
-		int cLen = correctAnswers.size();
-		int icLen = incorrectAnswers.size();
-		int iter = Math.min(icLen, cLen);
+		int correctLength = correctAnswers.size();
+		int incorrectLength = incorrectAnswers.size();
+		int iteration = Math.min(incorrectLength, correctLength);
 		
-		log.info("iter is"+iter);
-		//int idx;
-		int chs;
-		for (int i=0; i<iter; i++) {
-			chs = getRandomNumberInRange(0, 10);
-			log.info("Chs is"+chs);
-			log.info("i is"+i);
-			if (chs%2 == 0)
+
+		int choice;
+		for (int i=0; i<iteration; i++) {
+			choice = getRandomNumberInRange(0, 10);
+
+			if (choice%2 == 0)
 				this.answers.add(correctAnswers.get(i));
-			if (chs%2 == 1)
+			if (choice%2 == 1)
 				this.answers.add(incorrectAnswers.get(i));
 			
 		}
 		
-		if ((incorrectAnswers.size() - iter)>0){
-			for (int j=iter; j<incorrectAnswers.size(); j++) {
+		if ((incorrectAnswers.size() - iteration)>0){
+			for (int j=iteration; j<incorrectAnswers.size(); j++) {
 				this.answers.add(incorrectAnswers.get(j));
 			}
 		}
-		if ((correctAnswers.size() - iter)>0){
-			for (int j=iter; j<correctAnswers.size(); j++) {
+		if ((correctAnswers.size() - iteration)>0){
+			for (int j=iteration; j<correctAnswers.size(); j++) {
 				this.answers.add(correctAnswers.get(j));
 			}
 		}
@@ -79,45 +79,37 @@ public class displayQuestionsVO {
 		this.question = question;
 		this.totalPoints = totalPoints;
 		
-		int cLen = correctAnswers.size();
-		int icLen = incorrectAnswers.size();
-		int iter = Math.min(icLen, cLen);
+		int correctLength = correctAnswers.size();
+		int incorrectLength = incorrectAnswers.size();
+		int iteration = Math.min(incorrectLength, correctLength);
 		
-		log.info("cLen is"+cLen);
-		log.info("icLen is"+icLen);
-		log.info("Incorrect 0 is  "+incorrectAnswers.get(0));
-		
-		
-		log.info("iter is"+iter);
-		
-		//int idx;
-		int chs;
-		for (int i=0; i<iter; i++) {
-			chs = getRandomNumberInRange(0, 10);
-			log.info("Chs is"+chs);
-			log.info("i is"+i);
+
+		int choice;
+		for (int i=0; i<iteration; i++) {
+			choice = getRandomNumberInRange(0, 10);
+
 			
-			if (chs%2 == 0)
-				log.info("Incorrect 0 is  "+incorrectAnswers.get(i));
-				log.info("i is"+i);
-				this.answers.add(correctAnswers.get(i));
-			if (chs%2 == 1)
-				log.info("Incorrect 0 is  "+incorrectAnswers.get(i));
-				log.info("i is"+i);
-				this.answers.add(incorrectAnswers.get(i));
+			if (choice%2 == 0)
+				log.info("correctAnswers is  "+correctAnswers.get(i));
+				this.answers.add(correctAnswers.get(i).toString());
+
+			if (choice%2 == 1)
+				log.info("Incorrect is  "+incorrectAnswers.get(i).toString());
+				this.answers.add(incorrectAnswers.get(i).toString());
 			
 		}
 		
-		if ((incorrectAnswers.size() - iter)>0){
-			for (int j=iter; j<incorrectAnswers.size(); j++) {
+		if ((incorrectAnswers.size() - iteration)>0){
+			for (int j=iteration; j<incorrectAnswers.size(); j++) {
 				this.answers.add(incorrectAnswers.get(j));
 			}
 		}
-		if ((correctAnswers.size() - iter)>0){
-			for (int j=iter; j<correctAnswers.size(); j++) {
+		if ((correctAnswers.size() - iteration)>0){
+			for (int j=iteration; j<correctAnswers.size(); j++) {
 				this.answers.add(correctAnswers.get(j));
 			}
 		}
+
 	}
 	
 	public int getTotalPoints() {

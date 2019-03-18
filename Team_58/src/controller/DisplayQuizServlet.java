@@ -34,7 +34,6 @@ public class DisplayQuizServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			
 			int quizID = Integer.parseInt(req.getParameter("quizId"));
-//			int questionsIds[];
 			List<Integer> questionsIds = new ArrayList<Integer>();
 			
 			
@@ -52,7 +51,6 @@ public class DisplayQuizServlet extends HttpServlet {
 			{
 				
 				questionsIds.add(questions.get(i).getqId());
-				log.info("questionsIds "+ questionsIds);
 				
 				
 			}
