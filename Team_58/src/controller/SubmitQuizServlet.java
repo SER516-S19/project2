@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.displayQuestionsVO;
 import model.StudentResponseDAOBean;
+import model.StudentResponseVO;
+
 import java.util.logging.Logger;
 
 import java.util.ArrayList;
@@ -72,7 +74,11 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 			log.info("courseId"+courseId);
 			log.info("userId"+userId);
 			
+			StudentResponseDAOBean studentResponse = new StudentResponseDAOBean();
 			
+			List<StudentResponseVO> studentResponseVOList = studentResponse.getStudentListFromCourseIdQuizIdUserId(courseId,quizId,userId);
+			
+			log.info("length of studentResponseVOList"+studentResponseVOList.size());
 			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
@@ -115,10 +121,25 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 				
 				log.info("String is"+selectedAnswers);
 				
-				StudentResponseDAOBean studentResponse = new StudentResponseDAOBean();
+			
+				
+				if(studentResponseVOList.size()  > 0)
+				{
+				
+					studentResponse.updateStudentResponse(courseId,quizId,userId,questionId,selectedAnswers);
+				
+				}
+				else
+				{
+					
+					log.info("Insert New Row in DB");
+					studentResponse.InsertQuizAnswers(courseId, quizId, userId, questionId, selectedAnswers, score);
+					
+				}
+				
 //				int row = studentResponse.getFromCourseIDQuizIdUserIdQuestionId(courseId, quizId, userId, questionId);
 //				log.info("row exists "+row);
-				studentResponse.InsertQuizAnswers(courseId, quizId, userId, questionId, selectedAnswers, score);
+//				studentResponse.InsertQuizAnswers(courseId, quizId, userId, questionId, selectedAnswers, score);
 			}
 
 			res.sendRedirect(req.getContextPath() + "/submitQuizSuccess.ftl");
