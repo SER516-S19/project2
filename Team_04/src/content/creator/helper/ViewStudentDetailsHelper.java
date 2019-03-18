@@ -5,7 +5,7 @@ import java.util.List;
 import java.sql.SQLException;
 /*
  *Modified by :Sakshi Gautam
- * Description: fetches the student details for every student id.
+ *Description: fetches the student details for every student id.
  */
 
 public class ViewStudentDetailsHelper {

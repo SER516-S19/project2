@@ -2,13 +2,11 @@ package content.creator.helper;
 
 import content.creator.dao.QuizResultDAO;
 import content.creator.operations.DataOps;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class ViewStudentListHelper {
-
 
         public static List<Integer> getStudentList() throws SQLException {
             String tableName = "quiz_result";

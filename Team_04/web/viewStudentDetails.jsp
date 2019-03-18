@@ -2,6 +2,7 @@
 <%@ page import="content.creator.dao.QuizResultDAO" %><%--
   User: sakshi
   Date: 3/1/2019
+  Description: Displays student statistics for the quiz.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -42,27 +43,7 @@
         body {
             background-color: #4a154b;
         }
-        .btn1 {
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
-        }
+
         .btn2 {
             display: inline-block;
             white-space: nowrap;
@@ -124,8 +105,6 @@
                 <%
                     List<QuizResultDAO> studentDataList = (List<QuizResultDAO> )request.getAttribute("studentDetails");
 
-                    int studentid = (int) request.getAttribute("studentid");
-
                     for (QuizResultDAO studentResponse: studentDataList) {
 
 
@@ -135,8 +114,6 @@
                     <th><%=studentResponse.getAttemptId()%></th>
                     <th><%=studentResponse.getFinalScore()%></th>
                 </tr>
-
-
 
                 <%
 

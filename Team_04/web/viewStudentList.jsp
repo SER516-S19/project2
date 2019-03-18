@@ -1,13 +1,12 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: saksh
+  User: Sakshi Gautam
   Date: 3/1/2019
   Time: 5:16 PM
-  To change this template use File | Settings | File Templates.
+  Description: Displays the student list with their IDs
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.List"%>
+
 <html>
 <head>
     <title>view-list</title>
@@ -38,12 +37,7 @@
             display: flex;
             padding-top: 10px;
         }
-        .inTable {
-            align-items: center;
-            justify-content: center;
-            display: flex;
-            padding-top: 10px;
-        }
+
         body {
             background-color: #4a154b;
         }
@@ -68,29 +62,7 @@
             transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
             color: #4a154b;
         }
-        .btn2 {
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
-            margin-left: 15px;
-            margin-right: 15px;
-        }
+
         h1 {
             text-align: center;
             color: white;
@@ -146,13 +118,5 @@
         </table>
     </div>
 </div>
-<%--<table>
-  <tr><th>Quizzes</th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #1</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #2</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #3</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #4</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #5</a></th></tr>
-</table>--%>
 </body>
 </html>
