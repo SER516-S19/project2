@@ -58,6 +58,7 @@ public class StudentCourseDashboardServlet extends HttpServlet {
 				quizzes.put(q.getQuizId(), q.getQuizTitle());
 			session.setAttribute("QuizHashMap", quizzes);
 			session.setAttribute("courseName", courseVO.getCourseName());
+			session.setAttribute("courseId", courseId);
 			response.sendRedirect(request.getContextPath() + "/studentCourseHome.ftl");
 		} catch (Exception e) {
 			log.info(e.getMessage());

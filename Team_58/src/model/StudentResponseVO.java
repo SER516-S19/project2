@@ -1,5 +1,14 @@
 package model;
 
+
+/**
+* StudentResponseVO is a model class for a Questions
+*
+* @author Sami
+* @version 1.1
+* @date 03/17/2019
+* */
+
 public class StudentResponseVO {
 	
 	int courseId;
