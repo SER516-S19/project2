@@ -98,7 +98,7 @@
         <div class="wrapper">
             <input type="submit" class="btn2" formaction="./createContent.jsp" name="action"
                    value="CREATE QUIZ"/>
-            <input type="submit" class="btn2" formaction="./list" name="action"
+            <input type="submit" class="btn2" formaction="./quizList" name="action"
                    value="VIEW QUIZ LIST"/>
             <input type="submit" class="btn2" formaction="./studentList"
                    value="VIEW STUDENT LIST"/>
