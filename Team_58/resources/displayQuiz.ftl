@@ -30,17 +30,14 @@ Freemarker page to display Professor details
 				    </h5>	
 					
 					<h3 align="center">
-
-							<#list question.getCorrectAnswers() as correctAnswer>
-								<input type="checkbox" name=${question.getqId()}  value="${correctAnswer}">${correctAnswer}<br>
-						</#list>
-						<#list question.getIncorrectAnswers() as incorrectAnswer>
-							<input type="checkbox" name=${question.getqId()}  value="${incorrectAnswer}">${incorrectAnswer}<br>
-
-	
+						<#list question.getAnswers() as answer>
+						<input type="checkbox" name=${question.getqId()}  value="${answer}">${answer}<br>
 						</#list>
 					</h3>
 			    </#list>
+			    
+			    
+		
 			    
 				<input type="submit" value="Save and Submit"/>
 						
@@ -80,7 +77,7 @@ Freemarker page to display Professor details
 	    </p>
 	    	    		 				
 		<script>
-			var countDownDate = new Date().getTime() + (30 * 60 * 1000);
+			var countDownDate = new Date().getTime() + (1 * 60 * 1000);
 			var x = setInterval(function() {
 				var now = new Date().getTime();
 				var distance = countDownDate - now;
