@@ -45,7 +45,7 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 	}
 	
 	@Override
-	public void InsertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score)   {
+	public void insertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score)   {
 		
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -53,7 +53,7 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 		
 		try {
 			connection = ConnectionFactory.getConnection();
-			query = connection.prepareStatement(dbProperties.getProperty("inserStudentResponse"));	
+			query = connection.prepareStatement(dbProperties.getProperty("insertStudentResponse"));	
 			query.setInt(1, courseId);
 			query.setInt(2, quizId);
 			query.setInt(3, userId);
@@ -91,6 +91,34 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 		return list;
 	}
 	
+	
+	public List<StudentResponseVO> getStudentListFromCourseIdQuizIdUserId(int courseId, int quizId, int userId) {
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+		List<StudentResponseVO> list = new ArrayList<>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			query = connection.prepareStatement(dbProperties.getProperty("getStudentQueryForStudentResponse"));
+			query.setInt(1,courseId);
+			query.setInt(2, quizId);
+			query.setInt(3, userId);
+			
+			resultData = query.executeQuery();
+
+			while(resultData.next()) {
+				int userID = resultData.getInt("userId");
+				String answerSelected = resultData.getString("answerSelected");
+				StudentResponseVO student = new StudentResponseVO(userId,answerSelected);
+				list.add(student);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			log.info(e.getMessage());
+		}
+		return list;
+	}
+	
 	@Override
 	public void updateStudentResponse(int quizId, int questionId, int userId,int score) {
 
@@ -108,6 +136,28 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 			log.info(e.getMessage());
 		}
 	}
+	
+	@Override
+	public void updateStudentResponse(int courseId , int quizId ,int userId , int questionId , String answerSelected ) {
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		try {
+			connection = ConnectionFactory.getConnection();
+			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponseForAnswer"));
+			query.setString(1, answerSelected);
+			query.setInt(2,courseId);
+			query.setInt(3,quizId);
+			query.setInt(4,userId );
+			query.setInt(5,questionId);
+			
+			query.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			log.info(e.getMessage());
+		}
+	}
+	
+
 }
 
 
