@@ -16,9 +16,11 @@ Freemarker page to display Professor details
 	<body>
 
 		<h1 align="center" id="timer"></h1>	
+		<div class="box" style="text-align:center">
 		<p>
 		<table>
-
+		
+			
 		    <form id="quizForm" action="SubmitQuiz" onsubmit="return SaveSubmit();" method="POST">
 
 			    <#list Session.displayQuestionsVO as question>
@@ -75,6 +77,7 @@ Freemarker page to display Professor details
 	    	</form>
 	    </table>
 	    </p>
+	    </div>
 	    	    		 				
 		<script>
 			var countDownDate = new Date().getTime() + (30 * 60 * 1000);
