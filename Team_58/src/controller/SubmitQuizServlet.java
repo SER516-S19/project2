@@ -51,14 +51,21 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 
 			
 			log.info("In Submit Quiz Servlet");
+			List<Integer> questionsIds = new ArrayList<Integer>();
 			
 			HttpSession session = req.getSession();
 			int displayQuestionsVOLength = Integer.parseInt(session.getAttribute("displayQuestionsVOLength").toString());
 			int quizId = Integer.parseInt(session.getAttribute("quizId").toString());
 			int courseId = Integer.parseInt(session.getAttribute("courseId").toString());		
 			int userId = Integer.parseInt(session.getAttribute("userId").toString());
+			questionsIds = (ArrayList<Integer>)session.getAttribute("questionsIds");
+			
+			log.info("questionsIds"+questionsIds);
+			
+//			ArrayList<Integer>)session.getAttribute("questionsIds");
 			int score = 0;
 			int questionId = 0;
+			
 			
 			log.info("displayQuestionsVOLength"+displayQuestionsVOLength);
 			log.info("quizId"+quizId);
@@ -75,9 +82,11 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 			{
 				
 //				String[] answerSelectedtest = req.getParameterValues("1");
-				String[] answerSelected = req.getParameterValues(Integer.toString(i+1));
+				String[] answerSelected = req.getParameterValues(Integer.toString(questionsIds.get(i)));
 				log.info("answer selected"+answerSelected);
-				questionId = i+1;
+				int x = answerSelected.length;
+				questionId = questionsIds.get(i);
+				
 				StringBuilder sb = new StringBuilder();
 				sb.append("{");
 				sb.append("\"");
@@ -86,7 +95,7 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 				{
 					
 					log.info("Values are  "+answerSelected[j]);
-					sb.append("AnswerSelected"+Integer.toString(j+1));
+					sb.append("correctAnswer"+Integer.toString(x));
 					sb.append("\"");
 					sb.append(":");
 					sb.append("\"");
@@ -94,9 +103,10 @@ private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName())
 					sb.append("\"");
 					if (j != answerSelected.length-1) {
 						sb.append(",");
+						sb.append("\"");
 					}
 					
-					
+					x--;
 				}
 				
 				sb.append("}");

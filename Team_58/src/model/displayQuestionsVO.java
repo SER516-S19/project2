@@ -21,7 +21,7 @@ public class displayQuestionsVO {
 	private int quizId;
 	private int questionId;
 	private String question;
-	private List<String> answers = new ArrayList<String>();;
+	private List<String> answers = new ArrayList<String>();
 	private int totalPoints;
 	private boolean isMCQ;
 	

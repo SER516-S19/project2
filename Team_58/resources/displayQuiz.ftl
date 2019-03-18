@@ -50,7 +50,8 @@ Freemarker page to display Professor details
 			
 				function SaveSubmit() { 
 					document.getElementById("timer").innerHTML = "";
-					var sessionList = [<#list Session.displayQuestionsVO as question>${question.getqId()},</#list>] ;           
+					var sessionList = [<#list Session.displayQuestionsVO as question>${question.getqId()},</#list>] ;   
+					alert(sessionList);        
 					var checkd;
 					var listLength = sessionList.length;
 	    			
@@ -77,7 +78,7 @@ Freemarker page to display Professor details
 	    </p>
 	    	    		 				
 		<script>
-			var countDownDate = new Date().getTime() + (1 * 60 * 1000);
+			var countDownDate = new Date().getTime() + (30 * 60 * 1000);
 			var x = setInterval(function() {
 				var now = new Date().getTime();
 				var distance = countDownDate - now;
