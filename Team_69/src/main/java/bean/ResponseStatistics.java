@@ -42,8 +42,7 @@ public class ResponseStatistics {
         this.answer = answer;
     }
 
-    public ResponseStatistics() {
-    }
+    public ResponseStatistics() {}
 
     public int getId() {
         return id;

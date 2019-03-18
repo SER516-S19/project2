@@ -37,9 +37,7 @@ public class CalculatedScores {
         this.score = score;
     }
     
-    public CalculatedScores() {
-    }
-
+    public CalculatedScores() {}
 
     public int getId() {
         return id;

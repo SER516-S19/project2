@@ -33,11 +33,9 @@ public class Question {
     @Column(name = "Points")
     private int points;
 
-    
     //For the answer side
     @OneToMany(mappedBy = "question",orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private List<Answer> answerList = new ArrayList<Answer>();
-    
 
 	public Question(Quiz quiz, String question, boolean isMultiple, int points) {
 		super();
@@ -56,8 +54,7 @@ public class Question {
 		this.questionId = questionId;
 	}
 
-	public Question() {
-	}
+	public Question() {}
 
 	public boolean isMultiple() {
 		return isMultiple;

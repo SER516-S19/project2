@@ -40,7 +40,6 @@ public class Quiz {
     
     Quiz() {}
 
-
     public Quiz(String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
 			boolean isPublished) {
 		this.quizName = quizName;
@@ -61,7 +60,6 @@ public class Quiz {
 		this.isPublished = isPublished;
 		this.quizId = quizId;
 	}
-
 
 	public boolean isShuffled() {
 		return isShuffled;

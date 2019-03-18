@@ -59,7 +59,6 @@ public class QuestionDAO {
 		Transaction transaction = null;
 		List<Question> quesList = new ArrayList<Question>();
 		Session session = null;
-		
 		try  {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();

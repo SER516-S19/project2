@@ -88,7 +88,6 @@ public class StatisticsDAO {
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
             Root<User> user = criteriaQuery.from(User.class);
@@ -96,7 +95,6 @@ public class StatisticsDAO {
             criteriaQuery.where(builder.equal(user.get("user_type"), "student"));
             Query<Long> query = session.createQuery(criteriaQuery);
             studentCount = (int)(long)query.getSingleResult();
-            
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

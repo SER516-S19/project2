@@ -42,8 +42,7 @@ public class User {
         this.user_id = user_id;
     }
 
-    public User() {
-    }
+    public User() {}
 
     public int getUser_id() {
         return user_id;

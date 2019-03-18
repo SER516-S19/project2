@@ -29,9 +29,7 @@ public class Answer {
     @Column(name = "Correct_Answer")
     private boolean correctAnswer;
 
-    public Answer() {
-
-  	}
+    public Answer() {}
     
     public Answer(Question question, String answer, boolean correctAnswer) {
         this.question = question;

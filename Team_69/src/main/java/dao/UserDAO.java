@@ -50,7 +50,6 @@ public class UserDAO {
     	Transaction transaction = null;
         User user = null;
         Session session = null;
-
         try  {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();

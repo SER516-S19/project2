@@ -13,7 +13,6 @@ public class StatisticServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     	StatisticServices statisticServices = new StatisticServices();
     	String flag = request.getParameter("flag");
     	if("quizStats".equals(flag)) {
