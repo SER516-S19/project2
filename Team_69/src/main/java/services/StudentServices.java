@@ -129,7 +129,7 @@ public class StudentServices {
 	public void calculateScores(String studentResponse, int userID) {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		int quizID = jsonResponse.getQuizId();
-		Map<Integer, Integer> questionScore = new HashMap<>();
+		Map<Integer, Float> questionScore = new HashMap<>();
 		List<QuestionDetails> questions = jsonResponse.getQuestion();
 
 		CalculatedScores calculatedScores = new CalculatedScores();
@@ -146,14 +146,14 @@ public class StudentServices {
 				answerID.add(responseAns.getAnswerId());
 			}
 			for (AnswerDetails answers : availableAnswer) {
-				if (answers.getCorrectAnswer() == true) {
+				if (answers.getCorrectAnswer()) {
 					if (answerID.contains(answers.getAnswerId())) {
 						correctResponseCount++;
 					}
 					correctAnswer++;
 				}
 			}
-			int points = correctResponseCount / correctAnswer * ques.getPoints();
+			float points = ((float) correctResponseCount / (float) correctAnswer) * ques.getPoints();
 			questionScore.put(questionId, points);
 		}
 		float sumPoints = 0.0f;
