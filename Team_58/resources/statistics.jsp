@@ -51,14 +51,14 @@ This file is for rendering the statistics graphs
     chartobj1.put("showValues", "0");
     chartobj1.put("theme", "zune");
     chartobj1.put("xAxisName", "Students");
-    chartobj1.put("yAxisName", "Scores");
+    chartobj1.put("yAxisName", "Grades");
 
     // Push the data into the array using map object.
     ArrayList arrData1 = new ArrayList();
     while(rs1.next()) {
         Map<String, String> hashMap1 = new HashMap<String, String>();
         hashMap1.put("label", rs1.getString("username"));
-        hashMap1.put("value", String.valueOf(rs1.getInt("score")));
+        hashMap1.put("value", String.valueOf(rs1.getDouble("percentscore")));
         arrData1.add(hashMap1);
     }
 
