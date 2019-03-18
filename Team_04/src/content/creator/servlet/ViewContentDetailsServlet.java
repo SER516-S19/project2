@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.*;
 
 /*
-* Modified by: Archana Madhavan
-* Date: 28/2/19
-* Description: Fetches the quiz details and sends response to the view.
-*
-*  */
+ * Modified by: Archana Madhavan
+ * Date: 28/2/19
+ * Description: Fetches the quiz details and sends response to the view.
+ *
+ *  */
 
 @WebServlet(urlPatterns = "/viewContentDetails")
 public class ViewContentDetailsServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class ViewContentDetailsServlet extends HttpServlet {
             //maps answers to question ID
             HashMap<Integer,List<String>> answerMap=new HashMap();
             for (QuizContentDAO question : questionsList) {
-                    Integer key=question.getQuesId();
+                Integer key=question.getQuesId();
                 if(answerMap.containsKey(key)){
                     List<String> answerList=answerMap.get(key);
                     answerList.add(question.getAnsDesc());
@@ -54,10 +54,10 @@ public class ViewContentDetailsServlet extends HttpServlet {
             request.setAttribute("quizid",quizNumber);
             request.setAttribute("answers",answerMap);
             request.getRequestDispatcher("viewContentDetails.jsp").forward(request,response);
-    }
+        }
 
         catch (Exception e) {
             e.printStackTrace();
         }
-   }
+    }
 }

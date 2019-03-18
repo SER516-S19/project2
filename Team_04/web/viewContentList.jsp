@@ -1,15 +1,14 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%--
   Created by IntelliJ IDEA.
-<<<<<<< HEAD
   Modified By: Archana Madhavan
-  User: amankaushik,saivinayg
-  Date: 18/2/19
+   Date: 18/2/19
   Time: 1:53 PM
   Description: Displays List of Quizzes.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.List"%>
+
 <html>
 <head>
     <title>view-list</title>
@@ -37,27 +36,6 @@
         }
         body {
             background-color: #4a154b;
-        }
-        .btn1 {
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
         }
         .btn2 {
             display: inline-block;
@@ -95,7 +73,7 @@
 <form class="panel" method="get">
     <h1>View Quiz List</h1>
     <div class="wrapper">
-        <c:forEach items="${ids}" var="quizId">
+        <c:forEach items="${quizIds}" var="quizId">
             <a href="./viewContentDetails?quizId=${quizId}">
                 <input type="button" class="btn2" name="action"
                        value="Quiz<c:out value="${quizId}"></c:out>"/>
