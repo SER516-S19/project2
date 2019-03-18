@@ -103,6 +103,9 @@ public class GradeQuizServlet extends HttpServlet{
 					}
 				}
 			}
+			if(studentSelectedAnswersJson.size() > countOfCorrectAnswered) {
+				countOfWrongAnswers = studentSelectedAnswersJson.size() - countOfCorrectAnswered;
+			}
 			countOfCorrectAnswered = countOfCorrectAnswered - countOfWrongAnswers;
 			score = countOfCorrectAnswered <= 0 ? 0 : (question.getTotalPoints() /  countOfCorrectAnswers)*countOfCorrectAnswered;
 		} catch (ParseException exception) {

@@ -40,6 +40,7 @@ public class StudentHomeServlet extends HttpServlet {
 			UserVO userVO = (UserVO) req.getAttribute("UserVO");
 			HttpSession session = req.getSession();
 			session.setAttribute("userVO", userVO);
+			int userId =  userVO.getUserId();
 
 			try {
 				CourseDAOBean courseBean = new CourseDAOBean();
@@ -58,6 +59,7 @@ public class StudentHomeServlet extends HttpServlet {
 					session.setAttribute("CourseHashMap", courses);
 				}
 				session.setAttribute("userVO", userVO);
+				session.setAttribute("userId", userId);
 				res.sendRedirect(req.getContextPath() + "/studentHome.ftl");
 			} catch (Exception e) {
 				log.info(e.getMessage());

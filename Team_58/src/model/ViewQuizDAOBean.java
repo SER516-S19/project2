@@ -5,16 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 
 /**
  * Implements ViewQuiz interface and establishes connection between
@@ -22,7 +19,8 @@ import org.json.simple.parser.ParseException;
  * 
  *  @see edu.asupoly.ser516.controller/ViewQuizServlet.java
  *  @see resources/viewQuiz.ftl
- * 	@author Aditya Samant / @author akashkadam
+ * 	@author Aditya Samant 
+ *	@author akashkadam
  * 	@version 1.1
  * 	@date 02/22/2019
  */
@@ -46,37 +44,32 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	@Override
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException {
 		
-	    QuizVO quiz = null;
-				
+		QuizVO quiz = null;		
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet result = null;
 		
 		connection = ConnectionFactory.getConnection();
-		
 		query = connection.prepareStatement(dbProperties.getProperty("getQuizInfo"));
 		query.setInt(1, quizId);
 		result = query.executeQuery();
 		
-		
-	    String quizName = "";
-	    String instruction = "";
-	    Date scheduledDate = new Date(0);
-	    boolean graded = true;
+		String quizName = "";
+		String instruction = "";
+		Date scheduledDate = new Date(0);
+		boolean graded = true;
 		
 		try {
-			
 			if(result.next()) {
 				quizName = result.getString("quizTitle");
 				instruction = result.getString("quizInstruction");
 				scheduledDate = result.getDate("quizScheduledDate");
-			    graded = result.getBoolean("isGraded"); 
+			    	graded = result.getBoolean("isGraded"); 
 			}
 			quiz = new QuizVO(quizName, instruction, scheduledDate, graded);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		return quiz;
 	}
 	
@@ -93,30 +86,21 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	 * @return list a list of questions with relevant information used to display on view quiz page.
 	 * */
 	@Override
-
 	public List<displayQuestionsVO> getStudentQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException{
 
-
-		
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet resultData = null;
 		
 		connection = ConnectionFactory.getConnection();
-		
 		query = connection.prepareStatement(dbProperties.getProperty("getQuizQuestions"));
 		query.setInt(1, quizId);
-
 		resultData = query.executeQuery();
-		
 
 		List<displayQuestionsVO> list = new ArrayList<>();
 
-
-
-		
-		while(resultData.next())
-		{
+		while(resultData.next()){
+			
 			int totalPoints = resultData.getInt("totalPoints");
 			String question = resultData.getString("question");
 			String answers = resultData.getString("actualAnswer");
@@ -131,28 +115,23 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 			
 			int i = 1;
 			String choice = (String) incorrectJO.get("incorrectAnswer" + i);
-			while(choice != null)
-			{
+			while(choice != null){
+				
 				incorrectAnswers.add(choice);
 				i++;
 				choice = (String) incorrectJO.get("incorrectAnswer" + i);
 			}
-			
 			i = 1;
 			choice = (String) correctJO.get("correctAnswer" + i);
-			while(choice != null)
-			{
+			while(choice != null){
+				
 				correctAnswers.add(choice);
 				i++;
 				choice = (String) correctJO.get("correctAnswer" + i);
 			}
-			
-
 			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizId, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(displayquestionVO);
-
 		}
-		
 		return list;
 	}
 
@@ -161,5 +140,4 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

@@ -19,15 +19,14 @@ import model.UserVO;
  * professor or student.
  * 
  * @author Aditya Vikram
- * @version 1.3
- * @date 02/22/2019
- **/
+ * @version 1.4
+ * @date 03/14/2019
+ */
 
 public class LoginServlet extends HttpServlet  {
 	
 	private static Logger log = Logger.getLogger(LoginServlet.class.getName());
 
-	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
 		res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -46,8 +45,7 @@ public class LoginServlet extends HttpServlet  {
 	    String userName=req.getParameter("username");  
 	    String passWord=req.getParameter("userpass");
 	    
-	    UserDAOBean userDAOBean = new UserDAOBean();
-	    	    
+	    UserDAOBean userDAOBean = new UserDAOBean();	    
 	    List<UserVO> userData = null;
 		
 	    try {
@@ -64,14 +62,14 @@ public class LoginServlet extends HttpServlet  {
 	    
 	    if(!userData.get(0).isStudent()){
 	    	req.setAttribute("UserVO", userData.get(0));
-			RequestDispatcher rd=req.getRequestDispatcher("/professorHome");
-			rd.forward(req,res);
+		RequestDispatcher rd=req.getRequestDispatcher("/professorHome");
+		rd.forward(req,res);
 	    }
 	    
 	    else{  
 	    	req.setAttribute("UserVO", userData.get(0));
-			RequestDispatcher rd=req.getRequestDispatcher("/StudentHome");
-			rd.forward(req,res);
+		RequestDispatcher rd=req.getRequestDispatcher("/StudentHome");
+		rd.forward(req,res);
 	    }  
 	}
 }

@@ -6,10 +6,10 @@ import java.util.Date;
  *QuizVO is a model class for a Quiz
  *
  * @author NarenkumarKonchada
+ * @author Aditya Samant
  * @version 1.0
  * @date 02/22/2019
  */
-
 public class QuizVO {
 	
 	private int courseId;
@@ -42,23 +42,18 @@ public class QuizVO {
 	public String getQuizTitle() {
 		return quizTitle;
 	}
-
 	public void setQuizTitle(String quizTitle) {
 		this.quizTitle = quizTitle;
 	}
-
 	public boolean isGraded() {
 		return isGraded;
 	}
-
 	public void setGraded(boolean isGraded) {
 		this.isGraded = isGraded;
 	}
-
 	public boolean isShuffled() {
 		return isShuffled;
 	}
-
 	public void setShuffled(boolean isShuffled) {
 		this.isShuffled = isShuffled;
 	}
@@ -70,6 +65,7 @@ public class QuizVO {
 	}
 	public QuizVO(int courseId, int quizId, boolean isGraded, int assignedTime, String quizInstruction,
 			Date quizScheduledDate, boolean isShuffled, String quizTitle) {
+		
 		super();
 		this.courseId = courseId;
 		this.quizId = quizId;
@@ -83,19 +79,21 @@ public class QuizVO {
 	
 	/**
 	 * The following constructor is created to use quiz information in viewQuiz page
-	 * @author Aditya Samant
-	 * @param name name of the quiz
-	 * @param instructions instructions for the quiz
-	 * @param date the date at which the quiz is scheduled to run
-	 * @param graded whether the quiz is graded
+	 * 
+	 * @param name quiz name
+	 * @param instructions 
+	 * @param date 
+	 * @param graded 
 	 * */
 	public QuizVO(String name, String instructions, Date date, boolean graded) {
+		
 		quizTitle = name;
 		quizInstruction = instructions;
 		quizScheduledDate = date;
 		isGraded = graded;
 	}
 	public QuizVO(int quizId2, String quizTitle2) {
+		
 		// TODO Auto-generated constructor stub
 		quizTitle = quizTitle2;
 		quizId = quizId2;

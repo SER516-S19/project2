@@ -9,14 +9,13 @@ import org.json.simple.parser.ParseException;
  * quiz
  * 
  * @author trupti khatavkar
- * @version 1.0
- * @date 02/22/2019
+ * @version 1.1
+ * @date 03/14/2019
  * 
  */
 public interface QuestionsDAO {
 	public void insertingQuestions(QuestionsVO questionsVO) throws SQLException, ClassNotFoundException;
-
-
+	
 	public List<displayQuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException;
 	public List<displayQuestionsVO> getStudentQuestionsForInfo(int quizID) throws SQLException, ClassNotFoundException, ParseException;
 
@@ -24,5 +23,4 @@ public interface QuestionsDAO {
 			String wrongTwo, String wrongThree, int points, int qId)throws SQLException, ClassNotFoundException;
 	
 	public List<QuestionsVO> getQuestionsInfo(int quizID) throws SQLException, ClassNotFoundException;
-
 }

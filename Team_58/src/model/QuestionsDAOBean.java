@@ -18,6 +18,7 @@ import org.json.simple.parser.ParseException;
  * Class QuestionsDAOBean is a class that comes after create quiz Page
  * 
  * @author trupti khatavkar
+ * @author Aditya Samant
  * @version 1.2
  * @date 02/26/2019
  **/
@@ -37,7 +38,8 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 * This method is used to insert questions and answers to create quiz.
 	 * 
 	 * @param questionsVO object of QuestionsVO to set values
-	 * @throws IOException, ServletException
+	 * @throws IOException
+	 * @throws ServletException
 	 *
 	 */
 	@Override
@@ -136,6 +138,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			String question = resultData.getString("question");
 			String answers = resultData.getString("actualAnswer");
 			String choices = resultData.getString("totalChoices");
+			int qid = resultData.getInt("questionId");
 			
 			JSONParser parser = new JSONParser();
 			JSONObject incorrectJO = (JSONObject) parser.parse(choices);
@@ -159,33 +162,30 @@ public class QuestionsDAOBean implements QuestionsDAO {
 				i++;
 				choice = (String) correctJO.get("correctAnswer" + i);
 			}
-			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizID, totalPoints, correctAnswers, incorrectAnswers, question);
+			displayQuestionsVO displayquestionVO = new displayQuestionsVO(qid, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(displayquestionVO);
 		}
 		return list;
 	}
 
 	/**
-	 * updateQuestionsTable Update a question entry in the Questions table based on
-	 * info obtained from ViewQuiz page.
+	 * Update a question entry in the Questions table based on info obtained from ViewQuiz page.
+	 *
+	 * @throws SQLException
+	 * @throws ClassNotFoundException 
 	 * 
-	 * 
-	 * @author Aditya Samant
-	 * @throws SQLException           error occurs during connecting or updating the
-	 *                                information in SQL
-	 * @throws ClassNotFoundException for Connection Factory
-	 * 
-	 * @param question   the question
-	 * @param answer     the solution choice
-	 * @param wrongOne   wrong answer number one
-	 * @param wrongTwo   wrong answer number two
-	 * @param wrongThree wrong answer number three
-	 * @param points points for the question
-	 * @param qId the question ID
-	 * @param mcq whether the question is multiple choices or not
+	 * @param question 
+	 * @param answer    
+	 * @param wrongOne   
+	 * @param wrongTwo  
+	 * @param wrongThree
+	 * @param points 
+	 * @param qId question id
+	 * @param mcq 
 	 * 
 	 * @see controller/ViewQuizServlet.java
-	 * @version 1.1
+	 * 
+	 * @version 1.2
 	 * */
 	@SuppressWarnings("unchecked")
 	public void updateQuestionsTable(String question, String answer, String wrongOne,
@@ -229,21 +229,18 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	}
 
 	/**
-	 * The following method connects with the SQL database via ConnectionFactory and
-	 * retrieves information and parses it to appropriate formats prior to creating
-	 * a list of Question objects.
+	 * The following method retrieves information and creates a list of Question objects.
 	 * 
-	 * @param quizId the id of the quiz whose questions are being retrieved
-	 * @throws SQLException           in case errors exist in the database
-	 *                                connection
-	 * @throws ClassNotFoundException in class referenced is not found
-	 * @throws ParseException         in case string cannot be parsed to JSON
+	 * @param quizId 
 	 * 
-	 * @return list a list of questions with relevant information used to display on
-	 *         view quiz page.
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws ParseException         
+	 * 
+	 * @return list 
 	 */
 	@Override
-	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException {
+	public List<QuestionsVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException{
 
 		List<QuestionsVO> list = new ArrayList<QuestionsVO>();
 
@@ -264,17 +261,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 	 			   
 	 			   JSONParser parser = new JSONParser();
 	 			   JSONObject jo = (JSONObject) parser.parse(choices);
-	 			   JSONObject jo2 = (JSONObject)parser.parse(answer);
-	 			   String temp = "correctAnswer";
-	 			   StringBuilder ans = new StringBuilder();
-	 			  
-	 			   for(int i = 1; i <=jo2.size(); i++) {
-	 				  ans.append((String) jo2.get(temp+Integer.toString(i)));
-	 				  if(jo2.size() != i) {
-	 					  ans.append(", ");
-	 				  }
-	 			   }
-	 			   answer = ans.toString();
+	 			   
 	 			   String choice1 = (String) jo.get("incorrectAnswer1");
 	 			   String choice2 = (String) jo.get("incorrectAnswer2");
 	 			   String choice3 = (String) jo.get("incorrectAnswer3");
@@ -284,10 +271,12 @@ public class QuestionsDAOBean implements QuestionsDAO {
 			   }
 		}catch(ParseException e) {
 			e.printStackTrace();
+		}catch(Exception ex) { //others
+			ex.printStackTrace();
 		}
 		return list;	
 	}
-
+	
 	@Override
 	public List<displayQuestionsVO> getStudentQuestionsForInfo(int quizID)
 			throws SQLException, ClassNotFoundException, ParseException {

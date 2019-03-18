@@ -9,27 +9,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import model.QuizDAOBean;
 import model.QuizVO;
+
 /**
  * Class CourseDashboardServlet is a controller 
  * that routes the User to Course Dashboard Page from Professor Home Page.
  * 
  * @author narenkumarKonchada
  * @author shivamverma
- * @version 1.4
- * @date 02/22/2019
- **/
-
+ * @version 1.5
+ * @date 03/14/2019
+ */
 public class CourseDashboardServlet extends HttpServlet {
 	
 	private static Logger log = Logger.getLogger(CourseDashboardServlet.class.getName());
 	
 	// This servlet will not make any Get requests.
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-		
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {	
 	}
 	
 	/**
@@ -39,9 +37,7 @@ public class CourseDashboardServlet extends HttpServlet {
 	 *
 	 * @throws IOException
 	 */
-
 	public void doPost(HttpServletRequest request, HttpServletResponse response)  throws IOException {
-		
 		
 		HttpSession session = request.getSession();
 		HashMap<Integer, String> courseMap = (HashMap<Integer,String>) session.getAttribute("CourseHashMap");
@@ -54,12 +50,7 @@ public class CourseDashboardServlet extends HttpServlet {
 		}
 		else {
 			 courseId = (int) session.getAttribute("courseId");
-		}
-		
-/*		String courseName = courseMap.get(courseId);
-		session.setAttribute("courseName",courseName);
-		session.setAttribute("courseId", courseId);*/
-		
+		}		
 		try {
 			QuizDAOBean quizBean = new QuizDAOBean();
 			List<QuizVO> quizList = quizBean.getQuizzesForCourse(courseId);

@@ -1,8 +1,10 @@
 package model;
+
 /**
  * Class StudentResponseVO is Java Model for Student Response
  * @author akashkadam
- * @version 1.1
+ * @version 1.2
+ * @date 03/14/2019
  **/
 public class GradeQuizVO {
 	
@@ -11,7 +13,6 @@ public class GradeQuizVO {
 	String lastName;
 	String quizName;
 	String courseName;
-	
 	
 	public GradeQuizVO(int score, String firstName, String lastName, String quizName) {
 		this.score = score;
@@ -56,7 +57,4 @@ public class GradeQuizVO {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-	
-	
-	
 }
