@@ -50,8 +50,7 @@ Freemarker page to display Professor details
 			
 				function SaveSubmit() { 
 					document.getElementById("timer").innerHTML = "";
-					var sessionList = [<#list Session.displayQuestionsVO as question>${question.getqId()},</#list>] ;   
-					alert(sessionList);        
+					var sessionList = [<#list Session.displayQuestionsVO as question>${question.getqId()},</#list>] ;        
 					var checkd;
 					var listLength = sessionList.length;
 	    			

@@ -45,7 +45,7 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 	}
 	
 	@Override
-	public void InsertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score)   {
+	public void insertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score)   {
 		
 		Connection connection = null;
 		PreparedStatement query = null;
