@@ -1,7 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="content.creator.dao.QuizResultDAO" %><%--
-  User: sakshi
-  Date: 3/1/2019
+  @author Sakshi Gautam
+  @version 1.4
+  @since   2019-02-28
   Description: Displays student statistics for the quiz.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

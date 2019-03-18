@@ -9,9 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 /*
- * Modified by: Sakshi Gautam
- * Date: 30/2/19
- * Description: Fetches the student list and sends response to the view.
+ *@author Sakshi Gautam
+ *@version 1.4
+ *@since   2019-02-28
+ *Description: Fetches the student list and sends response to the view.
  *
  */
 

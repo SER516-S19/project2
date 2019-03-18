@@ -1,7 +1,7 @@
 <%--
-  User: Sakshi Gautam
-  Date: 3/1/2019
-  Time: 5:16 PM
+  @author Sakshi Gautam
+  @version 1.4
+  @since   2019-02-28
   Description: Displays the student list with their IDs
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
