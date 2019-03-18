@@ -91,21 +91,18 @@ public class GradeQuizServlet extends HttpServlet{
 			int countOfWrongAnswers = 0;
 			int countOfCorrectAnswered = 0;
 			int countOfCorrectAnswers = correctAnswersJson.size();
-			if(correctAnswersJson.size() < studentSelectedAnswersJson.size()) {
-				countOfWrongAnswers = studentSelectedAnswersJson.size() - correctAnswersJson.size();
-			}
-			for(Object correctAnswerOption : correctAnswersJson.keySet()) {
-				for(Object selectedAnswerOption : studentSelectedAnswersJson.keySet()) {
+			
+			for(Object correctAnswerOption : correctAnswersJson.values()) {
+				for(Object selectedAnswerOption : studentSelectedAnswersJson.values()) {
 					String selectedAnswerOptionString = (String)selectedAnswerOption;
 					String correctAnswerOptionString = (String)correctAnswerOption;
+					System.out.println(selectedAnswerOptionString+" "+correctAnswerOptionString);
 					if(selectedAnswerOptionString.equals(correctAnswerOptionString)){
 						countOfCorrectAnswered++;
 					}
 				}
 			}
-			if(studentSelectedAnswersJson.size() > countOfCorrectAnswered) {
-				countOfWrongAnswers = studentSelectedAnswersJson.size() - countOfCorrectAnswered;
-			}
+			countOfWrongAnswers = studentSelectedAnswersJson.size() - countOfCorrectAnswered;
 			countOfCorrectAnswered = countOfCorrectAnswered - countOfWrongAnswers;
 			score = countOfCorrectAnswered <= 0 ? 0 : (question.getTotalPoints() /  countOfCorrectAnswers)*countOfCorrectAnswered;
 		} catch (ParseException exception) {
