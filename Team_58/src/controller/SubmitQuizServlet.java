@@ -31,6 +31,8 @@ public class SubmitQuizServlet extends HttpServlet {
 private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName());
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		res.sendRedirect(req.getContextPath() + "/studentCourseHome.ftl");
 
 	}
 

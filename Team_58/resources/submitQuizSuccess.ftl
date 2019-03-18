@@ -11,8 +11,12 @@ Freemarker page to display the Quiz Submitted Successfully
     </head>
         <body>
         <h2 class="fontColor" style="text-transform: uppercase;">Quiz Submitted Successfully</h2>
-        <div class="box">
+        <div class="box" style="text-align:center">
         <p class="smallFontColor" style="text-align : center;"> <b> Your Quiz has been submitted Successfully </b></p>
+         <form action="SubmitQuiz" method = "GET"> 
+                <input type="submit" value="Course Dashboard">
+            </form>
         </div>
+        
     </body>
 </html>
