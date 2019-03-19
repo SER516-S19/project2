@@ -1,9 +1,10 @@
 # Team 47's quiz creator application.
 
 ## Structure
-`/src/main/java`: Java Source Code directory  
+`/src/`: Java Source Code directory  
 `./WebContent/`: Web Assets. HTML,jsp code.  
-`./WebContent/CSS`: CSS files
+`./WebContent/CSS`: CSS files  
+`./WebContent/js`: Javascript files  
 
 ## Members
 
@@ -27,13 +28,10 @@ Back End:
 
 ## Instructions
 
-Scripts are provided to build and run the rpoejct for Windows, macOS, and linux.
+Scripts are provided to build and run the project for Windows, macOS, and linux.
 
 Prerequisites:
-Make sure maven is installed
-
-macOS and linux:
-`brew install maven`
+Maven and Java must be installed
 
 =======
 To run:
