@@ -115,11 +115,11 @@ public class StudentServices {
 		return dateTime;
 	}
 
-	public int getGrade(String studentResponse, int userId) {
+	public float getGrade(String studentResponse, int userId) {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		int quizId = jsonResponse.getQuizId();
 		CalculatedScoresDAO dao = new CalculatedScoresDAO();
-		int score = dao.getStudentScoreByQuizId(quizId, userId);
+		float score = dao.getStudentScoreByQuizId(quizId, userId);
 		return score;
 	}
 
