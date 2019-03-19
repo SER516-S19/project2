@@ -1,6 +1,5 @@
 package quiz.controller;
 
-<<<<<<< HEAD
 import java.io.IOException;
 
 import javax.servlet.ServletConfig;
@@ -10,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import quiz.dao.login.LoginDao;
-import quiz.model.login.Login;
+
+import quiz.dao.UserDao;
+import quiz.model.User;
 
 /**
  * Controller to authenticate User credentials
@@ -23,11 +23,11 @@ import quiz.model.login.Login;
 @WebServlet(name = "LoginController", urlPatterns = { "/login" }, loadOnStartup = 1)
 public class LoginController extends HttpServlet {
 
-	private LoginDao loginDao = null;
+	private UserDao userDao = null;
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		loginDao = new LoginDao();
+		userDao = new UserDao();
 	}
 
 	/**
@@ -41,21 +41,24 @@ public class LoginController extends HttpServlet {
 		final String password = request.getParameter("password");
 
 		try {
-			Login login = loginDao.findByUsername(username);
+			User user = userDao.findByUsername(username);
 
-			if (password != null && password.equals(login.getPassword())) {
+			if (password != null && password.equals(user.getPassword())) {
 				HttpSession httpSession = request.getSession();
 				httpSession.setAttribute("username", username);
-				httpSession.setAttribute("userType", login.getUsertype());
+				httpSession.setAttribute("userType", user.getUserType());
 
-				if ("student".equalsIgnoreCase(login.getUsertype())) {
+				if ("student".equalsIgnoreCase(user.getUserType())) {
 					response.sendRedirect("./StudentHomePage.html");
-				} else {
-					response.sendRedirect("/Quiz/getQuiz");
+				} else if("professor".equalsIgnoreCase(user.getUserType())){
+					response.sendRedirect("showQuizes.jsp");
+				}
+				else {
+					response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "This user doesn't belong to any type!");
 				}
 
 			} else {
-				response.sendRedirect("./index.html");
+				response.sendRedirect("./Register.jsp");
 			}
 
 		} catch (Exception exc) {
@@ -63,8 +66,4 @@ public class LoginController extends HttpServlet {
 			exc.printStackTrace();
 		}
 	}
-=======
-public class LoginController {
->>>>>>> Team_58
-
 }

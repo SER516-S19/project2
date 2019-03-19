@@ -20,7 +20,7 @@ public class DeleteContentServlet extends HttpServlet {
         try {
             int quizId = Integer.parseInt(request.getParameter("quizid"));
             DeleteContentHelper.removeQuiz(quizId);
-            response.sendRedirect("./list");
+            response.sendRedirect("./quizList");
         } catch (SQLException e) {
             e.printStackTrace();
         }

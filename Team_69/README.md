@@ -1,15 +1,4 @@
 # SER-516_Project2_Quiz
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-SER 516- Project2 
-Team_69
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 ----------------------------
 SER 516- Project2 
 Team_69
@@ -21,34 +10,16 @@ Build.properties contains information related to the application: Application Na
 1. Inside Build.properties replace Tomcat.home with your Tomcat Home Directory Path
 
 2. To configure the database go to the file
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
-
-1. Inside Build.properties replace Tomcat.home with your Tomcat Home Directory Path
-
-2. Run build.xml file with deploy command using ANT build
-
-3. To run the database go to the file
->>>>>>> Team_58
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 \src\main\java\bean\HibernateUtil.java and update the following as per you credentials.
-	a. Environment.USER
-	b. Environment.PASS
-	c. Environment.URL
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+	a. Environment.USER - SQL Username
+	b. Environment.PASS - SQL Password
+	c. Environment.URL - jdbc:mysql://localhost:3306/<name of the database>
 	
 3. Run build.xml file with deploy command using ANT build
+   3.1 Open command line 
+   3.2 Go to the folder where you have cloned the project
+   3.3 Go to Team_69
+   3.4 Run the command "ant deploy"
 
 4. This will deploy the application under the webapps folder of your tomcat directory.
 
@@ -71,15 +42,6 @@ II) Steps to execute
     
 3. Come back to the Login page using http://localhost:8080/project2 .
 
-4. Go to student page to view and take the Quiz. Use the Student's credentials to login. 
+4. Go to student page to view and take the Quiz. Use the Student's credentials to login.. 
     name: abc.com
     pass : 12345
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
-=======
->>>>>>> Team_58
->>>>>>> origin/master
-=======
->>>>>>> origin/master

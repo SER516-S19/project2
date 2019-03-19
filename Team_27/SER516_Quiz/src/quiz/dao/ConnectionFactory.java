@@ -15,7 +15,7 @@ import java.util.Properties;
  */
 
 public class ConnectionFactory {
-	
+
 	// This holds properties
 	private static Properties dbProperties = new Properties();
 

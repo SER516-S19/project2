@@ -1,6 +1,15 @@
 body{
-	font-family: arial, sans-serif;
-	
+    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+    background-color: #4a154b;
+}
+
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 64px;
+    padding-left: 20px;
+    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
 input[type=text], select, textarea{
@@ -18,19 +27,33 @@ label {
 }
 
 input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
+    display: inline-block;
+    white-space: nowrap;
+    flex-basis: auto;
+    width: auto;
+    font-size: .875rem;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.28571429;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 19px 40px 20px;
+    transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+    color: #4a154b;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .container {
 	    margin: 0 10px 0px 10px;
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: #e2e2e2;
   padding: 20px;
 }
 
@@ -84,45 +107,63 @@ input[type=submit] {
         }
 
         input[value="Add"],
-        input[value="Save"] {
-            width: 5%;
+        input[value="Save"],
+        input[value="Update"]{
+            width: 10%;
             height: 5%;
             font-size: 15px;
-            margin: 10px 0px 0 10px;
+            margin: 7px 0 0 10px;
         }
 
         p {
             font-family: arial, sans-serif;
             font-size: large;
             height: 5%;
+            color: white;
         }
         
         .btn{
-            background-color: #0336FF;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
+            display: inline-block;
+            white-space: nowrap;
+            flex-basis: auto;
+            width: auto;
+            font-size: .875rem;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            line-height: 1.28571429;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 19px 40px 20px;
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            color: #4a154b;
         }
         
-        .btn-disabled{
-         opacity: 0.5;
-         cursor: not-allowed;
-        }
- 
- table, td, th {  
-  border: 1px solid #ddd;
-  text-align: left;
-}
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+         }
 
 table {
-  border-collapse: collapse;
-  width: 98.5%;
-  margin: 0 10px;
+    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: dimgrey;
+    color: whitesmoke;
+    vertical-align: baseline;
 }
 
-th, td {
-  padding: 15px;
+tr:nth-child(even) {
+    background-color: #8a154b;
+    color: white;
+}
+
+th, td{
+    text-align: center;
+    padding: 8px;
 }

@@ -11,23 +11,72 @@
 <head>
     <title>Quiz Level Statistics</title>
     <style>
-        h1   {
-            color: midnightblue;}
-        body {background-color: lightgrey;}
-        .element-center {
+        .panel {
             align: center;
+            margin-right: -15px;
+            margin-left: -15px;
             margin: 0;
             padding: 0;
             border: 0;
             font-size: 100%;
             vertical-align: baseline;
             position: absolute;
-            top: 20%;
+            top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
         }
-        tr:nth-child(even) {background-color: #f2f2f2;}
-        tr:nth-child(odd) {background-color: lavender;}
+
+        table {
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: dimgrey;
+            color: whitesmoke;
+            vertical-align: baseline;
+        }
+        tr:nth-child(even) {
+            background-color: #8a154b;
+            color: white;
+        }
+        td {
+            text-align: left;
+            padding: 1%;
+        }
+        th {
+            text-align: center;
+            padding: 8px;
+        }
+        .wrapper {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            align: center;
+            font-size: 100%;
+            vertical-align: baseline;
+        }
+        .inTable {
+            align-items: center;
+            justify-content: center;
+            padding-top: 10px;
+        }
+        body {
+            background-color: #4a154b;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 64px;
+            padding-left: 20px;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+        }
+        h3 {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            padding-top: 20px;
+            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -38,22 +87,24 @@
         int quizId = (int) request.getAttribute("quizId");
         %>
 
-    <div class="element-center">
-    <h1> STATISTICS FOR QUIZ <span><%=quizId%></span></h1>
-    <table>
-        <tr>
-            <td>Average Score For Quiz is :</td>
-            <td><span><%=classAvg%></span></td>
-        </tr>
-        <tr>
-            <td> Strength of Quiz is : </td>
-            <td><%=studentStrength%></td>
-        </tr>
-        <tr>
-            <td>Highest Score of Quiz is :</td>
-            <td><%=highestScore%></td>
-        </tr>
-    </table>
+    <div class="panel">
+        <h1> STATISTICS FOR QUIZ <span><%=quizId%></span></h1>
+        <div class="wrapper">
+            <table class="inTable">
+                <tr>
+                    <td>Average Score For Quiz is :</td>
+                    <td><span><%=classAvg%></span></td>
+                </tr>
+                <tr>
+                    <td> Strength of Quiz is : </td>
+                    <td><%=studentStrength%></td>
+                </tr>
+                <tr>
+                    <td>Highest Score of Quiz is :</td>
+                    <td><%=highestScore%></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>

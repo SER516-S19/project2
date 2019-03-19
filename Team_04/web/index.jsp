@@ -13,7 +13,28 @@
         body {
             background-color: #4a154b;
         }
+        .panel {
+            align: center;
+            background-color: #4a154b;
+            margin-right: -15px;
+            margin-left: -15px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
 
+        .wrapper {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            padding-bottom: 30px;
+        }
         .btn1 {
             display: inline-block;
             white-space: nowrap;
@@ -71,23 +92,17 @@
     </style>
 </head>
 <body>
-<h1>Available Functionality</h1>
 <div>
-    <form method="get">
-        <table>
-            <tr>
-                <input type="submit" class="btn1" formaction="./createContent.jsp" name="action"
-                       value="CREATE QUIZ"/>
-            </tr>
-            <tr>
-                <input type="submit" class="btn2" formaction="./list" name="action"
-                       value="VIEW QUIZ LIST"/>
-            </tr>
-            <tr>
-                <input type="submit" class="btn2" formaction="./studentList"
-                       value="VIEW STUDENT LIST"/>
-            </tr>
-        </table>
+    <form class="panel" method="get">
+        <h1>Available Functionality</h1>
+        <div class="wrapper">
+            <input type="submit" class="btn2" formaction="./createContent.jsp" name="action"
+                   value="CREATE QUIZ"/>
+            <input type="submit" class="btn2" formaction="./quizList" name="action"
+                   value="VIEW QUIZ LIST"/>
+            <input type="submit" class="btn2" formaction="./studentList"
+                   value="VIEW STUDENT LIST"/>
+        </div>
     </form>
 </div>
 </body>
