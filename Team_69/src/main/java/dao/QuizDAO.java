@@ -22,56 +22,54 @@ import java.util.List;
 
 public class QuizDAO {
 
-   public List<String> fetchAllQuizNames(){
-       Transaction transaction = null;
-       Session session = null;
-       List<String> quizNames = new ArrayList<String>();
-       try  {
-           session = HibernateUtil.getSessionFactory().openSession();
-           transaction = session.beginTransaction();
-           CriteriaBuilder builder = session.getCriteriaBuilder();
-           CriteriaQuery<String> query = builder.createQuery(String.class);
-           Root<Quiz> root = query.from(Quiz.class);
-           query.select(root.<String>get("quizName"));
-           Query<String> q=session.createQuery(query);
-           quizNames=q.getResultList();
-           transaction.commit();
-       } catch (HibernateException e) {
-           e.printStackTrace();
-           if (transaction != null) {
-               transaction.rollback();
-           }
-       }
-       finally {
-           session.close();
-       }
-       return quizNames;
-   }
+	public List<String> fetchAllQuizNames() {
+		Transaction transaction = null;
+		Session session = null;
+		List<String> quizNames = new ArrayList<String>();
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<String> query = builder.createQuery(String.class);
+			Root<Quiz> root = query.from(Quiz.class);
+			query.select(root.<String>get("quizName"));
+			Query<String> quizNamwQuery = session.createQuery(query);
+			quizNames = quizNamwQuery.getResultList();
+			transaction.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return quizNames;
+	}
 
-   public int fetchQuizId(String quizName){
-       Transaction transaction = null;
-       Session session = null;
-       int quizId=0;
-       try  {
-           session = HibernateUtil.getSessionFactory().openSession();
-           transaction = session.beginTransaction();
-           CriteriaBuilder builder = session.getCriteriaBuilder();
-           CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
-           Root<Quiz> root = query.from(Quiz.class);
-           query.select(root.<Integer>get("quizId")).where(root.get("quizName").in(quizName));
-           Query<Integer> q=session.createQuery(query);
-           quizId=q.getSingleResult();
-           transaction.commit();
-       } catch (HibernateException e) {
-           e.printStackTrace();
-           if (transaction != null) {
-               transaction.rollback();
-           }
-       }
-       finally {
-           session.close();
-       }
-       return quizId;
-   }
+	public int fetchQuizId(String quizName) {
+		Transaction transaction = null;
+		Session session = null;
+		int quizId = 0;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
+			Root<Quiz> root = query.from(Quiz.class);
+			query.select(root.<Integer>get("quizId")).where(root.get("quizName").in(quizName));
+			Query<Integer> quizIdQuery = session.createQuery(query);
+			quizId = quizIdQuery.getSingleResult();
+			transaction.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return quizId;
+	}
 
 }

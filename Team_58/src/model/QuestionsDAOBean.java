@@ -120,6 +120,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 
 	}
 
+
 	@Override
 	public List<displayQuestionsVO> getQuestionsForQuiz(int quizID) throws SQLException, ClassNotFoundException, ParseException{
 		
@@ -167,6 +168,7 @@ public class QuestionsDAOBean implements QuestionsDAO {
 		}
 		return list;
 	}
+
 
 	/**
 	 * Update a question entry in the Questions table based on info obtained from ViewQuiz page.

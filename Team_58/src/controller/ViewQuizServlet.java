@@ -11,16 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import model.QuestionsDAOBean;
 import model.QuizDAOBean;
 import model.QuestionsVO;
 import model.QuizVO;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 /**
  * Servlet code takes quizId from courseDashboard.ftl  and renders a page displaying
  * information about the quiz and it's questions.
@@ -34,6 +31,7 @@ import org.json.simple.parser.ParseException;
  */
 public class ViewQuizServlet extends HttpServlet {
 	private static final long serialVersionUID = -1008363826217594704L;
+
 
 	// This servlet will not make any Get requests.
 	@Override
@@ -126,6 +124,7 @@ public class ViewQuizServlet extends HttpServlet {
 	    	   	   
 	    	   	   JSONParser parser = new JSONParser();
 	    	   	   JSONObject jo = new JSONObject();
+
 	    	   	   for (int i = 0; i < quizQuestions.size(); i++) {
 	    	   		 int points = quizQuestions.get(i).getTotalPoints();
 	    	   		 total += points;
@@ -149,6 +148,7 @@ public class ViewQuizServlet extends HttpServlet {
 		   			   isAfter = true;
 	    	   	   }
 	    	   	   
+
 		   		   
 		   		   //Add Quiz info to Session attributes
 		   		   session.setAttribute("quizId", quizId);
@@ -168,6 +168,7 @@ public class ViewQuizServlet extends HttpServlet {
 					    return; 
 					}
 	       }catch(ParseException e) {
+
 	    	   	   e.printStackTrace();
 	       }catch(Exception ex) {
 	    	   ex.printStackTrace();

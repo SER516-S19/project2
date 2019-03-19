@@ -63,7 +63,9 @@ public class QuizDAOBean implements QuizDAO{
 				Date quizScheduledDate = resultData.getDate("quizScheduledDate");
 				boolean isShuffled = resultData.getBoolean("isShuffled");
 				String quizTitle = resultData.getString("quizTitle");
+
 				QuizVO quiz = new QuizVO(courseID, quizId, isGraded, assignedTime, quizInstruction, quizScheduledDate, isShuffled, quizTitle);
+
 				list.add(quiz);
 			}
 		}catch(Exception e){
@@ -84,7 +86,9 @@ public class QuizDAOBean implements QuizDAO{
 	 *
 	 * @throws SQLException, ClassNotFoundException
 	 */
+
 	public void insertingQuizDetails(QuizVO quizVO) throws SQLException, ClassNotFoundException {
+
 		
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -131,6 +135,7 @@ public class QuizDAOBean implements QuizDAO{
 	 * @throws ClassNotFoundException, ServletException
 	 */
 	public int gettingQuizId (QuizVO quizVO) throws  SQLException, ClassNotFoundException {
+
 		
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -180,6 +185,7 @@ public class QuizDAOBean implements QuizDAO{
 		List<QuizVO> list = new ArrayList<>();
 		
 		while(resultData.next()) {
+
 			int courseID = resultData.getInt("courseId");
 			int quizId = resultData.getInt("quizId");
 			int assignedTime = resultData.getInt("assignedTime");
@@ -188,12 +194,13 @@ public class QuizDAOBean implements QuizDAO{
 			Date quizScheduledDate = resultData.getDate("quizScheduledDate");
 			boolean isShuffled = resultData.getBoolean("isShuffled");
 			String quizTitle = resultData.getString("quizTitle");
+
 			QuizVO quiz = new QuizVO(courseID, quizId, isGraded, assignedTime, quizInstruction, quizScheduledDate, isShuffled, quizTitle);
 			list.add(quiz);
 		}
 		return list;
 	}
-	
+
 	/**
 	 * Returns custom quiz object based on info retrieved from the database
 	 * 

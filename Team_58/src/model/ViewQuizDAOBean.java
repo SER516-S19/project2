@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 /**
  * Implements ViewQuiz interface and establishes connection between
  * database and Servlet.
@@ -44,32 +45,40 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 	@Override
 	public QuizVO getQuizInfo(int quizId) throws SQLException, ClassNotFoundException {
 		
+
 		QuizVO quiz = null;		
+
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet result = null;
 		
 		connection = ConnectionFactory.getConnection();
+
 		query = connection.prepareStatement(dbProperties.getProperty("getQuizInfo"));
 		query.setInt(1, quizId);
 		result = query.executeQuery();
 		
+
 		String quizName = "";
 		String instruction = "";
 		Date scheduledDate = new Date(0);
 		boolean graded = true;
 		
 		try {
+
 			if(result.next()) {
 				quizName = result.getString("quizTitle");
 				instruction = result.getString("quizInstruction");
 				scheduledDate = result.getDate("quizScheduledDate");
+
 			    	graded = result.getBoolean("isGraded"); 
+
 			}
 			quiz = new QuizVO(quizName, instruction, scheduledDate, graded);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+
 		return quiz;
 	}
 	
@@ -131,13 +140,16 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 			}
 			displayQuestionsVO displayquestionVO = new displayQuestionsVO(quizId, totalPoints, correctAnswers, incorrectAnswers, question);
 			list.add(displayquestionVO);
+
 		}
 		return list;
 	}
+
 
 	@Override
 	public List<QuestionVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

@@ -3,8 +3,6 @@ import './Login.css';
 import { Redirect } from 'react-router-dom';
 
 class LoginForm extends React.Component {
-
-  // Class based component to access DOM refs
   handleSignIn(e) {
     e.preventDefault()
     let username = this.refs.username.value;
@@ -37,11 +35,7 @@ class Login extends React.Component {
     }
   }
 
-  // App "actions" (functions that modify state)
   signIn(username, password) {
-    // This is where you would call Firebase, an API etc...
-    // calling setState will re-render the entire app (efficiently!)
-
     this.setState({
       user: {
         username,
@@ -60,9 +54,6 @@ class Login extends React.Component {
   }
 
   render() {
-
-    // Passing relevant state to child components as props.
-    // Functions are passed using `bind` to make sure we keep our scope to App
     return (
         <div>
           {

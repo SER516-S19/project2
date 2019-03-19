@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -43,7 +44,7 @@ public class StudentResponseDAOBean implements StudentResponseDAO {
 			log.info(e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public void insertQuizAnswers(int courseId , int quizId ,int userId , int questionId , String answerSelected , int score)   {
 		

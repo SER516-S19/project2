@@ -3,15 +3,14 @@ package com.Quizzer.code.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.Quizzer.code.exceptions.Prof_AddQuiz_Exception;
-import com.Quizzer.code.exceptions.Prof_GetQuiz_Exception;
+import com.Quizzer.code.exceptions.ProfAddQuizException;
+import com.Quizzer.code.exceptions.ProfGetQuizException;
 import com.Quizzer.code.model.db.Quiz;
 import com.Quizzer.code.model.response.ResponseListVO;
 import com.Quizzer.code.model.response.ResponseVO;
@@ -38,15 +37,16 @@ public class ProfQuizController {
 	 * @return
 	 */
 
-	@RequestMapping(method = RequestMethod.POST, value = "/prof")
+	@RequestMapping(method = RequestMethod.POST, value = "/prof/quiz")
 	public ResponseEntity<?> addQuiz(@RequestBody Quiz quiz) {
 
 		try {
+
 			quizService.addQuiz(quiz);
 			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, null),
 					HttpStatus.ACCEPTED);
 
-		} catch (Prof_AddQuiz_Exception e) {
+		} catch (ProfAddQuizException e) {
 			return new ResponseEntity<>(new ResponseListVO(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null),
 					HttpStatus.ACCEPTED);
 		}
@@ -65,7 +65,7 @@ public class ProfQuizController {
 			return new ResponseEntity<>(new ResponseListVO(HttpStatus.ACCEPTED.toString(), null, quizService.getQuiz()),
 					HttpStatus.ACCEPTED);
 
-		} catch (Prof_GetQuiz_Exception e) {
+		} catch (ProfGetQuizException e) {
 			return new ResponseEntity<>(
 					new ResponseListVO(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getErrorMessage(), null),
 					HttpStatus.ACCEPTED);
@@ -87,10 +87,11 @@ public class ProfQuizController {
 					new ResponseVO(HttpStatus.ACCEPTED.toString(), null, quizService.getQuiz(quizId)),
 					HttpStatus.ACCEPTED);
 
-		} catch (Prof_GetQuiz_Exception e) {
+		} catch (ProfGetQuizException e) {
 			return new ResponseEntity<>(
 					new ResponseVO(HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getErrorMessage(), null),
 					HttpStatus.ACCEPTED);
 		}
 	}
+
 }

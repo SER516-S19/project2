@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class QuizVO {
 	
+
 	private int courseId;
 	private int quizId;
 	private boolean isGraded;

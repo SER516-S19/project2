@@ -3,7 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
- * This class reprsents the Answer table
+ * This class represents the Answer table
  *
  * @author : Alsha Samantaray
  * @version : 1.0
@@ -15,76 +15,71 @@ import javax.persistence.*;
 public class Answer {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Answer_id",nullable = false)
-    private int answerId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Answer_id", nullable = false)
+	private int answerId;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "Question_id")
-    private Question question;
+	@ManyToOne(cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "Question_id")
+	private Question question;
 
-    @Column(name = "Answer")
-    private String answer;
+	@Column(name = "Answer")
+	private String answer;
 
-    @Column(name = "Correct_Answer")
-    private boolean correctAnswer;
+	@Column(name = "Correct_Answer")
+	private boolean correctAnswer;
 
-    public Answer() {
+	public Answer() {
+	}
 
-  	}
-    
-    public Answer(Question question, String answer, boolean correctAnswer) {
-        this.question = question;
-        this.answer = answer;
-        this.correctAnswer = correctAnswer;
-    }
-    
-    public Answer(Question question, int answerId, String answer, boolean correctAnswer) {
-        this.question = question;
-        this.answer = answer;
-        this.correctAnswer = correctAnswer;
-        this.answerId = answerId;
-    }
+	public Answer(Question question, String answer, boolean correctAnswer) {
+		this.question = question;
+		this.answer = answer;
+		this.correctAnswer = correctAnswer;
+	}
 
-    public int getAnswerId() {
-        return answerId;
-    }
+	public Answer(Question question, int answerId, String answer, boolean correctAnswer) {
+		this.question = question;
+		this.answer = answer;
+		this.correctAnswer = correctAnswer;
+		this.answerId = answerId;
+	}
 
-    public void setAnswerId(int answerId) {
-        this.answerId = answerId;
-    }
+	public int getAnswerId() {
+		return answerId;
+	}
 
-    public Question getQuestion() {
-        return question;
-    }
+	public void setAnswerId(int answerId) {
+		this.answerId = answerId;
+	}
 
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
+	public Question getQuestion() {
+		return question;
+	}
 
-    public String getAnswer() {
-        return answer;
-    }
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
+	public String getAnswer() {
+		return answer;
+	}
 
-    public boolean getCorrectAnswer() {
-        return correctAnswer;
-    }
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 
-    public void setCorrectAnswer(boolean correctAnswer) {
-        this.correctAnswer = correctAnswer;
-    }
+	public boolean getCorrectAnswer() {
+		return correctAnswer;
+	}
 
-    @Override
-    public String toString() {
-        return "Answer{" +
-                "answerId=" + answerId +
-                ", question=" + question +
-                ", answer='" + answer + '\'' +
-                ", correctAnswer='" + correctAnswer + '\'' +
-                '}';
-    }
+	public void setCorrectAnswer(boolean correctAnswer) {
+		this.correctAnswer = correctAnswer;
+	}
+
+	@Override
+	public String toString() {
+		return "Answer{" + "answerId=" + answerId + ", question=" + question + ", answer='" + answer + '\''
+				+ ", correctAnswer='" + correctAnswer + '\'' + '}';
+	}
 }

@@ -61,9 +61,7 @@ public class QuizContentDAO {
     this.ansDesc = ansDesc;
   }
 
-  public boolean getCorrect() {
-    return isCorrect;
-  }
+  public boolean getCorrect() { return isCorrect; }
 
   public void setCorrect(boolean correct) {
     isCorrect = correct;
