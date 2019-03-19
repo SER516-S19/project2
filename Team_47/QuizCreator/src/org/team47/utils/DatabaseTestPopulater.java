@@ -31,11 +31,11 @@ public class DatabaseTestPopulater {
             //Create student, professor, and course
             String stu_pass = PasswordStorage.createHash("password");
             Student stu = new Student("studently", "Stu", "Jacobson",
-                    stu_pass, "");
+                    "", stu_pass);
             if (!new StudentDAOImpl().insertStudent(stu)) return; //TODO: throws exception if student already exists
             String prof_pass = PasswordStorage.createHash("password");
             Professor prof = new Professor("professorly", "Priscilla",
-                    "Proffton", prof_pass, "");
+                    "Proffton", "", prof_pass);
             if (!new ProfessorDAOImpl().insertProfessor(prof)) return;
 
             Course course = new Course(-1, prof.getUsername(), "FML", "101");
@@ -267,6 +267,4 @@ public class DatabaseTestPopulater {
             System.out.println(a.toString());
         }
     }
-
-
 }
