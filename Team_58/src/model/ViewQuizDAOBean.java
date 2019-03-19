@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 /**
  * Implements ViewQuiz interface and establishes connection between database and
  * Servlet.
@@ -52,6 +53,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		ResultSet result = null;
 
 		connection = ConnectionFactory.getConnection();
+
 		query = connection.prepareStatement(dbProperties.getProperty("getQuizInfo"));
 		query.setInt(1, quizId);
 		result = query.executeQuery();
@@ -72,6 +74,7 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return quiz;
 	}
 
@@ -137,13 +140,16 @@ public class ViewQuizDAOBean implements ViewQuizDAO {
 			DisplayQuestionsVO displayquestionVO = new DisplayQuestionsVO(quizId, totalPoints, correctAnswers,
 					incorrectAnswers, question);
 			list.add(displayquestionVO);
+
 		}
 		return list;
 	}
+
 
 	@Override
 	public List<QuestionVO> getQuestionsInfo(int quizId) throws SQLException, ClassNotFoundException, ParseException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

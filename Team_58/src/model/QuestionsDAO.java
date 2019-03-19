@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import org.json.simple.parser.ParseException;
 
+
 /**
  * Interface QuestionsDAO with the following method: a. get questions under this
  * quiz
@@ -27,3 +28,4 @@ public interface QuestionsDAO {
 
 	public List<QuestionsVO> getQuestionsInfo(int quizID) throws SQLException, ClassNotFoundException;
 }
+

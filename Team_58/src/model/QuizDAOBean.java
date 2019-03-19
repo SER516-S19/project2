@@ -66,6 +66,7 @@ public class QuizDAOBean implements QuizDAO {
 				String quizTitle = resultData.getString("quizTitle");
 				QuizVO quiz = new QuizVO(courseID, quizId, isGraded, assignedTime, quizInstruction, quizScheduledDate,
 						isShuffled, quizTitle);
+
 				list.add(quiz);
 			}
 		} catch (Exception e) {
@@ -85,6 +86,7 @@ public class QuizDAOBean implements QuizDAO {
 	 *
 	 * @throws SQLException, ClassNotFoundException
 	 */
+
 	public void insertingQuizDetails(QuizVO quizVO) throws SQLException, ClassNotFoundException {
 
 		Connection connection = null;
@@ -132,6 +134,7 @@ public class QuizDAOBean implements QuizDAO {
 	 *
 	 * @throws ClassNotFoundException, ServletException
 	 */
+
 	public int gettingQuizId(QuizVO quizVO) throws SQLException, ClassNotFoundException {
 
 		Connection connection = null;

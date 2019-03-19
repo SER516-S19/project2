@@ -7,14 +7,16 @@
           <element id="module-output" name="Team_04" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="sqlite-jdbc-3.23.1" />
           <element id="library" level="project" name="commons-dbutils-1.7" />
-          <element id="library" level="project" name="javax.servlet" />
-          <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="gson-2.6.2" />
           <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="sqlite-jdbc-3.23.1" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="Team_04/web/Web2" />
       <element id="javaee-facet-resources" facet="Team_04/web/Web" />
+      <element id="javaee-facet-resources" facet="Team_04/web/Web3" />
+      <element id="javaee-facet-resources" facet="Team_04/web/Web4" />
     </root>
   </artifact>
 </component>

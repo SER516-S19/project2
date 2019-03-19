@@ -58,7 +58,7 @@ This file is for rendering the statistics graphs
     chartobj1.put("showValues", "0");
     chartobj1.put("theme", "zune");
     chartobj1.put("xAxisName", "Students");
-    chartobj1.put("yAxisName", "Scores");
+    chartobj1.put("yAxisName", "Grades");
 
     // Push the data into the array using map object.
     ArrayList arrData1 = new ArrayList();

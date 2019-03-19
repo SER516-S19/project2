@@ -48,6 +48,7 @@ public class QuestionsVO {
 			String incorrectAnswer3, String question) {
 
 		this.questionId = qId;
+
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.incorrectAnswer1 = incorrectAnswer1;
@@ -55,7 +56,7 @@ public class QuestionsVO {
 		this.incorrectAnswer3 = incorrectAnswer3;
 		this.totalPoints = totalPoints;
 	}
-
+	
 	public int getQuizId() {
 		return quizId;
 	}

@@ -11,16 +11,20 @@
 		<servlet-class>quiz.controller.professor.QuizDetailsController</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>QuizIntroController</servlet-name>
-		<servlet-class>quiz.controller.professor.QuizIntroController</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>QuizActionController</servlet-name>
 		<servlet-class>quiz.controller.professor.QuizActionController</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>AddQuestionsController</servlet-name>
 		<servlet-class>quiz.controller.professor.AddQuestionsController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>UpdateQuestionsInQuiz</servlet-name>
+		<servlet-class>quiz.controller.professor.UpdateQuestionsInQuiz</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewQuestionsOfQuiz</servlet-name>
+		<servlet-class>quiz.controller.professor.ViewQuestionsOfQuiz</servlet-class>
 	</servlet>
   <servlet>
     <servlet-name>StudentQuiz</servlet-name>
@@ -30,18 +34,37 @@
     <servlet-name>StudentQuestionsAndOptions</servlet-name>
     <servlet-class>quiz.controller.student.StudentQuestionsAndOptions</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>RegisterController</servlet-name>
+    <servlet-class>quiz.controller.RegisterController</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StudentGrades</servlet-name>
+    <servlet-class>quiz.controller.student.StudentGrades</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>QuizTimeLimit</servlet-name>
+    <servlet-class>quiz.controller.student.QuizTimeLimit</servlet-class>
+  </servlet>
+  
+  
+  
 	<servlet-mapping>
 		<servlet-name>QuizDetailsController</servlet-name>
 		<url-pattern>/createQuiz</url-pattern>
 	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>AddQuestionsController</servlet-name>
 		<url-pattern>/submitQuiz</url-pattern>
 	</servlet-mapping>
-
 	<servlet-mapping>
-		<servlet-name>QuizIntroController</servlet-name>
-		<url-pattern>/getQuiz</url-pattern>
+		<servlet-name>UpdateQuestionsInQuiz</servlet-name>
+		<url-pattern>/updateQuestions</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewQuestionsOfQuiz</servlet-name>
+		<url-pattern>/viewQuestions</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
@@ -58,8 +81,23 @@
 		<servlet-name>StudentQuestionsAndOptions</servlet-name>
 		<url-pattern>/StudentQuestionsAndOptions</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegisterController</servlet-name>
+		<url-pattern>/RegisterController</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>StudentGrades</servlet-name>
+		<url-pattern>/StudentGrades</url-pattern> 
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>QuizTimeLimit</servlet-name>
+		<url-pattern>/QuizTimeLimit</url-pattern> 
+	</servlet-mapping>
+	
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>login.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>

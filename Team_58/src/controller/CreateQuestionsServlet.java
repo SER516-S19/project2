@@ -67,6 +67,7 @@ public class CreateQuestionsServlet extends HttpServlet {
 				res.sendRedirect("login.jsp");
 				return;
 			}
+			
 		} catch (Exception e) {
 			log.info(e.getMessage());
 		}

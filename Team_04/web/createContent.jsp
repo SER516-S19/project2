@@ -8,94 +8,12 @@
     --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<style>
-    .invalid {
-        border: 1px solid red;
-    }
-
-</style>
-<script>
-
-        var quiz = [];
-        var ques = {'choice':1};
-
-        function choiceUpdate(a) {
-            ques['choice'] = a;
-        }
-
-        function formUpdate() {
-            ques['question'] = document.getElementById("question").value;
-            ques['option_a'] = document.getElementById("1").value;
-            ques['option_b'] = document.getElementById("2").value;
-            ques['option_c'] = document.getElementById("3").value;
-            ques['option_d'] = document.getElementById("4").value;
-            ques['score'] = document.getElementById("score").value;
-        }
-
-        function addQues() {
-            quiz.push(ques);
-        }
-
-
-
-
-
-
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-        function submitForm(thisObj, thisEvent) {
-            var jsonQuiz = new Object();
-            jsonQuiz.quiz = quiz;
-            var jsonData = JSON.stringify(jsonQuiz);
-
-            $.post("create", {action:"export",json:jsonData}, function(data) {
-                alert(data.message);
-                $('#return_message').html(data.message);
-            });
-
-            return false;
-        }
-
-
-
-
-
-</script>
+<link rel="stylesheet" href="css/createcontent.css">
 
 <head>
     <title>create-quiz</title>
-    <style>
-        form {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        input[name="question_text"] {
-            font-family: arial, sans-serif;
-            width: 30%;
-            height: 20%;
-        }
-
-        input[name="1"], input[name="2"], input[name="3"], input[name="4"] {
-            font-family: arial, sans-serif;
-            width: 15%;
-        }
-
-        input[value="Add"], input[value="Save"] {
-            width: 5%;
-            height: 5%;
-            font-size: 20px;
-        }
-
-        p {
-            font-family: arial, sans-serif;
-            font-size: large;
-            height: 5%;
-        }
-    </style>
 </head>
+
 <body>
 <h1>
     Create Quiz
@@ -103,203 +21,146 @@
 <p class="error"><b> Points to be noted:</b> Make sure you fill out all fields & the score should be
     a number.
 </p>
-<form name="quizForm" method="POST" action="create" target="index.jsp">
-    <br>
-    <table>
+<div class="container">
+    <form name="quizForm" id="form">
+        <div class="row">
+            <div class="col-25">
+                <label for="fname">Question text:</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="question" name="question_text" class="formtext">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-75" style="text-align: -webkit-right;"><i>(Check the radio button of the
+                correct answer
+                choice.)</i></div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="lname" name="option_a">Answer text A: </label>
+            </div>
+            <div class="col-75">
+                <input type="radio" id="choice_1" name="choice" value="1" checked="true">
+                <input type="text" id="1" name="1" class="formtext">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label name="option_b">Answer text B:</label>
+            </div>
+            <div class="col-75">
+                <input type="radio" id="choice_2" name="choice" value="2">
+                <input type="text" id="2" name="2" class="formtext">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label name="option_c">Answer text C:</label>
+            </div>
+            <div class="col-75">
+                <input type="radio" id="choice_3" name="choice" value="3">
+                <input type="text" id="3" name="3" class="formtext">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label name="option_d">Answer text D:</label>
+            </div>
+            <div class="col-75">
+                <input type="radio" id="choice_4" name="choice" value="4">
+                <input type="text" id="4" name="4" class="formtext">
+            </div>
+        </div>
+            <div class="row">
+                <div class=" col-25">
+                <label name="score">Score:</label></div>
+            <div class="col-75">
+                <input type="text" id="score" name="score"><br>
+            </div>
+        </div>
+        <div class="row" style="margin-right:24px;">
+            <input id="add" type="button" value="Add" class="btn" onclick="addQues()">
+            <input type="hidden" id="data" name="data">
+            <input type="submit" class="btn" formaction="./create" name="action" value="Save"/>
+        </div>
+    </form>
+
+</div>
+
+<div id="QuestionsTable" style="display:none;">
+    <br/><br/>
+    <table id="qAdded" class="inTable">
         <tr>
-            <td>
-                <span>Question text:</span>
-                <input type="text" id="question_1" name="question_text_1" onchange="formUpdate()"
-                       class="formtext">
-            </td>
+            <th>Question</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>Score</th>
+            <th>Action</th>
         </tr>
-        <tr>
-            <td>
-                <span name="option_a">Answer text A:</span>
-                <input type="text" id="1_1" name="1_1" onchange="formUpdate()">
-                <input type="radio" id="choice_1_1" name="choice_1" value="1" checked="true"
-                       onchange="choiceUpdate(1)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_b">Answer text B:</span>
-                <input type="text" id="2_1" name="2_1" onchange="formUpdate()">
-                <input type="radio" id="choice_2_1" name="choice_1" value="2"
-                       onchange="choiceUpdate(2)"> CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_c">Answer text C:</span>
-                <input type="text" id="3_1" name="3_1" onchange="formUpdate()">
-                <input type="radio" id="choice_3_1" name="choice_1" value="3"
-                       onchange="choiceUpdate(3)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_d">Answer text D:</span>
-                <input type="text" id="4_1" name="4_1" onchange="formUpdate()">
-                <input type="radio" id="choice_4_1" name="choice_1" value="4"
-                       onchange="choiceUpdate(4)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="score">Score:</span>
-                <input type="text" id="score_1" name="score_1" onchange="formUpdate()">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span>Question text:</span>
-                <input type="text" id="question_2" name="question_text_2" onchange="formUpdate()"
-                       class="formtext">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_a">Answer text A:</span>
-                <input type="text" id="1_2" name="1_2" onchange="formUpdate()">
-                <input type="radio" id="choice_2_1" name="choice_2" value="1" checked="true"
-                       onchange="choiceUpdate(1)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_b">Answer text B:</span>
-                <input type="text" id="2_2" name="2_2" onchange="formUpdate()">
-                <input type="radio" id="choice_2_2" name="choice_2" value="2"
-                       onchange="choiceUpdate(2)"> CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_c">Answer text C:</span>
-                <input type="text" id="3_2" name="3_2" onchange="formUpdate()">
-                <input type="radio" id="choice_3_2" name="choice_2" value="3"
-                       onchange="choiceUpdate(3)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_d">Answer text D:</span>
-                <input type="text" id="4_2" name="4_2" onchange="formUpdate()">
-                <input type="radio" id="choice_4_2" name="choice_2" value="4"
-                       onchange="choiceUpdate(4)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="score">Score:</span>
-                <input type="text" id="score_2" name="score_2" onchange="formUpdate()">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span>Question text:</span>
-                <input type="text" id="question_3" name="question_text_3" onchange="formUpdate()"
-                       class="formtext">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_a">Answer text A:</span>
-                <input type="text" id="1_3" name="1_3" onchange="formUpdate()">
-                <input type="radio" id="choice_3_3" name="choice_3" value="1" checked="true"
-                       onchange="choiceUpdate(1)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_b">Answer text B:</span>
-                <input type="text" id="2_3" name="2_3" onchange="formUpdate()">
-                <input type="radio" id="choice_3_3" name="choice_3" value="2"
-                       onchange="choiceUpdate(2)"> CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_c">Answer text C:</span>
-                <input type="text" id="3_3" name="3_3" onchange="formUpdate()">
-                <input type="radio" id="choice_3_3" name="choice_3" value="3"
-                       onchange="choiceUpdate(3)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="option_d">Answer text D:</span>
-                <input type="text" id="4_3" name="4_3" onchange="formUpdate()">
-                <input type="radio" id="choice_4_3" name="choice_3" value="4"
-                       onchange="choiceUpdate(4)"
-                > CORRECT_ANSWER
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span name="score">Score:</span>
-                <input type="text" id="score_3" name="score_3" onchange="formUpdate()">
-            </td>
-        </tr>
+
     </table>
-    <input type="submit" value="Save Quiz">
-</form>
 
-
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/validation.js" type="text/javascript">
-        $(document).ready(function () {
-            $("input[value='Add']").prop('disabled', true);
-            $('.error').hide();
+</script>
+<script>
+        var qid = 0;
+        var quiz = [];
+        $("input[value='Add']").prop('disabled', true);
+        $("input[value='Save']").prop('disabled', true);
+        function addQues() {
 
-            $(".formtext").on('keyup blur', function (e) {
-                var input = $(this);
-                var message = $(this).val();
-                if (message) {
-                    input.removeClass("invalid").addClass("valid");
-                    allHaveClass();
-                }
-                else {
-                    input.removeClass("valid").addClass("invalid");
-                    $("input[value='Add']").prop('disabled', true);
-                    $(".error").show();
-                }
-
+            quiz.push({
+                qid: qid.toString(),
+                question: document.getElementById("question").value,
+                option_a: document.getElementById("1").value,
+                option_b: document.getElementById("2").value,
+                option_c: document.getElementById("3").value,
+                option_d: document.getElementById("4").value,
+                score: document.getElementById("score").value,
+                choice: document.querySelector('input[name="choice"]:checked').value
             });
+            var html = "<tr id='quiz'" + qid + "><td>" + document.getElementById("question").value + "</td><td>" +
+                document.getElementById("1").value + "</td><td>" + document.getElementById("2").value + "</td><td>" +
+                document.getElementById("3").value + "</td><td>" + document.getElementById("4").value + "</td><td>" +
+                document.getElementById("score").value + "</td>" + "<th><button qid=" + qid +
+                " class='btn'>Delete</button></th>";
+            $("#qAdded").append(html);
+            qid++;
+            $("#QuestionsTable").show();
+            var form = document.getElementById("form");
+            form.reset();
+            $('input').removeClass('valid');
+            allHaveClass(true);
 
-            $("input[name='score']").on('keyup blur', function (e) {
-                var input = $(this);
-                var score = $(this).val();
-                if (score && !isNaN(score)) { input.removeClass("invalid").addClass("valid"); allHaveClass(); }
-                else {
-                    input.removeClass("valid").addClass("invalid");
-                    $("input[value='Add']").prop('disabled', true);
-                    $(".error").show();
-                }
+        }
 
-            });
+        $("input[value='Save']").on('click', function (e) {
+        if (quiz.length == 0) {
+            addQues();
+        }
+            var jsonData = JSON.stringify(quiz);
+            document.getElementById("data").value = jsonData;
+        });
 
-            function allHaveClass() {
-                var allHaveClass = $('input.invalid').length == 0;
-                if (allHaveClass) {
-                    $("input[value='Add']").prop('disabled', false);
-                    $('.error').hide();
+        $("#qAdded").on('click', '.delQues', function (e) {
+            for (var i = quiz.length - 1; i >= 0; --i) {
+                if (quiz[i].qid == $(this).attr('qid')) {
+                    quiz.splice(i, 1);
+                    $(this).parent().parent().remove();
+
+                    if ($('#qAdded tr').length == 1) {
+                        $("input[value='Save']").prop('disabled', true);
+                        $("input[value='Save']").addClass('btn-disabled');
+                    }
 
                 }
             }
-
         });
-
-
-
 
 
 

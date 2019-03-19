@@ -2,7 +2,6 @@
 	View Quiz Page:
 	Displays quiz information such as date, instructions, status (graded/ungraded), question information.
 	Unscheduled quizzes can be edited and ungraded quizzes can be graded.
-	
 	version: 1.4
   -->
 <html>
@@ -167,5 +166,4 @@
         </#if>
         </div>
 	</body>
-	
 </html>

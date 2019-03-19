@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -34,7 +33,6 @@ public class GradeQuizServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
 
 	@Override
@@ -47,7 +45,6 @@ public class GradeQuizServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-
 		int quizId = Integer.parseInt(session.getAttribute("quizId").toString());
 		String quizName = session.getAttribute("quizName").toString();
 

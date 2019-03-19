@@ -18,15 +18,21 @@ import dao.QuestionDAO;
  * @since : 02/20/2019
  *
  */
-
 public class QuizUtility {
-
+	/**
+	 * Generates an QuizDetails object that stores the details of the quiz including
+	 * its questions, corresponding answer choices, correct answer and other quiz
+	 * details.
+	 * 
+	 * @param quizId
+	 * @return
+	 */
 	public QuizDetails generator(int quizId) {
 		QuestionDAO questionDao = new QuestionDAO();
 		AnswerDAO answerDao = new AnswerDAO();
 		QuizDetails questionAnswers = new QuizDetails();
 		List<Question> questionList = questionDao.getQuestionsByQuizId(quizId);
-		if(questionList.size()!= 0) {
+		if (questionList.size() != 0) {
 			Quiz quiz = questionList.get(0).getQuiz();
 			questionAnswers.setQuizId(quiz.getQuizId());
 			questionAnswers.setQuizName(quiz.getQuizName());
@@ -36,33 +42,33 @@ public class QuizUtility {
 			questionAnswers.setQuizType(quiz.getQuizType());
 			questionAnswers.setQuizTimeLimit(quiz.getQuizTimeLimit());
 		}
-		List<QuestionDetails> questionMapperList = new ArrayList<QuestionDetails>();
+		List<QuestionDetails> questionDetailsList = new ArrayList<QuestionDetails>();
 		for (Question question : questionList) {
-			QuestionDetails mapper = new QuestionDetails();
-			mapper.setMultiple(question.isMultiple());
-			mapper.setPoints(question.getPoints());
-			mapper.setQuestion(question.getQuestion());
-			mapper.setQuestionId(question.getQuestionId());
-			mapper.setResponseAnswer(new ArrayList<AnswerDetails>());
+			QuestionDetails questionDetails = new QuestionDetails();
+			questionDetails.setMultiple(question.isMultiple());
+			questionDetails.setPoints(question.getPoints());
+			questionDetails.setQuestion(question.getQuestion());
+			questionDetails.setQuestionId(question.getQuestionId());
+			questionDetails.setResponseAnswer(new ArrayList<AnswerDetails>());
 			List<AnswerDetails> answerDetailsList = new ArrayList<AnswerDetails>();
 			List<Answer> answersList = answerDao.getAnswersByQuestionId(question.getQuestionId());
-			for(Answer ans : answersList) {
+			for (Answer answer : answersList) {
 				AnswerDetails answerDetails = new AnswerDetails();
-				answerDetails.setAnswer(ans.getAnswer());
-				answerDetails.setAnswerId(ans.getAnswerId());
-				answerDetails.setCorrectAnswer(ans.getCorrectAnswer());
+				answerDetails.setAnswer(answer.getAnswer());
+				answerDetails.setAnswerId(answer.getAnswerId());
+				answerDetails.setCorrectAnswer(answer.getCorrectAnswer());
 				answerDetailsList.add(answerDetails);
 			}
-			mapper.setAvailableAnswers(answerDetailsList);
-			questionMapperList.add(mapper);
+			questionDetails.setAvailableAnswers(answerDetailsList);
+			questionDetailsList.add(questionDetails);
 		}
-		questionAnswers.setQuestion(questionMapperList);;
+		questionAnswers.setQuestion(questionDetailsList);
 		return questionAnswers;
 	}
 
 	public String ObjectToJSON(QuizDetails quizList) {
-		GsonBuilder gsonBuilder = new GsonBuilder();  
-		gsonBuilder.serializeNulls();  
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.serializeNulls();
 		Gson gson = gsonBuilder.create();
 		String result = gson.toJson(quizList);
 		return result;
