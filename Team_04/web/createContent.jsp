@@ -9,11 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" href="css/createcontent.css">
-
 <head>
     <title>create-quiz</title>
 </head>
-
 <body>
 <h1>
     Create Quiz
@@ -85,9 +83,7 @@
             <input type="submit" class="btn" formaction="./create" name="action" value="Save"/>
         </div>
     </form>
-
 </div>
-
 <div id="QuestionsTable" style="display:none;">
     <br/><br/>
     <table id="qAdded" class="inTable">
@@ -100,20 +96,16 @@
             <th>Score</th>
             <th>Action</th>
         </tr>
-
     </table>
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/validation.js" type="text/javascript">
-</script>
+<script src="js/validation.js" type="text/javascript"></script>
 <script>
         var qid = 0;
         var quiz = [];
         $("input[value='Add']").prop('disabled', true);
         $("input[value='Save']").prop('disabled', true);
         function addQues() {
-
             quiz.push({
                 qid: qid.toString(),
                 question: document.getElementById("question").value,
@@ -136,7 +128,6 @@
             form.reset();
             $('input').removeClass('valid');
             allHaveClass(true);
-
         }
 
         $("input[value='Save']").on('click', function (e) {
@@ -161,10 +152,6 @@
                 }
             }
         });
-
-
-
 </script>
-
 </body>
 </html>

@@ -1,18 +1,17 @@
-body{
-    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-    background-color: #4a154b;
+body {
+  font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+  background-color: #4a154b;
 }
-
 
 h1 {
-    text-align: center;
-    color: white;
-    font-size: 64px;
-    padding-left: 20px;
-    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+  text-align: center;
+  color: white;
+  font-size: 64px;
+  padding-left: 20px;
+  font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
 }
 
-input[type=text], select, textarea{
+input[type=text], select, textarea {
   width: 97.6%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -27,31 +26,31 @@ label {
 }
 
 input[type=submit] {
-    display: inline-block;
-    white-space: nowrap;
-    flex-basis: auto;
-    width: auto;
-    font-size: .875rem;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    text-align: center;
-    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-    font-weight: 700;
-    line-height: 1.28571429;
-    letter-spacing: .8px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 19px 40px 20px;
-    transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-    color: #4a154b;
-    margin-left: 15px;
-    margin-right: 15px;
+  display: inline-block;
+  white-space: nowrap;
+  flex-basis: auto;
+  width: auto;
+  font-size: .875rem;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.28571429;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 19px 40px 20px;
+  transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+  color: #4a154b;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .container {
-	    margin: 0 10px 0px 10px;
+  margin: 0 10px 0px 10px;
   border-radius: 5px;
   background-color: #e2e2e2;
   padding: 20px;
@@ -81,89 +80,89 @@ input[type=submit] {
     margin-top: 0;
   }
 }
- 
- .invalid {
-        border: 1px solid red !important;
-    }
-    
-         form {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        input[name="question_text"] {
-            font-family: arial, sans-serif;
-            width: 97.6%;
-            height: 20%;
-        }
+.invalid {
+  border: 1px solid red !important;
+}
 
-        input[name="1"],
+form {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+input[name="question_text"] {
+  font-family: arial, sans-serif;
+  width: 97.6%;
+  height: 20%;
+}
+
+input[name="1"],
         input[name="2"],
         input[name="3"],
         input[name="4"] {
-            font-family: arial, sans-serif;
-            width: 95%;
-        }
+  font-family: arial, sans-serif;
+  width: 95%;
+}
 
-        input[value="Add"],
+input[value="Add"],
         input[value="Save"],
-        input[value="Update"]{
-            width: 10%;
-            height: 5%;
-            font-size: 15px;
-            margin: 7px 0 0 10px;
-        }
+        input[value="Update"] {
+  width: 10%;
+  height: 5%;
+  font-size: 15px;
+  margin: 7px 0 0 10px;
+}
 
-        p {
-            font-family: arial, sans-serif;
-            font-size: large;
-            height: 5%;
-            color: white;
-        }
-        
-        .btn{
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
-        }
-        
-        .btn-disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-         }
+p {
+  font-family: arial, sans-serif;
+  font-size: large;
+  height: 5%;
+  color: white;
+}
+
+.btn {
+  display: inline-block;
+  white-space: nowrap;
+  flex-basis: auto;
+  width: auto;
+  font-size: .875rem;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.28571429;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 19px 40px 20px;
+  transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+  color: #4a154b;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 table {
-    font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    background-color: dimgrey;
-    color: whitesmoke;
-    vertical-align: baseline;
+  font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: dimgrey;
+  color: whitesmoke;
+  vertical-align: baseline;
 }
 
 tr:nth-child(even) {
-    background-color: #8a154b;
-    color: white;
+  background-color: #8a154b;
+  color: white;
 }
 
-th, td{
-    text-align: center;
-    padding: 8px;
+th, td {
+  text-align: center;
+  padding: 8px;
 }
