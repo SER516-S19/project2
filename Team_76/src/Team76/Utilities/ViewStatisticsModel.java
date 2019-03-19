@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import Team76.Database.DatabaseConnection;
 import Team76.Entity.GradeEntity;
-import Team76.Entity.QuizEntity;
 
 /**
  * SER516-Project2 File content- Statistics
@@ -65,37 +65,27 @@ public class ViewStatisticsModel {
 
 	}
 
-	public List<GradeEntity> getMaxMin(String quizId) {
+	public List<GradeEntity> getMaxMin(List<GradeEntity> gradeList) {
 		ResultSet resultSet = null;
-		List<GradeEntity> gradeMaxMin = new LinkedList<>();
-
-		try {
-			stmt = conn.createStatement();
-
-			String sql = "select * from grade where grade = ( select max(grade) from grade ) and QuizId=" + quizId
-					+ " union all " + " select * from grade where grade = ( select min(grade) from grade ) and QuizId="
-					+ quizId;
-
-			resultSet = stmt.executeQuery(sql);
-			while (resultSet.next()) {
-				GradeEntity maxMin = new GradeEntity();
-				maxMin.setQuizId(resultSet.getInt("QuizId"));
-				maxMin.setStudentName(resultSet.getString("studentName"));
-				maxMin.setGrade(resultSet.getString("grade"));
-				gradeMaxMin.add(maxMin);
+		List<GradeEntity> gradeMaxMin = new ArrayList<>();
+		GradeEntity maxGrade,minGrade;
+		maxGrade=gradeList.get(0);
+		minGrade=gradeList.get(0);
+		int max = Integer.parseInt(maxGrade.getGrade());
+		int min = Integer.parseInt(minGrade.getGrade());
+		for(GradeEntity entity:gradeList) {
+			
+			int compare = Integer.parseInt(entity.getGrade());
+			if(compare >= max ) {
+				maxGrade=entity;
 			}
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-				se2.printStackTrace();
-				System.out.println("Not all DB resources freed!");
+			if(compare < min) {
+				minGrade=entity;
 			}
+			
 		}
+		gradeMaxMin.add(maxGrade);
+		gradeMaxMin.add(minGrade);
 		return gradeMaxMin;
 
 	}

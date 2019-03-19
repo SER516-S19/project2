@@ -23,7 +23,7 @@ public class DatabaseConnection {
 		Connection connection = null;
 		String connectionUrl = "jdbc:mysql://127.0.0.1:3306/ser516p2v2?allowPublicKeyRetrieval=true&useSSL=false";
 		String userid = "root";
-		String password = "root";
+		String password = "pass123";
 
 		connection = DriverManager.getConnection(connectionUrl, userid, password);
 		return connection;

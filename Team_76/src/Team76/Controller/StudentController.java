@@ -102,8 +102,13 @@ public class StudentController extends HttpServlet {
 					marks = 0;
 					questionId = Integer.parseInt(que.getQuestionId());
 					answer = request.getParameter(que.getQuestionId());
+					answer=answer.trim();
+					System.out.println("answer is " + answer);
+					System.out.println("Que Id " + questionId);
 					solution = row.getSolution(questionId);
+					solution[1]=solution[1].trim();
 					if (solution[1].equalsIgnoreCase(answer)) {
+						System.out.println("sol1 " + solution[1] + "and " + solution[0]);
 						marks = Integer.parseInt(solution[0]);
 					}
 					row.answerEntry(studentId, questionId, quizId, marks, answer);

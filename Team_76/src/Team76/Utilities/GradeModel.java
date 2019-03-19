@@ -36,12 +36,12 @@ public class GradeModel {
 
 	public List<GradeEntity> getGrade(int studentId) {
 		List<GradeEntity> grades= new ArrayList<>();
-		GradeEntity grade = new GradeEntity();
 		try {
 			statement = connection.createStatement();
 			String sql = "SELECT * FROM grade WHERE studentID =" + studentId;
 			resultSet = statement.executeQuery(sql);
 			while (resultSet.next()) {
+				GradeEntity grade = new GradeEntity();
 				grade.setStudentId(resultSet.getInt("studentID"));
 				grade.setQuizId(resultSet.getInt("QuizId"));
 				grade.setQuizTitle(resultSet.getString("quiztitle"));

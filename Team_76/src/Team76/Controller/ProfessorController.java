@@ -101,7 +101,7 @@ public class ProfessorController extends HttpServlet {
 			try {
 				ViewStatistics = new ViewStatisticsModel();
 				gradeList= ViewStatistics.getQuiz(quizId);
-				maxMin= ViewStatistics.getMaxMin(quizId);
+				maxMin= ViewStatistics.getMaxMin(gradeList);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -141,10 +141,6 @@ public class ProfessorController extends HttpServlet {
 		
 		
 		if (action.equals("Continue1")) {
-			if (request.getParameter("qtype").equals("NonGraded")
-					|| request.getParameter("qtype").equals("Practice")) {
-				request.setAttribute("visibilty", "invisible");
-			}
 			try {
 				q.getParameters(request, response);
 
