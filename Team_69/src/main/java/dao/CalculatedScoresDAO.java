@@ -18,18 +18,19 @@ import bean.HibernateUtil;
  * @since : 03/01/2019
  */
 public class CalculatedScoresDAO {
-	public int getStudentScoreByQuizId(int quizId, int userId) {
+	
+	public float getStudentScoreByQuizId(int quizId, int userId) {
 		Transaction transaction = null;
 		Session session = null;
 		List<CalculatedScores> studentScores = new ArrayList<CalculatedScores>();
-		int score = -1;
+		float score = -1;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from  " + CalculatedScores.class.getName()
 					+ " score where score.quiz.quizId = " + quizId + " AND score.user.user_id = " + userId);
 			studentScores = query.list();
-			score = (int) studentScores.get(0).getScore();
+			score = (float) studentScores.get(0).getScore();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {

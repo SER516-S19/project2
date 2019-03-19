@@ -17,7 +17,7 @@
 		<h2>Your response has been successfully recorded!!</h2>
 		<div class="innerContainer">
 			<%
-					int score = (int) session.getAttribute("grade");
+					float score = (float) session.getAttribute("grade");
 					if (score == -1)
 						out.println("<h4>We are currently processing your grades. Check back later!!</h4>");
 					else

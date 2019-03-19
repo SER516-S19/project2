@@ -65,7 +65,7 @@ public class StudentServlet extends HttpServlet {
 				view = service.feedAnswers(studentResponse, userId);
 				if ("/success".equals(view)) {
 					service.calculateScores(studentResponse, userId);
-					int score = service.getGrade(studentResponse, userId);
+					float score = service.getGrade(studentResponse, userId);
 					session.setAttribute("grade", score);
 					response.setStatus(HttpServletResponse.SC_CREATED);
 				} else
