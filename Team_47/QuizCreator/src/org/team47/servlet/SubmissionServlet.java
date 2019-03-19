@@ -122,6 +122,7 @@ public class SubmissionServlet extends HttpServlet {
 
         if(isLateSubmission(quizId)) {
             response.sendError(401, "Your submission was past the due date");
+            return;
         }
 
         // Grade quiz submission
