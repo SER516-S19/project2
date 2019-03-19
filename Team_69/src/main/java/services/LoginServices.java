@@ -2,6 +2,14 @@ package services;
 
 import dao.UserDAO;
 
+/**
+ * This is a class to manipulate data for requests from login servlet
+ *
+ * @author : Jahnvi Rai
+ * @version : 1.0
+ * @since : 02/25/2019
+ */
+
 public class LoginServices {
 
 	public String checkUserType(String userEmail) {
