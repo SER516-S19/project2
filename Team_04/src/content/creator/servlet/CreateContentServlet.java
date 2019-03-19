@@ -33,7 +33,7 @@ public class CreateContentServlet extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String responseRedirect = "./list";
+    String responseRedirect = "./quizList";
     Gson gson = new Gson();
     String json = request.getParameter("data");
     QuizQuestionsDAO[] quizQuestions = gson.fromJson(json, QuizQuestionsDAO[].class);
