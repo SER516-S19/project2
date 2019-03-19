@@ -98,26 +98,19 @@ public class QuizCreationServlet extends HttpServlet {
      */
     private boolean validateQuizFields(JSONObject jsonQuiz){
         try{
-            System.out.println("validating fields!");
             title = (String)jsonQuiz.get("title");
             course_id = ((Number)jsonQuiz.get("course_id")).intValue();
             instructions = (String)jsonQuiz.get("instructions");
             shuffle = (Boolean)jsonQuiz.get("shuffle");
             time_limit = ((Number)jsonQuiz.get("time_limit")).intValue();
             quiz_type = (String)jsonQuiz.get("quiz_type");
-            System.out.println("halfway");
             if (!(quiz_type.equals("quiz") || quiz_type.equals("survey"))) {
                 return false;
             }
-            System.out.println("qzorsurv");
             attempts = ((Number)jsonQuiz.get("attempts")).intValue();
-            System.out.println("attmpts");
             quiz_group = (String)jsonQuiz.get("quiz_group");
-            System.out.println("qzgrup");
             total_points = ((Number)jsonQuiz.get("total_points")).doubleValue();
-            System.out.println("totalPoints");
             jsonQuestions = (JSONArray)jsonQuiz.get("questions");
-            System.out.println("now for null check");
         } catch (ClassCastException ex) {
             System.out.println(ex);
             return false;
@@ -132,6 +125,49 @@ public class QuizCreationServlet extends HttpServlet {
         } catch (IOException ioe) {
             return false;
         }
+    }
+
+    /**
+     * Submits a choice into the database
+     *
+     * @param question_id id of question choice belongs to
+     * @param choice Choice object containing choice info
+     * @return true if entered successfully, false otherwise.
+     */
+    private boolean submitChoice(int question_id, Choice choice){
+        boolean hasSucceeded = true;
+        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
+        choice.setQuestion_fk(question_id);
+        if (!choiceDAO.insertChoice(choice)) {
+            hasSucceeded = false;
+        }
+        return hasSucceeded;
+    }
+
+    /**
+     * Submits a question to the database
+     *
+     * @param quizId Id of quiz these questions are attached to
+     * @param question A question to be inserted
+     * @param choices A list of choices belonging to that question
+     * @return true if entered properly into the database. false otherwise.
+     */
+    private boolean submitQuestion(int quiz_id, Question question, List<Choice> choices){
+        boolean hasSucceeded = true;
+        QuestionDAOImpl questionDAO = new QuestionDAOImpl();
+        question.setQuiz_fk(quiz_id);
+        if(questionDAO.insertQuestion(question)) {
+            int question_id = question.getQuestion_id();
+            for (Choice choice : choices) {
+                hasSucceeded = submitChoice(question_id, choice);
+                if(!hasSucceeded) {
+                    break;
+                }
+            }
+        } else {
+            hasSucceeded = false;
+        }
+        return hasSucceeded;
     }
 
     /**
@@ -155,31 +191,15 @@ public class QuizCreationServlet extends HttpServlet {
                     "does not match number of sets of choices");
         }
         QuizDAOImpl quizDAO = new QuizDAOImpl();
-        QuestionDAOImpl questionDAO = new QuestionDAOImpl();
-        ChoiceDAOImpl choiceDAO = new ChoiceDAOImpl();
         int quiz_id;
-        int question_id;
         boolean hasSucceeded = true;
         if(quizDAO.insertQuiz(quiz)) {
             quiz_id = quiz.getQuiz_id();
             for (int i = 0; i < questions.size(); i++) {
                 Question question = questions.get(i);
-                question.setQuiz_fk(quiz_id);
-                if(questionDAO.insertQuestion(question)) {
-                    question_id = question.getQuestion_id();
-                    List<Choice> questionChoices = choices.get(i);
-                    for (Choice choice : questionChoices) {
-                        choice.setQuestion_fk(question_id);
-                        if (!choiceDAO.insertChoice(choice)) {
-                            hasSucceeded = false;
-                            break;
-                        }
-                    }
-                    if(!hasSucceeded) {
-                        break;
-                    }
-                } else {
-                    hasSucceeded = false;
+                List<Choice> question_choices = choices.get(i);
+                hasSucceeded = submitQuestion(quiz_id, question, question_choices);
+                if (!hasSucceeded){
                     break;
                 }
             }
