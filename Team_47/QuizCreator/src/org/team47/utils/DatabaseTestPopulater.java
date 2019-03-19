@@ -31,11 +31,11 @@ public class DatabaseTestPopulater {
             //Create student, professor, and course
             String stu_pass = PasswordStorage.createHash("password");
             Student stu = new Student("studently", "Stu", "Jacobson",
-                    stu_pass, "");
+                    "", stu_pass);
             if (!new StudentDAOImpl().insertStudent(stu)) return; //TODO: throws exception if student already exists
             String prof_pass = PasswordStorage.createHash("password");
             Professor prof = new Professor("professorly", "Priscilla",
-                    "Proffton", prof_pass, "");
+                    "Proffton", "", prof_pass);
             if (!new ProfessorDAOImpl().insertProfessor(prof)) return;
 
             Course course = new Course(-1, prof.getUsername(), "FML", "101");
@@ -100,11 +100,11 @@ public class DatabaseTestPopulater {
             if(harryPotter != null) {
                 harryPotter.setHashedpass(newPassword);
                 studentDAO.updateStudent(harryPotter);
+
             } else {
                 harryPotter = new Student("boywholived", "Harry", "Potter", null, newPassword);
                 studentDAO.insertStudent(harryPotter);
             }
-            System.out.println(harryPotter.toString());
 
             ProfessorDAOImpl professorDAO = new ProfessorDAOImpl();
             Professor professor = professorDAO.getProfessor("xXKitten_OwnerXx");
@@ -116,7 +116,24 @@ public class DatabaseTestPopulater {
                 professor = new Professor("xXKitten_OwnerXx", "Dolores", "Umbridge", null, newPassword);
                 professorDAO.insertProfessor(professor);
             }
-            System.out.println(professor.toString());
+            CourseDAO courseDAO = new CourseDAOImpl();
+            List<Course> courses = courseDAO.getAllCourses();
+            boolean courseExists = false;
+            for (Course c : courses){
+                if (c.getProfessor_fk().equals("xXKitten_OwnerXx")){
+                    courseExists = true;
+                    break;
+                }
+            }
+
+            if (!courseExists){
+                Course course = new Course(GARBAGE_INT, "xXKitten_OwnerXx", "DDA", "123");
+                courseDAO.insertCourse(course);
+
+                EnrolledDAO enrolledDAO = new EnrolledDAOImpl();
+                enrolledDAO.insertEnrolled(new Enrolled(GARBAGE_INT, course.getCourse_id(), "boywholived"));
+            }
+
         } catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("Error hashing password!");
         }
@@ -136,7 +153,7 @@ public class DatabaseTestPopulater {
         boolean shuffle = true;
         int time_limit = 60;
         Date date_open = DatatypeConverter.parseDateTime("2018-12-25").getTime();
-        Date date_close = DatatypeConverter.parseDateTime("2018-05-30").getTime();
+        Date date_close = DatatypeConverter.parseDateTime("2019-05-30").getTime();
         String quizType = "quiz";
         int attempts = 3;
         String quizGroup = "Cool Questions";
@@ -157,6 +174,7 @@ public class DatabaseTestPopulater {
                     date_close, quizType, attempts, quizGroup, total_points);
             quizDAO.insertQuiz(quiz);
             int quizId = quiz.getQuiz_id();
+            System.out.println("QUIZ ID:::::::: " + quizId);
 
             float q1Points = new Float(20.5);
             float q2Points = 280;
@@ -249,6 +267,4 @@ public class DatabaseTestPopulater {
             System.out.println(a.toString());
         }
     }
-
-
 }

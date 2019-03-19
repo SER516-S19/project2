@@ -111,8 +111,10 @@ public class SubmissionServlet extends HttpServlet {
                 httpCode = 400;
                 httpErrorMessage = "Quiz taken outside of allowed time period";
             }
-            JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
-            choiceIds = ServletValidation.buildAndValidateStudentChoiceList(jsonChoices, quizId);
+            if (!isInitial) {
+                JSONArray jsonChoices = (JSONArray) requestForm.get("choices");
+                choiceIds = ServletValidation.buildAndValidateStudentChoiceList(jsonChoices, quizId);
+            }
         } catch (ClassCastException cce) {
             response.sendError(400, "Some field is wrong data type.");
             cce.printStackTrace();

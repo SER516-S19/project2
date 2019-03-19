@@ -66,3 +66,7 @@ password: `password`
 
 username: `xXKitten_OwnerXx`
 password: `cats`
+
+## Instructions to Access Code
+From IntelliJ import project from Maven
+From Eclipse import project from Maven
