@@ -98,26 +98,19 @@ public class QuizCreationServlet extends HttpServlet {
      */
     private boolean validateQuizFields(JSONObject jsonQuiz){
         try{
-            System.out.println("validating fields!");
             title = (String)jsonQuiz.get("title");
             course_id = ((Number)jsonQuiz.get("course_id")).intValue();
             instructions = (String)jsonQuiz.get("instructions");
             shuffle = (Boolean)jsonQuiz.get("shuffle");
             time_limit = ((Number)jsonQuiz.get("time_limit")).intValue();
             quiz_type = (String)jsonQuiz.get("quiz_type");
-            System.out.println("halfway");
             if (!(quiz_type.equals("quiz") || quiz_type.equals("survey"))) {
                 return false;
             }
-            System.out.println("qzorsurv");
             attempts = ((Number)jsonQuiz.get("attempts")).intValue();
-            System.out.println("attmpts");
             quiz_group = (String)jsonQuiz.get("quiz_group");
-            System.out.println("qzgrup");
             total_points = ((Number)jsonQuiz.get("total_points")).doubleValue();
-            System.out.println("totalPoints");
             jsonQuestions = (JSONArray)jsonQuiz.get("questions");
-            System.out.println("now for null check");
         } catch (ClassCastException ex) {
             System.out.println(ex);
             return false;
@@ -127,7 +120,6 @@ public class QuizCreationServlet extends HttpServlet {
             return false;
         }
         try {
-            System.out.println("now to build questions");
             return validateAndBuildQuestionList(jsonQuestions);
         } catch (IOException ioe) {
             return false;
