@@ -120,7 +120,6 @@ public class QuizCreationServlet extends HttpServlet {
             return false;
         }
         try {
-            System.out.println("now to build questions");
             return validateAndBuildQuestionList(jsonQuestions);
         } catch (IOException ioe) {
             return false;
