@@ -6,6 +6,9 @@ import org.sqlite.SQLiteException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import javax.xml.bind.DatatypeConverter;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +23,9 @@ public class DatabaseTestPopulater {
     /**
      * populates the database with test entries
      */
+
+    private static int GARBAGE_INT = -1;
+
     public static void populateDB() {
         try {
             //Create student, professor, and course
@@ -88,7 +94,6 @@ public class DatabaseTestPopulater {
      */
     public static void updateExampleUsersToValidPasswords(){
         try {
-            // PLEASE DONT REMOVE. THIS IS FOR FRONTEND TEAM TO TEST RIGHT NOW - Trevor
             StudentDAOImpl studentDAO = new StudentDAOImpl();
             Student harryPotter = studentDAO.getStudent("boywholived");
             String newPassword = PasswordStorage.createHash("butter");
@@ -114,6 +119,79 @@ public class DatabaseTestPopulater {
             System.out.println(professor.toString());
         } catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("Error hashing password!");
+        }
+    }
+
+    /**
+     * puts example quizzes in the database for Kitten Owner's course
+     */
+    public static void addKittyQuizzes(){
+        QuizDAO quizDAO = new QuizDAOImpl();
+        QuestionDAO questionDAO = new QuestionDAOImpl();
+        ChoiceDAO choiceDAO = new ChoiceDAOImpl();
+
+        int course_fk = 1;
+        String title = "Minute Quiz";
+        String instructions = "This is a straightforward quiz. You have 1 minute.";
+        boolean shuffle = true;
+        int time_limit = 60;
+        Date date_open = DatatypeConverter.parseDateTime("2018-12-25").getTime();
+        Date date_close = DatatypeConverter.parseDateTime("2018-05-30").getTime();
+        String quizType = "quiz";
+        int attempts = 3;
+        String quizGroup = "Cool Questions";
+        double total_points = 340.5;
+
+        //check that the quizzes don't already exist
+        boolean hasQuiz = false;
+        List<Quiz> quizzes = quizDAO.getAllQuizzes();
+        for (Quiz q : quizzes){
+            if (q.getTitle().equals("Minute Quiz")){
+                hasQuiz = true;
+                break;
+            }
+        }
+
+        if (!hasQuiz) {
+            Quiz quiz = new Quiz(GARBAGE_INT, course_fk, title, instructions, shuffle, time_limit, date_open,
+                    date_close, quizType, attempts, quizGroup, total_points);
+            quizDAO.insertQuiz(quiz);
+            int quizId = quiz.getQuiz_id();
+
+            float q1Points = new Float(20.5);
+            float q2Points = 280;
+            float q3Points = 20;
+            float q4Points = 20;
+            List<Question> questions = new ArrayList<>();
+
+            Question q1 = new Question(GARBAGE_INT, quizId, "mc", q1Points,
+                    "1. What species has the greatest knees?");
+            Question q2 = new Question(GARBAGE_INT, quizId, "ma", q2Points,
+                    "2. Which of the following are cool places?");
+            Question q3 = new Question(GARBAGE_INT, quizId, "mc", q3Points, "I am feeling ok today.");
+            Question q4 = new Question(GARBAGE_INT, quizId, "mc", q4Points,
+                    "This question exists to test shuffle functionality.");
+            questionDAO.insertQuestion(q1);
+            questionDAO.insertQuestion(q2);
+            questionDAO.insertQuestion(q3);
+            questionDAO.insertQuestion(q4);
+
+            Choice q1a1 = new Choice(GARBAGE_INT, q1.getQuestion_id(), false, "Bears");
+            Choice q1a2 = new Choice(GARBAGE_INT, q1.getQuestion_id(), true, "Bees");
+            Choice q1a3 = new Choice(GARBAGE_INT, q1.getQuestion_id(), false, "Alpacas");
+            Choice q1a4 = new Choice(GARBAGE_INT, q1.getQuestion_id(), false, "Spiders");
+
+            Choice q2a1 = new Choice(GARBAGE_INT, q2.getQuestion_id(), true, "Antarctica");
+            Choice q2a2 = new Choice(GARBAGE_INT, q2.getQuestion_id(), false, "The Sonoran Desert");
+            Choice q2a3 = new Choice(GARBAGE_INT, q2.getQuestion_id(), true, "Greenland");
+            Choice q2a4 = new Choice(GARBAGE_INT, q2.getQuestion_id(), true, "Finland");
+            Choice q2a5 = new Choice(GARBAGE_INT, q2.getQuestion_id(), false, "Venus");
+
+            Choice q3a1 = new Choice(GARBAGE_INT, q3.getQuestion_id(), false, "True");
+            Choice q3a2 = new Choice(GARBAGE_INT, q3.getQuestion_id(), true, "False");
+
+            Choice q4a1 = new Choice(GARBAGE_INT, q4.getQuestion_id(), true, "True");
+            Choice a4a2 = new Choice(GARBAGE_INT, q4.getQuestion_id(), false, "False");
         }
     }
 
