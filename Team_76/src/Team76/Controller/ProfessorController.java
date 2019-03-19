@@ -1,6 +1,7 @@
 package Team76.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,11 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import Team76.Database.ProfInsertQuerry;
 import Team76.Entity.DetailsEntity;
+import Team76.Entity.GradeEntity;
 import Team76.Entity.QuestionEntity;
 import Team76.Entity.QuizEntity;
 import Team76.Utilities.DetailsModel;
+import Team76.Utilities.ProfessorQuizModel;
 import Team76.Utilities.QuestionModel;
 import Team76.Utilities.ViewGradesModel;
+import Team76.Utilities.ViewStatisticsModel;
 
 /**
  * Servlet implementation class ProfessorController
@@ -68,8 +72,44 @@ public class ProfessorController extends HttpServlet {
 		if (action.equals("Options")) {
 			response.sendRedirect("Options.jsp");
 		}
-		if (action.equals("Statistics")) {
+		/*
+		 * if (action.equals("Statistics")) { response.sendRedirect("Statistics.jsp"); }
+		 */
+		if (action.equalsIgnoreCase("Statistics")) {
+			System.out.println("**** view Statistics");
+			List<QuizEntity> quizList = null;
+			ProfessorQuizModel viewGrades;
+			
+			try {
+				viewGrades = new ProfessorQuizModel();
+				quizList = viewGrades.quizList(request,response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getSession().setAttribute("quizList", quizList);
 			response.sendRedirect("Statistics.jsp");
+		}
+		
+		if (action.equalsIgnoreCase("viewStatistics")) {
+			System.out.println("**** view Statistics");
+			String quizId = request.getParameter("quizId");
+			request.getSession().setAttribute("quizId", quizId);
+			System.out.println("**** quiz id: " + quizId);
+			List<GradeEntity> gradeList = null;
+			List<GradeEntity> maxMin = null;
+			ViewStatisticsModel ViewStatistics = null;
+			try {
+				ViewStatistics = new ViewStatisticsModel();
+				gradeList= ViewStatistics.getQuiz(quizId);
+				maxMin= ViewStatistics.getMaxMin(gradeList);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getSession().setAttribute("gradeList", gradeList);
+			request.getSession().setAttribute("maxMin", maxMin);
+			System.out.println("get attribute is " + request.getSession().getAttribute("gradeList"));
+			System.out.println("max and min is " + request.getSession().getAttribute("maxMin")); 
+			response.sendRedirect("ViewStatistics.jsp");
 		}
 		if (action.equals("Continue")) {
 			try {
@@ -89,11 +129,18 @@ public class ProfessorController extends HttpServlet {
 		}
 		
 		
+		
+		if (action.equals("ViewStatistics")) {
+			System.out.println("title getParam " + request.getParameter("Title"));
+			response.sendRedirect("ViewStatistics.jsp");
+		}
+		
+		if (action.equals("viewStatisticsBack")) {
+			response.sendRedirect("ProfessorDash.jsp");
+		}
+		
+		
 		if (action.equals("Continue1")) {
-			if (request.getParameter("qtype").equals("NonGraded")
-					|| request.getParameter("qtype").equals("Practice")) {
-				request.setAttribute("visibilty", "invisible");
-			}
 			try {
 				q.getParameters(request, response);
 
