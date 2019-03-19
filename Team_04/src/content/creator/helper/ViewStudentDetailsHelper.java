@@ -4,8 +4,10 @@ import content.creator.operations.DataOps;
 import java.util.List;
 import java.sql.SQLException;
 /*
- *Modified by :Sakshi Gautam
- * Description: fetches the student details for every student id.
+ *@author Sakshi Gautam
+ *@version 1.4
+ *@since   2019-03-01
+ *Description: fetches the student details for every student id.
  */
 
 public class ViewStudentDetailsHelper {
