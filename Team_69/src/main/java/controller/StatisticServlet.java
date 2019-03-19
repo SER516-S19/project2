@@ -10,8 +10,8 @@ import java.io.IOException;
 /**
  * This is the controller for retrieving quiz statistic of the students
  *
- * @version 1.0
  * @authors Jinal
+ * @version 1.0
  * @since : 03/01/2019
  */
 @SuppressWarnings("serial")

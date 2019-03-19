@@ -14,9 +14,9 @@ import services.ProfessorServices;
 /**
  * This is the controller for managing professor side of the quiz.
  *
+ * @authors Gangadhar, Janice, Jinal
  * @version 1.0
  * @since 02-16-2019
- * @authors Gangadhar, Janice, Jinal
  */
 @SuppressWarnings("serial")
 public class ProfessorServlet extends HttpServlet {

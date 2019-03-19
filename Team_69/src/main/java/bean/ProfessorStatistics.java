@@ -3,6 +3,13 @@ package bean;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * This is a helper class to store professor statistics result
+ *
+ * @author : Viraj Talaty, Gangadhar Matti, Jinal Patel
+ * @version : 1.0
+ */
 public class ProfessorStatistics {
 
 	int students;
@@ -53,5 +60,4 @@ public class ProfessorStatistics {
 	public void setStudentCalculatedScores(List<CalculatedScores> studentCalculatedScores) {
 		this.studentCalculatedScores = studentCalculatedScores;
 	}
-
 }
