@@ -16,15 +16,15 @@ import javax.servlet.http.*;
 
 @WebServlet(urlPatterns = "/delete")
 public class DeleteContentServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            int quizId = Integer.parseInt(request.getParameter("quizid"));
-            DeleteContentHelper.removeQuiz(quizId);
-            response.sendRedirect("./quizList");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			int quizId = Integer.parseInt(request.getParameter("quizid"));
+			DeleteContentHelper.removeQuiz(quizId);
+			response.sendRedirect("./quizList");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 

@@ -17,18 +17,18 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/viewStudentDetails")
 public class viewStudentDetailsServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
-            Integer studentNumber=Integer.parseInt(request.getParameter("studentId"));
-            List<QuizResultDAO> studentDetailsList= ViewStudentDetailsHelper.getStudentDetails(studentNumber);
-            request.setAttribute("studentDetails",studentDetailsList);
-            request.setAttribute("totalQuizzes",studentDetailsList.size());
-            request.setAttribute("score",StatsPerStudentHelper.getTotalScore(studentDetailsList));
-            request.getRequestDispatcher("viewStudentDetails.jsp").forward(request,response);
-        }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try{
+			Integer studentNumber=Integer.parseInt(request.getParameter("studentId"));
+			List<QuizResultDAO> studentDetailsList= ViewStudentDetailsHelper.getStudentDetails(studentNumber);
+			request.setAttribute("studentDetails",studentDetailsList);
+			request.setAttribute("totalQuizzes",studentDetailsList.size());
+			request.setAttribute("score",StatsPerStudentHelper.getTotalScore(studentDetailsList));
+			request.getRequestDispatcher("viewStudentDetails.jsp").forward(request,response);
+		}
 
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

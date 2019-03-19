@@ -27,10 +27,7 @@ public class LoginServices {
 	public boolean validateUserPassword(String userEmail, String userPassword) {
 		UserDAO userDAO = new UserDAO();
 		String storedPassword = userDAO.fetchUserDetails(userEmail).getPassword();
-		if (storedPassword.equals(userPassword))
-			return true;
-		else
-			return false;
+		return storedPassword.equals(userPassword);
 	}
 
 	public String fetchUserName(String userEmail) {

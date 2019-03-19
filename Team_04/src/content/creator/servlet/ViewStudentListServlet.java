@@ -19,15 +19,15 @@ import javax.servlet.http.*;
 @WebServlet(urlPatterns = "/studentList")
 public class ViewStudentListServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            List<Integer> studentIdList = ViewStudentListHelper.getStudentList();
-            request.setAttribute("studentIds", studentIdList);
-            request.getRequestDispatcher("viewStudentList.jsp").forward(request,response);
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			List<Integer> studentIdList = ViewStudentListHelper.getStudentList();
+			request.setAttribute("studentIds", studentIdList);
+			request.getRequestDispatcher("viewStudentList.jsp").forward(request,response);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
