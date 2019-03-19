@@ -12,6 +12,13 @@ import quiz.dao.student.StudentQuizDao;
 import quiz.exceptions.DataAccessException;
 import quiz.model.student.QuizAttempt;
 
+/**
+ * Controller to save and fetch Questions and their
+ * corresponding Options to and from the Database.
+ *
+ * @author Sumanth Paranjape, Shefali Anand
+ * @version 1.0
+ */
 public class StudentQuestionsAndOptions extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
