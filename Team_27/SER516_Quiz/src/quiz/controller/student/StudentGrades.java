@@ -14,6 +14,12 @@ import quiz.dao.student.StudentAttemptDao;
 import quiz.model.professor.Question;
 import quiz.model.student.QuizAttempt;
 
+/**
+ * Controller to insert the grades into the Database.
+ * 
+ * @author Sumanth Paranjape
+ * @version 1.0
+ */
 public class StudentGrades extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

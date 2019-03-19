@@ -10,6 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import quiz.dao.professor.QuizDetailsDao;
 
+/**
+ * Controller to set Time Limit for the quiz.
+ * 
+ * @author Sumanth Paranjape
+ * @version 1.0
+ */
 public class QuizTimeLimit extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

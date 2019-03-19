@@ -15,6 +15,12 @@ import quiz.exceptions.DataAccessException;
 import quiz.model.professor.QuizModel;
 import quiz.model.student.QuizAttempt;
 
+/**
+ * Controller for fetching the quiz from the Database.
+ *
+ * @author Sumanth Paranjape, Shefali Anand
+ * @version 1.0
+ */
 public class StudentQuiz extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
