@@ -70,6 +70,7 @@ public class StudentServlet extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_CREATED);
 				} else
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				
 				session.removeAttribute("data");
 				request.getRequestDispatcher(view).forward(request, response);
 			} else if (action.equals("save")) {
