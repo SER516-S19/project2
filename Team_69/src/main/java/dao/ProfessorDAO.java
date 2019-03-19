@@ -17,7 +17,7 @@ import bean.Quiz;
  *
  * @version 1.0
  * @since 02-16-2019
- * @authors Aneesh, Gangadhar, Janice, Jinal, Viraj
+ * @authors Aneesh, Janice, Jinal, Viraj
  */
 public class ProfessorDAO {
 

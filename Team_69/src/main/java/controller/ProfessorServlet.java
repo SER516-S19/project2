@@ -123,7 +123,6 @@ public class ProfessorServlet extends HttpServlet {
 			String questionOptions2 = request.getParameter("questionOptions2");
 			String questionOptions3 = request.getParameter("questionOptions3");
 			String questionOptions4 = request.getParameter("questionOptions4");
-
 			String[] optionArray = { questionOptions1, questionOptions2, questionOptions3, questionOptions4 };
 			String points;
 			if (request.getParameter("points") == null)
@@ -136,7 +135,6 @@ public class ProfessorServlet extends HttpServlet {
 			Quiz quiz = (Quiz) session.getAttribute("quiz");
 			request.setAttribute("id", quiz.getQuizId());
 			request.setAttribute("quizName", quiz.getQuizName());
-
 			professorServices.storeQuestion(question, optionArray, points, correctanswers, quiz);
 			String addQuestionPageURL = request.getContextPath() + "/ProfessorController";
 			request.setAttribute("profnavigate", addQuestionPageURL);

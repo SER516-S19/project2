@@ -7,9 +7,15 @@ import javax.servlet.http.HttpServletResponse;
 import services.StatisticServices;
 import java.io.IOException;
 
+/**
+ * This is the controller for retrieving quiz statistic of the students
+ *
+ * @version 1.0
+ * @authors Jinal
+ * @since : 03/01/2019
+ */
 @SuppressWarnings("serial")
 public class StatisticServlet extends HttpServlet {
-
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
