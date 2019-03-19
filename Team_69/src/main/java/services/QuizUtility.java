@@ -18,7 +18,6 @@ import dao.QuestionDAO;
  * @since : 02/20/2019
  *
  */
-
 public class QuizUtility {
 
 	public QuizDetails generator(int quizId) {

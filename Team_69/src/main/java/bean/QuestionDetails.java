@@ -6,6 +6,8 @@ package bean;
 import java.util.List;
 
 /**
+ * This class represents the QuestionDetails table
+ * 
  * @author: leharbhatt
  * @version : 1.0
  * @since : 02/22/2019

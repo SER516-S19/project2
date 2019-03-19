@@ -3,7 +3,7 @@ package bean;
 import javax.persistence.*;
 
 /**
- * This class reprsents the Answer table
+ * This class represents the Answer table
  *
  * @author : Alsha Samantaray
  * @version : 1.0
