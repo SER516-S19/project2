@@ -1,13 +1,12 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: saksh
-  Date: 3/1/2019
-  Time: 5:16 PM
-  To change this template use File | Settings | File Templates.
+  @author Sakshi Gautam
+  @version 1.4
+  @since   2019-02-28
+  Description: Displays the student list with their IDs
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="java.util.List"%>
+
 <html>
 <head>
     <title>view-list</title>
@@ -38,12 +37,6 @@
             display: flex;
             padding-top: 10px;
         }
-        .inTable {
-            align-items: center;
-            justify-content: center;
-            display: flex;
-            padding-top: 10px;
-        }
         body {
             background-color: #4a154b;
         }
@@ -67,29 +60,6 @@
             padding: 19px 40px 20px;
             transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
             color: #4a154b;
-        }
-        .btn2 {
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
-            margin-left: 15px;
-            margin-right: 15px;
         }
         h1 {
             text-align: center;
@@ -131,18 +101,18 @@
             <tr>
                 <th><h3>Student ID</h3></th>
             </tr>
-            <c:forEach items="${studentIds}" var="studentId">
-                <tr>
-                    <td>
-                        <div class="wrapper">
+            <tr>
+                <td>
+                    <div class="wrapper">
+                        <c:forEach items="${studentIds}" var="studentId">
                             <form action="viewStudentDetails" method="GET">
                                 <input type="hidden" name="studentId" value="${studentId}">
                                 <input type="submit" value="Student ${studentId}" class="btn1">
                             </form>
-                        </div>
-                    </td>
-                </tr>
-            </c:forEach>
+                        </c:forEach>
+                    </div>
+                </td>
+            </tr>
         </table>
     </div>
 </div>
