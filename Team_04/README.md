@@ -10,16 +10,16 @@ DESCRIPTION
 
 INSTRUCTIONS TO EXECUTE THE PROJECT
 ---------------------------------------------------------------------
-    Copy the folder /war/Team_04 to the webapps folder of the Tomcat 
+    Take Team04.war from the root folder of the project "Team_04"
     
-    Go to the following folder : {TOMCAT_HOME}/webapps/Team_04/WEB-INF/classes
+    Extract the war in the webapps folder of the Tomcat 
     
-    Modify DBDetails.properties file and set the jdbcUrl=
-    {TOMCAT_HOME}/webapps/Team_04/WEB-INF/classes/quizDatabase.db
+    Modify DBDetails.properties in the ({TOMCAT_HOME}/webapps/Team04/WEB-INF/classes/) folder and set the jdbcUrl=
+    {TOMCAT_HOME}/webapps/Team04/WEB-INF/classes/quizDatabase.db
     
-    Start the tomcat server
+    Start the Tomcat 
     
-    Go to the browser and request for http://localhost:8080/Team_04/
+    Go to the browser and request for http://localhost:8080/Team04/
     (need not be 8080 , it is your Local tomcat port)
     
     
