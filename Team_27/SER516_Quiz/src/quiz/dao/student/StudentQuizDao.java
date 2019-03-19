@@ -31,7 +31,7 @@ public class StudentQuizDao {
 		    t.printStackTrace();
 		} finally {
 		}
-	    }		
+	}		
 	@SuppressWarnings("unchecked")
 	public String getQuestionsAndOptions(int quiz_id) throws DataAccessException, NoDataFoundException {
 		@SuppressWarnings("rawtypes")
@@ -68,7 +68,7 @@ public class StudentQuizDao {
 	    	}
 		finally{
 			try{
-		        	if (rs!=null)   rs.close();
+		        if (rs!=null)   rs.close();
 				if (conn!=null) conn.close();
 		      	}
 		      	catch(SQLException e){
@@ -85,23 +85,23 @@ public class StudentQuizDao {
 		try{
 			/*Populating the prepared statement with data from the value object*/
 			preparedStatement = conn.prepareStatement(sql.toString());
-		        preparedStatement.setInt(1, Integer.parseInt(id));
-		        preparedStatement.setInt(2, attempt.getStudentId());
-		        preparedStatement.setInt(3, attempt.getQuestionId());
-		        preparedStatement.setString(4, attempt.getResponse());
-		        preparedStatement.execute();
+		    preparedStatement.setInt(1, Integer.parseInt(id));
+		    preparedStatement.setInt(2, attempt.getStudentId());
+		    preparedStatement.setInt(3, attempt.getQuestionId());
+		    preparedStatement.setString(4, attempt.getResponse());
+		    preparedStatement.execute();
 		}
 		catch(SQLException e){
 			/*Aborting the transaction*/
-		        e.printStackTrace();
-		        DataAccessException exc = new DataAccessException("Error in insert()",e);
-		        try {
-		        	conn.rollback();
-		        }
-		        catch (SQLException e2) {
-		        	throw new DataAccessException("Error rolling back during recovery, nested exception has original error", exc);
-		        }
-		        throw exc;
+		    e.printStackTrace();
+		    DataAccessException exc = new DataAccessException("Error in insert()",e);
+		    try {
+		       	conn.rollback();
+		    }
+		    catch (SQLException e2) {
+		       	throw new DataAccessException("Error rolling back during recovery, nested exception has original error", exc);
+		    }
+		    throw exc;
 		    }
 		    finally{
 		    	try{
@@ -112,5 +112,5 @@ public class StudentQuizDao {
 					   "or statement in insert()");
 		    	}
 		    }
-		}
+	}
 }

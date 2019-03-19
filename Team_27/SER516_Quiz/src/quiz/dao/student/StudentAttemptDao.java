@@ -51,9 +51,7 @@ public class StudentAttemptDao {
 			     quizAttempt = new QuizAttempt(Integer.parseInt(columnsValues.get(0)),
 			    		 Integer.parseInt(columnsValues.get(1)), Integer.parseInt(columnsValues.get(2)), 
 			    		 columnsValues.get(3));
-			}
-			
-			return quizAttempt;
+			}return quizAttempt;
 		} catch (SQLException e) {
 			/* Transaction is aborted*/
 			e.printStackTrace();
@@ -65,8 +63,7 @@ public class StudentAttemptDao {
 				if (conn != null)
 					conn.close();
 			} catch (SQLException e) {
-				System.out.println(
-						"Unable to close resultset, database connection ");
+				System.out.println("Unable to close resultset, database connection ");
 			}
 		}
 	}
@@ -86,13 +83,13 @@ public class StudentAttemptDao {
 			for(int j=0;j<4;j++) {
 				switch(j) {
 					case 0: setIntoExtractedList(answer.getIsOptionACorrect(),i,extractedAnswers,0);
-					break;
+							break;
 					case 1: setIntoExtractedList(answer.getIsOptionBCorrect(),i,extractedAnswers,1);
-					break;
+							break;
 					case 2: setIntoExtractedList(answer.getIsOptionCCorrect(),i,extractedAnswers,2);
-					break;
+							break;
 					case 3: setIntoExtractedList(answer.getIsOptionDCorrect(),i,extractedAnswers,3);
-					break;
+							break;
 				}
 			}		
 			i++;
