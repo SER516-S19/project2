@@ -1,12 +1,13 @@
 <%--
-  @author Sakshi Gautam
-  @version 1.4
-  @since   2019-02-28
-  Description: Displays the student list with their IDs
+  Created by IntelliJ IDEA.
+  User: saksh
+  Date: 3/1/2019
+  Time: 5:16 PM
+  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@page import="java.util.List"%>
 <html>
 <head>
     <title>view-list</title>
@@ -19,28 +20,34 @@
             color: whitesmoke;
             vertical-align: baseline;
         }
+
         tr:nth-child(even) {
             background-color: #8a154b;
             color: white;
         }
+
         td {
             text-align: left;
             padding: 1%;
         }
+
         th {
             text-align: center;
             padding: 8px;
         }
+
         .wrapper {
             align-items: center;
             justify-content: center;
             display: flex;
             padding-top: 10px;
         }
+
         body {
             background-color: #4a154b;
         }
-        .btn1 {
+
+        .submitBtn {
             display: inline-block;
             white-space: nowrap;
             flex-basis: auto;
@@ -58,9 +65,11 @@
             text-transform: uppercase;
             text-decoration: none;
             padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1),
+            color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
             color: #4a154b;
         }
+
         h1 {
             text-align: center;
             color: white;
@@ -68,6 +77,7 @@
             padding-left: 20px;
             font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
         }
+
         h3 {
             text-align: center;
             color: white;
@@ -75,6 +85,7 @@
             padding-top: 20px;
             font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
         }
+
         .panel {
             align: center;
             margin-right: -15px;
@@ -95,7 +106,6 @@
 <body>
 <div class="panel">
     <h1>View Student List</h1>
-
     <div class="wrapper">
         <table>
             <tr>
@@ -107,7 +117,7 @@
                         <c:forEach items="${studentIds}" var="studentId">
                             <form action="viewStudentDetails" method="GET">
                                 <input type="hidden" name="studentId" value="${studentId}">
-                                <input type="submit" value="Student ${studentId}" class="btn1">
+                                <input type="submit" value="Student ${studentId}" class="submitBtn">
                             </form>
                         </c:forEach>
                     </div>

@@ -15,7 +15,7 @@
         ;
         }
 
-        .errMsg
+        .errorMsg
         {
             text-align: center;
             color:white;
@@ -34,6 +34,6 @@
     }
 
 %>
-<h1 class="errMsg"><%=errorMessage%></h1>
+<h1 class="errorMsg"><%=errorMessage%></h1>
 </body>
 </html>

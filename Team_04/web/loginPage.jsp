@@ -43,7 +43,6 @@
         }
     </style>
     <%
-        //String userName = request.getAttribute("userEntName").toString();
         String userStatus;
         if (request.getParameterMap().containsKey("userStatus")) {
             userStatus = request.getAttribute("userStatus").toString();

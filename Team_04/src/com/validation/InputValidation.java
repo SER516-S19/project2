@@ -12,6 +12,7 @@ import java.util.List;
  *  @author Ankita Shivanand Bhandari
  */
 public class InputValidation {
+
     /**
      *
      * @param userName
@@ -29,12 +30,9 @@ public class InputValidation {
                         +userName+"' and password = '"+passWord+"' and userType = '"+userType+"'");
 
         if (userExists != null && !userExists.isEmpty()){
-
             return "success";
-
         }
-        else
-        {
+        else {
             return "failed";
         }
 
@@ -54,9 +52,6 @@ public class InputValidation {
     {
         List<UserData> userExists = DataManager.getInstance().executeGetQuery(UserData.class,
                 "SELECT * from userDetails where userName='"+userName+"'");
-
-
-
         String updateQuery = "INSERT INTO userDetails(userName,password,userType,isActive) VALUES(?,?,?,?)";
 
         if (userExists == null || userExists.isEmpty()){
@@ -65,11 +60,8 @@ public class InputValidation {
 
             return "newUser";
         }
-        else
-        {
-
+        else {
             return "returningUser";
         }
-
     }
 }

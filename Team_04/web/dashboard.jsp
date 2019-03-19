@@ -42,7 +42,7 @@
         background-color: #4a154b;
     }
 
-    .btn1 {
+    .professor {
         display: inline-block;
         white-space: nowrap;
         flex-basis: auto;
@@ -64,7 +64,7 @@
         color: #4a154b;
     }
 
-    .btn2 {
+    .student {
         display: inline-block;
         white-space: nowrap;
         flex-basis: auto;
@@ -100,8 +100,8 @@
 <form class="panel" method="get">
     <h1>Select the user</h1>
     <div class="wrapper">
-        <input type="submit" class="btn1" formaction="./index.jsp" name="action" value="professor"/>
-        <input type="submit" class="btn2" formaction="./instructions" name="action" value="student"/>
+        <input type="submit" class="professor" formaction="./index.jsp" name="action" value="professor"/>
+        <input type="submit" class="student" formaction="./instructions" name="action" value="student"/>
     </div>
 </form>
 </body>
