@@ -16,16 +16,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
 import content.creator.dao.QuesResponseDAO;
 import content.creator.dao.QuizResultDAO;
-
 import org.sqlite.JDBC;
 
-/** @author Hari Krishnan Puthiya Veetil, Aman Kaushik */
-public final class DataOps {
-
-
+ public final class DataOps {
   private DataOps() {}
 
   private static Connection getConnection() throws SQLException {

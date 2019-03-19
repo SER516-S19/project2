@@ -1,14 +1,19 @@
 package content.creator.helper;
 
 import static content.creator.operations.DataOps.getNamesFromProperty;
-
 import content.creator.dao.QuizContentDAO;
 import content.creator.operations.DataOps;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author Hari Krishnan Puthiya Veetil */
+/*
+ * Modified by: Hari Krishnan Puthiya Veetil
+ * Date: 02/22/19
+ * Descrption: Displays the list of available quizzes 
+ * 
+ * */
+
 public final class ViewContentListHelper {
 
     private ViewContentListHelper() {
