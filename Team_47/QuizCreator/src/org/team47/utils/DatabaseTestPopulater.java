@@ -100,11 +100,11 @@ public class DatabaseTestPopulater {
             if(harryPotter != null) {
                 harryPotter.setHashedpass(newPassword);
                 studentDAO.updateStudent(harryPotter);
+
             } else {
                 harryPotter = new Student("boywholived", "Harry", "Potter", null, newPassword);
                 studentDAO.insertStudent(harryPotter);
             }
-            System.out.println(harryPotter.toString());
 
             ProfessorDAOImpl professorDAO = new ProfessorDAOImpl();
             Professor professor = professorDAO.getProfessor("xXKitten_OwnerXx");
@@ -116,14 +116,23 @@ public class DatabaseTestPopulater {
                 professor = new Professor("xXKitten_OwnerXx", "Dolores", "Umbridge", null, newPassword);
                 professorDAO.insertProfessor(professor);
             }
-            System.out.println(professor.toString());
-
             CourseDAO courseDAO = new CourseDAOImpl();
-            Course course = new Course(GARBAGE_INT, "xXKitten_OwnerXx", "DDA", "123")
-            courseDAO.insertCourse(new Course(GARBAGE_INT, "xXKitten_OwnerXx", "DDA", "123"));
+            List<Course> courses = courseDAO.getAllCourses();
+            boolean courseExists = false;
+            for (Course c : courses){
+                if (c.getProfessor_fk().equals("xXKitten_OwnerXx")){
+                    courseExists = true;
+                    break;
+                }
+            }
 
-            EnrolledDAO enrolledDAO = new EnrolledDAOImpl();
-            enrolledDAO.insertEnrolled(new Enrolled(GARBAGE_INT, course.getCourse_id(), "boywholived"));
+            if (!courseExists){
+                Course course = new Course(GARBAGE_INT, "xXKitten_OwnerXx", "DDA", "123");
+                courseDAO.insertCourse(course);
+
+                EnrolledDAO enrolledDAO = new EnrolledDAOImpl();
+                enrolledDAO.insertEnrolled(new Enrolled(GARBAGE_INT, course.getCourse_id(), "boywholived"));
+            }
 
         } catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("Error hashing password!");
@@ -144,7 +153,7 @@ public class DatabaseTestPopulater {
         boolean shuffle = true;
         int time_limit = 60;
         Date date_open = DatatypeConverter.parseDateTime("2018-12-25").getTime();
-        Date date_close = DatatypeConverter.parseDateTime("2018-05-30").getTime();
+        Date date_close = DatatypeConverter.parseDateTime("2019-05-30").getTime();
         String quizType = "quiz";
         int attempts = 3;
         String quizGroup = "Cool Questions";
