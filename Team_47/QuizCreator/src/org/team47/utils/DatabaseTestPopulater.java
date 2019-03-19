@@ -180,18 +180,31 @@ public class DatabaseTestPopulater {
             Choice q1a2 = new Choice(GARBAGE_INT, q1.getQuestion_id(), true, "Bees");
             Choice q1a3 = new Choice(GARBAGE_INT, q1.getQuestion_id(), false, "Alpacas");
             Choice q1a4 = new Choice(GARBAGE_INT, q1.getQuestion_id(), false, "Spiders");
+            choiceDAO.insertChoice(q1a1);
+            choiceDAO.insertChoice(q1a2);
+            choiceDAO.insertChoice(q1a3);
+            choiceDAO.insertChoice(q1a4);
 
             Choice q2a1 = new Choice(GARBAGE_INT, q2.getQuestion_id(), true, "Antarctica");
             Choice q2a2 = new Choice(GARBAGE_INT, q2.getQuestion_id(), false, "The Sonoran Desert");
             Choice q2a3 = new Choice(GARBAGE_INT, q2.getQuestion_id(), true, "Greenland");
             Choice q2a4 = new Choice(GARBAGE_INT, q2.getQuestion_id(), true, "Finland");
             Choice q2a5 = new Choice(GARBAGE_INT, q2.getQuestion_id(), false, "Venus");
+            choiceDAO.insertChoice(q2a1);
+            choiceDAO.insertChoice(q2a2);
+            choiceDAO.insertChoice(q2a3);
+            choiceDAO.insertChoice(q2a4);
+            choiceDAO.insertChoice(q2a5);
 
             Choice q3a1 = new Choice(GARBAGE_INT, q3.getQuestion_id(), false, "True");
             Choice q3a2 = new Choice(GARBAGE_INT, q3.getQuestion_id(), true, "False");
+            choiceDAO.insertChoice(q3a1);
+            choiceDAO.insertChoice(q3a2);
 
             Choice q4a1 = new Choice(GARBAGE_INT, q4.getQuestion_id(), true, "True");
-            Choice a4a2 = new Choice(GARBAGE_INT, q4.getQuestion_id(), false, "False");
+            Choice q4a2 = new Choice(GARBAGE_INT, q4.getQuestion_id(), false, "False");
+            choiceDAO.insertChoice(q4a1);
+            choiceDAO.insertChoice(q4a2);
         }
     }
 
