@@ -9,7 +9,9 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="CSS/instruction.css" type="text/css">
-<script type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="js/question.js"></script>
 <%
 	boolean temp = true;
 	String mulbutton = "hidden";
@@ -57,12 +59,32 @@
 	String html = buf.toString();
 	%>
 <% 
+Cookie[] cookies = request.getCookies();
+Cookie cookie = null;
+String enrolled_id = "";
+String user_name = "";
+for (int i = 0; i < cookies.length; i++) {
+	cookie = cookies[i];
+	if (cookie.getName().equals("session-user")) {
+		user_name = cookie.getValue();
+		break;
+	}
+}
+if (user_name.length() > 0) {
+	List<Enrolled> enrolled = new EnrolledDAOImpl().getStudentEnrollment(user_name);
+	if (enrolled.size() > 0)
+		enrolled_id = String.valueOf(enrolled.get(0).getEnrolled_id());
+	else
+		enrolled_id = "1";
+} else {
+	enrolled_id = "1";
+}
 request.getSession().setAttribute("quizid",quizId);
 request.getSession().setAttribute("enrolled_id","1");
 %>   
 <%=html%>
  <div >
- <button onclick='location.href=("questions.jsp")'>
+ <button onclick="execAjaxOnBegin(<%=quizid1%>,<%=enrolled_id%>)">
 Click here to Begin Quiz 
  </button>
 </div>
