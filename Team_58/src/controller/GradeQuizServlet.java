@@ -21,13 +21,13 @@ import model.StudentResponseDAOBean;
 import model.StudentResponseVO;
 
 /**
- * Class GradeQuizServlet is a controller 
- * that routes the Professor to Grade Dashboard Page from Professor Home Page.
+ * Class GradeQuizServlet is a controller that routes the Professor to Grade
+ * Dashboard Page from Professor Home Page.
  * 
  * @author akashkadam
  * @version 1.3
  **/
-public class GradeQuizServlet extends HttpServlet{
+public class GradeQuizServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -53,13 +53,14 @@ public class GradeQuizServlet extends HttpServlet{
 
 			List<QuestionsVO> questionVOList = questionsDAOBean.getQuestionsInfo(quizId);
 
-			for(QuestionsVO question : questionVOList) {
+			for (QuestionsVO question : questionVOList) {
 				StudentResponseDAOBean studentResponseDAOBean = new StudentResponseDAOBean();
-				List<StudentResponseVO> studentResponseVOList = studentResponseDAOBean.getStudentListFromQuizIdQuestionId(quizId,question.getqId());
+				List<StudentResponseVO> studentResponseVOList = studentResponseDAOBean
+						.getStudentListFromQuizIdQuestionId(quizId, question.getqId());
 				for (StudentResponseVO student : studentResponseVOList) {
-					int score = calculateScore(student,question);
+					int score = calculateScore(student, question);
 					System.out.println("score" + score);
-					studentResponseDAOBean.updateStudentResponse(quizId,question.getqId(),student.getUserId(),score);
+					studentResponseDAOBean.updateStudentResponse(quizId, question.getqId(), student.getUserId(), score);
 				}
 			}
 
@@ -70,44 +71,44 @@ public class GradeQuizServlet extends HttpServlet{
 			session.setAttribute("gradeQuiz", gradedQuizList);
 			session.setAttribute("quizName", quizName);
 
-			response.sendRedirect(request.getContextPath()+"/gradeQuiz.ftl");  
-		}
-		catch(Exception exception) {
+			response.sendRedirect(request.getContextPath() + "/gradeQuiz.ftl");
+		} catch (Exception exception) {
 			log.info(exception.getMessage());
 		}
 
 	}
 
 	private int calculateScore(StudentResponseVO student, QuestionsVO question) {
-		
+
 		int score = 0;
-		JSONParser parser = new JSONParser(); 
+		JSONParser parser = new JSONParser();
 		try {
 			JSONObject correctAnswersJson = (JSONObject) parser.parse(question.getCorrectAnswer());
 			JSONObject studentSelectedAnswersJson = (JSONObject) parser.parse(student.getAnswerSelected());
 			int countOfWrongAnswers = 0;
 			int countOfCorrectAnswered = 0;
 			int countOfCorrectAnswers = correctAnswersJson.size();
-			if(correctAnswersJson.size() < studentSelectedAnswersJson.size()) {
-				countOfWrongAnswers = studentSelectedAnswersJson.size() - correctAnswersJson.size();
-			}
-			for(Object correctAnswerOption : correctAnswersJson.keySet()) {
-				for(Object selectedAnswerOption : studentSelectedAnswersJson.keySet()) {
-					String selectedAnswerOptionString = (String)selectedAnswerOption;
-					String correctAnswerOptionString = (String)correctAnswerOption;
-					if(selectedAnswerOptionString.equals(correctAnswerOptionString)){
+
+			for (Object correctAnswerOption : correctAnswersJson.values()) {
+				for (Object selectedAnswerOption : studentSelectedAnswersJson.values()) {
+					String selectedAnswerOptionString = (String) selectedAnswerOption;
+					String correctAnswerOptionString = (String) correctAnswerOption;
+					System.out.println(selectedAnswerOptionString + " " + correctAnswerOptionString);
+					if (selectedAnswerOptionString.equals(correctAnswerOptionString)) {
 						countOfCorrectAnswered++;
 					}
 				}
 			}
+			countOfWrongAnswers = studentSelectedAnswersJson.size() - countOfCorrectAnswered;
 			countOfCorrectAnswered = countOfCorrectAnswered - countOfWrongAnswers;
-			score = countOfCorrectAnswered <= 0 ? 0 : (question.getTotalPoints() /  countOfCorrectAnswers)*countOfCorrectAnswered;
+			score = countOfCorrectAnswered <= 0 ? 0
+					: (question.getTotalPoints() / countOfCorrectAnswers) * countOfCorrectAnswered;
 		} catch (ParseException exception) {
-	
+
 		}
 
 		return score;
-	
+
 	}
 
 }

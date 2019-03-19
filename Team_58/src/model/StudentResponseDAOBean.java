@@ -12,96 +12,151 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 import controller.ProfessorHomeServlet;
+
 /**
- * Class StudentResponseDAOBean with the following method:
- * 	a. update studentResponse score based on quizId after grade quiz command
- * @author akashkadam
- * @version 1.0
+ * Class StudentResponseDAOBean with the following method: a. update
+ * studentResponse score based on quizId after grade quiz command
  * 
+ * @author akashkadam
+ * @version 1.1
+ * @date 03/14/2019
  */
 public class StudentResponseDAOBean implements StudentResponseDAO {
 
 	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
-	
+
 	private static Properties dbProperties = new Properties();
 
 	public StudentResponseDAOBean() throws IOException {
 		dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("database.properties"));
 	}
+
 	@Override
 	public void updateStudentResponse(int quizId) {
 
-
 		Connection connection = null;
 		PreparedStatement query = null;
-
 		try {
-			
 			connection = ConnectionFactory.getConnection();
 			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponse"));
-			query.setInt(1,quizId);
+			query.setInt(1, quizId);
 			query.executeUpdate();
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			log.info(e.getMessage());
 		}
 	}
 
 	@Override
+	public void insertQuizAnswers(int courseId, int quizId, int userId, int questionId, String answerSelected,
+			int score) {
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		ResultSet resultData = null;
+
+		try {
+			connection = ConnectionFactory.getConnection();
+			query = connection.prepareStatement(dbProperties.getProperty("insertStudentResponse"));
+			query.setInt(1, courseId);
+			query.setInt(2, quizId);
+			query.setInt(3, userId);
+			query.setInt(4, questionId);
+			query.setString(5, answerSelected);
+			query.setInt(6, score);
+			query.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			log.info(e.getMessage());
+		}
+	}
+
 	public List<StudentResponseVO> getStudentListFromQuizIdQuestionId(int quizId, int questionId) {
 
-
-		
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet resultData = null;
 		List<StudentResponseVO> list = new ArrayList<>();
 		try {
 			connection = ConnectionFactory.getConnection();
-			
 			query = connection.prepareStatement(dbProperties.getProperty("getStudentQuery"));
-			query.setInt(1,quizId);
+			query.setInt(1, quizId);
 			query.setInt(2, questionId);
-
 			resultData = query.executeQuery();
 
-			while(resultData.next()) {
+			while (resultData.next()) {
 				int userId = resultData.getInt("userId");
 				String answerSelected = resultData.getString("answerSelected");
-				StudentResponseVO student = new StudentResponseVO(userId,answerSelected);
+				StudentResponseVO student = new StudentResponseVO(userId, answerSelected);
 				list.add(student);
 			}
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			log.info(e.getMessage());
 		}
-		
-		
 		return list;
-	
-	
 	}
-	
-	@Override
-	public void updateStudentResponse(int quizId, int questionId, int userId,int score) {
+
+	public List<StudentResponseVO> getStudentListFromCourseIdQuizIdUserId(int courseId, int quizId, int userId) {
 
 		Connection connection = null;
 		PreparedStatement query = null;
-
+		ResultSet resultData = null;
+		List<StudentResponseVO> list = new ArrayList<>();
 		try {
 			connection = ConnectionFactory.getConnection();
-			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponseForScore"));
-			query.setInt(1,score);
-			query.setInt(2,quizId);
-			query.setInt(3,userId );
-			query.setInt(4,questionId);
-			query.executeUpdate();
-			
+			query = connection.prepareStatement(dbProperties.getProperty("getStudentQueryForStudentResponse"));
+			query.setInt(1, courseId);
+			query.setInt(2, quizId);
+			query.setInt(3, userId);
+
+			resultData = query.executeQuery();
+
+			while (resultData.next()) {
+				int userID = resultData.getInt("userId");
+				String answerSelected = resultData.getString("answerSelected");
+				StudentResponseVO student = new StudentResponseVO(userId, answerSelected);
+				list.add(student);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			log.info(e.getMessage());
 		}
-	
-		
+		return list;
+	}
+
+	@Override
+	public void updateStudentResponse(int quizId, int questionId, int userId, int score) {
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		try {
+			connection = ConnectionFactory.getConnection();
+			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponseForScore"));
+			query.setInt(1, score);
+			query.setInt(2, quizId);
+			query.setInt(3, userId);
+			query.setInt(4, questionId);
+			query.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			log.info(e.getMessage());
+		}
+	}
+
+	@Override
+	public void updateStudentResponse(int courseId, int quizId, int userId, int questionId, String answerSelected) {
+
+		Connection connection = null;
+		PreparedStatement query = null;
+		try {
+			connection = ConnectionFactory.getConnection();
+			query = connection.prepareStatement(dbProperties.getProperty("updateStudentResponseForAnswer"));
+			query.setString(1, answerSelected);
+			query.setInt(2, courseId);
+			query.setInt(3, quizId);
+			query.setInt(4, userId);
+			query.setInt(5, questionId);
+
+			query.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			log.info(e.getMessage());
+		}
 	}
 
 }

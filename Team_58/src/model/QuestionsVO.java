@@ -3,11 +3,11 @@ package model;
 /**
  * QuestionVO is the plain old java file for CreateQuestions and ViewQiz pages
  * 
- * @version 1.1
- * @author trupti khatavkar / @author aditya samant
+ * @version 1.2
+ * @author trupti khatavkar
+ * @author Aditya Samant
  * @date 02/22/2019
  */
-
 public class QuestionsVO {
 
 	private int quizId;
@@ -27,6 +27,7 @@ public class QuestionsVO {
 	 */
 	public QuestionsVO(int quizId, String question, String correctAnswer, String incorrectAnswer1,
 			String incorrectAnswer2, String incorrectAnswer3, int totalPoints, boolean isMCQ) {
+
 		super();
 		this.quizId = quizId;
 		this.question = question;
@@ -55,19 +56,7 @@ public class QuestionsVO {
 		this.incorrectAnswer3 = incorrectAnswer3;
 		this.totalPoints = totalPoints;
 	}
-
 	
-	/**
-	 * Constructor for rendering multiple answer questions.
-	 * 
-	 * Takes the jsonObj answers as individual strings.
-	 * @author Aditya Samant
-	 * @version 1.0
-	 * @date 02/27/2019
-	 * */
-	 
-	
-
 	public int getQuizId() {
 		return quizId;
 	}
@@ -139,5 +128,4 @@ public class QuestionsVO {
 	public void setMCQ(boolean isMCQ) {
 		this.isMCQ = isMCQ;
 	}
-
 }

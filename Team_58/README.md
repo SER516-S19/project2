@@ -12,11 +12,11 @@ Build Project
  Database Information
  - database is hosted on Microsoft Azure
 To log in as Student, Use the below credentials:
-Username : jkdrumm
+Username : vikadi
 Password: 1234
 
 To log in as Professor, Use the below credentials:
-Username: vikadi
+Username: jgonzalez
 Password : 1234
 
 Team Professor:

@@ -1,8 +1,10 @@
 <!-- 
 Freemarker page to display CreateQuestions Page 
-@authour Trupti Khatavkar / @author Aditya Vikram / @author Carnic
-@version 1.6
-@date 02/27/2019
+@authour Trupti Khatavkar 
+@author Aditya Vikram
+@author Carnic
+@version 1.7
+@date 03/14/2019
  -->
 
 <html>
@@ -11,9 +13,9 @@ Freemarker page to display CreateQuestions Page
 </head>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $("#questionForm").validate({
+    	<script type="text/javascript">
+    	$(document).ready(function() {
+      	$("#questionForm").validate({
         messages: {
             question: "Please add Question",
             correctAnswer: "Please add the correct answer",
@@ -37,13 +39,13 @@ Freemarker page to display CreateQuestions Page
 		<div class="navbar">
 		  <a method="POST" href="createQuiz.ftl"> < Create Quiz </a>
 		  <div class="dropdown">
-		    <button class="dropbtn">v
+		  <button class="dropbtn">v
 		      <i class="fa fa-caret-down"></i>
-		    </button>
-		    <div class="dropdown-content">
+		  </button>
+		  <div class="dropdown-content">
 		    	<a href="professorHome.ftl">Home</a>
 		    	<a href="login.jsp" name="logoutProfile">Logout</a>
-		    </div>
+		  </div>
 		  </div> 
 		</div>
 	<h1 class="fontColor">Enter your questions and answers</h1>

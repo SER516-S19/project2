@@ -1,77 +1,65 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ConnectionFactory;
-import model.QuestionsVO;
-import model.QuestionsVO;
 
-import java.sql.PreparedStatement;
-import javax.servlet.annotation.WebServlet;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONObject;
+import model.QuestionsDAOBean;
+import model.DisplayQuestionsVO;
 
-/*
- *  @Author: Jainish Soni
- *  @Version: 1.0
- *  @Date: 02/22/2019
- */
-@WebServlet(name = "DisplayQuiz", urlPatterns = "/DisplayQuiz")
-/*
+/**
+ * 
  * DisplayQuizServlet class is created to display the question of a quiz to the
  * student.
- */
+ * 
+ * @author: Jainish Soni
+ * @version: 2.0
+ * @date: 02/28/2019
+ * 
+ **/
 public class DisplayQuizServlet extends HttpServlet {
+
 	/*
 	 * This method will establish the connection with the database and will fetch
 	 * every detail to display the quiz for a student.
 	 */
+
+	private static Logger log = Logger.getLogger(DisplayQuizServlet.class.getName());
+
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		try {
-			int questionID = Integer.parseInt(req.getParameter("questionId"));
+			HttpSession session = req.getSession();
+
+			int quizID = Integer.parseInt(req.getParameter("quizId"));
+			List<Integer> questionsIds = new ArrayList<Integer>();
+
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-			String hostName = "showtimefinder.database.windows.net";
-			String dbName = "ser516_db";
-			String user = "scrum_mates@showtimefinder";
-			String password = "Azure@Cloud";
-			String url = String.format(
-					"jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
-							+ "hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
-					hostName, dbName, user, password);
-			Connection connection = DriverManager.getConnection(url);
-			String schema = connection.getSchema();
-			System.out.println("Successful connection - Schema: " + schema);
+			QuestionsDAOBean questionBean = new QuestionsDAOBean();
 
-			PreparedStatement query2 = connection
-					.prepareStatement("select * from [dbo].[questions] where questionId = ?");
-			query2.setInt(1, questionID);
-			ResultSet userData = query2.executeQuery();
-			QuestionsVO questionsVO = null;
+			List<DisplayQuestionsVO> questions = questionBean.getQuestionsForQuiz(quizID);
 
-			while (userData.next()) {
-				int questionId = userData.getInt("questionId");
-				int quizId = userData.getInt("quizId");
-				int totalPoints = userData.getInt("totalPoints");
-				String question = userData.getString("question");
-				String answer = userData.getString("actualAnswer");
-				String choices = userData.getString("totalChoices");
+			int displayQuestionsVOLength = questions.size();
 
-				JSONParser parser = new JSONParser();
-				JSONObject jo = (JSONObject) parser.parse(choices);
+			for (int i = 0; i < displayQuestionsVOLength; i++) {
 
-				String choice1 = (String) jo.get("incorrectAnswer1");
-				String choice2 = (String) jo.get("incorrectAnswer2");
-				String choice3 = (String) jo.get("incorrectAnswer3");
+				questionsIds.add(questions.get(i).getqId());
 
-				questionsVO = new QuestionsVO(questionId, totalPoints, answer, choice1, choice2, choice3, question);
 			}
+
+			session.setAttribute("displayQuestionsVO", questions);
+			session.setAttribute("displayQuestionsVOLength", displayQuestionsVOLength);
+			session.setAttribute("quizId", quizID);
+			session.setAttribute("questionsIds", questionsIds);
+
+			res.sendRedirect(req.getContextPath() + "/displayQuiz.ftl");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -16,9 +16,9 @@ import model.QuestionsVO;
  * Create Questions after Create Quiz.
  * 
  * @author trupti khatavkar
- * @version 1.3
- * @date 02/22/2019
- **/
+ * @version 1.4
+ * @date 03/14/2019
+ */
 public class CreateQuestionsServlet extends HttpServlet {
 	private static Logger log = Logger.getLogger(CreateQuestionsServlet.class.getName());
 
@@ -39,14 +39,18 @@ public class CreateQuestionsServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 		try {
-
 			String question = req.getParameter("question");
 			String correctAnswer = req.getParameter("correctAnswer");
 			String incorrectAnswer1 = req.getParameter("incorrectAnswer1");
 			String incorrectAnswer2 = req.getParameter("incorrectAnswer2");
 			String incorrectAnswer3 = req.getParameter("incorrectAnswer3");
 			int totalPoints = Integer.parseInt(req.getParameter("totalPoints"));
-			Boolean isMCQ = Boolean.valueOf(req.getParameter("isMCQ"));
+			String MCQ = req.getParameter("isMCQ");
+			Boolean isMCQ = null;
+			if (MCQ.equals("1"))
+				isMCQ = true;
+			else
+				isMCQ = false;
 
 			HttpSession session = req.getSession();
 			int quizId = (int) session.getAttribute("quizId");
@@ -58,11 +62,10 @@ public class CreateQuestionsServlet extends HttpServlet {
 
 			res.sendRedirect(req.getContextPath() + "/createQuestions.ftl");
 
-			
-			if (req.getParameter("logoutProfile") != null) {  
-			    session.invalidate();
-			    res.sendRedirect("login.jsp");
-			    return; 
+			if (req.getParameter("logoutProfile") != null) {
+				session.invalidate();
+				res.sendRedirect("login.jsp");
+				return;
 			}
 			
 		} catch (Exception e) {

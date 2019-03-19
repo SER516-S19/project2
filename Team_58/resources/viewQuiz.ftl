@@ -1,9 +1,7 @@
 <#-- Author: Aditya Samant/Akash Kadam
-	Renders viewQuiz page which displays question information such as question description, answer possible choices and points
-	 of a particular quiz along with quiz information such as quiz name, quiz status, scheduled date and total points
-	An edit button shows up next to each question that allows professor to edit ungraded quiz questions 
-	that have not passed the schedule date. 
-	Ungraded quizzes also show the grade quiz button that transfers professor to grade quiz page for grading.
+	View Quiz Page:
+	Displays quiz information such as date, instructions, status (graded/ungraded), question information.
+	Unscheduled quizzes can be edited and ungraded quizzes can be graded.
 	version: 1.4
   -->
 <html>
@@ -88,8 +86,7 @@
 				<th>Choice2</th>
 				<th>Choice3</th>
 				<th>Points</th>
-				<#if Session.Grade == false>
-				<#assign editButton = 0>
+				<#if Session.Grade == false && Session.isAfter == false>
 					<th>Edit</th>
 				</#if>
 			</tr>
@@ -102,18 +99,12 @@
 				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer2()}</td>
 				   <td contenteditable="false" value=${qId}>${questions.getIncorrectAnswer3()}</td>
 				   <td contenteditable="false" value=${qId}>${questions.getTotalPoints()}</td>
-				   <#if Session.Grade == false>
+				   <#if Session.Grade == false && Session.isAfter== false>
 					   <td><button name="editButton" value=${qId} onclick="editRow(this.value)">Edit</button></td>
 				   </#if>
 		        </tr>
 	        </#list>
         </table>
-       
-        
-        <#--
-        	author: Aditya Samant
-        	see src/controller/ViewQuizServlet.java
-        -->
         <script>
         	/**
         	* The following script edits a row of the table and sends info to servlet
