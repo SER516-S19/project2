@@ -1,7 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="content.creator.dao.QuizResultDAO" %><%--
-  User: sakshi
-  Date: 3/1/2019
+  @author Sakshi Gautam
+  @version 1.4
+  @since   2019-02-28
+  Description: Displays student statistics for the quiz.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -41,27 +43,6 @@
         }
         body {
             background-color: #4a154b;
-        }
-        .btn1 {
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
         }
         .btn2 {
             display: inline-block;
@@ -113,47 +94,39 @@
 <body>
 <div class="panel">
     <h1> <%="Student Details"%></h1>
-        <div class="wrapper">
-            <table class="inTable">
-                <tr>
-                    <th>Quiz ID</th>
-                    <th>Attempt ID</th>
-                    <th>Score</th>
-                </tr>
+    <div class="wrapper">
+        <table class="inTable">
+            <tr>
+                <th>Quiz ID</th>
+                <th>Attempt ID</th>
+                <th>Score</th>
+            </tr>
 
-                <%
-                    List<QuizResultDAO> studentDataList = (List<QuizResultDAO> )request.getAttribute("studentDetails");
+            <%
+                List<QuizResultDAO> studentDataList = (List<QuizResultDAO> )request.getAttribute("studentDetails");
+                for (QuizResultDAO studentResponse: studentDataList) {
+            %>
+            <tr>
+                <th><%=studentResponse.getQuizId()%></th>
+                <th><%=studentResponse.getAttemptId()%></th>
+                <th><%=studentResponse.getFinalScore()%></th>
+            </tr>
 
-                    int studentid = (int) request.getAttribute("studentid");
-
-                    for (QuizResultDAO studentResponse: studentDataList) {
-
-
-                %>
-                <tr>
-                    <th><%=studentResponse.getQuizId()%></th>
-                    <th><%=studentResponse.getAttemptId()%></th>
-                    <th><%=studentResponse.getFinalScore()%></th>
-                </tr>
-
-
-
-                <%
-
-                    }
-                %>
-                <tr>
-                    <th>Total No of Quizzes: ${totalQuizzes}</th>
-                    <th></th>
-                    <th>TotalScore: ${score}</th>
-                </tr>
-            </table>
-        </div>
-        <div class="wrapper">
-            <form action="studentList">
-                <input type="submit" value="Back" class="btn2">
-            </form>
-        </div>
+            <%
+                }
+            %>
+            <tr>
+                <th>Total No of Quizzes: ${totalQuizzes}</th>
+                <th></th>
+                <th>TotalScore: ${score}</th>
+            </tr>
+        </table>
     </div>
+    <div class="wrapper">
+        <form action="studentList">
+            <input type="submit" value="Back" class="btn2">
+        </form>
+    </div>
+</div>
 </body>
 </html>
