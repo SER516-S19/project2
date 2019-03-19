@@ -1,7 +1,6 @@
 package student.servlet;
 
 import DBUtil.DataManager;
-
 import student.dto.AnswerOption;
 import student.dto.QuizContent;
 import com.validation.InputValidation;
@@ -206,7 +205,7 @@ public class QuestionAnswerServlet extends HttpServlet {
         currentQuestion.setScore(result);
         return result;
         }
-        
+
         /**
          * Servlet method to get the quiz results
          *
