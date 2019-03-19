@@ -65,7 +65,6 @@ public class Main {
         DatabaseTestPopulater.updateExampleUsersToValidPasswords();
         DatabaseTestPopulater.populateDB();
         DatabaseTestPopulater.addKittyQuizzes();
-        DatabaseTestPopulater.printEverything();
         tomcat.start();
         tomcat.getServer().await();
         conn.close();
