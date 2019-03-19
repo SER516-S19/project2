@@ -9,15 +9,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 public final class ViewContentDetailsHelper {
-  private ViewContentDetailsHelper() {}
 
-  public static List<QuizContentDAO> getQuizContent(int quizId) throws SQLException {
-    String queryString = getContentQuery(quizId);
-    return DataOps.getDataCreateContent(queryString);
-  }
+	public static List<QuizContentDAO> getQuizContent(int quizId) throws SQLException {
+		String queryString = getContentQuery(quizId);
+		return DataOps.getDataCreateContent(queryString);
+	}
 
-  private static String getContentQuery(int quizId) {
-    String colName = getNamesFromProperty("QUIZ_CONTENT_QUIZ_ID_COL_NAME");
-    return String.format("SELECT * FROM quiz_content WHERE %s = %s", colName, quizId);
-  }
+	private static String getContentQuery(int quizId) {
+		String colName = getNamesFromProperty("QUIZ_CONTENT_QUIZ_ID_COL_NAME");
+		return String.format("SELECT * FROM quiz_content WHERE %s = %s", colName, quizId);
+	}
 }

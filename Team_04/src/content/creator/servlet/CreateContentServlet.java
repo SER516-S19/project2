@@ -23,35 +23,28 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/create")
 public class CreateContentServlet extends HttpServlet {
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
 
-
-
-
-  }
-
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    String responseRedirect = "./quizList";
-    Gson gson = new Gson();
-    String json = request.getParameter("data");
-    QuizQuestionsDAO[] quizQuestions = gson.fromJson(json, QuizQuestionsDAO[].class);
-    List<QuizFormDAO> quizFormList = processPayload(Arrays.asList(quizQuestions));
-    try {
-      for(QuizFormDAO quizForm: quizFormList) {
-        saveDataToDb(
-            quizForm.getQuizId(),
-            quizForm.getQuestionId(),
-            quizForm.getQuestionText(),
-            quizForm.getAnswerBundle(),
-            quizForm.getScore());
-      }
-    } catch (SQLException sqlEx) {
-      System.out.println(sqlEx.getMessage());
-      responseRedirect = "createContent.jsp";
-    } finally {
-      response.sendRedirect(responseRedirect);
-    }
-  }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String responseRedirect = "./quizList";
+		Gson gson = new Gson();
+		String json = request.getParameter("data");
+		QuizQuestionsDAO[] quizQuestions = gson.fromJson(json, QuizQuestionsDAO[].class);
+		List<QuizFormDAO> quizFormList = processPayload(Arrays.asList(quizQuestions));
+		try {
+			for(QuizFormDAO quizForm: quizFormList) {
+				saveDataToDb(
+						quizForm.getQuizId(),
+						quizForm.getQuestionId(),
+						quizForm.getQuestionText(),
+						quizForm.getAnswerBundle(),
+						quizForm.getScore());
+			}
+		} catch (SQLException sqlEx) {
+			System.out.println(sqlEx.getMessage());
+			responseRedirect = "createContent.jsp";
+		} finally {
+			response.sendRedirect(responseRedirect);
+		}
+	}
 }
