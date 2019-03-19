@@ -12,25 +12,23 @@ import java.util.logging.Logger;
 import controller.ProfessorHomeServlet;
 
 /**
- * Class GradeQuizVODAOBean with the following method:
- * a. get GradeVO list
+ * Class GradeQuizVODAOBean with the following method: a. get GradeVO list
  *
  * @author akashkadam
- * @version 1.0
- * GradeQuizVODAO
+ * @version 1.0 GradeQuizVODAO
  */
 public class GradeQuizVODAOBean implements GradeQuizVODAO {
 
 	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
-	
+
 	private static Properties dbProperties = new Properties();
 
 	public GradeQuizVODAOBean() throws IOException {
 		dbProperties.load(ConnectionFactory.class.getClassLoader().getResourceAsStream("database.properties"));
 	}
-	
+
 	@Override
-	public List<GradeQuizVO> getgradeQuiz(int quizId,String quizName) {
+	public List<GradeQuizVO> getgradeQuiz(int quizId, String quizName) {
 
 		Connection connection = null;
 		PreparedStatement query = null;
@@ -39,14 +37,14 @@ public class GradeQuizVODAOBean implements GradeQuizVODAO {
 		try {
 			connection = ConnectionFactory.getConnection();
 			query = connection.prepareStatement(dbProperties.getProperty("getgradeQuizQuery"));
-			query.setInt(1,quizId);
+			query.setInt(1, quizId);
 			resultData = query.executeQuery();
-			
-			while(resultData.next()) {
+
+			while (resultData.next()) {
 				int score = resultData.getInt("score");
 				String firstName = resultData.getString("firstname");
-				String lastName = resultData.getString("lastname"); 
-				GradeQuizVO gradeQuiz = new GradeQuizVO(score,firstName,lastName,quizName);
+				String lastName = resultData.getString("lastname");
+				GradeQuizVO gradeQuiz = new GradeQuizVO(score, firstName, lastName, quizName);
 				list.add(gradeQuiz);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -56,20 +54,19 @@ public class GradeQuizVODAOBean implements GradeQuizVODAO {
 	}
 
 	@Override
-	public List<GradeQuizVO> getQuizGradesForStudent(int userId) throws SQLException, ClassNotFoundException
-	{
+	public List<GradeQuizVO> getQuizGradesForStudent(int userId) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement query = null;
 		ResultSet resultData = null;
-		
+
 		connection = ConnectionFactory.getConnection();
-		
+
 		List<GradeQuizVO> list = new ArrayList<>();
 		query = connection.prepareStatement(dbProperties.getProperty("getStudentGrades"));
 		query.setInt(1, userId);
 		resultData = query.executeQuery();
 
-		while(resultData.next()) {
+		while (resultData.next()) {
 			int score = resultData.getInt("score");
 			String quizTitle = resultData.getString("quizTitle");
 			String courseName = resultData.getString("courseName");

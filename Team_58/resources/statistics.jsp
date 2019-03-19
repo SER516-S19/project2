@@ -39,11 +39,18 @@ This file is for rendering the statistics graphs
     conn1 = ConnectionFactory.getConnection();
     
     Gson gson = new Gson();
+    
     ResourceBundle resource = ResourceBundle.getBundle("database");
+    
+    int courseId = (int) session.getAttribute("courseId");
+    
+    
     	
-    Statement stmt1 = conn1.createStatement();
-    ResultSet rs1 = stmt1.executeQuery(resource.getString("getStatsForTopTenStudents"));
-
+    PreparedStatement preparedStatement1 = conn1.prepareStatement(resource.getString("getStatsForTopTenStudents"));
+	preparedStatement1.setInt(1, courseId);
+    
+    ResultSet rs1 = preparedStatement1.executeQuery();
+    
     // The 'chartobj' map object holds the chart attributes and data.
     Map<String, String> chartobj1 = new HashMap<String, String>();
 
@@ -64,7 +71,7 @@ This file is for rendering the statistics graphs
 
     //close the connection.
     rs1.close();
-    stmt1.close();
+    preparedStatement1.close();
     conn1.close();
 
     //create 'dataMap' map object to make a complete FC datasource.
@@ -96,8 +103,10 @@ This file is for rendering the statistics graphs
     conn2 = ConnectionFactory.getConnection();
     
     // Execute the query
- 	Statement stmt2 = conn2.createStatement();
- 	ResultSet rs2 = stmt2.executeQuery(resource.getString("getAverageMarksInQuiz"));
+    PreparedStatement preparedStatement2 = conn2.prepareStatement(resource.getString("getAverageMarksInQuiz"));
+	preparedStatement2.setInt(1, courseId);
+   
+ 	ResultSet rs2 = preparedStatement2.executeQuery();
 
  	Map<String, String> chartobj2 = new HashMap<String, String>();
 
@@ -140,7 +149,7 @@ This file is for rendering the statistics graphs
             );
             
        rs2.close();
-       stmt2.close();
+       preparedStatement2.close();
        conn2.close();
 %>
 

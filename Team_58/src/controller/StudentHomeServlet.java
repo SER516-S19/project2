@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import model.CourseDAOBean;
 import model.CourseVO;
 import model.UserVO;
+
 /**
  * StudentHome is a servlet controlling the home page for students
  * 
@@ -33,14 +34,14 @@ public class StudentHomeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		try {
 			UserVO userVO = (UserVO) req.getAttribute("UserVO");
 			HttpSession session = req.getSession();
 			session.setAttribute("userVO", userVO);
-			int userId =  userVO.getUserId();
+			int userId = userVO.getUserId();
 
 			try {
 				CourseDAOBean courseBean = new CourseDAOBean();

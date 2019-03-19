@@ -23,43 +23,43 @@ import model.UserVO;
  * @date 03/14/2019
  */
 
-public class ProfessorHomeServlet extends HttpServlet{
-	
+public class ProfessorHomeServlet extends HttpServlet {
+
 	private static Logger log = Logger.getLogger(ProfessorHomeServlet.class.getName());
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
-		
+
 	}
 
 	/**
-	 * This method is to find the courses assigned to Professor 
-	 * and display them in his homepage. 
-	 *@param request  Request made to server
-	 *@param response  Responses from server
+	 * This method is to find the courses assigned to Professor and display them in
+	 * his homepage.
+	 * 
+	 * @param request  Request made to server
+	 * @param response Responses from server
 	 *
 	 * @throws IOException
-	 */	
+	 */
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		
+
 		Boolean isCoursesAssigned = false;
 		UserVO userVO = (UserVO) req.getAttribute("UserVO");
-		
+
 		HttpSession session = req.getSession();
 		session.setAttribute("userVO", userVO);
-		
+
 		try {
 			CourseDAOBean courseBean = new CourseDAOBean();
-			if(courseBean.equals(null)) {
+			if (courseBean.equals(null)) {
 			}
 			List<CourseVO> courseVO = courseBean.getCourseAssignedToProfessor(userVO);
-      
-			if(courseVO.isEmpty()) {
+
+			if (courseVO.isEmpty()) {
 				session.setAttribute("displayMessage", "No Courses have been assigned to the professor");
 				log.info("No Courses have been assigned to the professor.");
-			}
-			else {
+			} else {
 				isCoursesAssigned = true;
 				HashMap<Integer, String> course = new HashMap<>();
 				for (int i = 0; i < courseVO.size(); i++)

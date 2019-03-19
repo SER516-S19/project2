@@ -1,3 +1,13 @@
+package controller;
+import java.io.IOException;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.UserDAOBean;
+
 /*
 Servlet for user to reset password
 @authour Vaibhav Bhasin
@@ -5,29 +15,8 @@ Servlet for user to reset password
 @date 02/27/2019
 */
 
-package controller;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Logger;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import model.CourseDAOBean;
-import model.CourseVO;
-import model.UserDAO;
-import model.UserDAOBean;
-import model.UserVO;
-
 @WebServlet(name = "forgotPassword", urlPatterns = "/forgotpassword")
-public class forgotPasswordServlet extends HttpServlet {
+public class ForgotPasswordServlet extends HttpServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {

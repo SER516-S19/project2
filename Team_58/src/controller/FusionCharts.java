@@ -2,6 +2,14 @@ package controller;
 
 import java.util.*;
 
+/**
+ * Using fusion charts library for creating charts on statistics page.
+ * 
+ * @author fusioncharts.com
+ * @version 1.0
+ **/
+
+
 public class FusionCharts {
 	private String constructorTemplate = "<script type=\"text/javascript\">\nFusionCharts.ready(function () {\n\tvar fc_chart = new FusionCharts(%s);\n%sfc_chart.render();\n});\n</script>";
 	private String constructorTimeSeriesTemplate = "<script type=\"text/javascript\">\nFusionCharts.ready(function () {\n\t%s\nvar fc_chart = new FusionCharts(%s);\nfc_chart.render();\n});\n</script>";

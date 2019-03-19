@@ -45,7 +45,12 @@ public class CreateQuestionsServlet extends HttpServlet {
 			String incorrectAnswer2 = req.getParameter("incorrectAnswer2");
 			String incorrectAnswer3 = req.getParameter("incorrectAnswer3");
 			int totalPoints = Integer.parseInt(req.getParameter("totalPoints"));
-			Boolean isMCQ = Boolean.valueOf(req.getParameter("isMCQ"));
+			String MCQ = req.getParameter("isMCQ");
+			Boolean isMCQ = null;
+			if (MCQ.equals("1"))
+				isMCQ = true;
+			else
+				isMCQ = false;
 
 			HttpSession session = req.getSession();
 			int quizId = (int) session.getAttribute("quizId");
@@ -56,11 +61,11 @@ public class CreateQuestionsServlet extends HttpServlet {
 			qdb.insertingQuestions(questionsVO);
 
 			res.sendRedirect(req.getContextPath() + "/createQuestions.ftl");
-			
-			if (req.getParameter("logoutProfile") != null) {  
-			    session.invalidate();
-			    res.sendRedirect("login.jsp");
-			    return; 
+
+			if (req.getParameter("logoutProfile") != null) {
+				session.invalidate();
+				res.sendRedirect("login.jsp");
+				return;
 			}
 		} catch (Exception e) {
 			log.info(e.getMessage());

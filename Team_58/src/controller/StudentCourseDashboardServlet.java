@@ -52,7 +52,7 @@ public class StudentCourseDashboardServlet extends HttpServlet {
 			List<QuizVO> quizList = quizBean.getQuizzesForCourse(courseId);
 			if (quizList.isEmpty())
 				log.info("No Quizzes exist for this course.");
-			
+
 			HashMap<Integer, String> quizzes = new HashMap<>();
 			for (QuizVO q : quizList)
 				quizzes.put(q.getQuizId(), q.getQuizTitle());

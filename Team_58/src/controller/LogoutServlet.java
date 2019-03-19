@@ -17,11 +17,9 @@ import javax.servlet.http.HttpSession;
  **/
 
 @WebServlet(name = "Logout", urlPatterns = "/Logout")
-public class LogoutServlet extends HttpServlet 
-{
+public class LogoutServlet extends HttpServlet {
 	@Override
-	public void doGet(HttpServletRequest req, HttpServletResponse res)
-	{
+	public void doGet(HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		try {

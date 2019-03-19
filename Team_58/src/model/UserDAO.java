@@ -13,6 +13,9 @@ import java.util.List;
  **/
 public interface UserDAO {
 
-	public List<UserVO> getUserInfo(String userName, String passWord) throws ClassNotFoundException, SQLException, IOException;
-	public void updatePassword(String userName, String password) throws ClassNotFoundException, SQLException, IOException;
+	public List<UserVO> getUserInfo(String userName, String passWord)
+			throws ClassNotFoundException, SQLException, IOException;
+
+	public void updatePassword(String userName, String password)
+			throws ClassNotFoundException, SQLException, IOException;
 }

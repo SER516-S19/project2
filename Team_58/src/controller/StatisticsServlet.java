@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Class CourseDashboardServlet is a controller 
- * that routes the User to Course Dashboard Page from Professor Home Page.
+ * Class StatisticsServlet is a controller 
+ * that routes the Professor to Statistics Page from Course Dashboard.
  * 
  * @author narenkumarKonchada
  * @author shivamverma
