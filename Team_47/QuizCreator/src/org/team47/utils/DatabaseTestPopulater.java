@@ -117,6 +117,14 @@ public class DatabaseTestPopulater {
                 professorDAO.insertProfessor(professor);
             }
             System.out.println(professor.toString());
+
+            CourseDAO courseDAO = new CourseDAOImpl();
+            Course course = new Course(GARBAGE_INT, "xXKitten_OwnerXx", "DDA", "123")
+            courseDAO.insertCourse(new Course(GARBAGE_INT, "xXKitten_OwnerXx", "DDA", "123"));
+
+            EnrolledDAO enrolledDAO = new EnrolledDAOImpl();
+            enrolledDAO.insertEnrolled(new Enrolled(GARBAGE_INT, course.getCourse_id(), "boywholived"));
+
         } catch (PasswordStorage.CannotPerformOperationException cpoe){
             System.out.println("Error hashing password!");
         }
@@ -157,6 +165,7 @@ public class DatabaseTestPopulater {
                     date_close, quizType, attempts, quizGroup, total_points);
             quizDAO.insertQuiz(quiz);
             int quizId = quiz.getQuiz_id();
+            System.out.println("QUIZ ID:::::::: " + quizId);
 
             float q1Points = new Float(20.5);
             float q2Points = 280;
