@@ -74,7 +74,7 @@ public class SubmissionServlet extends HttpServlet {
 
         Boolean isInitial = null;
 
-        List<Integer> choiceIds;
+        List<Integer> choiceIds = null;
 
         //Check if json form can be read.
         try {
