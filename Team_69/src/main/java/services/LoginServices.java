@@ -1,7 +1,11 @@
 package services;
 
 import dao.UserDAO;
-
+/**
+ * 
+ * @author Jahnvi Rai
+ *
+ */
 public class LoginServices {
 
 	public String checkUserType(String userEmail) {

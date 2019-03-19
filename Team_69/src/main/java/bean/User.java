@@ -6,6 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+/**
+ * This class represents the User table
+ *
+ * @author : Alsha Samantaray
+ * @version : 1.0
+ * @since : 02/20/2019
+ */
 
 @Entity
 @Table(name = "User")

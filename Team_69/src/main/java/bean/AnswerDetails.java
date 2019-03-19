@@ -1,6 +1,8 @@
 package bean;
 
 /**
+ * This class represents the AnswerDetails table
+ * 
  * @author: leharbhatt
  * @version : 1.0
  * @since : 02/22/2019

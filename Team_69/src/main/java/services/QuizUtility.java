@@ -18,7 +18,6 @@ import dao.QuestionDAO;
  * @since : 02/20/2019
  *
  */
-
 public class QuizUtility {
 	/**
 	 * Generates an QuizDetails object that stores the details of the quiz including

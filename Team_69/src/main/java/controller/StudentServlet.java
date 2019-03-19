@@ -27,7 +27,6 @@ public class StudentServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String queryParams = req.getQueryString();
@@ -50,7 +49,6 @@ public class StudentServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String view = "/error";

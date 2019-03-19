@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * This is the controller for retrieving quiz statistic of the students
  *
- * @authors Jinal
+ * @authors Jinal Patel
  * @version 1.0
  * @since : 03/01/2019
  */
