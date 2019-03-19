@@ -18,6 +18,7 @@
 		}
 		List<Questions> questionArray;
 		questionArray = (List) session.getAttribute("Question");
+		String quizId = (String)session.getAttribute("quizId");
 	%>
 	<div>
 		<form align="right" action="LoginController" method="post">
@@ -38,19 +39,19 @@
 						<h3><%=que.getQuestions()%></h3>
 						<label for="<%=que.getQuestionId() + "a"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="1" name="<%="options" + que.getQuestionId()%>"
+							type="radio" value="<%=options[0]%>" name="<%=que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "a"%>" required> <%=options[0]%></label>
 						<label for="<%=que.getQuestionId() + "b"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="2" name="<%="options" + que.getQuestionId()%>"
+							type="radio" value="<%=options[1]%>" name="<%=que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "b"%>" required> <%=options[1]%></label>
 						<label for="<%=que.getQuestionId() + "c"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="3" name="<%="options" + que.getQuestionId()%>"
+							type="radio" value="<%=options[2]%>" name="<%=que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "c"%>" required> <%=options[2]%></label>
 						<label for="<%=que.getQuestionId() + "d"%>"
 							class="btn btn-outline-dark btn-block"><input
-							type="radio" value="4" name="<%="options" + que.getQuestionId()%>"
+							type="radio" value="<%=options[3]%>" name="<%=que.getQuestionId()%>"
 							id="<%=que.getQuestionId() + "d"%>" required> <%=options[3]%></label>
 						<%
 							}
@@ -61,13 +62,15 @@
 							<input type="submit" style="margin-left: 20px"
 								class="btn btn-success btn-block" value="Submit Quiz"></input> <input
 								type="hidden" name="action" value="SubmitQuiz">
+							
 						</div>
 					</div>
 				</div>
 				<div class="col-md"></div>
 			</div>
 		</div>
-
+<%session.setAttribute("questions", questionArray);
+  session.setAttribute("quizId",quizId);%>
 	</form>
 </body>
 </html>

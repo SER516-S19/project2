@@ -1,6 +1,7 @@
 package Team76.Controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Team76.Database.StudentInsertQuery;
 import Team76.Entity.GradeEntity;
 import Team76.Entity.Questions;
 import Team76.Entity.QuizEntity;
@@ -77,16 +79,47 @@ public class StudentController extends HttpServlet {
 			try {
 				List<Questions> questions = new FetchQuestionsQuery().fetchQuestions(quizId);
 				request.getSession().setAttribute("Question", questions);
+				request.getSession().setAttribute("quizId", quizId);
 				response.sendRedirect("Quiz.jsp");
 			} catch (Exception e) {
 				response.getWriter().println("<font color=red>An Exception occured.</font>");
 				response.sendRedirect("Login.jsp");
 			}
 		} else if (action.equalsIgnoreCase("SubmitQuiz")) {
-			response.getWriter().println("<font color=red>Quiz submitted.</font>");
+			int quizId, studentId, questionId, marks = 0;
+			String answer;
+			List<Questions> questionArray = (List) request.getSession().getAttribute("questions");
+
+			StudentInsertQuery row = null;
+			try {
+				row = new StudentInsertQuery();
+				String solution[] = null;
+				String quizTitle, studentName;
+				int grade = 0;
+				quizId = Integer.parseInt(request.getSession().getAttribute("quizId").toString());
+				studentId = ((UserEntity) request.getSession().getAttribute("user")).getUserId();
+				for (Questions que : questionArray) {
+					marks = 0;
+					questionId = Integer.parseInt(que.getQuestionId());
+					answer = request.getParameter(que.getQuestionId());
+					solution = row.getSolution(questionId);
+					if (solution[1].equalsIgnoreCase(answer)) {
+						marks = Integer.parseInt(solution[0]);
+					}
+					row.answerEntry(studentId, questionId, quizId, marks, answer);
+				}
+				quizTitle = row.getQuizName(quizId);
+				studentName = row.getStudentName(studentId);
+				grade = row.getGrade(quizId, studentId);
+				row.gradeEntry(studentId, quizId, quizTitle, studentName, grade);
+				row.connectionClose();
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
 			response.sendRedirect("StudentDash.jsp");
 		} else {
-			response.getWriter().println("<font color=red>Something went wrong please login again.</font>");
+			response.getWriter().println("<font color=red>Somethng went wrong please login again.</font>");
 			response.sendRedirect("login.jsp");
 		}
 	}
