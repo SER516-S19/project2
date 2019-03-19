@@ -1,10 +1,11 @@
-<%@page import="org.team47database.*"%>
-<%@page import="java.util.*"%>
 <%--
  - Author(s): Jiayan Wang
  - Date: 2019/3/1
  - Description: Show all quiz information.
  --%>
+<%@page import="org.team47.database.*"%>
+<%@page import="java.util.*"%>
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="CSS/summary.css">
@@ -23,11 +24,11 @@
 </head>
 <body style="background-color: White;">
 
-	<h2><center>Summary Of Quiz created</center></h2>
+	<h2 style="text-align: center;">Summary Of Quiz created</h2>
 	<form action="quizstat.jsp" method="POST">
 		<input type="text" name="Quiz_title" value=<%=quiz_title%> hidden=true>
 		<input type="text" name="Quiz_id" value=<%=quiz_id%> hidden=true>	
-		<center><input type="submit" name="Submit" value="<%= quiz_title%> Stat"></center>
+		<input type="submit" name="Submit" value="<%= quiz_title%> Stat" style="text-align: center;">
 	</form>
 	<div>
 		<%
