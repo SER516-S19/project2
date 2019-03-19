@@ -2,6 +2,8 @@ package services;
 
 import dao.UserDAO;
 
+import java.util.List;
+
 /**
  * This is a class to manipulate data for requests from login servlet
  *
@@ -26,13 +28,23 @@ public class LoginServices {
 
 	public boolean validateUserPassword(String userEmail, String userPassword) {
 		UserDAO userDAO = new UserDAO();
-		String storedPassword = userDAO.fetchUserDetails(userEmail).getPassword();
-		return storedPassword.equals(userPassword);
+		if(validateUser(userEmail)) {
+			String storedPassword = userDAO.fetchUserDetails(userEmail).getPassword();
+			return storedPassword.equals(userPassword);
+		}
+		else
+			return false;
 	}
 
 	public String fetchUserName(String userEmail) {
 		UserDAO userDAO = new UserDAO();
 		String userName = userDAO.fetchUserDetails(userEmail).getUser_name();
 		return userName;
+	}
+
+	private boolean validateUser(String userEmail){
+		UserDAO userDAO = new UserDAO();
+		List<String> users = userDAO.fetchAllUsers();
+		return users.contains(userEmail);
 	}
 }
