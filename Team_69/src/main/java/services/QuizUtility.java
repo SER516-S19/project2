@@ -26,7 +26,7 @@ public class QuizUtility {
 		AnswerDAO answerDao = new AnswerDAO();
 		QuizDetails questionAnswers = new QuizDetails();
 		List<Question> questionList = questionDao.getQuestionsByQuizId(quizId);
-		if(questionList.size()!= 0) {
+		if (questionList.size() != 0) {
 			Quiz quiz = questionList.get(0).getQuiz();
 			questionAnswers.setQuizId(quiz.getQuizId());
 			questionAnswers.setQuizName(quiz.getQuizName());
@@ -46,7 +46,7 @@ public class QuizUtility {
 			mapper.setResponseAnswer(new ArrayList<AnswerDetails>());
 			List<AnswerDetails> answerDetailsList = new ArrayList<AnswerDetails>();
 			List<Answer> answersList = answerDao.getAnswersByQuestionId(question.getQuestionId());
-			for(Answer ans : answersList) {
+			for (Answer ans : answersList) {
 				AnswerDetails answerDetails = new AnswerDetails();
 				answerDetails.setAnswer(ans.getAnswer());
 				answerDetails.setAnswerId(ans.getAnswerId());
@@ -56,13 +56,14 @@ public class QuizUtility {
 			mapper.setAvailableAnswers(answerDetailsList);
 			questionMapperList.add(mapper);
 		}
-		questionAnswers.setQuestion(questionMapperList);;
+		questionAnswers.setQuestion(questionMapperList);
+		;
 		return questionAnswers;
 	}
 
 	public String ObjectToJSON(QuizDetails quizList) {
-		GsonBuilder gsonBuilder = new GsonBuilder();  
-		gsonBuilder.serializeNulls();  
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.serializeNulls();
 		Gson gson = gsonBuilder.create();
 		String result = gson.toJson(quizList);
 		return result;

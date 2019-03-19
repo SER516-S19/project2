@@ -20,34 +20,34 @@
             color: whitesmoke;
             vertical-align: baseline;
         }
+
         tr:nth-child(even) {
             background-color: #8a154b;
             color: white;
         }
+
         td {
             text-align: left;
             padding: 1%;
         }
+
         th {
             text-align: center;
             padding: 8px;
         }
+
         .wrapper {
             align-items: center;
             justify-content: center;
             display: flex;
             padding-top: 10px;
         }
-        .inTable {
-            align-items: center;
-            justify-content: center;
-            display: flex;
-            padding-top: 10px;
-        }
+
         body {
             background-color: #4a154b;
         }
-        .btn1 {
+
+        .submitBtn {
             display: inline-block;
             white-space: nowrap;
             flex-basis: auto;
@@ -65,32 +65,11 @@
             text-transform: uppercase;
             text-decoration: none;
             padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
+            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1),
+            color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
             color: #4a154b;
         }
-        .btn2 {
-            display: inline-block;
-            white-space: nowrap;
-            flex-basis: auto;
-            width: auto;
-            font-size: .875rem;
-            background-color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            text-align: center;
-            font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            line-height: 1.28571429;
-            letter-spacing: .8px;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 19px 40px 20px;
-            transition: box-shadow 420ms cubic-bezier(.165, .84, .44, 1), color 420ms cubic-bezier(.165, .84, .44, 1), background 420ms cubic-bezier(.165, .84, .44, 1);
-            color: #4a154b;
-            margin-left: 15px;
-            margin-right: 15px;
-        }
+
         h1 {
             text-align: center;
             color: white;
@@ -98,6 +77,7 @@
             padding-left: 20px;
             font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
         }
+
         h3 {
             text-align: center;
             color: white;
@@ -105,6 +85,7 @@
             padding-top: 20px;
             font-family: CircularPro, "Helvetica Neue", Helvetica, "Segoe UI", Tahoma, Arial, sans-serif;
         }
+
         .panel {
             align: center;
             margin-right: -15px;
@@ -125,7 +106,6 @@
 <body>
 <div class="panel">
     <h1>View Student List</h1>
-
     <div class="wrapper">
         <table>
             <tr>
@@ -137,7 +117,7 @@
                         <c:forEach items="${studentIds}" var="studentId">
                             <form action="viewStudentDetails" method="GET">
                                 <input type="hidden" name="studentId" value="${studentId}">
-                                <input type="submit" value="Student ${studentId}" class="btn1">
+                                <input type="submit" value="Student ${studentId}" class="submitBtn">
                             </form>
                         </c:forEach>
                     </div>
@@ -146,13 +126,5 @@
         </table>
     </div>
 </div>
-<%--<table>
-  <tr><th>Quizzes</th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #1</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #2</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #3</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #4</a></th></tr>
-  <tr><th><a href="./viewContentDetails.jsp">Quiz #5</a></th></tr>
-</table>--%>
 </body>
 </html>

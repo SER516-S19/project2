@@ -14,34 +14,33 @@ import javax.persistence.*;
 @Table(name = "Quiz")
 public class Quiz {
 
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Quiz_Id", nullable = false)
-    private int quizId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Quiz_Id", nullable = false)
+	private int quizId;
 
-    @Column(name = "Name" , nullable = false)
-    private String quizName;
+	@Column(name = "Name", nullable = false)
+	private String quizName;
 
-    @Column(name="Instructions")
-    private String quizInstructions;
+	@Column(name = "Instructions")
+	private String quizInstructions;
 
-    @Column(name ="Type")
-    private String quizType;
+	@Column(name = "Type")
+	private String quizType;
 
-    @Column(name = "Time_Limit")
-    private String quizTimeLimit;
+	@Column(name = "Time_Limit")
+	private String quizTimeLimit;
 
-    @Column(name="Is_Shuffled")
-    private boolean isShuffled;
-    
-    @Column(name="Is_Published")
-    private boolean isPublished;
-    
-    Quiz() {}
+	@Column(name = "Is_Shuffled")
+	private boolean isShuffled;
 
+	@Column(name = "Is_Published")
+	private boolean isPublished;
 
-    public Quiz(String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
+	Quiz() {
+	}
+
+	public Quiz(String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
 			boolean isPublished) {
 		this.quizName = quizName;
 		this.quizInstructions = quizInstructions;
@@ -50,9 +49,9 @@ public class Quiz {
 		this.isShuffled = isShuffled;
 		this.isPublished = isPublished;
 	}
-    
-    public Quiz(int quizId, String quizName, String quizInstructions, String quizType, String quizTimeLimit, boolean isShuffled,
-			boolean isPublished) {
+
+	public Quiz(int quizId, String quizName, String quizInstructions, String quizType, String quizTimeLimit,
+			boolean isShuffled, boolean isPublished) {
 		this.quizName = quizName;
 		this.quizInstructions = quizInstructions;
 		this.quizType = quizType;
@@ -61,7 +60,6 @@ public class Quiz {
 		this.isPublished = isPublished;
 		this.quizId = quizId;
 	}
-
 
 	public boolean isShuffled() {
 		return isShuffled;
@@ -80,38 +78,38 @@ public class Quiz {
 	}
 
 	public int getQuizId() {
-        return quizId;
-    }
+		return quizId;
+	}
 
-    public void setQuizId(int quizId) {
-        this.quizId = quizId;
-    }
+	public void setQuizId(int quizId) {
+		this.quizId = quizId;
+	}
 
-    public String getQuizName() {
-        return quizName;
-    }
+	public String getQuizName() {
+		return quizName;
+	}
 
-    public void setQuizName(String quizName) {
-        this.quizName = quizName;
-    }
+	public void setQuizName(String quizName) {
+		this.quizName = quizName;
+	}
 
-    public String getQuizInstructions() {
-        return quizInstructions;
-    }
+	public String getQuizInstructions() {
+		return quizInstructions;
+	}
 
-    public void setQuizInstructions(String quizInstructions) {
-        this.quizInstructions = quizInstructions;
-    }
+	public void setQuizInstructions(String quizInstructions) {
+		this.quizInstructions = quizInstructions;
+	}
 
-    public String getQuizType() {
-        return quizType;
-    }
+	public String getQuizType() {
+		return quizType;
+	}
 
-    public void setQuizType(String quizType) {
-        this.quizType = quizType;
-    }
+	public void setQuizType(String quizType) {
+		this.quizType = quizType;
+	}
 
-    public String getQuizTimeLimit() {
+	public String getQuizTimeLimit() {
 		return quizTimeLimit;
 	}
 
@@ -119,16 +117,10 @@ public class Quiz {
 		this.quizTimeLimit = quizTimeLimit;
 	}
 
-    @Override
-    public String toString() {
-        return "Quiz{" +
-                "quizId=" + quizId +
-                ", quizName='" + quizName + '\'' +
-                ", quizInstructions='" + quizInstructions + '\'' +
-                ", quizType='" + quizType + '\'' +
-                ", quizTimeLimit=" + quizTimeLimit +
-                ", isShuffled='" + isShuffled + '\'' +
-                ", isPublished='" + isPublished + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Quiz{" + "quizId=" + quizId + ", quizName='" + quizName + '\'' + ", quizInstructions='"
+				+ quizInstructions + '\'' + ", quizType='" + quizType + '\'' + ", quizTimeLimit=" + quizTimeLimit
+				+ ", isShuffled='" + isShuffled + '\'' + ", isPublished='" + isPublished + '\'' + '}';
+	}
 }
