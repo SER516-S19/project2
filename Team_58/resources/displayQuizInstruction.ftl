@@ -13,6 +13,16 @@ Freemarker page to display the Quiz Instructions
 	p1 {
    		color: red;
 	}
+	
+	input[type=button], input[type=submit], input[type=reset] {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 </style>
     <body>
     <h2 class="fontColor" style="text-transform: uppercase;">Quiz Instructions</h2>

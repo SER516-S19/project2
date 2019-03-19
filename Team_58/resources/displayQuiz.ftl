@@ -12,9 +12,24 @@ Freemarker page to display Professor details
 <html>
 	<head>
 	    <title>QUIZ</title>
+	    <#include "stylesheet.css">
 	</head>
-	<body>
+	
+<style>
+	
+	input[type=button], input[type=submit], input[type=reset] {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
 
+	<body>
+		<h2 class="fontColor" style="text-transform: uppercase;">Quiz Questions</h2>
 		<h1 align="center" id="timer"></h1>	
 		<div class="box" style="text-align:center">
 		<p>

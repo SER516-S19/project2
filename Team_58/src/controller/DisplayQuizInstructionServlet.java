@@ -39,31 +39,21 @@ public class DisplayQuizInstructionServlet extends HttpServlet {
             int quizId = Integer.parseInt(req.getParameter("QuizId"));          	
 			int userId = Integer.parseInt(session.getAttribute("userId").toString());
 			String quizAlreadyTakenMsg = "";
-            
-            
-            log.info("courseId in doget quiz inst"+courseId);
-            log.info("quizId in doget quiz inst"+quizId);
-            log.info("userId in doget quiz inst"+userId);
+   
             
             StudentResponseDAOBean studentResponse = new StudentResponseDAOBean();
 			
 			List<StudentResponseVO> studentResponseVOList = studentResponse.getStudentListFromCourseIdQuizIdUserId(courseId,quizId,userId);
 			
-			
-			log.info("studentResponseVOList size is "+studentResponseVOList.size());
+
 			
 			if(studentResponseVOList.size()  > 0)
 			{
 
-				log.info("You have already taken this quiz");
 				quizAlreadyTakenMsg = "You have already taken this quiz";
 			
 			}
-		
-			
-			
 	
-            
             QuizDAOBean quizBean = new QuizDAOBean();
             QuizVO quiz = quizBean.getQuiz(quizId);
             session.setAttribute("QuizVO", quiz);

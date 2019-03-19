@@ -8,6 +8,19 @@ Freemarker page to display the Student Course Dashboard
 	<head>
 		<#include "stylesheet.css">
 	</head>
+<style>
+
+	input[type=button], input[type=submit], input[type=reset] {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+</style>
 	<body>
 		<h2 class="fontColor" style="text-transform: uppercase;">Course Dashboard</h2>
         <div class="box">
