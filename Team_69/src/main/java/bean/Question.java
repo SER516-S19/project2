@@ -1,23 +1,13 @@
 package bean;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import javax.persistence.*;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
 /**
  * This class represents the Question table
- *  
+ * 
  * @author jinalpatel
  * @since 02/16/2019
  * @version 1.0.0
@@ -27,63 +17,26 @@ import javax.persistence.*;
 @Table(name = "Question")
 public class Question {
 	@Id
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Question_id")
-    private int questionId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Question_id")
+	private int questionId;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Question_id")
-    private int questionId;
-
-	@ManyToOne(cascade = {CascadeType.REFRESH})
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+	@ManyToOne(cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "Quiz_Id")
 	private Quiz quiz;
 
-    @Column(name = "Question")
-    private String question;
+	@Column(name = "Question")
+	private String question;
 
-    @Column(name = "Is_Multiple")
-    private boolean isMultiple;
-    
-    @Column(name = "Points")
-    private int points;
+	@Column(name = "Is_Multiple")
+	private boolean isMultiple;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
-    
-    //For the answer side
-    @OneToMany(mappedBy = "question",orphanRemoval = true, cascade = CascadeType.PERSIST)
+	@Column(name = "Points")
+	private int points;
+
+	// For the answer side
+	@OneToMany(mappedBy = "question", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private List<Answer> answerList = new ArrayList<Answer>();
-    
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7c2168bffa36cc7429aeb41fec7e2db08ba09eba
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 
 	public Question(Quiz quiz, String question, boolean isMultiple, int points) {
 		super();
@@ -92,8 +45,8 @@ public class Question {
 		this.isMultiple = isMultiple;
 		this.points = points;
 	}
-	
-	public Question(Quiz quiz,int questionId, String question, boolean isMultiple, int points) {
+
+	public Question(Quiz quiz, int questionId, String question, boolean isMultiple, int points) {
 		super();
 		this.quiz = quiz;
 		this.question = question;
@@ -147,12 +100,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question{" +
-				"questionId=" + questionId +
-				", quiz=" + quiz +
-				", question='" + question + '\'' +
-				", isMultiple=" + isMultiple +
-				", points=" + points +
-				'}';
+		return "Question{" + "questionId=" + questionId + ", quiz=" + quiz + ", question='" + question + '\''
+				+ ", isMultiple=" + isMultiple + ", points=" + points + '}';
 	}
 }

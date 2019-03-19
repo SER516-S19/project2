@@ -60,11 +60,8 @@ public class QuizDetailsController extends HttpServlet {
 		// perform processing and aggregate response payload
 		try {
 			if (action.equals("Add Questions")) {
-<<<<<<< HEAD
-				if (title!=null) {
-=======
-				if (Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9]*", title) && Pattern.matches("[0-9][0-9]*", time)) {
->>>>>>> Team_58
+					if (title != null && Pattern.matches("[0-9][0-9]*", time)) {
+
 
 					if (shuffled != null && shuffled.equals("true"))
 						isShuffled = true;
@@ -84,17 +81,18 @@ public class QuizDetailsController extends HttpServlet {
 								isMultipleAttempt);
 						quizDetailsDao.insert(quizModel);
 						req.getSession().setAttribute("rowValues", quizDetailsDao.getAll());
-						
+
 						String quizId = quizDetailsDao.getQuizId(title);
 						req.getSession().setAttribute("quizId", quizId);
-						req.getRequestDispatcher("addQuestions.html").forward(req, res);
+						req.getSession().setAttribute("quizTitle", title);
+						req.getRequestDispatcher("/updateQuestions").forward(req, res);
 					}
 
 				} else {
 					res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Wrong Parameters Sent!");
 				}
 			} else if (action.equals("Update Questions")) {
-				if (Pattern.matches("[a-zA-Z0-9][a-zA-Z0-9]*", title) && Pattern.matches("[0-9][0-9]*", time)) {
+				if (title != null && Pattern.matches("[0-9][0-9]*", time)) {
 
 					if (shuffled != null && shuffled.equals("true"))
 						isShuffled = true;
@@ -106,6 +104,8 @@ public class QuizDetailsController extends HttpServlet {
 						isMultipleAttempt = true;
 
 					QuizModel quizModel = quizDetailsDao.findByPrimaryKey(title);
+					String quizId = quizDetailsDao.getQuizId(title);
+					req.getSession().setAttribute("quizId", quizId);
 
 					if (quizModel == null)
 						res.sendError(HttpServletResponse.SC_BAD_REQUEST, "This Quiz doesn't Exist!");
@@ -113,14 +113,20 @@ public class QuizDetailsController extends HttpServlet {
 						quizModel = new QuizModel(title, instructions, assignmentGroup, isShuffled, isGraded, timeLimit,
 								isMultipleAttempt);
 						quizDetailsDao.update(quizModel);
-						req.getRequestDispatcher("Success.html").forward(req, res);
+						req.getRequestDispatcher("/updateQuestions").forward(req, res);
 					}
 
 				} else {
 					res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Wrong Parameters Sent!");
 				}
-			} else {
-				req.getRequestDispatcher("index.html").forward(req, res);
+			}
+			else if (action.equals("View Questions")) {
+				String quizId = quizDetailsDao.getQuizId(title);
+				req.getSession().setAttribute("quizId", quizId);
+				req.getRequestDispatcher("/viewQuestions").forward(req, res);
+			}
+			else {
+				req.getRequestDispatcher("showQuizes.jsp").forward(req, res);
 			}
 		} catch (Exception exc) {
 			res.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Java Exception at Server");

@@ -14,6 +14,13 @@ import static content.creator.helper.CreateContentHelper.generateRandom;
 import static content.creator.helper.CreateContentHelper.saveDataToDb;
 import content.creator.helper.ModifyQuestionHelper;
 
+/*
+ * Modified by: Abhishek Gupta
+ * Date: 2/28/19
+ * Description: Create/Modify a question.
+ *
+ * */
+
 @WebServlet(urlPatterns = "/ques")
 public class QuestionStreamServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -38,12 +45,15 @@ public class QuestionStreamServlet extends HttpServlet {
             } else {
                 ans.add("false");
             }
-            int ansId = generateRandom(10000, 99999);
+            int ansId = Integer.parseInt(request.getParameter(String.format("id_%s",j)));
+            if (action.equals(add)) {
+                ansId = generateRandom(10000, 99999);
+            }
             answerSet.put(ansId, ans);
         }
         quiz.setAnswerBundle(answerSet);
 
-        if(action == add){
+        if(action.equals(add)){
             try {
                 saveDataToDb(
                         quiz.getQuizId(),

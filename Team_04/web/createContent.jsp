@@ -89,9 +89,8 @@
 </div>
 
 <div id="QuestionsTable" style="display:none;">
-    <div class="col-25">
-        <label name="quesAdded">Questions Added:</label></div>
-    <table id="qAdded">
+    <br/><br/>
+    <table id="qAdded" class="inTable">
         <tr>
             <th>Question</th>
             <th>A</th>
@@ -125,9 +124,11 @@
                 score: document.getElementById("score").value,
                 choice: document.querySelector('input[name="choice"]:checked').value
             });
-            var html = "<tr id='quiz'" + qid + "><td>" + document.getElementById("question").value + "</td><td>" + document.getElementById("1").value +
-                "</td><td>" + document.getElementById("2").value + "</td><td>" + document.getElementById("3").value + "</td><td>" +
-                document.getElementById("4").value + "</td><td>" + document.getElementById("score").value + "</td>" + "<td><button qid=" + qid + " class='delQues'>delete</button></td>";
+            var html = "<tr id='quiz'" + qid + "><td>" + document.getElementById("question").value + "</td><td>" +
+                document.getElementById("1").value + "</td><td>" + document.getElementById("2").value + "</td><td>" +
+                document.getElementById("3").value + "</td><td>" + document.getElementById("4").value + "</td><td>" +
+                document.getElementById("score").value + "</td>" + "<th><button qid=" + qid +
+                " class='btn'>Delete</button></th>";
             $("#qAdded").append(html);
             qid++;
             $("#QuestionsTable").show();

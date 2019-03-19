@@ -1,7 +1,6 @@
 package content.creator.helper;
 
 import static content.creator.operations.DataOps.getNamesFromProperty;
-
 import content.creator.constants.Constants;
 import content.creator.dao.QuizContentDAO;
 import content.creator.dao.QuizFormDAO;
@@ -31,18 +30,25 @@ public final class CreateContentHelper {
       String score)
       throws SQLException {
     for (Integer answerKey : answerBundle.keySet()) {
-      QuizContentDAO quizContent = new QuizContentDAO();
-      quizContent.setQuizId(quizId);
-      quizContent.setQuesId(quesId);
-      quizContent.setQuesType(null);
-      quizContent.setQuesDesc(questionText);
-      quizContent.setAnsId(answerKey);
-      quizContent.setAnsDesc(answerBundle.get(answerKey).get(0));
-      quizContent.setCorrect(Boolean.parseBoolean(answerBundle.get(answerKey).get(1)));
-      quizContent.setMaxScore(Integer.parseInt(score));
+      QuizContentDAO quizContent = addQuizContent(quizId, quesId, questionText, answerBundle, score, answerKey);
       String queryString = convertToQueryString(quizContent);
+      System.out.println(queryString);
       DataOps.saveData(queryString);
     }
+  }
+
+  public static QuizContentDAO addQuizContent(int quizId, int quesId, String questionText, Map<Integer,
+          ArrayList<String>> answerBundle, String score, Integer answerKey) {
+    QuizContentDAO quizContent = new QuizContentDAO();
+    quizContent.setQuizId(quizId);
+    quizContent.setQuesId(quesId);
+    quizContent.setQuesType(null);
+    quizContent.setQuesDesc(questionText);
+    quizContent.setAnsId(answerKey);
+    quizContent.setAnsDesc(answerBundle.get(answerKey).get(0));
+    quizContent.setCorrect(Boolean.parseBoolean(answerBundle.get(answerKey).get(1)));
+    quizContent.setMaxScore(Integer.parseInt(score));
+    return quizContent;
   }
 
   private static String convertToQueryString(QuizContentDAO quizContent) {
@@ -80,10 +86,14 @@ public final class CreateContentHelper {
         quizForm.setQuizId(quizId);
         quizForm.setQuestionId(generateRandom(1000, 9999));
         Map<Integer, ArrayList<String>> answerBundle = new HashMap<>();
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionA(), choice == 1 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionB(), choice == 2 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionC(), choice == 3 ? "true" : "false")));
-        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionD(), choice == 4 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionA(),
+                choice == 1 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionB(),
+                choice == 2 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionC(),
+                choice == 3 ? "true" : "false")));
+        answerBundle.put(generateRandom(10000, 99999), new ArrayList<>(Arrays.asList(question.getOptionD(),
+                choice == 4 ? "true" : "false")));
         quizForm.setAnswerBundle(answerBundle);
         quizFormList.add(quizForm);
       }

@@ -46,26 +46,11 @@ macOS and linux:
 windows
 `cd QuizCreator`  
 `./build.bat`
-<<<<<<< HEAD
-<<<<<<< HEAD
 `./run.bat`
-=======
-
-`./run.bat`  
->>>>>>> origin/master
-=======
-`./run.bat`
->>>>>>> origin/master
 
 After successfully building and running, you can view the project by going to:
 http://localhost:8080
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
-=======
 ## Login As A Student
 To login as a student, you can use the following accounts...
 
@@ -83,4 +68,3 @@ password: `password`
 
 username: `xXKitten_OwnerXx`
 password: `cats`
->>>>>>> origin/master
