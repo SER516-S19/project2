@@ -28,7 +28,7 @@ public class CalculatedScores {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@Column(name = "scores")
+	@Column(name = "scores",precision=10, scale=2)
 	private float score;
 
 	public CalculatedScores(int id, User user, Quiz quiz, float score) {

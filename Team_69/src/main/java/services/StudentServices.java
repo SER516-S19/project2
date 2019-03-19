@@ -153,7 +153,10 @@ public class StudentServices {
 					correctAnswer++;
 				}
 			}
+
 			float points = ((float) correctResponseCount / (float) correctAnswer) * ques.getPoints();
+			points = points - ((answerID.size() - correctResponseCount) * (ques.getPoints()/(float)ques.getAvailableAnswers().size()));
+			points = points < 0 ? 0:points;
 			questionScore.put(questionId, points);
 		}
 		float sumPoints = 0.0f;
