@@ -8,7 +8,7 @@ import javax.persistence.*;
 /**
  * This class represents the Question table
  * 
- * @author jinalpatel
+ * @author Jinal Patel
  * @since 02/16/2019
  * @version 1.0.0
  *

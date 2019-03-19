@@ -18,14 +18,14 @@ import content.creator.helper.DeleteQuestionHelper;
 @WebServlet(urlPatterns = "/delQues")
 
 public class DeleteQuestionServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            int quizId = Integer.parseInt(request.getParameter("quizid"));
-            int quesId = Integer.parseInt(request.getParameter("quesid"));
-            DeleteQuestionHelper.removeQues(quizId, quesId);
-            response.sendRedirect("./viewContentDetails?quizId=" + quizId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		try {
+			int quizId = Integer.parseInt(request.getParameter("quizid"));
+			int quesId = Integer.parseInt(request.getParameter("quesid"));
+			DeleteQuestionHelper.removeQues(quizId, quesId);
+			response.sendRedirect("./viewContentDetails?quizId=" + quizId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

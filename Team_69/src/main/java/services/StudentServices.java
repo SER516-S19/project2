@@ -6,24 +6,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
-
 import bean.*;
 import com.google.gson.Gson;
-
 import dao.CalculatedScoresDAO;
 import dao.QuizDAO;
 import dao.StatisticsDAO;
 import dao.UserDAO;
 
 /**
- * A class to get the JSON string to the student controller
+ * This is a class to manipulate data for requests from student servlet
  * 
- * @author amanjotsingh
+ * @author amanjotsingh leharbhatt bhawanaprasad
  * @version 1.0
  * @since 02/21/2019
  * 
  */
-
 public class StudentServices {
 
 	public String getQuestionDetails(int quizId) {
@@ -126,6 +123,11 @@ public class StudentServices {
 		return score;
 	}
 
+	/**
+	 * Function to calculate the grades of the student
+	 * @param studentResponse
+	 * @param userID
+	 */
 	public void calculateScores(String studentResponse, int userID) {
 		QuizDetails jsonResponse = StudentServices.convertStringtoJSON(studentResponse);
 		int quizID = jsonResponse.getQuizId();

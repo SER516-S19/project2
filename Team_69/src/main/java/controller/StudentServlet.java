@@ -27,7 +27,6 @@ public class StudentServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String queryParams = req.getQueryString();
@@ -50,7 +49,6 @@ public class StudentServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String view = "/error";
@@ -70,6 +68,7 @@ public class StudentServlet extends HttpServlet {
 					response.setStatus(HttpServletResponse.SC_CREATED);
 				} else
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				
 				session.removeAttribute("data");
 				request.getRequestDispatcher(view).forward(request, response);
 			} else if (action.equals("save")) {
