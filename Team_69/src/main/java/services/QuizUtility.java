@@ -20,7 +20,7 @@ import dao.QuestionDAO;
  */
 public class QuizUtility {
 	/**
-	 * Generates an QuizDetails object that stores the details of the quiz including
+	 * Generates a QuizDetails object that stores the details of the quiz including
 	 * its questions, corresponding answer choices, correct answer and other quiz
 	 * details.
 	 * 

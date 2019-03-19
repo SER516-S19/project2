@@ -33,8 +33,8 @@ public class QuizDAO {
 			CriteriaQuery<String> query = builder.createQuery(String.class);
 			Root<Quiz> root = query.from(Quiz.class);
 			query.select(root.<String>get("quizName"));
-			Query<String> quizNamwQuery = session.createQuery(query);
-			quizNames = quizNamwQuery.getResultList();
+			Query<String> quizNameQuery = session.createQuery(query);
+			quizNames = quizNameQuery.getResultList();
 			transaction.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();

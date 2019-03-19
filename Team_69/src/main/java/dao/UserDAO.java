@@ -86,8 +86,8 @@ public class UserDAO {
 			CriteriaQuery<String> query = builder.createQuery(String.class);
 			Root<User> root = query.from(User.class);
 			query.select(root.<String>get("userEmail"));
-			Query<String> quizNamwQuery = session.createQuery(query);
-			userList = quizNamwQuery.getResultList();
+			Query<String> userListQuery = session.createQuery(query);
+			userList = userListQuery.getResultList();
 			transaction.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();

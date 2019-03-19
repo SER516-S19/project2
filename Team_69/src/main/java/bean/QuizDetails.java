@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 
- * This class represents a Questions and its answers.
+ * This class represents a Quiz and its associated questions.
  * 
  * @author: leharbhatt
  * @version: 1.0

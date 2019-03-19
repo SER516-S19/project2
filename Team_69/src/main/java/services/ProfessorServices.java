@@ -21,8 +21,8 @@ public class ProfessorServices {
 
 	private final String OPTIONS = "option";
 	private static ProfessorDAO professorDAO = new ProfessorDAO();
-	AnswerDAO answerDAO = new AnswerDAO();
-	QuestionDAO questionDAO = new QuestionDAO();
+	private AnswerDAO answerDAO = new AnswerDAO();
+	private QuestionDAO questionDAO = new QuestionDAO();
 
 	/**
 	 * This method verifies question form data and add question details in Question
