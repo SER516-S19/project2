@@ -105,9 +105,9 @@ a {
 	animation: slidebg 2s linear infinite;
 }
 
-@
-keyframes slidebg {to { background-position:20vw;
-	
+@keyframes slidebg {
+	to { 
+	background-position:20vw;
 }
 
 }

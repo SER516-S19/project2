@@ -44,7 +44,8 @@
 			"</div>"+
  			"<div top=100px; class =\"instruction_area\">"+
 			"<p style=\"margin-top: 160px;\">Quiz Instructions</p>"+
-			"<input id = \"instruction\" type = \"text\" value=\"1) %s\"style=\"height:50px;width:600px;\" disabled=\"disabled\">"+
+			"<input id = \"instruction\" type = \"text\" value=\"1) "+ 
+			"%s\"style=\"height:50px;width:600px;\" disabled=\"disabled\">"+
 			"</input>"+
 			"</div>"+
      		"<div class=\"bottom\">"+
