@@ -12,13 +12,30 @@ Freemarker page to display Professor details
 <html>
 	<head>
 	    <title>QUIZ</title>
+	    <#include "stylesheet.css">
 	</head>
-	<body>
+	
+<style>
+	
+	input[type=button], input[type=submit], input[type=reset] {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
 
+	<body>
+		<h2 class="fontColor" style="text-transform: uppercase;">Quiz Questions</h2>
 		<h1 align="center" id="timer"></h1>	
+		<div class="box" style="text-align:center">
 		<p>
 		<table>
-
+		
+			
 		    <form id="quizForm" action="SubmitQuiz" onsubmit="return SaveSubmit();" method="POST">
 
 			    <#list Session.displayQuestionsVO as question>
@@ -75,6 +92,7 @@ Freemarker page to display Professor details
 	    	</form>
 	    </table>
 	    </p>
+	    </div>
 	    	    		 				
 		<script>
 			var countDownDate = new Date().getTime() + (30 * 60 * 1000);

@@ -8,8 +8,21 @@ Freemarker page to display the Student Homepage
     <head>
         <#include "stylesheet.css">
     </head>
+    <style>
+
+	input[type=button], input[type=submit], input[type=reset] {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
     <body>
-	    <div class="navbar">
+    <h2 class="fontColor" style="text-transform: uppercase;">Student Home</h2>
+	    
 			<div class="dropdown">
 		  		<button class="dropbtn">v
 		    		<i class="fa fa-caret-down"></i>
@@ -18,7 +31,7 @@ Freemarker page to display the Student Homepage
 	    			<a href="login.jsp" name="logoutProfile">Logout</a>
 	    		</div>
 		  	</div> 
-		</div>
+		
 		<div class="boxOuter">
 			<center>
 	        <p>Welcome ${Session.userVO.getFirstname()}!</p>
