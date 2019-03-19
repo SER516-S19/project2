@@ -125,7 +125,7 @@ public class Main {
                         "username NVARCHAR(50) PRIMARY KEY NOT NULL,\n" +
                         "firstname NVARCHAR(50) NOT NULL,\n" +
                         "lastname NVARCHAR(50) NOT NULL,\n" +
-                          "sessionid CHAR(16),\n" +
+                        "sessionid CHAR(16),\n" +
                         "hashedpass NVARCHAR(60) NOT NULL\n" +
                         ");",
                 "CREATE TABLE IF NOT EXISTS enrolled (\n" +
@@ -139,8 +139,8 @@ public class Main {
                         "submission_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
                         "quiz_fk INTEGER NOT NULL,\n" +
                         "enrolled_fk INTEGER NOT NULL,\n" +
-                        "time_taken INTEGER,\n" +
-                        "date_taken DATE,\n" +
+                        "start_time TIMESTAMP NOT NULL,\n" +
+                        "end_time TIMESTAMP,\n" +
                         "score REAL,\n" +
                         "attempt INTEGER,\n" +
                         "FOREIGN KEY (quiz_fk) REFERENCES quizzes(quiz_id) ON DELETE CASCADE,\n" +

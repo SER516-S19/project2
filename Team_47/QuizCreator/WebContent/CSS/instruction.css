@@ -13,17 +13,17 @@ h3 {
 h4 {
 	padding-right: 20px;
 	margin-top: 15px;
-	float: right;"
+	float: right;
 }
 
 input {
 	margin-top: 10px;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-    -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
-  	-moz-appearance: checkbox;    /* Firefox */
-  	-ms-appearance: checkbox;     /* not currently supported */
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
+	-webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+	-moz-appearance: checkbox; /* Firefox */
+	-ms-appearance: checkbox; /* not currently supported */
 }
 
 hr {
@@ -31,8 +31,8 @@ hr {
 }
 
 a {
-  text-decoration:none;
-  color:#FFF;
+	text-decoration: none;
+	color: #FFF;
 }
 
 .head-section {
@@ -43,7 +43,7 @@ a {
 .question-board {
 	margin: auto;
 	width: 600px;
-	height:auto;
+	height: auto;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -78,46 +78,47 @@ a {
 }
 
 .rainbow-button {
-  width:calc(10vw + 6px);
-  height:calc(5vw + 6px);
-  background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
-  border-radius:5px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:3vw;
-  font-weight:bold;
-  margin-top: 10px;
+	width: calc(10vw + 6px);
+	height: calc(5vw + 6px);
+	background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF
+		100%);
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 3vw;
+	font-weight: bold;
+	margin-top: 10px;
 }
+
 .rainbow-button:after {
-  content:attr(alt);
-  width:10vw;
-  height:5vw;
-  background-color:#191919;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+	content: attr(alt);
+	width: 10vw;
+	height: 5vw;
+	background-color: #191919;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+
 .rainbow-button:hover {
-  animation:slidebg 2s linear infinite;
+	animation: slidebg 2s linear infinite;
 }
 
 @keyframes slidebg {
-  to {
-    background-position:20vw;
-  }
+	to { 
+	background-position:20vw;
 }
 
+}
 .bottom-area {
 	width: 70%;
-  	margin: 0 auto;
+	margin: 0 auto;
 	border: 1px solid;
 	border-color: #dbd9ca;
 	border-radius: 3px;
-	height:50px;
-	display:flex; 
+	height: 50px;
+	display: flex;
 	align-items: center;
 	direction: rtl;
 }
-
-
