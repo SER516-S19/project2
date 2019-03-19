@@ -84,7 +84,7 @@ request.getSession().setAttribute("enrolled_id","1");
 %>   
 <%=html%>
  <div >
- <button onclick="execAjaxOnBegin(<%=quizid1%>,<%=enrolled_id%>)">
+ <button onclick="execAjaxOnBegin(<%=quizId%>,<%=enrolled_id%>)">
 Click here to Begin Quiz 
  </button>
 </div>
