@@ -1,7 +1,6 @@
 package content.creator.helper;
 
 import static content.creator.operations.DataOps.getNamesFromProperty;
-
 import content.creator.constants.Constants;
 import content.creator.dao.QuizContentDAO;
 import content.creator.dao.QuizFormDAO;
@@ -31,19 +30,25 @@ public final class CreateContentHelper {
       String score)
       throws SQLException {
     for (Integer answerKey : answerBundle.keySet()) {
-      QuizContentDAO quizContent = new QuizContentDAO();
-      quizContent.setQuizId(quizId);
-      quizContent.setQuesId(quesId);
-      quizContent.setQuesType(null);
-      quizContent.setQuesDesc(questionText);
-      quizContent.setAnsId(answerKey);
-      quizContent.setAnsDesc(answerBundle.get(answerKey).get(0));
-      quizContent.setCorrect(Boolean.parseBoolean(answerBundle.get(answerKey).get(1)));
-      quizContent.setMaxScore(Integer.parseInt(score));
+      QuizContentDAO quizContent = addQuizContent(quizId, quesId, questionText, answerBundle, score, answerKey);
       String queryString = convertToQueryString(quizContent);
       System.out.println(queryString);
       DataOps.saveData(queryString);
     }
+  }
+
+  public static QuizContentDAO addQuizContent(int quizId, int quesId, String questionText, Map<Integer,
+          ArrayList<String>> answerBundle, String score, Integer answerKey) {
+    QuizContentDAO quizContent = new QuizContentDAO();
+    quizContent.setQuizId(quizId);
+    quizContent.setQuesId(quesId);
+    quizContent.setQuesType(null);
+    quizContent.setQuesDesc(questionText);
+    quizContent.setAnsId(answerKey);
+    quizContent.setAnsDesc(answerBundle.get(answerKey).get(0));
+    quizContent.setCorrect(Boolean.parseBoolean(answerBundle.get(answerKey).get(1)));
+    quizContent.setMaxScore(Integer.parseInt(score));
+    return quizContent;
   }
 
   private static String convertToQueryString(QuizContentDAO quizContent) {

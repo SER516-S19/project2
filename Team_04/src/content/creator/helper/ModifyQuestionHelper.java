@@ -14,21 +14,15 @@ public final class ModifyQuestionHelper {
     public static void updateDataInDb(
             int quizId,
             int quesId,
-            String question_text,
+            String questionText,
             Map<Integer, ArrayList<String>> answerBundle,
             String score)
             throws SQLException {
-        for (Integer answer_key : answerBundle.keySet()) {
-            QuizContentDAO quiz = new content.creator.dao.QuizContentDAO();
-            quiz.setQuizId(quizId);
-            quiz.setQuesId(quesId);
-            quiz.setQuesType(null);
-            quiz.setQuesDesc(question_text);
-            quiz.setAnsId(answer_key);
-            quiz.setAnsDesc(answerBundle.get(answer_key).get(0));
-            quiz.setCorrect(Boolean.parseBoolean(answerBundle.get(answer_key).get(1)));
-            quiz.setMaxScore(Integer.parseInt(score));
+        for (Integer answerKey : answerBundle.keySet()) {
+            QuizContentDAO quiz = CreateContentHelper.addQuizContent(quizId, quesId, questionText,
+                    answerBundle, score, answerKey);
             String queryString = queryString(quiz);
+            System.out.println(queryString);
             DataOps.saveData(queryString);
         }
     }

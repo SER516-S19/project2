@@ -40,7 +40,6 @@ public class StudentServlet extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.setStatus(HttpServletResponse.SC_OK);
 		req.getRequestDispatcher("/views/student.jsp").forward(req, resp);
-
 	}
 
 	/**
@@ -61,20 +60,19 @@ public class StudentServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		try {
-			if(action.equals("submit")) {
+			if (action.equals("submit")) {
 				response.setContentType("text/html");
 				view = service.feedAnswers(studentResponse, userId);
 				if ("/success".equals(view)) {
-					service.calculateScores(studentResponse,userId);
+					service.calculateScores(studentResponse, userId);
 					int score = service.getGrade(studentResponse, userId);
 					session.setAttribute("grade", score);
 					response.setStatus(HttpServletResponse.SC_CREATED);
-				}
-				else
+				} else
 					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				session.removeAttribute("data");
 				request.getRequestDispatcher(view).forward(request, response);
-			}else if(action.equals("save")) {
+			} else if (action.equals("save")) {
 				session.setAttribute("data", studentResponse);
 				if ("/success".equals(view))
 					response.setStatus(HttpServletResponse.SC_OK);

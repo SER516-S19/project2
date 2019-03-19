@@ -2,8 +2,8 @@ package content.creator.servlet;
 
 /*
  * Modified by: Abhishek Gupta
- * Date: 2/28/19
- * Description: Delete an entire quiz.
+ * Date: 3/1/19
+ * Description: Add a question to the quiz.
  *
  * */
 
@@ -29,9 +29,13 @@ public class AddQuestionServlet extends HttpServlet {
         request.setAttribute("question_text", "");
         request.setAttribute("choice", 1);
         request.setAttribute("option_a", "");
+        request.setAttribute("id_1", "");
         request.setAttribute("option_b", "");
+        request.setAttribute("id_2", "");
         request.setAttribute("option_c", "");
+        request.setAttribute("id_3", "");
         request.setAttribute("option_d", "");
+        request.setAttribute("id_4", "");
         request.setAttribute("score", "");
         request.getRequestDispatcher("./addContent.jsp").forward(request,response);
     }

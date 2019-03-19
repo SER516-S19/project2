@@ -57,4 +57,4 @@ function allHaveClass(add) {
     
     }
     
-        }
+}
