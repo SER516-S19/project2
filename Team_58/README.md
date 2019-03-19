@@ -14,9 +14,17 @@ Build Project
 To log in as Student, Use the below credentials:
 Username : vikadi
 Password: 1234
+Username: sverma39
+Password: 1234
+Username: akadam
+Password: 1234
+Username: tkhatavkar
+Password: 1234
 
 To log in as Professor, Use the below credentials:
 Username: jgonzalez
+Password : 1234
+Username: abansal
 Password : 1234
 
 Team Professor:
@@ -36,3 +44,5 @@ Team Student:
 - Dhruv Patel
 - Vaibhav Bhasin
 - Jainish Soni
+
+Note: To check Grade Quiz functionality, make sure the quiz schedule date be of any date before the current date.
