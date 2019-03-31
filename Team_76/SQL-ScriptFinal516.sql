@@ -4,6 +4,10 @@ SHOW DATABASES;
 
 USE ser516p2v2;
 
+ CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+ 
+ GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+
 CREATE TABLE answer_table
 (studentID INTEGER,
 quizID INTEGER,
